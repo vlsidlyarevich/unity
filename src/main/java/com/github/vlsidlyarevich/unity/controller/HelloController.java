@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.controllers;
+package com.github.vlsidlyarevich.unity.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
