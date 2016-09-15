@@ -10,10 +10,10 @@ import java.util.List;
  */
 public interface WorkerRepository extends MongoRepository<Worker, String> {
 
-    public Worker findByFirstName(String firstName);
+    Worker findByFirstName(String firstName);
 
-    public Worker findByLastName(String lastName);
+    Worker findByLastName(String lastName);
 
-    public List<Worker> findAllByAge(Integer age);
+    List<Worker> findAllByAge(Integer age);
 
 }

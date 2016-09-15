@@ -21,6 +21,13 @@ public class Worker {
     private Integer age;
 
     public Worker() {
+
     }
 
+    public Worker(String firstName, String lastName, Integer age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+
+    }
 }
