@@ -36,4 +36,8 @@ public class WorkerService {
         return repository.findAllByLastName(lastName);
     }
 
+    public List<Worker> findAll() {
+        return repository.findAll();
+    }
+
 }
