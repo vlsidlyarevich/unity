@@ -1,6 +1,8 @@
 package com.github.vlsidlyarevich.unity.service;
 
 import com.github.vlsidlyarevich.unity.domain.Worker;
+import com.github.vlsidlyarevich.unity.models.Name;
+import com.github.vlsidlyarevich.unity.models.Speciality;
 import com.github.vlsidlyarevich.unity.repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,28 +18,20 @@ public class WorkerService {
     @Autowired
     private WorkerRepository repository;
 
-    public Worker findByFirstName(String firstName) {
-        return repository.findByFirstName(firstName);
-    }
-
-    public Worker findByLastName(String lastName) {
-        return repository.findByFirstName(lastName);
+    public Worker findByName(Name name) {
+        return repository.findByName(name);
     }
 
     public List<Worker> findAllByAge(Integer age) {
         return repository.findAllByAge(age);
     }
 
-    public List<Worker> findAllByFirstName(String firstName) {
-        return repository.findAllByFirstName(firstName);
-    }
-
-    public List<Worker> findAllByLastName(String lastName) {
-        return repository.findAllByLastName(lastName);
-    }
-
     public List<Worker> findAll() {
         return repository.findAll();
+    }
+
+    public List<Worker> findAllBySpeciality(Speciality speciality) {
+        return repository.findAllBySpeciality(speciality);
     }
 
 }
