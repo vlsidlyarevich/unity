@@ -43,9 +43,13 @@ public class Worker {
         this.speciality = speciality;
     }
 
-    public void setSpecialities(String speciality) {
+    public void setSpeciality(String speciality) {
         if (EnumUtils.isValidEnum(Speciality.class, speciality)) {
             this.speciality = Speciality.valueOf(speciality);
         }
+    }
+
+    public void setSpeciality(Speciality speciality) {
+        this.speciality = speciality;
     }
 }
