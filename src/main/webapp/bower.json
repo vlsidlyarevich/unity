@@ -2,7 +2,7 @@
   "name": "unity",
   "description": "Angular and java REST based Human Resourse Management System",
   "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-phonecat",
+  "homepage": "https://github.com/vlsidlyarevich/unity",
   "license": "MIT",
   "private": true,
   "dependencies": {
