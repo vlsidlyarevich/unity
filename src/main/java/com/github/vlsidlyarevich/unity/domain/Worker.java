@@ -1,8 +1,16 @@
 package com.github.vlsidlyarevich.unity.domain;
 
+import com.github.vlsidlyarevich.unity.models.Name;
+import com.github.vlsidlyarevich.unity.models.Speciality;
 import lombok.Data;
 import lombok.ToString;
+import org.apache.commons.lang3.EnumUtils;
 import org.springframework.data.annotation.Id;
+
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by vlad on 15.09.16.
@@ -14,18 +22,30 @@ public class Worker {
     @Id
     private String id;
 
-    private String firstName;
-
-    private String lastName;
+    private Name name;
 
     private Integer age;
 
-    public Worker() {
+    private Speciality speciality;
+
+    @PostConstruct
+    public void init() {
+        this.speciality = Speciality.UNKNOWN;
     }
 
-    public Worker(String firstName, String lastName, Integer age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Worker() {
+
+    }
+
+    public Worker(Name name, Integer age, Speciality speciality) {
+        this.name = name;
         this.age = age;
+        this.speciality = speciality;
+    }
+
+    public void setSpecialities(String speciality) {
+        if (EnumUtils.isValidEnum(Speciality.class, speciality)) {
+            this.speciality = Speciality.valueOf(speciality);
+        }
     }
 }
