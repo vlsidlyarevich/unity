@@ -7,6 +7,7 @@ Module of integration with [woodstock](https://github.com/solairerove/woodstock)
 #####Technologies:
 * [Project Lombok](https://projectlombok.org/)
 * [AngularJS](https://angularjs.org/)
+* [Angular Material](https://material.angularjs.org)
 * [Spring Boot](http://projects.spring.io/spring-boot/)
 * [Gulp](http://gulpjs.com/)
 * [Bower](https://bower.io/)
