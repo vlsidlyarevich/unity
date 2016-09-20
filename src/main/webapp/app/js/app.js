@@ -1,4 +1,4 @@
-var unityApp = angular.module('unityApp', []);
+var unityApp = angular.module('unityApp', ['ngMaterial']);
 
 unityApp.controller('WorkersListController', function WorkersListController($scope) {
     $scope.workers = [
