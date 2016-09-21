@@ -15,3 +15,8 @@ Module of integration with [woodstock](https://github.com/solairerove/woodstock)
 ---
 [Takari maven wrapper](https://github.com/takari/maven-wrapper) is used.
 If you don't have installed maven, or you don't want to install it, just type `./mvnw clean install`.
+
+---
+###Running the application
+* Type `mvn spring-boot:run` to run the backend part.
+* Go to src/main/webapp and then type `npm i` and `npm start` to start an angularjs view
