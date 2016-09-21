@@ -1,4 +1,6 @@
-var unityApp = angular.module('unityApp', ['ngMaterial']);
+"use strict";
+
+var unityApp = angular.module('unityApp', ['unityFooter']);
 
 unityApp.controller('WorkersListController', function WorkersListController($scope) {
     $scope.workers = [
