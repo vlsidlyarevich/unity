@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.service;
 
-import com.github.vlsidlyarevich.unity.domain.Worker;
+import com.github.vlsidlyarevich.unity.models.Worker;
 import com.github.vlsidlyarevich.unity.models.Name;
 import com.github.vlsidlyarevich.unity.models.Speciality;
 import com.github.vlsidlyarevich.unity.repository.WorkerRepository;

@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.repository;
 
 import com.github.vlsidlyarevich.unity.Application;
-import com.github.vlsidlyarevich.unity.domain.Worker;
+import com.github.vlsidlyarevich.unity.models.Worker;
 import com.github.vlsidlyarevich.unity.models.Name;
 import com.github.vlsidlyarevich.unity.models.Speciality;
 import org.junit.Assert;

@@ -1,32 +1,26 @@
-package com.github.vlsidlyarevich.unity.domain;
+package com.github.vlsidlyarevich.unity.models;
 
-import com.github.vlsidlyarevich.unity.models.Name;
-import com.github.vlsidlyarevich.unity.models.Speciality;
 import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.lang3.EnumUtils;
-import org.springframework.data.annotation.Id;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by vlad on 15.09.16.
  */
 @Data
 @ToString
-public class Worker {
-
-    @Id
-    private String id;
+@Component
+public class Worker extends BaseEntity {
 
     private Name name;
-
     private Integer age;
-
+    private String email;
+    private String phone;
     private Speciality speciality;
+
 
     @PostConstruct
     public void init() {
@@ -35,6 +29,14 @@ public class Worker {
 
     public Worker() {
 
+    }
+
+    public Worker(Name name) {
+        this.name = name;
+    }
+
+    public Worker(String firstName, String lastName) {
+        this.name = new Name(firstName, lastName);
     }
 
     public Worker(Name name, Integer age, Speciality speciality) {
