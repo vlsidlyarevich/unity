@@ -1,4 +1,4 @@
 "use strict";
 
 // Define the `about` module
-angular.module('about', []);
+angular.module('aboutComponent', []);

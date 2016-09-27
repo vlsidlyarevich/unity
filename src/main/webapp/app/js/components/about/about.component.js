@@ -4,7 +4,7 @@ function AboutController() {
 
 }
 
-angular.module('about').component('about', {
+angular.module('aboutComponent').component('aboutComponent', {
     templateUrl: "js/components/about/about.component.html",
     controller: AboutController
 });
