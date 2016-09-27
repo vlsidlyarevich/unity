@@ -1,9 +1,12 @@
 "use strict";
 
 var unityApp = angular.module('unityApp', [
+    'ngRoute',
+    'aboutComponent',
     'unityFooter',
     'unityHeader',
-    'ngAnimate']);
+    'ngAnimate'
+]);
 
 unityApp.controller('WorkersListController', function WorkersListController($scope) {
     $scope.workers = [
