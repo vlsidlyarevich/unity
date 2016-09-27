@@ -1,7 +1,9 @@
 "use strict";
 
-function HeaderController() {
-
+function HeaderController($scope, $location) {
+    $scope.isActive = function (viewLocation) {
+        return $location.path().indexOf(viewLocation) == 0;
+    };
 }
 
 angular.module('unityHeader').component('unityHeader', {

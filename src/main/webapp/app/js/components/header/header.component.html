@@ -14,11 +14,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#/">Dashboard</a></li>
-                <li><a href="#profiles">Profiles</a></li>
-                <li><a href="#vacancies">Vacancies</a></li>
-                <li><a href="#candidates">Candidates</a></li>
-                <li><a href="#about">About</a></li>
+                <li ng-class="{ active: isActive('/workers')}"><a href="#/workers">Dashboard</a></li>
+                <li ng-class="{ active: isActive('/profiles')}"><a href="#profiles">Profiles</a></li>
+                <li ng-class="{ active: isActive('/vacancies')}"><a href="#vacancies">Vacancies</a></li>
+                <li ng-class="{ active: isActive('/candidates')}"><a href="#candidates">Candidates</a></li>
+                <li ng-class="{ active: isActive('/about')}"><a href="#about">About</a></li>
             </ul>
             <form class="navbar-form navbar-left">
                 <div class="form-group">

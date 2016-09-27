@@ -7,6 +7,10 @@ unityApp.config(['$locationProvider', '$routeProvider',
             template: '<workers></workers>'
         }).when('/workers/:workerId', {
             template: '<worker-profile></worker-profile>'
+        }).when('/profiles', {
+            template: '<profiles></profiles>'
+        }).when('/vacancies', {
+            template: '<vacancies></vacancies>'
         }).when('/candidates', {
             template: '<candidates></candidates>'
         }).when('/about', {
