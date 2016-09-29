@@ -4,9 +4,11 @@ unityApp.config(['$locationProvider', '$routeProvider',
     function config($locationProvider, $routeProvider) {
 
         $routeProvider.when('/workers', {
-            template: '<workers></workers>'
+            template: '<workers-grid></workers-grid>'
         }).when('/workers/:workerId', {
             template: '<worker-profile></worker-profile>'
+        }).when('/new/worker', {
+            template: '<add-worker></add-worker>'
         }).when('/profiles', {
             template: '<profiles></profiles>'
         }).when('/vacancies', {
@@ -14,7 +16,7 @@ unityApp.config(['$locationProvider', '$routeProvider',
         }).when('/candidates', {
             template: '<candidates></candidates>'
         }).when('/about', {
-            templateUrl: 'js/components/about/about.component.html'
+            template: '<about-component></about-component>'
         }).otherwise('/workers');
     }
 ]);
