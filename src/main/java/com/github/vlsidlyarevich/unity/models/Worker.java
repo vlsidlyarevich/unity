@@ -19,11 +19,13 @@ public class Worker extends BaseEntity {
     private Integer age;
     private String email;
     private String phone;
+    private Gender gender;
     private Speciality speciality;
 
 
     @PostConstruct
     public void init() {
+        this.gender = Gender.MALE;
         this.speciality = Speciality.UNKNOWN;
     }
 
@@ -53,5 +55,15 @@ public class Worker extends BaseEntity {
 
     public void setSpeciality(Speciality speciality) {
         this.speciality = speciality;
+    }
+
+    public void setGender(String gender) {
+        if (EnumUtils.isValidEnum(Gender.class, gender)) {
+            this.gender = Gender.valueOf(gender);
+        }
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 }
