@@ -19,6 +19,10 @@ public class WorkerProfileService {
     @Autowired
     private WorkerProfileRepository repository;
 
+    public WorkerProfile findById(Long id) {
+        return repository.findById(id);
+    }
+
     public WorkerProfile findByName(Name name) {
         return repository.findByName(name);
     }
@@ -35,4 +39,11 @@ public class WorkerProfileService {
         return repository.findAllBySpeciality(speciality);
     }
 
+    public void updateWorkerProfileById(WorkerProfile workerProfile) {
+        this.repository.updateWorkerProfileById(Long.valueOf(workerProfile.getId()), workerProfile);
+    }
+
+    public void deleteWorkerProfileById(Long id) {
+        this.repository.delete(id.toString());
+    }
 }

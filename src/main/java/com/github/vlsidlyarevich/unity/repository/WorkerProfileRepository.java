@@ -12,9 +12,13 @@ import java.util.List;
 @Repository
 public interface WorkerProfileRepository extends MongoRepository<WorkerProfile, String> {
 
+    WorkerProfile findById(Long id);
+
     WorkerProfile findByName(Name name);
 
     List<WorkerProfile> findAllByAge(Integer age);
 
     List<WorkerProfile> findAllBySpeciality(Speciality speciality);
+
+    void updateWorkerProfileById(Long id, WorkerProfile workerProfile);
 }
