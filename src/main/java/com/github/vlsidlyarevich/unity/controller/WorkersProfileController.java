@@ -37,7 +37,7 @@ public class WorkersProfileController {
         return new ResponseEntity<>(profile.getId(), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteWorkerById(@PathVariable Long id) {
         service.deleteWorkerProfileById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
@@ -49,7 +49,7 @@ public class WorkersProfileController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> findWorkerBySpeciality(@RequestParam String speciality) {
+    public ResponseEntity<?> findWorkerBySpeciality(@RequestParam("speciality") String speciality) {
         if (EnumUtils.isValidEnum(Speciality.class, speciality)) {
             return new ResponseEntity<>(service.findAllBySpeciality(Speciality.valueOf(speciality)), HttpStatus.OK);
         } else {
@@ -58,7 +58,7 @@ public class WorkersProfileController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> findWorkersByAge(@RequestParam Integer age) {
+    public ResponseEntity<?> findWorkersByAge(@RequestParam("age") Integer age) {
         return new ResponseEntity<>(service.findAllByAge(age), HttpStatus.OK);
     }
 }

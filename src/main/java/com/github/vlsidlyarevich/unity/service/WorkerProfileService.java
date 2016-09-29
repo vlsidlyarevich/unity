@@ -40,7 +40,7 @@ public class WorkerProfileService {
     }
 
     public void updateWorkerProfileById(WorkerProfile workerProfile) {
-        this.repository.updateWorkerProfileById(Long.valueOf(workerProfile.getId()), workerProfile);
+        this.repository.save(workerProfile);
     }
 
     public void deleteWorkerProfileById(Long id) {
