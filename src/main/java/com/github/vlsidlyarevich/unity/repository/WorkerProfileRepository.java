@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface WorkerProfileRepository extends MongoRepository<WorkerProfile, String> {
 
-    WorkerProfile findById(Long id);
+    WorkerProfile findById(String id);
 
     WorkerProfile findByName(Name name);
 
