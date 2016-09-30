@@ -17,9 +17,9 @@ public class LoggingAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
-    @Before("execution(* com.github.vlsidlyarevich.unity.service.WorkerService.*(..)))")
+    @Before("execution(* com.github.vlsidlyarevich.unity.service.WorkerProfileService.*(..)))")
     public void workerServiceLog(JoinPoint joinPoint) {
-        logger.info("Worker service : " + joinPoint.getSignature().getName());
+        logger.info("Worker profile service : " + joinPoint.getSignature().getName());
     }
 
 }
