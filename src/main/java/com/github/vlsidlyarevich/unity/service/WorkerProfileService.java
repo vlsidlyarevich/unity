@@ -2,7 +2,6 @@ package com.github.vlsidlyarevich.unity.service;
 
 import com.github.vlsidlyarevich.unity.models.Name;
 import com.github.vlsidlyarevich.unity.models.Speciality;
-import com.github.vlsidlyarevich.unity.models.Worker;
 import com.github.vlsidlyarevich.unity.models.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
