@@ -50,7 +50,7 @@ public class WorkerProfileService {
         repository.save(workerProfile);
     }
 
-    public void deleteWorkerProfileById(Long id) {
-        repository.delete(id.toString());
+    public void deleteWorkerProfileById(String id) {
+        repository.delete(id);
     }
 }

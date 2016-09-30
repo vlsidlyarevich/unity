@@ -40,7 +40,7 @@ public class WorkersProfileController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteWorkerById(@PathVariable Long id) {
+    public ResponseEntity<?> deleteWorkerById(@PathVariable String id) {
         service.deleteWorkerProfileById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
