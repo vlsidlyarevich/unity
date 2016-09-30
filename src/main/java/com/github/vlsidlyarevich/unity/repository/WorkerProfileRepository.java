@@ -19,6 +19,4 @@ public interface WorkerProfileRepository extends MongoRepository<WorkerProfile, 
     List<WorkerProfile> findAllByAge(Integer age);
 
     List<WorkerProfile> findAllBySpeciality(Speciality speciality);
-
-    void updateWorkerProfileById(Long id, WorkerProfile workerProfile);
 }
