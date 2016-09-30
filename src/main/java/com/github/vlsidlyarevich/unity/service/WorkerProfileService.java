@@ -1,12 +1,13 @@
 package com.github.vlsidlyarevich.unity.service;
 
 import com.github.vlsidlyarevich.unity.models.Name;
-import com.github.vlsidlyarevich.unity.models.Speciality;
 import com.github.vlsidlyarevich.unity.models.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MultiValueMap;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -18,7 +19,12 @@ public class WorkerProfileService {
     @Autowired
     private WorkerProfileRepository repository;
 
-    public WorkerProfile findById(Long id) {
+    public void save(WorkerProfile workerProfile) {
+        workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
+        repository.save(workerProfile);
+    }
+
+    public WorkerProfile findById(String id) {
         return repository.findById(id);
     }
 
@@ -34,15 +40,17 @@ public class WorkerProfileService {
         return repository.findAll();
     }
 
-    public List<WorkerProfile> findAllBySpeciality(Speciality speciality) {
-        return repository.findAllBySpeciality(speciality);
+    //TODO:// FIXME: 30.09.16
+    public List<WorkerProfile> findByFilters(MultiValueMap<String, String> filters) {
+        return null;
     }
 
     public void updateWorkerProfileById(WorkerProfile workerProfile) {
-        this.repository.save(workerProfile);
+        workerProfile.setUpdatedAt(String.valueOf(LocalDateTime.now()));
+        repository.save(workerProfile);
     }
 
     public void deleteWorkerProfileById(Long id) {
-        this.repository.delete(id.toString());
+        repository.delete(id.toString());
     }
 }
