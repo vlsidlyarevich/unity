@@ -28,7 +28,7 @@ public final class TestUtils {
         return RandomUtils.nextInt(startInclusive, endInclusive);
     }
 
-    public static WorkerProfile generateUserProfile() {
+    public static WorkerProfile generateWorkerProfile() {
         WorkerProfile workerProfile = new WorkerProfile();
         workerProfile.setName(new Name(getRandomString(MAX_STRING_LENGTH), getRandomString(MAX_STRING_LENGTH)));
         workerProfile.setSpeciality(Speciality.SOFTWARE_ENGINEER);

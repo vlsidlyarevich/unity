@@ -6,6 +6,7 @@ import com.github.vlsidlyarevich.unity.models.Name;
 import com.github.vlsidlyarevich.unity.models.Speciality;
 import com.github.vlsidlyarevich.unity.models.Worker;
 import com.github.vlsidlyarevich.unity.models.WorkerProfile;
+import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +34,7 @@ public class WorkerProfileRepositoryTest {
 
     @Test
     public void findByNameTest() {
-        WorkerProfile saved = new WorkerProfile();
+        WorkerProfile saved = TestUtils.generateWorkerProfile();
         Name name = new Name("Vladislav", "Sidlyarevich");
         saved.setName(name);
 
@@ -44,8 +45,7 @@ public class WorkerProfileRepositoryTest {
 
     @Test
     public void findByAgeTest() {
-        WorkerProfile saved = new WorkerProfile();
-        saved.setName(new Name("Vladislav", "Sidlyarevich"));
+        WorkerProfile saved = TestUtils.generateWorkerProfile();
         saved.setAge(19);
 
         ArrayList<Worker> workers = new ArrayList<>();
@@ -57,9 +57,7 @@ public class WorkerProfileRepositoryTest {
 
     @Test
     public void findBySpecialityTest() {
-        WorkerProfile saved = new WorkerProfile();
-        saved.setName(new Name("Vladislav", "Sidlyarevich"));
-        saved.setAge(19);
+        WorkerProfile saved = TestUtils.generateWorkerProfile();
         saved.setSpeciality("SOFTWARE_ENGINEER");
 
         ArrayList<Worker> workers = new ArrayList<>();
