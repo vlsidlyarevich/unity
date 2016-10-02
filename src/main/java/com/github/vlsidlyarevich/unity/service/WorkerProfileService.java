@@ -40,13 +40,12 @@ public class WorkerProfileService {
         return repository.findAll();
     }
 
-    //TODO:// FIXME: 30.09.16
-    public List<WorkerProfile> findByFilters(MultiValueMap<String, String> filters) {
-        return null;
-    }
-
     public void updateWorkerProfileById(WorkerProfile workerProfile) {
-        workerProfile.setUpdatedAt(String.valueOf(LocalDateTime.now()));
+        if (repository.exists(workerProfile.getId())) {
+            workerProfile.setUpdatedAt(String.valueOf(LocalDateTime.now()));
+        } else {
+            workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
+        }
         repository.save(workerProfile);
     }
 
