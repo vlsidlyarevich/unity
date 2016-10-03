@@ -25,10 +25,10 @@ public class WorkerProfileSearchService {
     @Autowired
     private MongoOperations mongoOperations;
 
-    public List<WorkerProfile> findByFilters(MultiValueMap<String, String> filters) {
+    public List<WorkerProfile> findByFilters(Map<String, String> filters) {
         Query query = new Query();
 
-        for (Map.Entry<String, String> filter : prepareParameters(filters).entrySet()) {
+        for (Map.Entry<String, String> filter : filters.entrySet()) {
             switch (filter.getKey()) {
                 case "firstname": {
                     query.addCriteria(Criteria.where("name.firstName").is(filter.getValue()));
@@ -39,7 +39,7 @@ public class WorkerProfileSearchService {
                     break;
                 }
                 case "age": {
-                    query.addCriteria(Criteria.where("age").is(filter.getValue()));
+                    query.addCriteria(Criteria.where("age").is(Integer.valueOf(filter.getValue())));
                     break;
                 }
                 case "gender": {
