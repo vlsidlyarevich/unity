@@ -13,6 +13,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -34,9 +35,9 @@ public class WorkerProfileSearchServiceTest {
         WorkerProfile workerProfile = TestUtils.generateWorkerProfile();
         workerProfileService.save(workerProfile);
 
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.add("firstname", workerProfile.getName().getFirstName());
-        map.add("skype", workerProfile.getSkype());
+        HashMap<String, String> map = new HashMap<>();
+        map.put("firstname", workerProfile.getName().getFirstName());
+        map.put("skype", workerProfile.getSkype());
         List<WorkerProfile> workerProfiles = workerProfileSearchService.findByFilters(map);
         Assert.assertEquals(workerProfile, workerProfiles.get(0));
     }
