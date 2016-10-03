@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by vlad on 30.09.16.
  */
 @RestController
-@RequestMapping("/api/workers/profile/search")
+@RequestMapping("/api/workers/search")
 public class WorkerProfileSearchController {
 
     @Autowired
