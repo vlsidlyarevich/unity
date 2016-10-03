@@ -19,7 +19,7 @@ public class WorkerProfileSearchController {
     @Autowired
     private WorkerProfileSearchService service;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> getWorkersByFilters(MultiValueMap<String, String> filters) {
         return new ResponseEntity<>(service.findByFilters(filters), HttpStatus.OK);
     }

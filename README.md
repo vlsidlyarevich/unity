@@ -28,4 +28,4 @@ If you don't have installed maven, or you don't want to install it, just type `.
 * POST `http://localhost:8080/api/workers` - add new worker profile 
 * PUT `http://localhost:8080/api/workers/` - update worker profile 
 * DELETE `http://localhost:8080/api/workers/id` - delete worker profile by id 
-* GET `/api/workers/search` - get workers profiles with filters 
+* POST `/api/workers/search` - get workers profiles with filters 
