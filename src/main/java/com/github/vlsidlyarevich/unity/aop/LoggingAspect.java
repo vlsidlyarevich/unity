@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 
 /**
  * Created by vlad on 18.09.16.
@@ -22,4 +24,9 @@ public class LoggingAspect {
         logger.info("Worker profile service : " + joinPoint.getSignature().getName());
     }
 
+    @Before("execution(* com.github.vlsidlyarevich.unity.service.WorkerProfileSearchService.*(..)))")
+    public void workerSearchServiceLog(JoinPoint joinPoint) {
+        logger.info("Worker profile service : " + joinPoint.getSignature().getName() + "\n With arguments : "
+                + Arrays.toString(joinPoint.getArgs()));
+    }
 }

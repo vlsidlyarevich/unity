@@ -1,15 +1,12 @@
 package com.github.vlsidlyarevich.unity.service;
 
 import com.github.vlsidlyarevich.unity.models.WorkerProfile;
-import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-import org.springframework.util.MultiValueMap;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,9 +15,6 @@ import java.util.Map;
  */
 @Service
 public class WorkerProfileSearchService {
-
-    @Autowired
-    private WorkerProfileRepository repository;
 
     @Autowired
     private MongoOperations mongoOperations;
@@ -58,14 +52,4 @@ public class WorkerProfileSearchService {
         }
         return mongoOperations.find(query, WorkerProfile.class);
     }
-
-    private Map<String, String> prepareParameters(MultiValueMap<String, String> filters) {
-        Map<String, String> parameters = new HashMap<String, String>();
-
-        for (String theKey : filters.keySet()) {
-            parameters.put(theKey, filters.getFirst(theKey));
-        }
-        return parameters;
-    }
-
 }
