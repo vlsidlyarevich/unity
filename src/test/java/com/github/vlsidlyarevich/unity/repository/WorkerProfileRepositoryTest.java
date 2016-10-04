@@ -31,38 +31,46 @@ public class WorkerProfileRepositoryTest {
         workerProfileRepository.deleteAll();
     }
 
+    @Test
+    public void findByIdTest() throws Exception {
+        WorkerProfile saved = TestUtils.generateWorkerProfile();
+
+        workerProfileRepository.save(saved);
+
+        Assert.assertEquals(saved, workerProfileRepository.findById(saved.getId()));
+    }
 
     @Test
-    public void findByNameTest() {
+    public void findByNameTest() throws Exception {
         WorkerProfile saved = TestUtils.generateWorkerProfile();
         Name name = new Name("Vladislav", "Sidlyarevich");
         saved.setName(name);
 
-        this.workerProfileRepository.save(saved);
+        workerProfileRepository.save(saved);
 
         Assert.assertEquals(saved, workerProfileRepository.findByName(name));
     }
 
     @Test
-    public void findByAgeTest() {
+    public void findAllByAgeTest() throws Exception {
         WorkerProfile saved = TestUtils.generateWorkerProfile();
         saved.setAge(19);
 
         ArrayList<Worker> workers = new ArrayList<>();
         workers.add(saved);
-        this.workerProfileRepository.save(saved);
+        workerProfileRepository.save(saved);
 
         Assert.assertEquals(workers, workerProfileRepository.findAllByAge(19));
     }
 
     @Test
-    public void findBySpecialityTest() {
+    public void findAllBySpecialityTest() throws Exception {
         WorkerProfile saved = TestUtils.generateWorkerProfile();
         saved.setSpeciality("SOFTWARE_ENGINEER");
 
         ArrayList<Worker> workers = new ArrayList<>();
         workers.add(saved);
-        this.workerProfileRepository.save(saved);
+        workerProfileRepository.save(saved);
 
         Assert.assertEquals(workers, workerProfileRepository.findAllBySpeciality(Speciality.SOFTWARE_ENGINEER));
     }
