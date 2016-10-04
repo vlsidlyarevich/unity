@@ -1,7 +1,29 @@
 <div class="container-fluid">
+
+    <div class="col-sm-2">
+        <div class="well well-sm bs-component" style="padding: 10px;">
+            <div class="row-picture" flow-init="{target:'/api/images/upload', singleFile: true}"
+                 flow-files-submitted="$flow.upload()" flow-file-success="fileUploaded($file, $message, $flow)">
+                <!--<img class="circle" ng-src="{{profile.imageUrl}}" alt="icon" style="max-height: 150px;"/>-->
+                <img class="img-thumbnail img-responsive" flow-img="$flow.files[0]"
+                     style="width: 200px; height: 170px;"/>
+                <button type="button" class="btn btn-default" flow-btn style="margin: 10px;">
+                    <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload
+                </button>
+            </div>
+        </div>
+
+        <div class="well well-sm">
+            <div class="btn-group-sm btn-block">
+                <button type="submit" class="btn btn-primary" form="profileForm">Submit</button>
+                <button type="button" class="btn btn-warning" ng-click="close()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <div class="col-sm-9">
         <div class="well bs-component">
-            <form class="form-horizontal" ng-submit="submit(profile)" name="profileForm">
+            <form class="form-horizontal" ng-submit="submit(worker)" id="profileForm">
                 <fieldset>
                     <legend>Worker profile</legend>
 
@@ -10,14 +32,14 @@
                             <label for="profileEmail" class="col-md-2 control-label">Email</label>
                             <div class="col-md-10">
                                 <input type="email" class="form-control" id="profileEmail" placeholder="Email"
-                                       ng-model="profile.email"/>
+                                       ng-model="worker.email"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="profilePhone" class="col-md-2 control-label">Phone</label>
                             <div class="col-md-10">
                                 <input type="tel" class="form-control" id="profilePhone"
-                                       placeholder="+375 XX XXX XX XX" ng-model="profile.phone"/>
+                                       placeholder="+375 XX XXX XX XX" ng-model="worker.phone"/>
                             </div>
                         </div>
                     </div>
@@ -28,7 +50,7 @@
                                 <label for="firstName" class="col-md-2 control-label">First Name</label>
                                 <div class="col-md-10">
                                     <input type="input" class="form-control" id="firstName" placeholder="First Name"
-                                           ng-model="profile.firstName"/>
+                                           ng-model="worker.name.firstName" required/>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +59,7 @@
                                 <label for="lastName" class="col-md-2 control-label">Last Name</label>
                                 <div class="col-md-10">
                                     <input type="input" class="form-control" id="lastName" placeholder="Last Name"
-                                           ng-model="profile.lastName"/>
+                                           ng-model="worker.name.lastName" required/>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +70,7 @@
                             <div class="form-group">
                                 <label for="gender" class="col-md-2 control-label">Gender</label>
                                 <div class="col-md-10">
-                                    <select id="gender" class="form-control">
+                                    <select id="gender" class="form-control" ng-model="worker.gender" required>
                                         <option value="">Please select</option>
                                         <option value="male">Male</option>
                                         <option value="Female">Female</option>
@@ -61,7 +83,7 @@
                                 <label for="birthday" class="col-md-2 control-label">Birthday</label>
                                 <div class="col-md-10">
                                     <input type="date" class="form-control" id="birthday"
-                                           placeholder="e.g. 11/01/1985"/>
+                                           placeholder="e.g. 11/01/1985" ng-model="worker.birthday"/>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +92,7 @@
                     <div class="form-group">
                         <label for="speciality" class="col-md-2 control-label">Apply to the position</label>
                         <div class="col-md-10">
-                            <select id="speciality" class="form-control">
+                            <select id="speciality" class="form-control" ng-model="worker.speciality" required>
                                 <option value="">Please select</option>
                                 <option value="male">Unknown</option>
                                 <option value="SOFTWARE_ENGINEER">Software Engineer</option>
@@ -88,35 +110,38 @@
                         <label for="description" class="col-md-2 control-label">Description</label>
                         <div class="col-md-10">
                         <textarea type="input" class="form-control" id="description"
-                                  placeholder="Description"></textarea>
+                                  placeholder="Description" ng-model="worker.description"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="skype" class="col-md-2 control-label">Skype</label>
                         <div class="col-md-10">
-                            <input type="input" class="form-control" id="skype" placeholder="Skype">
+                            <input type="input" class="form-control" id="skype" placeholder="Skype"
+                                   ng-model="worker.skype">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="github" class="col-md-2 control-label">GitHub</label>
                         <div class="col-md-10">
-                            <input type="input" class="form-control" id="github" placeholder="GitHub URL">
+                            <input type="input" class="form-control" id="github" placeholder="GitHub URL"
+                                   ng-model="worker.githubUrl">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="linkedin" class="col-md-2 control-label">Linkedin</label>
                         <div class="col-md-10">
-                            <input type="input" class="form-control" id="linkedin" placeholder="Linkedin URL">
+                            <input type="input" class="form-control" id="linkedin" placeholder="Linkedin URL"
+                                   ng-model="worker.linkedInUrl">
                         </div>
                     </div>
                 </fieldset>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
             </form>
         </div>
-
-
-
-
+    </div>
 </div>
