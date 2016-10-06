@@ -17,6 +17,14 @@ Module of integration with [woodstock](https://github.com/solairerove/woodstock)
 If you don't have installed maven, or you don't want to install it, just type `./mvnw clean install`.
 
 ---
+###Getting mongo
+You can download and install mongo following instructions from (official site)[https://docs.mongodb.com/manual/administration/install-community/]
+Or you can create and run docker image.
+Type following commands in additional/docker/mongo folder.
+* `docker build -t mongo .`
+* `docker run -p 27017:27017 --name mongodb -d mongo`
+
+
 ###Running the application
 * Type `mvn spring-boot:run` to run the backend part.
 * Go to src/main/webapp and then type `npm i` and `npm start` to start an angularjs view
