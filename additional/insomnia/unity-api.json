@@ -1,0 +1,138 @@
+{
+  "_type": "export",
+  "__export_format": 1,
+  "__export_date": "2016-10-06T20:37:48.127Z",
+  "__export_source": "insomnia.chrome.app:v2.7.0",
+  "items": [
+    {
+      "_type": "request_group",
+      "_id": "grp_1475770452945",
+      "name": "workers profile ",
+      "environments": {},
+      "requests": [
+        {
+          "_type": "request",
+          "_id": "req_1475770452945",
+          "url": "http://localhost:8080/api/workers",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "get worker profiles"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1475770462359",
+          "url": "http://localhost:8080/api/workers",
+          "method": "POST",
+          "body": "{\n    \"name\":{\n        \"firstname\":\"Johnny\",\n        \"middlename\":null,\n        \"secondname\":\"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"19-11-1973\",\n    \"imageUrl\":null,\n    \"linkedInUrl\":null,\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "add worker profile"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1475770470722",
+          "url": "http://localhost:8080/api/workers",
+          "method": "PUT",
+          "body": "{\n    \"id\":\"57f6b24851dffa39bbd27109\",\n    \"name\":{\n        \"firstname\":\"Johnny\",\n        \"middlename\":\"Updated\",\n        \"secondname\":\"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"19-11-1973\",\n    \"imageUrl\":\"imageUrl\",\n    \"linkedInUrl\":\"linked in url\",\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"Where is my cpt. Price?\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "update worker profile"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1475770481481",
+          "url": "http://localhost:8080/api/workers/57f6b22051dffa39bbd27108",
+          "method": "DELETE",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "delete worker profile"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1475770517816",
+          "url": "http://localhost:8080/api/workers/57f6af8d51dffa341e79a38f",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "get worker profile by id"
+        }
+      ]
+    },
+    {
+      "_type": "request_group",
+      "_id": "grp_1475785340052",
+      "name": "workers profile search",
+      "environments": {},
+      "requests": [
+        {
+          "_type": "request",
+          "_id": "req_1475785340052",
+          "url": "http://localhost:8080/api/workers/search",
+          "method": "POST",
+          "body": "{   \n    \"name.firstname\":\"Johnny\",\n    \"age\":\"43\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "find worker profile by filters"
+        }
+      ]
+    }
+  ]
+}
