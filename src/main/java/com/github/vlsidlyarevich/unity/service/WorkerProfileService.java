@@ -42,6 +42,7 @@ public class WorkerProfileService {
 
     public void updateWorkerProfileById(WorkerProfile workerProfile) {
         if (repository.exists(workerProfile.getId())) {
+            workerProfile.setCreatedAt(repository.findById(workerProfile.getId()).getCreatedAt());
             workerProfile.setUpdatedAt(String.valueOf(LocalDateTime.now()));
         } else {
             workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
