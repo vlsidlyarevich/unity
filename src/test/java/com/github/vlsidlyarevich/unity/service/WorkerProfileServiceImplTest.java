@@ -1,10 +1,11 @@
 package com.github.vlsidlyarevich.unity.service;
 
 import com.github.vlsidlyarevich.unity.Application;
-import com.github.vlsidlyarevich.unity.models.Name;
-import com.github.vlsidlyarevich.unity.models.WorkerProfile;
+import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
+import com.github.vlsidlyarevich.unity.model.Name;
+import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
-import com.github.vlsidlyarevich.unity.service.impl.WorkerProfileServiceImpl;
+import com.github.vlsidlyarevich.unity.utils.ModelUtils;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -29,7 +30,7 @@ import static org.hamcrest.CoreMatchers.*;
 public class WorkerProfileServiceImplTest {
 
     @Autowired
-    private WorkerProfileServiceImpl workerProfileServiceImpl;
+    private WorkerProfileService workerProfileService;
 
     @Autowired
     private WorkerProfileRepository workerProfileRepository;
@@ -42,57 +43,57 @@ public class WorkerProfileServiceImplTest {
 
     @Test
     public void saveTest() throws Exception {
-        WorkerProfile saved = TestUtils.generateWorkerProfile();
+        WorkerProfileDTO dto = TestUtils.generateWorkerProfileDTO();
 
-        workerProfileServiceImpl.save(saved);
+        WorkerProfile saved = workerProfileService.create(dto);
 
-        Assert.assertEquals(saved, workerProfileServiceImpl.findById(saved.getId()));
+        Assert.assertEquals(ModelUtils.convertToModelProfile(dto), workerProfileService.find(saved.getId()));
         Assert.assertNotNull(saved.getCreatedAt());
     }
 
     @Test
     public void findByIdTest() throws Exception {
-        WorkerProfile saved = TestUtils.generateWorkerProfile();
+        WorkerProfileDTO dto = TestUtils.generateWorkerProfileDTO();
 
-        workerProfileServiceImpl.save(saved);
+        WorkerProfile saved = workerProfileService.create(dto);
 
-        Assert.assertEquals(saved, workerProfileServiceImpl.findById(saved.getId()));
+        Assert.assertEquals(ModelUtils.convertToModelProfile(dto), workerProfileService.find(saved.getId()));
     }
 
     @Test
     public void findByNameTest() throws Exception {
-        WorkerProfile saved = TestUtils.generateWorkerProfile();
+        WorkerProfileDTO dto = TestUtils.generateWorkerProfileDTO();
         Name name = new Name("Vladislav", "Sidlyarevich");
-        saved.setName(name);
+        dto.setName(name);
 
-        workerProfileServiceImpl.save(saved);
+        workerProfileService.create(dto);
 
-        Assert.assertEquals(saved, workerProfileServiceImpl.findByName(name));
+        Assert.assertEquals(ModelUtils.convertToModelProfile(dto), workerProfileService.findByName(name));
     }
 
     @Test
     public void findAllByAgeTest() throws Exception {
-        WorkerProfile saved = TestUtils.generateWorkerProfile();
-        saved.setAge(19);
+        WorkerProfileDTO dto = TestUtils.generateWorkerProfileDTO();
+        dto.setAge(19);
 
         ArrayList<WorkerProfile> workers = new ArrayList<>();
-        workers.add(saved);
-        workerProfileServiceImpl.save(saved);
+        workers.add(ModelUtils.convertToModelProfile(dto));
+        workerProfileService.create(dto);
 
-        Assert.assertEquals(workers, workerProfileServiceImpl.findAllByAge(19));
+        Assert.assertEquals(workers, workerProfileService.findAllByAge(19));
     }
 
     @Test
     public void findAllTest() throws Exception {
-        WorkerProfile firstProfile = TestUtils.generateWorkerProfile();
-        WorkerProfile secondProfile = TestUtils.generateWorkerProfile();
+        WorkerProfileDTO firstDto = TestUtils.generateWorkerProfileDTO();
+        WorkerProfileDTO secondDto = TestUtils.generateWorkerProfileDTO();
 
         ArrayList<WorkerProfile> savedWorkers = new ArrayList<>();
-        savedWorkers.add(firstProfile);
-        savedWorkers.add(secondProfile);
-        workerProfileServiceImpl.save(firstProfile);
-        workerProfileServiceImpl.save(secondProfile);
+        savedWorkers.add(ModelUtils.convertToModelProfile(firstDto));
+        savedWorkers.add(ModelUtils.convertToModelProfile(secondDto));
+        workerProfileService.create(firstDto);
+        workerProfileService.create(secondDto);
 
-        assertThat(savedWorkers, is(workerProfileServiceImpl.findAll()));
+        assertThat(savedWorkers, is(workerProfileService.findAll()));
     }
 }

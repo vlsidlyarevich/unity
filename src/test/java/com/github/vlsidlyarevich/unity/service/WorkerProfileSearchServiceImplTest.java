@@ -1,10 +1,10 @@
 package com.github.vlsidlyarevich.unity.service;
 
 import com.github.vlsidlyarevich.unity.Application;
-import com.github.vlsidlyarevich.unity.models.WorkerProfile;
+import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
+import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
-import com.github.vlsidlyarevich.unity.service.impl.WorkerProfileSearchServiceImpl;
-import com.github.vlsidlyarevich.unity.service.impl.WorkerProfileServiceImpl;
+import com.github.vlsidlyarevich.unity.utils.ModelUtils;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -27,10 +27,10 @@ import java.util.List;
 public class WorkerProfileSearchServiceImplTest {
 
     @Autowired
-    private WorkerProfileSearchServiceImpl workerProfileSearchServiceImpl;
+    private SearchService workerProfileSearchService;
 
     @Autowired
-    private WorkerProfileServiceImpl workerProfileServiceImpl;
+    private WorkerProfileService workerProfileService;
 
     @Autowired
     private WorkerProfileRepository workerProfileRepository;
@@ -43,13 +43,13 @@ public class WorkerProfileSearchServiceImplTest {
 
     @Test
     public void findByFiltersTest() {
-        WorkerProfile workerProfile = TestUtils.generateWorkerProfile();
-        workerProfileServiceImpl.save(workerProfile);
+        WorkerProfileDTO workerProfile = TestUtils.generateWorkerProfileDTO();
+        workerProfileService.create(workerProfile);
 
         HashMap<String, String> map = new HashMap<>();
         map.put("firstname", workerProfile.getName().getFirstName());
         map.put("skype", workerProfile.getSkype());
-        List<WorkerProfile> workerProfiles = workerProfileSearchServiceImpl.find(map);
-        Assert.assertEquals(workerProfile, workerProfiles.get(0));
+        List<WorkerProfile> workerProfiles = workerProfileSearchService.find(map);
+        Assert.assertEquals(ModelUtils.convertToModelProfile(workerProfile), workerProfiles.get(0));
     }
 }

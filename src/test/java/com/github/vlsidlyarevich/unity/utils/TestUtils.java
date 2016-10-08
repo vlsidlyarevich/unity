@@ -1,9 +1,10 @@
 package com.github.vlsidlyarevich.unity.utils;
 
-import com.github.vlsidlyarevich.unity.models.Gender;
-import com.github.vlsidlyarevich.unity.models.Name;
-import com.github.vlsidlyarevich.unity.models.Speciality;
-import com.github.vlsidlyarevich.unity.models.WorkerProfile;
+import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
+import com.github.vlsidlyarevich.unity.model.Gender;
+import com.github.vlsidlyarevich.unity.model.Name;
+import com.github.vlsidlyarevich.unity.model.Speciality;
+import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 
@@ -30,6 +31,18 @@ public final class TestUtils {
 
     public static WorkerProfile generateWorkerProfile() {
         WorkerProfile workerProfile = new WorkerProfile();
+        workerProfile.setName(new Name(getRandomString(MAX_STRING_LENGTH), getRandomString(MAX_STRING_LENGTH)));
+        workerProfile.setSpeciality(Speciality.SOFTWARE_ENGINEER);
+        workerProfile.setAge(getRandomInt(18, 50));
+        workerProfile.setSkype(getRandomString(MAX_STRING_LENGTH));
+        workerProfile.setGender(Gender.MALE);
+        workerProfile.setPhone("8 800 555 35 35");
+
+        return workerProfile;
+    }
+
+    public static WorkerProfileDTO generateWorkerProfileDTO() {
+        WorkerProfileDTO workerProfile = new WorkerProfileDTO();
         workerProfile.setName(new Name(getRandomString(MAX_STRING_LENGTH), getRandomString(MAX_STRING_LENGTH)));
         workerProfile.setSpeciality(Speciality.SOFTWARE_ENGINEER);
         workerProfile.setAge(getRandomInt(18, 50));
