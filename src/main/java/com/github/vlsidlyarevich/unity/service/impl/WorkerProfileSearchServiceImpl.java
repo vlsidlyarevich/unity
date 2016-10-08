@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.service.impl;
 
-import com.github.vlsidlyarevich.unity.models.WorkerProfile;
+import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
