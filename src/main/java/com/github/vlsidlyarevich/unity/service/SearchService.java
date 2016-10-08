@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.service;
 
-import com.github.vlsidlyarevich.unity.models.BaseEntity;
+import com.github.vlsidlyarevich.unity.model.BaseEntity;
 
 import java.util.List;
 import java.util.Map;
