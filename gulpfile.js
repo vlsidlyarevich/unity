@@ -28,12 +28,12 @@ gulp.task('bower-css', function () {
         .pipe(gulp.dest('src/main/webapp/provider/css'));
 });
 
-gulp.task('copy-fonts', function() {
+gulp.task('copy-fonts', function () {
     gulp.src(mainBowerFiles('**/dist/fonts/*.{ttf,woff,woff2,eof,svg}'))
-        .pipe(gulp.dest('src/main/webapp/provider/css/bootstrap/dist/fonts/'));
+        .pipe(gulp.dest('src/main/webapp/provider/fonts/'));
 });
 
 // Default Task
 gulp.task('default', function () {
-    runSequence('copy-fonts');
+    runSequence('bower-js-libs', 'bower-css', 'copy-fonts');
 });
