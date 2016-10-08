@@ -2,10 +2,10 @@ package com.github.vlsidlyarevich.unity.repository;
 
 
 import com.github.vlsidlyarevich.unity.Application;
-import com.github.vlsidlyarevich.unity.models.Name;
-import com.github.vlsidlyarevich.unity.models.Speciality;
-import com.github.vlsidlyarevich.unity.models.Worker;
-import com.github.vlsidlyarevich.unity.models.WorkerProfile;
+import com.github.vlsidlyarevich.unity.model.Name;
+import com.github.vlsidlyarevich.unity.model.Speciality;
+import com.github.vlsidlyarevich.unity.model.Worker;
+import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.junit.Assert;
 import org.junit.Before;
