@@ -8,7 +8,7 @@ function WorkersController($scope, $http) {
 }
 
 angular.module('workersGrid').component('workersGrid', {
-    templateUrl: "js/components/workers/workers.component.html",
+    templateUrl: "app/js/components/workers/workers.component.html",
     controller: WorkersController
 });
 

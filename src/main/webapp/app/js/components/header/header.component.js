@@ -7,7 +7,7 @@ function HeaderController($scope, $location) {
 }
 
 angular.module('unityHeader').component('unityHeader', {
-    templateUrl: "js/components/header/header.component.html",
+    templateUrl: "app/js/components/header/header.component.html",
     controller: HeaderController
 });
 

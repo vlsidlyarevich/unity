@@ -17,7 +17,7 @@ function AddWorkerController($scope, $http, $location, WorkerService) {
 }
 
 angular.module('addWorker').component('addWorker', {
-    templateUrl: "js/components/add/worker/add.worker.component.html",
+    templateUrl: "app/js/components/add/worker/add.worker.component.html",
     controller: AddWorkerController
 });
 

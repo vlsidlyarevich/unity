@@ -5,7 +5,7 @@ function FooterController() {
 }
 
 angular.module('unityFooter').component('unityFooter', {
-    templateUrl: "js/components/footer/footer.component.html",
+    templateUrl: "app/js/components/footer/footer.component.html",
     controller: FooterController
 });
 
