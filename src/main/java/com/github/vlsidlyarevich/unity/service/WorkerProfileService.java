@@ -1,10 +1,17 @@
 package com.github.vlsidlyarevich.unity.service;
 
+import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
+import com.github.vlsidlyarevich.unity.models.Name;
+import com.github.vlsidlyarevich.unity.models.WorkerProfile;
+
+import java.util.List;
+
 /**
  * Created by vladislav on 10/8/16.
  */
-public interface WorkerProfileService {
+public interface WorkerProfileService extends BaseService<WorkerProfile, WorkerProfileDTO> {
 
+    WorkerProfile findByName(Name name);
 
-
+    List<WorkerProfile> findAllByAge(Integer age);
 }
