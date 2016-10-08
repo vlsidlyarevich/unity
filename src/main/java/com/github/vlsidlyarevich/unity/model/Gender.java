@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.models;
+package com.github.vlsidlyarevich.unity.model;
 
 /**
  * Created by vlad on 29.09.16.

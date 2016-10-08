@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.models;
+package com.github.vlsidlyarevich.unity.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

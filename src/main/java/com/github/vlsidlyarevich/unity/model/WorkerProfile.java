@@ -1,8 +1,10 @@
-package com.github.vlsidlyarevich.unity.models;
+package com.github.vlsidlyarevich.unity.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class WorkerProfile extends Worker {
 
     private String imageUrl;
@@ -13,7 +15,6 @@ public class WorkerProfile extends Worker {
     private String linkedInUrl;
 
     public WorkerProfile() {
-
     }
 
     public WorkerProfile(String firstName, String lastName, String imageUrl, String description, String skype,
@@ -25,5 +26,4 @@ public class WorkerProfile extends Worker {
         this.githubUrl = githubUrl;
         this.linkedInUrl = linkedInUrl;
     }
-
 }
