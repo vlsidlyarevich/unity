@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.controller;
 
 import com.github.vlsidlyarevich.unity.models.WorkerProfile;
-import com.github.vlsidlyarevich.unity.service.WorkerProfileService;
+import com.github.vlsidlyarevich.unity.service.impl.WorkerProfileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class WorkersProfileController {
 
     @Autowired
-    private WorkerProfileService service;
+    private WorkerProfileServiceImpl service;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getAllWorkers() {

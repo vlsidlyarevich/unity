@@ -4,6 +4,7 @@ import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.models.Name;
 import com.github.vlsidlyarevich.unity.models.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
+import com.github.vlsidlyarevich.unity.service.impl.WorkerProfileServiceImpl;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,10 +26,10 @@ import static org.hamcrest.CoreMatchers.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @SpringApplicationConfiguration(Application.class)
-public class WorkerProfileServiceTest {
+public class WorkerProfileServiceImplTest {
 
     @Autowired
-    private WorkerProfileService workerProfileService;
+    private WorkerProfileServiceImpl workerProfileServiceImpl;
 
     @Autowired
     private WorkerProfileRepository workerProfileRepository;
@@ -43,9 +44,9 @@ public class WorkerProfileServiceTest {
     public void saveTest() throws Exception {
         WorkerProfile saved = TestUtils.generateWorkerProfile();
 
-        workerProfileService.save(saved);
+        workerProfileServiceImpl.save(saved);
 
-        Assert.assertEquals(saved, workerProfileService.findById(saved.getId()));
+        Assert.assertEquals(saved, workerProfileServiceImpl.findById(saved.getId()));
         Assert.assertNotNull(saved.getCreatedAt());
     }
 
@@ -53,9 +54,9 @@ public class WorkerProfileServiceTest {
     public void findByIdTest() throws Exception {
         WorkerProfile saved = TestUtils.generateWorkerProfile();
 
-        workerProfileService.save(saved);
+        workerProfileServiceImpl.save(saved);
 
-        Assert.assertEquals(saved, workerProfileService.findById(saved.getId()));
+        Assert.assertEquals(saved, workerProfileServiceImpl.findById(saved.getId()));
     }
 
     @Test
@@ -64,9 +65,9 @@ public class WorkerProfileServiceTest {
         Name name = new Name("Vladislav", "Sidlyarevich");
         saved.setName(name);
 
-        workerProfileService.save(saved);
+        workerProfileServiceImpl.save(saved);
 
-        Assert.assertEquals(saved, workerProfileService.findByName(name));
+        Assert.assertEquals(saved, workerProfileServiceImpl.findByName(name));
     }
 
     @Test
@@ -76,9 +77,9 @@ public class WorkerProfileServiceTest {
 
         ArrayList<WorkerProfile> workers = new ArrayList<>();
         workers.add(saved);
-        workerProfileService.save(saved);
+        workerProfileServiceImpl.save(saved);
 
-        Assert.assertEquals(workers, workerProfileService.findAllByAge(19));
+        Assert.assertEquals(workers, workerProfileServiceImpl.findAllByAge(19));
     }
 
     @Test
@@ -89,9 +90,9 @@ public class WorkerProfileServiceTest {
         ArrayList<WorkerProfile> savedWorkers = new ArrayList<>();
         savedWorkers.add(firstProfile);
         savedWorkers.add(secondProfile);
-        workerProfileService.save(firstProfile);
-        workerProfileService.save(secondProfile);
+        workerProfileServiceImpl.save(firstProfile);
+        workerProfileServiceImpl.save(secondProfile);
 
-        assertThat(savedWorkers, is(workerProfileService.findAll()));
+        assertThat(savedWorkers, is(workerProfileServiceImpl.findAll()));
     }
 }

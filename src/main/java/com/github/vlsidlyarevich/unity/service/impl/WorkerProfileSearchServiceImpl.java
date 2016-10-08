@@ -1,6 +1,7 @@
-package com.github.vlsidlyarevich.unity.service;
+package com.github.vlsidlyarevich.unity.service.impl;
 
 import com.github.vlsidlyarevich.unity.models.WorkerProfile;
+import com.github.vlsidlyarevich.unity.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -14,12 +15,13 @@ import java.util.Map;
  * Created by vlad on 02.10.16.
  */
 @Service
-public class WorkerProfileSearchService {
+public class WorkerProfileSearchServiceImpl implements SearchService<WorkerProfile> {
 
     @Autowired
     private MongoOperations mongoOperations;
 
-    public List<WorkerProfile> findByFilters(Map<String, String> filters) {
+    @Override
+    public List<WorkerProfile> find(Map<String, String> filters) {
         Query query = new Query();
 
         for (Map.Entry<String, String> filter : filters.entrySet()) {
