@@ -5,11 +5,11 @@ unityApp.service('WorkerService', function () {
 
         var config = {
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                'Content-Type': 'application/json'
             }
         };
 
-        $http.post(serverUrl + 'workers/profile', worker, config)
+        $http.post(serverUrl + 'workers', worker, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
             })
