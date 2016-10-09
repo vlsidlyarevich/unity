@@ -1,3 +1,3 @@
 "use strict";
 
-var serverUrl = "localhost:8080/api/";
+var serverUrl = "http://localhost:8080/api/";
