@@ -26,8 +26,8 @@ Type following commands in additional/docker/mongo folder.
 
 
 ###Running the application
-* Type `mvn spring-boot:run` to run the backend part.
-* Go to src/main/webapp and then type `npm i` and `npm start` to start an angularjs view
+* `mvn clean install`
+* `java -jar target/*.jar`
 
 ---
 ###Api reference
