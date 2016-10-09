@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 1,
-  "__export_date": "2016-10-09T09:11:53.758Z",
+  "__export_date": "2016-10-09T09:15:58.042Z",
   "__export_source": "insomnia.chrome.app:v2.7.0",
   "items": [
     {
@@ -70,7 +70,7 @@
         {
           "_type": "request",
           "_id": "req_1475770481481",
-          "url": "http://localhost:8080/api/workers/57fa091c2cbd981136813677",
+          "url": "http://localhost:8080/api/workers/57fa096d2cbd981136813679",
           "method": "DELETE",
           "body": "{}",
           "headers": [],
@@ -118,7 +118,7 @@
           "_id": "req_1475785340052",
           "url": "http://localhost:8080/api/workers/search",
           "method": "POST",
-          "body": "{   \n    \"name.firstname\":\"Johnny\",\n    \"age\":\"43\"\n}",
+          "body": "{   \n    \"firstname\":\"Johnny\",\n    \"age\":\"43\"\n}",
           "headers": [],
           "params": [],
           "authentication": {
