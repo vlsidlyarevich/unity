@@ -6,6 +6,7 @@ import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
 import com.github.vlsidlyarevich.unity.utils.ModelUtils;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,10 +37,14 @@ public class WorkerProfileSearchServiceImplTest {
     private WorkerProfileRepository workerProfileRepository;
 
     @Before
-    public void cleanDb() {
+    public void before() {
         workerProfileRepository.deleteAll();
     }
 
+    @After
+    public void after() {
+        workerProfileRepository.deleteAll();
+    }
 
     @Test
     public void findByFiltersTest() {

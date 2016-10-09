@@ -7,6 +7,7 @@ import com.github.vlsidlyarevich.unity.model.Speciality;
 import com.github.vlsidlyarevich.unity.model.Worker;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +28,12 @@ public class WorkerProfileRepositoryTest {
     private WorkerProfileRepository workerProfileRepository;
 
     @Before
-    public void cleanDb() {
+    public void before() {
+        workerProfileRepository.deleteAll();
+    }
+
+    @After
+    public void after() {
         workerProfileRepository.deleteAll();
     }
 
