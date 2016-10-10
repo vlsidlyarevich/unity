@@ -1,0 +1,11 @@
+<mongoChangeLog>
+    <changeSet changeId="InitSet" author="vlsidlyarevich">
+        <script>
+            db.workerProfile.insert ({ "_class" : "com.github.vlsidlyarevich.unity.model.WorkerProfile",
+            "description" : "", "birthday" : "19-11-1973", "skype" : "", "githubUrl" : "git@github.com",
+            "linkedInUrl" : "", "name" : { "firstName" : "Johnny", "lastName" : "McMillan" }, "age" : 43,
+            "email" : "johnny@gmail.com", "phone" : "8 800 555 35 35", "gender" : "MALE",
+            "speciality" : "SOFTWARE_ENGINEER", "createdAt" : "2016-10-09T23:02:01.777" });
+        </script>
+    </changeSet>
+</mongoChangeLog>
