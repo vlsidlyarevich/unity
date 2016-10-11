@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 1,
-  "__export_date": "2016-10-09T09:15:58.042Z",
+  "__export_date": "2016-10-11T19:03:44.050Z",
   "__export_source": "insomnia.chrome.app:v2.7.0",
   "items": [
     {
@@ -34,7 +34,7 @@
           "_id": "req_1475770462359",
           "url": "http://localhost:8080/api/workers",
           "method": "POST",
-          "body": "{\n    \"name\": {\n        \"firstName\": \"Johnny\",\n        \"middleName\": null,\n        \"lastName\": \"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"19-11-1973\",\n    \"imageUrl\":null,\n    \"linkedInUrl\":null,\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"\"\n}",
+          "body": "{\n    \"name\": {\n        \"firstName\": \"Johnny\",\n        \"middleName\": null,\n        \"lastName\": \"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"19-11-1973\",\n    \"imageId\":null,\n    \"linkedInUrl\":null,\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"\"\n}",
           "headers": [],
           "params": [],
           "authentication": {
@@ -53,7 +53,7 @@
           "_id": "req_1475770470722",
           "url": "http://localhost:8080/api/workers",
           "method": "PUT",
-          "body": "{\n    \"id\":\"57f6b24851dffa39bbd27109\",\n    \"name\":{\n        \"firstName\":\"Johnny\",\n        \"middleName\":\"Updated\",\n        \"secondName\":\"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"19-11-1973\",\n    \"imageUrl\":\"imageUrl\",\n    \"linkedInUrl\":\"linked in url\",\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"Where is my cpt. Price?\"\n}",
+          "body": "{\n    \"id\":\"57f6b24851dffa39bbd27109\",\n    \"name\":{\n        \"firstName\":\"Johnny\",\n        \"middleName\":\"Updated\",\n        \"secondName\":\"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"19-11-1973\",\n    \"imageId\":\"imageUrl\",\n    \"linkedInUrl\":\"linked in url\",\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"Where is my cpt. Price?\"\n}",
           "headers": [],
           "params": [],
           "authentication": {
@@ -70,7 +70,7 @@
         {
           "_type": "request",
           "_id": "req_1475770481481",
-          "url": "http://localhost:8080/api/workers/57fa096d2cbd981136813679",
+          "url": "http://localhost:8080/api/workers/57fbf03d561472fb74184eb7",
           "method": "DELETE",
           "body": "{}",
           "headers": [],
