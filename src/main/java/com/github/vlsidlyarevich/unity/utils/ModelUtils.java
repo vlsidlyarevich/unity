@@ -20,7 +20,7 @@ public final class ModelUtils {
         workerProfile.setPhone(dto.getPhone() != null ? dto.getPhone() : "");
         workerProfile.setGender(dto.getGender());
         workerProfile.setSpeciality(dto.getSpeciality());
-        workerProfile.setImageUrl(dto.getImageUrl());
+        workerProfile.setImageId(dto.getImageId());
         workerProfile.setDescription(dto.getDescription() != null ? dto.getDescription() : "");
         workerProfile.setBirthday(dto.getBirthday() != null ? dto.getBirthday() : "");
         workerProfile.setSkype(dto.getSkype() != null ? dto.getSkype() : "");

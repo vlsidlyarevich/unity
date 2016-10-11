@@ -7,7 +7,7 @@ import lombok.ToString;
 @ToString
 public class WorkerProfile extends Worker {
 
-    private String imageUrl;
+    private String imageId;
     private String description;
     private String birthday;
     private String skype;
@@ -17,10 +17,10 @@ public class WorkerProfile extends Worker {
     public WorkerProfile() {
     }
 
-    public WorkerProfile(String firstName, String lastName, String imageUrl, String description, String skype,
+    public WorkerProfile(String firstName, String lastName, String imageId, String description, String skype,
                          String githubUrl, String linkedInUrl) {
         super(firstName, lastName);
-        this.imageUrl = imageUrl;
+        this.imageId = imageId;
         this.description = description;
         this.skype = skype;
         this.githubUrl = githubUrl;

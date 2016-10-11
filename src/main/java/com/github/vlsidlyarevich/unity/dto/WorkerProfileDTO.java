@@ -22,7 +22,7 @@ public class WorkerProfileDTO implements Serializable {
     private String phone;
     private Gender gender;
     private Speciality speciality;
-    private String imageUrl;
+    private String imageId;
     private String description;
     private String birthday;
     private String skype;
