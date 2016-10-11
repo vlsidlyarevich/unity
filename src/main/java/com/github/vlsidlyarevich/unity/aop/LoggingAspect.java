@@ -26,7 +26,13 @@ public class LoggingAspect {
 
     @Before("execution(* com.github.vlsidlyarevich.unity.service.impl.WorkerProfileSearchServiceImpl.*(..)))")
     public void workerSearchServiceLog(JoinPoint joinPoint) {
-        logger.info("Worker profile service : " + joinPoint.getSignature().getName() + "\n With arguments : "
+        logger.info("Worker profile search service : " + joinPoint.getSignature().getName() + "\n With arguments : "
+                + Arrays.toString(joinPoint.getArgs()));
+    }
+
+    @Before("execution(* com.github.vlsidlyarevich.unity.service.impl.ImageServiceImpl.*(..)))")
+    public void imageServiceLog(JoinPoint joinPoint) {
+        logger.info("Image service : " + joinPoint.getSignature().getName() + "\n With arguments : "
                 + Arrays.toString(joinPoint.getArgs()));
     }
 }
