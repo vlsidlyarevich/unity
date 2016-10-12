@@ -35,4 +35,19 @@ public class LoggingAspect {
         logger.info("Image service : " + joinPoint.getSignature().getName() + "\n With arguments : "
                 + Arrays.toString(joinPoint.getArgs()));
     }
+
+    @Before("execution(* com.github.vlsidlyarevich.unity.controller.WorkersProfileController.*(..)))")
+    public void workerProfileControllerLog(JoinPoint joinPoint) {
+        logger.info("Worker profile controller : " + joinPoint.getSignature().getName());
+    }
+
+    @Before("execution(* com.github.vlsidlyarevich.unity.controller.WorkerProfileSearchController.*(..)))")
+    public void workerProfileSearchControllerLog(JoinPoint joinPoint) {
+        logger.info("Worker profile search controller : " + joinPoint.getSignature().getName());
+    }
+
+    @Before("execution(* com.github.vlsidlyarevich.unity.controller.ImageController.*(..)))")
+    public void imageControllerLog(JoinPoint joinPoint) {
+        logger.info("Image controller : " + joinPoint.getSignature().getName());
+    }
 }

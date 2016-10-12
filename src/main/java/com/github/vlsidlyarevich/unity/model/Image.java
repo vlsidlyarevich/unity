@@ -16,4 +16,8 @@ public class Image extends BaseEntity {
     public Image() {
 
     }
+
+    public Image(MultipartFile multipartFile) {
+        this.multipartFile = multipartFile;
+    }
 }
