@@ -1,4 +1,6 @@
 # Unity
+[![Build Status](https://travis-ci.org/vlsidlyarevich/unity.svg?branch=master)](https://travis-ci.org/vlsidlyarevich/unity)
+
 ###Angular and java based Human resourse management system
 
 Module of integration with [woodstock](https://github.com/solairerove/woodstock) lms.
