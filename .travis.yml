@@ -4,5 +4,6 @@ jdk: oraclejdk8
 services: mongodb
 before_install:
   - npm install -g bower
+  - mvn -N io.takari:maven:wrapper
 #after_success:
 #-mvn clean test jacoco:report coveralls:report
