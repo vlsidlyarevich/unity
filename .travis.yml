@@ -1,10 +1,8 @@
 sudo: required
 language: java
 jdk: oraclejdk8
-services: docker
+services: mongodb
 before_install:
-  -docker pull mongo:latest
-  -docker run -p 27017:27017
   -npm install -g bower
 #after_success:
 #-mvn clean test jacoco:report coveralls:report
