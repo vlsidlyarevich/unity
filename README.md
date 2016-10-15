@@ -37,3 +37,5 @@ Type following commands in additional/docker/mongo folder.
 * PUT `http://localhost:8080/api/workers/` - update worker profile 
 * DELETE `http://localhost:8080/api/workers/id` - delete worker profile by id 
 * POST `/api/workers/search` - get workers profiles with filters 
+
+Or you can import [json file](https://github.com/vlsidlyarevich/unity/blob/master/additional/insomnia/unity-api.json) to your Insomnia rest client
