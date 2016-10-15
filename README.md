@@ -1,6 +1,6 @@
 # Unity
 [![Build Status](https://travis-ci.org/vlsidlyarevich/unity.svg?branch=master)](https://travis-ci.org/vlsidlyarevich/unity)
-[![Dependency Status](https://www.versioneye.com/user/projects/5801f84c99a1010032d4a666/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5801f84c99a1010032d4a666)
+[![Dependency Status](https://www.versioneye.com/user/projects/58028731a23d5200345545db/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58028731a23d5200345545db)
 ###Angular and java based Human resourse management system
 
 Module of integration with [woodstock](https://github.com/solairerove/woodstock) lms.
