@@ -3,12 +3,17 @@
 function AddWorkerController($scope, $http, $location, WorkerService) {
     $scope.worker = $scope.worker || {};
 
-    $scope.submit = function (worker) {
+    $scope.submit = function (worker, $flow) {
         console.log(worker);
         WorkerService.saveWorker($scope, $http, worker, function (result) {
             console.log(result);
         });
+
         $location.path('/workers');
+    };
+
+    $scope.fileUploaded = function ($file, $message, $flow) {
+
     };
 
     $scope.close = function () {

@@ -2,14 +2,24 @@
 
     <div class="col-sm-2">
         <div class="well well-sm bs-component" style="padding: 10px;">
+
             <div class="row-picture" flow-init="{target:'/api/images/upload', singleFile: true}"
                  flow-files-submitted="$flow.upload()" flow-file-success="fileUploaded($file, $message, $flow)">
-                <!--<img class="circle" ng-src="{{profile.imageUrl}}" alt="icon" style="max-height: 150px;"/>-->
                 <img class="img-thumbnail img-responsive" flow-img="$flow.files[0]"
-                     style="width: 200px; height: 170px;"/>
-                <button type="button" class="btn btn-default" flow-btn style="margin: 10px;">
-                    <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload
-                </button>
+                     style="width: 200px; height: 170px;"
+                     src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"/>
+                <!--<span class="btn btn-default" style="margin: 10px;">-->
+                <!--<span class="glyphicon glyphicon-upload" flow-btn aria-hidden="true"></span> Upload-->
+                <!--</span>-->
+
+                <span class="btn btn-primary" ng-show="!$flow.files.length" flow-btn="">
+                    Select image<input type="file"
+                                       style="visibility: hidden; position: absolute;"></span>
+                <span class="btn btn-info ng-hide" ng-show="$flow.files.length" flow-btn="">
+                    Change<input type="file"
+                                 style="visibility: hidden; position: absolute;"></span>
+                <span class="btn btn-danger ng-hide" ng-show="$flow.files.length"
+                      ng-click="$flow.cancel()">Remove</span>
             </div>
         </div>
 

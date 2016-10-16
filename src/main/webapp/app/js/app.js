@@ -7,5 +7,6 @@ var unityApp = angular.module('unity', [
     'unityHeader',
     'workersGrid',
     'addWorker',
-    'ngAnimate'
+    'ngAnimate',
+    'flow'
 ]);
