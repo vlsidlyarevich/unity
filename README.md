@@ -31,6 +31,9 @@ Type following commands in additional/docker/mongo folder.
 * `mvn clean install`
 * `java -jar target/*.jar`
 
+###Debugging the application
+* `mvn clean install`
+* `java -Xdebug -Xrunjdwp:transport=dt_socket,address=50000,server=y -jar target/*.jar`
 ---
 ###Api reference
 * GET `http://localhost:8080/api/workers` - get all workers profiles
