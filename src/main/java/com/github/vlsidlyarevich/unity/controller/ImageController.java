@@ -1,7 +1,6 @@
 package com.github.vlsidlyarevich.unity.controller;
 
-import com.github.vlsidlyarevich.unity.model.Image;
-import com.github.vlsidlyarevich.unity.service.ImageService;
+import com.github.vlsidlyarevich.unity.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ImageController {
 
     @Autowired
-    private ImageService imageService;
+    private StorageService storageService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity getImage(@PathVariable Long id) {
@@ -25,6 +24,14 @@ public class ImageController {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public ResponseEntity uploadImage(@RequestParam("file") MultipartFile file) {
-        return new ResponseEntity<>(imageService.create(new Image(file)), HttpStatus.OK);
+        String id = "error";
+//        file.
+//        try {
+//            id = imageService.create(new Image(file)).getId();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+        System.out.println("IMAGE CONTROLLER : " + file.toString());
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }
