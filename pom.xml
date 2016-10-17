@@ -18,9 +18,24 @@
     </parent>
 
     <properties>
+        <jacoco-maven-plugin.version>0.7.7.201606060606</jacoco-maven-plugin.version>
+        <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
+        <frontend-maven-plugin.version>1.0</frontend-maven-plugin.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <java.version>1.8</java.version>
+        <npm.version>3.8.9</npm.version>
+        <node.version>v6.5.0</node.version>
+
+        <sonar.exclusions>
+            **/config/**/*.java,
+            **/aop/**/*.java,
+            **/dto/**/*.java,
+            **/model/**/*.java,
+            **/Application.java
+        </sonar.exclusions>
     </properties>
 
     <dependencies>
@@ -72,7 +87,7 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.0</version>
+                <version>${frontend-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>install node and npm</id>
@@ -81,8 +96,8 @@
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <nodeVersion>v6.5.0</nodeVersion>
-                            <npmVersion>3.8.9</npmVersion>
+                            <nodeVersion>${node.version}</nodeVersion>
+                            <npmVersion>${npm.version}</npmVersion>
                         </configuration>
                     </execution>
                     <execution>
@@ -107,6 +122,29 @@
                             <goal>gulp</goal>
                         </goals>
                         <phase>generate-resources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*aspect/*.class</exclude>
+                        <exclude>**/*config/*.class</exclude>
+                        <exclude>**/*model/*.class</exclude>
+                        <exclude>**/*dto/*.class</exclude>
+                        <exclude>**/Application.class</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
