@@ -30,7 +30,7 @@ public class LoggingAspect {
                 + Arrays.toString(joinPoint.getArgs()));
     }
 
-    @Before("execution(* com.github.vlsidlyarevich.unity.service.impl.ImageServiceImpl.*(..)))")
+    @Before("execution(* com.github.vlsidlyarevich.unity.service.impl.FileSystemStorageService.*(..)))")
     public void imageServiceLog(JoinPoint joinPoint) {
         logger.info("Image service : " + joinPoint.getSignature().getName() + "\n With arguments : "
                 + Arrays.toString(joinPoint.getArgs()));
