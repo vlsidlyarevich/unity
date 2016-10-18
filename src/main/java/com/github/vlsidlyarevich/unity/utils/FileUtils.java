@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 /**
  * Created by vladislav on 10/18/16.
@@ -18,7 +19,7 @@ public final class FileUtils {
 
     public static File multipartToFile(MultipartFile multipart) {
         try {
-            File convFile = new File(multipart.getOriginalFilename());
+            File convFile = new File(multipart.getName());
             multipart.transferTo(convFile);
             return convFile;
 
@@ -26,6 +27,24 @@ public final class FileUtils {
             log.error("Error converting multipart to file!", e);
         }
         return null;
+    }
+
+    public static File multipartToFile(MultipartFile multipart, String fileName) {
+        try {
+            File convFile = new File(fileName);
+            multipart.transferTo(convFile);
+            return convFile;
+
+        } catch (IllegalStateException | IOException e) {
+            log.error("Error converting multipart to file!", e);
+        }
+        return null;
+    }
+
+    public static void cleanDirectory(Path pathToDirectory) {
+        for (File file : pathToDirectory.toFile().listFiles()) {
+            file.delete();
+        }
     }
 
 }

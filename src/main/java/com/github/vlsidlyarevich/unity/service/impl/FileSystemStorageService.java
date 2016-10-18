@@ -1,11 +1,11 @@
 package com.github.vlsidlyarevich.unity.service.impl;
 
 import com.github.vlsidlyarevich.unity.service.StorageService;
+import com.github.vlsidlyarevich.unity.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
@@ -88,6 +88,6 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     public void deleteAll() {
-        FileSystemUtils.deleteRecursively(storeLocation.toFile());
+        FileUtils.cleanDirectory(storeLocation);
     }
 }
