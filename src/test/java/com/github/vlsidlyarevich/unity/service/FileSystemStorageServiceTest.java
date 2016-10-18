@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.service;
 
 import com.github.vlsidlyarevich.unity.Application;
+import com.github.vlsidlyarevich.unity.utils.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +29,24 @@ public class FileSystemStorageServiceTest {
 
         String id = storageService.store(file);
 
-        Assert.assertEquals(storageService.load(id), file);
+        Assert.assertEquals(storageService.load(id).toFile().getName(), id);
+        Assert.assertEquals(storageService.load(id).toFile().getFreeSpace(),
+                FileUtils.multipartToFile(file).getFreeSpace());
+        Assert.assertEquals(storageService.load(id).toFile().getTotalSpace(),
+                FileUtils.multipartToFile(file).getTotalSpace());
+        Assert.assertEquals(storageService.load(id).toFile().getUsableSpace(),
+                FileUtils.multipartToFile(file).getUsableSpace());
+    }
+
+    @Test
+    public void loadAllTest() throws Exception {
+        MultipartFile file1 = new MockMultipartFile("file1", "file.gif", "image/png", "nonsensecontent 1".getBytes());
+        MultipartFile file2 = new MockMultipartFile("file1", "file.gif", "image/png", "nonsensecontent 2".getBytes());
+
+        String id1 = storageService.store(file1);
+        String id2 = storageService.store(file2);
+
+
     }
 
 }

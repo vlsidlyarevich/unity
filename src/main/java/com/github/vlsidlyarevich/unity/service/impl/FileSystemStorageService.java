@@ -2,9 +2,6 @@ package com.github.vlsidlyarevich.unity.service.impl;
 
 import com.github.vlsidlyarevich.unity.service.StorageService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.RandomUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -17,8 +14,9 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 /**
  * Created by vladislav on 10/11/16.
@@ -27,7 +25,7 @@ import java.util.stream.Stream;
 @Service
 public class FileSystemStorageService implements StorageService {
 
-    private final Path storeLocation = Paths.get("~/projects/java/unity/files");
+    private final Path storeLocation = Paths.get("files");
 
     @PostConstruct
     public void init() {
@@ -55,11 +53,11 @@ public class FileSystemStorageService implements StorageService {
     }
 
     @Override
-    public Stream<Path> loadAll() {
+    public List<Path> loadAll() {
         try {
             return Files.walk(this.storeLocation, 1)
                     .filter(path -> !path.equals(this.storeLocation))
-                    .map(this.storeLocation::relativize);
+                    .map(this.storeLocation::relativize).collect(Collectors.toList());
         } catch (IOException e) {
             log.error("Failed to read stored files", e);
             return null;
