@@ -1,10 +1,8 @@
 package com.github.vlsidlyarevich.unity.service;
 
 import com.github.vlsidlyarevich.unity.Application;
-import com.github.vlsidlyarevich.unity.utils.FileUtils;
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -32,10 +28,10 @@ public class FileSystemStorageServiceTest {
     @Autowired
     private StorageService storageService;
 
-//    @After
-//    public void cleanUp() {
-//        storageService.deleteAll();
-//    }
+    @After
+    public void cleanUp() {
+        storageService.deleteAll();
+    }
 
     @Test
     public void storeTest() throws Exception {
@@ -44,12 +40,7 @@ public class FileSystemStorageServiceTest {
         String id = storageService.store(file);
 
         Assert.assertEquals(storageService.load(id).toFile().getName(), id);
-        Assert.assertEquals(storageService.load(id).toFile().getFreeSpace(),
-                FileUtils.multipartToFile(file, id).getFreeSpace());
-        Assert.assertEquals(storageService.load(id).toFile().getTotalSpace(),
-                FileUtils.multipartToFile(file, id).getTotalSpace());
-        Assert.assertEquals(storageService.load(id).toFile().getUsableSpace(),
-                FileUtils.multipartToFile(file, id).getUsableSpace());
+        Assert.assertEquals(storageService.load(id).toFile().length(), file.getSize());
     }
 
     @Test
@@ -59,14 +50,22 @@ public class FileSystemStorageServiceTest {
 
         String id1 = storageService.store(file1);
         String id2 = storageService.store(file2);
-        List<File> savedFiles = new ArrayList<>();
-        savedFiles.add(FileUtils.multipartToFile(file1, id1));
-        savedFiles.add(FileUtils.multipartToFile(file2, id2));
 
         List<Path> resolvedFiles = storageService.loadAll();
         resolvedFiles.forEach(Path::toFile);
 
         Assert.assertThat(storageService.loadAll().size(), is(2));
+        Assert.assertThat(storageService.loadAll().get(0).toFile().getName(), is(id1));
+        Assert.assertThat(storageService.loadAll().get(1).toFile().getName(), is(id2));
     }
 
+    @Test
+    public void loadAsResourceTest() throws Exception {
+        MultipartFile file = new MockMultipartFile("file", "file.gif", "image/png", "nonsensecontent".getBytes());
+
+        String id = storageService.store(file);
+
+        Assert.assertEquals(storageService.loadAsResource(id).getFilename(), id);
+        Assert.assertEquals(storageService.loadAsResource(id).contentLength(), file.getSize());
+    }
 }
