@@ -1,8 +1,10 @@
 package com.github.vlsidlyarevich.unity.service.impl;
 
+import com.github.vlsidlyarevich.unity.config.StorageProperties;
 import com.github.vlsidlyarevich.unity.service.StorageService;
 import com.github.vlsidlyarevich.unity.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -25,7 +27,12 @@ import java.util.stream.Collectors;
 @Service
 public class FileSystemStorageService implements StorageService {
 
-    private final Path storeLocation = Paths.get("files");
+    private final Path storeLocation;
+
+    @Autowired
+    public FileSystemStorageService(StorageProperties properties) {
+        this.storeLocation = Paths.get(properties.getPath());
+    }
 
     @PostConstruct
     public void init() {
