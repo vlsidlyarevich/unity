@@ -3,7 +3,7 @@
     <div class="col-sm-2">
         <div class="well well-sm bs-component" style="padding: 10px;">
 
-            <div class="row-picture" flow-init="{target:'/api/images/upload', singleFile: true}"
+            <div class="row-picture" flow-init="{target:'/api/images/upload', singleFile: true, testChunks:false}"
                  flow-files-submitted="$flow.upload()" flow-file-success="fileUploaded($file, $message, $flow)">
                 <img class="img-thumbnail img-responsive" flow-img="$flow.files[0]"
                      style="width: 200px; height: 170px;"
