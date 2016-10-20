@@ -2,6 +2,7 @@ package com.github.vlsidlyarevich.unity.controller;
 
 import com.github.vlsidlyarevich.unity.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,20 +19,22 @@ public class ImageController {
     private StorageService storageService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity getImage(@PathVariable Long id) {
-        return new ResponseEntity<>("https://lh3.googleusercontent.com/-KaDIOpJ3DjE/AAAAAAAAAAI/AAAAAAAAAAA/Wx0027iseXM/photo.jpg", HttpStatus.OK);
+    public ResponseEntity getImage(@PathVariable String id) {
+        Resource resource = storageService.loadAsResource(id);
+        if (resource != null) {
+            return new ResponseEntity<>(resource, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image", HttpStatus.OK);
+        }
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public ResponseEntity uploadImage(@RequestParam("file") MultipartFile file) {
-        String id = "error";
-//        file.
-//        try {
-//            id = imageService.create(new Image(file)).getId();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-        System.out.println("IMAGE CONTROLLER : " + file.toString());
-        return new ResponseEntity<>(id, HttpStatus.OK);
+        return new ResponseEntity<>(storageService.store(file), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteImage(@PathVariable String id) {
+        return new ResponseEntity<>(storageService.delete(id), HttpStatus.OK);
     }
 }
