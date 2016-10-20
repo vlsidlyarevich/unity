@@ -97,4 +97,19 @@ public class FileSystemStorageService implements StorageService {
     public void deleteAll() {
         FileUtils.cleanDirectory(storeLocation);
     }
+
+    @Override
+    public String delete(String id) {
+        try {
+            Path pathToDelete = Files.walk(this.storeLocation, 1)
+                    .filter(path -> !path.equals(this.storeLocation))
+                    .findFirst().get();
+
+            pathToDelete.toFile().delete();
+            return id;
+        } catch (IOException e) {
+            log.error("Failed to delete file", e);
+            return null;
+        }
+    }
 }

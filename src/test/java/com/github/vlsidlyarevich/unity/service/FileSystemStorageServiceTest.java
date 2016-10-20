@@ -66,4 +66,14 @@ public class FileSystemStorageServiceTest {
         Assert.assertEquals(storageService.loadAsResource(id).getFilename(), id);
         Assert.assertEquals(storageService.loadAsResource(id).contentLength(), file.getSize());
     }
+
+    @Test
+    public void deleteTest() throws Exception {
+        MultipartFile file = new MockMultipartFile("file", "file.gif", "image/png", "nonsensecontent".getBytes());
+
+        String id = storageService.store(file);
+
+        storageService.delete(id);
+        Assert.assertEquals(storageService.loadAll().size(), 0);
+    }
 }
