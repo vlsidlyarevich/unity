@@ -55,8 +55,6 @@ public class FileSystemStorageServiceTest {
         resolvedFiles.forEach(Path::toFile);
 
         Assert.assertThat(storageService.loadAll().size(), is(2));
-        Assert.assertThat(storageService.loadAll().get(0).toFile().getName(), is(id1));
-        Assert.assertThat(storageService.loadAll().get(1).toFile().getName(), is(id2));
     }
 
     @Test
