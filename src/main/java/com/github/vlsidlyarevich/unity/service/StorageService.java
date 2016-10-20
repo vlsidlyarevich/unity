@@ -5,7 +5,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Created by vladislav on 10/11/16.
@@ -22,4 +21,5 @@ public interface StorageService {
 
     void deleteAll();
 
+    String delete(String id);
 }
