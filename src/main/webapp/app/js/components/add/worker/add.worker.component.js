@@ -1,6 +1,6 @@
 "use strict";
 
-function AddWorkerController($scope, $http, $location, WorkerService) {
+function AddWorkerController($scope, $http, $location, WorkerService, ImageService) {
     $scope.worker = $scope.worker || {};
 
     $scope.submit = function (worker) {
@@ -14,6 +14,15 @@ function AddWorkerController($scope, $http, $location, WorkerService) {
 
     $scope.fileUploaded = function ($file, $message, $flow) {
         $scope.worker.imageId = $message;
+    };
+
+    $scope.resetImage = function ($flow) {
+        console.log($scope.worker.imageId);
+        ImageService.deleteImage($scope, $http, $scope.worker.imageId, function (result) {
+            console.log("Reset image with id: ".concat(id));
+        });
+
+        $flow.cancel();
     };
 
     $scope.close = function () {

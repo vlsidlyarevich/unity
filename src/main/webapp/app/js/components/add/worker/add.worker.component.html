@@ -8,10 +8,6 @@
                 <img class="img-thumbnail img-responsive" flow-img="$flow.files[0]"
                      style="width: 200px; height: 170px;"
                      src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"/>
-                <!--<span class="btn btn-default" style="margin: 10px;">-->
-                <!--<span class="glyphicon glyphicon-upload" flow-btn aria-hidden="true"></span> Upload-->
-                <!--</span>-->
-
                 <span class="btn btn-primary" ng-show="!$flow.files.length" flow-btn="">
                     Select image<input type="file"
                                        style="visibility: hidden; position: absolute;"></span>
@@ -19,7 +15,7 @@
                     Change<input type="file"
                                  style="visibility: hidden; position: absolute;"></span>
                 <span class="btn btn-danger ng-hide" ng-show="$flow.files.length"
-                      ng-click="$flow.cancel()">Remove</span>
+                      ng-click="resetImage($flow)">Remove</span>
             </div>
         </div>
 
