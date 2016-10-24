@@ -21,9 +21,9 @@ unityApp.service('WorkerService', function () {
             });
     };
 
-    this.getWorkers = function ($scope, $http) {
+    this.getWorkers = function ($scope, $http, callback) {
         $http.get(serverUrl + 'workers').then(function (response) {
-            $scope.workers = response.data;
+            callback(response);
         });
-    }
+    };
 });

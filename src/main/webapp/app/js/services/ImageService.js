@@ -19,5 +19,11 @@ unityApp.service('ImageService', function () {
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
             });
+    };
+
+    this.getImage = function ($http, id, callback) {
+        $http.get(serverUrl + 'images/' + id).then(function (response) {
+            callback(response);
+        });
     }
 });
