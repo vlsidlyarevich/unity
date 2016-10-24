@@ -19,5 +19,11 @@ unityApp.service('WorkerService', function () {
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
             });
+    };
+
+    this.getWorkers = function ($scope, $http) {
+        $http.get(serverUrl + 'workers').then(function (response) {
+            $scope.workers = response.data;
+        });
     }
 });
