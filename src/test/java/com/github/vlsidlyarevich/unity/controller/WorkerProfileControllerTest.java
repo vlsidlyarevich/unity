@@ -1,58 +1,59 @@
-package com.github.vlsidlyarevich.unity.controller;
-
-import com.github.vlsidlyarevich.unity.Application;
-import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
-import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
-import com.github.vlsidlyarevich.unity.service.WorkerProfileService;
-import com.github.vlsidlyarevich.unity.utils.TestUtils;
-import org.junit.After;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.web.context.WebApplicationContext;
-
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
-
-/**
- * Created by vladislav.sidlyarevich on 25/10/16.
- */
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@SpringApplicationConfiguration(Application.class)
-public class WorkerProfileControllerTest {
-
-    @Autowired
-    private WebApplicationContext context;
-
-    @Autowired
-    private WorkerProfileService workerProfileService;
-
-    @Autowired
-    private WorkerProfileRepository workerProfileRepository;
-
-    private MockMvc mvc;
-
-    @BeforeClass
-    public void setup() throws Exception {
-        this.mvc = webAppContextSetup(context).build();
-    }
-
-    @After
-    public void after() throws Exception {
-        workerProfileRepository.deleteAll();
-    }
-
+//package com.github.vlsidlyarevich.unity.controller;
+//
+//import com.github.vlsidlyarevich.unity.Application;
+//import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
+//import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
+//import com.github.vlsidlyarevich.unity.service.WorkerProfileService;
+//import com.github.vlsidlyarevich.unity.utils.TestUtils;
+//import org.junit.After;
+//import org.junit.Before;
+//import org.junit.BeforeClass;
+//import org.junit.Test;
+//import org.junit.runner.RunWith;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.SpringApplicationConfiguration;
+//import org.springframework.http.HttpMethod;
+//import org.springframework.http.MediaType;
+//import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+//import org.springframework.test.context.web.WebAppConfiguration;
+//import org.springframework.test.web.servlet.MockMvc;
+//import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+//import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+//import org.springframework.web.context.WebApplicationContext;
+//
+//import static org.hamcrest.Matchers.hasSize;
+//import static org.hamcrest.Matchers.is;
+//import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
+//
+///**
+// * Created by vladislav.sidlyarevich on 25/10/16.
+// */
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@WebAppConfiguration
+//@SpringApplicationConfiguration(Application.class)
+//public class WorkerProfileControllerTest {
+//
+//    @Autowired
+//    private WebApplicationContext context;
+//
+//    @Autowired
+//    private WorkerProfileService workerProfileService;
+//
+//    @Autowired
+//    private WorkerProfileRepository workerProfileRepository;
+//
+//    private MockMvc mvc;
+//
+//    @Before
+//    public void setup() throws Exception {
+//        this.mvc = webAppContextSetup(context).build();
+//    }
+//
+//    @After
+//    public void after() throws Exception {
+//        workerProfileRepository.deleteAll();
+//    }
+//
 //    @Test
 //    public void getAllWorkerProfilesTest() throws Exception {
 //        WorkerProfileDTO worker = TestUtils.generateWorkerProfileDTO();
@@ -81,4 +82,4 @@ public class WorkerProfileControllerTest {
 //                .andExpect(MockMvcResultMatchers.jsonPath("$.[1].gender", is(anotherWorker.getGender())))
 //                .andExpect(MockMvcResultMatchers.jsonPath("$.[1].phone", is(anotherWorker.getPhone())));
 //    }
-}
+//}
