@@ -50,6 +50,7 @@ public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTes
 
     @Test
     public void setupMvc() throws Exception {
+        workerProfileRepository.deleteAll();
         this.mvc = webAppContextSetup(context).build();
     }
 
@@ -82,12 +83,22 @@ public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTes
                 .andExpect(MockMvcResultMatchers.jsonPath("$.phone", is(savedWorker.getPhone())));
     }
 
-//    @Test(dependsOnMethods = {"getWorkerById"})
+    @Test(dependsOnMethods = {"getWorkerById"})
     public void updateWorkerById() throws Exception {
+        this.savedWorker.getName().setFirstName("Updated");
+        this.worker.getName().setFirstName("Updated");
+        this.savedWorker.setAge(20);
+        this.worker.setAge(20);
+        ObjectMapper objectMapper = new ObjectMapper();
 
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT, "/api/workers/" + savedWorker.getId())
+                .content(objectMapper.writeValueAsString(worker))
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(savedWorker.getId()));
     }
 
-    //    @Test(dependsOnMethods = {"updateWorkerById"})
+    @Test(dependsOnMethods = {"updateWorkerById"})
     public void getAllWorkerProfilesTest() throws Exception {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/workers")
                 .accept(MediaType.APPLICATION_JSON)
@@ -103,8 +114,11 @@ public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTes
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].phone", is(savedWorker.getPhone())));
     }
 
-    //    @Test(dependsOnMethods = {"getAllWorkerProfilesTest"})
+    @Test(dependsOnMethods = {"getAllWorkerProfilesTest"})
     public void deleteWorkerById() throws Exception {
-
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/workers/" + savedWorker.getId())
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(savedWorker.getId()));
     }
 }
