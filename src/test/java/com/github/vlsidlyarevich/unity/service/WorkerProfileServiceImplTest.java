@@ -7,28 +7,24 @@ import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
 import com.github.vlsidlyarevich.unity.utils.ModelUtils;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by vlad on 04.10.16.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
 @SpringApplicationConfiguration(Application.class)
-public class WorkerProfileServiceImplTest {
+public class WorkerProfileServiceImplTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private WorkerProfileService workerProfileService;
@@ -36,12 +32,12 @@ public class WorkerProfileServiceImplTest {
     @Autowired
     private WorkerProfileRepository workerProfileRepository;
 
-    @Before
+    @BeforeMethod
     public void before() {
         workerProfileRepository.deleteAll();
     }
 
-    @After
+    @AfterMethod
     public void after() {
         workerProfileRepository.deleteAll();
     }

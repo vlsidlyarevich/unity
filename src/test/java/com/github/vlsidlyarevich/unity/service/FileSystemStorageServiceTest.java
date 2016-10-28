@@ -1,34 +1,28 @@
 package com.github.vlsidlyarevich.unity.service;
 
 import com.github.vlsidlyarevich.unity.Application;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.web.multipart.MultipartFile;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
 
 import java.nio.file.Path;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-
 /**
  * Created by vladislav on 10/17/16.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
 @SpringApplicationConfiguration(Application.class)
-public class FileSystemStorageServiceTest {
+public class FileSystemStorageServiceTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private StorageService storageService;
 
-    @After
+    @AfterMethod
     public void cleanUp() {
         storageService.deleteAll();
     }
@@ -54,7 +48,7 @@ public class FileSystemStorageServiceTest {
         List<Path> resolvedFiles = storageService.loadAll();
         resolvedFiles.forEach(Path::toFile);
 
-        Assert.assertThat(storageService.loadAll().size(), is(2));
+        Assert.assertTrue(storageService.loadAll().size() == 2);
     }
 
     @Test
