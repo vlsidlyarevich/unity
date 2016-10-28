@@ -54,7 +54,7 @@ public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTes
         this.mvc = webAppContextSetup(context).build();
     }
 
-    @Test(dependsOnMethods = "setupMvc")
+    @Test(dependsOnMethods = {"setupMvc"})
     public void addWorkerTest() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         this.worker = TestUtils.generateWorkerProfileDTO();
