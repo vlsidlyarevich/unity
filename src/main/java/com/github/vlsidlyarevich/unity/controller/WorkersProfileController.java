@@ -30,7 +30,7 @@ public class WorkersProfileController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addWorker(@RequestBody WorkerProfileDTO profile) {
-        return new ResponseEntity<>(service.create(profile), HttpStatus.OK);
+        return new ResponseEntity<>(service.create(profile), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

@@ -1,14 +1,19 @@
 package com.github.vlsidlyarevich.unity.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
+import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
 import com.github.vlsidlyarevich.unity.service.WorkerProfileService;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.HttpMethod;
@@ -43,17 +48,21 @@ public class WorkerProfileControllerTest {
 
     private MockMvc mvc;
 
+    private WorkerProfileDTO worker;
+
+    private WorkerProfile savedWorker;
+
     @Before
     public void setup() throws Exception {
         this.mvc = webAppContextSetup(context).build();
     }
 
-    @After
+    @AfterClass
     public void after() throws Exception {
         workerProfileRepository.deleteAll();
     }
 
-    @Test
+//    @Test
     public void getAllWorkerProfilesTest() throws Exception {
         WorkerProfileDTO worker = TestUtils.generateWorkerProfileDTO();
         WorkerProfileDTO anotherWorker = TestUtils.generateWorkerProfileDTO();
@@ -80,5 +89,19 @@ public class WorkerProfileControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[1].skype", is(anotherWorker.getSkype())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[1].gender", is(anotherWorker.getGender().toString())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[1].phone", is(anotherWorker.getPhone())));
+    }
+
+    @Test
+    public void addWorkerTest() throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        worker = TestUtils.generateWorkerProfileDTO();
+
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/workers")
+                .content(objectMapper.writeValueAsString(worker))
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andDo(result -> this.savedWorker = objectMapper.readValue(result.getResponse()
+                        .getContentAsString(), new TypeReference<WorkerProfile>() {
+                }));
     }
 }
