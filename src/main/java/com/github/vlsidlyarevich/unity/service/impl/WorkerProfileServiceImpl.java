@@ -52,6 +52,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
     @Override
     public String update(String id, WorkerProfileDTO dto) {
         WorkerProfile workerProfile = ModelUtils.convertToModelProfile(dto);
+        workerProfile.setId(id);
         if (repository.exists(id)) {
             workerProfile.setCreatedAt(repository.findById(id).getCreatedAt());
             workerProfile.setUpdatedAt(String.valueOf(LocalDateTime.now()));
