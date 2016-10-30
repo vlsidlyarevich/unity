@@ -1,6 +1,8 @@
 package com.github.vlsidlyarevich.unity.service.impl;
 
 import com.github.vlsidlyarevich.unity.config.StorageProperties;
+import com.github.vlsidlyarevich.unity.exception.FileSystemFileNotFoundException;
+import com.github.vlsidlyarevich.unity.exception.FileSystemStorageException;
 import com.github.vlsidlyarevich.unity.service.StorageService;
 import com.github.vlsidlyarevich.unity.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -39,7 +42,9 @@ public class FileSystemStorageService implements StorageService {
         try {
             Files.createDirectory(storeLocation);
         } catch (IOException e) {
-            log.error("Could not initialize storage", e);
+//            log.error("Could not initialize storage", e);
+            throw new FileSystemStorageException(e.getMessage(), e.getCause(),
+                    "storage.filesystem.initializationFail", null);
         }
     }
 
@@ -49,12 +54,17 @@ public class FileSystemStorageService implements StorageService {
         try {
             if (file.isEmpty()) {
                 log.error("Failed to store empty file " + file.getOriginalFilename());
-                return null;
+                throw new FileSystemStorageException("storage.filesystem.file.empty",
+                        new Object[]{file.getOriginalFilename()});
+//
+//                return null;
             }
             Files.copy(file.getInputStream(), storeLocation.resolve(id));
         } catch (IOException e) {
-            log.error("Failed to store file " + file.getOriginalFilename(), e);
-            return null;
+            throw new FileSystemStorageException(e.getMessage(), e.getCause(), "storage.filesystem.file.storeFail",
+                    new Object[]{file.getOriginalFilename()});
+//            log.error("Failed to store file " + file.getOriginalFilename(), e);
+//            return null;
         }
         return id;
     }
@@ -66,8 +76,9 @@ public class FileSystemStorageService implements StorageService {
                     .filter(path -> !path.equals(this.storeLocation))
                     .map(this.storeLocation::relativize).collect(Collectors.toList());
         } catch (IOException e) {
-            log.error("Failed to read stored files", e);
-            return null;
+            throw new FileSystemStorageException(e.getMessage(), "storage.filesystem.files.readFail", e.getCause());
+//            log.error("Failed to read stored files", e);
+//            return null;
         }
     }
 
@@ -84,12 +95,16 @@ public class FileSystemStorageService implements StorageService {
             if (resource.exists() || resource.isReadable()) {
                 return resource;
             } else {
-                log.error("Could not read file: " + filename);
-                return null;
+                throw new FileNotFoundException();
+//                log.error("Could not read file: " + filename);
+//                return null;
             }
-        } catch (MalformedURLException e) {
-            log.error("Could not read file: " + filename, e);
-            return null;
+        } catch (MalformedURLException | FileNotFoundException e) {
+            throw new FileSystemStorageException(e.getMessage(), "storage.filesystem.files.readFail", e.getCause());
+//            throw new FileSystemFileNotFoundException("storage.filesystem.file.readFail",
+//                    new Object[]{filename});
+//            log.error("Could not read file: " + filename, e);
+//            return null;
         }
     }
 
@@ -108,8 +123,10 @@ public class FileSystemStorageService implements StorageService {
             pathToDelete.toFile().delete();
             return id;
         } catch (IOException e) {
-            log.error("Failed to delete file", e);
-            return null;
+            throw new FileSystemStorageException(e.getMessage(), e.getCause(), "storage.filesystem.file.deleteFail",
+                    new Object[]{id});
+//            log.error("Failed to delete file", e);
+//            return null;
         }
     }
 }
