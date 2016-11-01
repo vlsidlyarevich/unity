@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.service.impl;
 
 import com.github.vlsidlyarevich.unity.config.StorageProperties;
+import com.github.vlsidlyarevich.unity.exception.FileSystemFileNotFoundException;
 import com.github.vlsidlyarevich.unity.exception.FileSystemStorageException;
 import com.github.vlsidlyarevich.unity.service.StorageService;
 import com.github.vlsidlyarevich.unity.utils.FileUtils;
@@ -90,7 +91,8 @@ public class FileSystemStorageService implements StorageService {
                 throw new FileNotFoundException();
             }
         } catch (MalformedURLException | FileNotFoundException e) {
-            throw new FileSystemStorageException(e.getMessage(), "storage.filesystem.files.readFail", e.getCause());
+            throw new FileSystemFileNotFoundException(e.getMessage(), "storage.filesystem.file.readFail",
+                    new Object[]{filename});
         }
     }
 

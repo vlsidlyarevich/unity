@@ -1,11 +1,12 @@
 package com.github.vlsidlyarevich.unity.exception;
 
-import java.io.FileNotFoundException;
+import lombok.Data;
 
 /**
  * Created by vladislav on 10/30/16.
  */
-public class FileSystemFileNotFoundException extends FileNotFoundException {
+@Data
+public class FileSystemFileNotFoundException extends RuntimeException {
 
     private static final long serialVersionUID = 3194206510987651825L;
 
