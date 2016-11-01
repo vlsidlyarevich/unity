@@ -36,7 +36,8 @@ public class UnityExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity fileSystemFileNotFoundExceptionHandler(FileSystemFileNotFoundException exception, HttpServletRequest req) {
         log.warn("Processing file system file not found exception:" + exception.getMessage());
 
-        return new ResponseEntity<>("http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image", HttpStatus.OK);
+        return new ResponseEntity<>(new ExceptionModel(messageResolver.getMessage(exception.getKey(),
+                exception.getArgs())), HttpStatus.OK);
     }
 
 }
