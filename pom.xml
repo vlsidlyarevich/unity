@@ -92,6 +92,8 @@
 
     <build>
         <plugins>
+
+            <!--Spring boot maven plugin-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -101,6 +103,8 @@
                     </jvmArguments>
                 </configuration>
             </plugin>
+
+            <!--Frontend maven plugin-->
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
@@ -143,6 +147,17 @@
                 </executions>
             </plugin>
 
+            <!-- Coveralls -->
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>4.2.0</version>
+                <configuration>
+                    <repoToken>Fm6TXycAckDmZyEyCJROCzC1NAw8ffhtO</repoToken>
+                </configuration>
+            </plugin>
+
+            <!--Jacoco-->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
