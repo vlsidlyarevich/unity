@@ -31,4 +31,3 @@ angular.module('addWorker').component('addWorker', {
     templateUrl: "app/js/components/add/worker/add.worker.component.html",
     controller: AddWorkerController
 });
-
