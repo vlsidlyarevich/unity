@@ -21,16 +21,14 @@
 //             });
 //     };
 //
-//     this.getWorkers = function ($scope, $http, callback) {
-//         $http.get(serverUrl + 'workers').then(function (response) {
-//             callback(response);
-//         });
-//     };
 // });
 
 unityApp.factory('Worker', ['$resource', function ($resource) {
     return $resource(serverUrl + '/workers/:workerId', {
         workerId: '@workerId',
-        format: 'json'
+        format: 'json',
+        update:{
+            method:'PUT'
+        }
     })
 }]);

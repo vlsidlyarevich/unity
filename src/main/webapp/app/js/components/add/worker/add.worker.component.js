@@ -1,14 +1,11 @@
 "use strict";
 
-function AddWorkerController($scope, $http, $location, WorkerService, ImageService) {
+function AddWorkerController($scope, $http, $location, Worker, ImageService) {
     $scope.worker = $scope.worker || {};
 
     $scope.submit = function (worker) {
-        console.log(worker);
-        WorkerService.saveWorker($scope, $http, worker, function (result) {
-            console.log(result);
-        });
-
+        console.log("Saving: " + worker);
+        Worker.save(this.worker);
         $location.path('/workers');
     };
 
