@@ -34,6 +34,7 @@
             **/aop/**/*.java,
             **/dto/**/*.java,
             **/model/**/*.java,
+            **/exception/**/*.java,
             **/Application.java
         </sonar.exclusions>
     </properties>
@@ -164,9 +165,10 @@
                 <version>${jacoco-maven-plugin.version}</version>
                 <configuration>
                     <excludes>
-                        <exclude>**/*aspect/*.class</exclude>
+                        <exclude>**/*aop/*.class</exclude>
                         <exclude>**/*config/*.class</exclude>
                         <exclude>**/*model/*.class</exclude>
+                        <exclude>**/*exception/**/*.class</exclude>
                         <exclude>**/*dto/*.class</exclude>
                         <exclude>**/Application.class</exclude>
                     </excludes>
