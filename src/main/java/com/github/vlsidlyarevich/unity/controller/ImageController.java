@@ -21,11 +21,7 @@ public class ImageController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity getImage(@PathVariable String id) {
         Resource resource = storageService.loadAsResource(id);
-//        if (resource != null) {
-            return new ResponseEntity<>(resource, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>("http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image", HttpStatus.OK);
-//        }
+        return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)

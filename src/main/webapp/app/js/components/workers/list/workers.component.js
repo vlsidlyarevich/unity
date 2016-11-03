@@ -1,17 +1,15 @@
 "use strict";
 
-function WorkersController($scope, $http, Worker, ImageService) {
+function WorkersController($scope, Worker) {
     $scope.workers = Worker.query();
 
-    // $scope.getWorkerImage = function (id) {
-    //     ImageService.getImage($http, id, function (response) {
-    //         return response.data;
-    //     });
-    // }
+    $scope.getImageUrl = function (id) {
+        return serverUrl + 'images/' + id;
+    }
 }
 
 angular.module('workersGrid').component('workersGrid', {
-    templateUrl: "app/js/components/workers/workers.component.html",
+    templateUrl: "app/js/components/workers/list/workers.component.html",
     controller: WorkersController
 });
 
