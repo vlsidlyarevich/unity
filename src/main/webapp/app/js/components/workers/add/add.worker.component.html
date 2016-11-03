@@ -4,7 +4,7 @@
         <div class="well well-sm bs-component" style="padding: 10px;">
 
             <div class="row-picture" flow-init="{target:'/api/images/upload', singleFile: true, testChunks:false}"
-                 flow-files-submitted="$flow.upload()" flow-file-success="fileUploaded($file, $message, $flow)">
+                 flow-files-submitted="$flow.upload()" flow-file-success="fileUploaded($file, $message)">
                 <img class="img-thumbnail img-responsive" flow-img="$flow.files[0]"
                      style="width: 200px; height: 170px;"
                      src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"/>

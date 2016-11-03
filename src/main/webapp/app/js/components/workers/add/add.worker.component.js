@@ -1,6 +1,6 @@
 "use strict";
 
-function AddWorkerController($scope, $http, $location, Worker, ImageService) {
+function AddWorkerController($scope, $location, Worker, Image) {
     $scope.worker = $scope.worker || {};
 
     $scope.submit = function (worker) {
@@ -9,13 +9,13 @@ function AddWorkerController($scope, $http, $location, Worker, ImageService) {
         $location.path('/workers');
     };
 
-    $scope.fileUploaded = function ($file, $message, $flow) {
+    $scope.fileUploaded = function ($file, $message) {
         $scope.worker.imageId = $message;
     };
 
     $scope.resetImage = function ($flow) {
         console.log($scope.worker.imageId);
-        ImageService.deleteImage($scope, $http, $scope.worker.imageId, function (result) {
+        Image.delete($scope.worker.imageId, function () {
             console.log("Reset image with id: ".concat(id));
         });
 
@@ -28,6 +28,6 @@ function AddWorkerController($scope, $http, $location, Worker, ImageService) {
 }
 
 angular.module('addWorker').component('addWorker', {
-    templateUrl: "app/js/components/add/worker/add.worker.component.html",
+    templateUrl: "app/js/components/workers/add/add.worker.component.html",
     controller: AddWorkerController
 });
