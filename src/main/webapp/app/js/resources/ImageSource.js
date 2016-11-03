@@ -30,8 +30,8 @@
 "use strict";
 
 unityApp.factory('Image', ['$resource', function ($resource) {
-    return $resource(serverUrl + '/images/:imageId', {
-        imageId: '@imageId',
+    return $resource(serverUrl + 'images/:id', {
+        id: '@id',
         format: 'file',
         update: {
             method: 'PUT'
