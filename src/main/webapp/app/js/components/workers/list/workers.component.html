@@ -19,8 +19,8 @@
                 <input type="checkbox" class="form-control"/>
             </td>
             <td>
-                <img class="circle" ng-src="{{getImageUrl(item.imageId) ||
-                'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'}}"
+                <img class="circle" ng-src="{{getImageUrl(item.imageId)}}"
+                     fallback-src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
                      alt="image"
                      style="width: 80px; height: 80px;">
             </td>

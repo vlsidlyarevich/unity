@@ -9,5 +9,6 @@ var unityApp = angular.module('unity', [
     'addWorker',
     'ngAnimate',
     'ngResource',
-    'flow'
+    'flow',
+    'dcbImgFallback'
 ]);

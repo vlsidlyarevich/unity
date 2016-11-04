@@ -18,7 +18,8 @@
     "bootstrap": "3.3.7",
     "angular-es6": "2.1.0",
     "ng-flow": "~2",
-    "flow.js": "~2"
+    "flow.js": "~2",
+    "angular-img-fallback": "0.2.0"
   },
   "overrides": {
     "bootstrap": {
