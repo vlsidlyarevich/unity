@@ -1,7 +1,11 @@
 "use strict";
 
 function WorkersController($scope, Worker) {
-    $scope.workers = Worker.query();
+    $scope.workers = $scope.workers || {};
+
+    $scope.init = function () {
+        $scope.workers = Worker.query();
+    };
 
     $scope.getImageUrl = function (id) {
         return serverUrl + 'images/' + id;

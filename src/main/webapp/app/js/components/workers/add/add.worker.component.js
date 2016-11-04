@@ -5,8 +5,11 @@ function AddWorkerController($scope, $location, Worker, Image) {
 
     $scope.submit = function (worker) {
         console.log("Saving: " + worker);
-        Worker.save(this.worker);
-        $location.path('/workers');
+        Worker.save(this.worker).$promise.then(
+            function () {
+                $location.path('/workers');
+            }
+        );
     };
 
     $scope.fileUploaded = function ($file, $message) {
@@ -15,7 +18,7 @@ function AddWorkerController($scope, $location, Worker, Image) {
 
     $scope.resetImage = function ($flow) {
         console.log($scope.worker.imageId);
-        Image.delete($scope.worker.imageId, function () {
+        Image.delete({id: $scope.worker.imageId}, function () {
             console.log("Reset image with id: ".concat(id));
         });
 
