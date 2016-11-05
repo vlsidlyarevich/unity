@@ -1,30 +1,35 @@
-<div class="container">
+<div class="container-fluid">
     <div class="header-panel col-sm-8 col-sm-offset-2">
         <a href="#/new/worker" class="btn btn-raised btn-sm">Create worker</a>
         <a href="javascript:void(0)" class="btn btn-raised btn-sm" ng-click="deleteProfiles()">Delete workers</a>
     </div>
 
     <div class="well col-sm-8 col-sm-offset-2" ng-init="init()">
-        <table class="table table-striped table-hover ">
+        <table class="table table-striped table-hover">
             <thead>
             <tr>
                 <th>
                     <div class="checkbox">
-                        <label><input type="checkbox"/></label>
+                        <label>
+                            <input type="checkbox"> All
+                        </label>
                     </div>
                 </th>
-                <th></th>
+                <th>Image</th>
                 <th>Worker</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="item in workers">
-                <td>
-                    <input type="checkbox" class="form-control"/>
-                    <span class="checkbox-material"/>
+                <td class="col-sm-1">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                        </label>
+                    </div>
                 </td>
-                <td>
+                <td class="col-sm-1">
                     <img class="circle" ng-src="{{getImageUrl(item.imageId)}}"
                          fallback-src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
                          alt="image"
