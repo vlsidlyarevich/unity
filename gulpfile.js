@@ -10,21 +10,23 @@ var gzip = require('gulp-gzip');
 var clone = require('gulp-clone');
 var series = require('stream-series');
 var filter = require('gulp-filter');
+var babel = require('gulp-babel');
 
 
 gulp.task('bower-js-libs', function () {
     gulp.src(mainBowerFiles(), {base: 'bower_components'})
-        .pipe(filter('**/*.js'))
-        .pipe(concat('lib.min.js'))
-        .pipe(uglify())
+        .pipe(filter(['**/*.js']))
+        // .pipe(babel({presets: ['es2015']}))
+        // .pipe(concat('lib.min.js'))
+        // .pipe(uglify())
         .pipe(gulp.dest('src/main/webapp/provider/js'));
 });
 
 gulp.task('bower-css', function () {
     gulp.src(mainBowerFiles(), {base: 'bower_components'})
         .pipe(filter('**/*.css'))
-        .pipe(concat('lib.min.css'))
-        .pipe(minify())
+        // .pipe(concat('lib.min.css'))
+        // .pipe(minify())
         .pipe(gulp.dest('src/main/webapp/provider/css'));
 });
 
