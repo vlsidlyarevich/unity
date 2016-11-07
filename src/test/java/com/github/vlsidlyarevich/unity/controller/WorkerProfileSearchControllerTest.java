@@ -53,7 +53,7 @@ public class WorkerProfileSearchControllerTest extends AbstractTestNGSpringConte
     }
 
     @Test(dependsOnMethods = {"setupMvc"})
-    public void getWorkersByFilters() throws Exception {
+    public void getWorkersByFiltersTest() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         this.savedWorker = TestUtils.generateWorkerProfile();
         savedWorker = workerProfileRepository.save(savedWorker);

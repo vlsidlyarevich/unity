@@ -69,7 +69,7 @@ public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTes
     }
 
     @Test(dependsOnMethods = {"addWorkerTest"})
-    public void getWorkerById() throws Exception {
+    public void getWorkerByIdTest() throws Exception {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/workers/" + savedWorker.getId())
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -83,8 +83,8 @@ public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTes
                 .andExpect(MockMvcResultMatchers.jsonPath("$.phone", is(savedWorker.getPhone())));
     }
 
-    @Test(dependsOnMethods = {"getWorkerById"})
-    public void updateWorkerById() throws Exception {
+    @Test(dependsOnMethods = {"getWorkerByIdTest"})
+    public void updateWorkerByIdTest() throws Exception {
         this.savedWorker.getName().setFirstName("Updated");
         this.worker.getName().setFirstName("Updated");
         this.savedWorker.setAge(20);
@@ -98,7 +98,7 @@ public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTes
                 .andExpect(MockMvcResultMatchers.content().string(savedWorker.getId()));
     }
 
-    @Test(dependsOnMethods = {"updateWorkerById"})
+    @Test(dependsOnMethods = {"updateWorkerByIdTest"})
     public void getAllWorkerProfilesTest() throws Exception {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/workers")
                 .accept(MediaType.APPLICATION_JSON)
@@ -115,7 +115,7 @@ public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTes
     }
 
     @Test(dependsOnMethods = {"getAllWorkerProfilesTest"})
-    public void deleteWorkerById() throws Exception {
+    public void deleteWorkerByIdTest() throws Exception {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/workers/" + savedWorker.getId())
                 .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
