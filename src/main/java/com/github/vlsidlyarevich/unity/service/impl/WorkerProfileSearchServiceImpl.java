@@ -31,7 +31,7 @@ public class WorkerProfileSearchServiceImpl implements SearchService<WorkerProfi
                     break;
                 }
                 case "secondname": {
-                    query.addCriteria(Criteria.where("name.secondName").is(filter.getValue()));
+                    query.addCriteria(Criteria.where("name.lastName").is(filter.getValue()));
                     break;
                 }
                 case "age": {
