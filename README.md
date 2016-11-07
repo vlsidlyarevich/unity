@@ -14,6 +14,8 @@ Module of integration with [woodstock](https://github.com/solairerove/woodstock)
 * [Spring Boot](http://projects.spring.io/spring-boot/)
 * [Gulp](http://gulpjs.com/)
 * [Bower](https://bower.io/)
+* [MongoDB](https://www.mongodb.com/)
+* [Docker](https://www.docker.com/)
 
 ---
 [Takari maven wrapper](https://github.com/takari/maven-wrapper) is used.
