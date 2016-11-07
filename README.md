@@ -14,6 +14,8 @@ Module of integration with [woodstock](https://github.com/solairerove/woodstock)
 * [Spring Boot](http://projects.spring.io/spring-boot/)
 * [Gulp](http://gulpjs.com/)
 * [Bower](https://bower.io/)
+* [MongoDB](https://www.mongodb.com/)
+* [Docker](https://www.docker.com/)
 
 ---
 [Takari maven wrapper](https://github.com/takari/maven-wrapper) is used.
@@ -38,11 +40,19 @@ Type following commands in additional/docker/mongo folder.
 
 ---
 ###Api reference
+####Worker profile api
 * GET `http://localhost:8080/api/workers` - get all workers profiles
 * GET `http://localhost:8080/api/workers/id` - get worker profile by id 
 * POST `http://localhost:8080/api/workers` - add new worker profile 
 * PUT `http://localhost:8080/api/workers/` - update worker profile 
 * DELETE `http://localhost:8080/api/workers/id` - delete worker profile by id 
+
+####Worker profile search api
 * POST `/api/workers/search` - get workers profiles with filters 
+
+####Image api
+* GET `http://localhost:8080/api/images/id` - get image by id 
+* POST `http://localhost:8080/api/images/upload` - upload new image 
+* DELETE `http://localhost:8080/api/images/id` - delete image by id 
 
 Or you can import [json file](https://github.com/vlsidlyarevich/unity/blob/master/additional/insomnia/unity-api.json) to your Insomnia rest client
