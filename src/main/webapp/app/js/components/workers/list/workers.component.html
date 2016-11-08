@@ -9,9 +9,9 @@
             <thead>
             <tr>
                 <th>
-                    <div class="checkbox">
+                    <div class="checkbox text-center" style="margin-bottom: 0px">
                         <label>
-                            <input type="checkbox"> All
+                            <input type="checkbox">
                         </label>
                     </div>
                 </th>
@@ -22,7 +22,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="item in workers">
-                <td class="col-sm-1">
+                <td class="col-sm-1 text-center">
                     <div class="checkbox">
                         <label>
                             <input type="checkbox">
@@ -48,7 +48,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="javascript:void(0)">Edit</a></li>
+                            <li><a href="#/workers/view/{{item.id}}">Edit</a></li>
                             <li><a href="javascript:void(0)">Another action</a></li>
                             <li><a href="javascript:void(0)">Something else here</a></li>
                             <li class="divider"></li>
