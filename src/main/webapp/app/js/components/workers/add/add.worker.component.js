@@ -3,8 +3,8 @@
 function AddWorkerController($scope, $location, Worker, Image) {
     $scope.worker = $scope.worker || {};
 
-    $scope.submit = function (worker) {
-        console.log("Saving: " + worker);
+    $scope.submit = function () {
+        console.log("Saving: " + this.worker);
         Worker.save(this.worker).$promise.then(
             function () {
                 $location.path('/workers');

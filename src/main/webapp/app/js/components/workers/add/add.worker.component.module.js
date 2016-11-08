@@ -1,4 +1,4 @@
 "use strict";
 
-// Define the `workersGrid` module
+// Define the `addWorker` module
 angular.module('addWorker', []);
