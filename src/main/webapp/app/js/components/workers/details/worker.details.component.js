@@ -5,7 +5,7 @@ function WorkerDetailsController($scope, $location, $routeParams, Worker, Image)
     $scope.worker = Worker.find({id: $routeParams.workerId});
 
     $scope.submit = function () {
-        Worker.update({id: $routeParams.workerId}, this.worker).$promise.then(
+        Worker.update({id: $routeParams.workerId.toString()}, this.worker).$promise.then(
             function () {
                 $location.path('/workers');
             }
@@ -25,12 +25,16 @@ function WorkerDetailsController($scope, $location, $routeParams, Worker, Image)
         $flow.cancel();
     };
 
+    $scope.getImageUrl = function (id) {
+        return serverUrl + 'images/' + id;
+    };
+
     $scope.close = function () {
         $location.path('/workers')
     }
 }
 
 angular.module('workerDetails').component('workerDetails', {
-    templateUrl: "app/js/components/workers/add/add.worker.component.html",
+    templateUrl: "app/js/components/workers/details/worker.details.component.html",
     controller: WorkerDetailsController
 });

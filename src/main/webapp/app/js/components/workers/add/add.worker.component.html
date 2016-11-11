@@ -7,7 +7,8 @@
                  flow-files-submitted="$flow.upload()" flow-file-success="fileUploaded($file, $message)">
                 <img class="img-thumbnail img-responsive" flow-img="$flow.files[0]"
                      style="width: 200px; height: 170px;"
-                     src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"/>
+                     src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
+                     fallback-src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"/>
                 <span class="btn btn-primary" ng-show="!$flow.files.length" flow-btn="">
                     Select image<input type="file"
                                        style="visibility: hidden; position: absolute;"></span>
