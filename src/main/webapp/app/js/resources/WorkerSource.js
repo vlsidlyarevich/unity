@@ -6,6 +6,16 @@ unityApp.factory('Worker', ['$resource', function ($resource) {
         format: 'json',
         update: {
             method: 'PUT'
+        },
+        find: {
+            method: 'GET',
+            transformResponse: function (data) {
+                data = angular.fromJson(data);
+
+                data.birthday = new Date(data.birthday);
+                return data;
+            }
         }
     })
-}]);
+}])
+;

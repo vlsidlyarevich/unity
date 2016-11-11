@@ -1,7 +1,9 @@
 "use strict";
 
 function AddWorkerController($scope, $location, Worker, Image) {
-    $scope.worker = $scope.worker || {};
+    $scope.worker = {
+        birthday:new Date()
+    };
 
     $scope.submit = function () {
         console.log("Saving: " + this.worker);

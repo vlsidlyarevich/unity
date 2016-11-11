@@ -2,10 +2,9 @@
 
 function WorkerDetailsController($scope, $location, $routeParams, Worker, Image) {
 
-    $scope.worker = Worker.get({id: $routeParams.workerId});
+    $scope.worker = Worker.find({id: $routeParams.workerId});
 
     $scope.submit = function () {
-        console.log("Saving: " + this.worker);
         Worker.update({id: $routeParams.workerId}, this.worker).$promise.then(
             function () {
                 $location.path('/workers');
