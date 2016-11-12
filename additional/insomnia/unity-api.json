@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 1,
-  "__export_date": "2016-10-11T19:03:44.050Z",
+  "__export_date": "2016-11-12T12:00:51.257Z",
   "__export_source": "insomnia.chrome.app:v2.7.0",
   "items": [
     {
@@ -51,9 +51,9 @@
         {
           "_type": "request",
           "_id": "req_1475770470722",
-          "url": "http://localhost:8080/api/workers",
+          "url": "http://localhost:8080/api/workers/5825b04b86131c108f33acb9",
           "method": "PUT",
-          "body": "{\n    \"id\":\"57f6b24851dffa39bbd27109\",\n    \"name\":{\n        \"firstName\":\"Johnny\",\n        \"middleName\":\"Updated\",\n        \"secondName\":\"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"19-11-1973\",\n    \"imageId\":\"imageUrl\",\n    \"linkedInUrl\":\"linked in url\",\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"Where is my cpt. Price?\"\n}",
+          "body": "{\n    \"id\":\"5825b04b86131c108f33acb9\",\n    \"name\":{\n        \"firstName\":\"Johnny\",\n        \"middleName\":\"Updated\",\n        \"secondName\":\"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"1973-11-19\",\n    \"imageId\":\"imageUrl\",\n    \"linkedInUrl\":\"linked in url\",\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"Where is my cpt. Price?\"\n}",
           "headers": [],
           "params": [],
           "authentication": {
@@ -131,6 +131,52 @@
             "panel_width": 0.5
           },
           "name": "find worker profile by filters"
+        }
+      ]
+    },
+    {
+      "_type": "request_group",
+      "_id": "grp_1478950600754",
+      "name": "worker profile delete",
+      "environments": {},
+      "requests": [
+        {
+          "_type": "request",
+          "_id": "req_1478950600755",
+          "url": "http://localhost:8080/api/workers/delete",
+          "method": "POST",
+          "body": "{ \"id\": \"all\" }",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "delete all"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1478950629611",
+          "url": "http://localhost:8080/api/workers/delete",
+          "method": "POST",
+          "body": "{ \"id\": \"5826d9ea4da0dc139ea4f340\" }",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "delete group"
         }
       ]
     }
