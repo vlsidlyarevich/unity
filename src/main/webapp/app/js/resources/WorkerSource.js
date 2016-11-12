@@ -5,7 +5,8 @@ unityApp.factory('Worker', ['$resource', function ($resource) {
         id: '@id',
         format: 'json',
         update: {
-            method: 'PUT'
+            method: 'PUT',
+            transformResponse: []
         },
         find: {
             method: 'GET',
