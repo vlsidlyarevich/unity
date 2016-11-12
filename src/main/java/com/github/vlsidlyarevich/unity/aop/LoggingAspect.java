@@ -41,6 +41,11 @@ public class LoggingAspect {
         logger.info("Worker profile controller : " + joinPoint.getSignature().getName());
     }
 
+    @Before("execution(* com.github.vlsidlyarevich.unity.controller.WorkerProfileDeleteQueryController.*(..)))")
+    public void workerProfileDeleteQueryControllerLog(JoinPoint joinPoint) {
+        logger.info("Worker profile delete query controller : " + joinPoint.getSignature().getName());
+    }
+
     @Before("execution(* com.github.vlsidlyarevich.unity.controller.WorkerProfileSearchController.*(..)))")
     public void workerProfileSearchControllerLog(JoinPoint joinPoint) {
         logger.info("Worker profile search controller : " + joinPoint.getSignature().getName());

@@ -30,11 +30,6 @@ public class WorkersProfileController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> deleteQuery(@RequestBody Map<String, String> ids) {
-        return new ResponseEntity<>(service.deleteQuery(ids), HttpStatus.OK);
-    }
-
-    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addWorker(@RequestBody WorkerProfileDTO profile) {
         return new ResponseEntity<>(service.create(profile), HttpStatus.CREATED);
     }
