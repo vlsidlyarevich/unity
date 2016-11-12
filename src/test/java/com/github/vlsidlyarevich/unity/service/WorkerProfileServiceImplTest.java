@@ -16,6 +16,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -96,5 +97,40 @@ public class WorkerProfileServiceImplTest extends AbstractTestNGSpringContextTes
         workerProfileService.create(secondDto);
 
         assertThat(savedWorkers, is(workerProfileService.findAll()));
+    }
+
+    @Test
+    public void deleteQueryAllTest() throws Exception {
+        WorkerProfileDTO firstDto = TestUtils.generateWorkerProfileDTO();
+        WorkerProfileDTO secondDto = TestUtils.generateWorkerProfileDTO();
+
+        ArrayList<WorkerProfile> savedWorkers = new ArrayList<>();
+        savedWorkers.add(ModelUtils.convertToModelProfile(firstDto));
+        savedWorkers.add(ModelUtils.convertToModelProfile(secondDto));
+        workerProfileService.create(firstDto);
+        workerProfileService.create(secondDto);
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("id", "all");
+
+        Assert.assertEquals(workerProfileService.deleteQuery(map), "2");
+        Assert.assertEquals(workerProfileService.findAll().size(), 0);
+    }
+
+    @Test
+    public void deleteQueryTest() throws Exception {
+        WorkerProfileDTO firstDto = TestUtils.generateWorkerProfileDTO();
+        WorkerProfileDTO secondDto = TestUtils.generateWorkerProfileDTO();
+
+        ArrayList<WorkerProfile> savedWorkers = new ArrayList<>();
+        savedWorkers.add(ModelUtils.convertToModelProfile(firstDto));
+        savedWorkers.add(ModelUtils.convertToModelProfile(secondDto));
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("id1", workerProfileService.create(firstDto).getId());
+        map.put("id2", workerProfileService.create(secondDto).getId());
+
+        Assert.assertEquals(workerProfileService.deleteQuery(map), "2");
+        Assert.assertEquals(workerProfileService.findAll().size(), 0);
     }
 }
