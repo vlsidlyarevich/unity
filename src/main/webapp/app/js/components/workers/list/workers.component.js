@@ -1,6 +1,6 @@
 "use strict";
 
-function WorkersController($scope, Worker) {
+function WorkersController($scope, Worker, WorkerDelete, $route) {
     $scope.workers = $scope.workers || {};
 
     $scope.init = function () {
@@ -12,9 +12,30 @@ function WorkersController($scope, Worker) {
     };
 
     $scope.deleteWorkers = function () {
-        console.log(this.workers.filter(function (item) {
+        var checked = this.workers.filter(function (item) {
             return item.delete === true;
-        }))
+        });
+
+        if (checked.length === this.workers.length) {
+            WorkerDelete.deleteQuery({"id": "all"}).$promise.then(
+                function () {
+                    $route.reload();
+                }
+            );
+        }
+        else {
+            var ids = {};
+            for (var i = 0; i < checked.length; i++) {
+                var id = "id".concat(i);
+                ids[id] = checked[i].id;
+            }
+
+            WorkerDelete.deleteQuery(ids).$promise.then(
+                function () {
+                    $route.reload();
+                }
+            );
+        }
     };
 
     $scope.selectAll = function () {
