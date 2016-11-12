@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 /**
  * Created by vlad on 28.09.16.
  */
@@ -22,9 +24,14 @@ public class WorkersProfileController {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateWorkerById(@PathVariable String id, @RequestBody WorkerProfileDTO profile) {
-        return new ResponseEntity<>(service.update(id, profile), HttpStatus.OK);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getWorkerById(@PathVariable String id) {
+        return new ResponseEntity<>(service.find(id), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> deleteQuery(@RequestBody Map<String, String> ids) {
+        return new ResponseEntity<>(service.deleteQuery(ids), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -32,9 +39,9 @@ public class WorkersProfileController {
         return new ResponseEntity<>(service.create(profile), HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getWorkerById(@PathVariable String id) {
-        return new ResponseEntity<>(service.find(id), HttpStatus.OK);
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateWorkerById(@PathVariable String id, @RequestBody WorkerProfileDTO profile) {
+        return new ResponseEntity<>(service.update(id, profile), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
