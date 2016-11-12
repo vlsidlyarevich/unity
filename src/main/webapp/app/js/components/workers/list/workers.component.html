@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="header-panel col-sm-8 col-sm-offset-2">
         <a href="#/new/worker" class="btn btn-raised btn-sm">Create worker</a>
-        <a href="javascript:void(0)" class="btn btn-raised btn-sm" ng-click="deleteProfiles()">Delete workers</a>
+        <a href="javascript:void(0)" class="btn btn-raised btn-sm" ng-click="deleteWorkers()">Delete workers</a>
     </div>
 
     <div class="well col-sm-8 col-sm-offset-2" ng-init="init()">
@@ -11,7 +11,7 @@
                 <th>
                     <div class="checkbox text-center" style="margin-bottom: 0px">
                         <label>
-                            <input type="checkbox">
+                            <input type="checkbox" ng-click="selectAll()">
                         </label>
                     </div>
                 </th>
@@ -25,7 +25,7 @@
                 <td class="col-sm-1 text-center">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox">
+                            <input type="checkbox" ng-model="item.delete">
                         </label>
                     </div>
                 </td>
