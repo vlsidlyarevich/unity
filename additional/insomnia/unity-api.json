@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 1,
-  "__export_date": "2016-11-12T12:00:51.257Z",
+  "__export_date": "2016-11-12T15:15:23.516Z",
   "__export_source": "insomnia.chrome.app:v2.7.0",
   "items": [
     {
@@ -34,7 +34,7 @@
           "_id": "req_1475770462359",
           "url": "http://localhost:8080/api/workers",
           "method": "POST",
-          "body": "{\n    \"name\": {\n        \"firstName\": \"Johnny\",\n        \"middleName\": null,\n        \"lastName\": \"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"19-11-1973\",\n    \"imageId\":null,\n    \"linkedInUrl\":null,\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"\"\n}",
+          "body": "{\n    \"name\": {\n        \"firstName\": \"Johnny\",\n        \"middleName\": null,\n        \"lastName\": \"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"1973-11-19\",\n    \"imageId\":null,\n    \"linkedInUrl\":null,\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"\"\n}",
           "headers": [],
           "params": [],
           "authentication": {
