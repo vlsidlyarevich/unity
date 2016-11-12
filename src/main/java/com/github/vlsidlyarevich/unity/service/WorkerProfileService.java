@@ -5,6 +5,7 @@ import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by vladislav on 10/8/16.
@@ -14,4 +15,6 @@ public interface WorkerProfileService extends BaseService<WorkerProfile, WorkerP
     WorkerProfile findByName(Name name);
 
     List<WorkerProfile> findAllByAge(Integer age);
+
+    String deleteQuery(Map<String, String> ids);
 }

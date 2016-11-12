@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by vlad on 28.09.16.
@@ -67,5 +68,24 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
     public String delete(String id) {
         repository.delete(id);
         return id;
+    }
+
+    @Override
+    public String deleteQuery(Map<String, String> ids) {
+        Integer deleteCounter = 0;
+
+        if (ids.keySet().size() == 1 && ids.containsValue("all")) {
+            deleteCounter = repository.findAll().size();
+            repository.deleteAll();
+            return String.valueOf(deleteCounter);
+        }
+
+        for (Map.Entry<String, String> id : ids.entrySet()) {
+            if (repository.exists(id.getValue())) {
+                repository.delete(id.getValue());
+                deleteCounter++;
+            }
+        }
+        return String.valueOf(deleteCounter);
     }
 }
