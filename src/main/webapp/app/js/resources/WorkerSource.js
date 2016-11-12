@@ -16,6 +16,10 @@ unityApp.factory('Worker', ['$resource', function ($resource) {
                 data.birthday = new Date(data.birthday);
                 return data;
             }
+        },
+        delete: {
+            method: 'DELETE',
+            transformResponse: []
         }
     })
 }])

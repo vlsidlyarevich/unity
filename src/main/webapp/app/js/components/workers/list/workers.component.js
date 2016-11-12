@@ -11,6 +11,14 @@ function WorkersController($scope, Worker, WorkerDelete, $route) {
         return serverUrl + 'images/' + id;
     };
 
+    $scope.deleteWorker = function (id) {
+        Worker.delete({id: id}).$promise.then(
+            function () {
+                $route.reload();
+            }
+        )
+    };
+
     $scope.deleteWorkers = function () {
         var checked = this.workers.filter(function (item) {
             return item.delete === true;
