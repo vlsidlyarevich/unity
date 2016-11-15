@@ -24,9 +24,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-/**
- * Created by vladislav.sidlyarevich on 25/10/16.
- */
+
 @WebAppConfiguration
 @SpringApplicationConfiguration(Application.class)
 public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTests {

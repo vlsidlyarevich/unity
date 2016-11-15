@@ -6,9 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.nio.file.Path;
 import java.util.List;
 
-/**
- * Created by vladislav on 10/11/16.
- */
+
 public interface StorageService {
 
     String store(MultipartFile file);

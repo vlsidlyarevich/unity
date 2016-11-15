@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-/**
- * Created by vlad on 15.09.16.
- */
+
 @Data
 @ToString
 @Component

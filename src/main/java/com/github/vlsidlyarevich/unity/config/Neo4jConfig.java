@@ -8,9 +8,7 @@ import org.springframework.data.neo4j.config.Neo4jConfiguration;
 import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-/**
- * Created by vlad on 15/11/16.
- */
+
 @Configuration
 @EnableNeo4jRepositories({"com.github.vlsidlyarevich.unity.repository"})
 @EnableTransactionManagement

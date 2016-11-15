@@ -7,11 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 
-/**
- * Created by vlad on 28.09.16.
- */
 @RestController
 @RequestMapping("/api/workers")
 public class WorkersProfileController {

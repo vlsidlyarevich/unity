@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-/**
- * Created by vlad on 30.09.16.
- */
+
 @RestController
 @RequestMapping("/api/workers/search")
 public class WorkerProfileSearchController {

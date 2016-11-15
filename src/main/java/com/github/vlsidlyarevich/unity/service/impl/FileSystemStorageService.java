@@ -24,9 +24,7 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-/**
- * Created by vladislav on 10/11/16.
- */
+
 @Slf4j
 @Service
 public class FileSystemStorageService implements StorageService {

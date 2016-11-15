@@ -22,9 +22,7 @@ import java.util.Map;
 
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-/**
- * Created by vlad on 12/11/16.
- */
+
 @WebAppConfiguration
 @SpringApplicationConfiguration(Application.class)
 public class WorkerProfileDeleteQueryControllerTest extends AbstractTestNGSpringContextTests {

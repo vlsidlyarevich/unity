@@ -18,9 +18,7 @@ import org.testng.annotations.Test;
 
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-/**
- * Created by vladislav.sidlyarevich on 03/11/16.
- */
+
 @WebAppConfiguration
 @SpringApplicationConfiguration(Application.class)
 public class ImageControllerTest extends AbstractTestNGSpringContextTests {

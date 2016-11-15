@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by vlad on 02.10.16.
- */
+
 @Service
 public class WorkerProfileSearchServiceImpl implements SearchService<WorkerProfile> {
 

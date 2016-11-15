@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-/**
- * Created by vlad on 12/11/16.
- */
+
 @RestController
 @RequestMapping("/api/workers/delete")
 public class WorkerProfileDeleteQueryController {

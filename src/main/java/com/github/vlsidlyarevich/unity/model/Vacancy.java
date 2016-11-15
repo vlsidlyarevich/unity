@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-/**
- * Created by vlad on 14/11/16.
- */
+
 @Data
 @ToString
 @Component
@@ -27,6 +25,9 @@ public class Vacancy extends BaseEntity {
     public void init() {
         this.jobType = JobType.CONTRACT;
         this.speciality = Speciality.UNKNOWN;
+    }
+
+    public Vacancy(){
     }
 
     public Vacancy(Speciality speciality) {

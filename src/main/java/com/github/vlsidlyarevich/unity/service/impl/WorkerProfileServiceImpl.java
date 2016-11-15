@@ -13,9 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by vlad on 28.09.16.
- */
+
 @Service
 public class WorkerProfileServiceImpl implements WorkerProfileService {
 

@@ -21,9 +21,7 @@ import java.util.HashMap;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by vlad on 04.10.16.
- */
+
 @SpringApplicationConfiguration(Application.class)
 public class WorkerProfileServiceImplTest extends AbstractTestNGSpringContextTests {
 

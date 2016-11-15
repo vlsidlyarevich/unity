@@ -17,9 +17,7 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by vlad on 02.10.16.
- */
+
 @SpringApplicationConfiguration(Application.class)
 public class WorkerProfileSearchServiceImplTest extends AbstractTestNGSpringContextTests {
 

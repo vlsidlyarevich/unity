@@ -8,9 +8,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
-/**
- * Created by vlad on 14.09.16.
- */
+
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
 public class Application {

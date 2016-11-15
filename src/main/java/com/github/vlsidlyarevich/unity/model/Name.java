@@ -4,9 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-/**
- * Created by vlad on 18.09.16.
- */
+
 @Data
 @ToString
 @EqualsAndHashCode

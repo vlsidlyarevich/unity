@@ -8,9 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- * Created by vladislav on 10/11/16.
- */
+
 @RestController
 @RequestMapping("/api/images")
 public class ImageController {

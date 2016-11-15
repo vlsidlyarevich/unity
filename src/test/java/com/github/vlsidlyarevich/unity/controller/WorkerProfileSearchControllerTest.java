@@ -24,9 +24,7 @@ import java.util.Map;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-/**
- * Created by vladislav on 10/28/16.
- */
+
 @WebAppConfiguration
 @SpringApplicationConfiguration(Application.class)
 public class WorkerProfileSearchControllerTest extends AbstractTestNGSpringContextTests {

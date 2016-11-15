@@ -10,9 +10,6 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 
 
-/**
- * Created by vlad on 18.09.16.
- */
 @Aspect
 @Component
 public class LoggingAspect {

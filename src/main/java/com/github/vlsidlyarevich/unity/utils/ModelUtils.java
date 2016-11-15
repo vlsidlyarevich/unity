@@ -4,9 +4,7 @@ import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 
-/**
- * Created by vladislav on 10/8/16.
- */
+
 public final class ModelUtils {
 
     private ModelUtils() {

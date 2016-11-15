@@ -2,9 +2,7 @@ package com.github.vlsidlyarevich.unity.model;
 
 import lombok.ToString;
 
-/**
- * Created by vlad on 18.09.16.
- */
+
 @ToString
 public enum Speciality {
     UNKNOWN,

@@ -2,9 +2,7 @@ package com.github.vlsidlyarevich.unity.exception;
 
 import lombok.Data;
 
-/**
- * Created by vladislav on 10/29/16.
- */
+
 @Data
 public class FileSystemStorageException extends StorageException {
 
