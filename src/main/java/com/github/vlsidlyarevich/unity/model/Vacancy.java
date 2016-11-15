@@ -29,6 +29,9 @@ public class Vacancy extends BaseEntity {
         this.speciality = Speciality.UNKNOWN;
     }
 
+    public Vacancy(){
+    }
+
     public Vacancy(Speciality speciality) {
         this.speciality = speciality;
     }
