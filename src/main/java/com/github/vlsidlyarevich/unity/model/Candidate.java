@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class Candidate extends Worker {
+public class Candidate extends BaseEntityNeo4j {
 
     private String HrSkype;
     private String skype;
@@ -16,8 +16,7 @@ public class Candidate extends Worker {
     public Candidate(){
     }
 
-    public Candidate(Name name, String hrSkype, String skype, String githubUrl, String linkedInUrl) {
-        super(name);
+    public Candidate(String hrSkype, String skype, String githubUrl, String linkedInUrl) {
         HrSkype = hrSkype;
         this.skype = skype;
         this.githubUrl = githubUrl;
