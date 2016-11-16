@@ -3,6 +3,7 @@ package com.github.vlsidlyarevich.unity.model;
 import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.lang3.EnumUtils;
+import org.neo4j.ogm.annotation.NodeEntity;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,7 @@ import javax.annotation.PostConstruct;
 @Data
 @ToString
 @Component
+@NodeEntity(label = "Worker")
 public class Worker extends BaseEntity {
 
     private Name name;
