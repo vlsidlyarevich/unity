@@ -8,7 +8,7 @@ import org.neo4j.ogm.annotation.NodeEntity;
 @Data
 @ToString
 @NodeEntity(label = "Candidate")
-public class Candidate extends BaseEntityNeo4j {
+public class Candidate extends BaseEntity {
 
     private String HrSkype;
     private String skype;
