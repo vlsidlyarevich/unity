@@ -6,7 +6,7 @@ import org.neo4j.ogm.annotation.GraphId;
 import java.io.Serializable;
 import java.util.Date;
 
-
+//TODO:Remove after integration of neo4j
 @Data
 public class BaseEntityNeo4j implements Serializable {
 
