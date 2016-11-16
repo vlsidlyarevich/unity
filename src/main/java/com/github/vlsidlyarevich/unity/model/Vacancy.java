@@ -16,7 +16,7 @@ import java.util.Set;
 @Data
 @ToString
 @Component
-@NodeEntity(label = "Vacansy")
+@NodeEntity(label = "Vacancy")
 public class Vacancy extends BaseEntityNeo4j {
 
     private Speciality speciality;
