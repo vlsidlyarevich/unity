@@ -10,11 +10,12 @@ public interface BaseService<T extends BaseEntity, S extends Serializable> {
 
     T create(S object);
 
-    T find(String id);
+    T find(Long id);
 
-    List<T> findAll();
+    //TODO:// FIXME: 17/11/16
+//    List<T> findAll();
 
-    String update(String id, S object);
+    Long update(Long id, S object);
 
-    String delete(String id);
+    Long delete(Long id);
 }
