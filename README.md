@@ -30,8 +30,7 @@ Type following commands in additional/docker/mongo folder.
 * `docker run -p 27017:27017 --name mongodb -d mongo`
 
 ###Getting neo4j
-* `docker build -t neo4j .`
-* `docker run -p 7474:7474 --name Neo4j -d neo4j`
+* `docker run -p 7474:7474 --name Neo4j neo4j:latest`
 
 ###Running the application
 * `mvn clean install`
