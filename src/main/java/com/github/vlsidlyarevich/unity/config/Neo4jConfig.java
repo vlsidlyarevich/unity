@@ -10,7 +10,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @Configuration
-@EnableNeo4jRepositories({"com.github.vlsidlyarevich.unity.repository"})
+@EnableNeo4jRepositories({
+        "com.github.vlsidlyarevich.unity.repository",
+        "BOOT-INF.classes.com.github.vlsidlyarevich.unity.repository"
+})
 @EnableTransactionManagement
 public class Neo4jConfig extends Neo4jConfiguration {
 
@@ -32,7 +35,8 @@ public class Neo4jConfig extends Neo4jConfiguration {
     @Override
     public SessionFactory getSessionFactory() {
         return new SessionFactory(getConfiguration(),
-                "com.github.vlsidlyarevich.unity.model"
+                "com.github.vlsidlyarevich.unity.model",
+                "BOOT-INF.classes.com.github.vlsidlyarevich.unity.model"
         );
     }
 }
