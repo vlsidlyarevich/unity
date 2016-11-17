@@ -12,8 +12,7 @@ public interface BaseService<T extends BaseEntity, S extends Serializable> {
 
     T find(Long id);
 
-    //TODO:// FIXME: 17/11/16
-//    List<T> findAll();
+    List<T> findAll();
 
     Long update(Long id, S object);
 
