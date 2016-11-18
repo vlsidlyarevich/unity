@@ -14,7 +14,7 @@ Module of integration with [woodstock](https://github.com/solairerove/woodstock)
 * [Spring Boot](http://projects.spring.io/spring-boot/)
 * [Gulp](http://gulpjs.com/)
 * [Bower](https://bower.io/)
-* [MongoDB](https://www.mongodb.com/)
+* [Neo4j](https://neo4j.com/)
 * [Docker](https://www.docker.com/)
 
 ---
@@ -22,14 +22,9 @@ Module of integration with [woodstock](https://github.com/solairerove/woodstock)
 If you don't have installed maven, or you don't want to install it, just type `./mvnw clean install`.
 
 ---
-###Getting mongo
-You can download and install mongo following instructions from (official site)[https://docs.mongodb.com/manual/administration/install-community/]
-Or you can create and run docker image.
-Type following commands in additional/docker/mongo folder.
-* `docker build -t mongo .`
-* `docker run -p 27017:27017 --name mongodb -d mongo`
-
 ###Getting neo4j
+You can download and install neo4j following instructions from [official site](https://neo4j.com/)
+Or you can create and run docker image.
 * `docker run -p 7474:7474 --name Neo4j neo4j:latest`
 
 ###Running the application
@@ -51,6 +46,9 @@ Type following commands in additional/docker/mongo folder.
 
 ####Worker profile search api
 * POST `/api/workers/search` - get workers profiles with filters 
+
+####Worker profile delete api
+* POST `/api/workers/delete` - delete workers 
 
 ####Image api
 * GET `http://localhost:8080/api/images/id` - get image by id 
