@@ -43,7 +43,6 @@ public class WorkerProfileDeleteQueryControllerTest extends AbstractTestNGSpring
         this.mvc = webAppContextSetup(context).build();
     }
 
-
     @Test(dependsOnMethods = {"setupMvc"})
     public void deleteQueryTest() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -51,7 +50,7 @@ public class WorkerProfileDeleteQueryControllerTest extends AbstractTestNGSpring
         savedWorker = workerProfileRepository.save(savedWorker);
 
         Map<String, String> filters = new HashMap<>();
-        filters.put("id", savedWorker.getId());
+        filters.put("id", String.valueOf(savedWorker.getId()));
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/workers/delete")
                 .content(objectMapper.writeValueAsString(filters))

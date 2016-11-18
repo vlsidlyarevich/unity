@@ -12,7 +12,6 @@ import org.neo4j.ogm.annotation.NodeEntity;
 @NodeEntity(label = "Name")
 public class Name extends BaseEntity {
 
-
     private String firstName;
     private String middleName;
     private String lastName;

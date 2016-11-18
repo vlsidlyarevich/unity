@@ -25,6 +25,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
     public WorkerProfile create(WorkerProfileDTO dto) {
         WorkerProfile workerProfile = ModelUtils.convertToModelProfile(dto);
         workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
+        workerProfile.getName().setCreatedAt(String.valueOf(LocalDateTime.now()));
         repository.save(workerProfile);
         return workerProfile;
     }
@@ -60,8 +61,11 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
             workerProfile.getName().setId(saved.getName().getId());
             workerProfile.setCreatedAt(saved.getCreatedAt());
             workerProfile.setUpdatedAt(String.valueOf(LocalDateTime.now()));
+            workerProfile.getName().setCreatedAt(saved.getName().getCreatedAt());
+            workerProfile.getName().setUpdatedAt(String.valueOf(LocalDateTime.now()));
         } else {
             workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
+            workerProfile.getName().setUpdatedAt(String.valueOf(LocalDateTime.now()));
         }
         repository.save(workerProfile);
         return id;
