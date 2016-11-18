@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
-import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
+import com.github.vlsidlyarevich.unity.service.WorkerProfileService;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -33,7 +33,7 @@ public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTes
     private WebApplicationContext context;
 
     @Autowired
-    private WorkerProfileRepository workerProfileRepository;
+    private WorkerProfileService workerProfileService;
 
     private MockMvc mvc;
 
@@ -43,12 +43,12 @@ public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTes
 
     @AfterTest
     public void after() throws Exception {
-        workerProfileRepository.deleteAll();
+        workerProfileService.deleteAll();
     }
 
     @Test
     public void setupMvc() throws Exception {
-        workerProfileRepository.deleteAll();
+        workerProfileService.deleteAll();
         this.mvc = webAppContextSetup(context).build();
     }
 
@@ -72,7 +72,7 @@ public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTes
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(savedWorker.getId())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(savedWorker.getId().intValue())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name.firstName", is(savedWorker.getName().getFirstName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name.lastName", is(savedWorker.getName().getLastName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.age", is(savedWorker.getAge())))
@@ -93,7 +93,7 @@ public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTes
                 .content(objectMapper.writeValueAsString(worker))
                 .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(savedWorker.getId()));
+                .andExpect(MockMvcResultMatchers.content().string(String.valueOf(savedWorker.getId())));
     }
 
     @Test(dependsOnMethods = {"updateWorkerByIdTest"})
@@ -103,7 +103,7 @@ public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTes
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].id", is(savedWorker.getId())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].id", is(savedWorker.getId().intValue())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].name.firstName", is(savedWorker.getName().getFirstName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].name.lastName", is(savedWorker.getName().getLastName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].age", is(savedWorker.getAge())))
@@ -117,6 +117,6 @@ public class WorkersProfileControllerTest extends AbstractTestNGSpringContextTes
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/workers/" + savedWorker.getId())
                 .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(savedWorker.getId()));
+                .andExpect(MockMvcResultMatchers.content().string(String.valueOf(savedWorker.getId().intValue())));
     }
 }
