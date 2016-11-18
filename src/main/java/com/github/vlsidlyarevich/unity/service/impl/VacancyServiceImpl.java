@@ -24,7 +24,7 @@ public class VacancyServiceImpl implements VacancyService {
     }
 
     @Override
-    public Vacancy find(String id) {
+    public Vacancy find(Long id) {
         return null;
     }
 
@@ -34,12 +34,12 @@ public class VacancyServiceImpl implements VacancyService {
     }
 
     @Override
-    public String update(String id, VacancyDTO object) {
+    public Long update(Long id, VacancyDTO object) {
         return null;
     }
 
     @Override
-    public String delete(String id) {
+    public Long delete(Long id) {
         return null;
     }
 

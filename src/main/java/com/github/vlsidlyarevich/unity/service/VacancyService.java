@@ -8,7 +8,7 @@ import com.github.vlsidlyarevich.unity.model.Vacancy;
 import java.util.List;
 
 
-public interface VacancyService extends BaseServiceNeo4j<Vacancy, VacancyDTO> {
+public interface VacancyService extends BaseService<Vacancy, VacancyDTO> {
 
     List<Vacancy> findBySpeciality(Speciality speciality);
 
