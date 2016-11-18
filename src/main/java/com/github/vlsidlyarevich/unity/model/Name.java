@@ -3,14 +3,14 @@ package com.github.vlsidlyarevich.unity.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.neo4j.ogm.annotation.NodeEntity;
 
-/**
- * Created by vlad on 18.09.16.
- */
+
 @Data
 @ToString
 @EqualsAndHashCode
-public class Name {
+@NodeEntity(label = "Name")
+public class Name extends BaseEntity {
 
     private String firstName;
     private String middleName;

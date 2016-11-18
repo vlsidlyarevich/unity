@@ -1,16 +1,13 @@
 package com.github.vlsidlyarevich.unity.utils;
 
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
-import com.github.vlsidlyarevich.unity.model.Gender;
-import com.github.vlsidlyarevich.unity.model.Name;
-import com.github.vlsidlyarevich.unity.model.Speciality;
-import com.github.vlsidlyarevich.unity.model.WorkerProfile;
+import com.github.vlsidlyarevich.unity.model.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 
-/**
- * Created by vlad on 02.10.16.
- */
+import java.util.Date;
+
+
 public final class TestUtils {
 
     private static final int MAX_STRING_LENGTH = 15;
@@ -51,6 +48,17 @@ public final class TestUtils {
         workerProfile.setPhone("8 800 555 35 35");
 
         return workerProfile;
+    }
+
+    public static Vacancy generateVacancy() {
+        Vacancy vacancy = new Vacancy();
+        vacancy.setSpeciality(Speciality.SOFTWARE_ENGINEER);
+        vacancy.setSalary(getRandomInt(0, 2000).toString());
+        vacancy.setJobType(JobType.CONTRACT);
+        vacancy.setDatePosted(new Date());
+        vacancy.setDescription(getRandomString(20));
+
+        return vacancy;
     }
 
 }

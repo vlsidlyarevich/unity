@@ -6,6 +6,7 @@ import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
 import com.github.vlsidlyarevich.unity.service.WorkerProfileService;
 import com.github.vlsidlyarevich.unity.utils.ModelUtils;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by vlad on 28.09.16.
- */
+
 @Service
 public class WorkerProfileServiceImpl implements WorkerProfileService {
 
@@ -26,12 +25,13 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
     public WorkerProfile create(WorkerProfileDTO dto) {
         WorkerProfile workerProfile = ModelUtils.convertToModelProfile(dto);
         workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
+        workerProfile.getName().setCreatedAt(String.valueOf(LocalDateTime.now()));
         repository.save(workerProfile);
         return workerProfile;
     }
 
     @Override
-    public WorkerProfile find(String id) {
+    public WorkerProfile find(Long id) {
         return repository.findById(id);
     }
 
@@ -47,45 +47,60 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
 
     @Override
     public List<WorkerProfile> findAll() {
-        return repository.findAll();
+        return Lists.newArrayList(repository.findAll().iterator());
     }
 
     @Override
-    public String update(String id, WorkerProfileDTO dto) {
+    public Long update(Long id, WorkerProfileDTO dto) {
         WorkerProfile workerProfile = ModelUtils.convertToModelProfile(dto);
         workerProfile.setId(id);
-        if (repository.exists(id)) {
-            workerProfile.setCreatedAt(repository.findById(id).getCreatedAt());
+
+        WorkerProfile saved = repository.findById(id);
+
+        if (saved != null) {
+            workerProfile.getName().setId(saved.getName().getId());
+            workerProfile.setCreatedAt(saved.getCreatedAt());
             workerProfile.setUpdatedAt(String.valueOf(LocalDateTime.now()));
+            workerProfile.getName().setCreatedAt(saved.getName().getCreatedAt());
+            workerProfile.getName().setUpdatedAt(String.valueOf(LocalDateTime.now()));
         } else {
             workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
+            workerProfile.getName().setUpdatedAt(String.valueOf(LocalDateTime.now()));
         }
         repository.save(workerProfile);
         return id;
     }
 
     @Override
-    public String delete(String id) {
+    public Long delete(Long id) {
         repository.delete(id);
         return id;
     }
 
     @Override
-    public String deleteQuery(Map<String, String> ids) {
+    public Integer deleteQuery(Map<String, String> ids) {
         Integer deleteCounter = 0;
 
         if (ids.keySet().size() == 1 && ids.containsValue("all")) {
-            deleteCounter = repository.findAll().size();
+            deleteCounter = Math.toIntExact(repository.count());
             repository.deleteAll();
-            return String.valueOf(deleteCounter);
+
+            return deleteCounter;
         }
 
         for (Map.Entry<String, String> id : ids.entrySet()) {
-            if (repository.exists(id.getValue())) {
-                repository.delete(id.getValue());
+            if (repository.exists(Long.valueOf(id.getValue()))) {
+                repository.delete(Long.valueOf(id.getValue()));
                 deleteCounter++;
             }
         }
-        return String.valueOf(deleteCounter);
+        return deleteCounter;
+    }
+
+    @Override
+    public Integer deleteAll() {
+        Integer deleteCounter = Math.toIntExact(repository.count());
+        repository.deleteAll();
+        return deleteCounter;
     }
 }

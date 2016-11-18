@@ -3,18 +3,20 @@ package com.github.vlsidlyarevich.unity.model;
 import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.lang3.EnumUtils;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-/**
- * Created by vlad on 15.09.16.
- */
+
 @Data
 @ToString
 @Component
+@NodeEntity(label = "Worker")
 public class Worker extends BaseEntity {
 
+    @Relationship(type = "HAS", direction = Relationship.OUTGOING)
     private Name name;
     private Integer age;
     private String email;

@@ -1,6 +1,5 @@
 package com.github.vlsidlyarevich.unity.repository;
 
-
 import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.model.Speciality;
@@ -16,6 +15,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+
 
 @SpringApplicationConfiguration(Application.class)
 public class WorkerProfileRepositoryTest extends AbstractTestNGSpringContextTests {

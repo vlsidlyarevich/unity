@@ -2,9 +2,7 @@ package com.github.vlsidlyarevich.unity.exception;
 
 import lombok.Data;
 
-/**
- * Created by vladislav on 10/30/16.
- */
+
 @Data
 public class FileSystemFileNotFoundException extends RuntimeException {
 

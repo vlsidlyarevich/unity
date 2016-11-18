@@ -14,9 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * Created by vladislav on 10/29/16.
- */
+
 @Slf4j
 @ControllerAdvice
 public class UnityExceptionHandler extends ResponseEntityExceptionHandler {

@@ -4,7 +4,6 @@ import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
-import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
 import com.github.vlsidlyarevich.unity.utils.ModelUtils;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,26 +20,21 @@ import java.util.HashMap;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by vlad on 04.10.16.
- */
+
 @SpringApplicationConfiguration(Application.class)
 public class WorkerProfileServiceImplTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private WorkerProfileService workerProfileService;
 
-    @Autowired
-    private WorkerProfileRepository workerProfileRepository;
-
     @BeforeMethod
     public void before() {
-        workerProfileRepository.deleteAll();
+        workerProfileService.deleteAll();
     }
 
     @AfterMethod
     public void after() {
-        workerProfileRepository.deleteAll();
+        workerProfileService.deleteAll();
     }
 
     @Test
@@ -104,16 +98,13 @@ public class WorkerProfileServiceImplTest extends AbstractTestNGSpringContextTes
         WorkerProfileDTO firstDto = TestUtils.generateWorkerProfileDTO();
         WorkerProfileDTO secondDto = TestUtils.generateWorkerProfileDTO();
 
-        ArrayList<WorkerProfile> savedWorkers = new ArrayList<>();
-        savedWorkers.add(ModelUtils.convertToModelProfile(firstDto));
-        savedWorkers.add(ModelUtils.convertToModelProfile(secondDto));
         workerProfileService.create(firstDto);
         workerProfileService.create(secondDto);
 
         HashMap<String, String> map = new HashMap<>();
         map.put("id", "all");
 
-        Assert.assertEquals(workerProfileService.deleteQuery(map), "2");
+        Assert.assertEquals(workerProfileService.deleteQuery(map), Integer.valueOf(2));
         Assert.assertEquals(workerProfileService.findAll().size(), 0);
     }
 
@@ -122,15 +113,11 @@ public class WorkerProfileServiceImplTest extends AbstractTestNGSpringContextTes
         WorkerProfileDTO firstDto = TestUtils.generateWorkerProfileDTO();
         WorkerProfileDTO secondDto = TestUtils.generateWorkerProfileDTO();
 
-        ArrayList<WorkerProfile> savedWorkers = new ArrayList<>();
-        savedWorkers.add(ModelUtils.convertToModelProfile(firstDto));
-        savedWorkers.add(ModelUtils.convertToModelProfile(secondDto));
-
         HashMap<String, String> map = new HashMap<>();
-        map.put("id1", workerProfileService.create(firstDto).getId());
-        map.put("id2", workerProfileService.create(secondDto).getId());
+        map.put("id1", String.valueOf(workerProfileService.create(firstDto).getId()));
+        map.put("id2", String.valueOf(workerProfileService.create(secondDto).getId()));
 
-        Assert.assertEquals(workerProfileService.deleteQuery(map), "2");
+        Assert.assertEquals(workerProfileService.deleteQuery(map), Integer.valueOf(2));
         Assert.assertEquals(workerProfileService.findAll().size(), 0);
     }
 }

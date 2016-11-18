@@ -7,9 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
-/**
- * Created by vladislav on 10/18/16.
- */
+
 @Slf4j
 public final class FileUtils {
 

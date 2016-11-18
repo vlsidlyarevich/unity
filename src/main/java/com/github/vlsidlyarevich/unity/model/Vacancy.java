@@ -3,25 +3,32 @@ package com.github.vlsidlyarevich.unity.model;
 import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.lang3.EnumUtils;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-/**
- * Created by vlad on 14/11/16.
- */
+
 @Data
 @ToString
 @Component
+@NodeEntity(label = "Vacancy")
 public class Vacancy extends BaseEntity {
 
     private Speciality speciality;
     private JobType jobType;
-    private String lastUpdateDate;
-    private String datePosted;
+    private Date lastUpdateDate;
+    private Date datePosted;
     private String location;
     private String salary;
     private String description;
+
+    @Relationship(type = "CANDIDATE", direction = Relationship.UNDIRECTED)
+    private Set<Candidate> candidates;
 
     @PostConstruct
     public void init() {
@@ -29,7 +36,7 @@ public class Vacancy extends BaseEntity {
         this.speciality = Speciality.UNKNOWN;
     }
 
-    public Vacancy(){
+    public Vacancy() {
     }
 
     public Vacancy(Speciality speciality) {
@@ -39,6 +46,14 @@ public class Vacancy extends BaseEntity {
     public Vacancy(Speciality speciality, JobType jobType) {
         this.speciality = speciality;
         this.jobType = jobType;
+    }
+
+    public void addCandidate(Candidate candidate) {
+        if (candidates == null) {
+            candidates = new HashSet<>();
+        }
+
+        candidates.add(candidate);
     }
 
     public void setJobType(String jobType) {

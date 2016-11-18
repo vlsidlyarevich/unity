@@ -7,11 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 
-/**
- * Created by vlad on 28.09.16.
- */
 @RestController
 @RequestMapping("/api/workers")
 public class WorkersProfileController {
@@ -26,7 +22,7 @@ public class WorkersProfileController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getWorkerById(@PathVariable String id) {
-        return new ResponseEntity<>(service.find(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.find(Long.valueOf(id)), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -36,11 +32,11 @@ public class WorkersProfileController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateWorkerById(@PathVariable String id, @RequestBody WorkerProfileDTO profile) {
-        return new ResponseEntity<>(service.update(id, profile), HttpStatus.OK);
+        return new ResponseEntity<>(service.update(Long.valueOf(id), profile), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteWorkerById(@PathVariable String id) {
-        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.delete(Long.valueOf(id)), HttpStatus.OK);
     }
 }

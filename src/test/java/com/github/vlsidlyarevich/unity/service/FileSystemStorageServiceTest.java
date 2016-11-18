@@ -13,9 +13,7 @@ import org.testng.annotations.Test;
 import java.nio.file.Path;
 import java.util.List;
 
-/**
- * Created by vladislav on 10/17/16.
- */
+
 @SpringApplicationConfiguration(Application.class)
 public class FileSystemStorageServiceTest extends AbstractTestNGSpringContextTests {
 

@@ -6,9 +6,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by vladislav on 10/31/16.
- */
+
 @Component
 public class MessageResolver {
 
