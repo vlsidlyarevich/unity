@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 1,
-  "__export_date": "2016-11-12T15:15:23.516Z",
+  "__export_date": "2016-11-18T17:09:50.997Z",
   "__export_source": "insomnia.chrome.app:v2.7.0",
   "items": [
     {
@@ -51,9 +51,9 @@
         {
           "_type": "request",
           "_id": "req_1475770470722",
-          "url": "http://localhost:8080/api/workers/5825b04b86131c108f33acb9",
+          "url": "http://localhost:8080/api/workers/58",
           "method": "PUT",
-          "body": "{\n    \"id\":\"5825b04b86131c108f33acb9\",\n    \"name\":{\n        \"firstName\":\"Johnny\",\n        \"middleName\":\"Updated\",\n        \"secondName\":\"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"1973-11-19\",\n    \"imageId\":\"imageUrl\",\n    \"linkedInUrl\":\"linked in url\",\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"Where is my cpt. Price?\"\n}",
+          "body": "{\n    \"id\":\"5825b04b86131c108f33acb9\",\n    \"name\":{\n        \"firstName\":\"Johnny\",\n        \"middleName\":\"Updated\",\n        \"lastName\":\"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"1973-11-19\",\n    \"imageId\":\"imageUrl\",\n    \"linkedInUrl\":\"linked in url\",\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"Where is my cpt. Price?\"\n}",
           "headers": [],
           "params": [],
           "authentication": {
@@ -70,7 +70,7 @@
         {
           "_type": "request",
           "_id": "req_1475770481481",
-          "url": "http://localhost:8080/api/workers/57fbf03d561472fb74184eb7",
+          "url": "http://localhost:8080/api/workers/56",
           "method": "DELETE",
           "body": "{}",
           "headers": [],
@@ -89,7 +89,7 @@
         {
           "_type": "request",
           "_id": "req_1475770517816",
-          "url": "http://localhost:8080/api/workers/57f6af8d51dffa341e79a38f",
+          "url": "http://localhost:8080/api/workers/58",
           "method": "GET",
           "body": "{}",
           "headers": [],
@@ -164,7 +164,7 @@
           "_id": "req_1478950629611",
           "url": "http://localhost:8080/api/workers/delete",
           "method": "POST",
-          "body": "{ \"id\": \"5826d9ea4da0dc139ea4f340\" }",
+          "body": "{ \"id\": 58 }",
           "headers": [],
           "params": [],
           "authentication": {
