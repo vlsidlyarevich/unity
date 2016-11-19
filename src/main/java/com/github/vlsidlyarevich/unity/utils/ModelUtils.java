@@ -1,7 +1,9 @@
 package com.github.vlsidlyarevich.unity.utils;
 
+import com.github.vlsidlyarevich.unity.dto.VacancyDTO;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.Name;
+import com.github.vlsidlyarevich.unity.model.Vacancy;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 
 
@@ -10,7 +12,7 @@ public final class ModelUtils {
     private ModelUtils() {
     }
 
-    public static WorkerProfile convertToModelProfile(WorkerProfileDTO dto) {
+    public static WorkerProfile convertToModel(WorkerProfileDTO dto) {
         WorkerProfile workerProfile = new WorkerProfile();
         workerProfile.setName(dto.getName() != null ? dto.getName() : (new Name()));
         workerProfile.setAge(dto.getAge());
@@ -26,5 +28,16 @@ public final class ModelUtils {
         workerProfile.setLinkedInUrl(dto.getLinkedInUrl() != null ? dto.getLinkedInUrl() : "");
 
         return workerProfile;
+    }
+
+    public static Vacancy convertToModel(VacancyDTO dto) {
+        Vacancy vacancy = new Vacancy();
+        vacancy.setSpeciality(dto.getSpeciality());
+        vacancy.setJobType(dto.getJobType());
+        vacancy.setLocation(dto.getLocation() != null ? dto.getLocation() : "");
+        vacancy.setSalary(dto.getSalary() != null ? dto.getSalary() : "");
+        vacancy.setDescription(dto.getDescription() != null ? dto.getDescription() : "");
+
+        return vacancy;
     }
 }

@@ -8,7 +8,6 @@ import org.neo4j.ogm.annotation.Relationship;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,8 +20,6 @@ public class Vacancy extends BaseEntity {
 
     private Speciality speciality;
     private JobType jobType;
-    private Date lastUpdateDate;
-    private Date datePosted;
     private String location;
     private String salary;
     private String description;

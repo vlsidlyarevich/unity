@@ -13,4 +13,6 @@ public interface VacancyService extends BaseService<Vacancy, VacancyDTO> {
     List<Vacancy> findBySpeciality(Speciality speciality);
 
     List<Vacancy> findByJobType(JobType jobType);
+
+    Integer deleteAll();
 }
