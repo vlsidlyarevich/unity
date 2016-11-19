@@ -39,4 +39,10 @@ public class ControllerLoggingAspect {
         logger.info("Image controller : " + joinPoint.getSignature().getName()
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
     }
+
+    @Before("execution(* com.github.vlsidlyarevich.unity.controller.VacancyController.*(..)))")
+    public void vacancyControllerLog(JoinPoint joinPoint) {
+        logger.info("Vacancy controller : " + joinPoint.getSignature().getName()
+                + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
+    }
 }
