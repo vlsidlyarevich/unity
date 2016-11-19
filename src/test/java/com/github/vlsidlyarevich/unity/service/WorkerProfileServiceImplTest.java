@@ -43,7 +43,7 @@ public class WorkerProfileServiceImplTest extends AbstractTestNGSpringContextTes
 
         WorkerProfile saved = workerProfileService.create(dto);
 
-        Assert.assertEquals(ModelUtils.convertToModelProfile(dto), workerProfileService.find(saved.getId()));
+        Assert.assertEquals(ModelUtils.convertToModel(dto), workerProfileService.find(saved.getId()));
         Assert.assertNotNull(saved.getCreatedAt());
     }
 
@@ -53,7 +53,7 @@ public class WorkerProfileServiceImplTest extends AbstractTestNGSpringContextTes
 
         WorkerProfile saved = workerProfileService.create(dto);
 
-        Assert.assertEquals(ModelUtils.convertToModelProfile(dto), workerProfileService.find(saved.getId()));
+        Assert.assertEquals(ModelUtils.convertToModel(dto), workerProfileService.find(saved.getId()));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class WorkerProfileServiceImplTest extends AbstractTestNGSpringContextTes
 
         workerProfileService.create(dto);
 
-        Assert.assertEquals(ModelUtils.convertToModelProfile(dto), workerProfileService.findByName(name));
+        Assert.assertEquals(ModelUtils.convertToModel(dto), workerProfileService.findByName(name));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class WorkerProfileServiceImplTest extends AbstractTestNGSpringContextTes
         dto.setAge(19);
 
         ArrayList<WorkerProfile> workers = new ArrayList<>();
-        workers.add(ModelUtils.convertToModelProfile(dto));
+        workers.add(ModelUtils.convertToModel(dto));
         workerProfileService.create(dto);
 
         Assert.assertEquals(workers, workerProfileService.findAllByAge(19));
@@ -85,8 +85,8 @@ public class WorkerProfileServiceImplTest extends AbstractTestNGSpringContextTes
         WorkerProfileDTO secondDto = TestUtils.generateWorkerProfileDTO();
 
         ArrayList<WorkerProfile> savedWorkers = new ArrayList<>();
-        savedWorkers.add(ModelUtils.convertToModelProfile(firstDto));
-        savedWorkers.add(ModelUtils.convertToModelProfile(secondDto));
+        savedWorkers.add(ModelUtils.convertToModel(firstDto));
+        savedWorkers.add(ModelUtils.convertToModel(secondDto));
         workerProfileService.create(firstDto);
         workerProfileService.create(secondDto);
 

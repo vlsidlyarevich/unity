@@ -5,8 +5,6 @@ import com.github.vlsidlyarevich.unity.model.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 
-import java.util.Date;
-
 
 public final class TestUtils {
 
@@ -55,8 +53,8 @@ public final class TestUtils {
         vacancy.setSpeciality(Speciality.SOFTWARE_ENGINEER);
         vacancy.setSalary(getRandomInt(0, 2000).toString());
         vacancy.setJobType(JobType.CONTRACT);
-        vacancy.setDatePosted(new Date());
         vacancy.setDescription(getRandomString(20));
+        vacancy.setLocation(getRandomString(10));
 
         return vacancy;
     }

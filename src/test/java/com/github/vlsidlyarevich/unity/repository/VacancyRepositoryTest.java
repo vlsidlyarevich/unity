@@ -7,13 +7,12 @@ import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@Transactional
+
 @SpringApplicationConfiguration(Application.class)
 public class VacancyRepositoryTest extends AbstractTestNGSpringContextTests {
 
@@ -30,16 +29,42 @@ public class VacancyRepositoryTest extends AbstractTestNGSpringContextTests {
         vacancyRepository.deleteAll();
     }
 
+    private Vacancy vacancy;
+
     @Test
     public void saveTest() throws Exception {
-        Vacancy vacancy = TestUtils.generateVacancy();
+        vacancy = TestUtils.generateVacancy();
         Candidate candidate = new Candidate();
         candidate.setGithubUrl("git");
         vacancy.addCandidate(candidate);
 
         vacancyRepository.save(vacancy);
-        Assert.assertEquals(vacancyRepository.findOne(vacancy.getId()), vacancy);
         Assert.assertEquals(vacancyRepository.count(), 1L);
     }
 
+    @Test(dependsOnMethods = "saveTest")
+    public void findByIdTest() throws Exception {
+        Assert.assertEquals(vacancy, vacancyRepository.findById(vacancy.getId()));
+    }
+
+    @Test(dependsOnMethods = "saveTest")
+    public void findByLocationTest() throws Exception {
+        Assert.assertEquals(vacancy, vacancyRepository.findByLocation(vacancy.getLocation()));
+    }
+
+    @Test(dependsOnMethods = "saveTest")
+    public void findByJobTypeTest() throws Exception {
+        Assert.assertEquals(vacancy, vacancyRepository.findByJobType(vacancy.getJobType()));
+    }
+
+    @Test(dependsOnMethods = "saveTest")
+    public void findAllBySpecialityTest() throws Exception {
+        Assert.assertEquals(vacancy, vacancyRepository.findBySpeciality(vacancy.getSpeciality()));
+    }
+
+    @Test
+    public void deleteAllTest() throws Exception {
+        vacancyRepository.deleteAll();
+        Assert.assertEquals(0, vacancyRepository.count());
+    }
 }
