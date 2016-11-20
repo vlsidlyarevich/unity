@@ -39,10 +39,18 @@ Or you can create and run docker image.
 ###Api reference
 ####Worker profile api
 * GET `http://localhost:8080/api/workers` - get all workers profiles
+* GET `http://localhost:8080/api/workers` - get all workers profiles by name
 * GET `http://localhost:8080/api/workers/id` - get worker profile by id 
 * POST `http://localhost:8080/api/workers` - add new worker profile 
-* PUT `http://localhost:8080/api/workers/` - update worker profile 
+* PUT `http://localhost:8080/api/workers/id` - update worker profile by id
 * DELETE `http://localhost:8080/api/workers/id` - delete worker profile by id 
+
+####Vacancy api
+* GET `http://localhost:8080/api/vacancies` - get all vacancies
+* GET `http://localhost:8080/api/vacancies/id` - get vacancy by id 
+* POST `http://localhost:8080/api/vacancies` - add new vacancy
+* PUT `http://localhost:8080/api/vacancies/id` - update vacancy by id
+* DELETE `http://localhost:8080/api/vacancies/id` - delete vacancy by id 
 
 ####Worker profile search api
 * POST `/api/workers/search` - get workers profiles with filters 
