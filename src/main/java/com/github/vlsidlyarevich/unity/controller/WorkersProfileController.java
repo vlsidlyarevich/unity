@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.controller;
 
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
+import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.service.WorkerProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,12 @@ public class WorkersProfileController {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getAllWorkers() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> getWorkerByName(@RequestParam("firstName") String firstName,
+                                             @RequestParam("lastName") String lastName) {
+        return new ResponseEntity<>(service.findByName(new Name(firstName, lastName)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

@@ -23,7 +23,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
 
     @Override
     public WorkerProfile create(WorkerProfileDTO dto) {
-        WorkerProfile workerProfile = ModelUtils.convertToModelProfile(dto);
+        WorkerProfile workerProfile = ModelUtils.convertToModel(dto);
         workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
         workerProfile.getName().setCreatedAt(String.valueOf(LocalDateTime.now()));
         repository.save(workerProfile);
@@ -52,7 +52,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
 
     @Override
     public Long update(Long id, WorkerProfileDTO dto) {
-        WorkerProfile workerProfile = ModelUtils.convertToModelProfile(dto);
+        WorkerProfile workerProfile = ModelUtils.convertToModel(dto);
         workerProfile.setId(id);
 
         WorkerProfile saved = repository.findById(id);
