@@ -30,7 +30,7 @@ public class WorkerProfileSearchServiceImpl implements SearchService<WorkerProfi
                     Filter searchFilter = new Filter();
                     searchFilter.setBooleanOperator(BooleanOperator.AND);
                     searchFilter.setPropertyName("age");
-                    searchFilter.setPropertyValue(filter.getValue());
+                    searchFilter.setPropertyValue(Integer.valueOf(filter.getValue()));
                     searchFilters.add(searchFilter);
                     break;
                 }
