@@ -24,9 +24,13 @@ If you don't have installed maven, or you don't want to install it, just type `.
 ---
 ###Getting neo4j
 You can download and install neo4j following instructions from [official site](https://neo4j.com/)
-Or you can create and run docker image.
-* `docker run -p 7474:7474 --name Neo4j neo4j:latest`
+Or you can use docker-compose file.
+* go to `additional/docker` folder
+* run `startup.sh` file
+* run `docker-compose up` 
+* set `test` password for neo4j if you are running `test` config and `unity` for `dev` config
 
+ 
 ###Running the application
 * `mvn clean install`
 * `java -jar target/*.jar`
