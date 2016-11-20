@@ -1,26 +1,27 @@
 package com.github.vlsidlyarevich.unity.service;
 
-import com.github.vlsidlyarevich.unity.Application;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.multipart.MultipartFile;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
 
 import java.nio.file.Path;
 import java.util.List;
 
 
-@SpringApplicationConfiguration(Application.class)
-public class FileSystemStorageServiceTest extends AbstractTestNGSpringContextTests {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class FileSystemStorageServiceTest {
 
     @Autowired
     private StorageService storageService;
 
-    @AfterMethod
+    @After
     public void cleanUp() {
         storageService.deleteAll();
     }

@@ -1,32 +1,33 @@
 package com.github.vlsidlyarevich.unity.repository;
 
-import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.model.Candidate;
 import com.github.vlsidlyarevich.unity.model.Vacancy;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 
 
-@SpringApplicationConfiguration(Application.class)
-public class VacancyRepositoryTest extends AbstractTestNGSpringContextTests {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class VacancyRepositoryTest {
 
     @Autowired
     private VacancyRepository vacancyRepository;
 
-    @BeforeClass
+    @Before
     public void setUp() {
         vacancyRepository.deleteAll();
     }
 
-    @AfterClass
+    @After
     public void clear() {
         vacancyRepository.deleteAll();
     }
@@ -44,28 +45,56 @@ public class VacancyRepositoryTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(vacancyRepository.count(), 1L);
     }
 
-    @Test(dependsOnMethods = "saveTest")
+    @Test
     public void findByIdTest() throws Exception {
+        vacancy = TestUtils.generateVacancy();
+        Candidate candidate = new Candidate();
+        candidate.setGithubUrl("git");
+        vacancy.addCandidate(candidate);
+
+        vacancyRepository.save(vacancy);
+
         Assert.assertEquals(vacancy, vacancyRepository.findById(vacancy.getId()));
     }
 
-    @Test(dependsOnMethods = "saveTest")
+    @Test
     public void findByLocationTest() throws Exception {
+        vacancy = TestUtils.generateVacancy();
+        Candidate candidate = new Candidate();
+        candidate.setGithubUrl("git");
+        vacancy.addCandidate(candidate);
+
+        vacancyRepository.save(vacancy);
+
         Assert.assertEquals(new ArrayList<Vacancy>() {{
             add(vacancy);
         }}, vacancyRepository.findByLocation(vacancy.getLocation()));
     }
 
-    @Test(dependsOnMethods = "saveTest")
+    @Test
     public void findByJobTypeTest() throws Exception {
+        vacancy = TestUtils.generateVacancy();
+        Candidate candidate = new Candidate();
+        candidate.setGithubUrl("git");
+        vacancy.addCandidate(candidate);
+
+        vacancyRepository.save(vacancy);
+
         Assert.assertEquals(new ArrayList<Vacancy>() {{
-                                add(vacancy);
-                            }},
-                vacancyRepository.findByJobType(vacancy.getJobType()));
+            add(vacancy);
+        }}, vacancyRepository.findByJobType(vacancy.getJobType()));
     }
 
-    @Test(dependsOnMethods = "saveTest")
+    @Test
     public void findAllBySpecialityTest() throws Exception {
+        vacancy = TestUtils.generateVacancy();
+        Candidate candidate = new Candidate();
+        candidate.setGithubUrl("git");
+        vacancy.addCandidate(candidate);
+
+        vacancyRepository.save(vacancy);
+
+
         Assert.assertEquals(new ArrayList<Vacancy>() {{
             add(vacancy);
         }}, vacancyRepository.findBySpeciality(vacancy.getSpeciality()));

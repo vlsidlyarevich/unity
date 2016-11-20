@@ -1,22 +1,22 @@
 package com.github.vlsidlyarevich.unity.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.context.WebApplicationContext;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,9 +25,9 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 
-@WebAppConfiguration
-@SpringApplicationConfiguration(Application.class)
-public class WorkerProfileSearchControllerTest extends AbstractTestNGSpringContextTests {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class WorkerProfileSearchControllerTest {
 
     @Autowired
     private WebApplicationContext context;
@@ -39,18 +39,18 @@ public class WorkerProfileSearchControllerTest extends AbstractTestNGSpringConte
 
     private WorkerProfile savedWorker;
 
-    @AfterTest
-    public void after() throws Exception {
-        workerProfileRepository.deleteAll();
-    }
-
-    @Test
+    @Before
     public void setupMvc() throws Exception {
         workerProfileRepository.deleteAll();
         this.mvc = webAppContextSetup(context).build();
     }
 
-    @Test(dependsOnMethods = {"setupMvc"})
+    @After
+    public void after() throws Exception {
+        workerProfileRepository.deleteAll();
+    }
+
+    @Test
     public void getWorkersByFiltersTest() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         this.savedWorker = TestUtils.generateWorkerProfile();

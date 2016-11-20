@@ -1,25 +1,26 @@
 package com.github.vlsidlyarevich.unity.service;
 
-import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
 import com.github.vlsidlyarevich.unity.utils.ModelUtils;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashMap;
 import java.util.List;
 
 
-@SpringApplicationConfiguration(Application.class)
-public class WorkerProfileSearchServiceImplTest extends AbstractTestNGSpringContextTests {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class WorkerProfileSearchServiceImplTest {
 
     @Autowired
     private SearchService workerProfileSearchService;
@@ -30,12 +31,12 @@ public class WorkerProfileSearchServiceImplTest extends AbstractTestNGSpringCont
     @Autowired
     private WorkerProfileRepository workerProfileRepository;
 
-    @BeforeMethod
+    @Before
     public void before() {
         workerProfileRepository.deleteAll();
     }
 
-    @AfterMethod
+    @After
     public void after() {
         workerProfileRepository.deleteAll();
     }
