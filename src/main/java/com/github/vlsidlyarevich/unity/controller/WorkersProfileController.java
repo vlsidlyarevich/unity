@@ -21,12 +21,6 @@ public class WorkersProfileController {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getWorkerByName(@RequestParam("firstName") String firstName,
-                                             @RequestParam("lastName") String lastName) {
-        return new ResponseEntity<>(service.findByName(new Name(firstName, lastName)), HttpStatus.OK);
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getWorkerById(@PathVariable String id) {
         return new ResponseEntity<>(service.find(Long.valueOf(id)), HttpStatus.OK);
