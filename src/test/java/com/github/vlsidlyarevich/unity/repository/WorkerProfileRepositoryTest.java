@@ -58,11 +58,11 @@ public class WorkerProfileRepositoryTest extends AbstractTestNGSpringContextTest
         WorkerProfile saved = TestUtils.generateWorkerProfile();
         saved.setAge(19);
 
-        ArrayList<Worker> workers = new ArrayList<>();
-        workers.add(saved);
         workerProfileRepository.save(saved);
 
-        Assert.assertEquals(workers, workerProfileRepository.findAllByAge(19));
+        Assert.assertEquals(new ArrayList<Worker>() {{
+            add(saved);
+        }}, workerProfileRepository.findAllByAge(19));
     }
 
     @Test
@@ -74,6 +74,8 @@ public class WorkerProfileRepositoryTest extends AbstractTestNGSpringContextTest
         workers.add(saved);
         workerProfileRepository.save(saved);
 
-        Assert.assertEquals(workers, workerProfileRepository.findAllBySpeciality(Speciality.SOFTWARE_ENGINEER));
+        Assert.assertEquals(new ArrayList<Worker>() {{
+            add(saved);
+        }}, workerProfileRepository.findAllBySpeciality(Speciality.SOFTWARE_ENGINEER));
     }
 }

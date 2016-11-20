@@ -12,6 +12,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+
 
 @SpringApplicationConfiguration(Application.class)
 public class VacancyRepositoryTest extends AbstractTestNGSpringContextTests {
@@ -49,17 +51,24 @@ public class VacancyRepositoryTest extends AbstractTestNGSpringContextTests {
 
     @Test(dependsOnMethods = "saveTest")
     public void findByLocationTest() throws Exception {
-        Assert.assertEquals(vacancy, vacancyRepository.findByLocation(vacancy.getLocation()));
+        Assert.assertEquals(new ArrayList<Vacancy>() {{
+            add(vacancy);
+        }}, vacancyRepository.findByLocation(vacancy.getLocation()));
     }
 
     @Test(dependsOnMethods = "saveTest")
     public void findByJobTypeTest() throws Exception {
-        Assert.assertEquals(vacancy, vacancyRepository.findByJobType(vacancy.getJobType()));
+        Assert.assertEquals(new ArrayList<Vacancy>() {{
+                                add(vacancy);
+                            }},
+                vacancyRepository.findByJobType(vacancy.getJobType()));
     }
 
     @Test(dependsOnMethods = "saveTest")
     public void findAllBySpecialityTest() throws Exception {
-        Assert.assertEquals(vacancy, vacancyRepository.findBySpeciality(vacancy.getSpeciality()));
+        Assert.assertEquals(new ArrayList<Vacancy>() {{
+            add(vacancy);
+        }}, vacancyRepository.findBySpeciality(vacancy.getSpeciality()));
     }
 
     @Test

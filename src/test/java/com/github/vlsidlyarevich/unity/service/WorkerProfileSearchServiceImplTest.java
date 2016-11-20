@@ -46,10 +46,9 @@ public class WorkerProfileSearchServiceImplTest extends AbstractTestNGSpringCont
         workerProfileService.create(workerProfile);
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("firstname", workerProfile.getName().getFirstName());
         map.put("skype", workerProfile.getSkype());
         List<WorkerProfile> workerProfiles = workerProfileSearchService.find(map);
-        Assert.assertEquals(ModelUtils.convertToModelProfile(workerProfile), workerProfiles.get(0));
+        Assert.assertEquals(ModelUtils.convertToModel(workerProfile), workerProfiles.get(0));
     }
 
     @Test
@@ -58,13 +57,11 @@ public class WorkerProfileSearchServiceImplTest extends AbstractTestNGSpringCont
         workerProfileService.create(workerProfile);
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("firstname", workerProfile.getName().getFirstName());
         map.put("skype", workerProfile.getSkype());
-        map.put("secondname", workerProfile.getName().getLastName());
         map.put("gender", workerProfile.getGender().name());
         map.put("speciality", workerProfile.getSpeciality().name());
 
         List<WorkerProfile> workerProfiles = workerProfileSearchService.find(map);
-        Assert.assertEquals(ModelUtils.convertToModelProfile(workerProfile), workerProfiles.get(0));
+        Assert.assertEquals(ModelUtils.convertToModel(workerProfile), workerProfiles.get(0));
     }
 }
