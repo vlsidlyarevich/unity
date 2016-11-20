@@ -37,7 +37,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
 
     @Override
     public WorkerProfile findByName(Name name) {
-        return repository.findByName(name);
+        return repository.findByName(name.getFirstName(), name.getLastName());
     }
 
     @Override

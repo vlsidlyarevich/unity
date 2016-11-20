@@ -62,7 +62,12 @@ public class WorkerProfileServiceImplTest extends AbstractTestNGSpringContextTes
         Name name = new Name("Vladislav", "Sidlyarevich");
         dto.setName(name);
 
+        WorkerProfileDTO anotherDto = TestUtils.generateWorkerProfileDTO();
+        Name anotherName = new Name("Karina", "Sidlyarevich");
+        anotherDto.setName(anotherName);
+
         workerProfileService.create(dto);
+        workerProfileService.create(anotherDto);
 
         Assert.assertEquals(ModelUtils.convertToModel(dto), workerProfileService.findByName(name));
     }

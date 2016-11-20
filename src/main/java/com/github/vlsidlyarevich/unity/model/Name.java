@@ -13,7 +13,6 @@ import org.neo4j.ogm.annotation.NodeEntity;
 public class Name extends BaseEntity {
 
     private String firstName;
-    private String middleName;
     private String lastName;
 
     public Name() {
@@ -22,11 +21,5 @@ public class Name extends BaseEntity {
     public Name(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-
-    public Name(String firstName, String lastName, String middleName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
     }
 }

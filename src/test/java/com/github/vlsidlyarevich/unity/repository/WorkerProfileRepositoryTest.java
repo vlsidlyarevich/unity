@@ -50,7 +50,7 @@ public class WorkerProfileRepositoryTest extends AbstractTestNGSpringContextTest
 
         workerProfileRepository.save(saved);
 
-        Assert.assertEquals(saved, workerProfileRepository.findByName(name));
+        Assert.assertEquals(saved, workerProfileRepository.findByName(name.getFirstName(), name.getLastName()));
     }
 
     @Test
