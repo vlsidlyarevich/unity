@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="header-panel col-sm-8 col-sm-offset-2">
         <a href="#/new/worker" class="btn btn-raised btn-sm">Create worker</a>
-        <a href="javascript:void(0)" class="btn btn-raised btn-sm" ng-click="deleteWorkers()">Delete workers</a>
+        <a href="javascript:void(0)" class="btn btn-raised btn-sm" data-toggle="modal" data-target="#confirmationModal">Delete workers</a>
     </div>
 
     <div class="well col-sm-8 col-sm-offset-2" ng-init="init()">
@@ -52,7 +52,7 @@
                             <li><a href="javascript:void(0)">Another action</a></li>
                             <li><a href="javascript:void(0)">Something else here</a></li>
                             <li class="divider"></li>
-                            <li><a  href="javascript:void(0)" ng-click="deleteWorker(item.id)">Delete</a></li>
+                            <li><a href="javascript:void(0)" ng-click="deleteWorker(item.id)">Delete</a></li>
                         </ul>
                     </div>
                 </td>
@@ -60,5 +60,23 @@
             </tbody>
         </table>
         <div class="list-group-separator" ng-repeat-end></div>
+    </div>
+</div>
+
+<div class="modal" id="confirmationModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title">Are you sure?</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure to delete selected worker profiles?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteWorkers()">Delete</button>
+            </div>
+        </div>
     </div>
 </div>
