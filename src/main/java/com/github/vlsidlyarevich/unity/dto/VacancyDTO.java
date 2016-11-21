@@ -7,7 +7,6 @@ import lombok.ToString;
 import org.apache.commons.lang3.EnumUtils;
 
 import java.io.Serializable;
-import java.util.Date;
 
 
 @Data
@@ -16,8 +15,6 @@ public class VacancyDTO implements Serializable {
 
     private Speciality speciality;
     private JobType jobType;
-    private Date lastUpdateDate;
-    private Date datePosted;
     private String location;
     private String salary;
     private String description;
