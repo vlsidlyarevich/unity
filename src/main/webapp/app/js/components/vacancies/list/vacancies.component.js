@@ -59,7 +59,7 @@ function VacanciesController($scope, Vacancy, $route) {
 }
 
 angular.module('vacanciesGrid').component('vacanciesGrid', {
-    templateUrl: "app/js/components/workers/list/vacancies.component.html",
+    templateUrl: "app/js/components/vacancies/list/vacancies.component.html",
     controller: VacanciesController
 });
 
