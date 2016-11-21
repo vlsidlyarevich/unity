@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 1,
-  "__export_date": "2016-11-18T17:09:50.997Z",
+  "__export_date": "2016-11-21T17:58:25.355Z",
   "__export_source": "insomnia.chrome.app:v2.7.0",
   "items": [
     {
@@ -34,7 +34,7 @@
           "_id": "req_1475770462359",
           "url": "http://localhost:8080/api/workers",
           "method": "POST",
-          "body": "{\n    \"name\": {\n        \"firstName\": \"Johnny\",\n        \"middleName\": null,\n        \"lastName\": \"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"1973-11-19\",\n    \"imageId\":null,\n    \"linkedInUrl\":null,\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"\"\n}",
+          "body": "{\n    \"name\": {\n        \"firstName\": \"Johnny\",\n        \"lastName\": \"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":44,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"1973-11-19\",\n    \"imageId\":null,\n    \"linkedInUrl\":null,\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"\"\n}",
           "headers": [],
           "params": [],
           "authentication": {
@@ -51,9 +51,9 @@
         {
           "_type": "request",
           "_id": "req_1475770470722",
-          "url": "http://localhost:8080/api/workers/58",
+          "url": "http://localhost:8080/api/workers/19",
           "method": "PUT",
-          "body": "{\n    \"id\":\"5825b04b86131c108f33acb9\",\n    \"name\":{\n        \"firstName\":\"Johnny\",\n        \"middleName\":\"Updated\",\n        \"lastName\":\"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"1973-11-19\",\n    \"imageId\":\"imageUrl\",\n    \"linkedInUrl\":\"linked in url\",\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"Where is my cpt. Price?\"\n}",
+          "body": "{\n    \"id\":\"5825b04b86131c108f33acb9\",\n    \"name\":{\n        \"firstName\":\"Johnny\",\n        \"lastName\":\"Updated\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"1973-11-19\",\n    \"imageId\":\"imageUrl\",\n    \"linkedInUrl\":\"linked in url\",\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"Where is my cpt. Price?\"\n}",
           "headers": [],
           "params": [],
           "authentication": {
@@ -89,7 +89,7 @@
         {
           "_type": "request",
           "_id": "req_1475770517816",
-          "url": "http://localhost:8080/api/workers/58",
+          "url": "http://localhost:8080/api/workers/19",
           "method": "GET",
           "body": "{}",
           "headers": [],
@@ -118,7 +118,7 @@
           "_id": "req_1475785340052",
           "url": "http://localhost:8080/api/workers/search",
           "method": "POST",
-          "body": "{   \n    \"firstname\":\"Johnny\",\n    \"age\":\"43\"\n}",
+          "body": "{   \n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"age\":\"43\"\n}",
           "headers": [],
           "params": [],
           "authentication": {
@@ -131,6 +131,34 @@
             "panel_width": 0.5
           },
           "name": "find worker profile by filters"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1479634643894",
+          "url": "http://localhost:8080/api/workers/search",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [
+            {
+              "name": "firstName",
+              "value": "Johnny"
+            },
+            {
+              "name": "lastName",
+              "value": "McMillan"
+            }
+          ],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "find worker by name"
         }
       ]
     },
@@ -177,6 +205,109 @@
             "panel_width": 0.5
           },
           "name": "delete group"
+        }
+      ]
+    },
+    {
+      "_type": "request_group",
+      "_id": "grp_1479640172536",
+      "name": "vacancies",
+      "environments": {},
+      "requests": [
+        {
+          "_type": "request",
+          "_id": "req_1479640172536",
+          "url": "http://localhost:8080/api/vacancies",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "get vacancies"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1479640182894",
+          "url": "http://localhost:8080/api/vacancies",
+          "method": "POST",
+          "body": "{\n    \"jobType\":\"CONTRACT\",\n    \"location\":\"New York\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"salary\":\"4000 $ p/m\",\n    \"description\":\"Needed java developer with deep knowledge of AngularJs.\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "add vacancy"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1479640187998",
+          "url": "http://localhost:8080/api/vacancies/0",
+          "method": "PUT",
+          "body": "{\n    \"jobType\":\"PERMANENT\",\n    \"location\":\"New York\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"salary\":\"3000 $ p/m\",\n    \"description\":\"Needed PHP developer.\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "update vacancy"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1479640193291",
+          "url": "http://localhost:8080/api/vacancies/0",
+          "method": "DELETE",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "delete vacancy"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1479640200949",
+          "url": "http://localhost:8080/api/vacancies/0",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "get vacancy"
         }
       ]
     }
