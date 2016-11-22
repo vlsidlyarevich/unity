@@ -12,5 +12,6 @@ var unityApp = angular.module('unity', [
     'ngAnimate',
     'ngResource',
     'flow',
-    'dcbImgFallback'
+    'dcbImgFallback',
+    'ngDialog'
 ]);

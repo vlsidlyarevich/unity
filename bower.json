@@ -19,7 +19,8 @@
     "ng-flow": "~2",
     "flow.js": "~2",
     "angular-img-fallback": "0.2.0",
-    "arrive": "2.3.1"
+    "arrive": "2.3.1",
+    "ng-dialog": "0.6.4"
   },
   "overrides": {
     "bootstrap": {
