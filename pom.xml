@@ -49,7 +49,7 @@
         <profile>
             <id>dev</id>
             <properties>
-                <neo4j.uri>http://neo4j:test@localhost:7474</neo4j.uri>
+                <neo4j.uri>http://neo4j:unity@localhost:7474</neo4j.uri>
                 <skip.test>true</skip.test>
             </properties>
             <activation>
