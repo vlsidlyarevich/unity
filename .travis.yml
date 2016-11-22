@@ -5,7 +5,5 @@ services: neo4j
 before_install:
   - npm install -g bower
   - mvn -N io.takari:maven:wrapper
-script:
-  - mvn clean install -Ptravis
 after_success:
   - mvn clean test jacoco:report coveralls:report
