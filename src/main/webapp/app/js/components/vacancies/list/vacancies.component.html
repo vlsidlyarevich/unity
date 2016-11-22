@@ -1,3 +1,61 @@
 <div class="container-fluid">
+    <div class="header-panel col-sm-8 col-sm-offset-2">
+        <a href="#/new/vacancy" class="btn btn-raised btn-sm">New vacancy</a>
+        <a href="javascript:void(0)" class="btn btn-raised btn-sm" ng-click="deleteVacancies()">Delete vacancies</a>
+    </div>
 
+    <div class="well col-sm-8 col-sm-offset-2" ng-init="init()">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>
+                    <div class="checkbox text-center" style="margin-bottom: 0px">
+                        <label>
+                            <input type="checkbox" ng-click="selectAll()">
+                        </label>
+                    </div>
+                </th>
+                <th>Date posted</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in vacancies">
+                <td class="col-sm-1 text-center">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="item.delete">
+                        </label>
+                    </div>
+                </td>
+                <td class="col-sm-2">
+                    <p>{{item.createdAt | date:"MM/dd/yyyy 'at' h:mma"}}</p>
+                </td>
+                <td>
+                    <h4 class="list-group-item-heading">{{item.speciality.replace("_"," ")}}</h4>
+                    <p class="list-group-item-text">{{item.description}}</p>
+                </td>
+                <td align="right">
+                    <div class="btn-group">
+                        <a ng-click="editVacancy($index)" class="btn btn-default btn-raised  btn-xs">Edit</a>
+                        <button type="button" data-target="#" data-toggle="dropdown"
+                                class="btn btn-default btn-raised dropdown-toggle btn-xs">
+
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a ng-click="editVacancy($index)">Edit</a></li>
+                            <li><a href="javascript:void(0)">Another action</a></li>
+                            <li><a href="javascript:void(0)">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:void(0)" ng-click="deleteWorker(item.id)">Delete</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="list-group-separator" ng-repeat-end></div>
+    </div>
 </div>
