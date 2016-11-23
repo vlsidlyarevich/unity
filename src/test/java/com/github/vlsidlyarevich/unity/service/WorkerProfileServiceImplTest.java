@@ -44,7 +44,7 @@ public class WorkerProfileServiceImplTest {
 
         WorkerProfile saved = workerProfileService.create(dto);
 
-        Assert.assertEquals(ModelUtils.convertToModel(dto), workerProfileService.find(saved.getId()));
+        Assert.assertEquals(ModelUtils.convertToModel(dto), saved);
         Assert.assertNotNull(saved.getCreatedAt());
     }
 
