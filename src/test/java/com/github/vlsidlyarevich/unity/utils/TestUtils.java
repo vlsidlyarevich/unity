@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.utils;
 
+import com.github.vlsidlyarevich.unity.dto.VacancyDTO;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.*;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -59,4 +60,14 @@ public final class TestUtils {
         return vacancy;
     }
 
+    public static VacancyDTO generateVacancyDTO() {
+        VacancyDTO vacancyDTO = new VacancyDTO();
+        vacancyDTO.setSpeciality(Speciality.SOFTWARE_ENGINEER);
+        vacancyDTO.setSalary(getRandomInt(0, 2000).toString());
+        vacancyDTO.setJobType(JobType.CONTRACT);
+        vacancyDTO.setDescription(getRandomString(20));
+        vacancyDTO.setLocation(getRandomString(10));
+
+        return vacancyDTO;
+    }
 }
