@@ -1,9 +1,36 @@
 {
   "_type": "export",
   "__export_format": 1,
-  "__export_date": "2016-11-21T17:58:25.355Z",
+  "__export_date": "2016-11-24T13:03:52.607Z",
   "__export_source": "insomnia.chrome.app:v2.7.0",
   "items": [
+    {
+      "_type": "request_group",
+      "_id": "grp_1479976143255",
+      "name": "Generator",
+      "environments": {},
+      "requests": [
+        {
+          "_type": "request",
+          "_id": "req_1479976143255",
+          "url": "http://localhost:9997/generate/rdpl",
+          "method": "POST",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "generate shop"
+        }
+      ]
+    },
     {
       "_type": "request_group",
       "_id": "grp_1475770452945",
@@ -308,6 +335,52 @@
             "panel_width": 0.5
           },
           "name": "get vacancy"
+        }
+      ]
+    },
+    {
+      "_type": "request_group",
+      "_id": "grp_1479982060582",
+      "name": "Vacancy delete",
+      "environments": {},
+      "requests": [
+        {
+          "_type": "request",
+          "_id": "req_1479982060582",
+          "url": "http://localhost:8080/api/vacancies/delete",
+          "method": "POST",
+          "body": "{ \"id\": \"all\" }",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "delete all"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1479982101280",
+          "url": "http://localhost:8080/api/vacancies/delete",
+          "method": "POST",
+          "body": "{ \"id\": 58 }",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "delete group"
         }
       ]
     }
