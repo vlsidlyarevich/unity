@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -71,6 +72,26 @@ public class VacancyServiceImpl implements VacancyService {
     public Long delete(Long id) {
         repository.delete(id);
         return id;
+    }
+
+    @Override
+    public Integer deleteQuery(Map<String, String> ids) {
+        Integer deleteCounter = 0;
+
+        if (ids.keySet().size() == 1 && ids.containsValue("all")) {
+            deleteCounter = Math.toIntExact(repository.count());
+            repository.deleteAll();
+
+            return deleteCounter;
+        }
+
+        for (Map.Entry<String, String> id : ids.entrySet()) {
+            if (repository.exists(Long.valueOf(id.getValue()))) {
+                repository.delete(Long.valueOf(id.getValue()));
+                deleteCounter++;
+            }
+        }
+        return deleteCounter;
     }
 
     @Override

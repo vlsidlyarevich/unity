@@ -45,4 +45,10 @@ public class ControllerLoggingAspect {
         logger.info("Vacancy controller : " + joinPoint.getSignature().getName()
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
     }
+
+    @Before("execution(* com.github.vlsidlyarevich.unity.controller.VacancyDeleteQueryController.*(..)))")
+    public void vacancyDeleteQueryControllerLog(JoinPoint joinPoint) {
+        logger.info("Vacancy controller : " + joinPoint.getSignature().getName()
+                + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
+    }
 }
