@@ -1,38 +1,77 @@
+<form class="form-horizontal" role="form">
 
-<!--<div class="modal fade">-->
-    <!--<div class="modal-dialog modal-lg">-->
-        <!--<div class="modal-content">-->
-            <!--<div class="modal-header">-->
-                <!--<button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-                <!--<h4 class="modal-title">{{title}}</h4>-->
-            <!--</div>-->
-            <!--<div class="modal-body">-->
-                <!--<p>Here's a more complex modal, it contains a form, data is passed to the controller-->
-                    <!--and data is returned from the modal.</p>-->
+    <fieldset>
+        <legend>Edit vacancy</legend>
 
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Name</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="name" placeholder="Your Name" ng-model="name">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="age" class="col-sm-2 control-label">Age</label>
-                        <div class="col-sm-10">
-                            <input type="number" class="form-control" id="inputPassword3" placeholder="Age" ng-model="age">
-                        </div>
-                    </div>
-                </form>
+        <div class="form-group">
+            <label for="speciality" class="col-md-2 control-label">Apply to the position</label>
+            <div class="col-sm-10">
+                <select id="speciality" class="form-control" ng-model="vacancy.speciality" required>
+                    <option value="">Please select</option>
+                    <option value="UNKNOWN">Unknown</option>
+                    <option value="SOFTWARE_ENGINEER">Software Engineer</option>
+                    <option value="BUSINESS_ANALYST">Business Analyst</option>
+                    <option value="PROJECT_MANAGER">Project Manager</option>
+                    <option value="TECHNICAL_LEADER">Technical Leader</option>
+                    <option value="QUALITY_ASSURANCE">Quality Assurance</option>
+                    <option value="RESOURCE_MANAGER">Resource Manager</option>
+                    <option value="SYSTEM_ADMINISTRATOR">System Administrator</option>
+                </select>
+            </div>
+        </div>
 
-            <!--</div>-->
-            <!--<div class="modal-footer">-->
-                <!--<button type="button" ng-click="close()" class="btn btn-primary" data-dismiss="modal">OK</button>-->
-                <!--<button type="button" ng-click="cancel()" class="btn">Cancel</button>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
-<!--<div>-->
-    <!--External template-->
-<!--</div>-->
+        <div class="form-group">
+            <label class="col-md-2 control-label">Job type</label>
+
+            <div class="col-sm-10">
+                <div class="radio radio-primary">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="CONTRACT" checked=""
+                               ng-model="vacancy.jobType">
+                        Contract
+                    </label>
+                </div>
+                <div class="radio radio-primary">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="PERMANENT"
+                               ng-model="vacancy.jobType">
+                        Permanent
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="salary" class="col-md-2 control-label">Salary</label>
+
+            <div class="col-sm-10">
+                <input class="form-control" id="salary" placeholder="Salary"
+                       ng-model="vacancy.salary">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="location" class="col-md-2 control-label">Description</label>
+
+            <div class="col-sm-10">
+                <input class="form-control" id="location" placeholder="Location"
+                       ng-model="vacancy.location">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description" class="col-md-2 control-label">Description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="3" id="description" ng-model="vacancy.description"></textarea>
+                <span class="help-block">Input description or additional information of vacancy</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <button type="button" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
