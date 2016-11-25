@@ -1,7 +1,8 @@
 <div class="container-fluid">
     <div class="header-panel col-sm-8 col-sm-offset-2">
         <a href="#/new/vacancy" class="btn btn-raised btn-sm">New vacancy</a>
-        <a href="javascript:void(0)" class="btn btn-raised btn-sm" data-target="#confirmationModal">Delete vacancies</a>
+        <a href="javascript:void(0)" class="btn btn-raised btn-sm" data-toggle="modal" data-target="#confirmationModal">Delete
+            vacancies</a>
     </div>
 
     <div class="well col-sm-8 col-sm-offset-2" ng-init="init()">
@@ -72,7 +73,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteVacancies()">Delete</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteVacancies()">Delete
+                </button>
             </div>
         </div>
     </div>
