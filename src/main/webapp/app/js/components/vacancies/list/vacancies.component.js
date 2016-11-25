@@ -8,8 +8,12 @@ function VacanciesController($scope, Vacancy, VacancyDelete, $route, ngDialog) {
     };
 
     $scope.editVacancy = function ($index) {
+        $scope.selectedVacancy = this.vacancies[$index];
+        $scope.ngDialog = ngDialog;
         ngDialog.open({
-            template: 'app/js/components/vacancies/edit/vacancies.edit.modal.html'
+            template: 'app/js/components/vacancies/edit/vacancies.edit.modal.html',
+            controller: 'VacanciesEditController',
+            scope:$scope
         });
     };
 
