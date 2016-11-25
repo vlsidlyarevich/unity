@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="header-panel col-sm-8 col-sm-offset-2">
         <a href="#/new/vacancy" class="btn btn-raised btn-sm">New vacancy</a>
-        <a href="javascript:void(0)" class="btn btn-raised btn-sm" ng-click="deleteVacancies()">Delete vacancies</a>
+        <a href="javascript:void(0)" class="btn btn-raised btn-sm" data-target="#confirmationModal">Delete vacancies</a>
     </div>
 
     <div class="well col-sm-8 col-sm-offset-2" ng-init="init()">
@@ -11,7 +11,7 @@
                 <th>
                     <div class="checkbox text-center" style="margin-bottom: 0px">
                         <label>
-                            <input type="checkbox" ng-click="selectAll()">
+                            <input type="checkbox" ng-click="selectAll()" ng-checked="verifyAllSelected()">
                         </label>
                     </div>
                 </th>
@@ -57,5 +57,23 @@
             </tbody>
         </table>
         <div class="list-group-separator" ng-repeat-end></div>
+    </div>
+</div>
+
+<div class="modal" id="confirmationModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title">Are you sure?</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure to delete selected vacancies?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteVacancies()">Delete</button>
+            </div>
+        </div>
     </div>
 </div>

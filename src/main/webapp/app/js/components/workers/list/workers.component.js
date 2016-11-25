@@ -7,6 +7,12 @@ function WorkersController($scope, Worker, WorkerDelete, $route) {
         $scope.workers = Worker.query();
     };
 
+    $scope.verifyAllSelected = function () {
+        return this.workers.filter(function (item) {
+                return item.delete === true;
+            }).length === this.workers.length;
+    };
+
     $scope.getImageUrl = function (id) {
         return serverUrl + 'images/' + id;
     };

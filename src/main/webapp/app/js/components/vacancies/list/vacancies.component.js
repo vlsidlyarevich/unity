@@ -7,6 +7,12 @@ function VacanciesController($scope, Vacancy, VacancyDelete, $route, ngDialog) {
         $scope.vacancies = Vacancy.query();
     };
 
+    $scope.verifyAllSelected = function () {
+        return this.vacancies.filter(function (item) {
+                return item.delete === true;
+            }).length === this.vacancies.length;
+    };
+
     $scope.editVacancy = function ($index) {
         $scope.selectedVacancy = this.vacancies[$index];
         $scope.ngDialog = ngDialog;
