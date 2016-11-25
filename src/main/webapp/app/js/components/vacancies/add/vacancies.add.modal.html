@@ -1,0 +1,77 @@
+<form class="form-horizontal" role="form" ng-submit="submit()">
+
+    <fieldset>
+        <legend>Edit vacancy</legend>
+
+        <div class="form-group">
+            <label for="speciality" class="col-md-2 control-label">Apply to the position</label>
+            <div class="col-sm-10">
+                <select id="speciality" class="form-control" ng-model="vacancy.speciality" required>
+                    <option value="">Please select</option>
+                    <option value="UNKNOWN">Unknown</option>
+                    <option value="SOFTWARE_ENGINEER">Software Engineer</option>
+                    <option value="BUSINESS_ANALYST">Business Analyst</option>
+                    <option value="PROJECT_MANAGER">Project Manager</option>
+                    <option value="TECHNICAL_LEADER">Technical Leader</option>
+                    <option value="QUALITY_ASSURANCE">Quality Assurance</option>
+                    <option value="RESOURCE_MANAGER">Resource Manager</option>
+                    <option value="SYSTEM_ADMINISTRATOR">System Administrator</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Job type</label>
+
+            <div class="col-sm-10">
+                <div class="radio radio-primary">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="CONTRACT" checked=""
+                               ng-model="vacancy.jobType">
+                        Contract
+                    </label>
+                </div>
+                <div class="radio radio-primary">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="PERMANENT"
+                               ng-model="vacancy.jobType">
+                        Permanent
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="salary" class="col-md-2 control-label">Salary</label>
+
+            <div class="col-sm-10">
+                <input class="form-control" id="salary" placeholder="Salary"
+                       ng-model="vacancy.salary">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="location" class="col-md-2 control-label">Location</label>
+
+            <div class="col-sm-10">
+                <input class="form-control" id="location" placeholder="Location"
+                       ng-model="vacancy.location">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description" class="col-md-2 control-label">Description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="3" id="description" ng-model="vacancy.description"></textarea>
+                <span class="help-block">Input description or additional information of vacancy</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-default" ng-click="close()">Cancel</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

@@ -19,7 +19,16 @@ function VacanciesController($scope, Vacancy, VacancyDelete, $route, ngDialog) {
         ngDialog.open({
             template: 'app/js/components/vacancies/edit/vacancies.edit.modal.html',
             controller: 'VacanciesEditController',
-            scope:$scope
+            scope: $scope
+        });
+    };
+
+    $scope.addVacancy = function () {
+        $scope.ngDialog = ngDialog;
+        ngDialog.open({
+            template: 'app/js/components/vacancies/add/vacancies.add.modal.html',
+            controller: 'VacanciesAddController',
+            scope: $scope
         });
     };
 
