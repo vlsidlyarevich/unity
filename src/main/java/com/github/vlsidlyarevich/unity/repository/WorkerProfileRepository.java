@@ -23,9 +23,9 @@ public interface WorkerProfileRepository extends GraphRepository<WorkerProfile> 
 
     List<WorkerProfile> findAllBySpeciality(Speciality speciality);
 
-    @Query("MATCH (worker:Worker)-[r:HAS_NAME]->(name:Name) WHERE id(worker) = {0} DELETE worker,r,name")
+    @Query("MATCH (worker:Worker)-[r:HAS_NAME]->(name:Name) WHERE id(worker) = {0} DELETE r,worker,name")
     void delete(Long id);
 
-    @Query("MATCH (worker:Worker)-[r:HAS_NAME]->(name:Name) DELETE worker,r,name")
+    @Query("MATCH (worker:Worker)-[r:HAS_NAME]->(name:Name) DELETE r,worker,name")
     void deleteAll();
 }

@@ -14,7 +14,4 @@ public interface WorkerProfileService extends BaseService<WorkerProfile, WorkerP
 
     List<WorkerProfile> findAllByAge(Integer age);
 
-    Integer deleteQuery(Map<String, String> ids);
-
-    Integer deleteAll();
 }

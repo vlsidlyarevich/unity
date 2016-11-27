@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
+//TODO:// FIXME: 27/11/16
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class VacancyServiceImplTest {
@@ -54,7 +55,6 @@ public class VacancyServiceImplTest {
 
         Assert.assertEquals(ModelUtils.convertToModel(vacancyDTO), vacancyService.find(saved.getId()));
         Assert.assertNotNull(saved.getCreatedAt());
-
     }
 
     @Test

@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.repository;
 
 import com.github.vlsidlyarevich.unity.model.Candidate;
+import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.model.Vacancy;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.junit.After;
@@ -22,14 +23,19 @@ public class VacancyRepositoryTest {
     @Autowired
     private VacancyRepository vacancyRepository;
 
+    @Autowired
+    private CandidateRepository candidateRepository;
+
     @Before
     public void setUp() {
         vacancyRepository.deleteAll();
+        candidateRepository.deleteAll();
     }
 
     @After
-    public void clear() {
+    public void after() {
         vacancyRepository.deleteAll();
+        candidateRepository.deleteAll();
     }
 
     private Vacancy vacancy;
@@ -37,8 +43,7 @@ public class VacancyRepositoryTest {
     @Test
     public void saveTest() throws Exception {
         vacancy = TestUtils.generateVacancy();
-        Candidate candidate = new Candidate();
-        candidate.setGithubUrl("git");
+        Candidate candidate = TestUtils.generateCandidate();
         vacancy.addCandidate(candidate);
 
         vacancyRepository.save(vacancy);
@@ -48,8 +53,7 @@ public class VacancyRepositoryTest {
     @Test
     public void findByIdTest() throws Exception {
         vacancy = TestUtils.generateVacancy();
-        Candidate candidate = new Candidate();
-        candidate.setGithubUrl("git");
+        Candidate candidate = TestUtils.generateCandidate();
         vacancy.addCandidate(candidate);
 
         vacancyRepository.save(vacancy);
@@ -60,8 +64,7 @@ public class VacancyRepositoryTest {
     @Test
     public void findByLocationTest() throws Exception {
         vacancy = TestUtils.generateVacancy();
-        Candidate candidate = new Candidate();
-        candidate.setGithubUrl("git");
+        Candidate candidate = TestUtils.generateCandidate();
         vacancy.addCandidate(candidate);
 
         vacancyRepository.save(vacancy);
@@ -74,8 +77,7 @@ public class VacancyRepositoryTest {
     @Test
     public void findByJobTypeTest() throws Exception {
         vacancy = TestUtils.generateVacancy();
-        Candidate candidate = new Candidate();
-        candidate.setGithubUrl("git");
+        Candidate candidate = TestUtils.generateCandidate();
         vacancy.addCandidate(candidate);
 
         vacancyRepository.save(vacancy);
@@ -88,8 +90,7 @@ public class VacancyRepositoryTest {
     @Test
     public void findAllBySpecialityTest() throws Exception {
         vacancy = TestUtils.generateVacancy();
-        Candidate candidate = new Candidate();
-        candidate.setGithubUrl("git");
+        Candidate candidate = TestUtils.generateCandidate();
         vacancy.addCandidate(candidate);
 
         vacancyRepository.save(vacancy);

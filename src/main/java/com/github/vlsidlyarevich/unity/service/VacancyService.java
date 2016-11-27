@@ -15,7 +15,4 @@ public interface VacancyService extends BaseService<Vacancy, VacancyDTO> {
 
     List<Vacancy> findByJobType(JobType jobType);
 
-    Integer deleteQuery(Map<String, String> ids);
-
-    Integer deleteAll();
 }
