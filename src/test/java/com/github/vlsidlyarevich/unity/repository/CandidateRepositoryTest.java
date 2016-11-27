@@ -58,6 +58,7 @@ public class CandidateRepositoryTest {
     @Test
     public void deleteAllTest() throws Exception {
         Candidate candidate = TestUtils.generateCandidate();
+        candidateRepository.save(candidate);
 
         candidateRepository.deleteAll();
 

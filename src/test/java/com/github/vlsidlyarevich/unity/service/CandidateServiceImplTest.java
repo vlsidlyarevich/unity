@@ -37,12 +37,15 @@ public class CandidateServiceImplTest {
     private VacancyRepository vacancyRepository;
 
     @Before
-    public void before() {
+    public void before()
+    {
+        repository.deleteAll();
         vacancyRepository.deleteAll();
     }
 
     @After
     public void after() {
+        repository.deleteAll();
         vacancyRepository.deleteAll();
     }
 
@@ -100,8 +103,15 @@ public class CandidateServiceImplTest {
         assertTrue(CollectionUtils.isEqualCollection(candidates, service.findAll(vacancy.getId())));
     }
 
+    //TODO
     @Test
     public void updateTest() throws Exception {
+
+    }
+
+    //TODO
+    @Test
+    public void updateNotExistTest() throws Exception {
 
     }
 
