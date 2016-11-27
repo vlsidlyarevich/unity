@@ -15,6 +15,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
+import static com.github.vlsidlyarevich.unity.service.mapper.ModelMapper.*;
+
 
 @Service
 public class VacancyServiceImpl implements VacancyService {
@@ -24,7 +26,7 @@ public class VacancyServiceImpl implements VacancyService {
 
     @Override
     public Vacancy create(VacancyDTO dto) {
-        Vacancy vacancy = ModelMapper.convertToModel(dto);
+        Vacancy vacancy = convertToModel(dto);
         vacancy.setCreatedAt(String.valueOf(LocalDateTime.now()));
         repository.save(vacancy);
 
@@ -53,7 +55,7 @@ public class VacancyServiceImpl implements VacancyService {
 
     @Override
     public Vacancy update(Long id, VacancyDTO dto) {
-        Vacancy vacancy = ModelMapper.convertToModel(dto);
+        Vacancy vacancy = convertToModel(dto);
         vacancy.setId(id);
 
         Vacancy saved = repository.findOne(id);

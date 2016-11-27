@@ -17,6 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.github.vlsidlyarevich.unity.service.mapper.ModelMapper.*;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -49,7 +51,7 @@ public class WorkerProfileSearchServiceImplTest {
         HashMap<String, String> map = new HashMap<>();
         map.put("skype", workerProfile.getSkype());
         List<WorkerProfile> workerProfiles = workerProfileSearchService.find(map);
-        Assert.assertEquals(ModelMapper.convertToModel(workerProfile), workerProfiles.get(0));
+        Assert.assertEquals(convertToModel(workerProfile), workerProfiles.get(0));
     }
 
     @Test
@@ -63,6 +65,6 @@ public class WorkerProfileSearchServiceImplTest {
         map.put("speciality", workerProfile.getSpeciality().name());
 
         List<WorkerProfile> workerProfiles = workerProfileSearchService.find(map);
-        Assert.assertEquals(ModelMapper.convertToModel(workerProfile), workerProfiles.get(0));
+        Assert.assertEquals(convertToModel(workerProfile), workerProfiles.get(0));
     }
 }

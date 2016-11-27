@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
+import static com.github.vlsidlyarevich.unity.service.mapper.ModelMapper.*;
+
 
 @Service
 public class WorkerProfileServiceImpl implements WorkerProfileService {
@@ -23,7 +25,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
 
     @Override
     public WorkerProfile create(WorkerProfileDTO dto) {
-        WorkerProfile workerProfile = ModelMapper.convertToModel(dto);
+        WorkerProfile workerProfile = convertToModel(dto);
         workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
         workerProfile.getName().setCreatedAt(String.valueOf(LocalDateTime.now()));
         repository.save(workerProfile);
@@ -52,7 +54,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
 
     @Override
     public WorkerProfile update(Long id, WorkerProfileDTO dto) {
-        WorkerProfile workerProfile = ModelMapper.convertToModel(dto);
+        WorkerProfile workerProfile = convertToModel(dto);
         workerProfile.setId(id);
 
         WorkerProfile saved = repository.findOne(id);

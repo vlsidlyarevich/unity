@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static com.github.vlsidlyarevich.unity.service.mapper.ModelMapper.*;
+
 
 //TODO:// FIXME: 27/11/16
 @RunWith(SpringRunner.class)
@@ -43,7 +45,7 @@ public class VacancyServiceImplTest {
 
         Vacancy saved = vacancyService.create(vacancyDTO);
 
-        Assert.assertEquals(ModelMapper.convertToModel(vacancyDTO), saved);
+        Assert.assertEquals(convertToModel(vacancyDTO), saved);
         Assert.assertNotNull(saved.getCreatedAt());
     }
 
@@ -53,7 +55,7 @@ public class VacancyServiceImplTest {
 
         Vacancy saved = vacancyService.create(vacancyDTO);
 
-        Assert.assertEquals(ModelMapper.convertToModel(vacancyDTO), vacancyService.find(saved.getId()));
+        Assert.assertEquals(convertToModel(vacancyDTO), vacancyService.find(saved.getId()));
         Assert.assertNotNull(saved.getCreatedAt());
     }
 
