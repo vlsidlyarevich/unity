@@ -47,7 +47,7 @@ public class VacancyRepositoryTest {
         vacancy.addCandidate(candidate);
 
         vacancyRepository.save(vacancy);
-        Assert.assertEquals(vacancyRepository.count(), 1L);
+        Assert.assertEquals(1L, vacancyRepository.count());
     }
 
     @Test
