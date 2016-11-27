@@ -21,6 +21,7 @@ public class CandidateServiceImpl implements CandidateService {
     @Autowired
     private VacancyRepository vacancyRepository;
 
+
     @Override
     public Candidate create(CandidateDTO object) {
         return null;
@@ -37,7 +38,7 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public Long update(Long id, CandidateDTO object) {
+    public Candidate update(Long id, CandidateDTO object) {
         return null;
     }
 

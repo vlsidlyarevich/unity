@@ -15,7 +15,7 @@ public interface BaseService<T extends BaseEntity, S extends Serializable> {
 
     List<T> findAll();
 
-    Long update(Long id, S object);
+    T update(Long id, S object);
 
     Long delete(Long id);
 
