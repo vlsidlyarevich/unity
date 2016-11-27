@@ -3,8 +3,8 @@ package com.github.vlsidlyarevich.unity.service;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
-import com.github.vlsidlyarevich.unity.service.mapper.ModelMapper;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,8 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.github.vlsidlyarevich.unity.service.mapper.ModelMapper.convertToModel;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 
 @RunWith(SpringRunner.class)
@@ -97,7 +96,7 @@ public class WorkerProfileServiceImplTest {
         workerProfileService.create(firstDto);
         workerProfileService.create(secondDto);
 
-        assertThat(savedWorkers, is(workerProfileService.findAll()));
+        assertTrue(CollectionUtils.isEqualCollection(savedWorkers, workerProfileService.findAll()));
     }
 
     @Test
