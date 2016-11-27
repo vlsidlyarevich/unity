@@ -4,6 +4,7 @@ import com.github.vlsidlyarevich.unity.dto.VacancyDTO;
 import com.github.vlsidlyarevich.unity.model.JobType;
 import com.github.vlsidlyarevich.unity.model.Speciality;
 import com.github.vlsidlyarevich.unity.model.Vacancy;
+import com.github.vlsidlyarevich.unity.service.common.BaseService;
 
 import java.util.List;
 

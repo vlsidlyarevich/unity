@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.service;
+package com.github.vlsidlyarevich.unity.service.common;
 
 import com.github.vlsidlyarevich.unity.model.BaseEntity;
 
