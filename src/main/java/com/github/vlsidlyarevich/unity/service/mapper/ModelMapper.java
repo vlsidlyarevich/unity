@@ -1,7 +1,9 @@
 package com.github.vlsidlyarevich.unity.service.mapper;
 
+import com.github.vlsidlyarevich.unity.dto.CandidateDTO;
 import com.github.vlsidlyarevich.unity.dto.VacancyDTO;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
+import com.github.vlsidlyarevich.unity.model.Candidate;
 import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.model.Vacancy;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
@@ -39,5 +41,20 @@ public final class ModelMapper {
         vacancy.setDescription(dto.getDescription() != null ? dto.getDescription() : "");
 
         return vacancy;
+    }
+
+    public static Candidate convertToModel(CandidateDTO dto) {
+        Candidate candidate = new Candidate();
+        candidate.setName(dto.getName() != null ? dto.getName() : (new Name()));
+        candidate.setAge(dto.getAge());
+        candidate.setGender(dto.getGender());
+        candidate.setImageId(dto.getImageId());
+        candidate.setBirthday(dto.getBirthday() != null ? dto.getBirthday() : "");
+        candidate.setSkype(dto.getSkype() != null ? dto.getSkype() : "");
+        candidate.setHrSkype(dto.getHrSkype() != null ? dto.getHrSkype() : "");
+        candidate.setGithubUrl(dto.getGithubUrl() != null ? dto.getGithubUrl() : "");
+        candidate.setLinkedInUrl(dto.getLinkedInUrl() != null ? dto.getLinkedInUrl() : "");
+
+        return candidate;
     }
 }

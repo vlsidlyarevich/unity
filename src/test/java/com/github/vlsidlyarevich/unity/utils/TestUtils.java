@@ -1,10 +1,13 @@
 package com.github.vlsidlyarevich.unity.utils;
 
+import com.github.vlsidlyarevich.unity.dto.CandidateDTO;
 import com.github.vlsidlyarevich.unity.dto.VacancyDTO;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
+
+import java.util.HashSet;
 
 
 public final class TestUtils {
@@ -56,6 +59,7 @@ public final class TestUtils {
         vacancy.setJobType(JobType.CONTRACT);
         vacancy.setDescription(getRandomString(20));
         vacancy.setLocation(getRandomString(10));
+        vacancy.setCandidates(new HashSet<>());
 
         return vacancy;
     }
@@ -73,6 +77,7 @@ public final class TestUtils {
 
     public static Candidate generateCandidate() {
         Candidate candidate = new Candidate();
+        candidate.setGender(Gender.MALE);
         candidate.setName(new Name(getRandomString(MAX_STRING_LENGTH), getRandomString(MAX_STRING_LENGTH)));
         candidate.setGithubUrl(getRandomString(MAX_STRING_LENGTH) + "@git");
         candidate.setHrSkype(getRandomString(MAX_STRING_LENGTH));
@@ -80,5 +85,17 @@ public final class TestUtils {
         candidate.setImageId(getRandomString(MAX_STRING_LENGTH));
 
         return candidate;
+    }
+
+    public static CandidateDTO generateCandidateDTO() {
+        CandidateDTO dto = new CandidateDTO();
+        dto.setGender(Gender.MALE);
+        dto.setName(new Name(getRandomString(MAX_STRING_LENGTH), getRandomString(MAX_STRING_LENGTH)));
+        dto.setGithubUrl(getRandomString(MAX_STRING_LENGTH) + "@git");
+        dto.setHrSkype(getRandomString(MAX_STRING_LENGTH));
+        dto.setLinkedInUrl("https://www.linkedin.com/in" + getRandomString(MAX_STRING_LENGTH));
+        dto.setImageId(getRandomString(MAX_STRING_LENGTH));
+
+        return dto;
     }
 }
