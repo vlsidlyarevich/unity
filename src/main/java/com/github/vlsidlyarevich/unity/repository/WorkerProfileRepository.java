@@ -13,9 +13,6 @@ import java.util.List;
 @Repository
 public interface WorkerProfileRepository extends GraphRepository<WorkerProfile> {
 
-    @Query("MATCH (n) WHERE id(n) = {0} RETURN n")
-    WorkerProfile findById(Long id);
-
     @Query("MATCH (worker:Worker)-[:HAS_NAME]->(name:Name) " +
             "WHERE name.firstName = {firstName} " +
             "AND name.lastName = {lastName}" +

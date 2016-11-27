@@ -40,7 +40,7 @@ public class WorkerProfileRepositoryTest {
 
         workerProfileRepository.save(saved);
 
-        Assert.assertEquals(saved, workerProfileRepository.findById(saved.getId()));
+        Assert.assertEquals(saved, workerProfileRepository.findOne(saved.getId()));
     }
 
     @Test

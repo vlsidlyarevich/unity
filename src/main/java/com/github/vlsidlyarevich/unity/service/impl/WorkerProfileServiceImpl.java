@@ -32,7 +32,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
 
     @Override
     public WorkerProfile find(Long id) {
-        return repository.findById(id);
+        return repository.findOne(id);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
         WorkerProfile workerProfile = ModelUtils.convertToModel(dto);
         workerProfile.setId(id);
 
-        WorkerProfile saved = repository.findById(id);
+        WorkerProfile saved = repository.findOne(id);
 
         if (saved != null) {
             workerProfile.getName().setId(saved.getName().getId());

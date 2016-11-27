@@ -33,7 +33,7 @@ public class VacancyServiceImpl implements VacancyService {
 
     @Override
     public Vacancy find(Long id) {
-        return repository.findById(id);
+        return repository.findOne(id);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class VacancyServiceImpl implements VacancyService {
         Vacancy vacancy = ModelUtils.convertToModel(dto);
         vacancy.setId(id);
 
-        Vacancy saved = repository.findById(id);
+        Vacancy saved = repository.findOne(id);
 
         if (saved != null) {
             vacancy.setCreatedAt(saved.getCreatedAt());

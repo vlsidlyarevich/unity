@@ -54,7 +54,7 @@ public class VacancyRepositoryTest {
 
         vacancyRepository.save(vacancy);
 
-        Assert.assertEquals(vacancy, vacancyRepository.findById(vacancy.getId()));
+        Assert.assertEquals(vacancy, vacancyRepository.findOne(vacancy.getId()));
     }
 
     @Test
