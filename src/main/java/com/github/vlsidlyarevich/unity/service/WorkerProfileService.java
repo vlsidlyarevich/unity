@@ -5,7 +5,6 @@ import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 
 import java.util.List;
-import java.util.Map;
 
 
 public interface WorkerProfileService extends BaseService<WorkerProfile, WorkerProfileDTO> {
@@ -13,5 +12,4 @@ public interface WorkerProfileService extends BaseService<WorkerProfile, WorkerP
     WorkerProfile findByName(Name name);
 
     List<WorkerProfile> findAllByAge(Integer age);
-
 }

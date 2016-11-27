@@ -3,16 +3,13 @@ package com.github.vlsidlyarevich.unity.model;
 import lombok.Data;
 import lombok.ToString;
 import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
 
 
 @Data
 @ToString
 @NodeEntity(label = "Candidate")
-public class Candidate extends BaseEntity {
+public class Candidate extends Person {
 
-    @Relationship(type = "HAS_NAME")
-    private Name name;
     private String hrSkype;
     private String skype;
     private String githubUrl;
@@ -20,14 +17,20 @@ public class Candidate extends BaseEntity {
     private String imageId;
 
     public Candidate() {
+
     }
 
     public Candidate(Name name) {
-        this.name = name;
+        super(name);
     }
 
-    public Candidate(Name name, String hrSkype, String skype, String githubUrl, String linkedInUrl, String imageId) {
-        this.name = name;
+    public Candidate(String firstName, String lastName) {
+        super(new Name(firstName, lastName));
+    }
+
+    public Candidate(Name name, Integer age, Gender gender, String birthday, String hrSkype,
+                     String skype, String githubUrl, String linkedInUrl, String imageId) {
+        super(name, age, gender, birthday);
         this.hrSkype = hrSkype;
         this.skype = skype;
         this.githubUrl = githubUrl;
@@ -35,3 +38,4 @@ public class Candidate extends BaseEntity {
         this.imageId = imageId;
     }
 }
+

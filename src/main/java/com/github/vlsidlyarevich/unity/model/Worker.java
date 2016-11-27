@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.lang3.EnumUtils;
 import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -14,20 +13,16 @@ import javax.annotation.PostConstruct;
 @ToString
 @Component
 @NodeEntity(label = "Worker")
-public class Worker extends BaseEntity {
+public class Worker extends Person {
 
-    @Relationship(type = "HAS_NAME", direction = Relationship.OUTGOING)
-    private Name name;
-    private Integer age;
     private String email;
     private String phone;
-    private Gender gender;
     private Speciality speciality;
 
 
     @PostConstruct
     public void init() {
-        this.gender = Gender.MALE;
+        this.setGender(Gender.MALE);
         this.speciality = Speciality.UNKNOWN;
     }
 
@@ -36,16 +31,18 @@ public class Worker extends BaseEntity {
     }
 
     public Worker(Name name) {
-        this.name = name;
+        super(name);
     }
 
     public Worker(String firstName, String lastName) {
-        this.name = new Name(firstName, lastName);
+        super(new Name(firstName, lastName));
     }
 
-    public Worker(Name name, Integer age, Speciality speciality) {
-        this.name = name;
-        this.age = age;
+    public Worker(Name name, Integer age, Gender gender, String birthday,
+                  String email, String phone, Speciality speciality) {
+        super(name, age, gender, birthday);
+        this.email = email;
+        this.phone = phone;
         this.speciality = speciality;
     }
 
@@ -57,15 +54,5 @@ public class Worker extends BaseEntity {
 
     public void setSpeciality(Speciality speciality) {
         this.speciality = speciality;
-    }
-
-    public void setGender(String gender) {
-        if (EnumUtils.isValidEnum(Gender.class, gender)) {
-            this.gender = Gender.valueOf(gender);
-        }
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
     }
 }

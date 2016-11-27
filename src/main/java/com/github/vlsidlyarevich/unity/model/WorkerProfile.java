@@ -10,7 +10,6 @@ public class WorkerProfile extends Worker {
 
     private String imageId;
     private String description;
-    private String birthday;
     private String skype;
     private String githubUrl;
     private String linkedInUrl;
