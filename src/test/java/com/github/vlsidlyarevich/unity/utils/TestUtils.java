@@ -70,4 +70,15 @@ public final class TestUtils {
 
         return vacancyDTO;
     }
+
+    public static Candidate generateCandidate() {
+        Candidate candidate = new Candidate();
+        candidate.setName(new Name(getRandomString(MAX_STRING_LENGTH), getRandomString(MAX_STRING_LENGTH)));
+        candidate.setGithubUrl(getRandomString(MAX_STRING_LENGTH) + "@git");
+        candidate.setHrSkype(getRandomString(MAX_STRING_LENGTH));
+        candidate.setLinkedInUrl("https://www.linkedin.com/in" + getRandomString(MAX_STRING_LENGTH));
+        candidate.setImageId(getRandomString(MAX_STRING_LENGTH));
+
+        return candidate;
+    }
 }

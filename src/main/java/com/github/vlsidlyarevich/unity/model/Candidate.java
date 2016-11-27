@@ -11,12 +11,13 @@ import org.neo4j.ogm.annotation.Relationship;
 @NodeEntity(label = "Candidate")
 public class Candidate extends BaseEntity {
 
-    @Relationship(type = "HAS")
+    @Relationship(type = "HAS_NAME")
     private Name name;
-    private String HrSkype;
+    private String hrSkype;
     private String skype;
     private String githubUrl;
     private String linkedInUrl;
+    private String imageId;
 
     public Candidate() {
     }
@@ -25,11 +26,12 @@ public class Candidate extends BaseEntity {
         this.name = name;
     }
 
-    public Candidate(Name name, String hrSkype, String skype, String githubUrl, String linkedInUrl) {
+    public Candidate(Name name, String hrSkype, String skype, String githubUrl, String linkedInUrl, String imageId) {
         this.name = name;
-        HrSkype = hrSkype;
+        this.hrSkype = hrSkype;
         this.skype = skype;
         this.githubUrl = githubUrl;
         this.linkedInUrl = linkedInUrl;
+        this.imageId = imageId;
     }
 }
