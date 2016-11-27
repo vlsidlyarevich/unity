@@ -39,4 +39,10 @@ public class ServiceLoggingAspect {
         logger.info("Vacancy service : " + joinPoint.getSignature().getName()
                 + "\n With arguments : " + Arrays.toString(joinPoint.getArgs()));
     }
+
+    @Before("execution(* com.github.vlsidlyarevich.unity.service.impl.CandidateServiceImpl.*(..)))")
+    public void candidateServiceLog(JoinPoint joinPoint) {
+        logger.info("Candidate service : " + joinPoint.getSignature().getName()
+                + "\n With arguments : " + Arrays.toString(joinPoint.getArgs()));
+    }
 }
