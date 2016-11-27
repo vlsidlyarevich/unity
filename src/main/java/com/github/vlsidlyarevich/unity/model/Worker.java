@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 @NodeEntity(label = "Worker")
 public class Worker extends BaseEntity {
 
-    @Relationship(type = "HAS", direction = Relationship.OUTGOING)
+    @Relationship(type = "HAS_NAME", direction = Relationship.OUTGOING)
     private Name name;
     private Integer age;
     private String email;

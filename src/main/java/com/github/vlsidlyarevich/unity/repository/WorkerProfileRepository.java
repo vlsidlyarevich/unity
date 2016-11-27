@@ -16,7 +16,7 @@ public interface WorkerProfileRepository extends GraphRepository<WorkerProfile> 
     @Query("MATCH (n) WHERE id(n) = {0} RETURN n")
     WorkerProfile findById(Long id);
 
-    @Query("MATCH (worker:Worker)-[:HAS]->(name:Name) " +
+    @Query("MATCH (worker:Worker)-[:HAS_NAME]->(name:Name) " +
             "WHERE name.firstName = {firstName} " +
             "AND name.lastName = {lastName}" +
             "RETURN worker")
@@ -26,9 +26,9 @@ public interface WorkerProfileRepository extends GraphRepository<WorkerProfile> 
 
     List<WorkerProfile> findAllBySpeciality(Speciality speciality);
 
-    @Query("MATCH (worker:Worker)-[r:HAS]->(name:Name) WHERE id(worker) = {0} DELETE worker,r,name")
+    @Query("MATCH (worker:Worker)-[r:HAS_NAME]->(name:Name) WHERE id(worker) = {0} DELETE worker,r,name")
     void delete(Long id);
 
-    @Query("MATCH (worker:Worker)-[r:HAS]->(name:Name) DELETE worker,r,name")
+    @Query("MATCH (worker:Worker)-[r:HAS_NAME]->(name:Name) DELETE worker,r,name")
     void deleteAll();
 }
