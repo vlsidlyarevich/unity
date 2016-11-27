@@ -5,7 +5,7 @@ import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
 import com.github.vlsidlyarevich.unity.service.WorkerProfileService;
-import com.github.vlsidlyarevich.unity.utils.ModelUtils;
+import com.github.vlsidlyarevich.unity.service.mapper.ModelMapper;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
 
     @Override
     public WorkerProfile create(WorkerProfileDTO dto) {
-        WorkerProfile workerProfile = ModelUtils.convertToModel(dto);
+        WorkerProfile workerProfile = ModelMapper.convertToModel(dto);
         workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
         workerProfile.getName().setCreatedAt(String.valueOf(LocalDateTime.now()));
         repository.save(workerProfile);
@@ -52,7 +52,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
 
     @Override
     public WorkerProfile update(Long id, WorkerProfileDTO dto) {
-        WorkerProfile workerProfile = ModelUtils.convertToModel(dto);
+        WorkerProfile workerProfile = ModelMapper.convertToModel(dto);
         workerProfile.setId(id);
 
         WorkerProfile saved = repository.findOne(id);

@@ -3,7 +3,7 @@ package com.github.vlsidlyarevich.unity.service;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
-import com.github.vlsidlyarevich.unity.utils.ModelUtils;
+import com.github.vlsidlyarevich.unity.service.mapper.ModelMapper;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -44,7 +44,7 @@ public class WorkerProfileServiceImplTest {
 
         WorkerProfile saved = workerProfileService.create(dto);
 
-        Assert.assertEquals(ModelUtils.convertToModel(dto), saved);
+        Assert.assertEquals(ModelMapper.convertToModel(dto), saved);
         Assert.assertNotNull(saved.getCreatedAt());
     }
 
@@ -54,7 +54,7 @@ public class WorkerProfileServiceImplTest {
 
         WorkerProfile saved = workerProfileService.create(dto);
 
-        Assert.assertEquals(ModelUtils.convertToModel(dto), workerProfileService.find(saved.getId()));
+        Assert.assertEquals(ModelMapper.convertToModel(dto), workerProfileService.find(saved.getId()));
     }
 
     @Test
@@ -70,7 +70,7 @@ public class WorkerProfileServiceImplTest {
         workerProfileService.create(dto);
         workerProfileService.create(anotherDto);
 
-        Assert.assertEquals(ModelUtils.convertToModel(dto), workerProfileService.findByName(name));
+        Assert.assertEquals(ModelMapper.convertToModel(dto), workerProfileService.findByName(name));
     }
 
     @Test
@@ -79,7 +79,7 @@ public class WorkerProfileServiceImplTest {
         dto.setAge(19);
 
         ArrayList<WorkerProfile> workers = new ArrayList<>();
-        workers.add(ModelUtils.convertToModel(dto));
+        workers.add(ModelMapper.convertToModel(dto));
         workerProfileService.create(dto);
 
         Assert.assertEquals(workers, workerProfileService.findAllByAge(19));
@@ -91,8 +91,8 @@ public class WorkerProfileServiceImplTest {
         WorkerProfileDTO secondDto = TestUtils.generateWorkerProfileDTO();
 
         ArrayList<WorkerProfile> savedWorkers = new ArrayList<>();
-        savedWorkers.add(ModelUtils.convertToModel(firstDto));
-        savedWorkers.add(ModelUtils.convertToModel(secondDto));
+        savedWorkers.add(ModelMapper.convertToModel(firstDto));
+        savedWorkers.add(ModelMapper.convertToModel(secondDto));
         workerProfileService.create(firstDto);
         workerProfileService.create(secondDto);
 

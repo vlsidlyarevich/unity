@@ -3,7 +3,7 @@ package com.github.vlsidlyarevich.unity.service;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
-import com.github.vlsidlyarevich.unity.utils.ModelUtils;
+import com.github.vlsidlyarevich.unity.service.mapper.ModelMapper;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -49,7 +49,7 @@ public class WorkerProfileSearchServiceImplTest {
         HashMap<String, String> map = new HashMap<>();
         map.put("skype", workerProfile.getSkype());
         List<WorkerProfile> workerProfiles = workerProfileSearchService.find(map);
-        Assert.assertEquals(ModelUtils.convertToModel(workerProfile), workerProfiles.get(0));
+        Assert.assertEquals(ModelMapper.convertToModel(workerProfile), workerProfiles.get(0));
     }
 
     @Test
@@ -63,6 +63,6 @@ public class WorkerProfileSearchServiceImplTest {
         map.put("speciality", workerProfile.getSpeciality().name());
 
         List<WorkerProfile> workerProfiles = workerProfileSearchService.find(map);
-        Assert.assertEquals(ModelUtils.convertToModel(workerProfile), workerProfiles.get(0));
+        Assert.assertEquals(ModelMapper.convertToModel(workerProfile), workerProfiles.get(0));
     }
 }

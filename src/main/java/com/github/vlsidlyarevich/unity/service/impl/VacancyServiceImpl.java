@@ -6,7 +6,7 @@ import com.github.vlsidlyarevich.unity.model.Speciality;
 import com.github.vlsidlyarevich.unity.model.Vacancy;
 import com.github.vlsidlyarevich.unity.repository.VacancyRepository;
 import com.github.vlsidlyarevich.unity.service.VacancyService;
-import com.github.vlsidlyarevich.unity.utils.ModelUtils;
+import com.github.vlsidlyarevich.unity.service.mapper.ModelMapper;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class VacancyServiceImpl implements VacancyService {
 
     @Override
     public Vacancy create(VacancyDTO dto) {
-        Vacancy vacancy = ModelUtils.convertToModel(dto);
+        Vacancy vacancy = ModelMapper.convertToModel(dto);
         vacancy.setCreatedAt(String.valueOf(LocalDateTime.now()));
         repository.save(vacancy);
 
@@ -53,7 +53,7 @@ public class VacancyServiceImpl implements VacancyService {
 
     @Override
     public Vacancy update(Long id, VacancyDTO dto) {
-        Vacancy vacancy = ModelUtils.convertToModel(dto);
+        Vacancy vacancy = ModelMapper.convertToModel(dto);
         vacancy.setId(id);
 
         Vacancy saved = repository.findOne(id);

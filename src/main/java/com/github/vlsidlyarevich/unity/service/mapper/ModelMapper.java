@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.utils;
+package com.github.vlsidlyarevich.unity.service.mapper;
 
 import com.github.vlsidlyarevich.unity.dto.VacancyDTO;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
@@ -7,9 +7,9 @@ import com.github.vlsidlyarevich.unity.model.Vacancy;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 
 
-public final class ModelUtils {
+public final class ModelMapper {
 
-    private ModelUtils() {
+    private ModelMapper() {
     }
 
     public static WorkerProfile convertToModel(WorkerProfileDTO dto) {

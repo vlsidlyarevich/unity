@@ -3,7 +3,7 @@ package com.github.vlsidlyarevich.unity.service;
 import com.github.vlsidlyarevich.unity.dto.VacancyDTO;
 import com.github.vlsidlyarevich.unity.model.Vacancy;
 import com.github.vlsidlyarevich.unity.repository.VacancyRepository;
-import com.github.vlsidlyarevich.unity.utils.ModelUtils;
+import com.github.vlsidlyarevich.unity.service.mapper.ModelMapper;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -43,7 +43,7 @@ public class VacancyServiceImplTest {
 
         Vacancy saved = vacancyService.create(vacancyDTO);
 
-        Assert.assertEquals(ModelUtils.convertToModel(vacancyDTO), saved);
+        Assert.assertEquals(ModelMapper.convertToModel(vacancyDTO), saved);
         Assert.assertNotNull(saved.getCreatedAt());
     }
 
@@ -53,7 +53,7 @@ public class VacancyServiceImplTest {
 
         Vacancy saved = vacancyService.create(vacancyDTO);
 
-        Assert.assertEquals(ModelUtils.convertToModel(vacancyDTO), vacancyService.find(saved.getId()));
+        Assert.assertEquals(ModelMapper.convertToModel(vacancyDTO), vacancyService.find(saved.getId()));
         Assert.assertNotNull(saved.getCreatedAt());
     }
 
