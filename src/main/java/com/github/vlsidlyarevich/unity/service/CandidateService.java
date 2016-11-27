@@ -1,7 +1,9 @@
 package com.github.vlsidlyarevich.unity.service;
 
-/**
- * Created by vlad on 27/11/16.
- */
-public interface CandidateService {
+import com.github.vlsidlyarevich.unity.dto.CandidateDTO;
+import com.github.vlsidlyarevich.unity.model.Candidate;
+
+
+public interface CandidateService extends BaseService<Candidate, CandidateDTO> {
+
 }
