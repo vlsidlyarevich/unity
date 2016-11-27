@@ -22,6 +22,6 @@ public interface VacancyRepository extends GraphRepository<Vacancy> {
 
     List<Vacancy> findByLocation(String location);
 
-    @Query("MATCH (vacancy:Vacancy)-[r:CANDIDATE]->(candidate:Candidate) DELETE vacancy,r")
+    @Query("MATCH (vacancy:Vacancy)-[r:HAS_CANDIDATE]->(candidate:Candidate) DELETE vacancy,r")
     void deleteAll();
 }

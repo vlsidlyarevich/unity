@@ -24,7 +24,7 @@ public class Vacancy extends BaseEntity {
     private String salary;
     private String description;
 
-    @Relationship(type = "CANDIDATE", direction = Relationship.UNDIRECTED)
+    @Relationship(type = "HAS_CANDIDATE", direction = Relationship.UNDIRECTED)
     private Set<Candidate> candidates;
 
     @PostConstruct
