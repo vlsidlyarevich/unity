@@ -52,7 +52,7 @@ public class VacancyServiceImpl implements VacancyService {
     }
 
     @Override
-    public Long update(Long id, VacancyDTO dto) {
+    public Vacancy update(Long id, VacancyDTO dto) {
         Vacancy vacancy = ModelUtils.convertToModel(dto);
         vacancy.setId(id);
 
@@ -65,7 +65,7 @@ public class VacancyServiceImpl implements VacancyService {
             vacancy.setCreatedAt(String.valueOf(LocalDateTime.now()));
         }
         repository.save(vacancy);
-        return id;
+        return vacancy;
     }
 
     @Override

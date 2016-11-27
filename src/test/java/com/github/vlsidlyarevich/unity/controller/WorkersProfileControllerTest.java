@@ -91,7 +91,13 @@ public class WorkersProfileControllerTest {
                 .content(objectMapper.writeValueAsString(worker))
                 .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(String.valueOf(savedWorker.getId())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(savedWorker.getId().intValue())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name.firstName", is(savedWorker.getName().getFirstName())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name.lastName", is(savedWorker.getName().getLastName())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.age", is(savedWorker.getAge())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.skype", is(savedWorker.getSkype())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.gender", is(savedWorker.getGender().toString())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.phone", is(savedWorker.getPhone())));
     }
 
     @Test

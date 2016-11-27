@@ -51,7 +51,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
     }
 
     @Override
-    public Long update(Long id, WorkerProfileDTO dto) {
+    public WorkerProfile update(Long id, WorkerProfileDTO dto) {
         WorkerProfile workerProfile = ModelUtils.convertToModel(dto);
         workerProfile.setId(id);
 
@@ -68,7 +68,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
             workerProfile.getName().setUpdatedAt(String.valueOf(LocalDateTime.now()));
         }
         repository.save(workerProfile);
-        return id;
+        return workerProfile;
     }
 
     @Override
