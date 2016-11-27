@@ -16,6 +16,6 @@ public interface CandidateRepository extends GraphRepository<Candidate> {
     void deleteAllInVacancy(@Param("vacancyId") Long vacancyId);
 
     @Query("MATCH (candidate:Candidate)-[r:HAS_NAME]->(name:Name)" +
-            "DELETE candidate,r,name")
+            "DELETE r,candidate,name")
     void deleteAll();
 }
