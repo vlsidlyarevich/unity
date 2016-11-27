@@ -10,12 +10,20 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CandidateRepository extends GraphRepository<Candidate> {
 
+    @Query("MATCH (vacancy:Vacancy)-[:HAS_CANDIDATE]->(candidate:Candidate)" +
+            "WHERE id(vacancy)={vacancyId} AND id(candidate)={candidateId} RETURN candidate")
+    Candidate findByVacancy(@Param("vacancyId") Long vacancyId, @Param("candidateId") Long candidateId);
+
     @Query("MATCH (vacancy:Vacancy)-[r:HAS_CANDIDATE]->(candidate:Candidate)-[n:HAS_NAME]->(name:Name)" +
             "WHERE id(vacancy)={vacancyId}" +
-            "DELETE r,n,candidate,name")
+            "DELETE r,name,n,candidate")
     void deleteAllInVacancy(@Param("vacancyId") Long vacancyId);
 
-    @Query("MATCH (candidate:Candidate)-[r:HAS_NAME]->(name:Name)" +
-            "DELETE r,candidate,name")
+    @Query("MATCH (vacancy:Vacancy)-[r:HAS_CANDIDATE]->(candidate:Candidate)-[n:HAS_NAME]->(name:Name)" +
+            "WHERE id(vacancy)={vacancyId} AND id(candidate)={candidateId} DELETE n,name,r,candidate")
+    void deleteInVacancy(@Param("vacancyId") Long vacancyId, @Param("candidateId") Long candidateId);
+
+    @Query("MATCH (vacancy:Vacancy)-[n:HAS_CANDIDATE]->(candidate:Candidate)-[r:HAS_NAME]->(name:Name)" +
+            "DELETE r,name,n,candidate")
     void deleteAll();
 }

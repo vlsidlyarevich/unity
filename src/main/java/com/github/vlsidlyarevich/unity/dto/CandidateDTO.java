@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.dto;
 
+import com.github.vlsidlyarevich.unity.model.Gender;
 import com.github.vlsidlyarevich.unity.model.Name;
 import lombok.Data;
 import lombok.ToString;
@@ -12,6 +13,9 @@ import java.io.Serializable;
 public class CandidateDTO implements Serializable {
 
     private Name name;
+    private Integer age;
+    private Gender gender;
+    private String birthday;
     private String hrSkype;
     private String skype;
     private String githubUrl;
@@ -21,8 +25,12 @@ public class CandidateDTO implements Serializable {
     public CandidateDTO() {
     }
 
-    public CandidateDTO(Name name, String hrSkype, String skype, String githubUrl, String linkedInUrl, String imageId) {
+    public CandidateDTO(Name name, Integer age, Gender gender, String birthday,
+                        String hrSkype, String skype, String githubUrl, String linkedInUrl, String imageId) {
         this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.birthday = birthday;
         this.hrSkype = hrSkype;
         this.skype = skype;
         this.githubUrl = githubUrl;
