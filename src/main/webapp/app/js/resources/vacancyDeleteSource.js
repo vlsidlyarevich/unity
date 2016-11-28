@@ -10,5 +10,4 @@ unityApp.factory('VacancyDelete', ['$resource', function ($resource) {
             method: 'POST'
         }
     })
-}])
-;
+}]);

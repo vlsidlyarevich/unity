@@ -13,6 +13,10 @@ unityApp.factory('Worker', ['$resource', function ($resource) {
             transformResponse: function (data) {
                 data = angular.fromJson(data);
 
+                data.createdAt = new Date(data.createdAt);
+                if (data.updatedAt != null) {
+                    data.updatedAt = new Date(data.updatedAt);
+                }
                 data.birthday = new Date(data.birthday);
                 return data;
             }
@@ -22,5 +26,4 @@ unityApp.factory('Worker', ['$resource', function ($resource) {
             transformResponse: []
         }
     })
-}])
-;
+}]);

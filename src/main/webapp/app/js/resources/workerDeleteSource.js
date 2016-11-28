@@ -10,5 +10,4 @@ unityApp.factory('WorkerDelete', ['$resource', function ($resource) {
             method: 'POST'
         }
     })
-}])
-;
+}]);

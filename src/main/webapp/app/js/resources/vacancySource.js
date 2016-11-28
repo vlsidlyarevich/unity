@@ -25,5 +25,4 @@ unityApp.factory('Vacancy', ['$resource', function ($resource) {
             transformResponse: []
         }
     })
-}])
-;
+}]);
