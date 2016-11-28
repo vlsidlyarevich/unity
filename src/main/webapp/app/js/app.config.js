@@ -9,11 +9,11 @@ unityApp.config(['$locationProvider', '$routeProvider',
             template: '<worker-details></worker-details>'
         }).when('/new/worker', {
             template: '<add-worker></add-worker>'
-        }).when('/profiles', {
-            template: '<profiles></profiles>'
+        }).when('/home', {
+            template: '<home-page></home-page>'
         }).when('/vacancies', {
             template: '<vacancies-grid></vacancies-grid>'
-        }).when('/candidates', {
+        }).when('/vacancies/:vacancyId/candidates/:candidateId', {
             template: '<candidates></candidates>'
         }).when('/about', {
             template: '<about-component></about-component>'

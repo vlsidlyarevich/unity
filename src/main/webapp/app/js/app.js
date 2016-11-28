@@ -2,6 +2,7 @@
 
 var unityApp = angular.module('unity', [
     'ngRoute',
+    'homePage',
     'aboutComponent',
     'unityFooter',
     'unityHeader',
