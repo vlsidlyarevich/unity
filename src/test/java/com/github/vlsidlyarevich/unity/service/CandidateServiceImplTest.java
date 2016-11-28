@@ -37,8 +37,7 @@ public class CandidateServiceImplTest {
     private VacancyRepository vacancyRepository;
 
     @Before
-    public void before()
-    {
+    public void before() {
         repository.deleteAll();
         vacancyRepository.deleteAll();
     }
@@ -65,7 +64,7 @@ public class CandidateServiceImplTest {
     public void findTest() throws Exception {
         Vacancy vacancy = generateVacancy();
         Candidate candidate = generateCandidate();
-        vacancy.addCandidate(candidate);
+        vacancy.getCandidates().add(candidate);
         vacancyRepository.save(vacancy);
 
         Assert.assertEquals(candidate, service.find(vacancy.getId(), candidate.getId()));
@@ -76,8 +75,8 @@ public class CandidateServiceImplTest {
         Vacancy vacancy = generateVacancy();
         Candidate candidate = generateCandidate();
         Candidate anotherCandidate = generateCandidate();
-        vacancy.addCandidate(candidate);
-        vacancy.addCandidate(anotherCandidate);
+        vacancy.getCandidates().add(candidate);
+        vacancy.getCandidates().add(anotherCandidate);
         vacancyRepository.save(vacancy);
 
         ArrayList<Candidate> candidates = new ArrayList<>();
@@ -92,8 +91,8 @@ public class CandidateServiceImplTest {
         Vacancy vacancy = generateVacancy();
         Candidate candidate = generateCandidate();
         Candidate anotherCandidate = generateCandidate();
-        vacancy.addCandidate(candidate);
-        vacancy.addCandidate(anotherCandidate);
+        vacancy.getCandidates().add(candidate);
+        vacancy.getCandidates().add(anotherCandidate);
         vacancyRepository.save(vacancy);
 
         ArrayList<Candidate> candidates = new ArrayList<>();
@@ -119,7 +118,7 @@ public class CandidateServiceImplTest {
     public void deleteTest() throws Exception {
         Vacancy vacancy = generateVacancy();
         Candidate candidate = generateCandidate();
-        vacancy.addCandidate(candidate);
+        vacancy.getCandidates().add(candidate);
         vacancyRepository.save(vacancy);
 
         service.delete(vacancy.getId(), candidate.getId());
@@ -138,16 +137,16 @@ public class CandidateServiceImplTest {
         map.put("id1", String.valueOf(service.create(vacancy.getId(), firstDto).getId()));
         map.put("id2", String.valueOf(service.create(vacancy.getId(), secondDto).getId()));
 
-        Assert.assertEquals(service.deleteQuery(map), Integer.valueOf(2));
+        Assert.assertEquals(service.deleteQuery(vacancy.getId(), map), Integer.valueOf(2));
         Assert.assertEquals(service.findAll().size(), 0);
     }
 
     @Test
     public void deleteAllTest() throws Exception {
         Vacancy vacancy = generateVacancy();
-        vacancy.addCandidate(generateCandidate());
-        vacancy.addCandidate(generateCandidate());
-        vacancy.addCandidate(generateCandidate());
+        vacancy.getCandidates().add(generateCandidate());
+        vacancy.getCandidates().add(generateCandidate());
+        vacancy.getCandidates().add(generateCandidate());
         vacancyRepository.save(vacancy);
 
         Assert.assertEquals(Integer.valueOf(3), service.deleteAll());

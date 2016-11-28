@@ -46,8 +46,8 @@ public class CandidateRepositoryTest {
     @Test
     public void deleteAllInVacancyTest() throws Exception {
         Vacancy vacancy = TestUtils.generateVacancy();
-        vacancy.addCandidate(TestUtils.generateCandidate());
-        vacancy.addCandidate(TestUtils.generateCandidate());
+        vacancy.getCandidates().add(TestUtils.generateCandidate());
+        vacancy.getCandidates().add(TestUtils.generateCandidate());
 
         Long vacancyId = vacancyRepository.save(vacancy).getId();
 

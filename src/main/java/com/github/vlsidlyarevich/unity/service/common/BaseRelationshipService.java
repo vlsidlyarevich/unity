@@ -21,7 +21,7 @@ public interface BaseRelationshipService<T extends BaseEntity, S extends Seriali
 
     Long delete(Long id1, Long id2);
 
-    Integer deleteQuery(Map<String, String> ids);
+    Integer deleteQuery(Long id1, Map<String, String> ids);
 
     Integer deleteAll();
 }

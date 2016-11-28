@@ -92,19 +92,19 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public Integer deleteQuery(Map<String, String> ids) {
+    public Integer deleteQuery(Long vacancyId, Map<String, String> ids) {
         Integer deleteCounter = 0;
 
         if (ids.keySet().size() == 1 && ids.containsValue("all")) {
             deleteCounter = Math.toIntExact(repository.count());
-            repository.deleteAll();
+            repository.deleteAllInVacancy(vacancyId);
 
             return deleteCounter;
         }
 
         for (Map.Entry<String, String> id : ids.entrySet()) {
             if (repository.exists(Long.valueOf(id.getValue()))) {
-                repository.delete(Long.valueOf(id.getValue()));
+                repository.deleteInVacancy(vacancyId, Long.valueOf(id.getValue()));
                 deleteCounter++;
             }
         }
