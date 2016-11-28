@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="header-panel col-sm-8 col-sm-offset-2">
-        <a href="#/new/worker" class="btn btn-raised btn-sm">Create worker</a>
-        <a href="javascript:void(0)" class="btn btn-raised btn-sm" data-toggle="modal" data-target="#confirmationModal">Delete workers</a>
+        <a href="#/vacancies/{{$route.vacancyId}}/candidates/new" class="btn btn-raised btn-sm">New candidate</a>
+        <a href="javascript:void(0)" class="btn btn-raised btn-sm" data-toggle="modal" data-target="#confirmationModal">Delete candidates</a>
     </div>
 
     <div class="well col-sm-8 col-sm-offset-2" ng-init="init()">
@@ -17,12 +17,12 @@
                     </div>
                 </th>
                 <th>Image</th>
-                <th>Worker</th>
+                <th>Candidate</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="item in workers">
+            <tr ng-repeat="item in candidates">
                 <td class="col-sm-1 text-center">
                     <div class="checkbox">
                         <label>
@@ -38,22 +38,22 @@
                 </td>
                 <td>
                     <h4 class="list-group-item-heading">{{item.name.firstName}} {{item.name.lastName}}</h4>
-                    <p class="list-group-item-text">{{item.description}}</p>
+                    <p class="list-group-item-text">{{item.speciality.replace("_"," ")}}</p>
                 </td>
                 <td align="right">
                     <div class="btn-group">
-                        <a href="#/workers/view/{{item.id}}" class="btn btn-default btn-raised  btn-xs">View</a>
+                        <a href="#/vacancies/{{$route.vacancyId}}/candidates/view/{{item.id}}" class="btn btn-default btn-raised  btn-xs">View</a>
                         <button type="button" data-target="#" data-toggle="dropdown"
                                 class="btn btn-default btn-raised dropdown-toggle btn-xs">
 
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#/workers/view/{{item.id}}">Edit</a></li>
+                            <li><a href="#/vacancies/{{$route.vacancyId}}/candidates/view/{{item.id}}">Edit</a></li>
                             <li><a href="javascript:void(0)">Another action</a></li>
                             <li><a href="javascript:void(0)">Something else here</a></li>
                             <li class="divider"></li>
-                            <li><a href="javascript:void(0)" ng-click="deleteWorker(item.id)">Delete</a></li>
+                            <li><a href="javascript:void(0)" ng-click="deleteCandidate(item.id)">Delete</a></li>
                         </ul>
                     </div>
                 </td>
@@ -72,11 +72,11 @@
                 <h3 class="modal-title">Are you sure?</h3>
             </div>
             <div class="modal-body">
-                <p>Are you sure to delete selected worker profiles?</p>
+                <p>Are you sure to delete selected candidates?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteWorkers()">Delete</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteCandidates()">Delete</button>
             </div>
         </div>
     </div>

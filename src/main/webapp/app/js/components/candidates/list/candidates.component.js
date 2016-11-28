@@ -4,7 +4,7 @@ function CandidatesController($scope, Candidate, CandidateDelete, $route) {
     $scope.candidates = $scope.candidates || {};
 
     $scope.init = function () {
-        $scope.candidates = Candidate.query();
+        $scope.candidates = Candidate.find({vacancyId: $routeParams.vacancyId, candidateId: $routeParams.candidateId});
     };
 
     $scope.verifyAllSelected = function () {
@@ -18,7 +18,7 @@ function CandidatesController($scope, Candidate, CandidateDelete, $route) {
     };
 
     $scope.deleteCandidate = function (id) {
-        Worker.delete({id: id}).$promise.then(
+        Candidate.delete({vacancyId: $routeParams.vacancyId, candidateId: id}).$promise.then(
             function () {
                 $route.reload();
             }
@@ -31,7 +31,7 @@ function CandidatesController($scope, Candidate, CandidateDelete, $route) {
         });
 
         if (checked.length === this.candidates.length) {
-            CandidateDelete.deleteQuery({"id": "all"}).$promise.then(
+            CandidateDelete.deleteQuery({"id": "all", vacancyId: $routeParams.vacancyId}).$promise.then(
                 function () {
                     $route.reload();
                 }
@@ -44,7 +44,7 @@ function CandidatesController($scope, Candidate, CandidateDelete, $route) {
                 ids[id] = checked[i].id;
             }
 
-            CandidateDelete.deleteQuery(ids).$promise.then(
+            CandidateDelete.deleteQuery(ids, {vacancyId: $routeParams.vacancyId}).$promise.then(
                 function () {
                     $route.reload();
                 }
