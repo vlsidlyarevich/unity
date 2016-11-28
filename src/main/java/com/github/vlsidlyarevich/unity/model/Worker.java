@@ -4,14 +4,10 @@ import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.lang3.EnumUtils;
 import org.neo4j.ogm.annotation.NodeEntity;
-import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 
 
 @Data
 @ToString
-@Component
 @NodeEntity(label = "Worker")
 public class Worker extends Person {
 
@@ -19,15 +15,9 @@ public class Worker extends Person {
     private String phone;
     private Speciality speciality;
 
-
-    @PostConstruct
-    public void init() {
+    public Worker() {
         this.setGender(Gender.MALE);
         this.speciality = Speciality.UNKNOWN;
-    }
-
-    public Worker() {
-
     }
 
     public Worker(Name name) {

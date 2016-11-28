@@ -3,10 +3,9 @@ package com.github.vlsidlyarevich.unity.service.mapper;
 import com.github.vlsidlyarevich.unity.dto.CandidateDTO;
 import com.github.vlsidlyarevich.unity.dto.VacancyDTO;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
-import com.github.vlsidlyarevich.unity.model.Candidate;
-import com.github.vlsidlyarevich.unity.model.Name;
-import com.github.vlsidlyarevich.unity.model.Vacancy;
-import com.github.vlsidlyarevich.unity.model.WorkerProfile;
+import com.github.vlsidlyarevich.unity.model.*;
+
+import java.util.HashSet;
 
 
 public final class ModelMapper {
@@ -21,7 +20,7 @@ public final class ModelMapper {
         workerProfile.setEmail(dto.getEmail() != null ? dto.getEmail() : "");
         workerProfile.setPhone(dto.getPhone() != null ? dto.getPhone() : "");
         workerProfile.setGender(dto.getGender());
-        workerProfile.setSpeciality(dto.getSpeciality());
+        workerProfile.setSpeciality(dto.getSpeciality() != null ? dto.getSpeciality() : Speciality.UNKNOWN);
         workerProfile.setImageId(dto.getImageId());
         workerProfile.setDescription(dto.getDescription() != null ? dto.getDescription() : "");
         workerProfile.setBirthday(dto.getBirthday() != null ? dto.getBirthday() : "");
@@ -34,11 +33,12 @@ public final class ModelMapper {
 
     public static Vacancy convertToModel(VacancyDTO dto) {
         Vacancy vacancy = new Vacancy();
-        vacancy.setSpeciality(dto.getSpeciality());
-        vacancy.setJobType(dto.getJobType());
+        vacancy.setSpeciality(dto.getSpeciality() != null ? dto.getSpeciality() : Speciality.UNKNOWN);
+        vacancy.setJobType(dto.getJobType() != null ? dto.getJobType() : JobType.UNKNOWN);
         vacancy.setLocation(dto.getLocation() != null ? dto.getLocation() : "");
         vacancy.setSalary(dto.getSalary() != null ? dto.getSalary() : "");
         vacancy.setDescription(dto.getDescription() != null ? dto.getDescription() : "");
+        vacancy.setCandidates(new HashSet<>());
 
         return vacancy;
     }

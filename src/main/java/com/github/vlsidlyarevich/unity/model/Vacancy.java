@@ -5,16 +5,13 @@ import lombok.ToString;
 import org.apache.commons.lang3.EnumUtils;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
 
 
 @Data
 @ToString
-@Component
 @NodeEntity(label = "Vacancy")
 public class Vacancy extends BaseEntity {
 
@@ -27,13 +24,10 @@ public class Vacancy extends BaseEntity {
     @Relationship(type = "HAS_CANDIDATE", direction = Relationship.UNDIRECTED)
     private Set<Candidate> candidates;
 
-    @PostConstruct
-    public void init() {
-        this.jobType = JobType.CONTRACT;
-        this.speciality = Speciality.UNKNOWN;
-    }
-
     public Vacancy() {
+        this.jobType = JobType.UNKNOWN;
+        this.speciality = Speciality.UNKNOWN;
+        this.candidates = new HashSet<>();
     }
 
     public Vacancy(Speciality speciality) {
@@ -46,10 +40,6 @@ public class Vacancy extends BaseEntity {
     }
 
     public void addCandidate(Candidate candidate) {
-        if (candidates == null) {
-            candidates = new HashSet<>();
-        }
-
         candidates.add(candidate);
     }
 
