@@ -48,6 +48,13 @@ Or you can use docker-compose file.
 * PUT `http://localhost:8080/api/workers/id` - update worker profile by id
 * DELETE `http://localhost:8080/api/workers/id` - delete worker profile by id 
 
+####Worker profile specific search api
+* GET `http://localhost:8080/api/workers/search` - get all workers profiles by name
+* POST `http://localhost:8080/api/workers/search` - get workers profiles with filters 
+
+####Worker profile delete group api
+* POST `http://localhost:8080/api/workers/delete` - delete workers 
+
 ####Vacancy api
 * GET `http://localhost:8080/api/vacancies` - get all vacancies
 * GET `http://localhost:8080/api/vacancies/id` - get vacancy by id 
@@ -55,12 +62,18 @@ Or you can use docker-compose file.
 * PUT `http://localhost:8080/api/vacancies/id` - update vacancy by id
 * DELETE `http://localhost:8080/api/vacancies/id` - delete vacancy by id 
 
-####Worker profile specific search api
-* GET `http://localhost:8080/api/workers/search` - get all workers profiles by name
-* POST `http://localhost:8080/api/workers/search` - get workers profiles with filters 
+####Vacancy delete group api
+* POST `http://localhost:8080/api/vacancies/delete` - delete vacancies
 
-####Worker profile delete group api
-* POST `http://localhost:8080/api/workers/delete` - delete workers 
+####Candidate api
+* GET `http://localhost:8080/api/vacancies/id/candidates/` - get all candidates of vacancy
+* GET `http://localhost:8080/api/vacancies/id/candidates/id` - get candidate of vacancy by id 
+* POST `http://localhost:8080/api/vacancies/id/candidates` - add new candidate to vacancy
+* PUT `http://localhost:8080/api/vacancies/id/candidates/id` - update candidate in vacancy
+* DELETE `http://localhost:8080/api/vacancies/id/candidates/id` - delete candidate from vacancy
+
+####Candidate delete group api
+* POST `http://localhost:8080/api/vacancies/id/candidates/delete` - delete candidates groups in vacancy
 
 ####Image api
 * GET `http://localhost:8080/api/images/id` - get image by id 
