@@ -20,9 +20,9 @@ public class CandidateController {
         return new ResponseEntity<>(service.findAll(vacancyId), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getCandidateById(@PathVariable Long vacancyId, @PathVariable Long id) {
-        return new ResponseEntity<>(service.find(vacancyId, id), HttpStatus.OK);
+    @RequestMapping(value = "/{candidateId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getCandidateById(@PathVariable Long vacancyId, @PathVariable Long candidateId) {
+        return new ResponseEntity<>(service.find(vacancyId, candidateId), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -30,13 +30,13 @@ public class CandidateController {
         return new ResponseEntity<>(service.create(vacancyId, candidate), HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{candidateId}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateCandidateById(@PathVariable Long vacancyId, @PathVariable Long candidateId,
                                                  @RequestBody CandidateDTO candidate) {
         return new ResponseEntity<>(service.update(vacancyId, candidateId, candidate), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{candidateId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteCandidateById(@PathVariable Long vacancyId, @PathVariable Long candidateId) {
         return new ResponseEntity<>(service.delete(vacancyId, candidateId), HttpStatus.OK);
     }

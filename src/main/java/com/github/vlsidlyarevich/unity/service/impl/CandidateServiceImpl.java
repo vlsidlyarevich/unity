@@ -29,6 +29,8 @@ public class CandidateServiceImpl implements CandidateService {
     @Override
     public Candidate create(Long vacancyId, CandidateDTO dto) {
         Candidate candidate = convertToModel(dto);
+        candidate.setCreatedAt(String.valueOf(LocalDateTime.now()));
+        candidate.getName().setCreatedAt(String.valueOf(LocalDateTime.now()));
 
         Vacancy vacancy = vacancyRepository.findOne(vacancyId);
         vacancy.getCandidates().add(candidate);
