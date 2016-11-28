@@ -47,8 +47,8 @@
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a ng-click="editVacancy($index)">Edit</a></li>
-                            <li><a href="javascript:void(0)">Another action</a></li>
-                            <li><a href="javascript:void(0)">Something else here</a></li>
+                            <li><a href="#/vacancies/{{item.id}}/candidates/new">Add candidate</a></li>
+                            <li><a href="#/vacancies/{{item.id}}/candidates">Watch candidates</a></li>
                             <li class="divider"></li>
                             <li><a href="javascript:void(0)" ng-click="deleteVacancy(item.id)">Delete</a></li>
                         </ul>
