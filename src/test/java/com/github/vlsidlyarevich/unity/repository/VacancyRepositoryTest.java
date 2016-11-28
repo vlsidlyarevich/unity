@@ -44,7 +44,7 @@ public class VacancyRepositoryTest {
     public void saveTest() throws Exception {
         vacancy = TestUtils.generateVacancy();
         Candidate candidate = TestUtils.generateCandidate();
-        vacancy.addCandidate(candidate);
+        vacancy.getCandidates().add(candidate);
 
         vacancyRepository.save(vacancy);
         Assert.assertEquals(1L, vacancyRepository.count());
@@ -54,7 +54,7 @@ public class VacancyRepositoryTest {
     public void findByIdTest() throws Exception {
         vacancy = TestUtils.generateVacancy();
         Candidate candidate = TestUtils.generateCandidate();
-        vacancy.addCandidate(candidate);
+        vacancy.getCandidates().add(candidate);
 
         vacancyRepository.save(vacancy);
 
@@ -65,7 +65,7 @@ public class VacancyRepositoryTest {
     public void findByLocationTest() throws Exception {
         vacancy = TestUtils.generateVacancy();
         Candidate candidate = TestUtils.generateCandidate();
-        vacancy.addCandidate(candidate);
+        vacancy.getCandidates().add(candidate);
 
         vacancyRepository.save(vacancy);
 
@@ -78,7 +78,7 @@ public class VacancyRepositoryTest {
     public void findByJobTypeTest() throws Exception {
         vacancy = TestUtils.generateVacancy();
         Candidate candidate = TestUtils.generateCandidate();
-        vacancy.addCandidate(candidate);
+        vacancy.getCandidates().add(candidate);
 
         vacancyRepository.save(vacancy);
 
@@ -91,7 +91,7 @@ public class VacancyRepositoryTest {
     public void findAllBySpecialityTest() throws Exception {
         vacancy = TestUtils.generateVacancy();
         Candidate candidate = TestUtils.generateCandidate();
-        vacancy.addCandidate(candidate);
+        vacancy.getCandidates().add(candidate);
 
         vacancyRepository.save(vacancy);
 

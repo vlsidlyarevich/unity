@@ -5,6 +5,7 @@ import com.github.vlsidlyarevich.unity.dto.VacancyDTO;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 
@@ -38,7 +39,6 @@ public final class ModelMapper {
         vacancy.setLocation(dto.getLocation() != null ? dto.getLocation() : "");
         vacancy.setSalary(dto.getSalary() != null ? dto.getSalary() : "");
         vacancy.setDescription(dto.getDescription() != null ? dto.getDescription() : "");
-        vacancy.setCandidates(new HashSet<>());
 
         return vacancy;
     }

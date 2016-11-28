@@ -59,7 +59,6 @@ public final class TestUtils {
         vacancy.setJobType(JobType.CONTRACT);
         vacancy.setDescription(getRandomString(20));
         vacancy.setLocation(getRandomString(10));
-        vacancy.setCandidates(new HashSet<>());
 
         return vacancy;
     }

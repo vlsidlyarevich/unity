@@ -6,8 +6,8 @@ import org.apache.commons.lang3.EnumUtils;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -22,12 +22,11 @@ public class Vacancy extends BaseEntity {
     private String description;
 
     @Relationship(type = "HAS_CANDIDATE", direction = Relationship.UNDIRECTED)
-    private Set<Candidate> candidates;
+    private List<Candidate> candidates;
 
     public Vacancy() {
         this.jobType = JobType.UNKNOWN;
         this.speciality = Speciality.UNKNOWN;
-        this.candidates = new HashSet<>();
     }
 
     public Vacancy(Speciality speciality) {
@@ -39,8 +38,12 @@ public class Vacancy extends BaseEntity {
         this.jobType = jobType;
     }
 
-    public void addCandidate(Candidate candidate) {
-        candidates.add(candidate);
+    public List<Candidate> getCandidates() {
+        if (candidates == null) {
+            candidates = new ArrayList<>();
+        }
+
+        return candidates;
     }
 
     public void setJobType(String jobType) {
