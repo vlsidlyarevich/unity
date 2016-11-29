@@ -51,7 +51,7 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public List<Candidate> findAll(Long vacancyId) {
-        return Lists.newArrayList(vacancyRepository.findOne(vacancyId).getCandidates());
+        return Lists.newArrayList(repository.findAllInVacancy(vacancyId));
     }
 
     @Override
