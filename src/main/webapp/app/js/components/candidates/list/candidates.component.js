@@ -25,7 +25,13 @@ function CandidatesController($scope, Candidate, CandidateDelete, $route, $route
         )
     };
 
-
+    $scope.deleteAll = function () {
+        CandidateDelete.deleteQuery({vacancyId: $routeParams.vacancyId}, {"id": "all"}).$promise.then(
+            function () {
+                $route.reload();
+            }
+        );
+    }
 }
 
 angular.module('candidatesGrid').component('candidatesGrid', {

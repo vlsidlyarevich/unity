@@ -1,9 +1,10 @@
 "use strict";
 
 unityApp.factory('Candidate', ['$resource', function ($resource) {
-    return $resource(serverUrl + 'vacancies/:vacancyId/candidates/:candidateId', null, {
+    return $resource(serverUrl + 'vacancies/:vacancyId/candidates/:candidateId', {
         vacancyId: '@vacancyId',
-        candidateId: '@candidateId',
+        candidateId: '@candidateId'
+    }, {
         format: 'json',
         update: {
             method: 'PUT',
