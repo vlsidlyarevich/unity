@@ -1,10 +1,10 @@
 "use strict";
 
-function CandidatesController($scope, Candidate, CandidateDelete, $route) {
+function CandidatesController($scope, Candidate, CandidateDelete, $route, $routeParams) {
     $scope.candidates = $scope.candidates || {};
 
     $scope.init = function () {
-        $scope.candidates = Candidate.find({vacancyId: $routeParams.vacancyId, candidateId: $routeParams.candidateId});
+        $scope.candidates = Candidate.query({vacancyId: $routeParams.vacancyId, candidateId: $routeParams.candidateId});
     };
 
     $scope.verifyAllSelected = function () {
@@ -25,47 +25,7 @@ function CandidatesController($scope, Candidate, CandidateDelete, $route) {
         )
     };
 
-    $scope.deleteCandidates = function () {
-        var checked = this.candidates.filter(function (item) {
-            return item.delete === true;
-        });
 
-        if (checked.length === this.candidates.length) {
-            CandidateDelete.deleteQuery({"id": "all", vacancyId: $routeParams.vacancyId}).$promise.then(
-                function () {
-                    $route.reload();
-                }
-            );
-        }
-        else {
-            var ids = {};
-            for (var i = 0; i < checked.length; i++) {
-                var id = "id".concat(i);
-                ids[id] = checked[i].id;
-            }
-
-            CandidateDelete.deleteQuery(ids, {vacancyId: $routeParams.vacancyId}).$promise.then(
-                function () {
-                    $route.reload();
-                }
-            );
-        }
-    };
-
-    $scope.selectAll = function () {
-        var value = true;
-
-        if (this.candidates.filter(function (item) {
-                return item.delete === true;
-            }).length === this.candidates.length) {
-
-            value = false;
-        }
-
-        for (var i = 0; i < this.candidates.length; i++) {
-            this.candidates[i].delete = value;
-        }
-    }
 }
 
 angular.module('candidatesGrid').component('candidatesGrid', {
