@@ -17,6 +17,8 @@ unityApp.config(['$locationProvider', '$routeProvider',
             template: '<candidates-grid></candidates-grid>'
         }).when('/vacancies/:vacancyId/candidates/view/:candidateId', {
             template: '<candidate-details></candidate-details>'
+        }).when('/vacancies/:vacancyId/candidates/new', {
+            template: '<add-candidate></add-candidate>'
         }).when('/about', {
             template: '<about-component></about-component>'
         }).otherwise('/workers');

@@ -2,6 +2,7 @@
 
 function CandidatesController($scope, Candidate, CandidateDelete, $route, $routeParams) {
     $scope.candidates = $scope.candidates || {};
+    $scope.vacancyId = $routeParams.vacancyId;
 
     $scope.init = function () {
         $scope.candidates = Candidate.query({vacancyId: $routeParams.vacancyId, candidateId: $routeParams.candidateId});
