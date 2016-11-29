@@ -22,12 +22,13 @@ public interface CandidateRepository extends GraphRepository<Candidate> {
             "RETURN candidate")
     List<Candidate> findAllInVacancy(@Param("vacancyId") Long vacancyId);
 
-    @Query("MATCH (vacancy:Vacancy)-[r:HAS_CANDIDATE]->(candidate:Candidate)-[n:HAS_NAME]->(name:Name)" +
+    @Query("MATCH (vacancy:Vacancy)-[r:HAS_CANDIDATE]->(candidate:Candidate)," +
+            "(candidate:Candidate)-[n:HAS_NAME]->(name:Name)" +
             "WHERE id(vacancy)={vacancyId}" +
-            "DELETE r,name,n,candidate")
+            "DELETE n,name,r,candidate")
     void deleteAllInVacancy(@Param("vacancyId") Long vacancyId);
 
-    @Query("MATCH (vacancy:Vacancy)-[r:HAS_CANDIDATE]->(candidate:Candidate)-[n:HAS_NAME]->(name:Name)" +
+    @Query("MATCH (vacancy:Vacancy)-[r:HAS_CANDIDATE]->(candidate:Candidate),(candidate:Candidate)-[n:HAS_NAME]->(name:Name)" +
             "WHERE id(vacancy)={vacancyId} AND id(candidate)={candidateId}" +
             "DELETE n,name,r,candidate")
     void deleteInVacancy(@Param("vacancyId") Long vacancyId, @Param("candidateId") Long candidateId);

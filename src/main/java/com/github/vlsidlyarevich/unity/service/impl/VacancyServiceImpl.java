@@ -40,7 +40,7 @@ public class VacancyServiceImpl implements VacancyService {
 
     @Override
     public List<Vacancy> findAll() {
-        return Lists.newArrayList(repository.findAll().iterator());
+        return repository.findAll();
     }
 
     @Override
@@ -61,6 +61,7 @@ public class VacancyServiceImpl implements VacancyService {
         Vacancy saved = repository.findOne(id);
 
         if (saved != null) {
+            vacancy.setCandidates(saved.getCandidates());
             vacancy.setCreatedAt(saved.getCreatedAt());
             vacancy.setUpdatedAt(String.valueOf(LocalDateTime.now()));
         } else {

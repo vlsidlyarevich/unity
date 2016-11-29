@@ -63,7 +63,8 @@ public class CandidateServiceImpl implements CandidateService {
             candidate.setLinkedInUrl(dto.getLinkedInUrl());
             candidate.setGender(dto.getGender());
             candidate.setImageId(dto.getImageId());
-            candidate.setName(dto.getName());
+            candidate.getName().setFirstName(dto.getName().getFirstName());
+            candidate.getName().setLastName(dto.getName().getLastName());
             candidate.setGithubUrl(dto.getGithubUrl());
             candidate.setSkype(dto.getSkype());
             candidate.setAge(dto.getAge());
