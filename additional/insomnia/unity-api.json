@@ -1,36 +1,9 @@
 {
   "_type": "export",
   "__export_format": 1,
-  "__export_date": "2016-11-24T13:03:52.607Z",
+  "__export_date": "2016-11-30T22:40:10.730Z",
   "__export_source": "insomnia.chrome.app:v2.7.0",
   "items": [
-    {
-      "_type": "request_group",
-      "_id": "grp_1479976143255",
-      "name": "Generator",
-      "environments": {},
-      "requests": [
-        {
-          "_type": "request",
-          "_id": "req_1479976143255",
-          "url": "http://localhost:9997/generate/rdpl",
-          "method": "POST",
-          "body": "{}",
-          "headers": [],
-          "params": [],
-          "authentication": {
-            "_type": "basic",
-            "username": "",
-            "password": ""
-          },
-          "__insomnia": {
-            "format": "json",
-            "panel_width": 0.5
-          },
-          "name": "generate shop"
-        }
-      ]
-    },
     {
       "_type": "request_group",
       "_id": "grp_1475770452945",
@@ -80,7 +53,7 @@
           "_id": "req_1475770470722",
           "url": "http://localhost:8080/api/workers/19",
           "method": "PUT",
-          "body": "{\n    \"id\":\"5825b04b86131c108f33acb9\",\n    \"name\":{\n        \"firstName\":\"Johnny\",\n        \"lastName\":\"Updated\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"1973-11-19\",\n    \"imageId\":\"imageUrl\",\n    \"linkedInUrl\":\"linked in url\",\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"Where is my cpt. Price?\"\n}",
+          "body": "{\n    \"name\":{\n        \"firstName\":\"Johnny\",\n        \"lastName\":\"Updated\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"email\":\"johnny@gmail.com\",\n    \"phone\":\"8 800 555 35 35\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"1973-11-19\",\n    \"imageId\":\"imageUrl\",\n    \"linkedInUrl\":\"linked in url\",\n    \"githubUrl\":\"git@github.com\",\n    \"description\":\"Where is my cpt. Price?\"\n}",
           "headers": [],
           "params": [],
           "authentication": {
@@ -97,7 +70,7 @@
         {
           "_type": "request",
           "_id": "req_1475770481481",
-          "url": "http://localhost:8080/api/workers/56",
+          "url": "http://localhost:8080/api/workers/583f4d52df20f2315baa6fb9",
           "method": "DELETE",
           "body": "{}",
           "headers": [],
@@ -116,7 +89,7 @@
         {
           "_type": "request",
           "_id": "req_1475770517816",
-          "url": "http://localhost:8080/api/workers/19",
+          "url": "http://localhost:8080/api/workers/583f4d52df20f2315baa6fb9",
           "method": "GET",
           "body": "{}",
           "headers": [],
@@ -219,7 +192,7 @@
           "_id": "req_1478950629611",
           "url": "http://localhost:8080/api/workers/delete",
           "method": "POST",
-          "body": "{ \"id\": 58 }",
+          "body": "{ \"id\": \"3f4d52df20f2315baa6fb9\" }",
           "headers": [],
           "params": [],
           "authentication": {
@@ -282,7 +255,7 @@
         {
           "_type": "request",
           "_id": "req_1479640187998",
-          "url": "http://localhost:8080/api/vacancies/0",
+          "url": "http://localhost:8080/api/vacancies/583f4d52df20f2315baa6fb9",
           "method": "PUT",
           "body": "{\n    \"jobType\":\"PERMANENT\",\n    \"location\":\"New York\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"salary\":\"3000 $ p/m\",\n    \"description\":\"Needed PHP developer.\"\n}",
           "headers": [],
@@ -301,7 +274,7 @@
         {
           "_type": "request",
           "_id": "req_1479640193291",
-          "url": "http://localhost:8080/api/vacancies/0",
+          "url": "http://localhost:8080/api/vacancies/583f4d52df20f2315baa6fb9",
           "method": "DELETE",
           "body": "{}",
           "headers": [],
@@ -320,7 +293,7 @@
         {
           "_type": "request",
           "_id": "req_1479640200949",
-          "url": "http://localhost:8080/api/vacancies/0",
+          "url": "http://localhost:8080/api/vacancies/101",
           "method": "GET",
           "body": "{}",
           "headers": [],
@@ -368,7 +341,7 @@
           "_id": "req_1479982101280",
           "url": "http://localhost:8080/api/vacancies/delete",
           "method": "POST",
-          "body": "{ \"id\": 58 }",
+          "body": "{ \"id\": \"583f4d52df20f2315baa6fb9\" }",
           "headers": [],
           "params": [],
           "authentication": {
@@ -381,6 +354,155 @@
             "panel_width": 0.5
           },
           "name": "delete group"
+        }
+      ]
+    },
+    {
+      "_type": "request_group",
+      "_id": "grp_1480277419746",
+      "name": "candidates",
+      "environments": {},
+      "requests": [
+        {
+          "_type": "request",
+          "_id": "req_1480277419746",
+          "url": "http://localhost:8080/api/vacancies/583f4e1edf20f2322a6724c5/candidates",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "get candidates"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1480277427217",
+          "url": "http://localhost:8080/api/vacancies/583f4e1edf20f2322a6724c5/candidates",
+          "method": "POST",
+          "body": "{\n    \"name\": {\n        \"firstName\": \"Johnny\",\n        \"lastName\": \"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":43,\n    \"skype\":\"Johnny@mail.com\",\n    \"hrSkype\":\"BestHR@company.com\",\n    \"birthday\":\"1973-11-19\",\n    \"imageId\":null,\n    \"linkedInUrl\":null,\n    \"githubUrl\":\"git@github.com\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "add candidate"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1480277433790",
+          "url": "http://localhost:8080/api/vacancies/583f4e1edf20f2322a6724c5/candidates/583f506fdf20f2342674d9fa",
+          "method": "PUT",
+          "body": "{\n    \"name\": {\n        \"firstName\": \"Johnny\",\n        \"lastName\": \"McMillan\"\n    },\n    \"gender\":\"MALE\",\n    \"age\":25,\n    \"skype\":\"Johnny@mail.com\",\n    \"hrSkype\":\"BestHR@company.com\",\n    \"speciality\":\"SOFTWARE_ENGINEER\",\n    \"birthday\":\"1973-11-19\",\n    \"imageId\":null,\n    \"linkedInUrl\":\"url\",\n    \"githubUrl\":\"git@github.com\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "update candidate"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1480277439156",
+          "url": "http://localhost:8080/api/vacancies/583f4e1edf20f2322a6724c5/candidates/583f4eb9df20f232e62c1ad1",
+          "method": "DELETE",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "delete candidate"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1480277444635",
+          "url": "http://localhost:8080/api/vacancies/583f4e1edf20f2322a6724c5/candidates/583f4e27df20f2322a6724c6",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "get candidate"
+        }
+      ]
+    },
+    {
+      "_type": "request_group",
+      "_id": "grp_1480366657021",
+      "name": "candidates delete",
+      "environments": {},
+      "requests": [
+        {
+          "_type": "request",
+          "_id": "req_1480366657021",
+          "url": "http://localhost:8080/api/vacancies/583f4e1edf20f2322a6724c5/candidates/delete",
+          "method": "POST",
+          "body": "{ \n  \"id\": \"583f4e27df20f2322a6724c6\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "delete group"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1480366664913",
+          "url": "http://localhost:8080/api/vacancies/176/candidates/delete",
+          "method": "POST",
+          "body": "{ \"id\": \"all\" }",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "delete all"
         }
       ]
     }
