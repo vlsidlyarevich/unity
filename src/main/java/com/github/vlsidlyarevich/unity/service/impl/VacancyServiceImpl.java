@@ -6,6 +6,8 @@ import com.github.vlsidlyarevich.unity.model.Speciality;
 import com.github.vlsidlyarevich.unity.model.Vacancy;
 import com.github.vlsidlyarevich.unity.repository.VacancyRepository;
 import com.github.vlsidlyarevich.unity.service.VacancyService;
+import com.github.vlsidlyarevich.unity.service.mapper.ModelMapper;
+import com.google.common.collect.Lists;
 import org.neo4j.ogm.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-import static com.github.vlsidlyarevich.unity.service.mapper.ModelMapper.convertToModel;
+import static com.github.vlsidlyarevich.unity.service.mapper.ModelMapper.*;
 
 
 @Service
@@ -37,7 +39,7 @@ public class VacancyServiceImpl implements VacancyService {
 
     @Override
     public Vacancy find(Long id) {
-        return session.load(Vacancy.class, id, 3);
+        return session.load(Vacancy.class, id);
     }
 
     @Override
@@ -60,7 +62,7 @@ public class VacancyServiceImpl implements VacancyService {
         Vacancy vacancy = convertToModel(dto);
         vacancy.setId(id);
 
-        Vacancy saved = session.load(Vacancy.class, id);
+        Vacancy saved = session.load(Vacancy.class, id, 3);
 
         if (saved != null) {
             vacancy.setCandidates(saved.getCandidates());

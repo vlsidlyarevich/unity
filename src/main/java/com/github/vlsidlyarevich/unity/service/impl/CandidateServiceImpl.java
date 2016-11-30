@@ -6,7 +6,6 @@ import com.github.vlsidlyarevich.unity.model.Vacancy;
 import com.github.vlsidlyarevich.unity.repository.CandidateRepository;
 import com.github.vlsidlyarevich.unity.repository.VacancyRepository;
 import com.github.vlsidlyarevich.unity.service.CandidateService;
-import com.google.common.collect.Lists;
 import org.neo4j.ogm.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,7 +54,7 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public List<Candidate> findAll(Long vacancyId) {
-        return Lists.newArrayList(repository.findAllInVacancy(vacancyId));
+        return session.load(Vacancy.class, vacancyId, 3).getCandidates();
     }
 
     @Override
@@ -82,7 +81,7 @@ public class CandidateServiceImpl implements CandidateService {
             candidate.setCreatedAt(String.valueOf(LocalDateTime.now()));
             candidate.getName().setCreatedAt(String.valueOf(LocalDateTime.now()));
 
-            Vacancy vacancy = vacancyRepository.findOne(vacancyId);
+            Vacancy vacancy = session.load(Vacancy.class, vacancyId, 3);
             vacancy.getCandidates().add(candidate);
             vacancyRepository.save(vacancy);
 
