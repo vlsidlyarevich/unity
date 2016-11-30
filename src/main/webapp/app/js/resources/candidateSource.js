@@ -19,6 +19,7 @@ unityApp.factory('Candidate', ['$resource', function ($resource) {
                 if (data.updatedAt != null) {
                     data.updatedAt = new Date(data.updatedAt);
                 }
+                data.birthday = new Date(data.birthday);
                 return data;
             }
         },

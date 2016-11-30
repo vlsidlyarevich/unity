@@ -12,6 +12,7 @@ var unityApp = angular.module('unity', [
     'vacanciesGrid',
     'candidatesGrid',
     'addCandidate',
+    'candidateDetails',
     'ngAnimate',
     'ngResource',
     'flow',
