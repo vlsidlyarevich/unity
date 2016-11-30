@@ -12,14 +12,14 @@ import java.util.List;
 @Repository
 public interface CandidateRepository extends GraphRepository<Candidate> {
 
-    @Query("MATCH (vacancy:Vacancy)-[:HAS_CANDIDATE]->(candidate:Candidate)" +
+    @Query("MATCH (vacancy:Vacancy)-[:HAS_CANDIDATE]->(candidate:Candidate)-[:HAS_NAME]->(name:Name)" +
             "WHERE id(vacancy)={vacancyId} AND id(candidate)={candidateId}" +
-            "RETURN candidate")
+            "RETURN candidate, name")
     Candidate findByVacancy(@Param("vacancyId") Long vacancyId, @Param("candidateId") Long candidateId);
 
-    @Query("MATCH (vacancy:Vacancy)-[:HAS_CANDIDATE]->(candidate:Candidate)" +
+    @Query("MATCH (vacancy:Vacancy)-[:HAS_CANDIDATE]->(candidate:Candidate)-[:HAS_NAME]->(name:Name)" +
             "WHERE id(vacancy)={vacancyId}" +
-            "RETURN candidate")
+            "RETURN candidate,name")
     List<Candidate> findAllInVacancy(@Param("vacancyId") Long vacancyId);
 
     @Query("MATCH (vacancy:Vacancy)-[r:HAS_CANDIDATE]->(candidate:Candidate)," +

@@ -14,15 +14,6 @@ import java.util.List;
 @Repository
 public interface VacancyRepository extends GraphRepository<Vacancy> {
 
-    @Query("MATCH (vacancy:Vacancy)" +
-            "RETURN vacancy")
-    List<Vacancy> findAll();
-
-    @Query("MATCH (vacancy:Vacancy)" +
-            "WHERE id(vacancy)={vacancyId}" +
-            "RETURN vacancy")
-    Vacancy findOne(@Param("vacancyId") Long vacancyId);
-
     List<Vacancy> findBySpeciality(Speciality speciality);
 
     List<Vacancy> findByJobType(JobType jobType);

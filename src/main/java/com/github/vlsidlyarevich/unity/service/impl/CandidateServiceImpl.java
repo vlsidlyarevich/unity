@@ -7,6 +7,7 @@ import com.github.vlsidlyarevich.unity.repository.CandidateRepository;
 import com.github.vlsidlyarevich.unity.repository.VacancyRepository;
 import com.github.vlsidlyarevich.unity.service.CandidateService;
 import com.google.common.collect.Lists;
+import org.neo4j.ogm.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,13 +27,16 @@ public class CandidateServiceImpl implements CandidateService {
     @Autowired
     private VacancyRepository vacancyRepository;
 
+    @Autowired
+    private Session session;
+
     @Override
     public Candidate create(Long vacancyId, CandidateDTO dto) {
         Candidate candidate = convertToModel(dto);
         candidate.setCreatedAt(String.valueOf(LocalDateTime.now()));
         candidate.getName().setCreatedAt(String.valueOf(LocalDateTime.now()));
 
-        Vacancy vacancy = vacancyRepository.findOne(vacancyId);
+        Vacancy vacancy = session.load(Vacancy.class, vacancyId, 3);
         vacancy.getCandidates().add(candidate);
         vacancyRepository.save(vacancy);
 
@@ -46,7 +50,7 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public List<Candidate> findAll() {
-        return Lists.newArrayList(repository.findAll().iterator());
+        return (List<Candidate>) session.loadAll(Candidate.class, 3);
     }
 
     @Override

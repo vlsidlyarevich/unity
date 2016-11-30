@@ -6,8 +6,7 @@ import com.github.vlsidlyarevich.unity.model.Speciality;
 import com.github.vlsidlyarevich.unity.model.Vacancy;
 import com.github.vlsidlyarevich.unity.repository.VacancyRepository;
 import com.github.vlsidlyarevich.unity.service.VacancyService;
-import com.github.vlsidlyarevich.unity.service.mapper.ModelMapper;
-import com.google.common.collect.Lists;
+import org.neo4j.ogm.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-import static com.github.vlsidlyarevich.unity.service.mapper.ModelMapper.*;
+import static com.github.vlsidlyarevich.unity.service.mapper.ModelMapper.convertToModel;
 
 
 @Service
@@ -23,6 +22,9 @@ public class VacancyServiceImpl implements VacancyService {
 
     @Autowired
     private VacancyRepository repository;
+
+    @Autowired
+    private Session session;
 
     @Override
     public Vacancy create(VacancyDTO dto) {
@@ -35,12 +37,12 @@ public class VacancyServiceImpl implements VacancyService {
 
     @Override
     public Vacancy find(Long id) {
-        return repository.findOne(id);
+        return session.load(Vacancy.class, id, 3);
     }
 
     @Override
     public List<Vacancy> findAll() {
-        return repository.findAll();
+        return (List<Vacancy>) session.loadAll(Vacancy.class, 3);
     }
 
     @Override
@@ -58,7 +60,7 @@ public class VacancyServiceImpl implements VacancyService {
         Vacancy vacancy = convertToModel(dto);
         vacancy.setId(id);
 
-        Vacancy saved = repository.findOne(id);
+        Vacancy saved = session.load(Vacancy.class, id);
 
         if (saved != null) {
             vacancy.setCandidates(saved.getCandidates());
