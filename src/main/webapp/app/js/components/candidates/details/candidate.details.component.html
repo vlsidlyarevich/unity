@@ -1,0 +1,134 @@
+<div class="container-fluid">
+
+    <div class="col-sm-2">
+        <div class="well well-sm bs-component" style="padding: 10px;">
+
+            <div class="row-picture" flow-init="{target:'/api/images/upload', singleFile: true, testChunks:false}"
+                 flow-files-submitted="$flow.upload()" flow-file-success="fileUploaded($file, $message, $flow)">
+                <img class="img-thumbnail img-responsive" flow-img="$flow.files[0]"
+                     style="width: 200px; height: 170px;"
+                     ng-show="$flow.files.length"
+                     src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
+                     fallback-src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"/>
+
+                <img ng-src={{getImageUrl(candidate.imageId)}}
+                     style="width: 200px; height: 170px;"
+                     ng-hide="$flow.files.length"
+                     fallback-src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"/>
+
+                <span class="btn btn-primary" ng-show="!$flow.files.length" flow-btn="">
+                    Select image<input type="file"
+                                       style="visibility: hidden; position: absolute;"></span>
+                <span class="btn btn-info ng-hide" ng-show="$flow.files.length" flow-btn="">
+                    Change<input type="file"
+                                 style="visibility: hidden; position: absolute;"></span>
+                <span class="btn btn-danger ng-hide" ng-show="$flow.files.length"
+                      ng-click="resetImage($flow)">Remove</span>
+            </div>
+        </div>
+
+        <div class="well well-sm">
+            <div class="btn-group-sm btn-block">
+                <button type="submit" class="btn btn-primary" form="profileForm">Submit</button>
+                <button type="button" class="btn btn-warning" ng-click="close()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-10">
+        <div class="well bs-component">
+            <form class="form-horizontal" ng-submit="submit()" id="profileForm">
+                <fieldset>
+                    <legend>Candidate</legend>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label for="firstName" class="col-md-2 control-label">First Name</label>
+                                <div class="col-md-10">
+                                    <input type="input" class="form-control" id="firstName" placeholder="First Name"
+                                           ng-model="candidate.name.firstName" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label for="lastName" class="col-md-2 control-label">Last Name</label>
+                                <div class="col-md-10">
+                                    <input type="input" class="form-control" id="lastName" placeholder="Last Name"
+                                           ng-model="candidate.name.lastName" required/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="candidateAge" class="col-md-2 control-label">Age</label>
+                            <div class="col-md-10">
+                                <input type="number" class="form-control" id="candidateAge" placeholder="Age"
+                                       ng-model="candidate.age"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label for="gender" class="col-md-2 control-label">Gender</label>
+                                <div class="col-md-10">
+                                    <select id="gender" class="form-control" ng-model="candidate.gender" required>
+                                        <option value="">Please select</option>
+                                        <option value="MALE">Male</option>
+                                        <option value="FEMALE">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label for="birthday" class="col-md-2 control-label">Birthday</label>
+                                <div class="col-md-10">
+                                    <input type="date" class="form-control" id="birthday"
+                                           placeholder="e.g. 11/01/1985" ng-model="candidate.birthday"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description" class="col-md-2 control-label">HR skype</label>
+                        <div class="col-md-10">
+                            <input type="input" class="form-control" id="description"
+                                   placeholder="Description" ng-model="candidate.hrSkype" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="skype" class="col-md-2 control-label">Skype</label>
+                        <div class="col-md-10">
+                            <input type="input" class="form-control" id="skype" placeholder="Skype"
+                                   ng-model="candidate.skype">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="github" class="col-md-2 control-label">GitHub</label>
+                        <div class="col-md-10">
+                            <input type="input" class="form-control" id="github" placeholder="GitHub URL"
+                                   ng-model="candidate.githubUrl">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="linkedin" class="col-md-2 control-label">Linkedin</label>
+                        <div class="col-md-10">
+                            <input type="input" class="form-control" id="linkedin" placeholder="Linkedin URL"
+                                   ng-model="candidate.linkedInUrl">
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
