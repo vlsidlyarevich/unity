@@ -3,16 +3,12 @@ package com.github.vlsidlyarevich.unity.model;
 import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.lang3.EnumUtils;
-import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
 
 
 @Data
 @ToString
-@NodeEntity(label = "Person")
 public class Person extends BaseEntity {
 
-    @Relationship(type = "HAS_NAME", direction = Relationship.OUTGOING)
     private Name name;
     private Integer age;
     private Gender gender;

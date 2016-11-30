@@ -3,8 +3,6 @@ package com.github.vlsidlyarevich.unity.model;
 import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.lang3.EnumUtils;
-import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +10,6 @@ import java.util.List;
 
 @Data
 @ToString
-@NodeEntity(label = "Vacancy")
 public class Vacancy extends BaseEntity {
 
     private Speciality speciality;
@@ -21,7 +18,6 @@ public class Vacancy extends BaseEntity {
     private String salary;
     private String description;
 
-    @Relationship(type = "HAS_CANDIDATE", direction = Relationship.UNDIRECTED)
     private List<Candidate> candidates;
 
     public Vacancy() {

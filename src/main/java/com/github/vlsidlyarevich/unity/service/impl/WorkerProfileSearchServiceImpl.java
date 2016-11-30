@@ -2,14 +2,12 @@ package com.github.vlsidlyarevich.unity.service.impl;
 
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.service.SearchService;
-import org.neo4j.ogm.cypher.BooleanOperator;
-import org.neo4j.ogm.cypher.Filter;
-import org.neo4j.ogm.cypher.Filters;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.template.Neo4jOperations;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,49 +16,40 @@ import java.util.Map;
 public class WorkerProfileSearchServiceImpl implements SearchService<WorkerProfile> {
 
     @Autowired
-    private Neo4jOperations neo4jOperations;
+    private MongoOperations mongoOperations;
 
     @Override
     public List<WorkerProfile> find(Map<String, String> filters) {
-        Filters searchFilters = new Filters();
+        Query query = new Query();
 
         for (Map.Entry<String, String> filter : filters.entrySet()) {
             switch (filter.getKey()) {
+                case "firstname": {
+                    query.addCriteria(Criteria.where("name.firstName").is(filter.getValue()));
+                    break;
+                }
+                case "secondname": {
+                    query.addCriteria(Criteria.where("name.lastName").is(filter.getValue()));
+                    break;
+                }
                 case "age": {
-                    Filter searchFilter = new Filter();
-                    searchFilter.setBooleanOperator(BooleanOperator.AND);
-                    searchFilter.setPropertyName("age");
-                    searchFilter.setPropertyValue(Integer.valueOf(filter.getValue()));
-                    searchFilters.add(searchFilter);
+                    query.addCriteria(Criteria.where("age").is(Integer.valueOf(filter.getValue())));
                     break;
                 }
                 case "gender": {
-                    Filter searchFilter = new Filter();
-                    searchFilter.setBooleanOperator(BooleanOperator.AND);
-                    searchFilter.setPropertyName("gender");
-                    searchFilter.setPropertyValue(filter.getValue());
-                    searchFilters.add(searchFilter);
+                    query.addCriteria(Criteria.where("gender").is(filter.getValue()));
                     break;
                 }
                 case "speciality": {
-                    Filter searchFilter = new Filter();
-                    searchFilter.setBooleanOperator(BooleanOperator.AND);
-                    searchFilter.setPropertyName("speciality");
-                    searchFilter.setPropertyValue(filter.getValue());
-                    searchFilters.add(searchFilter);
+                    query.addCriteria(Criteria.where("speciality").is(filter.getValue()));
                     break;
                 }
                 case "skype": {
-                    Filter searchFilter = new Filter();
-                    searchFilter.setBooleanOperator(BooleanOperator.AND);
-                    searchFilter.setPropertyName("skype");
-                    searchFilter.setPropertyValue(filter.getValue());
-                    searchFilters.add(searchFilter);
+                    query.addCriteria(Criteria.where("skype").is(filter.getValue()));
                     break;
                 }
             }
         }
-
-        return new ArrayList<>(neo4jOperations.loadAllByProperties(WorkerProfile.class, searchFilters));
+        return mongoOperations.find(query, WorkerProfile.class);
     }
 }

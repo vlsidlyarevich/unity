@@ -3,12 +3,10 @@ package com.github.vlsidlyarevich.unity.model;
 import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.lang3.EnumUtils;
-import org.neo4j.ogm.annotation.NodeEntity;
 
 
 @Data
 @ToString
-@NodeEntity(label = "Worker")
 public class Worker extends Person {
 
     private String email;

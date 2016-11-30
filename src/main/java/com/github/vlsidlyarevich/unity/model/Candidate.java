@@ -2,12 +2,10 @@ package com.github.vlsidlyarevich.unity.model;
 
 import lombok.Data;
 import lombok.ToString;
-import org.neo4j.ogm.annotation.NodeEntity;
 
 
 @Data
 @ToString
-@NodeEntity(label = "Candidate")
 public class Candidate extends Person {
 
     private String hrSkype;

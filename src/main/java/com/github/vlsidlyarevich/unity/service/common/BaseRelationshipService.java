@@ -9,19 +9,19 @@ import java.util.Map;
 
 public interface BaseRelationshipService<T extends BaseEntity, S extends Serializable> {
 
-    T create(Long id, S object);
+    T create(String id, S object);
 
-    T find(Long id1, Long id2);
+    T find(String id1, String id2);
 
     List<T> findAll();
 
-    List<T> findAll(Long id);
+    List<T> findAll(String id);
 
-    T update(Long id1, Long id2, S object);
+    T update(String id1, String id2, S object);
 
-    Long delete(Long id1, Long id2);
+    String delete(String id1, String id2);
 
-    Integer deleteQuery(Long id1, Map<String, String> ids);
+    Integer deleteQuery(String id1, Map<String, String> ids);
 
     Integer deleteAll();
 }

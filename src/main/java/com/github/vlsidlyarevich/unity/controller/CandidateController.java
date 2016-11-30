@@ -16,28 +16,28 @@ public class CandidateController {
     private CandidateService service;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getAllCandidates(@PathVariable Long vacancyId) {
+    public ResponseEntity<?> getAllCandidates(@PathVariable String vacancyId) {
         return new ResponseEntity<>(service.findAll(vacancyId), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{candidateId}", method = RequestMethod.GET)
-    public ResponseEntity<?> getCandidateById(@PathVariable Long vacancyId, @PathVariable Long candidateId) {
+    public ResponseEntity<?> getCandidateById(@PathVariable String vacancyId, @PathVariable String candidateId) {
         return new ResponseEntity<>(service.find(vacancyId, candidateId), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> addCandidate(@PathVariable Long vacancyId, @RequestBody CandidateDTO candidate) {
+    public ResponseEntity<?> addCandidate(@PathVariable String vacancyId, @RequestBody CandidateDTO candidate) {
         return new ResponseEntity<>(service.create(vacancyId, candidate), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{candidateId}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateCandidateById(@PathVariable Long vacancyId, @PathVariable Long candidateId,
+    public ResponseEntity<?> updateCandidateById(@PathVariable String vacancyId, @PathVariable String candidateId,
                                                  @RequestBody CandidateDTO candidate) {
         return new ResponseEntity<>(service.update(vacancyId, candidateId, candidate), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{candidateId}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteCandidateById(@PathVariable Long vacancyId, @PathVariable Long candidateId) {
+    public ResponseEntity<?> deleteCandidateById(@PathVariable String vacancyId, @PathVariable String candidateId) {
         return new ResponseEntity<>(service.delete(vacancyId, candidateId), HttpStatus.OK);
     }
 }

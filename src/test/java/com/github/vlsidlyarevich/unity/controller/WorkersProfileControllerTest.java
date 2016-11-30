@@ -67,7 +67,7 @@ public class WorkersProfileControllerTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(savedWorker.getId().intValue())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(savedWorker.getId())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name.firstName", is(savedWorker.getName().getFirstName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name.lastName", is(savedWorker.getName().getLastName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.age", is(savedWorker.getAge())))
@@ -91,7 +91,7 @@ public class WorkersProfileControllerTest {
                 .content(objectMapper.writeValueAsString(worker))
                 .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(savedWorker.getId().intValue())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(savedWorker.getId())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name.firstName", is(savedWorker.getName().getFirstName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name.lastName", is(savedWorker.getName().getLastName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.age", is(savedWorker.getAge())))
@@ -110,7 +110,7 @@ public class WorkersProfileControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].id", is(savedWorker.getId().intValue())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].id", is(savedWorker.getId())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].name.firstName", is(savedWorker.getName().getFirstName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].name.lastName", is(savedWorker.getName().getLastName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].age", is(savedWorker.getAge())))
@@ -127,6 +127,6 @@ public class WorkersProfileControllerTest {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/workers/" + savedWorker.getId())
                 .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(String.valueOf(savedWorker.getId().intValue())));
+                .andExpect(MockMvcResultMatchers.content().string(String.valueOf(savedWorker.getId())));
     }
 }

@@ -51,7 +51,7 @@ public class WorkerProfileRepositoryTest {
 
         workerProfileRepository.save(saved);
 
-        Assert.assertEquals(saved, workerProfileRepository.findByName(name.getFirstName(), name.getLastName()));
+        Assert.assertEquals(saved, workerProfileRepository.findByName(name));
     }
 
     @Test
