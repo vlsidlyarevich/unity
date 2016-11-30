@@ -11,13 +11,13 @@ public interface BaseService<T extends BaseEntity, S extends Serializable> {
 
     T create(S object);
 
-    T find(Long id);
+    T find(String id);
 
     List<T> findAll();
 
-    T update(Long id, S object);
+    T update(String id, S object);
 
-    Long delete(Long id);
+    String delete(String id);
 
     Integer deleteQuery(Map<String, String> ids);
 

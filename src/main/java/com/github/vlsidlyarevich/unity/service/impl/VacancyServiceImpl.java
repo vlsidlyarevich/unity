@@ -6,9 +6,6 @@ import com.github.vlsidlyarevich.unity.model.Speciality;
 import com.github.vlsidlyarevich.unity.model.Vacancy;
 import com.github.vlsidlyarevich.unity.repository.VacancyRepository;
 import com.github.vlsidlyarevich.unity.service.VacancyService;
-import com.github.vlsidlyarevich.unity.service.mapper.ModelMapper;
-import com.google.common.collect.Lists;
-import org.neo4j.ogm.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +22,6 @@ public class VacancyServiceImpl implements VacancyService {
     @Autowired
     private VacancyRepository repository;
 
-    @Autowired
-    private Session session;
-
     @Override
     public Vacancy create(VacancyDTO dto) {
         Vacancy vacancy = convertToModel(dto);
@@ -38,13 +32,13 @@ public class VacancyServiceImpl implements VacancyService {
     }
 
     @Override
-    public Vacancy find(Long id) {
-        return session.load(Vacancy.class, id);
+    public Vacancy find(String id) {
+        return repository.findById(id);
     }
 
     @Override
     public List<Vacancy> findAll() {
-        return (List<Vacancy>) session.loadAll(Vacancy.class, 3);
+        return repository.findAll();
     }
 
     @Override
@@ -58,11 +52,11 @@ public class VacancyServiceImpl implements VacancyService {
     }
 
     @Override
-    public Vacancy update(Long id, VacancyDTO dto) {
+    public Vacancy update(String id, VacancyDTO dto) {
         Vacancy vacancy = convertToModel(dto);
         vacancy.setId(id);
 
-        Vacancy saved = session.load(Vacancy.class, id, 3);
+        Vacancy saved = repository.findById(id);
 
         if (saved != null) {
             vacancy.setCandidates(saved.getCandidates());
@@ -76,7 +70,7 @@ public class VacancyServiceImpl implements VacancyService {
     }
 
     @Override
-    public Long delete(Long id) {
+    public String delete(String id) {
         repository.delete(id);
         return id;
     }
@@ -93,8 +87,8 @@ public class VacancyServiceImpl implements VacancyService {
         }
 
         for (Map.Entry<String, String> id : ids.entrySet()) {
-            if (repository.exists(Long.valueOf(id.getValue()))) {
-                repository.delete(Long.valueOf(id.getValue()));
+            if (repository.exists(id.getValue())) {
+                repository.delete(id.getValue());
                 deleteCounter++;
             }
         }

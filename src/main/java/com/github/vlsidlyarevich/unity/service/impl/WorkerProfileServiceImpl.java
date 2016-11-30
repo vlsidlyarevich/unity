@@ -26,20 +26,21 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
     @Override
     public WorkerProfile create(WorkerProfileDTO dto) {
         WorkerProfile workerProfile = convertToModel(dto);
+
         workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
-        workerProfile.getName().setCreatedAt(String.valueOf(LocalDateTime.now()));
+
         repository.save(workerProfile);
         return workerProfile;
     }
 
     @Override
-    public WorkerProfile find(Long id) {
-        return repository.findOne(id);
+    public WorkerProfile find(String id) {
+        return repository.findById(id);
     }
 
     @Override
     public WorkerProfile findByName(Name name) {
-        return repository.findByName(name.getFirstName(), name.getLastName());
+        return repository.findByName(name);
     }
 
     @Override
@@ -53,28 +54,24 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
     }
 
     @Override
-    public WorkerProfile update(Long id, WorkerProfileDTO dto) {
+    public WorkerProfile update(String id, WorkerProfileDTO dto) {
         WorkerProfile workerProfile = convertToModel(dto);
         workerProfile.setId(id);
 
-        WorkerProfile saved = repository.findOne(id);
+        WorkerProfile saved = repository.findById(id);
 
         if (saved != null) {
-            workerProfile.getName().setId(saved.getName().getId());
             workerProfile.setCreatedAt(saved.getCreatedAt());
             workerProfile.setUpdatedAt(String.valueOf(LocalDateTime.now()));
-            workerProfile.getName().setCreatedAt(saved.getName().getCreatedAt());
-            workerProfile.getName().setUpdatedAt(String.valueOf(LocalDateTime.now()));
         } else {
             workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
-            workerProfile.getName().setUpdatedAt(String.valueOf(LocalDateTime.now()));
         }
         repository.save(workerProfile);
         return workerProfile;
     }
 
     @Override
-    public Long delete(Long id) {
+    public String delete(String id) {
         repository.delete(id);
         return id;
     }
@@ -91,8 +88,8 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
         }
 
         for (Map.Entry<String, String> id : ids.entrySet()) {
-            if (repository.exists(Long.valueOf(id.getValue()))) {
-                repository.delete(Long.valueOf(id.getValue()));
+            if (repository.exists(id.getValue())) {
+                repository.delete(id.getValue());
                 deleteCounter++;
             }
         }

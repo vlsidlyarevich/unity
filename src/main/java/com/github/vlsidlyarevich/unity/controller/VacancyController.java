@@ -21,7 +21,7 @@ public class VacancyController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getVacancyById(@PathVariable Long id) {
+    public ResponseEntity<?> getVacancyById(@PathVariable String id) {
         return new ResponseEntity<>(service.find(id), HttpStatus.OK);
     }
 
@@ -31,12 +31,12 @@ public class VacancyController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateVacancyById(@PathVariable Long id, @RequestBody VacancyDTO vacancy) {
+    public ResponseEntity<?> updateVacancyById(@PathVariable String id, @RequestBody VacancyDTO vacancy) {
         return new ResponseEntity<>(service.update(id, vacancy), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteVacancyById(@PathVariable Long id) {
+    public ResponseEntity<?> deleteVacancyById(@PathVariable String id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }

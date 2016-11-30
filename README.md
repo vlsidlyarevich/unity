@@ -14,7 +14,7 @@ Module of integration with [woodstock](https://github.com/solairerove/woodstock)
 * [Spring Boot](http://projects.spring.io/spring-boot/)
 * [Gulp](http://gulpjs.com/)
 * [Bower](https://bower.io/)
-* [Neo4j](https://neo4j.com/)
+* [MongoDB](https://www.mongodb.com/)
 * [Docker](https://www.docker.com/)
 
 ---
@@ -22,13 +22,12 @@ Module of integration with [woodstock](https://github.com/solairerove/woodstock)
 If you don't have installed maven, or you don't want to install it, just type `./mvnw clean install`.
 
 ---
-###Getting neo4j
-You can download and install neo4j following instructions from [official site](https://neo4j.com/)
-Or you can use docker-compose file.
-* go to `additional/docker` folder
-* run `startup.sh` file
-* run `docker-compose up` 
-* set `test` password for neo4j if you are running `test` config and `unity` for `dev` config
+###Getting mongo
+You can download and install mongo following instructions from (official site)[https://docs.mongodb.com/manual/administration/install-community/]
+Or you can create and run docker image.
+Type following commands in additional/docker/mongo folder.
+* `docker build -t mongo .`
+* `docker run -p 27017:27017 --name mongodb -d mongo`
 
  
 ###Running the application

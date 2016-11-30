@@ -17,7 +17,7 @@ public class CandidateDeleteQueryController {
     private CandidateService service;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> deleteQuery(@RequestBody Map<String, String> ids, @PathVariable Long vacancyId) {
+    public ResponseEntity<?> deleteQuery(@RequestBody Map<String, String> ids, @PathVariable String vacancyId) {
         return new ResponseEntity<>(service.deleteQuery(vacancyId, ids), HttpStatus.OK);
     }
 }

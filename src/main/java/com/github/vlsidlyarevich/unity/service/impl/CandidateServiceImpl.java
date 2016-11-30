@@ -6,13 +6,13 @@ import com.github.vlsidlyarevich.unity.model.Vacancy;
 import com.github.vlsidlyarevich.unity.repository.CandidateRepository;
 import com.github.vlsidlyarevich.unity.repository.VacancyRepository;
 import com.github.vlsidlyarevich.unity.service.CandidateService;
-import org.neo4j.ogm.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import static com.github.vlsidlyarevich.unity.service.mapper.ModelMapper.convertToModel;
 
@@ -26,16 +26,13 @@ public class CandidateServiceImpl implements CandidateService {
     @Autowired
     private VacancyRepository vacancyRepository;
 
-    @Autowired
-    private Session session;
-
     @Override
-    public Candidate create(Long vacancyId, CandidateDTO dto) {
+    public Candidate create(String vacancyId, CandidateDTO dto) {
         Candidate candidate = convertToModel(dto);
         candidate.setCreatedAt(String.valueOf(LocalDateTime.now()));
-        candidate.getName().setCreatedAt(String.valueOf(LocalDateTime.now()));
 
-        Vacancy vacancy = session.load(Vacancy.class, vacancyId, 3);
+        Vacancy vacancy = vacancyRepository.findById(vacancyId);
+        repository.save(candidate);
         vacancy.getCandidates().add(candidate);
         vacancyRepository.save(vacancy);
 
@@ -43,45 +40,42 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public Candidate find(Long vacancyId, Long candidateId) {
-        return repository.findByVacancy(vacancyId, candidateId);
+    public Candidate find(String vacancyId, String candidateId) {
+        return vacancyRepository.findById(vacancyId).getCandidates().stream()
+                .filter(s -> Objects.equals(s.getId(), candidateId)).findFirst().get();
     }
 
     @Override
     public List<Candidate> findAll() {
-        return (List<Candidate>) session.loadAll(Candidate.class, 3);
+        return repository.findAll();
     }
 
     @Override
-    public List<Candidate> findAll(Long vacancyId) {
-        return session.load(Vacancy.class, vacancyId, 3).getCandidates();
+    public List<Candidate> findAll(String vacancyId) {
+        return vacancyRepository.findById(vacancyId).getCandidates();
     }
 
     @Override
-    public Candidate update(Long vacancyId, Long candidateId, CandidateDTO dto) {
+    public Candidate update(String vacancyId, String candidateId, CandidateDTO dto) {
         Candidate candidate;
         if (repository.exists(candidateId)) {
-            candidate = repository.findByVacancy(vacancyId, candidateId);
-            candidate.setHrSkype(dto.getHrSkype());
-            candidate.setLinkedInUrl(dto.getLinkedInUrl());
-            candidate.setGender(dto.getGender());
-            candidate.setImageId(dto.getImageId());
-            candidate.getName().setFirstName(dto.getName().getFirstName());
-            candidate.getName().setLastName(dto.getName().getLastName());
-            candidate.setGithubUrl(dto.getGithubUrl());
-            candidate.setSkype(dto.getSkype());
-            candidate.setAge(dto.getAge());
-            candidate.setBirthday(dto.getBirthday());
+            candidate = convertToModel(dto);
+            candidate.setId(this.find(vacancyId, candidateId).getId());
             candidate.setUpdatedAt(String.valueOf(LocalDateTime.now()));
-            candidate.getName().setUpdatedAt(String.valueOf(LocalDateTime.now()));
+            this.delete(vacancyId, candidateId);
 
-            return repository.save(candidate);
+            Vacancy vacancy = vacancyRepository.findById(vacancyId);
+            vacancy.getCandidates().add(candidate);
+            repository.save(candidate);
+            vacancyRepository.save(vacancy);
+
+            return candidate;
         } else {
             candidate = convertToModel(dto);
             candidate.setCreatedAt(String.valueOf(LocalDateTime.now()));
-            candidate.getName().setCreatedAt(String.valueOf(LocalDateTime.now()));
 
-            Vacancy vacancy = session.load(Vacancy.class, vacancyId, 3);
+            repository.save(candidate);
+            Vacancy vacancy = vacancyRepository.findById(vacancyId);
             vacancy.getCandidates().add(candidate);
             vacancyRepository.save(vacancy);
 
@@ -90,25 +84,27 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public Long delete(Long vacancyId, Long candidateId) {
-        repository.deleteInVacancy(vacancyId, candidateId);
+    public String delete(String vacancyId, String candidateId) {
+        Vacancy vacancy = vacancyRepository.findById(vacancyId);
+        vacancy.getCandidates().removeIf(c -> c.getId().equals(candidateId));
+        vacancyRepository.save(vacancy);
         return candidateId;
     }
 
     @Override
-    public Integer deleteQuery(Long vacancyId, Map<String, String> ids) {
+    public Integer deleteQuery(String vacancyId, Map<String, String> ids) {
         Integer deleteCounter = 0;
 
         if (ids.keySet().size() == 1 && ids.containsValue("all")) {
             deleteCounter = Math.toIntExact(repository.count());
-            repository.deleteAllInVacancy(vacancyId);
+            vacancyRepository.findById(vacancyId).getCandidates().clear();
 
             return deleteCounter;
         }
 
         for (Map.Entry<String, String> id : ids.entrySet()) {
-            if (repository.exists(Long.valueOf(id.getValue()))) {
-                repository.deleteInVacancy(vacancyId, Long.valueOf(id.getValue()));
+            if (repository.exists(String.valueOf(id.getValue()))) {
+                this.delete(vacancyId, String.valueOf(id.getValue()));
                 deleteCounter++;
             }
         }
