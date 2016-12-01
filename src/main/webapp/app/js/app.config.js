@@ -21,6 +21,8 @@ unityApp.config(['$locationProvider', '$routeProvider',
             template: '<add-candidate></add-candidate>'
         }).when('/about', {
             template: '<about-component></about-component>'
+        }).when('/help', {
+            template: '<help-page></help-page>'
         }).otherwise('/workers');
     }
 ]);

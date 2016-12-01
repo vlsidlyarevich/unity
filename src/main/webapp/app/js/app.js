@@ -3,6 +3,7 @@
 var unityApp = angular.module('unity', [
     'ngRoute',
     'homePage',
+    'helpPage',
     'aboutComponent',
     'unityFooter',
     'unityHeader',
