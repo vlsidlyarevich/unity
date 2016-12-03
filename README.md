@@ -23,7 +23,7 @@ If you don't have installed maven, or you don't want to install it, just type `.
 
 ---
 ###Getting mongo
-You can download and install mongo following instructions from (official site)[https://docs.mongodb.com/manual/administration/install-community/]
+You can download and install mongo following instructions from [official site](https://docs.mongodb.com/manual/administration/install-community/)
 Or you can create and run docker image.
 Type following commands in additional/docker/mongo folder.
 * `docker build -t mongo .`
