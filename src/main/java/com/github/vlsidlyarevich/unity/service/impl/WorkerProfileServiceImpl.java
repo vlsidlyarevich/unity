@@ -1,11 +1,11 @@
 package com.github.vlsidlyarevich.unity.service.impl;
 
+import com.github.vlsidlyarevich.unity.converter.factory.ConverterFactory;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
 import com.github.vlsidlyarevich.unity.service.WorkerProfileService;
-import com.github.vlsidlyarevich.unity.service.mapper.ModelMapper;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +14,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-import static com.github.vlsidlyarevich.unity.service.mapper.ModelMapper.*;
-
 
 @Service
 public class WorkerProfileServiceImpl implements WorkerProfileService {
@@ -23,9 +21,12 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
     @Autowired
     private WorkerProfileRepository repository;
 
+    @Autowired
+    private ConverterFactory converterFactory;
+
     @Override
     public WorkerProfile create(WorkerProfileDTO dto) {
-        WorkerProfile workerProfile = convertToModel(dto);
+        WorkerProfile workerProfile = (WorkerProfile) converterFactory.getConverter(WorkerProfileDTO.class).convert(dto);
 
         workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
 
@@ -55,7 +56,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
 
     @Override
     public WorkerProfile update(String id, WorkerProfileDTO dto) {
-        WorkerProfile workerProfile = convertToModel(dto);
+        WorkerProfile workerProfile = (WorkerProfile) converterFactory.getConverter(WorkerProfileDTO.class).convert(dto);
         workerProfile.setId(id);
 
         WorkerProfile saved = repository.findById(id);

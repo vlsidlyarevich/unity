@@ -1,9 +1,9 @@
 package com.github.vlsidlyarevich.unity.service;
 
+import com.github.vlsidlyarevich.unity.converter.factory.ConverterFactory;
 import com.github.vlsidlyarevich.unity.dto.VacancyDTO;
 import com.github.vlsidlyarevich.unity.model.Vacancy;
 import com.github.vlsidlyarevich.unity.repository.VacancyRepository;
-import com.github.vlsidlyarevich.unity.service.mapper.ModelMapper;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -13,8 +13,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import static com.github.vlsidlyarevich.unity.service.mapper.ModelMapper.*;
 
 
 //TODO:// FIXME: 27/11/16
@@ -27,6 +25,9 @@ public class VacancyServiceImplTest {
 
     @Autowired
     private VacancyRepository vacancyRepository;
+
+    @Autowired
+    private ConverterFactory converterFactory;
 
     @Before
     public void before() {
@@ -45,7 +46,7 @@ public class VacancyServiceImplTest {
 
         Vacancy saved = vacancyService.create(vacancyDTO);
 
-        Assert.assertEquals(convertToModel(vacancyDTO), saved);
+        Assert.assertEquals((Vacancy) converterFactory.getConverter(VacancyDTO.class).convert(vacancyDTO), saved);
         Assert.assertNotNull(saved.getCreatedAt());
     }
 
@@ -55,7 +56,8 @@ public class VacancyServiceImplTest {
 
         Vacancy saved = vacancyService.create(vacancyDTO);
 
-        Assert.assertEquals(convertToModel(vacancyDTO), vacancyService.find(saved.getId()));
+        Assert.assertEquals(converterFactory.getConverter(VacancyDTO.class).convert(vacancyDTO),
+                vacancyService.find(saved.getId()));
         Assert.assertNotNull(saved.getCreatedAt());
     }
 

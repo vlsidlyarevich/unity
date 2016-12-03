@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.service.impl;
 
+import com.github.vlsidlyarevich.unity.converter.factory.ConverterFactory;
 import com.github.vlsidlyarevich.unity.dto.CandidateDTO;
 import com.github.vlsidlyarevich.unity.model.Candidate;
 import com.github.vlsidlyarevich.unity.model.Vacancy;
@@ -14,8 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.github.vlsidlyarevich.unity.service.mapper.ModelMapper.convertToModel;
-
 
 @Service
 public class CandidateServiceImpl implements CandidateService {
@@ -26,9 +25,12 @@ public class CandidateServiceImpl implements CandidateService {
     @Autowired
     private VacancyRepository vacancyRepository;
 
+    @Autowired
+    private ConverterFactory converterFactory;
+
     @Override
     public Candidate create(String vacancyId, CandidateDTO dto) {
-        Candidate candidate = convertToModel(dto);
+        Candidate candidate = (Candidate) converterFactory.getConverter(CandidateDTO.class).convert(dto);
         candidate.setCreatedAt(String.valueOf(LocalDateTime.now()));
 
         Vacancy vacancy = vacancyRepository.findById(vacancyId);
@@ -59,7 +61,7 @@ public class CandidateServiceImpl implements CandidateService {
     public Candidate update(String vacancyId, String candidateId, CandidateDTO dto) {
         Candidate candidate;
         if (repository.exists(candidateId)) {
-            candidate = convertToModel(dto);
+            candidate = (Candidate) converterFactory.getConverter(CandidateDTO.class).convert(dto);
             candidate.setId(this.find(vacancyId, candidateId).getId());
             candidate.setUpdatedAt(String.valueOf(LocalDateTime.now()));
             this.delete(vacancyId, candidateId);
@@ -71,7 +73,7 @@ public class CandidateServiceImpl implements CandidateService {
 
             return candidate;
         } else {
-            candidate = convertToModel(dto);
+            candidate = (Candidate) converterFactory.getConverter(CandidateDTO.class).convert(dto);
             candidate.setCreatedAt(String.valueOf(LocalDateTime.now()));
 
             repository.save(candidate);

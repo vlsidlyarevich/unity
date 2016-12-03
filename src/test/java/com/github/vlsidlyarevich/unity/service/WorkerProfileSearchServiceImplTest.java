@@ -1,9 +1,8 @@
 package com.github.vlsidlyarevich.unity.service;
 
+import com.github.vlsidlyarevich.unity.converter.factory.ConverterFactory;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
-import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
-import com.github.vlsidlyarevich.unity.service.mapper.ModelMapper;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -16,8 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashMap;
 import java.util.List;
-
-import static com.github.vlsidlyarevich.unity.service.mapper.ModelMapper.*;
 
 
 @RunWith(SpringRunner.class)
@@ -32,6 +29,9 @@ public class WorkerProfileSearchServiceImplTest {
 
     @Autowired
     private WorkerProfileRepository workerProfileRepository;
+
+    @Autowired
+    private ConverterFactory converterFactory;
 
     @Before
     public void before() {
@@ -50,8 +50,8 @@ public class WorkerProfileSearchServiceImplTest {
 
         HashMap<String, String> map = new HashMap<>();
         map.put("skype", workerProfile.getSkype());
-        List<WorkerProfile> workerProfiles = workerProfileSearchService.find(map);
-        Assert.assertEquals(convertToModel(workerProfile), workerProfiles.get(0));
+        List workerProfiles = workerProfileSearchService.find(map);
+        Assert.assertEquals(converterFactory.getConverter(WorkerProfileDTO.class).convert(workerProfile), workerProfiles.get(0));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class WorkerProfileSearchServiceImplTest {
         map.put("gender", workerProfile.getGender().name());
         map.put("speciality", workerProfile.getSpeciality().name());
 
-        List<WorkerProfile> workerProfiles = workerProfileSearchService.find(map);
-        Assert.assertEquals(convertToModel(workerProfile), workerProfiles.get(0));
+        List workerProfiles = workerProfileSearchService.find(map);
+        Assert.assertEquals(converterFactory.getConverter(WorkerProfileDTO.class).convert(workerProfile), workerProfiles.get(0));
     }
 }
