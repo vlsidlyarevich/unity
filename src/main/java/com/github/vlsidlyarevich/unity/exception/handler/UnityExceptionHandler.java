@@ -4,6 +4,7 @@ import com.github.vlsidlyarevich.unity.config.MessageResolver;
 import com.github.vlsidlyarevich.unity.exception.FileSystemFileNotFoundException;
 import com.github.vlsidlyarevich.unity.exception.FileSystemStorageException;
 import com.github.vlsidlyarevich.unity.exception.model.ExceptionModel;
+import com.mongodb.MongoException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,4 +39,17 @@ public class UnityExceptionHandler extends ResponseEntityExceptionHandler {
                 exception.getArgs())), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(MongoException.class)
+    public ResponseEntity handleMongoException(MongoException exception, HttpServletRequest req) {
+        log.warn("Processing mongo exception:" + exception.getMessage());
+
+        return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity handleAbstractException(Exception exception, HttpServletRequest req) {
+        log.warn("Processing abstract exception:" + exception.getMessage());
+
+        return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+    }
 }
