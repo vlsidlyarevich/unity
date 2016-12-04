@@ -3,6 +3,50 @@
         <a ng-click="addVacancy()" class="btn btn-raised btn-sm">New vacancy</a>
         <a href="javascript:void(0)" class="btn btn-raised btn-sm" data-toggle="modal" data-target="#confirmationModal">Delete
             vacancies</a>
+        <a href="javascript:void(0)" class="btn btn-raised btn-sm" ng-click="showFilters = ! showFilters">Filter</a>
+    </div>
+
+    <div class="well col-sm-8 col-sm-offset-2" ng-class="{ 'hidden': ! showFilters }">
+        <div class="col-md-3">
+            <select id="speciality" class="form-control" ng-model="search.speciality">
+                <option value="">Please select</option>
+                <option value="UNKNOWN">Unknown</option>
+                <option value="SOFTWARE_ENGINEER">Software Engineer</option>
+                <option value="BUSINESS_ANALYST">Business Analyst</option>
+                <option value="PROJECT_MANAGER">Project Manager</option>
+                <option value="TECHNICAL_LEADER">Technical Leader</option>
+                <option value="QUALITY_ASSURANCE">Quality Assurance</option>
+                <option value="RESOURCE_MANAGER">Resource Manager</option>
+                <option value="SYSTEM_ADMINISTRATOR">System Administrator</option>
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <div class="radio radio-primary">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="CONTRACT"
+                           ng-model="search.jobType">
+                    Contract
+                </label>
+            </div>
+            <div class="radio radio-primary">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="PERMANENT"
+                           ng-model="search.jobType">
+                    Permanent
+                </label>
+            </div>
+            <div class="radio radio-primary">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="UNKNOWN"
+                           ng-model="search.jobType">
+                    Unknown
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <input class="form-control" id="location" placeholder="Location"
+                   ng-model="search.location">
+        </div>
     </div>
 
     <div class="well col-sm-8 col-sm-offset-2" ng-init="init()">
@@ -22,7 +66,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="item in vacancies">
+            <tr ng-repeat="item in vacancies | filter:search">
                 <td class="col-sm-1 text-center">
                     <div class="checkbox">
                         <label>

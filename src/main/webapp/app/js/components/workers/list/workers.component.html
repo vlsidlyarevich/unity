@@ -1,7 +1,52 @@
 <div class="container-fluid">
     <div class="header-panel col-sm-8 col-sm-offset-2">
         <a href="#/new/worker" class="btn btn-raised btn-sm">Create worker</a>
-        <a href="javascript:void(0)" class="btn btn-raised btn-sm" data-toggle="modal" data-target="#confirmationModal">Delete workers</a>
+        <a href="javascript:void(0)" class="btn btn-raised btn-sm" data-toggle="modal" data-target="#confirmationModal">Delete
+            workers</a>
+        <a href="javascript:void(0)" class="btn btn-raised btn-sm" ng-click="showFilters = ! showFilters">Filter</a>
+    </div>
+
+    <div class="well col-sm-8 col-sm-offset-2" ng-class="{ 'hidden': ! showFilters }">
+        <div class="col-xs-3">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="input" class="form-control" id="firstName" placeholder="First Name"
+                           ng-model="search.name.firstName"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="input" class="form-control" id="lastName" placeholder="Last Name"
+                           ng-model="search.name.lastName"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <select id="gender" class="form-control" ng-model="search.gender">
+                        <option value="">Please select</option>
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <select id="speciality" class="form-control" ng-model="search.speciality">
+                <option value="">Please select</option>
+                <option value="UNKNOWN">Unknown</option>
+                <option value="SOFTWARE_ENGINEER">Software Engineer</option>
+                <option value="BUSINESS_ANALYST">Business Analyst</option>
+                <option value="PROJECT_MANAGER">Project Manager</option>
+                <option value="TECHNICAL_LEADER">Technical Leader</option>
+                <option value="QUALITY_ASSURANCE">Quality Assurance</option>
+                <option value="RESOURCE_MANAGER">Resource Manager</option>
+                <option value="SYSTEM_ADMINISTRATOR">System Administrator</option>
+            </select>
+        </div>
     </div>
 
     <div class="well col-sm-8 col-sm-offset-2" ng-init="init()">
@@ -22,7 +67,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="item in workers">
+            <tr ng-repeat="item in workers | filter:search">
                 <td class="col-sm-1 text-center">
                     <div class="checkbox">
                         <label>
@@ -76,7 +121,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteWorkers()">Delete</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteWorkers()">Delete
+                </button>
             </div>
         </div>
     </div>
