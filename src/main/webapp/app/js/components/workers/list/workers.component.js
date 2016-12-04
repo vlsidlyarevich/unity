@@ -8,6 +8,10 @@ function WorkersController($scope, Worker, WorkerDelete, $route) {
     };
 
     $scope.verifyAllSelected = function () {
+        if (this.workers.length === 0) {
+            return false;
+        }
+
         return this.workers.filter(function (item) {
                 return item.delete === true;
             }).length === this.workers.length;

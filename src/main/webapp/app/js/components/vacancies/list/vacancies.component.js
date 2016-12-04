@@ -8,6 +8,10 @@ function VacanciesController($scope, Vacancy, VacancyDelete, $route, ngDialog) {
     };
 
     $scope.verifyAllSelected = function () {
+        if (this.workers.length === 0) {
+            return false;
+        }
+
         return this.vacancies.filter(function (item) {
                 return item.delete === true;
             }).length === this.vacancies.length;
