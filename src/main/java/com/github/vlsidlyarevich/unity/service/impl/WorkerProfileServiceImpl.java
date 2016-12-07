@@ -5,6 +5,7 @@ import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
+import com.github.vlsidlyarevich.unity.service.StorageService;
 import com.github.vlsidlyarevich.unity.service.WorkerProfileService;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 
 @Service
@@ -23,6 +25,9 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
 
     @Autowired
     private ConverterFactory converterFactory;
+
+    @Autowired
+    private StorageService storageService;
 
     @Override
     public WorkerProfile create(WorkerProfileDTO dto) {
@@ -62,6 +67,10 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
         WorkerProfile saved = repository.findById(id);
 
         if (saved != null) {
+            if (!Objects.equals(saved.getImageId(), workerProfile.getImageId())) {
+                storageService.delete(saved.getImageId());
+            }
+
             workerProfile.setCreatedAt(saved.getCreatedAt());
             workerProfile.setUpdatedAt(String.valueOf(LocalDateTime.now()));
         } else {
@@ -72,7 +81,18 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
     }
 
     @Override
+    public String deleteImage(String id) {
+        String imageId = repository.findById(id).getImageId();
+        if (storageService.exists(imageId)) {
+            storageService.delete(imageId);
+        }
+        return id;
+    }
+
+
+    @Override
     public String delete(String id) {
+        deleteImage(id);
         repository.delete(id);
         return id;
     }
@@ -90,6 +110,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
 
         for (Map.Entry<String, String> id : ids.entrySet()) {
             if (repository.exists(id.getValue())) {
+                deleteImage(id.getValue());
                 repository.delete(id.getValue());
                 deleteCounter++;
             }

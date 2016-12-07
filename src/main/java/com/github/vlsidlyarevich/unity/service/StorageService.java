@@ -17,6 +17,8 @@ public interface StorageService {
 
     Resource loadAsResource(String filename);
 
+    Boolean exists(String filename);
+
     void deleteAll();
 
     String delete(String id);

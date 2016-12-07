@@ -13,4 +13,6 @@ public interface WorkerProfileService extends BaseService<WorkerProfile, WorkerP
     WorkerProfile findByName(Name name);
 
     List<WorkerProfile> findAllByAge(Integer age);
+
+    String deleteImage(String id);
 }

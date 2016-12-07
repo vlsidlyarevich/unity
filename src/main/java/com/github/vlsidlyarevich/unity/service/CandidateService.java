@@ -7,4 +7,6 @@ import com.github.vlsidlyarevich.unity.service.common.BaseRelationshipService;
 
 public interface CandidateService extends BaseRelationshipService<Candidate, CandidateDTO> {
 
+    String deleteImage(String id1, String id2);
+
 }
