@@ -132,15 +132,15 @@ public class CandidateServiceImpl implements CandidateService {
         Integer deleteCounter = 0;
 
         if (ids.keySet().size() == 1 && ids.containsValue("all")) {
-            deleteCounter = Math.toIntExact(repository.count());
-            vacancyRepository.findById(vacancyId).getCandidates().clear();
+            deleteCounter = vacancyRepository.findById(vacancyId).getCandidates().size();
+            vacancyRepository.findById(vacancyId).getCandidates()
+                    .forEach(candidate -> delete(vacancyId, candidate.getId()));
 
             return deleteCounter;
         }
 
         for (Map.Entry<String, String> id : ids.entrySet()) {
             if (repository.exists(String.valueOf(id.getValue()))) {
-                deleteImage(vacancyId, id.getValue());
                 this.delete(vacancyId, id.getValue());
                 deleteCounter++;
             }
