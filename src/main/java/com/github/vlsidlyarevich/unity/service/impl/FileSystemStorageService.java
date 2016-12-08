@@ -95,6 +95,19 @@ public class FileSystemStorageService implements StorageService {
     }
 
     @Override
+    public Boolean exists(String filename) {
+        try {
+            return Files.walk(this.storeLocation, 1)
+                    .filter(path -> path.toFile().getName().equals(filename))
+                    .findFirst().isPresent();
+
+        } catch (IOException | NoSuchElementException e) {
+            log.warn("Can't check existing of file:" + filename);
+        }
+        return false;
+    }
+
+    @Override
     public void deleteAll() {
         FileUtils.cleanDirectory(storeLocation);
     }
@@ -102,11 +115,10 @@ public class FileSystemStorageService implements StorageService {
     @Override
     public String delete(String id) {
         try {
-            Path pathToDelete = Files.walk(this.storeLocation, 1)
-                    .filter(path -> !path.equals(this.storeLocation))
-                    .findFirst().get();
+            Files.walk(this.storeLocation, 1)
+                    .filter(path -> path.toFile().getName().equals(id))
+                    .findFirst().get().toFile().delete();
 
-            pathToDelete.toFile().delete();
             return id;
         } catch (IOException | NoSuchElementException e) {
             throw new FileSystemStorageException(e.getMessage(), e.getCause(), "storage.filesystem.file.deleteFail",
