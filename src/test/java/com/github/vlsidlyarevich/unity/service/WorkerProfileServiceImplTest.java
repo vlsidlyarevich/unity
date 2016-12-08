@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.service;
 
-import com.github.vlsidlyarevich.unity.converter.factory.ConverterFactory;
+import com.github.vlsidlyarevich.unity.converter.ConverterFacade;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
@@ -29,7 +29,7 @@ public class WorkerProfileServiceImplTest {
     private WorkerProfileService workerProfileService;
 
     @Autowired
-    private ConverterFactory converterFactory;
+    private ConverterFacade converter;
 
     @Before
     public void before() {
@@ -47,7 +47,7 @@ public class WorkerProfileServiceImplTest {
 
         WorkerProfile saved = workerProfileService.create(dto);
 
-        Assert.assertEquals((WorkerProfile) converterFactory.getConverter(WorkerProfileDTO.class).convert(dto), saved);
+        Assert.assertEquals(converter.convert(dto), saved);
         Assert.assertNotNull(saved.getCreatedAt());
     }
 
@@ -57,7 +57,7 @@ public class WorkerProfileServiceImplTest {
 
         WorkerProfile saved = workerProfileService.create(dto);
 
-        Assert.assertEquals((WorkerProfile) converterFactory.getConverter(WorkerProfileDTO.class).convert(dto),
+        Assert.assertEquals(converter.convert(dto),
                 workerProfileService.find(saved.getId()));
     }
 
@@ -74,7 +74,7 @@ public class WorkerProfileServiceImplTest {
         workerProfileService.create(dto);
         workerProfileService.create(anotherDto);
 
-        Assert.assertEquals((WorkerProfile) converterFactory.getConverter(WorkerProfileDTO.class).convert(dto),
+        Assert.assertEquals(converter.convert(dto),
                 workerProfileService.findByName(name));
     }
 
@@ -84,7 +84,7 @@ public class WorkerProfileServiceImplTest {
         dto.setAge(19);
 
         ArrayList<WorkerProfile> workers = new ArrayList<>();
-        workers.add((WorkerProfile) converterFactory.getConverter(WorkerProfileDTO.class).convert(dto));
+        workers.add(converter.convert(dto));
         workerProfileService.create(dto);
 
         Assert.assertEquals(workers, workerProfileService.findAllByAge(19));
@@ -96,8 +96,8 @@ public class WorkerProfileServiceImplTest {
         WorkerProfileDTO secondDto = TestUtils.generateWorkerProfileDTO();
 
         ArrayList<WorkerProfile> savedWorkers = new ArrayList<>();
-        savedWorkers.add((WorkerProfile) converterFactory.getConverter(WorkerProfileDTO.class).convert(firstDto));
-        savedWorkers.add((WorkerProfile) converterFactory.getConverter(WorkerProfileDTO.class).convert(secondDto));
+        savedWorkers.add(converter.convert(firstDto));
+        savedWorkers.add(converter.convert(secondDto));
         workerProfileService.create(firstDto);
         workerProfileService.create(secondDto);
 

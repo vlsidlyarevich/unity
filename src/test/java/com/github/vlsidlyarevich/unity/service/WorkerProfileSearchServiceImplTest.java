@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.service;
 
-import com.github.vlsidlyarevich.unity.converter.factory.ConverterFactory;
+import com.github.vlsidlyarevich.unity.converter.ConverterFacade;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.repository.WorkerProfileRepository;
 import com.github.vlsidlyarevich.unity.utils.TestUtils;
@@ -31,7 +31,7 @@ public class WorkerProfileSearchServiceImplTest {
     private WorkerProfileRepository workerProfileRepository;
 
     @Autowired
-    private ConverterFactory converterFactory;
+    private ConverterFacade converter;
 
     @Before
     public void before() {
@@ -51,7 +51,7 @@ public class WorkerProfileSearchServiceImplTest {
         HashMap<String, String> map = new HashMap<>();
         map.put("skype", workerProfile.getSkype());
         List workerProfiles = workerProfileSearchService.find(map);
-        Assert.assertEquals(converterFactory.getConverter(WorkerProfileDTO.class).convert(workerProfile), workerProfiles.get(0));
+        Assert.assertEquals(converter.convert(workerProfile), workerProfiles.get(0));
     }
 
     @Test
@@ -65,6 +65,6 @@ public class WorkerProfileSearchServiceImplTest {
         map.put("speciality", workerProfile.getSpeciality().name());
 
         List workerProfiles = workerProfileSearchService.find(map);
-        Assert.assertEquals(converterFactory.getConverter(WorkerProfileDTO.class).convert(workerProfile), workerProfiles.get(0));
+        Assert.assertEquals(converter.convert(workerProfile), workerProfiles.get(0));
     }
 }

@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.service;
 
-import com.github.vlsidlyarevich.unity.converter.factory.ConverterFactory;
+import com.github.vlsidlyarevich.unity.converter.ConverterFacade;
 import com.github.vlsidlyarevich.unity.dto.CandidateDTO;
 import com.github.vlsidlyarevich.unity.model.Candidate;
 import com.github.vlsidlyarevich.unity.model.Vacancy;
@@ -39,7 +39,7 @@ public class CandidateServiceImplTest {
     private VacancyRepository vacancyRepository;
 
     @Autowired
-    private ConverterFactory converterFactory;
+    private ConverterFacade converter;
 
     @Before
     public void before() {
@@ -111,8 +111,7 @@ public class CandidateServiceImplTest {
         String savedCandidateId = service.create(vacancy.getId(), candidate).getId();
 
         CandidateDTO updated = generateCandidateDTO();
-        Candidate updatedModel = (Candidate) converterFactory.getConverter(CandidateDTO.class)
-                .convert(updated);
+        Candidate updatedModel = converter.convert(updated);
 
         String id = (service.update(vacancy.getId(), savedCandidateId, updated)).getId();
         updatedModel.setId(id);
@@ -126,8 +125,7 @@ public class CandidateServiceImplTest {
         vacancyRepository.save(vacancy);
 
         CandidateDTO updated = generateCandidateDTO();
-        Candidate updatedModel = (Candidate) converterFactory.getConverter(CandidateDTO.class)
-                .convert(updated);
+        Candidate updatedModel = converter.convert(updated);
 
         String id = (service.update(vacancy.getId(), "", updated)).getId();
         updatedModel.setId(id);

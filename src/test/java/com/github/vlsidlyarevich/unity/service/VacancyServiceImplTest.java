@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.service;
 
-import com.github.vlsidlyarevich.unity.converter.factory.ConverterFactory;
+import com.github.vlsidlyarevich.unity.converter.ConverterFacade;
 import com.github.vlsidlyarevich.unity.dto.VacancyDTO;
 import com.github.vlsidlyarevich.unity.model.Vacancy;
 import com.github.vlsidlyarevich.unity.repository.VacancyRepository;
@@ -29,7 +29,7 @@ public class VacancyServiceImplTest {
     private VacancyRepository vacancyRepository;
 
     @Autowired
-    private ConverterFactory converterFactory;
+    private ConverterFacade converter;
 
     @Before
     public void before() {
@@ -48,7 +48,7 @@ public class VacancyServiceImplTest {
 
         Vacancy saved = vacancyService.create(vacancyDTO);
 
-        Assert.assertEquals(converterFactory.getConverter(VacancyDTO.class).convert(vacancyDTO), saved);
+        Assert.assertEquals(converter.convert(vacancyDTO), saved);
         Assert.assertNotNull(saved.getCreatedAt());
     }
 
@@ -58,7 +58,7 @@ public class VacancyServiceImplTest {
 
         Vacancy saved = vacancyService.create(vacancyDTO);
 
-        Assert.assertEquals(converterFactory.getConverter(VacancyDTO.class).convert(vacancyDTO),
+        Assert.assertEquals(converter.convert(vacancyDTO),
                 vacancyService.find(saved.getId()));
     }
 
@@ -69,7 +69,7 @@ public class VacancyServiceImplTest {
         Vacancy saved = vacancyService.create(vacancyDTO);
 
         Assert.assertEquals(new ArrayList<Vacancy>() {{
-                                add((Vacancy) converterFactory.getConverter(VacancyDTO.class).convert(vacancyDTO));
+                                add(converter.convert(vacancyDTO));
                             }},
                 vacancyService.findAll());
     }
@@ -81,7 +81,7 @@ public class VacancyServiceImplTest {
         Vacancy saved = vacancyService.create(vacancyDTO);
 
         Assert.assertEquals(new ArrayList<Vacancy>() {{
-                                add((Vacancy) converterFactory.getConverter(VacancyDTO.class).convert(vacancyDTO));
+                                add(converter.convert(vacancyDTO));
                             }},
                 vacancyService.findBySpeciality(vacancyDTO.getSpeciality()));
     }
@@ -93,7 +93,7 @@ public class VacancyServiceImplTest {
         Vacancy saved = vacancyService.create(vacancyDTO);
 
         Assert.assertEquals(new ArrayList<Vacancy>() {{
-                                add((Vacancy) converterFactory.getConverter(VacancyDTO.class).convert(vacancyDTO));
+                                add(converter.convert(vacancyDTO));
                             }},
                 vacancyService.findByJobType(vacancyDTO.getJobType()));
     }
@@ -104,7 +104,7 @@ public class VacancyServiceImplTest {
 
         Vacancy saved = vacancyService.create(vacancyDTO);
 
-        Assert.assertEquals(converterFactory.getConverter(VacancyDTO.class).convert(vacancyDTO), saved);
+        Assert.assertEquals(converter.convert(vacancyDTO), saved);
         Assert.assertNotNull(saved.getCreatedAt());
     }
 

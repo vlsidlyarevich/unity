@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.service.impl;
 
-import com.github.vlsidlyarevich.unity.converter.factory.ConverterFactory;
+import com.github.vlsidlyarevich.unity.converter.ConverterFacade;
 import com.github.vlsidlyarevich.unity.dto.WorkerProfileDTO;
 import com.github.vlsidlyarevich.unity.model.Name;
 import com.github.vlsidlyarevich.unity.model.WorkerProfile;
@@ -24,14 +24,14 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
     private WorkerProfileRepository repository;
 
     @Autowired
-    private ConverterFactory converterFactory;
+    private ConverterFacade converter;
 
     @Autowired
     private StorageService storageService;
 
     @Override
     public WorkerProfile create(WorkerProfileDTO dto) {
-        WorkerProfile workerProfile = (WorkerProfile) converterFactory.getConverter(WorkerProfileDTO.class).convert(dto);
+        WorkerProfile workerProfile = converter.convert(dto);
 
         workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
 
@@ -61,7 +61,7 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
 
     @Override
     public WorkerProfile update(String id, WorkerProfileDTO dto) {
-        WorkerProfile workerProfile = (WorkerProfile) converterFactory.getConverter(WorkerProfileDTO.class).convert(dto);
+        WorkerProfile workerProfile = converter.convert(dto);
         workerProfile.setId(id);
 
         WorkerProfile saved = repository.findById(id);

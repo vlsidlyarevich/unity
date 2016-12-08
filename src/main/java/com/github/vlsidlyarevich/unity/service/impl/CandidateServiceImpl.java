@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.service.impl;
 
-import com.github.vlsidlyarevich.unity.converter.factory.ConverterFactory;
+import com.github.vlsidlyarevich.unity.converter.ConverterFacade;
 import com.github.vlsidlyarevich.unity.dto.CandidateDTO;
 import com.github.vlsidlyarevich.unity.exception.ServiceException;
 import com.github.vlsidlyarevich.unity.model.Candidate;
@@ -31,14 +31,14 @@ public class CandidateServiceImpl implements CandidateService {
     private VacancyRepository vacancyRepository;
 
     @Autowired
-    private ConverterFactory converterFactory;
+    private StorageService storageService;
 
     @Autowired
-    private StorageService storageService;
+    private ConverterFacade converter;
 
     @Override
     public Candidate create(String vacancyId, CandidateDTO dto) {
-        Candidate candidate = (Candidate) converterFactory.getConverter(CandidateDTO.class).convert(dto);
+        Candidate candidate = converter.convert(dto);
         candidate.setCreatedAt(String.valueOf(LocalDateTime.now()));
 
         Vacancy vacancy = vacancyRepository.findById(vacancyId);
@@ -75,7 +75,7 @@ public class CandidateServiceImpl implements CandidateService {
     public Candidate update(String vacancyId, String candidateId, CandidateDTO dto) {
         Candidate candidate;
         if (repository.exists(candidateId)) {
-            candidate = (Candidate) converterFactory.getConverter(CandidateDTO.class).convert(dto);
+            candidate = converter.convert(dto);
             if (!candidate.getImageId().equals(find(vacancyId, candidateId).getImageId())) {
                 deleteImage(vacancyId, find(vacancyId, candidateId).getId());
             }
@@ -91,7 +91,7 @@ public class CandidateServiceImpl implements CandidateService {
 
             return candidate;
         } else {
-            candidate = (Candidate) converterFactory.getConverter(CandidateDTO.class).convert(dto);
+            candidate = (Candidate) converter.convert(dto);
             candidate.setCreatedAt(String.valueOf(LocalDateTime.now()));
 
             repository.save(candidate);

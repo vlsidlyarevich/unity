@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.service.impl;
 
-import com.github.vlsidlyarevich.unity.converter.factory.ConverterFactory;
+import com.github.vlsidlyarevich.unity.converter.ConverterFacade;
 import com.github.vlsidlyarevich.unity.dto.VacancyDTO;
 import com.github.vlsidlyarevich.unity.model.JobType;
 import com.github.vlsidlyarevich.unity.model.Speciality;
@@ -22,11 +22,11 @@ public class VacancyServiceImpl implements VacancyService {
     private VacancyRepository repository;
 
     @Autowired
-    private ConverterFactory converterFactory;
+    private ConverterFacade converter;
 
     @Override
     public Vacancy create(VacancyDTO dto) {
-        Vacancy vacancy = (Vacancy) converterFactory.getConverter(VacancyDTO.class).convert(dto);
+        Vacancy vacancy = converter.convert(dto);
         vacancy.setCreatedAt(String.valueOf(LocalDateTime.now()));
         repository.save(vacancy);
 
@@ -55,7 +55,7 @@ public class VacancyServiceImpl implements VacancyService {
 
     @Override
     public Vacancy update(String id, VacancyDTO dto) {
-        Vacancy vacancy = (Vacancy) converterFactory.getConverter(VacancyDTO.class).convert(dto);
+        Vacancy vacancy = converter.convert(dto);
         vacancy.setId(id);
 
         Vacancy saved = repository.findById(id);
