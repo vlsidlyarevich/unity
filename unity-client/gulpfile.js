@@ -19,7 +19,7 @@ gulp.task('bower-js-libs', function () {
         // .pipe(babel({presets: ['es2015']}))
         // .pipe(concat('lib.min.js'))
         // .pipe(uglify())
-        .pipe(gulp.dest('../unity-web/src/main/webapp/provider/js'));
+        .pipe(gulp.dest('src/provider/js'));
 });
 
 gulp.task('bower-css', function () {
@@ -27,12 +27,12 @@ gulp.task('bower-css', function () {
         .pipe(filter('**/*.css'))
         // .pipe(concat('lib.min.css'))
         // .pipe(minify())
-        .pipe(gulp.dest('../unity-web/src/main/webapp/provider/css'));
+        .pipe(gulp.dest('src/provider/css'));
 });
 
 gulp.task('copy-fonts', function () {
     gulp.src(mainBowerFiles('**/dist/fonts/*.{ttf,woff,woff2,eof,svg}'))
-        .pipe(gulp.dest('../unity-web/src/main/webapp/provider/fonts/'));
+        .pipe(gulp.dest('src/provider/fonts/'));
 });
 
 // Default Task

@@ -61,10 +61,32 @@
         </profile>
     </profiles>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>20.0</version>
+        </dependency>
+    </dependencies>
+
 
     <build>
         <plugins>
-
             <!--Spring boot maven plugin-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -128,6 +150,15 @@
                             <goal>gulp</goal>
                         </goals>
                         <phase>generate-resources</phase>
+                    </execution>
+                    <execution>
+                        <id>npm start</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
