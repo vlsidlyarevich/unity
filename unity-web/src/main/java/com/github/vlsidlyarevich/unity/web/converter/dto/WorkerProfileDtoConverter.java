@@ -1,9 +1,9 @@
 package com.github.vlsidlyarevich.unity.web.converter.dto;
 
 import com.github.vlsidlyarevich.unity.web.dto.WorkerProfileDTO;
-import com.github.vlsidlyarevich.unity.web.model.Name;
-import com.github.vlsidlyarevich.unity.web.model.Speciality;
-import com.github.vlsidlyarevich.unity.web.model.WorkerProfile;
+import com.github.vlsidlyarevich.unity.db.model.model.Name;
+import com.github.vlsidlyarevich.unity.db.model.model.Speciality;
+import com.github.vlsidlyarevich.unity.db.model.model.WorkerProfile;
 import org.springframework.core.convert.converter.Converter;
 
 

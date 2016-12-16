@@ -1,9 +1,9 @@
 package com.github.vlsidlyarevich.unity.web.converter.dto;
 
 import com.github.vlsidlyarevich.unity.web.dto.VacancyDTO;
-import com.github.vlsidlyarevich.unity.web.model.JobType;
-import com.github.vlsidlyarevich.unity.web.model.Speciality;
-import com.github.vlsidlyarevich.unity.web.model.Vacancy;
+import com.github.vlsidlyarevich.unity.db.model.model.JobType;
+import com.github.vlsidlyarevich.unity.db.model.model.Speciality;
+import com.github.vlsidlyarevich.unity.db.model.model.Vacancy;
 import org.springframework.core.convert.converter.Converter;
 
 

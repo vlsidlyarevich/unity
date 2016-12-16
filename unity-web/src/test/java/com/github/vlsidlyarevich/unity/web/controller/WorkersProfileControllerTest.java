@@ -2,9 +2,9 @@ package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.vlsidlyarevich.unity.web.dto.WorkerProfileDTO;
-import com.github.vlsidlyarevich.unity.web.model.WorkerProfile;
-import com.github.vlsidlyarevich.unity.web.service.WorkerProfileService;
-import com.github.vlsidlyarevich.unity.web.utils.TestUtils;
+import com.github.vlsidlyarevich.unity.db.model.model.WorkerProfile;
+import com.github.vlsidlyarevich.unity.db.services.service.WorkerProfileService;
+import com.github.vlsidlyarevich.unity.db.services.utils.TestUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

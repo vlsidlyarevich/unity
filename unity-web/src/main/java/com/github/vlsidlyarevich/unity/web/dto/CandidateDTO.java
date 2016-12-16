@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.dto;
 
-import com.github.vlsidlyarevich.unity.web.model.Gender;
-import com.github.vlsidlyarevich.unity.web.model.Name;
+import com.github.vlsidlyarevich.unity.db.model.model.Gender;
+import com.github.vlsidlyarevich.unity.db.model.model.Name;
 import lombok.Data;
 import lombok.ToString;
 

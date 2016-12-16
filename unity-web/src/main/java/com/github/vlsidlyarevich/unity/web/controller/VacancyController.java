@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.web.dto.VacancyDTO;
-import com.github.vlsidlyarevich.unity.web.service.VacancyService;
+import com.github.vlsidlyarevich.unity.db.services.service.VacancyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
