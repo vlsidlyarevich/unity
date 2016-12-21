@@ -4,9 +4,9 @@ import com.github.vlsidlyarevich.unity.web.converter.factory.ConverterFactory;
 import com.github.vlsidlyarevich.unity.web.dto.CandidateDTO;
 import com.github.vlsidlyarevich.unity.web.dto.VacancyDTO;
 import com.github.vlsidlyarevich.unity.web.dto.WorkerProfileDTO;
-import com.github.vlsidlyarevich.unity.db.model.model.Candidate;
-import com.github.vlsidlyarevich.unity.db.model.model.Vacancy;
-import com.github.vlsidlyarevich.unity.db.model.model.WorkerProfile;
+import com.github.vlsidlyarevich.unity.db.model.Candidate;
+import com.github.vlsidlyarevich.unity.db.model.Vacancy;
+import com.github.vlsidlyarevich.unity.db.model.WorkerProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

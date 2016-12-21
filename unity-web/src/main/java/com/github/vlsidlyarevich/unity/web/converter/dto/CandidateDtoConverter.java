@@ -1,8 +1,8 @@
 package com.github.vlsidlyarevich.unity.web.converter.dto;
 
 import com.github.vlsidlyarevich.unity.web.dto.CandidateDTO;
-import com.github.vlsidlyarevich.unity.db.model.model.Candidate;
-import com.github.vlsidlyarevich.unity.db.model.model.Name;
+import com.github.vlsidlyarevich.unity.db.model.Candidate;
+import com.github.vlsidlyarevich.unity.db.model.Name;
 import org.springframework.core.convert.converter.Converter;
 
 

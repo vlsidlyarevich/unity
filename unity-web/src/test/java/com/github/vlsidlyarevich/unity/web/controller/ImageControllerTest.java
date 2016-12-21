@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-import com.github.vlsidlyarevich.unity.db.services.service.StorageService;
+import com.github.vlsidlyarevich.unity.db.service.StorageService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

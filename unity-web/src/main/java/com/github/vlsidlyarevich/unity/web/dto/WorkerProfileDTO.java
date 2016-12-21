@@ -1,8 +1,8 @@
 package com.github.vlsidlyarevich.unity.web.dto;
 
-import com.github.vlsidlyarevich.unity.db.model.model.Gender;
-import com.github.vlsidlyarevich.unity.db.model.model.Name;
-import com.github.vlsidlyarevich.unity.db.model.model.Speciality;
+import com.github.vlsidlyarevich.unity.db.model.Gender;
+import com.github.vlsidlyarevich.unity.db.model.Name;
+import com.github.vlsidlyarevich.unity.db.model.Speciality;
 import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.lang3.EnumUtils;

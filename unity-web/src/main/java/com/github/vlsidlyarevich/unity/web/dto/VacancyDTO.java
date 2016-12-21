@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.dto;
 
-import com.github.vlsidlyarevich.unity.db.model.model.JobType;
-import com.github.vlsidlyarevich.unity.db.model.model.Speciality;
+import com.github.vlsidlyarevich.unity.db.model.JobType;
+import com.github.vlsidlyarevich.unity.db.model.Speciality;
 import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.lang3.EnumUtils;

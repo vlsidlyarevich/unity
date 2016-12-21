@@ -1,7 +1,8 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
+import com.github.vlsidlyarevich.unity.db.service.VacancyService;
+import com.github.vlsidlyarevich.unity.web.converter.ConverterFacade;
 import com.github.vlsidlyarevich.unity.web.dto.VacancyDTO;
-import com.github.vlsidlyarevich.unity.db.services.service.VacancyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,9 @@ public class VacancyController {
     @Autowired
     private VacancyService service;
 
+    @Autowired
+    private ConverterFacade converterFacade;
+
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getAllVacancies() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
@@ -27,12 +31,12 @@ public class VacancyController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addVacancy(@RequestBody VacancyDTO vacancy) {
-        return new ResponseEntity<>(service.create(vacancy), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.create(converterFacade.convert(vacancy)), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateVacancyById(@PathVariable String id, @RequestBody VacancyDTO vacancy) {
-        return new ResponseEntity<>(service.update(id, vacancy), HttpStatus.OK);
+        return new ResponseEntity<>(service.update(id, converterFacade.convert(vacancy)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

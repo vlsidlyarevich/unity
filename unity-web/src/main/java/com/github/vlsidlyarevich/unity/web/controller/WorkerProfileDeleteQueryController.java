@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-import com.github.vlsidlyarevich.unity.db.services.service.WorkerProfileService;
+import com.github.vlsidlyarevich.unity.db.service.WorkerProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

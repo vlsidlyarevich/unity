@@ -1,8 +1,8 @@
 package com.github.vlsidlyarevich.unity.web.exception.handler;
 
 import com.github.vlsidlyarevich.unity.web.config.MessageResolver;
-import com.github.vlsidlyarevich.unity.web.exception.FileSystemFileNotFoundException;
-import com.github.vlsidlyarevich.unity.web.exception.FileSystemStorageException;
+import com.github.vlsidlyarevich.unity.db.exception.FileSystemFileNotFoundException;
+import com.github.vlsidlyarevich.unity.db.exception.FileSystemStorageException;
 import com.github.vlsidlyarevich.unity.web.exception.model.ExceptionModel;
 import com.mongodb.MongoException;
 import lombok.extern.slf4j.Slf4j;

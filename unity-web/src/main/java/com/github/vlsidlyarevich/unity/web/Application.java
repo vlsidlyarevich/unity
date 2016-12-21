@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web;
 
-import com.github.vlsidlyarevich.unity.web.config.StorageProperties;
+import com.github.vlsidlyarevich.unity.db.config.StorageProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

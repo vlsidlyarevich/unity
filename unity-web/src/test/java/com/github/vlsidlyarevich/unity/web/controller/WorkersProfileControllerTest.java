@@ -1,10 +1,10 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.vlsidlyarevich.unity.db.service.WorkerProfileService;
+import com.github.vlsidlyarevich.unity.web.TestUtils;
 import com.github.vlsidlyarevich.unity.web.dto.WorkerProfileDTO;
-import com.github.vlsidlyarevich.unity.db.model.model.WorkerProfile;
-import com.github.vlsidlyarevich.unity.db.services.service.WorkerProfileService;
-import com.github.vlsidlyarevich.unity.db.services.utils.TestUtils;
+import com.github.vlsidlyarevich.unity.db.model.WorkerProfile;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,7 +60,7 @@ public class WorkersProfileControllerTest {
 
     @Test
     public void getWorkerByIdTest() throws Exception {
-        WorkerProfileDTO worker = TestUtils.generateWorkerProfileDTO();
+        WorkerProfile worker = TestUtils.generateWorkerProfile();
         WorkerProfile savedWorker = service.create(worker);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/workers/" + savedWorker.getId())
@@ -79,7 +79,7 @@ public class WorkersProfileControllerTest {
     @Test
     public void updateWorkerByIdTest() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
-        WorkerProfileDTO worker = TestUtils.generateWorkerProfileDTO();
+        WorkerProfile worker = TestUtils.generateWorkerProfile();
         WorkerProfile savedWorker = service.create(worker);
 
         savedWorker.getName().setFirstName("Updated");
@@ -102,7 +102,7 @@ public class WorkersProfileControllerTest {
 
     @Test
     public void getAllWorkerProfilesTest() throws Exception {
-        WorkerProfileDTO worker = TestUtils.generateWorkerProfileDTO();
+        WorkerProfile worker = TestUtils.generateWorkerProfile();
         WorkerProfile savedWorker = service.create(worker);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/workers")
@@ -121,7 +121,7 @@ public class WorkersProfileControllerTest {
 
     @Test
     public void deleteWorkerByIdTest() throws Exception {
-        WorkerProfileDTO worker = TestUtils.generateWorkerProfileDTO();
+        WorkerProfile worker = TestUtils.generateWorkerProfile();
         WorkerProfile savedWorker = service.create(worker);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/workers/" + savedWorker.getId())
