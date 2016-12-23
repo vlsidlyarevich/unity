@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com/github/vlsidlyarevich/unity/db")
 @EnableConfigurationProperties(StorageProperties.class)
 public class Application {
 
