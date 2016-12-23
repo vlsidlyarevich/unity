@@ -1,15 +1,17 @@
 package com.github.vlsidlyarevich.unity.web;
 
+import com.github.vlsidlyarevich.unity.db.DbConfiguration;
 import com.github.vlsidlyarevich.unity.db.config.StorageProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.context.annotation.Import;
 
 
-@SpringBootApplication(scanBasePackages = "com/github/vlsidlyarevich/unity/db")
+@Import({
+        DbConfiguration.class
+})
+@SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
 public class Application {
 
@@ -17,10 +19,4 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    public MessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("locale/messages");
-        return messageSource;
-    }
 }
