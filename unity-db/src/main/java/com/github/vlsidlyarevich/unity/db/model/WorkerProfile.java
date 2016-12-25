@@ -5,7 +5,6 @@ import lombok.ToString;
 
 
 @Data
-@ToString
 public class WorkerProfile extends Worker {
 
     private String imageId;

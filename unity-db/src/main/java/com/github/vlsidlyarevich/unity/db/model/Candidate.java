@@ -5,7 +5,6 @@ import lombok.ToString;
 
 
 @Data
-@ToString
 public class Candidate extends Person {
 
     private String hrSkype;

@@ -6,8 +6,6 @@ import lombok.ToString;
 
 
 @Data
-@ToString
-@EqualsAndHashCode
 public class Name {
 
     private String firstName;

@@ -10,7 +10,6 @@ import java.io.Serializable;
 
 
 @Data
-@ToString
 public class VacancyDTO implements Serializable {
 
     private Speciality speciality;

@@ -6,7 +6,6 @@ import org.apache.commons.lang3.EnumUtils;
 
 
 @Data
-@ToString
 public class Person extends BaseEntity {
 
     private Name name;

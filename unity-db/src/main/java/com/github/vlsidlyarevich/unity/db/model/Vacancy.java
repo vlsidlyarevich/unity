@@ -9,7 +9,6 @@ import java.util.List;
 
 
 @Data
-@ToString
 public class Vacancy extends BaseEntity {
 
     private Speciality speciality;

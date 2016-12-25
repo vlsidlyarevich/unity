@@ -11,7 +11,6 @@ import java.io.Serializable;
 
 
 @Data
-@ToString
 public class WorkerProfileDTO implements Serializable {
 
     private Name name;

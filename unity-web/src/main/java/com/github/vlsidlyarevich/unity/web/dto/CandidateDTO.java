@@ -9,7 +9,6 @@ import java.io.Serializable;
 
 
 @Data
-@ToString
 public class CandidateDTO implements Serializable {
 
     private Name name;
