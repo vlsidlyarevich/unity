@@ -165,13 +165,13 @@
                             <workingDirectory>unity-client</workingDirectory>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>gulp build</id>
-                        <goals>
-                            <goal>gulp</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                    </execution>
+                    <!--<execution>-->
+                        <!--<id>gulp build</id>-->
+                        <!--<goals>-->
+                            <!--<goal>gulp</goal>-->
+                        <!--</goals>-->
+                        <!--<phase>generate-resources</phase>-->
+                    <!--</execution>-->
                 </executions>
             </plugin>
 
