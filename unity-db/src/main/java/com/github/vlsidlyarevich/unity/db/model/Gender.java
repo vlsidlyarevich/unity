@@ -10,4 +10,9 @@ public enum Gender {
 
     Gender() {
     }
+
+    @Override
+    public String toString() {
+        return name().equals(MALE) ? "Male" : "Female";
+    }
 }
