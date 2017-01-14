@@ -126,54 +126,54 @@
             </plugin>
 
             <!--Frontend maven plugin-->
-            <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <version>${frontend-maven-plugin.version}</version>
-                <configuration>
-                    <installDirectory>./unity-client</installDirectory>
-                    <workingDirectory>./unity-client</workingDirectory>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>install node and npm</id>
-                        <goals>
-                            <goal>install-node-and-npm</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <nodeVersion>${node.version}</nodeVersion>
-                            <npmVersion>${npm.version}</npmVersion>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>npm install</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                            <workingDirectory>unity-client</workingDirectory>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>bower install</id>
-                        <goals>
-                            <goal>bower</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>install</arguments>
-                            <workingDirectory>unity-client</workingDirectory>
-                        </configuration>
-                    </execution>
+            <!--<plugin>-->
+                <!--<groupId>com.github.eirslett</groupId>-->
+                <!--<artifactId>frontend-maven-plugin</artifactId>-->
+                <!--<version>${frontend-maven-plugin.version}</version>-->
+                <!--<configuration>-->
+                    <!--<installDirectory>./unity-client</installDirectory>-->
+                    <!--<workingDirectory>./unity-client</workingDirectory>-->
+                <!--</configuration>-->
+                <!--<executions>-->
                     <!--<execution>-->
-                        <!--<id>gulp build</id>-->
+                        <!--<id>install node and npm</id>-->
                         <!--<goals>-->
-                            <!--<goal>gulp</goal>-->
+                            <!--<goal>install-node-and-npm</goal>-->
                         <!--</goals>-->
                         <!--<phase>generate-resources</phase>-->
+                        <!--<configuration>-->
+                            <!--<nodeVersion>${node.version}</nodeVersion>-->
+                            <!--<npmVersion>${npm.version}</npmVersion>-->
+                        <!--</configuration>-->
                     <!--</execution>-->
-                </executions>
-            </plugin>
+                    <!--<execution>-->
+                        <!--<id>npm install</id>-->
+                        <!--<goals>-->
+                            <!--<goal>npm</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<workingDirectory>unity-client</workingDirectory>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                    <!--<execution>-->
+                        <!--<id>bower install</id>-->
+                        <!--<goals>-->
+                            <!--<goal>bower</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<arguments>install</arguments>-->
+                            <!--<workingDirectory>unity-client</workingDirectory>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                    <!--&lt;!&ndash;<execution>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<id>gulp build</id>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<goals>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<goal>gulp</goal>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</goals>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<phase>generate-resources</phase>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</execution>&ndash;&gt;-->
+                <!--</executions>-->
+            <!--</plugin>-->
 
             <!-- Coveralls -->
             <plugin>
