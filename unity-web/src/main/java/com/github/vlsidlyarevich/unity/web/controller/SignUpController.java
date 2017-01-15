@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/login")
-public class AuthenticationController {
+@RequestMapping("/api/signup")
+public class SignUpController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> get() {
-        return new ResponseEntity<>("dat is auth controller", HttpStatus.OK);
+        return new ResponseEntity<>("dat is sign up", HttpStatus.OK);
     }
 }
