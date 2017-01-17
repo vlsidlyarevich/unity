@@ -1,8 +1,8 @@
-package com.github.vlsidlyarevich.unity.web.security.service.impl;
+package com.github.vlsidlyarevich.unity.auth.service.impl;
 
-import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
-import com.github.vlsidlyarevich.unity.web.security.service.UserDetailsService;
+import com.github.vlsidlyarevich.unity.auth.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 

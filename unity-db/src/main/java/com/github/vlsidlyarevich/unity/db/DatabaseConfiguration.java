@@ -7,6 +7,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
-public class DbConfiguration {
+public class DatabaseConfiguration {
 
 }
