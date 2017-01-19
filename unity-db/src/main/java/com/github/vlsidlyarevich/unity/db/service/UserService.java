@@ -10,6 +10,8 @@ public interface UserService {
 
     User find(String id);
 
+    User findByUsername(String userName);
+
     List<User> findAll();
 
     User update(String id, User object);
