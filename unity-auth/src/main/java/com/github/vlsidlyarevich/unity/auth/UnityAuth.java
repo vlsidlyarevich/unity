@@ -4,5 +4,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class AuthConfiguration {
+public class UnityAuth {
 }
