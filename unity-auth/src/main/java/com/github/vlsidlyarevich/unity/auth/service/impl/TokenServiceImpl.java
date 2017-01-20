@@ -37,7 +37,7 @@ public class TokenServiceImpl implements TokenService {
             tokenData.put("username", user.getUsername());
             tokenData.put("token_create_date", LocalDateTime.now());
             Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.YEAR, 100);
+            calendar.add(Calendar.MINUTE, 30);
             tokenData.put("token_expiration_date", calendar.getTime());
             JwtBuilder jwtBuilder = Jwts.builder();
             jwtBuilder.setExpiration(calendar.getTime());

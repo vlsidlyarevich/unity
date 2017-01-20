@@ -12,17 +12,17 @@ import java.io.IOException;
 
 public class AuthenticationTokenFilter extends GenericFilterBean {
 
-    private final TokenAuthenticationService tokenAuthenticationService;
+    private final TokenAuthenticationService authenticationService;
 
-    public AuthenticationTokenFilter(TokenAuthenticationService tokenAuthenticationService) {
-        this.tokenAuthenticationService = tokenAuthenticationService;
+    public AuthenticationTokenFilter(TokenAuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
             throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        Authentication authentication = authenticationService.getAuthentication(httpRequest);
+        Authentication authentication = authenticationService.authenticate(httpRequest);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
         SecurityContextHolder.getContext().setAuthentication(null);
