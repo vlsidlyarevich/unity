@@ -8,7 +8,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Calendar;
@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@Component
+@Service
 public class TokenServiceImpl implements TokenService {
 
     @Value("security.token.secret.key")
