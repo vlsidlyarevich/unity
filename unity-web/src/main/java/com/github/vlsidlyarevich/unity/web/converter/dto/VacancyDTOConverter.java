@@ -7,7 +7,7 @@ import com.github.vlsidlyarevich.unity.db.model.Vacancy;
 import org.springframework.core.convert.converter.Converter;
 
 
-public class VacancyDtoConverter implements Converter<VacancyDTO, Vacancy> {
+public class VacancyDTOConverter implements Converter<VacancyDTO, Vacancy> {
 
     @Override
     public Vacancy convert(VacancyDTO dto) {

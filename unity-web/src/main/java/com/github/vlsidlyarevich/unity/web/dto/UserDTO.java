@@ -2,13 +2,11 @@ package com.github.vlsidlyarevich.unity.web.dto;
 
 import lombok.Data;
 
-import java.io.Serializable;
-
 
 @Data
-public class UserDTO implements Serializable {
+public class UserDTO {
 
-    private String userName;
+    private String username;
     private String password;
 
     public UserDTO() {
