@@ -35,11 +35,11 @@ public class TokenAuthenticationServiceImpl implements TokenAuthenticationServic
 
     @Override
     public Authentication authenticate(HttpServletRequest request) {
-        String token = request.getHeader(secretKey);
-        if(token != null) {
+        String token = request.getHeader(SecurityConstants.AUTH_HEADER_NAME);
+        if (token != null) {
             final Jws<Claims> tokenData = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             User user = getUserFromToken(tokenData);
-            if(user!=null){
+            if (user != null) {
                 return new UserAuthentication(user);
             }
         }

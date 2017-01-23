@@ -6,6 +6,7 @@ import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,7 @@ public class SignUpController {
     private ConverterFacade converterFacade;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> signUp(UserDTO dto) {
+    public ResponseEntity<?> signUp(@RequestBody UserDTO dto) {
         return new ResponseEntity<>(service.create(converterFacade.convert(dto)), HttpStatus.OK);
     }
 }
