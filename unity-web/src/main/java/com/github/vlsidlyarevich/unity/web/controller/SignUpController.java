@@ -1,5 +1,9 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
+import com.github.vlsidlyarevich.unity.db.service.UserService;
+import com.github.vlsidlyarevich.unity.web.converter.ConverterFacade;
+import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/signup")
 public class SignUpController {
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> get() {
-        return new ResponseEntity<>("dat is sign up", HttpStatus.OK);
+    @Autowired
+    private UserService service;
+
+    @Autowired
+    private ConverterFacade converterFacade;
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> signUp(UserDTO dto) {
+        return new ResponseEntity<>(service.create(converterFacade.convert(dto)), HttpStatus.OK);
     }
 }

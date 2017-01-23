@@ -2,7 +2,7 @@ package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.auth.service.TokenService;
 import com.github.vlsidlyarevich.unity.web.dto.TokenDTO;
-import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
+import com.github.vlsidlyarevich.unity.web.dto.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> authenticate(UserDTO dto) {
+    public ResponseEntity<?> authenticate(LoginDTO dto) {
         String token = tokenService.getToken(dto.getUserName(), dto.getPassword());
         if (token != null) {
             TokenDTO response = new TokenDTO();
