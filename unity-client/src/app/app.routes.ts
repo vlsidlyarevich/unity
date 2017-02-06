@@ -1,8 +1,9 @@
 import { Routes, RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
+import {AuthGuard} from "./guards/auth.guard";
 
 export const APP_ROUTES: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: "full" }
+  { path: '', redirectTo: 'home', pathMatch: "full", canActivate: [AuthGuard] }
 ];
 
 @NgModule({

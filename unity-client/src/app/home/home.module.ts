@@ -9,7 +9,7 @@ import { HomeRoutingModule } from "./home.routes";
     CommonModule,
     HomeRoutingModule
   ],
-  declarations: [DashboardComponent, HomeComponent]
+  declarations: [HomeComponent, DashboardComponent]
 })
 export class HomeModule {
 }
