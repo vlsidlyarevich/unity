@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 
 export const APP_ROUTES: Routes = [
   { path: '', redirectTo: 'home', pathMatch: "full" },
-  { path: '**', redirectTo: ''}
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
