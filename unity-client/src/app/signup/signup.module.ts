@@ -9,6 +9,6 @@ import { SignupComponent } from "./signup.component";
     CommonModule,
     SignupRoutingModule
   ],
-  declarations: [SignupComponent, SignupFormComponent]
+  declarations: [SignupComponent, SignupFormComponent, SignupFormComponent]
 })
 export class SignupModule { }
