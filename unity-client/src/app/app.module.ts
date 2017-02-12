@@ -9,6 +9,8 @@ import { SignupModule } from "./signup/signup.module";
 import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "./app.routes";
 import { AuthGuard } from "./guards/auth.guard";
+import { AuthenticationService } from "./services/AuthenticationService";
+import { SignupService } from "./services/SignupService";
 
 @NgModule({
   declarations: [
@@ -24,8 +26,14 @@ import { AuthGuard } from "./guards/auth.guard";
     RouterModule,
     AppRoutingModule
   ],
-  providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthGuard,
+    AuthenticationService,
+    SignupService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule {
 }
