@@ -5,7 +5,5 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: "http://localhost:8080/api",
-  authUrl: "http://localhost:8080/api/auth",
-  signUpUrl: "http://localhost:8080/api/signup"
+  serverUrl: "http://localhost:8080/api"
 };
