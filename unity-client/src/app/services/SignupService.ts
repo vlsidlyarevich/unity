@@ -6,7 +6,6 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class SignupService {
-  public token: String;
   private static SIGNUP = '/signup';
 
   constructor(private http: Http) {

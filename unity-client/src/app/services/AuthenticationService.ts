@@ -5,6 +5,7 @@ import { Http } from "@angular/http";
 @Injectable()
 export class AuthenticationService {
   public token: String;
+  private static AUTH = '/auth';
 
   constructor(private http:Http){
 

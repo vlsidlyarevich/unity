@@ -9,7 +9,7 @@ import { SignupService } from "../../../services/SignupService";
   styleUrls: ['./signup-form.component.css']
 })
 export class SignupFormComponent implements OnInit {
-  signupModel: User = new User;
+  signupModel: User = new User();
   loading = false;
   error = '';
 
