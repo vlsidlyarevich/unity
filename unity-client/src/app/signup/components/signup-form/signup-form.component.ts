@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from "../../../models/user";
 import { Router } from "@angular/router";
 import { SignupService } from "../../../services/SignupService";
+import { FormControl, FormGroup } from "@angular/forms";
 
 @Component({
   selector: 'app-signup-form',
@@ -9,7 +10,7 @@ import { SignupService } from "../../../services/SignupService";
   styleUrls: ['./signup-form.component.css']
 })
 export class SignupFormComponent implements OnInit {
-  signupModel: User = new User();
+  user;
   loading = false;
   error = '';
 
@@ -18,11 +19,15 @@ export class SignupFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = new FormGroup({
+      username: new FormControl(''),
+      password: new FormControl('')
+    });
   }
 
   signup() {
     this.loading = true;
-    this.signupService.signup(this.signupModel)
+    this.signupService.signup(this.user)
       .subscribe(result => {
         if (result === true) {
           this.router.navigate(['/auth']);
