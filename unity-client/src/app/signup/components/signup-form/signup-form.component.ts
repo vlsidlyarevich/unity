@@ -28,19 +28,16 @@ export class SignupFormComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-    console.log(this.user.value, this.user.valid);
-  }
-
-  signup() {
-    // this.loading = true;
-    // this.signupService.signup(this.user)
-    //   .subscribe(result => {
-    //     if (result === true) {
-    //       this.router.navigate(['/auth']);
-    //     } else {
-    //       this.error = 'Unable to register a new user';
-    //       this.loading = false;
-    //     }
-    //   });
+    this.signupService.signup(new User(this.user.value.username, this.user.value.password))
+      .subscribe(result => {
+        if (result === true) {
+          console.log("asd");
+          this.router.navigate(['/auth']);
+        } else {
+          console.log("asdasd");
+          this.error = 'Unable to register a new user';
+          this.loading = false;
+        }
+      });
   }
 }
