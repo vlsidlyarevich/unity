@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from "../../../models/user";
 import { Router } from "@angular/router";
 import { SignupService } from "../../../services/SignupService";
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-signup-form',
@@ -10,7 +10,7 @@ import { FormControl, FormGroup } from "@angular/forms";
   styleUrls: ['./signup-form.component.css']
 })
 export class SignupFormComponent implements OnInit {
-  user;
+  user: FormGroup;
   loading = false;
   error = '';
 
@@ -20,21 +20,27 @@ export class SignupFormComponent implements OnInit {
 
   ngOnInit() {
     this.user = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl('')
+      username: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      password: new FormControl('', [Validators.required,
+        Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$")])
     });
   }
 
-  signup() {
+  onSubmit() {
     this.loading = true;
-    this.signupService.signup(this.user)
-      .subscribe(result => {
-        if (result === true) {
-          this.router.navigate(['/auth']);
-        } else {
-          this.error = 'Unable to register a new user';
-          this.loading = false;
-        }
-      });
+    console.log(this.user.value, this.user.valid);
+  }
+
+  signup() {
+    // this.loading = true;
+    // this.signupService.signup(this.user)
+    //   .subscribe(result => {
+    //     if (result === true) {
+    //       this.router.navigate(['/auth']);
+    //     } else {
+    //       this.error = 'Unable to register a new user';
+    //       this.loading = false;
+    //     }
+    //   });
   }
 }
