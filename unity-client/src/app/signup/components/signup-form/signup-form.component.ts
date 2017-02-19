@@ -3,6 +3,7 @@ import { User } from "../../../models/user";
 import { Router } from "@angular/router";
 import { SignupService } from "../../../services/SignupService";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { error } from "util";
 
 @Component({
   selector: 'app-signup-form',
@@ -30,14 +31,17 @@ export class SignupFormComponent implements OnInit {
     this.loading = true;
     this.signupService.signup(new User(this.user.value.username, this.user.value.password))
       .subscribe(result => {
-        if (result === true) {
-          console.log("asd");
-          this.router.navigate(['/auth']);
-        } else {
-          console.log("asdasd");
+          if (result === true) {
+            console.log("asd");
+            this.router.navigate(['/auth']);
+          } else {
+            this.error = 'Unable to register a new user';
+            this.loading = false;
+          }
+        },
+        error => {
           this.error = 'Unable to register a new user';
           this.loading = false;
-        }
-      });
+        });
   }
 }
