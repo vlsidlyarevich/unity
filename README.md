@@ -9,11 +9,9 @@ Module of integration with [woodstock](https://github.com/solairerove/woodstock)
 ---
 #####Technologies:
 * [Project Lombok](https://projectlombok.org/)
-* [AngularJS](https://angularjs.org/)
-* [Angular Material](https://material.angularjs.org)
+* [Angular 2](https://angular.io/)
 * [Spring Boot](http://projects.spring.io/spring-boot/)
-* [Gulp](http://gulpjs.com/)
-* [Bower](https://bower.io/)
+* [Angular-cli](https://cli.angular.io/)
 * [MongoDB](https://www.mongodb.com/)
 * [Docker](https://www.docker.com/)
 
@@ -30,9 +28,14 @@ Type following commands in additional/docker/mongo folder.
 * `docker run -p 27017:27017 --name mongodb -d mongo`
 
  
-###Running the application
+###Running the backend
 * `mvn clean install`
 * `java -jar target/*.jar`
+
+###Running the client
+* `cd unity-client`
+* `npm i`
+* `ng serve`
 
 ###Debugging the application
 * `mvn clean install`
