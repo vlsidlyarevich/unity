@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     SignupRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [SignupComponent, SignupFormComponent, SignupFormComponent]
+  declarations: [SignupComponent, SignupFormComponent]
 })
-export class SignupModule { }
+export class SignupModule {
+}

@@ -32,7 +32,6 @@ export class SignupFormComponent implements OnInit {
     this.signupService.signup(new User(this.user.value.username, this.user.value.password))
       .subscribe(result => {
           if (result === true) {
-            console.log("asd");
             this.router.navigate(['/auth']);
           } else {
             this.error = 'Unable to register a new user';
