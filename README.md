@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/vlsidlyarevich/unity.svg?branch=master)](https://travis-ci.org/vlsidlyarevich/unity)
 [![Dependency Status](https://www.versioneye.com/user/projects/58028731a23d5200345545db/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58028731a23d5200345545db)
 [![Coverage Status](https://coveralls.io/repos/github/vlsidlyarevich/unity/badge.svg?branch=master)](https://coveralls.io/github/vlsidlyarevich/unity?branch=master)
-###Angular and java based Human resourse management system
+###Angular 2 and Java based Human resourse analysing tool
 
 Module of integration with [woodstock](https://github.com/solairerove/woodstock) lms.
 
