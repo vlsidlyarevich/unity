@@ -1,1 +1,1 @@
-web: java -jar unity-client/target/*.jar
+web: java -jar unity-web/target/*.jar
