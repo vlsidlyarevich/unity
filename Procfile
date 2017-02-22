@@ -1,1 +1,1 @@
-web: java -jar unity-web/target/*.jar
+web: java %JAVA_OPTS -Dspring.profiles.active="heroku" -jar unity-web/target/*.jar

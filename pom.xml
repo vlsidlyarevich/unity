@@ -48,6 +48,7 @@
             <id>test</id>
             <properties>
                 <neo4j.uri>http://neo4j:test@localhost:7473</neo4j.uri>
+                <mongodb.uri>mongodb://localhost/unity-hrat-test</mongodb.uri>
                 <skip.test>false</skip.test>
             </properties>
         </profile>
@@ -56,11 +57,20 @@
             <id>dev</id>
             <properties>
                 <neo4j.uri>http://neo4j:unity@localhost:7474</neo4j.uri>
+                <mongodb.uri>mongodb://localhost/unity-hrat</mongodb.uri>
                 <skip.test>true</skip.test>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+        </profile>
+
+        <profile>
+            <id>heroku</id>
+            <properties>
+                <mongodb.uri>${env.MONGODB_URI}</mongodb.uri>
+                <skip.test>false</skip.test>
+            </properties>
         </profile>
     </profiles>
 
@@ -137,54 +147,47 @@
             </plugin>
 
             <!--Frontend maven plugin-->
-            <!--<plugin>-->
-                <!--<groupId>com.github.eirslett</groupId>-->
-                <!--<artifactId>frontend-maven-plugin</artifactId>-->
-                <!--<version>${frontend-maven-plugin.version}</version>-->
-                <!--<configuration>-->
-                    <!--<installDirectory>./unity-client</installDirectory>-->
-                    <!--<workingDirectory>./unity-client</workingDirectory>-->
-                <!--</configuration>-->
-                <!--<executions>-->
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>${frontend-maven-plugin.version}</version>
+                <configuration>
+                    <installDirectory>./unity-client</installDirectory>
+                    <workingDirectory>./unity-client</workingDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <nodeVersion>${node.version}</nodeVersion>
+                            <npmVersion>${npm.version}</npmVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>unity-client</workingDirectory>
+                        </configuration>
+                    </execution>
                     <!--<execution>-->
-                        <!--<id>install node and npm</id>-->
-                        <!--<goals>-->
-                            <!--<goal>install-node-and-npm</goal>-->
-                        <!--</goals>-->
-                        <!--<phase>generate-resources</phase>-->
-                        <!--<configuration>-->
-                            <!--<nodeVersion>${node.version}</nodeVersion>-->
-                            <!--<npmVersion>${npm.version}</npmVersion>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                    <!--<execution>-->
-                        <!--<id>npm install</id>-->
+                        <!--<id>npm start</id>-->
                         <!--<goals>-->
                             <!--<goal>npm</goal>-->
                         <!--</goals>-->
                         <!--<configuration>-->
+                            <!--<arguments>start</arguments>-->
                             <!--<workingDirectory>unity-client</workingDirectory>-->
                         <!--</configuration>-->
                     <!--</execution>-->
-                    <!--<execution>-->
-                        <!--<id>bower install</id>-->
-                        <!--<goals>-->
-                            <!--<goal>bower</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<arguments>install</arguments>-->
-                            <!--<workingDirectory>unity-client</workingDirectory>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                    <!--&lt;!&ndash;<execution>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<id>gulp build</id>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<goals>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<goal>gulp</goal>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</goals>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<phase>generate-resources</phase>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</execution>&ndash;&gt;-->
-                <!--</executions>-->
-            <!--</plugin>-->
+                </executions>
+            </plugin>
 
             <!-- Coveralls -->
             <plugin>
