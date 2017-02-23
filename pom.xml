@@ -68,7 +68,7 @@
         <profile>
             <id>heroku</id>
             <properties>
-                <mongodb.uri>${env.MONGODB_URI}</mongodb.uri>
+                <mongodb.uri>${MONGODB_URI}</mongodb.uri>
                 <skip.test>false</skip.test>
             </properties>
         </profile>
