@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <springProfile name="test,dev,staging">
+    <springProfile name="test,dev,heroku">
         <logger name="com.github.vlsidlyarevich.unity.web" level="DEBUG" additivity="false">
             <appender-ref ref="CONSOLE"/>
         </logger>
