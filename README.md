@@ -2,9 +2,9 @@
 [![Build Status](https://travis-ci.org/vlsidlyarevich/unity.svg?branch=master)](https://travis-ci.org/vlsidlyarevich/unity)
 [![Dependency Status](https://www.versioneye.com/user/projects/58028731a23d5200345545db/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58028731a23d5200345545db)
 [![Coverage Status](https://coveralls.io/repos/github/vlsidlyarevich/unity/badge.svg?branch=master)](https://coveralls.io/github/vlsidlyarevich/unity?branch=master)
-###Angular 2 and Java based Human resourse analysing tool
+###Angular 2 and Java 8 based Human resourse analysing tool
 
-Module of integration with [woodstock](https://github.com/solairerove/woodstock) lms.
+Also have a look at [Assistant programmer](https://github.com/Karina-Denisevich/Assistant-Programmer) for more Git-based workflow and [woodstock](https://github.com/solairerove/woodstock) lms.
 
 ---
 #####Technologies:
@@ -43,43 +43,10 @@ Type following commands in additional/docker/mongo folder.
 
 ---
 ###Api reference
-####Worker profile api
-* GET `http://localhost:8080/api/workers` - get all workers profiles
-* GET `http://localhost:8080/api/workers/id` - get worker profile by id 
-* POST `http://localhost:8080/api/workers` - add new worker profile 
-* PUT `http://localhost:8080/api/workers/id` - update worker profile by id
-* DELETE `http://localhost:8080/api/workers/id` - delete worker profile by id 
+####Signup api
+* POST `http://localhost:8080/api/signup` - create new user
 
-####Worker profile specific search api
-* GET `http://localhost:8080/api/workers/search` - get all workers profiles by name
-* POST `http://localhost:8080/api/workers/search` - get workers profiles with filters 
-
-####Worker profile delete group api
-* POST `http://localhost:8080/api/workers/delete` - delete workers 
-
-####Vacancy api
-* GET `http://localhost:8080/api/vacancies` - get all vacancies
-* GET `http://localhost:8080/api/vacancies/id` - get vacancy by id 
-* POST `http://localhost:8080/api/vacancies` - add new vacancy
-* PUT `http://localhost:8080/api/vacancies/id` - update vacancy by id
-* DELETE `http://localhost:8080/api/vacancies/id` - delete vacancy by id 
-
-####Vacancy delete group api
-* POST `http://localhost:8080/api/vacancies/delete` - delete vacancies
-
-####Candidate api
-* GET `http://localhost:8080/api/vacancies/id/candidates/` - get all candidates of vacancy
-* GET `http://localhost:8080/api/vacancies/id/candidates/id` - get candidate of vacancy by id 
-* POST `http://localhost:8080/api/vacancies/id/candidates` - add new candidate to vacancy
-* PUT `http://localhost:8080/api/vacancies/id/candidates/id` - update candidate in vacancy
-* DELETE `http://localhost:8080/api/vacancies/id/candidates/id` - delete candidate from vacancy
-
-####Candidate delete group api
-* POST `http://localhost:8080/api/vacancies/id/candidates/delete` - delete candidates groups in vacancy
-
-####Image api
-* GET `http://localhost:8080/api/images/id` - get image by id 
-* POST `http://localhost:8080/api/images/upload` - upload new image 
-* DELETE `http://localhost:8080/api/images/id` - delete image by id 
+####Auth api
+* GET `http://localhost:8080/api/workers/auth` - get authentification token
 
 Or you can import [json file](https://github.com/vlsidlyarevich/unity/blob/master/additional/insomnia/unity-api.json) to your Insomnia rest client
