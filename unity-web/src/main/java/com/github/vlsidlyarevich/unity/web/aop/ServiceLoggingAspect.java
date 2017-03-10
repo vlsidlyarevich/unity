@@ -16,33 +16,9 @@ public class ServiceLoggingAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(ServiceLoggingAspect.class);
 
-    @Before("execution(* com.github.vlsidlyarevich.unity.db.service.impl.WorkerProfileServiceImpl.*(..)))")
-    public void workerServiceLog(JoinPoint joinPoint) {
-        logger.info("Worker profile service : " + joinPoint.getSignature().getName()
+    @Before("execution(* com.github.vlsidlyarevich.unity.db.service.impl.UserServiceImpl.*(..)))")
+    public void userServiceLog(JoinPoint joinPoint) {
+        logger.info("User service : " + joinPoint.getSignature().getName()
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
-    }
-
-    @Before("execution(* com.github.vlsidlyarevich.unity.db.service.impl.WorkerProfileSearchServiceImpl.*(..)))")
-    public void workerSearchServiceLog(JoinPoint joinPoint) {
-        logger.info("Worker profile search service : " + joinPoint.getSignature().getName()
-                + "\n With arguments : " + Arrays.toString(joinPoint.getArgs()));
-    }
-
-    @Before("execution(* com.github.vlsidlyarevich.unity.db.service.impl.FileSystemStorageService.*(..)))")
-    public void imageServiceLog(JoinPoint joinPoint) {
-        logger.info("Image service : " + joinPoint.getSignature().getName()
-                + "\n With arguments : " + Arrays.toString(joinPoint.getArgs()));
-    }
-
-    @Before("execution(* com.github.vlsidlyarevich.unity.db.service.impl.VacancyServiceImpl.*(..)))")
-    public void vacancyServiceLog(JoinPoint joinPoint) {
-        logger.info("Vacancy service : " + joinPoint.getSignature().getName()
-                + "\n With arguments : " + Arrays.toString(joinPoint.getArgs()));
-    }
-
-    @Before("execution(* com.github.vlsidlyarevich.unity.db.service.impl.CandidateServiceImpl.*(..)))")
-    public void candidateServiceLog(JoinPoint joinPoint) {
-        logger.info("Candidate service : " + joinPoint.getSignature().getName()
-                + "\n With arguments : " + Arrays.toString(joinPoint.getArgs()));
     }
 }

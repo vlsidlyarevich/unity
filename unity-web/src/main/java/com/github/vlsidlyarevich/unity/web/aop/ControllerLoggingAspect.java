@@ -16,51 +16,21 @@ public class ControllerLoggingAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(ControllerLoggingAspect.class);
 
-    @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.WorkersProfileController.*(..)))")
-    public void workerProfileControllerLog(JoinPoint joinPoint) {
-        logger.info("Worker profile controller : " + joinPoint.getSignature().getName()
+    @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.AuthenticationController.*(..)))")
+    public void authControllerLog(JoinPoint joinPoint) {
+        logger.info("Auth controller : " + joinPoint.getSignature().getName()
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
     }
 
-    @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.WorkerProfileDeleteQueryController.*(..)))")
-    public void workerProfileDeleteQueryControllerLog(JoinPoint joinPoint) {
-        logger.info("Worker profile delete query controller : " + joinPoint.getSignature().getName()
+    @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.SignUpController.*(..)))")
+    public void signUpControllerLog(JoinPoint joinPoint) {
+        logger.info("Sign up controller : " + joinPoint.getSignature().getName()
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
     }
 
-    @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.WorkerProfileSearchController.*(..)))")
-    public void workerProfileSearchControllerLog(JoinPoint joinPoint) {
-        logger.info("Worker profile search controller : " + joinPoint.getSignature().getName()
-                + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
-    }
-
-    @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.ImageController.*(..)))")
-    public void imageControllerLog(JoinPoint joinPoint) {
-        logger.info("Image controller : " + joinPoint.getSignature().getName()
-                + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
-    }
-
-    @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.VacancyController.*(..)))")
-    public void vacancyControllerLog(JoinPoint joinPoint) {
-        logger.info("Vacancy controller : " + joinPoint.getSignature().getName()
-                + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
-    }
-
-    @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.VacancyDeleteQueryController.*(..)))")
-    public void vacancyDeleteQueryControllerLog(JoinPoint joinPoint) {
-        logger.info("Vacancy delete query controller : " + joinPoint.getSignature().getName()
-                + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
-    }
-
-    @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.CandidateController.*(..)))")
-    public void candidateControllerLog(JoinPoint joinPoint) {
-        logger.info("Candidate controller : " + joinPoint.getSignature().getName()
-                + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
-    }
-
-    @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.CandidateDeleteQueryController.*(..)))")
-    public void candidateDeleteQueryControllerLog(JoinPoint joinPoint) {
-        logger.info("Candidate delete query controller : " + joinPoint.getSignature().getName()
+    @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.UserController.*(..)))")
+    public void usersControllerLog(JoinPoint joinPoint) {
+        logger.info("Users controller : " + joinPoint.getSignature().getName()
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
     }
 }
