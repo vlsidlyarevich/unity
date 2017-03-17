@@ -7,7 +7,7 @@
 Also have a look at [Assistant programmer](https://github.com/Karina-Denisevich/Assistant-Programmer) for more Git-based workflow and [woodstock](https://github.com/solairerove/woodstock) lms.
 
 ---
-#####Technologies:
+##### Technologies:
 * [Project Lombok](https://projectlombok.org/)
 * [Angular 2](https://angular.io/)
 * [Spring Boot](http://projects.spring.io/spring-boot/)
@@ -20,7 +20,7 @@ Also have a look at [Assistant programmer](https://github.com/Karina-Denisevich/
 If you don't have installed maven, or you don't want to install it, just type `./mvnw clean install`.
 
 ---
-###Getting mongo
+### Getting mongo
 You can download and install mongo following instructions from [official site](https://docs.mongodb.com/manual/administration/install-community/)
 Or you can create and run docker image.
 Type following commands in additional/docker/mongo folder.
@@ -28,25 +28,25 @@ Type following commands in additional/docker/mongo folder.
 * `docker run -p 27017:27017 --name mongodb -d mongo`
 
  
-###Running the backend
+### Running the backend
 * `mvn clean install`
 * `java -jar target/*.jar`
 
-###Running the client
+### Running the client
 * `cd unity-client`
 * `npm i`
 * `ng serve`
 
-###Debugging the application
+### Debugging the application
 * `mvn clean install`
 * `java -Xdebug -Xrunjdwp:transport=dt_socket,address=50000,server=y -jar target/*.jar`
 
 ---
-###Api reference
-####Signup api
+### Api reference
+#### Signup api
 * POST `http://localhost:8080/api/signup` - create new user
 
-####Auth api
+#### Auth api
 * GET `http://localhost:8080/api/workers/auth` - get authentification token
 
 Or you can import [json file](https://github.com/vlsidlyarevich/unity/blob/master/additional/insomnia/unity-api.json) to your Insomnia rest client
