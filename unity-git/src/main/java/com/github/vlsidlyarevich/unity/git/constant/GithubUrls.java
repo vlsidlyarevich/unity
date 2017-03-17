@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.git.constants;
+package com.github.vlsidlyarevich.unity.git.constant;
 
 
 public final class GithubUrls {
