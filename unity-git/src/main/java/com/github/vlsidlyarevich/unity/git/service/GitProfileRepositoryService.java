@@ -1,4 +1,4 @@
 package com.github.vlsidlyarevich.unity.git.service;
 
-public interface GitProfileRepositoryService {
+public interface GitProfileRepositoryService extends GitService {
 }
