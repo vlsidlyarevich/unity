@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.git.service;
 
+import com.github.vlsidlyarevich.unity.git.exception.GitProfileNotFoundException;
 import com.github.vlsidlyarevich.unity.git.model.GitProfile;
 import org.junit.Assert;
 import org.junit.Test;
@@ -7,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Optional;
 
 
 @RunWith(SpringRunner.class)
@@ -18,12 +21,20 @@ public class GitProfileServiceTest {
 
     @Test
     public void getGitProfileTest() throws Exception {
-        GitProfile gitProfile = gitProfileService.getGitProfile("vlsidlyarevich");
+        Optional<GitProfile> gitProfile = gitProfileService.getGitProfile("vlsidlyarevich");
         Assert.assertNotNull(gitProfile);
-        Assert.assertNotNull(gitProfile.getPublicRepos());
-        Assert.assertNotNull(gitProfile.getReposUrl());
-        Assert.assertNotNull(gitProfile.getUrl());
-        Assert.assertNotNull(gitProfile.getName());
-        Assert.assertNotNull(gitProfile.getLogin());
+        Assert.assertTrue(gitProfile.isPresent());
+        Assert.assertNotNull(gitProfile.get().getPublicRepos());
+        Assert.assertNotNull(gitProfile.get().getReposUrl());
+        Assert.assertNotNull(gitProfile.get().getUrl());
+        Assert.assertNotNull(gitProfile.get().getName());
+        Assert.assertNotNull(gitProfile.get().getLogin());
+    }
+
+    @Test(expected = GitProfileNotFoundException.class)
+    public void getGitProfileNotFoundTest() throws Exception {
+        Optional<GitProfile> gitProfile = gitProfileService.getGitProfile("thereisnosuchprofilewiththatname");
+        Assert.assertNotNull(gitProfile);
+        Assert.assertTrue(!gitProfile.isPresent());
     }
 }
