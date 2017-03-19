@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.PostConstruct;
 import java.util.Optional;
 
+
 @Service
 public class GitProfileServiceImpl implements GitProfileService {
 

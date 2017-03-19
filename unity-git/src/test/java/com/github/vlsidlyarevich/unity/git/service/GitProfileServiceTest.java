@@ -1,6 +1,5 @@
 package com.github.vlsidlyarevich.unity.git.service;
 
-import com.github.vlsidlyarevich.unity.git.exception.GitProfileNotFoundException;
 import com.github.vlsidlyarevich.unity.git.model.GitProfile;
 import org.junit.Assert;
 import org.junit.Test;
