@@ -31,7 +31,7 @@ public class GitProfileServiceTest {
         Assert.assertNotNull(gitProfile.get().getLogin());
     }
 
-    @Test(expected = GitProfileNotFoundException.class)
+    @Test
     public void getGitProfileNotFoundTest() throws Exception {
         Optional<GitProfile> gitProfile = gitProfileService.getGitProfile("thereisnosuchprofilewiththatname");
         Assert.assertNotNull(gitProfile);
