@@ -14,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.PostConstruct;
 import java.util.Optional;
 
-
 @Service
 public class GitRepositoryServiceImpl implements GitRepositoryService {
 
@@ -30,7 +29,7 @@ public class GitRepositoryServiceImpl implements GitRepositoryService {
 
     @Autowired
     public GitRepositoryServiceImpl(GitProperties gitProperties) {
-        this.gitApiUrl = gitProperties.getApiUrl() + "users/{user}/repos";
+        this.gitApiUrl = gitProperties.getApiUrl() + "/users/{user}/repos";
     }
 
     @PostConstruct
@@ -45,6 +44,17 @@ public class GitRepositoryServiceImpl implements GitRepositoryService {
         } catch (HttpClientErrorException e) {
             repositories = Optional.empty();
             logger.error("Can't get git repositories of profile: {gitProfile}", gitProfile);
+        }
+        return repositories;
+    }
+
+    public Optional<GitRepository> getGitRepository(String gitProfile, String repo) {
+        Optional<GitRepository> repositories;
+        try {
+            repositories = Optional.of(restTemplate.getForObject(gitApiUrl + "/" + repo, GitRepository.class, gitProfile));
+        } catch (HttpClientErrorException e) {
+            repositories = Optional.empty();
+            logger.error("Can't get git repository: {repo} of profile: {gitProfile}", repo, gitProfile);
         }
         return repositories;
     }

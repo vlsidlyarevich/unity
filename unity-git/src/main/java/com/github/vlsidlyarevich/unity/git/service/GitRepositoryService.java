@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface GitRepositoryService extends GitService {
 
     Optional<GitRepository[]> getGitRepositories(String gitProfile);
+
+    Optional<GitRepository> getGitRepository(String gitProfile, String repo);
 }
