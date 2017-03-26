@@ -3,7 +3,6 @@ package com.github.vlsidlyarevich.unity.db.model;
 import lombok.Data;
 import lombok.ToString;
 
-
 @Data
 public class WorkerProfile extends Worker {
 

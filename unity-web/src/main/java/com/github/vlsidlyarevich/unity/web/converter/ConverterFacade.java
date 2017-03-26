@@ -12,7 +12,6 @@ import com.github.vlsidlyarevich.unity.web.dto.WorkerProfileDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class ConverterFacade {
 

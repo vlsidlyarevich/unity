@@ -6,7 +6,6 @@ import com.github.vlsidlyarevich.unity.db.model.Speciality;
 import com.github.vlsidlyarevich.unity.db.model.WorkerProfile;
 import org.springframework.core.convert.converter.Converter;
 
-
 public class WorkerProfileDTOConverter implements Converter<WorkerProfileDTO, WorkerProfile> {
 
     @Override

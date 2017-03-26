@@ -4,7 +4,6 @@ import com.github.vlsidlyarevich.unity.db.model.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 
-
 public final class TestUtils {
 
     private static final int MAX_STRING_LENGTH = 15;

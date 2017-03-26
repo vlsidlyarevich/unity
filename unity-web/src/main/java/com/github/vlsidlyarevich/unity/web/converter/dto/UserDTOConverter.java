@@ -8,7 +8,6 @@ import org.springframework.core.convert.converter.Converter;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class UserDTOConverter implements Converter<UserDTO, User> {
 
     @Override

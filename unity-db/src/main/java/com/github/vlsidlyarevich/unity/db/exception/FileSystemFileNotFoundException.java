@@ -2,7 +2,6 @@ package com.github.vlsidlyarevich.unity.db.exception;
 
 import lombok.Data;
 
-
 @Data
 public class FileSystemFileNotFoundException extends RuntimeException {
 

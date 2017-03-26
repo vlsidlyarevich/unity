@@ -3,7 +3,6 @@ package com.github.vlsidlyarevich.unity.db.service;
 import com.github.vlsidlyarevich.unity.db.model.User;
 import java.util.List;
 
-
 public interface UserService {
 
     User create(User object);

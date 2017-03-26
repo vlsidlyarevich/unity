@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
 @Repository
 public interface WorkerProfileRepository extends MongoRepository<WorkerProfile, String> {
 

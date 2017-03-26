@@ -7,7 +7,6 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
-
 @Data
 public class CandidateDTO implements Serializable {
 

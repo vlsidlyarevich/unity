@@ -15,7 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class VacancyRepositoryTest {

@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.lang3.EnumUtils;
 
-
 @Data
 public class Worker extends Person {
 

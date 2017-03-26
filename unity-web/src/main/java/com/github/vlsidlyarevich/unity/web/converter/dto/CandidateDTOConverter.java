@@ -5,7 +5,6 @@ import com.github.vlsidlyarevich.unity.db.model.Candidate;
 import com.github.vlsidlyarevich.unity.db.model.Name;
 import org.springframework.core.convert.converter.Converter;
 
-
 public class CandidateDTOConverter implements Converter<CandidateDTO, Candidate> {
 
     @Override

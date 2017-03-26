@@ -7,7 +7,6 @@ import org.apache.commons.lang3.EnumUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Data
 public class Vacancy extends BaseEntity {
 

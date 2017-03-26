@@ -9,7 +9,6 @@ import org.apache.commons.lang3.EnumUtils;
 
 import java.io.Serializable;
 
-
 @Data
 public class WorkerProfileDTO implements Serializable {
 

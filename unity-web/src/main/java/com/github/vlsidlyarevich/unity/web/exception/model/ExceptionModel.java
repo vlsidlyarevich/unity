@@ -2,7 +2,6 @@ package com.github.vlsidlyarevich.unity.web.exception.model;
 
 import lombok.Data;
 
-
 @Data
 public class ExceptionModel {
 
