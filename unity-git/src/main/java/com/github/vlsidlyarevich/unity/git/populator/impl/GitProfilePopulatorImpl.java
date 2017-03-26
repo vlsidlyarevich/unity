@@ -7,15 +7,19 @@ import com.github.vlsidlyarevich.unity.git.service.GitProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class GitProfilePopulatorImpl implements GitProfilePopulator {
 
     @Autowired
     private GitProfileService gitProfileService;
 
-    public GitProfileData populate(GitProfile gitProfile){
+    public GitProfileData populate(GitProfile gitProfile) {
         //TODO
         return new GitProfileData();
+    }
+
+    @Override
+    public boolean canPopulate(Object model) {
+        return model instanceof GitProfile;
     }
 }
