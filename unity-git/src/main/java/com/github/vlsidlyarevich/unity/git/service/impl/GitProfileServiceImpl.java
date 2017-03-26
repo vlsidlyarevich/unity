@@ -6,6 +6,7 @@ import com.github.vlsidlyarevich.unity.git.model.GitProfile;
 import com.github.vlsidlyarevich.unity.git.service.GitProfileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -14,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.PostConstruct;
 import java.util.Optional;
 
-
 @Service
 public class GitProfileServiceImpl implements GitProfileService {
 
@@ -22,11 +22,10 @@ public class GitProfileServiceImpl implements GitProfileService {
 
     private final String gitApiUrl;
 
-    @Autowired
     private RestTemplate restTemplate;
 
     @Autowired
-    private RestTemplateFactory restTemplateFactory;
+    private FactoryBean<RestTemplate> restTemplateFactory;
 
     @Autowired
     public GitProfileServiceImpl(GitProperties gitProperties) {
@@ -35,7 +34,12 @@ public class GitProfileServiceImpl implements GitProfileService {
 
     @PostConstruct
     public void init() {
-        this.restTemplate = restTemplateFactory.getObject();
+        try {
+            this.restTemplate = restTemplateFactory.getObject();
+        } catch (Exception e) {
+            logger.error("Can't initiate rest template factory with error: {}, using default one.", e.getCause());
+            this.restTemplate = new RestTemplate();
+        }
     }
 
     public Optional<GitProfile> getGitProfile(String gitProfile) {
@@ -44,7 +48,7 @@ public class GitProfileServiceImpl implements GitProfileService {
             result = Optional.of(restTemplate.getForObject(gitApiUrl, GitProfile.class, gitProfile));
         } catch (HttpClientErrorException e) {
             result = Optional.empty();
-            logger.error("Can't find git profile: {gitProfile}", gitProfile);
+            logger.error("Can't find git profile: {}", gitProfile);
         }
         return result;
     }
