@@ -9,7 +9,6 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-
 @Component
 public class RestTemplateFactory implements FactoryBean<RestTemplate> {
 

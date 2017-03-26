@@ -4,7 +4,6 @@ import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpClientErrorException;
 
-
 @Data
 public class GitProfileNotFoundException extends HttpClientErrorException {
 
