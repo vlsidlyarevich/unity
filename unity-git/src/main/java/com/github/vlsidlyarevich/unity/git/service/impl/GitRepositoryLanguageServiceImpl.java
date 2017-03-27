@@ -6,7 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
@@ -42,11 +45,29 @@ public class GitRepositoryLanguageServiceImpl implements GitRepositoryLanguageSe
 
     @Override
     public Optional<Map<String, String>> getGitRepoLanguages(String url) {
-        return null;
+        Optional<Map<String, String>> result;
+        ParameterizedTypeReference<Map<String, String>> response = new ParameterizedTypeReference<Map<String, String>>() {
+        };
+        try {
+            result = Optional.of(restTemplate.exchange(url, HttpMethod.GET, null, response).getBody());
+        } catch (HttpClientErrorException e) {
+            result = Optional.empty();
+            logger.error("Can't get languages by url: {}", url);
+        }
+        return result;
     }
 
     @Override
     public Optional<Map<String, String>> getGitRepoLanguages(String gitProfile, String repo) {
-        return null;
+        Optional<Map<String, String>> result;
+        ParameterizedTypeReference<Map<String, String>> response = new ParameterizedTypeReference<Map<String, String>>() {
+        };
+        try {
+            result = Optional.of(restTemplate.exchange(gitApiUrl, HttpMethod.GET, null, response, gitProfile, repo).getBody());
+        } catch (HttpClientErrorException e) {
+            result = Optional.empty();
+            logger.error("Can't get languages of git profile's:{} repo {}", gitProfile, repo);
+        }
+        return result;
     }
 }
