@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
@@ -19,14 +20,14 @@ public class GitRepositoryServiceTest {
 
     @Test
     public void getGitRepositoriesTest() throws Exception {
-        Optional<GitRepository[]> gitRepositories = gitRepositoryService.getGitRepositories("vlsidlyarevich");
+        Optional<List<GitRepository>> gitRepositories = gitRepositoryService.getGitRepositories("vlsidlyarevich");
         Assert.assertNotNull(gitRepositories);
         Assert.assertTrue(gitRepositories.isPresent());
     }
 
     @Test
     public void getGitRepositoriesNotFoundTest() throws Exception {
-        Optional<GitRepository[]> gitRepositories = gitRepositoryService.getGitRepositories("thereisnosuchprofilewiththatname");
+        Optional<List<GitRepository>> gitRepositories = gitRepositoryService.getGitRepositories("thereisnosuchprofilewiththatname");
         Assert.assertNotNull(gitRepositories);
         Assert.assertTrue(!gitRepositories.isPresent());
     }
@@ -43,5 +44,12 @@ public class GitRepositoryServiceTest {
         Assert.assertNotNull(gitRepository.get().getLabelsUrl());
         Assert.assertNotNull(gitRepository.get().getLanguage());
         Assert.assertNotNull(gitRepository.get().getLanguagesUrl());
+    }
+
+    @Test
+    public void getGitRepositoryNotFoundTest() throws Exception {
+        Optional<GitRepository> gitRepository = gitRepositoryService.getGitRepository("vlsidlyarevich", "thereisnosuchrepowiththatname");
+        Assert.assertNotNull(gitRepository);
+        Assert.assertTrue(!gitRepository.isPresent());
     }
 }

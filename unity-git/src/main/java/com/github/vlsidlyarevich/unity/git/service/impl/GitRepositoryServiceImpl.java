@@ -12,6 +12,8 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,10 +45,10 @@ public class GitRepositoryServiceImpl implements GitRepositoryService {
         }
     }
 
-    public Optional<GitRepository[]> getGitRepositories(String gitProfile) {
-        Optional<GitRepository[]> repositories;
+    public Optional<List<GitRepository>> getGitRepositories(String gitProfile) {
+        Optional<List<GitRepository>> repositories;
         try {
-            repositories = Optional.of(restTemplate.getForObject(gitUserRepositoriesUrl, GitRepository[].class, gitProfile));
+            repositories = Optional.of(Arrays.asList(restTemplate.getForObject(gitUserRepositoriesUrl, GitRepository[].class, gitProfile)));
         } catch (HttpClientErrorException e) {
             repositories = Optional.empty();
             logger.error("Can't get git repositories of profile: {}", gitProfile);
