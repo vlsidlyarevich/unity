@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 public class GitProfileData {
@@ -18,7 +19,7 @@ public class GitProfileData {
     private String starredUrl;
     private String subscriptionsUrl;
     private String organizationsUrl;
-    private List<GitRepositoryData> repos;
+    private Optional<List<GitRepositoryData>> repos;
     private String type;
     private String name;
     private String company;

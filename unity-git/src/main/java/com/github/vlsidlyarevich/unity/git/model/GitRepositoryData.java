@@ -8,7 +8,7 @@ import java.util.Map;
 @Data
 public class GitRepositoryData {
 
-    private String id;
+    private Integer id;
     private String name;
     private String fullName;
     private GitRepoOwnerData owner;
