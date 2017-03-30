@@ -7,7 +7,6 @@ import com.github.vlsidlyarevich.unity.git.model.GitRepositoryData;
 import com.github.vlsidlyarevich.unity.git.populator.GitProfilePopulator;
 import com.github.vlsidlyarevich.unity.git.populator.GitRepositoryPopulator;
 import com.github.vlsidlyarevich.unity.git.service.GitProfileService;
-import com.github.vlsidlyarevich.unity.git.service.GitRepositoryLanguageService;
 import com.github.vlsidlyarevich.unity.git.service.GitRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,9 +30,6 @@ public class GitDataAggregator {
     @Autowired
     private GitRepositoryService gitRepositoryService;
 
-    @Autowired
-    private GitRepositoryLanguageService gitRepositoryLanguageService;
-
     public Optional<GitProfileData> getGitProfileData(String gitLogin) {
         Optional<GitProfile> gitProfile = gitProfileService.getGitProfile(gitLogin);
         if (!gitProfile.isPresent()) {
@@ -45,9 +41,19 @@ public class GitDataAggregator {
     private Optional<GitProfileData> aggregateData(GitProfile gitProfile) {
         Optional<GitProfileData> result;
         result = Optional.of(gitProfilePopulator.populate(gitProfile));
-        Optional<List<GitRepository>> gitRepositories = gitRepositoryService.getGitRepositories(gitProfile.getLogin());
-        result.get().setRepos(getRepositoryData(gitRepositories));
+
+        appendGitRepos(result.get());
+
         return result;
+    }
+
+    private void appendGitRepos(GitProfileData gitProfileData) {
+        Optional<List<GitRepository>> gitRepositories = gitRepositoryService.getGitRepositories(gitProfileData.getLogin());
+        if (!gitRepositories.isPresent()) {
+            gitProfileData.setRepos(Optional.empty());
+            return;
+        }
+        gitProfileData.setRepos(getRepositoryData(gitRepositories));
     }
 
     private Optional<List<GitRepositoryData>> getRepositoryData(Optional<List<GitRepository>> gitRepositories) {

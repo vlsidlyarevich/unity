@@ -2,6 +2,7 @@ package com.github.vlsidlyarevich.unity.git.populator.impl;
 
 import com.github.vlsidlyarevich.unity.git.model.GitRepository;
 import com.github.vlsidlyarevich.unity.git.model.GitRepositoryData;
+import com.github.vlsidlyarevich.unity.git.populator.GitRepoOwnerPopulator;
 import com.github.vlsidlyarevich.unity.git.populator.GitRepositoryPopulator;
 import com.github.vlsidlyarevich.unity.git.service.GitRepositoryLanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +14,85 @@ public class GitRepositoryPopulatorImpl implements GitRepositoryPopulator {
     @Autowired
     private GitRepositoryLanguageService gitRepositoryLanguageService;
 
+    @Autowired
+    private GitRepoOwnerPopulator gitRepoOwnerPopulator;
 
     public GitRepositoryData populate(GitRepository gitRepository) {
         GitRepositoryData result = new GitRepositoryData();
+
         result.setId(gitRepository.getId());
-        //TODO
+        result.setName(gitRepository.getName());
+        result.setFullName(gitRepository.getFullName());
 
+        result.setOwner(gitRepoOwnerPopulator.populate(gitRepository.getOwner()));
 
+        result.setIsPrivate(gitRepository.getIsPrivate());
+        result.setHtmlUrl(gitRepository.getHtmlUrl());
+        result.setDescription(gitRepository.getDescription());
+        result.setIsFork(gitRepository.getIsFork());
+        result.setUrl(gitRepository.getUrl());
+        result.setForksUrl(gitRepository.getForksUrl());
+        result.setKeysUrl(gitRepository.getKeysUrl());
+        result.setCollaboratorsUrl(gitRepository.getCollaboratorsUrl());
+        result.setTeamsUrl(gitRepository.getTeamsUrl());
+        result.setHooksUrl(gitRepository.getHooksUrl());
+        result.setIssueEventsUrl(gitRepository.getIssueEventsUrl());
+        result.setEventsUrl(gitRepository.getEventsUrl());
+        result.setAssigneesUrl(gitRepository.getAssigneesUrl());
+        result.setBranchesUrl(gitRepository.getBranchesUrl());
+        result.setTagsUrl(gitRepository.getTagsUrl());
+        result.setBlobsUrl(gitRepository.getBlobsUrl());
+        result.setGitTagsUrl(gitRepository.getGitTagsUrl());
+        result.setGitRefsUrl(gitRepository.getGitRefsUrl());
+        result.setTreesUrl(gitRepository.getTreesUrl());
+        result.setStatusesUrl(gitRepository.getStatusesUrl());
+
+        result.setLanguages(gitRepositoryLanguageService.getGitRepoLanguages(gitRepository.getLanguagesUrl()).get());
+
+        result.setStargazersUrl(gitRepository.getStargazersUrl());
+        result.setContributorsUrl(gitRepository.getContributorsUrl());
+        result.setSubscribersUrl(gitRepository.getSubscribersUrl());
+        result.setSubscriptionUrl(gitRepository.getSubscriptionUrl());
+        result.setCommitsUrl(gitRepository.getCommitsUrl());
+        result.setGitCommitsUrl(gitRepository.getGitCommitsUrl());
+        result.setCommentsUrl(gitRepository.getCommentsUrl());
+        result.setIssueCommentUrl(gitRepository.getIssueCommentUrl());
+        result.setContentsUrl(gitRepository.getContentsUrl());
+        result.setCompareUrl(gitRepository.getCompareUrl());
+        result.setMergesUrl(gitRepository.getMergesUrl());
+        result.setArchiveUrl(gitRepository.getArchiveUrl());
+        result.setDownloadsUrl(gitRepository.getDownloadsUrl());
+        result.setIssuesUrl(gitRepository.getIssuesUrl());
+        result.setPullsUrl(gitRepository.getPullsUrl());
+        result.setMilestonesUrl(gitRepository.getMilestonesUrl());
+        result.setNotificationsUrl(gitRepository.getNotificationsUrl());
+        result.setLabelsUrl(gitRepository.getLabelsUrl());
+        result.setReleasesUrl(gitRepository.getReleasesUrl());
+        result.setDeploymentsUrl(gitRepository.getDeploymentsUrl());
+        result.setCreatedAt(gitRepository.getCreatedAt());
+        result.setUpdatedAt(gitRepository.getUpdatedAt());
+        result.setPushedAt(gitRepository.getPushedAt());
+        result.setGitUrl(gitRepository.getGitUrl());
+        result.setSshUrl(gitRepository.getSshUrl());
+        result.setSvnUrl(gitRepository.getSvnUrl());
+        result.setHomepage(gitRepository.getHomepage());
+        result.setSize(gitRepository.getSize());
+        result.setStargazersCount(gitRepository.getStargazersCount());
+        result.setWatchersCount(gitRepository.getWatchersCount());
+        result.setLanguage(gitRepository.getLanguage());
+        result.setHasIssues(gitRepository.getHasIssues());
+        result.setHasDownloads(gitRepository.getHasDownloads());
+        result.setHasWiki(gitRepository.getHasWiki());
+        result.setHasPages(gitRepository.getHasPages());
+        result.setForksCount(gitRepository.getForksCount());
+        result.setMirrorUrl(gitRepository.getMirrorUrl());
+        result.setOpenIssuesCount(gitRepository.getOpenIssuesCount());
+        result.setForks(gitRepository.getForks());
+        result.setOpenIssues(gitRepository.getOpenIssues());
+        result.setWatchers(gitRepository.getWatchers());
+        result.setDefaultBranch(gitRepository.getDefaultBranch());
+        result.setNetworkCount(gitRepository.getNetworkCount());
+        result.setSubscribersCount(gitRepository.getSubscribersCount());
         return result;
     }
 
@@ -28,73 +101,3 @@ public class GitRepositoryPopulatorImpl implements GitRepositoryPopulator {
         return model instanceof GitRepository;
     }
 }
-
-//    private String id;
-//    private String name;
-//    private String fullName;
-//    private GitRepoOwnerData owner;
-//    private Boolean isPrivate;
-//    private String htmlUrl;
-//    private String description;
-//    private Boolean isFork;
-//    private String url;
-//    private String forksUrl;
-//    private String keysUrl;
-//    private String collaboratorsUrl;
-//    private String teamsUrl;
-//    private String hooksUrl;
-//    private String issueEventsUrl;
-//    private String eventsUrl;
-//    private String assigneesUrl;
-//    private String branchesUrl;
-//    private String tagsUrl;
-//    private String blobsUrl;
-//    private String gitTagsUrl;
-//    private String gitRefsUrl;
-//    private String treesUrl;
-//    private String statusesUrl;
-//    private Map<String, String> languages;
-//    private String stargazersUrl;
-//    private String contributorsUrl;
-//    private String subscribersUrl;
-//    private String subscriptionUrl;
-//    private String commitsUrl;
-//    private String gitCommitsUrl;
-//    private String commentsUrl;
-//    private String issueCommentUrl;
-//    private String contentsUrl;
-//    private String compareUrl;
-//    private String mergesUrl;
-//    private String archiveUrl;
-//    private String downloadsUrl;
-//    private String issuesUrl;
-//    private String pullsUrl;
-//    private String milestonesUrl;
-//    private String notificationsUrl;
-//    private String labelsUrl;
-//    private String releasesUrl;
-//    private String deploymentsUrl;
-//    private Date createdAt;
-//    private Date updatedAt;
-//    private Date pushedAt;
-//    private String gitUrl;
-//    private String sshUrl;
-//    private String svnUrl;
-//    private String homepage;
-//    private Integer size;
-//    private Integer stargazersCount;
-//    private Integer watchersCount;
-//    private String language;
-//    private Boolean hasIssues;
-//    private Boolean hasDownloads;
-//    private Boolean hasWiki;
-//    private Boolean hasPages;
-//    private Integer forksCount;
-//    private String mirrorUrl;
-//    private Integer openIssuesCount;
-//    private Integer forks;
-//    private Integer openIssues;
-//    private Integer watchers;
-//    private String defaultBranch;
-//    private Integer networkCount;
-//    private Integer subscribersCount;
