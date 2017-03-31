@@ -1,11 +1,11 @@
 package com.github.vlsidlyarevich.unity.git.service.impl;
 
 import com.github.vlsidlyarevich.unity.git.config.GitProperties;
+import com.github.vlsidlyarevich.unity.git.factory.RestTemplateFactory;
 import com.github.vlsidlyarevich.unity.git.model.GitRepository;
 import com.github.vlsidlyarevich.unity.git.service.GitRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -27,7 +27,7 @@ public class GitRepositoryServiceImpl implements GitRepositoryService {
     private RestTemplate restTemplate;
 
     @Autowired
-    private FactoryBean<RestTemplate> restTemplateFactory;
+    private RestTemplateFactory restTemplateFactory;
 
     @Autowired
     public GitRepositoryServiceImpl(GitProperties gitProperties) {

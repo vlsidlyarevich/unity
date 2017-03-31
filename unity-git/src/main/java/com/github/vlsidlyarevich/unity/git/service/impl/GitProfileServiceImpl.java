@@ -6,7 +6,6 @@ import com.github.vlsidlyarevich.unity.git.model.GitProfile;
 import com.github.vlsidlyarevich.unity.git.service.GitProfileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -25,7 +24,7 @@ public class GitProfileServiceImpl implements GitProfileService {
     private RestTemplate restTemplate;
 
     @Autowired
-    private FactoryBean<RestTemplate> restTemplateFactory;
+    private RestTemplateFactory restTemplateFactory;
 
     @Autowired
     public GitProfileServiceImpl(GitProperties gitProperties) {
