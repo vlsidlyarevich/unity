@@ -1,9 +1,8 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.auth.service.TokenService;
-import com.github.vlsidlyarevich.unity.web.dto.TokenDTO;
 import com.github.vlsidlyarevich.unity.web.dto.LoginDTO;
-import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
+import com.github.vlsidlyarevich.unity.web.dto.TokenDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +27,7 @@ public class AuthenticationController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
             //FIXME
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
         }
     }
 }

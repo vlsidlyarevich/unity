@@ -45,7 +45,7 @@ public class TokenServiceImpl implements TokenService {
 
         } else {
 //            throw new Exception("Authentication error");
-            System.out.println("Error");
+            System.out.println("Authentication Error, credentials not matching");
             return null;
         }
     }
