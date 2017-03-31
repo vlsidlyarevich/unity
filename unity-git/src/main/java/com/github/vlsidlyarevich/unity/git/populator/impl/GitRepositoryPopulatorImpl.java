@@ -93,6 +93,7 @@ public class GitRepositoryPopulatorImpl implements GitRepositoryPopulator {
         result.setDefaultBranch(gitRepository.getDefaultBranch());
         result.setNetworkCount(gitRepository.getNetworkCount());
         result.setSubscribersCount(gitRepository.getSubscribersCount());
+
         return result;
     }
 

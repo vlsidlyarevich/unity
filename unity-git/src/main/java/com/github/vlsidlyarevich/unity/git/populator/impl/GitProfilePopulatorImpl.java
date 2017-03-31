@@ -10,7 +10,9 @@ public class GitProfilePopulatorImpl implements GitProfilePopulator {
 
     public GitProfileData populate(GitProfile gitProfile) {
         GitProfileData result = new GitProfileData();
+
         result.setId(gitProfile.getId());
+        result.setLogin(gitProfile.getLogin());
         result.setAvatarUrl(gitProfile.getAvatarUrl());
         result.setGravatarId(gitProfile.getGravatarId());
         result.setUrl(gitProfile.getUrl());
@@ -33,7 +35,7 @@ public class GitProfilePopulatorImpl implements GitProfilePopulator {
         result.setCreatedAt(gitProfile.getCreatedAt());
         result.setUpdatedAt(gitProfile.getUpdatedAt());
 
-        return new GitProfileData();
+        return result;
     }
 
     @Override
