@@ -8,35 +8,30 @@ import org.springframework.stereotype.Component;
 @Component
 public class GitRepoOwnerPopulatorImpl implements GitRepoOwnerPopulator {
 
-
     @Override
     public GitRepoOwnerData populate(GitRepoOwner model) {
         GitRepoOwnerData result = new GitRepoOwnerData();
 
-        //TODO
-
-
+        result.setId(model.getId());
+        result.setLogin(model.getLogin());
+        result.setAvatarUrl(model.getAvatarUrl());
+        result.setGravatarId(model.getGravatarId());
+        result.setUrl(model.getUrl());
+        result.setHtmlUrl(model.getHtmlUrl());
+        result.setFollowersUrl(model.getFollowersUrl());
+        result.setFollowingUrl(model.getFollowingUrl());
+        result.setGistsUrl(model.getGistsUrl());
+        result.setStarredUrl(model.getStarredUrl());
+        result.setSubscriptionsUrl(model.getSubscriptionsUrl());
+        result.setOrganizationsUrl(model.getOrganizationsUrl());
+        result.setReposUrl(model.getReposUrl());
+        result.setEventsUrl(model.getEventsUrl());
+        result.setReceivedEventsUrl(model.getReceivedEventsUrl());
+        result.setType(model.getType());
+        result.setSiteAdmin(model.getSiteAdmin());
 
         return result;
     }
-
-//    private Integer id;
-//    private String login;
-//    private String avatarUrl;
-//    private String gravatarId;
-//    private String url;
-//    private String htmlUrl;
-//    private String followersUrl;
-//    private String followingUrl;
-//    private String gistsUrl;
-//    private String starredUrl;
-//    private String subscriptionsUrl;
-//    private String organizationsUrl;
-//    private String reposUrl;
-//    private String eventsUrl;
-//    private String receivedEventsUrl;
-//    private String type;
-//    private String siteAdmin;
 
     @Override
     public boolean canPopulate(Object model) {
