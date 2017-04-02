@@ -19,7 +19,7 @@ public class GitProfileData {
     private String starredUrl;
     private String subscriptionsUrl;
     private String organizationsUrl;
-    private Optional<List<GitRepositoryData>> repos;
+    private List<GitRepositoryData> repos;
     private String type;
     private String name;
     private String company;

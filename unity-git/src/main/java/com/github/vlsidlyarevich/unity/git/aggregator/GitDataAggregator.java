@@ -49,11 +49,9 @@ public class GitDataAggregator {
 
     private void appendGitRepos(GitProfileData gitProfileData) {
         Optional<List<GitRepository>> gitRepositories = gitRepositoryService.getGitRepositories(gitProfileData.getLogin());
-        if (!gitRepositories.isPresent()) {
-            gitProfileData.setRepos(Optional.empty());
-            return;
+        if (gitRepositories.isPresent()) {
+            gitProfileData.setRepos(getRepositoryData(gitRepositories).get());
         }
-        gitProfileData.setRepos(getRepositoryData(gitRepositories));
     }
 
     private Optional<List<GitRepositoryData>> getRepositoryData(Optional<List<GitRepository>> gitRepositories) {
