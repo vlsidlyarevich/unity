@@ -47,7 +47,7 @@ public class GitProfileServiceImpl implements GitProfileService {
             result = Optional.of(restTemplate.getForObject(gitApiUrl, GitProfile.class, gitProfile));
         } catch (HttpClientErrorException e) {
             result = Optional.empty();
-            logger.error("Can't find git profile: {}", gitProfile);
+            logger.error("Can't find git profile: {} with error {}", gitProfile, e.getMessage());
         }
         return result;
     }

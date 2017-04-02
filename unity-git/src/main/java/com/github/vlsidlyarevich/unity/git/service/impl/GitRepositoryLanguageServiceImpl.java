@@ -52,7 +52,7 @@ public class GitRepositoryLanguageServiceImpl implements GitRepositoryLanguageSe
             result = Optional.of(restTemplate.exchange(url, HttpMethod.GET, null, response).getBody());
         } catch (HttpClientErrorException e) {
             result = Optional.empty();
-            logger.error("Can't get languages by url: {}", url);
+            logger.error("Can't get languages by url: {} with error {}", url, e.getMessage());
         }
         return result;
     }
@@ -66,7 +66,7 @@ public class GitRepositoryLanguageServiceImpl implements GitRepositoryLanguageSe
             result = Optional.of(restTemplate.exchange(gitApiUrl, HttpMethod.GET, null, response, gitProfile, repo).getBody());
         } catch (HttpClientErrorException e) {
             result = Optional.empty();
-            logger.error("Can't get languages of git profile's:{} repo {}", gitProfile, repo);
+            logger.error("Can't get languages of git profile's:{} repo {} with error {}", gitProfile, repo, e.getMessage());
         }
         return result;
     }

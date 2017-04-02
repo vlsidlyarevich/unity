@@ -51,7 +51,7 @@ public class GitRepositoryServiceImpl implements GitRepositoryService {
             repositories = Optional.of(Arrays.asList(restTemplate.getForObject(gitUserRepositoriesUrl, GitRepository[].class, gitProfile)));
         } catch (HttpClientErrorException e) {
             repositories = Optional.empty();
-            logger.error("Can't get git repositories of profile: {}", gitProfile);
+            logger.error("Can't get git repositories of profile: {} with error {}", gitProfile, e.getMessage());
         }
         return repositories;
     }
@@ -62,7 +62,7 @@ public class GitRepositoryServiceImpl implements GitRepositoryService {
             repositories = Optional.of(restTemplate.getForObject(gitRepositoryUrl, GitRepository.class, gitProfile, repo));
         } catch (HttpClientErrorException e) {
             repositories = Optional.empty();
-            logger.error("Can't get git repository: {} of profile: {}", repo, gitProfile);
+            logger.error("Can't get git repository: {} of profile: {} with error {}", repo, gitProfile, e.getMessage());
         }
         return repositories;
     }
