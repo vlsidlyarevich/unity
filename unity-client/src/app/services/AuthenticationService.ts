@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { User } from "../models/user";
-import { Http, Response, RequestOptions, Headers } from "@angular/http";
-import { Observable } from "rxjs";
-import { environment } from "../../environments/environment";
+import { Injectable } from '@angular/core';
+import { User } from '../models/user';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthenticationService {
@@ -14,13 +14,13 @@ export class AuthenticationService {
   }
 
   login(user: User) {
-    let body = JSON.stringify(user);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    const body = JSON.stringify(user);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
 
     return this.http.post(environment.serverUrl + AuthenticationService.AUTH, body, options)
       .map((response: Response) => {
-        let token = response.json() && response.json().token;
+        const token = response.json() && response.json().token;
         if (token) {
           this.token = token;
           localStorage.setItem('currentUser', JSON.stringify({ username: user.username, token: token }));

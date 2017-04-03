@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { User } from "../models/user";
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
-import { environment } from "../../environments/environment";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { User } from '../models/user';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class SignupService {
@@ -13,9 +13,9 @@ export class SignupService {
   }
 
   signup(userModel: User): Observable<boolean> {
-    let body = JSON.stringify(userModel);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    const body = JSON.stringify(userModel);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
 
     return this.http.post(environment.serverUrl + SignupService.SIGNUP, body, options)
       .map((response: Response) => {

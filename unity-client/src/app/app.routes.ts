@@ -1,8 +1,8 @@
-import { Routes, RouterModule } from "@angular/router";
-import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 export const APP_ROUTES: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: "full" },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: '' }
 ];
 

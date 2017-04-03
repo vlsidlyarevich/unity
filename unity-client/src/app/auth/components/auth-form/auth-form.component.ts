@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl } from "@angular/forms";
-import { Router } from "@angular/router";
-import { AuthenticationService } from "../../../services/AuthenticationService";
-import { User } from "../../../models/user";
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../../services/AuthenticationService';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-auth-form',
@@ -31,7 +31,7 @@ export class AuthFormComponent implements OnInit {
     this.authService.login(new User(this.user.value.username, this.user.value.password))
       .subscribe(result => {
           if (result === true) {
-            console.log("asd");
+            console.log('asd');
             this.router.navigate(['/home']);
           } else {
             this.error = 'Authentification error';

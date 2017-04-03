@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from "../../../models/user";
-import { Router } from "@angular/router";
-import { SignupService } from "../../../services/SignupService";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { error } from "util";
+import { User } from '../../../models/user';
+import { Router } from '@angular/router';
+import { SignupService } from '../../../services/SignupService';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup-form',
@@ -23,7 +22,7 @@ export class SignupFormComponent implements OnInit {
     this.user = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.minLength(4)]),
       password: new FormControl('', [Validators.required,
-        Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$")])
+        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$')])
     });
   }
 
