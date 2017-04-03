@@ -1,0 +1,42 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" style="font-size: x-large" href="/home">UNITY</a>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li routerLinkActive="active" class="nav-item">
+        <a class="nav-link" routerLink="home">Home</a>
+      </li>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="nav-link" routerLink="dashboard">Dashboard</a>
+      </li>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="nav-link" routerLink="about">About</a>
+      </li>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="nav-link" routerLink="help">Help</a>
+      </li>
+    </ul>
+
+    <div class="navbar-nav navbar-right">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>My account</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <button class="dropdown-item">My profile</button>
+          <button class="dropdown-item">Settings</button>
+          <button class="dropdown-item">Log out</button>
+        </div>
+      </div>
+    </div>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+
+</nav>
