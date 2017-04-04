@@ -23,20 +23,20 @@
       </li>
     </ul>
 
-    <div class="navbar-nav navbar-right">
+    <div class="navbar-nav navbar-right" *ngIf="isUserLoggedIn()">
       <div ngbDropdown class="d-inline-block">
         <button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>My account</button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <button class="dropdown-item">My profile</button>
-          <button class="dropdown-item">Settings</button>
-          <button class="dropdown-item">Log out</button>
+          <button class="dropdown-item" routerLink="profile">My profile</button>
+          <button class="dropdown-item" routerLink="settings">Settings</button>
+          <button class="dropdown-item" routerLink="auth">Log out</button>
         </div>
       </div>
     </div>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <!--<form class="form-inline my-2 my-lg-0">-->
+    <!--<input class="form-control mr-sm-2" type="text" placeholder="Search">-->
+    <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+    <!--</form>-->
   </div>
 
 </nav>

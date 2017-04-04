@@ -33,11 +33,7 @@ export class AuthenticationService {
   }
 
   isLoggedIn(): boolean {
-    if (localStorage.getItem('currentUser')) {
-      return true;
-    } else {
-      return false;
-    }
+    return !!localStorage.getItem('currentUser');
   }
 
   logout(): void {
