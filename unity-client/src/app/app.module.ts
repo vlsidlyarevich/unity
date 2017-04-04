@@ -12,11 +12,12 @@ import { AuthGuard } from "./guards/auth.guard";
 import { AuthenticationService } from "./services/AuthenticationService";
 import { SignupService } from "./services/SignupService";
 import { HeaderModule } from "./header/header.module";
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { MyProfileModule } from "./my-profile/my-profile.module";
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -28,6 +29,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SignupModule,
     HeaderModule,
     RouterModule,
+    MyProfileModule,
     AppRoutingModule,
   ],
   providers: [

@@ -32,6 +32,14 @@ export class AuthenticationService {
       .catch(AuthenticationService.handleError);
   }
 
+  isLoggedIn(): boolean {
+    if (localStorage.getItem('currentUser')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   logout(): void {
     this.token = null;
     localStorage.removeItem('currentUser');
