@@ -14,6 +14,8 @@ import { SignupService } from "./services/SignupService";
 import { HeaderModule } from "./header/header.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { MyProfileModule } from "./my-profile/my-profile.module";
+import { GitService } from "./services/GitService";
+import { ProfileService } from "./services/ProfileService";
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { MyProfileModule } from "./my-profile/my-profile.module";
   providers: [
     AuthGuard,
     AuthenticationService,
-    SignupService
+    SignupService,
+    GitService,
+    ProfileService
   ],
   bootstrap: [
     AppComponent
