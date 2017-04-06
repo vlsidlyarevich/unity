@@ -4,56 +4,67 @@
     <h2>My profile</h2>
     <br/>
     <br/>
-    <div class="form-group row">
-      <label for="login-input" class="col-2 col-form-label">Login</label>
-      <div class="col-10">
-        <input class="form-control" type="text" placeholder="login" id="login-input">
+    <form novalidate [formGroup]="profile" (ngSubmit)="onSubmit()">
+      <div class="form-group row">
+        <label for="login-input" class="col-2 col-form-label">Username</label>
+        <div class="col-10">
+          <input class="form-control" formControlName="username" type="text" placeholder="username"
+                 id="login-input" required>
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="password-input" class="col-2 col-form-label">Password</label>
-      <div class="col-10">
-        <input class="form-control" type="password" placeholder="password" id="password-input">
+      <div class="form-group row">
+        <label for="password-input" class="col-2 col-form-label">Password</label>
+        <div class="col-10">
+          <input class="form-control" formControlName="password" type="password" placeholder="password"
+                 id="password-input" required>
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="first-name-input" class="col-2 col-form-label">First name</label>
-      <div class="col-4">
-        <input class="form-control" type="text" placeholder="First name" id="first-name-input">
+      <div class="form-group row">
+        <label for="first-name-input" class="col-2 col-form-label">First name</label>
+        <div class="col-4">
+          <input class="form-control" formControlName="firstName" type="text" placeholder="First name"
+                 id="first-name-input">
+        </div>
+        <label for="last-name-input" class="col-2 col-form-label">Last name</label>
+        <div class="col-4">
+          <input class="form-control" formControlName="lastName" type="text" placeholder="Last name"
+                 id="last-name-input">
+        </div>
       </div>
-      <label for="last-name-input" class="col-2 col-form-label">Last name</label>
-      <div class="col-4">
-        <input class="form-control" type="text" placeholder="Last name" id="last-name-input">
+      <div class="form-group row">
+        <label for="email-input" class="col-2 col-form-label">Email</label>
+        <div class="col-10">
+          <input class="form-control" formControlName="email" type="email" placeholder="email@email.com"
+                 id="email-input">
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="email-input" class="col-2 col-form-label">Email</label>
-      <div class="col-10">
-        <input class="form-control" type="email" placeholder="email@email.com" id="email-input">
+      <div class="form-group row">
+        <label for="skype-input" class="col-2 col-form-label">Skype</label>
+        <div class="col-10">
+          <input class="form-control" formControlName="skype" type="text" placeholder="skype" id="skype-input">
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="skype-input" class="col-2 col-form-label">Skype</label>
-      <div class="col-10">
-        <input class="form-control" type="text" placeholder="skype" id="skype-input">
+      <div class="form-group row">
+        <label for="additional-input" class="col-2 col-form-label">Additional</label>
+        <div class="col-10">
+          <textarea rows="3" class="form-control" formControlName="additional" type="text" placeholder="Additional"
+                    id="additional-input"></textarea>
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="additional-input" class="col-2 col-form-label">Additional</label>
-      <div class="col-10">
-        <textarea rows="3" class="form-control" type="text" placeholder="Additional" id="additional-input"></textarea>
+      <div class="form-group row">
+        <div class="col-10">
+          <button type="button" [disabled]="profile.invalid || loading" class="btn btn-primary">Update</button>
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-10">
-        <button type="button" class="btn btn-primary">Update</button>
-      </div>
-    </div>
-    <!--<div class="form-group row">-->
+      <img *ngIf="loading"
+           src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+      <!--<div class="form-group row">-->
       <!--<label for="example-date-input" class="col-2 col-form-label">Date</label>-->
       <!--<div class="col-10">-->
-        <!--<input class="form-control" type="date" value="2011-08-19" id="example-date-input">-->
+      <!--<input class="form-control" type="date" value="2011-08-19" id="example-date-input">-->
       <!--</div>-->
-    <!--</div>-->
+      <!--</div>-->
+    </form>
   </div>
 </div>
