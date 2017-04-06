@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
   }
 
   isUserLoggedIn(): boolean {
-    console.log(this.authenticationService.isLoggedIn());
     return this.authenticationService.isLoggedIn();
   }
 }
