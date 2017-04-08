@@ -12,11 +12,22 @@ export class MyProfileFormComponent implements OnInit {
   profile: FormGroup;
   loading = false;
   error = '';
+  showPassword = false;
 
   constructor(private profileService: ProfileService) {
   }
 
   ngOnInit() {
+    let userData = new UserData();
+    userData.username = "vlad";
+    userData.firstName = "Vladislav";
+    userData.lastName = "Sidlyarevich";
+    userData.email = "email@email.com";
+    userData.skype = "vladislav";
+    userData.additional = "additional additional additional additional additional additional additional additional additional additional";
+
+
+    this.fulfillForm(userData);
     this.profileService.getUserData().subscribe(
       result => {
         if (result) {
