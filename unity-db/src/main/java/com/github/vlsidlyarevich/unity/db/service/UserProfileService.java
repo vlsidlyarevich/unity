@@ -1,20 +1,20 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
-import com.github.vlsidlyarevich.unity.db.model.UserProfile;
+import com.github.vlsidlyarevich.unity.db.model.UserSocial;
 
 import java.util.List;
 
 public interface UserProfileService {
 
-    UserProfile create(UserProfile object);
+    UserSocial create(UserSocial object);
 
-    UserProfile find(String id);
+    UserSocial find(String id);
 
-    UserProfile findByUsername(String userName);
+    UserSocial findByUsername(String userName);
 
-    List<UserProfile> findAll();
+    List<UserSocial> findAll();
 
-    UserProfile update(String id, UserProfile object);
+    UserSocial update(String id, UserSocial object);
 
     String delete(String id);
 }

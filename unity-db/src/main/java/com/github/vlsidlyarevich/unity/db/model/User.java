@@ -1,6 +1,8 @@
 package com.github.vlsidlyarevich.unity.db.model;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -8,8 +10,13 @@ import java.util.Collection;
 import java.util.List;
 
 @Data
-public class User extends BaseEntity implements UserDetails {
+@Document(collection = "users")
+public class User implements UserDetails {
 
+    private static final long serialVersionUID = 5336313491937469684L;
+
+    @Id
+    private String id;
     private List<Authority> authorities;
     private String username;
     private String password;
@@ -17,6 +24,8 @@ public class User extends BaseEntity implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean isEnabled;
+    private String createdAt;
+    private String updatedAt;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
