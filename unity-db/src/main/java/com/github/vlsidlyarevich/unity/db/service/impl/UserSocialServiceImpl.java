@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class UserSocialService implements UserSocialService {
+public class UserSocialServiceImpl implements UserSocialService {
 
     @Autowired
     private UserSocialRepository repository;

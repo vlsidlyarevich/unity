@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Data
 @Document(collection = "usersDetails")
-public class UserSocial implements Serializable {
+public class UserSocial extends DbModel implements Serializable {
 
     private static final long serialVersionUID = 3134293756973082637L;
 
@@ -20,6 +20,4 @@ public class UserSocial implements Serializable {
     private String email;
     private String skype;
     private String additional;
-    private String createdAt;
-    private String updatedAt;
 }
