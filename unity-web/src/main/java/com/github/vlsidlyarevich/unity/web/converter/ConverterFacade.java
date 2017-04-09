@@ -1,18 +1,24 @@
 package com.github.vlsidlyarevich.unity.web.converter;
 
-import com.github.vlsidlyarevich.unity.db.model.User;
-import com.github.vlsidlyarevich.unity.web.converter.factory.ConverterFactory;
-import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
+import com.github.vlsidlyarevich.unity.common.converter.Converter;
+import com.github.vlsidlyarevich.unity.db.model.DbModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
+import java.util.List;
 
 @Component
 public class ConverterFacade {
 
     @Autowired
-    private ConverterFactory converterFactory;
+    private List<Converter> converters;
 
-    public User convert(UserDTO dto){
-        return (User) converterFactory.getConverter(dto.getClass()).convert(dto);
+    public DbModel convert(Serializable dto) {
+        return (DbModel) converters.stream()
+                .filter(converter -> converter.canConvert(dto))
+                .findFirst()
+                .get()
+                .convert(dto);
     }
 }

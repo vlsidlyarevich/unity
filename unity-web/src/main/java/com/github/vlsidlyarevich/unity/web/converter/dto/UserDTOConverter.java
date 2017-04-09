@@ -1,13 +1,15 @@
 package com.github.vlsidlyarevich.unity.web.converter.dto;
 
+import com.github.vlsidlyarevich.unity.common.converter.Converter;
 import com.github.vlsidlyarevich.unity.db.model.Authority;
 import com.github.vlsidlyarevich.unity.db.model.User;
 import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
-import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class UserDTOConverter implements Converter<UserDTO, User> {
 
     @Override
@@ -25,5 +27,9 @@ public class UserDTOConverter implements Converter<UserDTO, User> {
         }};
         user.setAuthorities(authorities);
         return user;
+    }
+
+    public boolean canConvert(Object o) {
+        return o instanceof UserDTO;
     }
 }

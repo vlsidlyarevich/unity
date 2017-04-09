@@ -11,7 +11,7 @@ import java.util.List;
 
 @Data
 @Document(collection = "users")
-public class User implements UserDetails {
+public class User extends DbModel implements UserDetails {
 
     private static final long serialVersionUID = 5336313491937469684L;
 
@@ -24,8 +24,6 @@ public class User implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean isEnabled;
-    private String createdAt;
-    private String updatedAt;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
