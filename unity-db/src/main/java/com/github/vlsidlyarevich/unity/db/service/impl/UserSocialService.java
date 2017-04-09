@@ -1,8 +1,8 @@
 package com.github.vlsidlyarevich.unity.db.service.impl;
 
 import com.github.vlsidlyarevich.unity.db.model.UserSocial;
-import com.github.vlsidlyarevich.unity.db.repository.UserProfileRepository;
-import com.github.vlsidlyarevich.unity.db.service.UserProfileService;
+import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
+import com.github.vlsidlyarevich.unity.db.service.UserSocialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class UserProfileServiceImpl implements UserProfileService {
+public class UserSocialService implements UserSocialService {
 
     @Autowired
-    private UserProfileRepository repository;
+    private UserSocialRepository repository;
 
     @Override
     public UserSocial create(UserSocial userSocial) {
@@ -28,8 +28,8 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     @Override
-    public UserSocial findByUsername(String userName) {
-        return repository.findByUsername(userName);
+    public UserSocial findByUserId(String userId) {
+        return repository.findByUserId(userId);
     }
 
     @Override

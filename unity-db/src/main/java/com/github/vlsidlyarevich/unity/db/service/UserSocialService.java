@@ -4,13 +4,13 @@ import com.github.vlsidlyarevich.unity.db.model.UserSocial;
 
 import java.util.List;
 
-public interface UserProfileService {
+public interface UserSocialService {
 
     UserSocial create(UserSocial object);
 
     UserSocial find(String id);
 
-    UserSocial findByUsername(String userName);
+    UserSocial findByUserId(String userId);
 
     List<UserSocial> findAll();
 
