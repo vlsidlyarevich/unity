@@ -12,22 +12,12 @@ export class MyProfileFormComponent implements OnInit {
   profile: FormGroup;
   loading = false;
   error = '';
-  showPassword = false;
+  message = '';
 
   constructor(private profileService: ProfileService) {
   }
 
   ngOnInit() {
-    let userData = new UserData();
-    userData.username = "vlad";
-    userData.firstName = "Vladislav";
-    userData.lastName = "Sidlyarevich";
-    userData.email = "email@email.com";
-    userData.skype = "vladislav";
-    userData.additional = "additional additional additional additional additional additional additional additional additional additional";
-
-
-    this.fulfillForm(userData);
     this.profileService.getUserData().subscribe(
       result => {
         if (result) {
@@ -39,6 +29,31 @@ export class MyProfileFormComponent implements OnInit {
       error => {
         this.error = 'Unable to get profile data';
       });
+  }
+
+  showPassword(input: any): any {
+    input.type = input.type === 'password' ? 'text' : 'password';
+  }
+
+  onSubmit() {
+    this.loading = true;
+    const userData = new UserData(this.profile.value.username, this.profile.value.password, this.profile.value.firstName,
+      this.profile.value.lastName, this.profile.value.email, this.profile.value.skype, this.profile.value.image,
+      this.profile.value.additional);
+
+    this.profileService.updateUserData(userData)
+      .subscribe(result => {
+          if (result === true) {
+            this.message = 'Profile successfully updated';
+          } else {
+            this.error = 'Unable to register a new user';
+            this.loading = false;
+          }
+        },
+        error => {
+          this.error = 'Unable to register a new user';
+          this.loading = false;
+        });
   }
 
   private fulfillForm(userData: UserData): void {

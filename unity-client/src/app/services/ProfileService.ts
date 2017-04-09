@@ -7,6 +7,7 @@ import { UserData } from "../models/userData";
 @Injectable()
 export class ProfileService {
   private static PROFILE = '/profile';
+  private static TOKEN = 'x-auth-token';
 
   constructor(private http: Http) {
 
@@ -17,6 +18,20 @@ export class ProfileService {
     const options = new RequestOptions({ headers: headers });
 
     return this.http.get(environment.serverUrl + ProfileService.PROFILE, options)
+      .map((response: Response) => {
+        return response.status === 200;
+      }).catch(ProfileService.handleError);
+  }
+
+  updateUserData(userData: UserData): Observable<boolean> {
+    const body = JSON.stringify(userData);
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      TOKEN: JSON.parse(localStorage.getItem('currentUser')).token
+    });
+    const options = new RequestOptions({ headers: headers });
+
+    return this.http.post(environment.serverUrl + ProfileService.PROFILE, body, options)
       .map((response: Response) => {
         return response.status === 200;
       }).catch(ProfileService.handleError);
