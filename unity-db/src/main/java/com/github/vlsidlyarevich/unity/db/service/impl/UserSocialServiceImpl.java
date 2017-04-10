@@ -39,6 +39,7 @@ public class UserSocialServiceImpl implements UserSocialService {
     }
 
     @Override
+    @PreAuthorize("@currentUserServiceImpl.canAccessUser(#id)")
     public UserSocial update(String id, UserSocial userSocial) {
         userSocial.setId(id);
 
@@ -60,5 +61,4 @@ public class UserSocialServiceImpl implements UserSocialService {
         repository.delete(id);
         return id;
     }
-    
 }

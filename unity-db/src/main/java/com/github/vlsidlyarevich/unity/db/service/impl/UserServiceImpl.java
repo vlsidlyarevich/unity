@@ -39,6 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @PreAuthorize("@currentUserServiceImpl.canAccessUser(#id)")
     public User update(String id, User user) {
         user.setId(id);
 
