@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.service.impl;
 
+import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
 import com.github.vlsidlyarevich.unity.db.model.User;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
 import com.github.vlsidlyarevich.unity.db.service.UserService;
@@ -18,6 +19,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
+        if (usernameExists(user.getUsername())) {
+            throw new UsernameExistsException("User with username: " + user.getUsername() + " exists");
+        }
         user.setCreatedAt(String.valueOf(LocalDateTime.now()));
         return repository.save(user);
     }
@@ -60,5 +64,11 @@ public class UserServiceImpl implements UserService {
     public String delete(String id) {
         repository.delete(id);
         return id;
+    }
+
+    private boolean usernameExists(String username) {
+        return repository.findAll()
+                .stream()
+                .anyMatch(user -> user.getUsername().equals(username));
     }
 }

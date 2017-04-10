@@ -7,6 +7,7 @@ import com.github.vlsidlyarevich.unity.auth.service.TokenAuthenticationService;
 import com.github.vlsidlyarevich.unity.auth.service.TokenService;
 import com.github.vlsidlyarevich.unity.db.model.User;
 import io.jsonwebtoken.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@Slf4j
 @Service
 public class TokenAuthenticationServiceImpl implements TokenAuthenticationService {
 
@@ -35,9 +37,13 @@ public class TokenAuthenticationServiceImpl implements TokenAuthenticationServic
         String token = request.getHeader(SecurityConstants.AUTH_HEADER_NAME);
         Jws<Claims> tokenData = parseToken(token);
         if (tokenData != null) {
-            User user = getUserFromToken(tokenData);
-            if (user != null) {
-                return new UserAuthentication(user);
+            try {
+                User user = getUserFromToken(tokenData);
+                if (user != null) {
+                    return new UserAuthentication(user);
+                }
+            } catch (UserNotFoundException e) {
+                log.warn(e.getMessage());
             }
         }
         return null;
@@ -61,7 +67,7 @@ public class TokenAuthenticationServiceImpl implements TokenAuthenticationServic
         return null;
     }
 
-    private User getUserFromToken(Jws<Claims> tokenData) {
+    private User getUserFromToken(Jws<Claims> tokenData) throws UserNotFoundException {
         try {
             return (User) userDetailsService.loadUserByUsername(tokenData.getBody().get("username").toString());
         } catch (UsernameNotFoundException e) {
