@@ -1,13 +1,19 @@
 package com.github.vlsidlyarevich.unity.git.factory.impl;
 
+import com.github.vlsidlyarevich.unity.git.constant.Github;
 import com.github.vlsidlyarevich.unity.git.factory.RestTemplateFactory;
+import com.github.vlsidlyarevich.unity.git.interceptors.HeaderRequestInterceptor;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class RestTemplateFactoryImpl implements RestTemplateFactory {
@@ -26,7 +32,14 @@ public class RestTemplateFactoryImpl implements RestTemplateFactory {
 
     private RestTemplate configureRestTemplate(RestTemplate restTemplate) {
         restTemplate.setRequestFactory(getClientHttpRequestFactory());
+        restTemplate.setInterceptors(getInterceptors());
         return restTemplate;
+    }
+
+    private List<ClientHttpRequestInterceptor> getInterceptors() {
+        List<ClientHttpRequestInterceptor> interceptors = new ArrayList<ClientHttpRequestInterceptor>();
+        interceptors.add(new HeaderRequestInterceptor("Accept", Github.MEDIA_HEADER));
+        return interceptors;
     }
 
     private ClientHttpRequestFactory getClientHttpRequestFactory() {

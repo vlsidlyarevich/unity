@@ -46,6 +46,7 @@ public class GitRepositoryPopulatorImpl implements GitRepositoryPopulator {
         result.setGitRefsUrl(gitRepository.getGitRefsUrl());
         result.setTreesUrl(gitRepository.getTreesUrl());
         result.setStatusesUrl(gitRepository.getStatusesUrl());
+        result.setTopics(gitRepository.getTopics());
 
         result.setLanguages(gitRepositoryLanguageService.getGitRepoLanguages(gitRepository.getLanguagesUrl()).get());
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class GitRepository {
@@ -40,6 +41,7 @@ public class GitRepository {
     private String assigneesUrl;
     @JsonProperty("branches_url")
     private String branchesUrl;
+    private List<String> topics;
     @JsonProperty("tags_url")
     private String tagsUrl;
     @JsonProperty("blobs_url")

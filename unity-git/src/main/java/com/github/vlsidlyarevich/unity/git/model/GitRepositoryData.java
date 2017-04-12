@@ -3,6 +3,7 @@ package com.github.vlsidlyarevich.unity.git.model;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -33,6 +34,7 @@ public class GitRepositoryData {
     private String treesUrl;
     private String statusesUrl;
     private Map<String, String> languages;
+    private List<String> topics;
     private String stargazersUrl;
     private String contributorsUrl;
     private String subscribersUrl;
