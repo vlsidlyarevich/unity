@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Http, RequestOptions, Response, Headers } from "@angular/http";
 import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
-import { UserData } from "../models/userData";
+import { UserSocial } from "../models/userSocial";
 
 @Injectable()
 export class UserSocialService {
@@ -13,17 +13,17 @@ export class UserSocialService {
 
   }
 
-  getUserData(): Observable<UserData> {
+  getUserData(): Observable<UserSocial> {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
     return this.http.get(environment.serverUrl + UserSocialService.USER_SOCIAL, options)
       .map((response: Response) => {
-        return response.status === 200;
+        return response.json() && response.json().userSocial;
       }).catch(UserSocialService.handleError);
   }
 
-  updateUserData(userData: UserData): Observable<boolean> {
+  updateUserData(userData: UserSocial): Observable<boolean> {
     const body = JSON.stringify(userData);
     const headers = new Headers({
       'Content-Type': 'application/json',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../models/user';
 import { Router } from '@angular/router';
 import { SignupService } from '../../../services/SignupService';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Credentials } from "../../../models/credentials";
 
 @Component({
   selector: 'app-signup-form',
@@ -28,7 +28,7 @@ export class SignupFormComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-    this.signupService.signup(new User(this.user.value.username, this.user.value.password))
+    this.signupService.signup(new Credentials(this.user.value.username, this.user.value.password))
       .subscribe(result => {
           if (result === true) {
             this.router.navigate(['/auth']);

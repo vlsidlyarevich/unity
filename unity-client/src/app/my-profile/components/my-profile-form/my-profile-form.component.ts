@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserData } from '../../../models/userData';
-import { ProfileService } from "../../../services/ProfileService";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { UserSocialService } from "../../../services/UserSocialService";
+import { UserSocial } from "../../../models/userSocial";
 
 @Component({
   selector: 'app-my-profile-form',
@@ -14,7 +14,7 @@ export class MyProfileFormComponent implements OnInit {
   error = '';
   message = '';
 
-  constructor(private profileService: ProfileService) {
+  constructor(private profileService: UserSocialService) {
   }
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class MyProfileFormComponent implements OnInit {
         }
       },
       error => {
-        this.error = 'Unable to get profile data';
+        this.error = 'Unable to get profile data: ' + error;
       });
   }
 
@@ -37,7 +37,7 @@ export class MyProfileFormComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-    const userData = new UserData(this.profile.value.username, this.profile.value.password, this.profile.value.firstName,
+    const userData = new UserSocial(this.profile.value.username, this.profile.value.password, this.profile.value.firstName,
       this.profile.value.lastName, this.profile.value.email, this.profile.value.skype, this.profile.value.image,
       this.profile.value.additional);
 
@@ -51,12 +51,12 @@ export class MyProfileFormComponent implements OnInit {
           }
         },
         error => {
-          this.error = 'Unable to register a new user';
+          this.error = 'Unable to register a new user: ' + error;
           this.loading = false;
         });
   }
 
-  private fulfillForm(userData: UserData): void {
+  private fulfillForm(userData: UserSocial): void {
     this.profile = new FormGroup({
       username: new FormControl(userData.username, [Validators.required, Validators.minLength(4)]),
       password: new FormControl(JSON.parse(localStorage.getItem('currentUser')).password, [Validators.required,

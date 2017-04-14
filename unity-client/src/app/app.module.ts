@@ -15,7 +15,7 @@ import { HeaderModule } from "./header/header.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { MyProfileModule } from "./my-profile/my-profile.module";
 import { GitService } from "./services/GitService";
-import { ProfileService } from "./services/ProfileService";
+import { UserSocialService } from "./services/UserSocialService";
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import { ProfileService } from "./services/ProfileService";
     AuthenticationService,
     SignupService,
     GitService,
-    ProfileService
+    UserSocialService
   ],
   bootstrap: [
     AppComponent

@@ -1,4 +1,4 @@
-export class UserData {
+export class UserSocial {
   username: String;
   password: String;
   firstName: String;

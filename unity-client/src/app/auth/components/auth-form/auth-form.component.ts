@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../../services/AuthenticationService';
-import { User } from '../../../models/user';
+import { Credentials } from "../../../models/credentials";
 
 @Component({
   selector: 'app-auth-form',
@@ -28,7 +28,7 @@ export class AuthFormComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-    this.authService.login(new User(this.user.value.username, this.user.value.password))
+    this.authService.login(new Credentials(this.user.value.username, this.user.value.password))
       .subscribe(result => {
           if (result === true) {
             console.log('asd');

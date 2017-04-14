@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/user';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Credentials } from "../models/credentials";
 
 @Injectable()
 export class AuthenticationService {
@@ -13,8 +13,8 @@ export class AuthenticationService {
 
   }
 
-  login(user: User) {
-    const body = JSON.stringify(user);
+  login(credentials: Credentials) {
+    const body = JSON.stringify(credentials);
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
@@ -23,7 +23,7 @@ export class AuthenticationService {
         const token = response.json() && response.json().token;
         if (token) {
           this.token = token;
-          localStorage.setItem('currentUser', JSON.stringify({ username: user.username, token: token, password: user.password }));
+          localStorage.setItem('currentUser', JSON.stringify({ username: credentials.username, token: token, password: credentials.password }));
           return true;
         } else {
           return false;

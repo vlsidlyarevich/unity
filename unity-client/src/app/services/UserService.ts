@@ -1,26 +1,26 @@
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs';
-import { Credentials } from "../models/credentials";
+import { Injectable } from "@angular/core";
+import { Headers, Http, RequestOptions, Response } from "@angular/http";
+import { Observable } from "rxjs";
+import { environment } from "../../environments/environment";
+import { User } from "../models/user";
 
 @Injectable()
-export class SignupService {
-  private static SIGNUP = '/signup';
+export class UserService {
+  private static USER = '/user';
+  private static TOKEN = 'x-auth-token';
 
   constructor(private http: Http) {
 
   }
 
-  signup(credentials: Credentials): Observable<boolean> {
-    const body = JSON.stringify(credentials);
+  getCurrentUser(): Observable<User> {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
-    return this.http.post(environment.serverUrl + SignupService.SIGNUP, body, options)
+    return this.http.get(environment.serverUrl + UserService.USER, options)
       .map((response: Response) => {
-        return response.status === 200;
-      }).catch(SignupService.handleError);
+        return response.json() && response.json().user;
+      }).catch(UserService.handleError);
   }
 
   private static handleError(error: Response | any) {
