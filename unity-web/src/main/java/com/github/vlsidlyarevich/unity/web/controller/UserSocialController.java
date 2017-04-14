@@ -10,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
 @RestController
 @RequestMapping("/api/user/{id}/social")
 public class UserSocialController {
@@ -22,21 +20,21 @@ public class UserSocialController {
     @Autowired
     private ConverterFacade converterFacade;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getUserSocialData(@PathVariable String id) {
         return new ResponseEntity<>(service.find(id), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity addUserSocialData(@PathVariable String id, @Valid @RequestBody UserSocialDTO dto) {
+    public ResponseEntity addUserSocialData(@PathVariable String id, @RequestBody UserSocialDTO dto) {
         UserSocial userSocial = (UserSocial) converterFacade.convert(dto);
         userSocial.setUserId(id);
         return new ResponseEntity<>(service.create(userSocial), HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity updateUserSocial(@Valid @RequestBody UserSocialDTO dto) {
-        return new ResponseEntity<>(service.update((UserSocial) converterFacade.convert(dto)), HttpStatus.OK);
+    public ResponseEntity updateUserSocial(@PathVariable String id, @RequestBody UserSocialDTO dto) {
+        return new ResponseEntity<>(service.update(id, (UserSocial) converterFacade.convert(dto)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
