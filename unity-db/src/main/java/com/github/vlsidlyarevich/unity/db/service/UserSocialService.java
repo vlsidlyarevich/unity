@@ -14,7 +14,7 @@ public interface UserSocialService {
 
     List<UserSocial> findAll();
 
-    UserSocial update(String id, UserSocial object);
+    UserSocial update(UserSocial object);
 
     String delete(String id);
 }

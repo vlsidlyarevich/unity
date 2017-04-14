@@ -49,10 +49,8 @@ public class UserSocialServiceImpl implements UserSocialService {
 
     @Override
     @PreAuthorize("@currentUserServiceImpl.canAccessUser(#id)")
-    public UserSocial update(String id, UserSocial userSocial) {
-        userSocial.setUserId(id);
-
-        UserSocial saved = repository.findOne(id);
+    public UserSocial update(UserSocial userSocial) {
+        UserSocial saved = repository.findOne(userSocial.getUserId());
 
         if (saved != null) {
             userSocial.setCreatedAt(saved.getCreatedAt());
