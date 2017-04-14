@@ -5,8 +5,8 @@ import { environment } from "../../environments/environment";
 import { UserData } from "../models/userData";
 
 @Injectable()
-export class ProfileService {
-  private static PROFILE = '/profile';
+export class UserSocialService {
+  private static USER_SOCIAL = '/social';
   private static TOKEN = 'x-auth-token';
 
   constructor(private http: Http) {
@@ -17,10 +17,10 @@ export class ProfileService {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
-    return this.http.get(environment.serverUrl + ProfileService.PROFILE, options)
+    return this.http.get(environment.serverUrl + UserSocialService.USER_SOCIAL, options)
       .map((response: Response) => {
         return response.status === 200;
-      }).catch(ProfileService.handleError);
+      }).catch(UserSocialService.handleError);
   }
 
   updateUserData(userData: UserData): Observable<boolean> {
@@ -31,10 +31,10 @@ export class ProfileService {
     });
     const options = new RequestOptions({ headers: headers });
 
-    return this.http.post(environment.serverUrl + ProfileService.PROFILE, body, options)
+    return this.http.post(environment.serverUrl + UserSocialService.USER_SOCIAL, body, options)
       .map((response: Response) => {
         return response.status === 200;
-      }).catch(ProfileService.handleError);
+      }).catch(UserSocialService.handleError);
   }
 
   private static handleError(error: Response | any) {
