@@ -1,7 +1,9 @@
 package com.github.vlsidlyarevich.unity.db.service.impl;
 
+import com.github.vlsidlyarevich.unity.common.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.model.UserSocial;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
+import com.github.vlsidlyarevich.unity.db.service.UserService;
 import com.github.vlsidlyarevich.unity.db.service.UserSocialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,10 +18,17 @@ public class UserSocialServiceImpl implements UserSocialService {
     @Autowired
     private UserSocialRepository repository;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public UserSocial create(UserSocial userSocial) {
-        userSocial.setCreatedAt(String.valueOf(LocalDateTime.now()));
-        return repository.save(userSocial);
+        if (userService.find(userSocial.getUserId()) != null) {
+            userSocial.setCreatedAt(String.valueOf(LocalDateTime.now()));
+            return repository.save(userSocial);
+        } else {
+            throw new UserNotFoundException("User with user id: " + userSocial.getUserId() + " not found");
+        }
     }
 
     @Override
@@ -41,7 +50,7 @@ public class UserSocialServiceImpl implements UserSocialService {
     @Override
     @PreAuthorize("@currentUserServiceImpl.canAccessUser(#id)")
     public UserSocial update(String id, UserSocial userSocial) {
-        userSocial.setId(id);
+        userSocial.setUserId(id);
 
         UserSocial saved = repository.findOne(id);
 

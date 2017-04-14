@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.auth.exception;
+package com.github.vlsidlyarevich.unity.common.exception;
 
 
 public class UserNotFoundException extends RuntimeException {
