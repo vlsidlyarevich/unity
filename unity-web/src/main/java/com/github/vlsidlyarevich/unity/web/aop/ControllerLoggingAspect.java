@@ -27,7 +27,7 @@ public class ControllerLoggingAspect {
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
     }
 
-    @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.UserController.*(..)))")
+    @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.UsersController.*(..)))")
     public void usersControllerLog(JoinPoint joinPoint) {
         logger.info("Users controller : " + joinPoint.getSignature().getName()
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
