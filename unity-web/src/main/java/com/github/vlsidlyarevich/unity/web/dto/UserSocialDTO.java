@@ -13,4 +13,5 @@ public class UserSocialDTO implements Serializable {
     private String email;
     private String skype;
     private String additional;
+    private String image;
 }

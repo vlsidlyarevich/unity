@@ -11,12 +11,12 @@ public class UserSocialDTOConverter implements Converter<UserSocialDTO, UserSoci
     @Override
     public UserSocial convert(UserSocialDTO source) {
         UserSocial userSocial = new UserSocial();
-        userSocial.setUserId(source.getUserId());
         userSocial.setFirstName(source.getFirstName());
         userSocial.setLastName(source.getLastName());
         userSocial.setEmail(source.getEmail());
         userSocial.setSkype(source.getSkype());
         userSocial.setAdditional(source.getAdditional());
+        userSocial.setImage(source.getImage());
 
         return userSocial;
     }
