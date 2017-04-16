@@ -16,6 +16,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { MyProfileModule } from "./my-profile/my-profile.module";
 import { GitService } from "./services/GitService";
 import { UserSocialService } from "./services/UserSocialService";
+import { UserService } from "./services/UserService";
+import { BootstrapModalModule } from "ng2-bootstrap-modal";
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { UserSocialService } from "./services/UserSocialService";
   ],
   imports: [
     NgbModule.forRoot(),
+    BootstrapModalModule,
     BrowserModule,
     ReactiveFormsModule,
     HttpModule,
@@ -39,7 +42,8 @@ import { UserSocialService } from "./services/UserSocialService";
     AuthenticationService,
     SignupService,
     GitService,
-    UserSocialService
+    UserSocialService,
+    UserService
   ],
   bootstrap: [
     AppComponent
