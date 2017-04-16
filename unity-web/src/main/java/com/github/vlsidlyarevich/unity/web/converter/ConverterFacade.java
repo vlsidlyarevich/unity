@@ -14,11 +14,11 @@ public class ConverterFacade {
     @Autowired
     private List<Converter> converters;
 
-    public DbModel convert(Serializable dto) {
-        return (DbModel) converters.stream()
-                .filter(converter -> converter.canConvert(dto))
+    public Object convert(Serializable object) {
+        return converters.stream()
+                .filter(converter -> converter.canConvert(object))
                 .findFirst()
                 .get()
-                .convert(dto);
+                .convert(object);
     }
 }

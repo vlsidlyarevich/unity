@@ -15,7 +15,6 @@ public class UserDTOConverter implements Converter<UserDTO, User> {
     @Override
     public User convert(UserDTO dto) {
         User user = new User();
-
         user.setUsername(dto.getUsername());
         user.setPassword(dto.getPassword());
         user.setAccountNonExpired(false);

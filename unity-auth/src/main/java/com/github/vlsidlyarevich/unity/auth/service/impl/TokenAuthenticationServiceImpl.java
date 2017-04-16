@@ -1,10 +1,10 @@
 package com.github.vlsidlyarevich.unity.auth.service.impl;
 
 import com.github.vlsidlyarevich.unity.auth.constants.SecurityConstants;
-import com.github.vlsidlyarevich.unity.auth.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.auth.models.UserAuthentication;
 import com.github.vlsidlyarevich.unity.auth.service.TokenAuthenticationService;
 import com.github.vlsidlyarevich.unity.auth.service.TokenService;
+import com.github.vlsidlyarevich.unity.common.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.model.User;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;

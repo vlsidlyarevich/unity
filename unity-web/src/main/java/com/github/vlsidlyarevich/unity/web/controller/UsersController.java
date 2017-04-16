@@ -28,6 +28,10 @@ public class UsersController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getUserById(@PathVariable String id) {
+        User user = service.find(id);
+        if(user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(service.find(id), HttpStatus.OK);
     }
 
