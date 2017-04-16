@@ -1,25 +1,30 @@
 import { Injectable } from "@angular/core";
-import { Http, RequestOptions, Response, Headers } from "@angular/http";
+import { Headers, Http, RequestOptions, Response } from "@angular/http";
 import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
 import { UserSocial } from "../models/userSocial";
+import { UserService } from "./UserService";
 
 @Injectable()
 export class UserSocialService {
   private static USER_SOCIAL = '/social';
-  private static TOKEN = 'x-auth-token';
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private userService: UserService) {
 
   }
 
   getUserData(): Observable<UserSocial> {
-    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'x-auth-token': JSON.parse(localStorage.getItem('currentUser')).token
+    });
     const options = new RequestOptions({ headers: headers });
-
-    return this.http.get(environment.serverUrl + UserSocialService.USER_SOCIAL, options)
-      .map((response: Response) => {
-        return response.json() && response.json().userSocial;
+    return this.userService.getCurrentUser().flatMap(
+      result => {
+        return this.http.get(environment.serverUrl + `${UserService.USER}/${result.id}${UserSocialService.USER_SOCIAL}`, options)
+          .map((response: Response) => {
+            return UserSocialService.extractData(response);
+          }).catch(UserSocialService.handleError);
       }).catch(UserSocialService.handleError);
   }
 
@@ -27,14 +32,19 @@ export class UserSocialService {
     const body = JSON.stringify(userData);
     const headers = new Headers({
       'Content-Type': 'application/json',
-      TOKEN: JSON.parse(localStorage.getItem('currentUser')).token
+      'x-auth-token': JSON.parse(localStorage.getItem('currentUser')).token
     });
     const options = new RequestOptions({ headers: headers });
-
-    return this.http.post(environment.serverUrl + UserSocialService.USER_SOCIAL, body, options)
+    return this.userService.getCurrentUser().flatMap(result => this.http.post(environment.serverUrl + `/${result.id}${UserSocialService.USER_SOCIAL}`, body, options)
       .map((response: Response) => {
         return response.status === 200;
-      }).catch(UserSocialService.handleError);
+      }).catch(UserSocialService.handleError))
+      .catch(UserSocialService.handleError);
+  }
+
+  private static extractData(res: Response) {
+    let data = res.json();
+    return data || {};
   }
 
   private static handleError(error: Response | any) {

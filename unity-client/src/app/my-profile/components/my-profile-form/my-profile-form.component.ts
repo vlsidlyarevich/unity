@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { UserSocialService } from "../../../services/UserSocialService";
 import { UserSocial } from "../../../models/userSocial";
+import { UserService } from "../../../services/UserService";
+import { User } from "../../../models/user";
+import { AuthenticationService } from "../../../services/AuthenticationService";
 
 @Component({
   selector: 'app-my-profile-form',
@@ -9,25 +12,39 @@ import { UserSocial } from "../../../models/userSocial";
   styleUrls: ['./my-profile-form.component.css']
 })
 export class MyProfileFormComponent implements OnInit {
-  profile: FormGroup;
+  userSocialData: FormGroup;
+  userCredentials: FormGroup;
   loading = false;
   error = '';
   message = '';
 
-  constructor(private profileService: UserSocialService) {
+  constructor(private userSocialService: UserSocialService, private userService: UserService,
+              private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
-    this.profileService.getUserData().subscribe(
+    this.userSocialService.getUserData().subscribe(
       result => {
         if (result) {
-          this.fulfillForm(result);
+          this.fulfillSocialForm(result);
         } else {
-          this.error = "Unable to get profile data";
+          this.error = "Unable to get user social information";
         }
       },
       error => {
-        this.error = 'Unable to get profile data: ' + error;
+        this.error = 'Unable to get user social information: ' + error;
+      });
+
+    this.userService.getCurrentUser().subscribe(
+      result => {
+        if (result) {
+          this.fulfillCredentialsForm(result);
+        } else {
+          this.error = "Unable to get information about user";
+        }
+      },
+      error => {
+        this.error = 'Unable to get information about user: ' + error;
       });
   }
 
@@ -35,18 +52,40 @@ export class MyProfileFormComponent implements OnInit {
     input.type = input.type === 'password' ? 'text' : 'password';
   }
 
-  onSubmit() {
+  onSubmitSocialData() {
     this.loading = true;
-    const userData = new UserSocial(this.profile.value.username, this.profile.value.password, this.profile.value.firstName,
-      this.profile.value.lastName, this.profile.value.email, this.profile.value.skype, this.profile.value.image,
-      this.profile.value.additional);
+    const userData = new UserSocial(this.userSocialData.value.firstName,
+      this.userSocialData.value.lastName, this.userSocialData.value.email, this.userSocialData.value.skype, this.userSocialData.value.image,
+      this.userSocialData.value.additional);
 
-    this.profileService.updateUserData(userData)
+    this.userSocialService.updateUserData(userData)
       .subscribe(result => {
           if (result === true) {
-            this.message = 'Profile successfully updated';
+            this.message = 'User social information successfully updated';
           } else {
-            this.error = 'Unable to register a new user';
+            this.error = 'Unable to update user social information';
+            this.loading = false;
+          }
+        },
+        error => {
+          this.error = 'Unable to update user social information: ' + error;
+          this.loading = false;
+        });
+  }
+
+  onSubmitData() {
+    this.loading = true;
+    const user = new User(this.userCredentials.value.id, this.userCredentials.value.authorities,
+      this.userCredentials.value.username, this.userCredentials.value.password, this.userCredentials.value.accountNonExpired,
+      this.userCredentials.value.accountNonLocked, this.userCredentials.value.credentialsNonExpired, this.userCredentials.value.isEnabled);
+
+    this.userService.updateUserData(user)
+      .subscribe(result => {
+          if (result === true) {
+            this.message = 'User information successfully updated, please, login again';
+            this.authenticationService.logout();
+          } else {
+            this.error = 'Unable to update user information';
             this.loading = false;
           }
         },
@@ -56,16 +95,27 @@ export class MyProfileFormComponent implements OnInit {
         });
   }
 
-  private fulfillForm(userData: UserSocial): void {
-    this.profile = new FormGroup({
-      username: new FormControl(userData.username, [Validators.required, Validators.minLength(4)]),
-      password: new FormControl(JSON.parse(localStorage.getItem('currentUser')).password, [Validators.required,
-        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$')]),
-      firstName: new FormControl(userData.firstName),
-      lastName: new FormControl(userData.lastName),
-      email: new FormControl(userData.email),
-      skype: new FormControl(userData.skype),
-      additional: new FormControl(userData.additional)
+  private fulfillSocialForm(userSocial: UserSocial): void {
+    this.userSocialData = new FormGroup({
+      firstName: new FormControl(userSocial.firstName),
+      lastName: new FormControl(userSocial.lastName),
+      email: new FormControl(userSocial.email),
+      skype: new FormControl(userSocial.skype),
+      additional: new FormControl(userSocial.additional)
     });
+  }
+
+  private fulfillCredentialsForm(user: User) {
+    this.userCredentials = new FormGroup({
+      id: new FormControl(user.id),
+      username: new FormControl(user.username, [Validators.required, Validators.minLength(4)]),
+      password: new FormControl(user.password, [Validators.required,
+        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$')]),
+      authorities: new FormControl(user.authorities),
+      accountNonExpired: new FormControl(user.accountNonExpired),
+      accountNonLocked: new FormControl(user.accountNonLocked),
+      credentialsNonExpired: new FormControl(user.credentialsNonExpired),
+      isEnabled: new FormControl(user.isEnabled)
+    })
   }
 }

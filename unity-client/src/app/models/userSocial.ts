@@ -1,6 +1,4 @@
 export class UserSocial {
-  username: String;
-  password: String;
   firstName: String;
   lastName: String;
   email: String;
@@ -8,9 +6,7 @@ export class UserSocial {
   image: String;
   additional: String;
 
-  constructor(username: String, password: String, firstName: String, lastName: String, email: String, skype: String, image: String, additional: String) {
-    this.username = username;
-    this.password = password;
+  constructor(firstName: String, lastName: String, email: String, skype: String, image: String, additional: String) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;

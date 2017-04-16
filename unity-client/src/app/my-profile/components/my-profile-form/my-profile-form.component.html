@@ -1,30 +1,33 @@
 <div class="container-fluid">
   <div class="col-md-6 offset-md-3">
     <br/>
-    <h2>My profile</h2>
+    <h2>My account</h2>
     <br/>
     <br/>
-    <form novalidate [formGroup]="profile" (ngSubmit)="onSubmit()">
-      <div class="form-group row">
-        <label for="login-input" class="col-2 col-form-label">Username</label>
-        <div class="col-10">
-          <input class="form-control" formControlName="username" type="text" placeholder="username"
-                 id="login-input" required>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="password-input" class="col-2 col-form-label">Password</label>
-        <div class="col-10">
-          <div class="input-group">
-            <span class="input-group-addon">
-              <input type="checkbox" aria-label="Checkbox for following text input"
-                     (click)="showPassword(passwordInput)">
-            </span>
-            <input #passwordInput class="form-control" formControlName="password" type="password" placeholder="password"
-                   id="password-input" required aria-describedby="sizing-addon2">
-          </div>
-        </div>
-      </div>
+
+    <!--<div class="form-group row">-->
+      <!--<label for="login-input" class="col-2 col-form-label">Username</label>-->
+      <!--<div class="col-10">-->
+        <!--<input class="form-control" formControlName="username" type="text" placeholder="username"-->
+               <!--id="login-input" required>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group row">-->
+      <!--<label for="password-input" class="col-2 col-form-label">Password</label>-->
+      <!--<div class="col-10">-->
+        <!--<div class="input-group">-->
+            <!--<span class="input-group-addon">-->
+              <!--<input type="checkbox" aria-label="Checkbox for following text input"-->
+                     <!--(click)="showPassword(passwordInput)">-->
+            <!--</span>-->
+          <!--<input #passwordInput class="form-control" formControlName="password" type="password" placeholder="password"-->
+                 <!--id="password-input" required aria-describedby="sizing-addon2">-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <form novalidate [formGroup]="userSocialData" (ngSubmit)="onSubmitSocialData()">
+
+
       <div class="form-group row">
         <label for="first-name-input" class="col-2 col-form-label">First name</label>
         <div class="col-4">
@@ -59,7 +62,7 @@
       </div>
       <div class="form-group row">
         <div class="col-10">
-          <button type="button" [disabled]="profile.invalid || loading" class="btn btn-primary">Update</button>
+          <button type="button" [disabled]="userSocialData.invalid || loading" class="btn btn-primary">Update</button>
         </div>
       </div>
       <img *ngIf="loading"
