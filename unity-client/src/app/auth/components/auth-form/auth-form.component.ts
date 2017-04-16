@@ -31,7 +31,6 @@ export class AuthFormComponent implements OnInit {
     this.authService.login(new Credentials(this.user.value.username, this.user.value.password))
       .subscribe(result => {
           if (result === true) {
-            console.log('asd');
             this.router.navigate(['/home']);
           } else {
             this.error = 'Authentification error';
