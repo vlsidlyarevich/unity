@@ -5,29 +5,41 @@
     <br/>
     <br/>
 
-    <!--<div class="form-group row">-->
-      <!--<label for="login-input" class="col-2 col-form-label">Username</label>-->
-      <!--<div class="col-10">-->
-        <!--<input class="form-control" formControlName="username" type="text" placeholder="username"-->
-               <!--id="login-input" required>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group row">-->
-      <!--<label for="password-input" class="col-2 col-form-label">Password</label>-->
-      <!--<div class="col-10">-->
-        <!--<div class="input-group">-->
-            <!--<span class="input-group-addon">-->
-              <!--<input type="checkbox" aria-label="Checkbox for following text input"-->
-                     <!--(click)="showPassword(passwordInput)">-->
-            <!--</span>-->
-          <!--<input #passwordInput class="form-control" formControlName="password" type="password" placeholder="password"-->
-                 <!--id="password-input" required aria-describedby="sizing-addon2">-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+    <form name="form" novalidate [formGroup]="userCredentials" (ngSubmit)="onSubmitData()">
+      <div class="form-group row">
+        <label for="username" class="col-2 col-form-label">Username</label>
+        <div class="col-10">
+          <input type="text" class="form-control" name="username" formControlName="username" required/>
+          <div *ngIf="userCredentials.get('username').hasError('required') && userCredentials.get('username').touched"
+               class="help-block">
+            Username is
+            required
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="password" class="col-2 col-form-label">Password</label>
+        <div class="col-10">
+          <input type="password" class="form-control" name="password" formControlName="password" required/>
+          <div *ngIf="userCredentials.get('password').hasError('required') && userCredentials.get('password').touched"
+               class="help-block">
+            Password
+            is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-10">
+          <button type="submit" [disabled]="userCredentials.invalid || loading" class="btn btn-primary">Update
+          </button>
+        </div>
+        <img *ngIf="loading"
+             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+      </div>
+      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    </form>
+
     <form novalidate [formGroup]="userSocialData" (ngSubmit)="onSubmitSocialData()">
-
-
       <div class="form-group row">
         <label for="first-name-input" class="col-2 col-form-label">First name</label>
         <div class="col-4">
@@ -76,5 +88,7 @@
       <!--</div>-->
       <!--</div>-->
     </form>
+
+
   </div>
 </div>

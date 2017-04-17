@@ -120,11 +120,17 @@ export class MyProfileFormComponent implements OnInit {
       username: new FormControl(user.username, [Validators.required, Validators.minLength(4)]),
       password: new FormControl(user.password, [Validators.required,
         Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$')]),
+      passwordConfirm: new FormControl(''),
       authorities: new FormControl(user.authorities),
       accountNonExpired: new FormControl(user.accountNonExpired),
       accountNonLocked: new FormControl(user.accountNonLocked),
       credentialsNonExpired: new FormControl(user.credentialsNonExpired),
       isEnabled: new FormControl(user.isEnabled)
-    })
+    }, this.passwordMatchValidator)
+  }
+
+  private passwordMatchValidator(g: FormGroup) {
+    return g.get('password').value === g.get('passwordConfirm').value
+      ? null : { 'mismatch': true };
   }
 }
