@@ -22,7 +22,7 @@ public class UserSocialController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getUserSocialData(@PathVariable String id) {
-        UserSocial userSocial = service.find(id);
+        UserSocial userSocial = service.findByUserId(id);
         if (userSocial == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -30,20 +30,14 @@ public class UserSocialController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity addUserSocialData(@PathVariable String id, @RequestBody UserSocialDTO dto) {
+    public ResponseEntity updateUserSocialData(@PathVariable String id, @RequestBody UserSocialDTO dto) {
         UserSocial userSocial = (UserSocial) converterFacade.convert(dto);
         userSocial.setUserId(id);
-        return new ResponseEntity<>(converterFacade.convert(service.create(userSocial)), HttpStatus.CREATED);
-    }
-
-    @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity updateUserSocial(@PathVariable String id, @RequestBody UserSocialDTO dto) {
-        UserSocial userSocial = (UserSocial) converterFacade.convert(dto);
-        return new ResponseEntity<>(converterFacade.convert(service.update(id, userSocial)), HttpStatus.OK);
+        return new ResponseEntity<>(converterFacade.convert(service.create(userSocial)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteUserById(@PathVariable String id) {
+    public ResponseEntity deleteUserSocialDataById(@PathVariable String id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }

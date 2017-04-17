@@ -35,7 +35,8 @@ export class UserSocialService {
       'x-auth-token': JSON.parse(localStorage.getItem('currentUser')).token
     });
     const options = new RequestOptions({ headers: headers });
-    return this.userService.getCurrentUser().flatMap(result => this.http.post(environment.serverUrl + `/${result.id}${UserSocialService.USER_SOCIAL}`, body, options)
+    return this.userService.getCurrentUser()
+      .flatMap(result => this.http.post(environment.serverUrl + `${UserService.USER}/${result.id}${UserSocialService.USER_SOCIAL}`, body, options)
       .map((response: Response) => {
         return response.status === 200;
       }).catch(UserSocialService.handleError))

@@ -24,6 +24,7 @@ public class UserSocialServiceImpl implements UserSocialService {
     @Override
     public UserSocial create(UserSocial userSocial) {
         if (userService.find(userSocial.getUserId()) != null) {
+            repository.deleteByUserId(userSocial.getUserId());
             userSocial.setCreatedAt(String.valueOf(LocalDateTime.now()));
             return repository.save(userSocial);
         } else {

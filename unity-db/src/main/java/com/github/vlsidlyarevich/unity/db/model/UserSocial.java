@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 
 @Data
-@Document(collection = "usersDetails")
+@Document(collection = "usersSocial")
 public class UserSocial extends DbModel implements Serializable {
 
     private static final long serialVersionUID = 3134293756973082637L;

@@ -23,16 +23,15 @@ export class MyProfileFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.fulfillSocialFormEmpty();
+
     this.userSocialService.getUserData().subscribe(
       result => {
-        if (result) {
-          this.fulfillSocialForm(result);
-        } else {
-          this.error = "Unable to get user social information";
-        }
+        this.fulfillSocialForm(result);
       },
       error => {
         this.error = 'Unable to get user social information: ' + error;
+        this.fulfillSocialFormEmpty();
       });
 
     this.userService.getCurrentUser().subscribe(
@@ -64,8 +63,8 @@ export class MyProfileFormComponent implements OnInit {
             this.message = 'User social information successfully updated';
           } else {
             this.error = 'Unable to update user social information';
-            this.loading = false;
           }
+          this.loading = false;
         },
         error => {
           this.error = 'Unable to update user social information: ' + error;
@@ -102,6 +101,16 @@ export class MyProfileFormComponent implements OnInit {
       email: new FormControl(userSocial.email),
       skype: new FormControl(userSocial.skype),
       additional: new FormControl(userSocial.additional)
+    });
+  }
+
+  private fulfillSocialFormEmpty(): void {
+    this.userSocialData = new FormGroup({
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      email: new FormControl(''),
+      skype: new FormControl(''),
+      additional: new FormControl('')
     });
   }
 
