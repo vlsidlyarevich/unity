@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../../../services/AuthenticationService';
-import { Credentials } from "../../../models/credentials";
+import { AuthenticationService } from "../../../../services/AuthenticationService";
+import { Credentials } from "../../../../models/credentials";
 
 @Component({
   selector: 'app-auth-form',

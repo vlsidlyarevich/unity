@@ -1,0 +1,115 @@
+<div class="container-fluid">
+  <div class="col-md-6 offset-md-3">
+    <br/>
+    <h2>My account</h2>
+    <br/>
+    <br/>
+
+    <form novalidate>
+      <div class="form-group row">
+        <label for="username" class="col-2 col-form-label">Username</label>
+        <div class="col-10">
+          <p class="form-control" id="username">{{user.username}}</p>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="password" class="col-2 col-form-label">Password</label>
+        <div class="col-10">
+          <span type="passport" class="form-control" id="password">{{user.password}}</span>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="expiration" class="col-2 col-form-label">Non expired</label>
+        <div class="col-10">
+          <p class="form-control" id="expiration">{{user.accountNonExpired}}</p>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="lock" class="col-2 col-form-label">Non locked</label>
+        <div class="col-10">
+          <span type="passport" class="form-control" id="lock">{{user.accountNonLocked}}</span>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="cred-expiration" class="col-2 col-form-label">Credentials non expired</label>
+        <div class="col-10">
+          <p class="form-control" id="cred-expiration">{{user.credentialsNonExpired}}</p>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="enabled" class="col-2 col-form-label">Enabled</label>
+        <div class="col-10">
+          <span type="passport" class="form-control" id="enabled">{{user.enabled}}</span>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="authority" class="col-2 col-form-label">Authority</label>
+        <div class="col-10">
+          <span type="passport" class="form-control" id="authority">{{user.authorities}}</span>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-10">
+          <button type="submit" class="btn btn-primary">Edit
+          </button>
+        </div>
+        <img *ngIf="loading"
+             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+      </div>
+      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    </form>
+
+    <form novalidate>
+      <div class="form-group row">
+        <label for="first-name" class="col-2 col-form-label">First name</label>
+        <div class="col-4">
+          <p class="form-control"
+             id="first-name">{{userSocial.firstName}}</p>
+        </div>
+        <label for="last-name" class="col-2 col-form-label">Last name</label>
+        <div class="col-4">
+          <p class="form-control"
+             id="last-name">{{userSocial.lastName}}</p>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="email" class="col-2 col-form-label">Email</label>
+        <div class="col-10">
+          <p class="form-control"
+             id="email">{{userSocial.email}}</p>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="skype" class="col-2 col-form-label">Skype</label>
+        <div class="col-10">
+          <p class="form-control"
+             id="skype">{{userSocial.skype}}</p>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="additional" class="col-2 col-form-label">Additional</label>
+        <div class="col-10">
+          <textarea rows="3" class="form-control" type="text"
+                    id="additional">{{userSocial.additional}}</textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-10">
+          <button type="submit" class="btn btn-primary">Edit</button>
+        </div>
+      </div>
+      <img *ngIf="loading"
+           src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+      <div *ngIf="message" class="alert alert-success">{{message}}</div>
+      <!--<div class="form-group row">-->
+      <!--<label for="example-date-input" class="col-2 col-form-label">Date</label>-->
+      <!--<div class="col-10">-->
+      <!--<input class="form-control" type="date" value="2011-08-19" id="example-date-input">-->
+      <!--</div>-->
+      <!--</div>-->
+    </form>
+
+
+  </div>
+</div>

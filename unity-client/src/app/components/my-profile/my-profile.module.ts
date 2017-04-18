@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from "@angular/platform-browser";
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { MyProfileEditComponent } from './components/my-profile-edit/my-profile-edit.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
     ModalModule,
     BootstrapModalModule
   ],
-  declarations: [MyProfileComponent, MyProfileFormComponent]
+  declarations: [MyProfileComponent, MyProfileFormComponent, MyProfileEditComponent]
 })
 export class MyProfileModule {
 }

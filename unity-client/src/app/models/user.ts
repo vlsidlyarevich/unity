@@ -6,11 +6,11 @@ export class User {
   accountNonExpired: boolean;
   accountNonLocked: boolean;
   credentialsNonExpired: boolean;
-  isEnabled: boolean;
+  enabled: boolean;
 
   constructor(id: String, authorities: String[], username: String, password: String,
               accountNonExpired: boolean, accountNonLocked: boolean, credentialsNonExpired: boolean,
-              isEnabled: boolean,) {
+              enabled: boolean) {
     this.id = id;
     this.authorities = authorities;
     this.username = username;
@@ -18,6 +18,6 @@ export class User {
     this.accountNonExpired = accountNonExpired;
     this.accountNonLocked = accountNonLocked;
     this.credentialsNonExpired = credentialsNonExpired;
-    this.isEnabled = isEnabled;
+    this.enabled = enabled;
   }
 }

@@ -1,17 +1,17 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { UserSocialService } from "../../../services/UserSocialService";
-import { UserSocial } from "../../../models/userSocial";
-import { UserService } from "../../../services/UserService";
-import { User } from "../../../models/user";
-import { AuthenticationService } from "../../../services/AuthenticationService";
+import { UserSocialService } from "../../../../services/UserSocialService";
+import { UserService } from "../../../../services/UserService";
+import { AuthenticationService } from "../../../../services/AuthenticationService";
+import { UserSocial } from "../../../../models/userSocial";
+import { User } from "../../../../models/user";
 
 @Component({
-  selector: 'app-my-profile-form',
-  templateUrl: './my-profile-form.component.html',
-  styleUrls: ['./my-profile-form.component.css']
+  selector: 'app-my-profile-edit',
+  templateUrl: './my-profile-edit.component.html',
+  styleUrls: ['./my-profile-edit.component.css']
 })
-export class MyProfileFormComponent implements OnInit {
+export class MyProfileEditComponent implements OnInit {
   userSocialData: FormGroup;
   userCredentials: FormGroup;
   loading = false;
@@ -19,32 +19,9 @@ export class MyProfileFormComponent implements OnInit {
   message = '';
 
   constructor(private userSocialService: UserSocialService, private userService: UserService,
-              private authenticationService: AuthenticationService) {
-  }
+              private authenticationService: AuthenticationService,) { }
 
   ngOnInit() {
-    this.fulfillSocialFormEmpty();
-
-    this.userSocialService.getUserData().subscribe(
-      result => {
-        this.fulfillSocialForm(result);
-      },
-      error => {
-        this.error = 'Unable to get user social information: ' + error;
-        this.fulfillSocialFormEmpty();
-      });
-
-    this.userService.getCurrentUser().subscribe(
-      result => {
-        if (result) {
-          this.fulfillCredentialsForm(result);
-        } else {
-          this.error = "Unable to get information about user";
-        }
-      },
-      error => {
-        this.error = 'Unable to get information about user: ' + error;
-      });
   }
 
   showPassword(input: any): any {
@@ -125,7 +102,7 @@ export class MyProfileFormComponent implements OnInit {
       accountNonExpired: new FormControl(user.accountNonExpired),
       accountNonLocked: new FormControl(user.accountNonLocked),
       credentialsNonExpired: new FormControl(user.credentialsNonExpired),
-      isEnabled: new FormControl(user.isEnabled)
+      isEnabled: new FormControl(user.enabled)
     }, this.passwordMatchValidator)
   }
 

@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { AuthGuard } from "../guards/auth.guard";
 import { MyProfileComponent } from "./my-profile.component";
+import { AuthGuard } from "../../guards/auth.guard";
 
 export const MY_PROFILE_ROUTES: Routes = [
   { path: 'profile', component: MyProfileComponent, pathMatch: 'full', canActivate: [AuthGuard] },
