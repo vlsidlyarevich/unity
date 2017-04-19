@@ -18,6 +18,7 @@ import { GitService } from "./services/GitService";
 import { UserSocialService } from "./services/UserSocialService";
 import { UserService } from "./services/UserService";
 import { BootstrapModalModule } from "ng2-bootstrap-modal";
+import { GitAnalyzeModule } from "./components/git-analyze/git-analyze.module";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { BootstrapModalModule } from "ng2-bootstrap-modal";
     HeaderModule,
     RouterModule,
     MyProfileModule,
-    AppRoutingModule,
+    GitAnalyzeModule,
+    AppRoutingModule
   ],
   providers: [
     AuthGuard,
