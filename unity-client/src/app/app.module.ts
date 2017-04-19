@@ -14,11 +14,11 @@ import { SignupService } from "./services/SignupService";
 import { HeaderModule } from "./components/header/header.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { MyProfileModule } from "./components/my-profile/my-profile.module";
-import { GitService } from "./services/GitService";
 import { UserSocialService } from "./services/UserSocialService";
 import { UserService } from "./services/UserService";
 import { BootstrapModalModule } from "ng2-bootstrap-modal";
 import { GitAnalyzeModule } from "./components/git-analyze/git-analyze.module";
+import { GitProfileService } from "./services/GitProfileService";
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { GitAnalyzeModule } from "./components/git-analyze/git-analyze.module";
     AuthGuard,
     AuthenticationService,
     SignupService,
-    GitService,
+    GitProfileService,
     UserSocialService,
     UserService
   ],
