@@ -7,11 +7,13 @@ import { AuthenticationService } from "../../services/AuthenticationService";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  private userName: String;
 
   constructor(private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
+    this.userName = JSON.parse(localStorage.getItem('currentUser')).username;
   }
 
   isUserLoggedIn(): boolean {
