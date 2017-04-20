@@ -19,6 +19,8 @@ import { UserService } from "./services/UserService";
 import { BootstrapModalModule } from "ng2-bootstrap-modal";
 import { GitAnalyzeModule } from "./components/git-analyze/git-analyze.module";
 import { GitProfileService } from "./services/GitProfileService";
+import { FooterComponent } from './components/footer/footer.component';
+import { FooterModule } from "./components/footer/footer.module";
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { GitProfileService } from "./services/GitProfileService";
     AuthModule,
     SignupModule,
     HeaderModule,
+    FooterModule,
     RouterModule,
     MyProfileModule,
     GitAnalyzeModule,
