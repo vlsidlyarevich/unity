@@ -6,7 +6,7 @@ import com.github.vlsidlyarevich.unity.git.populator.GitProfilePopulator;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GitProfilePopulatorImpl implements GitProfilePopulator {
+public class DefaultGitProfilePopulator implements GitProfilePopulator {
 
     public GitProfileData populate(GitProfile gitProfile) {
         GitProfileData result = new GitProfileData();

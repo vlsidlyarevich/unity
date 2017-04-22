@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class UserSocialServiceImpl implements UserSocialService {
+public class MongoUserSocialService implements UserSocialService {
 
     @Autowired
     private UserSocialRepository repository;

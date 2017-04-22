@@ -17,9 +17,9 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-public class GitRepositoryLanguageServiceImpl implements GitRepositoryLanguageService {
+public class HttpGitRepositoryLanguageService implements GitRepositoryLanguageService {
 
-    private static final Logger logger = LoggerFactory.getLogger(GitRepositoryLanguageServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(HttpGitRepositoryLanguageService.class);
 
     private final String gitApiUrl;
 
@@ -39,7 +39,7 @@ public class GitRepositoryLanguageServiceImpl implements GitRepositoryLanguageSe
     }
 
     @Autowired
-    public GitRepositoryLanguageServiceImpl(GitProperties gitProperties) {
+    public HttpGitRepositoryLanguageService(GitProperties gitProperties) {
         this.gitApiUrl = gitProperties.getApiUrl() + "/repos/{user}/{repo}/languages";
     }
 

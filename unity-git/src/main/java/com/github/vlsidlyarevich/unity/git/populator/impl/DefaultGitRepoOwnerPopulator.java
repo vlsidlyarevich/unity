@@ -6,7 +6,7 @@ import com.github.vlsidlyarevich.unity.git.populator.GitRepoOwnerPopulator;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GitRepoOwnerPopulatorImpl implements GitRepoOwnerPopulator {
+public class DefaultGitRepoOwnerPopulator implements GitRepoOwnerPopulator {
 
     @Override
     public GitRepoOwnerData populate(GitRepoOwner model) {

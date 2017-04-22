@@ -15,9 +15,9 @@ import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 @Service
-public class GitProfileServiceImpl implements GitProfileService {
+public class HttpGitProfileService implements GitProfileService {
 
-    private static final Logger logger = LoggerFactory.getLogger(GitProfileServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(HttpGitProfileService.class);
 
     private final String gitApiUrl;
 
@@ -27,7 +27,7 @@ public class GitProfileServiceImpl implements GitProfileService {
     private RestTemplateFactory restTemplateFactory;
 
     @Autowired
-    public GitProfileServiceImpl(GitProperties gitProperties) {
+    public HttpGitProfileService(GitProperties gitProperties) {
         this.gitApiUrl = gitProperties.getApiUrl() + "/users/{user}";
     }
 

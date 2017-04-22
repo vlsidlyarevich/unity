@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
 @Service
-public class TokenAuthenticationServiceImpl implements TokenAuthenticationService {
+public class JsonWebTokenAuthenticationService implements TokenAuthenticationService {
 
     @Value("security.token.secret.key")
     private String secretKey;

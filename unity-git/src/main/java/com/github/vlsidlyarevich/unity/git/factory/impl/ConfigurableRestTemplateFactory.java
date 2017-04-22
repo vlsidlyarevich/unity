@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class RestTemplateFactoryImpl implements RestTemplateFactory {
+public class ConfigurableRestTemplateFactory implements RestTemplateFactory {
 
     public RestTemplate getObject() {
         return configureRestTemplate(new RestTemplate());

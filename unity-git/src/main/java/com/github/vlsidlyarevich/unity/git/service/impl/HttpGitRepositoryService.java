@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class GitRepositoryServiceImpl implements GitRepositoryService {
+public class HttpGitRepositoryService implements GitRepositoryService {
 
-    private static final Logger logger = LoggerFactory.getLogger(GitRepositoryServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(HttpGitRepositoryService.class);
 
     private final String gitUserRepositoriesUrl;
     private final String gitRepositoryUrl;
@@ -30,7 +30,7 @@ public class GitRepositoryServiceImpl implements GitRepositoryService {
     private RestTemplateFactory restTemplateFactory;
 
     @Autowired
-    public GitRepositoryServiceImpl(GitProperties gitProperties) {
+    public HttpGitRepositoryService(GitProperties gitProperties) {
         this.gitUserRepositoriesUrl = gitProperties.getApiUrl() + "/users/{user}/repos";
         this.gitRepositoryUrl = gitProperties.getApiUrl() + "/repos/{user}/{repo}";
     }

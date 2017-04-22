@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class TokenServiceImpl implements TokenService {
+public class JsonWebTokenService implements TokenService {
 
     @Value("security.token.secret.key")
     private String tokenKey;

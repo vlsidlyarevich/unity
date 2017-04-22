@@ -15,9 +15,15 @@ public class ServiceLoggingAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(ServiceLoggingAspect.class);
 
-    @Before("execution(* com.github.vlsidlyarevich.unity.db.service.impl.UserServiceImpl.*(..)))")
+    @Before("execution(* com.github.vlsidlyarevich.unity.db.service.impl.MongoUserService.*(..)))")
     public void userServiceLog(JoinPoint joinPoint) {
         logger.info("User service : " + joinPoint.getSignature().getName()
+                + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
+    }
+
+    @Before("execution(* com.github.vlsidlyarevich.unity.db.service.impl.MongoUserSocialService.*(..)))")
+    public void userSocialServiceLog(JoinPoint joinPoint) {
+        logger.info("UserSocial service : " + joinPoint.getSignature().getName()
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
     }
 }
