@@ -21,6 +21,7 @@ import { GitAnalyzeModule } from "./components/git-analyze/git-analyze.module";
 import { GitProfileService } from "./services/GitProfileService";
 import { FooterComponent } from './components/footer/footer.component';
 import { FooterModule } from "./components/footer/footer.module";
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { FooterModule } from "./components/footer/footer.module";
     RouterModule,
     MyProfileModule,
     GitAnalyzeModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartsModule
   ],
   providers: [
     AuthGuard,

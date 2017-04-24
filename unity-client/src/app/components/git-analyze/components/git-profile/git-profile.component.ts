@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { GitProfileService } from "../../../../services/GitProfileService";
 import { ActivatedRoute } from "@angular/router";
+import { GitProfileService } from "../../../../services/GitProfileService";
 
 @Component({
-  selector: 'app-git-dashboard',
-  templateUrl: './git-dashboard.component.html',
-  styleUrls: ['./git-dashboard.component.css']
+  selector: 'app-git-profile',
+  templateUrl: './git-profile.component.html',
+  styleUrls: ['./git-profile.component.css']
 })
-export class GitDashboardComponent implements OnInit {
+export class GitProfileComponent implements OnInit {
   error = '';
   gitProfile;
   loading = false;
 
   constructor(private gitProfileService: GitProfileService, private route: ActivatedRoute) {
-
   }
 
   ngOnInit() {
     this.loading = true;
-    this.route.params.subscribe(params => {
+    this.route.parent.params.subscribe(params => {
       if (params['login']) {
         this.gitProfileService.getGitProfileData(params['login'])
           .subscribe(
@@ -33,6 +32,6 @@ export class GitDashboardComponent implements OnInit {
           )
       }
     });
+    // this.gitProfile = this.gitProfileService.gitProfile;
   }
-
 }

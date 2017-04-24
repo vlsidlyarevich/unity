@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Headers, Http, RequestOptions, Response } from "@angular/http";
 import { Observable } from "rxjs";
-import { environment } from "../../environments/environment";
 
 @Injectable()
 export class GitProfileService {
   private static GIT = '/git/profile';
+  public gitProfile;
 
   constructor(private http: Http) {
 
@@ -20,6 +20,7 @@ export class GitProfileService {
     // return this.http.get(environment.serverUrl + `${GitProfileService.GIT}/${gitLogin}`, options)
     return this.http.get('./www/temp.json')
       .map((response: Response) => {
+        this.gitProfile = GitProfileService.extractData(response);
         return GitProfileService.extractData(response);
       }).catch(GitProfileService.handleError);
   }

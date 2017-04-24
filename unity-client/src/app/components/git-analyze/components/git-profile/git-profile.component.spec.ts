@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { GitDashboardComponent } from './git-dashboard.component';
+import { GitProfileComponent } from './git-profile.component';
 
-describe('GitDashboardComponent', () => {
-  let component: GitDashboardComponent;
-  let fixture: ComponentFixture<GitDashboardComponent>;
+describe('GitProfileComponent', () => {
+  let component: GitProfileComponent;
+  let fixture: ComponentFixture<GitProfileComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GitDashboardComponent ]
+      declarations: [ GitProfileComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GitDashboardComponent);
+    fixture = TestBed.createComponent(GitProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
