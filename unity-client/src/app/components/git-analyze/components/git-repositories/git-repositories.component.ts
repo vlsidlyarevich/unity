@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+import { GitProfileService } from "../../../../services/GitProfileService";
 
 @Component({
   selector: 'app-git-repositories',
@@ -6,10 +8,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./git-repositories.component.css']
 })
 export class GitRepositoriesComponent implements OnInit {
+  error = ' ';
+  gitProfile: any;
+  loading = false;
+  topBy = ' ';
+  // searchBy = ' ';
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private gitProfileService: GitProfileService, private route: ActivatedRoute) {
   }
 
+  ngOnInit() {
+    this.loading = true;
+
+    //FIXME take from store
+    this.route.parent.params.subscribe(params => {
+      if (params['login']) {
+        this.gitProfileService.getGitProfileData(params['login'])
+          .subscribe(
+            result => {
+              this.gitProfile = result;
+              this.loading = false;
+            },
+            error => {
+              this.error = error;
+              this.loading = false;
+            }
+          )
+      }
+    });
+  }
 }

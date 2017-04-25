@@ -19,9 +19,9 @@ import { UserService } from "./services/UserService";
 import { BootstrapModalModule } from "ng2-bootstrap-modal";
 import { GitAnalyzeModule } from "./components/git-analyze/git-analyze.module";
 import { GitProfileService } from "./services/GitProfileService";
-import { FooterComponent } from './components/footer/footer.component';
 import { FooterModule } from "./components/footer/footer.module";
-import { ChartsModule } from 'ng2-charts';
+import { ChartsModule } from "ng2-charts";
+import { PipeModule } from "./pipes/pipe-module/pipe.module";
 
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ import { ChartsModule } from 'ng2-charts';
   ],
   imports: [
     NgbModule.forRoot(),
+    PipeModule.forRoot(),
     BootstrapModalModule,
     BrowserModule,
     ReactiveFormsModule,

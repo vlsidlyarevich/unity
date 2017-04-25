@@ -9,7 +9,7 @@ import { GitProfileService } from "../../../../services/GitProfileService";
 })
 export class GitProfileComponent implements OnInit {
   error = '';
-  gitProfile;
+  gitProfile: Object;
   loading = false;
 
   constructor(private gitProfileService: GitProfileService, private route: ActivatedRoute) {
@@ -17,6 +17,8 @@ export class GitProfileComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
+
+    //FIXME take from store
     this.route.parent.params.subscribe(params => {
       if (params['login']) {
         this.gitProfileService.getGitProfileData(params['login'])

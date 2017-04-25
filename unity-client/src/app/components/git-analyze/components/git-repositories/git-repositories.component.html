@@ -2,8 +2,49 @@
 <div class="bg-faded" style="padding-left: 20px">
   <br/>
   <div class="text-center">
-    <h3>Top by stars</h3>
+    <h3>{{gitProfile?.login}}'s repositories</h3>
   </div>
+  <br/>
+  <div class="form-inline justify-content-end">
+    <div class="col-sm-auto form-group">
+      <label for="topBySelect" class="pr-3">Top by:</label>
+      <select id="topBySelect" class="custom-select form-control" [(ngModel)]="topBy">
+        <option value=" ">
+          Nothing
+        </option>
+        <option value="stargazersCount">
+          Stars
+        </option>
+        <option value="size">
+          Size
+        </option>
+        <option value="watchersCount">
+          Watchers
+        </option>
+      </select>
+    </div>
+    <!--<div class="col-sm-auto form-group">-->
+      <!--<label for="searchBySelect" class="pr-3 pl-4">Search by:</label>-->
+      <!--<select id="searchBySelect" class="custom-select form-control pr-3" [(ngModel)]="searchBy">-->
+        <!--<option value=" ">-->
+          <!--Nothing-->
+        <!--</option>-->
+        <!--<option value="size">-->
+          <!--Size-->
+        <!--</option>-->
+        <!--<option value="createdAt">-->
+          <!--Creation Date-->
+        <!--</option>-->
+        <!--<option value="name">-->
+          <!--Name-->
+        <!--</option>-->
+        <!--<option value="description">-->
+          <!--Description-->
+        <!--</option>-->
+      <!--</select>-->
+      <!--<input type="text" id="searchByInput" class="form-control" placeholder="search argument"/>-->
+    <!--</div>-->
+  <!--</div>-->
   <div class="col-sm-12">
     <table class="table">
       <thead>
@@ -11,137 +52,19 @@
         <th>Stars</th>
         <th>Repository name</th>
         <th>Description</th>
-        <th>Creation date</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th scope="row">100</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
-      </tr>
-      <tr>
-        <th scope="row">50</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
-      </tr>
-      <tr>
-        <th scope="row">14</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
-      </tr>
-      <tr>
-        <th scope="row">14</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
-      </tr>
-      <tr>
-        <th scope="row">14</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <br/>
-  <div class="text-center">
-    <h3>Top by watchers</h3>
-  </div>
-  <div class="col-sm-12">
-    <table class="table">
-      <thead>
-      <tr>
-        <th>Watchers</th>
-        <th>Repository name</th>
-        <th>Description</th>
-        <th>Creation date</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th scope="row">100</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
-      </tr>
-      <tr>
-        <th scope="row">50</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
-      </tr>
-      <tr>
-        <th scope="row">14</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
-      </tr>
-      <tr>
-        <th scope="row">14</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
-      </tr>
-      <tr>
-        <th scope="row">14</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <br/>
-  <div class="text-center">
-    <h3>Top by size</h3>
-  </div>
-  <div class="col-sm-12">
-    <table class="table">
-      <thead>
-      <tr>
         <th>Size</th>
-        <th>Repository name</th>
-        <th>Description</th>
+        <th>Watchers</th>
         <th>Creation date</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope="row">100</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
-      </tr>
-      <tr>
-        <th scope="row">50</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
-      </tr>
-      <tr>
-        <th scope="row">14</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
-      </tr>
-      <tr>
-        <th scope="row">14</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
-      </tr>
-      <tr>
-        <th scope="row">14</th>
-        <td>Unity</td>
-        <td>Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS Simple HRMS</td>
-        <td>20/12/2015</td>
+      <tr *ngFor="let repo of gitProfile?.repos | sortByProperty:topBy">
+        <th scope="row">{{repo.stargazersCount}}</th>
+        <td>{{repo.name}}</td>
+        <td>{{repo.description}}</td>
+        <td>{{repo.size}}</td>
+        <td>{{repo.watchersCount}}</td>
+        <td>{{repo.createdAt | date:'dd/MM/yyyy'}}</td>
       </tr>
       </tbody>
     </table>
