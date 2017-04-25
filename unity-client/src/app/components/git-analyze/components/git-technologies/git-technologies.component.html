@@ -1,5 +1,5 @@
-<h1>Languages</h1>
-<div class="bg-faded" style="padding-left: 20px">
+<h1>Technologies</h1>
+<div class="bg-faded" style="padding-left: 20px" *ngIf="isDataAvailable">
   <div class="col-sm-12">
     <br/>
     <div class="row">
@@ -10,11 +10,12 @@
         <br/>
         <div style="display: block">
           <canvas baseChart
-                  [data]="pieChartData"
-                  [labels]="pieChartLabels"
-                  [chartType]="pieChartType"
-                  (chartHover)="chartHovered($event)"
-                  (chartClick)="chartClicked($event)"></canvas>
+                  [data]="languageChartData"
+                  [labels]="languageChartLabels"
+                  [chartType]="languageChartType"></canvas>
+        </div>
+        <div class="text-center" *ngIf="languagesMap.length === 0">
+          <h2>No information available</h2>
         </div>
       </div>
 
@@ -23,13 +24,14 @@
           <h3>Technologies usage</h3>
         </div>
         <br/>
-        <div style="display: block">
+        <div style="display: block" *ngIf="topicsMap.length != 0">
           <canvas baseChart
-                  [data]="doughnutChartData"
-                  [labels]="doughnutChartLabels"
-                  [chartType]="doughnutChartType"
-                  (chartHover)="chartHovered($event)"
-                  (chartClick)="chartClicked($event)"></canvas>
+                  [data]="topicChartData"
+                  [labels]="topicChartLabels"
+                  [chartType]="topicChartType"></canvas>
+        </div>
+        <div class="text-center" *ngIf="topicsMap.length === 0">
+          <h2>No information available</h2>
         </div>
       </div>
     </div>

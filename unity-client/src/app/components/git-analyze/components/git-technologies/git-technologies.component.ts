@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import 'chart.js'
+import { ActivatedRoute } from "@angular/router";
+import { GitProfileService } from "../../../../services/GitProfileService";
 
 @Component({
   selector: 'app-git-technologies',
@@ -7,34 +9,62 @@ import 'chart.js'
   styleUrls: ['./git-technologies.component.css']
 })
 export class GitTechnologiesComponent implements OnInit {
+  error = '';
+  gitProfile: any;
+  loading = false;
+  isDataAvailable: boolean = false;
+  languagesMap: { [key: string]: number; } = {};
+  topicsMap: { [key: string]: number; } = {};
 
-  constructor() { }
+  constructor(private gitProfileService: GitProfileService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
+    this.loading = true;
+
+    //FIXME take from store
+    this.route.parent.params.subscribe(params => {
+      if (params['login']) {
+        this.gitProfileService.getGitProfileData(params['login'])
+          .subscribe(
+            result => {
+              this.gitProfile = result;
+              this.loading = false;
+              Promise.all([this.initLanguageChartData(), this.initTopicChartData()]).then(() => {
+                this.isDataAvailable = true;
+              });
+            },
+            error => {
+              this.error = error;
+              this.loading = false;
+              this.isDataAvailable = true;
+            }
+          )
+      }
+    });
   }
 
   // pieChart
-  public pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales','Download Sales', 'In-Store Sales', 'Mail Sales',
-    'Download Sales', 'In-Store Sales', 'Mail Sales'];
-  public pieChartData:number[] = [300, 500, 100];
-  public pieChartType:string = 'pie';
+  public languageChartLabels: string[] = [];
+  public languageChartData: number[] = [];
+  public languageChartType: string = 'pie';
 
   // doughnutChart
-  public doughnutChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  public doughnutChartData:number[] = [350, 450, 100];
-  public doughnutChartType:string = 'doughnut';
+  public topicChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  public topicChartData: number[] = [350, 450, 100];
+  public topicChartType: string = 'doughnut';
 
   // lineChart
-  public lineChartData:Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
+  public lineChartData: Array<any> = [
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
+    { data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C' }
   ];
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChartOptions:any = {
+  public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartOptions: any = {
     responsive: true
   };
-  public lineChartColors:Array<any> = [
+  public lineChartColors: Array<any> = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
       borderColor: 'rgba(148,159,177,1)',
@@ -60,6 +90,80 @@ export class GitTechnologiesComponent implements OnInit {
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
   ];
-  public lineChartLegend:boolean = true;
-  public lineChartType:string = 'line';
+  public lineChartLegend: boolean = true;
+  public lineChartType: string = 'line';
+
+  initLanguageChartData(): Promise<any> {
+    this.initLanguagesMap().then(() => {
+      this.getLanguagesData().then(result => this.languageChartData = result);
+      this.languageChartLabels = Object.keys(this.languagesMap);
+    });
+    return new Promise((resolve, reject) => {
+      resolve()
+    })
+  }
+
+  initLanguagesMap(): Promise<any> {
+    for (let i = 0; i < this.gitProfile.repos.length; i++) {
+      let repo = this.gitProfile.repos[i];
+      for (const language of Object.keys(repo.languages)) {
+        if (!this.languagesMap[language]) {
+          this.languagesMap[language] = Number.parseInt(repo.languages[language]);
+        } else {
+          this.languagesMap[language] += Number.parseInt(repo.languages[language]);
+        }
+      }
+    }
+    return new Promise((resolve, reject) => {
+      resolve()
+    })
+  }
+
+  getLanguagesData(): Promise<Array<number>> {
+    return new Promise((resolve, reject) => {
+      let result = [];
+      for (const language of Object.keys(this.languagesMap)) {
+        result.push(this.languagesMap[language]);
+      }
+      resolve(result);
+    });
+  }
+
+  initTopicChartData(): Promise<any> {
+    this.initTopicsMap().then(() => {
+      this.getTopicsData().then(result => this.topicChartData = result);
+      this.topicChartLabels = Object.keys(this.topicsMap);
+    });
+    return new Promise((resolve, reject) => {
+      resolve()
+    })
+  }
+
+  initTopicsMap(): Promise<any> {
+    for (let i = 0; i < this.gitProfile.repos.length; i++) {
+      let repo = this.gitProfile.repos[i];
+      if (repo.topics) {
+        for (const topic of Object.keys(repo.topics)) {
+          if (!this.topicsMap[topic]) {
+            this.topicsMap[topic] = Number.parseInt(repo.topics[topic]);
+          } else {
+            this.topicsMap[topic] += Number.parseInt(repo.topics[topic]);
+          }
+        }
+      }
+    }
+    return new Promise((resolve, reject) => {
+      resolve()
+    })
+  }
+
+  getTopicsData(): Promise<Array<number>> {
+    return new Promise((resolve, reject) => {
+      let result = [];
+      for (const topic of Object.keys(this.topicsMap)) {
+        result.push(this.topicsMap[topic]);
+      }
+      resolve(result);
+    });
+  }
 }
