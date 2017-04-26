@@ -65,7 +65,7 @@ public class SimpleUserSocialService implements UserSocialService {
     }
 
     @Override
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("@currentUserServiceImpl.canAccessUser(#id)")
     public String delete(String id) {
         repository.delete(id);
         return id;

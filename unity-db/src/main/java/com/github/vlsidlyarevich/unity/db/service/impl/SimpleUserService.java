@@ -3,7 +3,9 @@ package com.github.vlsidlyarevich.unity.db.service.impl;
 import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
 import com.github.vlsidlyarevich.unity.db.model.User;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
+import com.github.vlsidlyarevich.unity.db.service.UserAnalyticsService;
 import com.github.vlsidlyarevich.unity.db.service.UserService;
+import com.github.vlsidlyarevich.unity.db.service.UserSocialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,12 @@ public class SimpleUserService implements UserService {
 
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private UserSocialService userSocialService;
+
+    @Autowired
+    private UserAnalyticsService userAnalyticsService;
 
     @Override
     public User create(User user) {
@@ -60,9 +68,11 @@ public class SimpleUserService implements UserService {
     }
 
     @Override
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("@currentUserServiceImpl.canAccessUser(#id)")
     public String delete(String id) {
         repository.delete(id);
+        userSocialService.delete(id);
+        userAnalyticsService.delete(id);
         return id;
     }
 
