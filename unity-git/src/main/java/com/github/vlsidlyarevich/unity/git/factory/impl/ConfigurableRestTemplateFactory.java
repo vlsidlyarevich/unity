@@ -1,11 +1,13 @@
 package com.github.vlsidlyarevich.unity.git.factory.impl;
 
+import com.github.vlsidlyarevich.unity.git.config.GitProperties;
 import com.github.vlsidlyarevich.unity.git.constant.Github;
 import com.github.vlsidlyarevich.unity.git.factory.RestTemplateFactory;
 import com.github.vlsidlyarevich.unity.git.interceptors.HeaderRequestInterceptor;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -17,6 +19,9 @@ import java.util.List;
 
 @Component
 public class ConfigurableRestTemplateFactory implements RestTemplateFactory {
+
+    @Autowired
+    private GitProperties gitProperties;
 
     public RestTemplate getObject() {
         return configureRestTemplate(new RestTemplate());
@@ -39,6 +44,7 @@ public class ConfigurableRestTemplateFactory implements RestTemplateFactory {
     private List<ClientHttpRequestInterceptor> getInterceptors() {
         List<ClientHttpRequestInterceptor> interceptors = new ArrayList<ClientHttpRequestInterceptor>();
         interceptors.add(new HeaderRequestInterceptor("Accept", Github.MEDIA_HEADER));
+        interceptors.add(new HeaderRequestInterceptor("x-oauth-basic", gitProperties.getAccessToken()));
         return interceptors;
     }
 

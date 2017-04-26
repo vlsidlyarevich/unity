@@ -8,5 +8,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class GitProperties {
 
     private String apiUrl;
-
+    private String accessToken;
 }
