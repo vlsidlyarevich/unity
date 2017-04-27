@@ -4,8 +4,7 @@ import { AnalyzeSource } from "../../../../models/analyzeSource";
 
 
 export interface SelectModel {
-  title: string;
-  message: string;
+  source: AnalyzeSource;
 }
 
 @Component({
@@ -14,8 +13,6 @@ export interface SelectModel {
   styleUrls: ['./analyze-select-modal.component.css']
 })
 export class AnalyzeSelectModalComponent extends DialogComponent<SelectModel, AnalyzeSource> implements SelectModel {
-  title: string;
-  message: string;
   source: AnalyzeSource = AnalyzeSource.Github;
 
   constructor(dialogService: DialogService) {

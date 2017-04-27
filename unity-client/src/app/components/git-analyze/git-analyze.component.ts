@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GitProfileService } from "../../services/GitProfileService";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-git-analyze',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./git-analyze.component.css']
 })
 export class GitAnalyzeComponent implements OnInit {
+  login: string;
 
-  constructor() { }
+  constructor(private gitProfileService: GitProfileService,
+              private router: Router) {
+  }
 
   ngOnInit() {
   }
 
+  analyze() {
+
+  }
 }

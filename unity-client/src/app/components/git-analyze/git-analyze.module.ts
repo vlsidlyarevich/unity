@@ -8,6 +8,7 @@ import { GitRepositoriesComponent } from "./components/git-repositories/git-repo
 import { ChartsModule } from "ng2-charts";
 import { GitTechnologiesComponent } from "./components/git-technologies/git-technologies.component";
 import { PipeModule } from "../../pipes/pipe-module/pipe.module";
+import { GitResultComponent } from './components/git-result/git-result.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { PipeModule } from "../../pipes/pipe-module/pipe.module";
     ChartsModule,
     PipeModule
   ],
-  declarations: [GitAnalyzeComponent, GitProfileComponent, GitRepositoriesComponent, GitTechnologiesComponent]
+  declarations: [GitAnalyzeComponent, GitProfileComponent, GitRepositoriesComponent, GitTechnologiesComponent, GitResultComponent]
 })
 export class GitAnalyzeModule {
 }
