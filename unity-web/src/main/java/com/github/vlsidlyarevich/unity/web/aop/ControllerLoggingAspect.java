@@ -45,6 +45,12 @@ public class ControllerLoggingAspect {
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
     }
 
+    @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.UserAnalyticsController.*(..)))")
+    public void userAnalyticsControllerLog(JoinPoint joinPoint) {
+        logger.info("UserAnalytics controller : " + joinPoint.getSignature().getName()
+                + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
+    }
+
     @Before("execution(* com.github.vlsidlyarevich.unity.web.controller.GitProfileController.*(..)))")
     public void gitProfileControllerLog(JoinPoint joinPoint) {
         logger.info("Git profile controller : " + joinPoint.getSignature().getName()

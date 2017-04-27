@@ -26,4 +26,10 @@ public class ServiceLoggingAspect {
         logger.info("UserSocial service : " + joinPoint.getSignature().getName()
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
     }
+
+    @Before("execution(* com.github.vlsidlyarevich.unity.db.service.impl.SimpleUserAnalyticsService.*(..)))")
+    public void userAnalyticsServiceLog(JoinPoint joinPoint) {
+        logger.info("UserAnalytics service : " + joinPoint.getSignature().getName()
+                + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
+    }
 }

@@ -15,4 +15,6 @@ public interface UserAnalyticsService {
     List<UserAnalytics> findAll();
 
     String delete(String id);
+
+    List<String> deleteAll();
 }
