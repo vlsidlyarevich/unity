@@ -60,7 +60,7 @@
       <tbody>
       <tr *ngFor="let repo of gitProfile?.repos | sortByProperty:topBy">
         <th scope="row">{{repo.stargazersCount}}</th>
-        <td>{{repo.name}}</td>
+        <td><a class="nav-link" href="{{repo.htmlUrl}}">{{repo.name}}</a></td>
         <td>{{repo.description}}</td>
         <td>{{repo.size}}</td>
         <td>{{repo.watchersCount}}</td>
