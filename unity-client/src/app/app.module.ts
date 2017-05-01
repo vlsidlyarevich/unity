@@ -22,6 +22,7 @@ import { GitProfileService } from "./services/GitProfileService";
 import { FooterModule } from "./components/footer/footer.module";
 import { ChartsModule } from "ng2-charts";
 import { PipeModule } from "./pipes/pipe-module/pipe.module";
+import { UserAnalyticsService } from "./services/UserAnalyticsService";
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { PipeModule } from "./pipes/pipe-module/pipe.module";
     SignupService,
     GitProfileService,
     UserSocialService,
+    UserAnalyticsService,
     UserService
   ],
   bootstrap: [

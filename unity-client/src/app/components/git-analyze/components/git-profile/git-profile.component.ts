@@ -21,10 +21,10 @@ export class GitProfileComponent implements OnInit {
     //FIXME take from store
     this.route.parent.params.subscribe(params => {
       if (params['login']) {
-        this.gitProfileService.getGitProfileData(params['login'])
+        this.gitProfileService.getGitProfileData(params['login'], params['id'])
           .subscribe(
             result => {
-              this.gitProfile = result;
+              this.gitProfile = result.result;
               this.loading = false;
             },
             error => {

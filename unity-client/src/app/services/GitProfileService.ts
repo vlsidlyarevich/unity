@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Headers, Http, RequestOptions, Response } from "@angular/http";
 import { Observable } from "rxjs";
+import { GitAnalytics } from "../models/gitAnalytics";
 
 @Injectable()
 export class GitProfileService {
@@ -11,13 +12,21 @@ export class GitProfileService {
 
   }
 
-  getGitProfileData(gitLogin: String): Observable<Object> {
+  analyzeGitProfileData(gitLogin: string): Observable<GitAnalytics> {
     const headers = new Headers({
       'Content-Type': 'application/json',
       'x-auth-token': JSON.parse(localStorage.getItem('currentUser')).token
     });
     const options = new RequestOptions({ headers: headers });
     // return this.http.get(environment.serverUrl + `${GitProfileService.GIT}/${gitLogin}`, options)
+    return this.http.get('./www/temp.json')
+      .map((response: Response) => {
+        this.gitProfile = GitProfileService.extractData(response);
+        return GitProfileService.extractData(response);
+      }).catch(GitProfileService.handleError);
+  }
+
+  getGitProfileData(gitLogin: string, analyzeId: string): Observable<GitAnalytics> {
     return this.http.get('./www/temp.json')
       .map((response: Response) => {
         this.gitProfile = GitProfileService.extractData(response);

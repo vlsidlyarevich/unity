@@ -39,6 +39,6 @@ public class GitProfileController {
         }});
         userAnalytics.setUserId(((User) SecurityContextHolder.getContext().getAuthentication().getDetails()).getId());
         userAnalyticsService.add(userAnalytics);
-        return new ResponseEntity(result.get(), HttpStatus.OK);
+        return new ResponseEntity(userAnalytics, HttpStatus.OK);
     }
 }

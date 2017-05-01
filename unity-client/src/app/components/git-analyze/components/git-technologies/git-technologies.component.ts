@@ -25,10 +25,10 @@ export class GitTechnologiesComponent implements OnInit {
     //FIXME take from store
     this.route.parent.params.subscribe(params => {
       if (params['login']) {
-        this.gitProfileService.getGitProfileData(params['login'])
+        this.gitProfileService.getGitProfileData(params['login'], params['analyzeId'])
           .subscribe(
             result => {
-              this.gitProfile = result;
+              this.gitProfile = result.result;
               this.loading = false;
               Promise.all([this.initLanguageChartData(), this.initTopicChartData()]).then(() => {
                 this.isDataAvailable = true;
