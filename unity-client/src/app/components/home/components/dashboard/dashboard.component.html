@@ -1,15 +1,86 @@
 <div class="container-fluid bg-faded" style="height: 100%">
-  <div class="row pt-5"></div>
-  <div class="row pt-5"></div>
-  <div class="row">
-    <div class="col-md-6 offset-md-3 pt-5">
-      <div class="card text-center">
-        <div class="card-block">
-          <h4 class="card-title">No analysed profiles yet</h4>
-          <p class="card-text">Click button to select source of analysis.</p>
-          <button (click)=showSelect() class="btn btn-primary">Select source</button>
+  <div *ngIf="!userAnalytics">
+    <div class="row pt-5"></div>
+    <div class="row pt-5"></div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3 pt-5">
+        <div class="card text-center">
+          <div class="card-block">
+            <h4 class="card-title">No analysed profiles yet</h4>
+            <p class="card-text">Click button to select source of analysis.</p>
+            <button (click)=showSelect() class="btn btn-primary">Select source</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div *ngIf="userAnalytics">
+    <!--<div class="row card-block" *ngFor="let profile of userAnalytics.analyzedData">-->
+    <!--<div class="card" style="height: 600px; width: 300px">-->
+    <!--<img class="card-img-top img-responsive" style="height: 300px; width: 300px" src="{{profile.avatarUrl}}"-->
+    <!--alt="Card image cap">-->
+    <!--<div class="card-block">-->
+    <!--<h4 class="card-title">{{profile.name}}</h4>-->
+    <!--<p class="card-text">{{profile.bio}}</p>-->
+    <!--<button (click)="showSelected(profile.username, profile.id)" class="btn btn-primary">Show details</button>-->
+    <!--</div>-->
+    <!--<div class="card-footer">-->
+    <!--&lt;!&ndash;//FIXME &ndash;&gt;-->
+    <!--<small class="text-muted">Analyzed at {{profile.createdAt | date:'dd/MM/yyyy'}}</small>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="card" (click)=showSelect()>-->
+    <!--<img class="card-img" src="https://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png"-->
+    <!--alt="Add new" href="javascript:void(0)">-->
+    <!--</div>-->
+    <div class="row card-block">
+      <div class="col-lg-2 text-xs-center" *ngFor="let profile of userAnalytics.analyzedData">
+        <div class="card  card-block card-default form-group">
+          <img class="card-img-top img-responsive" style="height: 30%; width: 100%" src="{{profile.avatarUrl}}"
+               alt="Card image cap">
+          <blockquote class="card-blockquote">
+            <h4 class="text-default">Title</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa et, suscipit non nihil voluptates, maxime
+              ad dignissimos vitae.</p>
+            <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--<div class="card-columns">-->
+  <!--<div class="card">-->
+  <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+  <!--<div class="card-block">-->
+  <!--<h4 class="card-title">Card title</h4>-->
+  <!--<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
+  <!--</div>-->
+  <!--<div class="card-footer">-->
+  <!--<small class="text-muted">Last updated 3 mins ago</small>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="card">-->
+  <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+  <!--<div class="card-block">-->
+  <!--<h4 class="card-title">Card title</h4>-->
+  <!--<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>-->
+  <!--</div>-->
+  <!--<div class="card-footer">-->
+  <!--<small class="text-muted">Last updated 3 mins ago</small>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="card">-->
+  <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+  <!--<div class="card-block">-->
+  <!--<h4 class="card-title">Card title</h4>-->
+  <!--<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>-->
+  <!--</div>-->
+  <!--<div class="card-footer">-->
+  <!--<small class="text-muted">Last updated 3 mins ago</small>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
 </div>

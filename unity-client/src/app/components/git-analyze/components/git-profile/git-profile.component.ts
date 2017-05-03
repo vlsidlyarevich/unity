@@ -34,6 +34,6 @@ export class GitProfileComponent implements OnInit {
           )
       }
     });
-    // this.gitProfile = this.gitProfileService.gitProfile;
+    // this.profile = this.gitProfileService.profile;
   }
 }

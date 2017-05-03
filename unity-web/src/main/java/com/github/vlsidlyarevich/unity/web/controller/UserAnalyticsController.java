@@ -19,11 +19,11 @@ public class UserAnalyticsController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getAnalyticsByUserId(@PathVariable String id) {
-        UserAnalytics analytics = service.find(id);
+        UserAnalytics analytics = service.findByUserId(id);
         if (analytics == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(service.find(id), HttpStatus.OK);
+        return new ResponseEntity<>(analytics, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)

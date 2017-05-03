@@ -8,6 +8,7 @@ import com.github.vlsidlyarevich.unity.db.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +30,10 @@ public class SimpleUserAnalyticsService implements UserAnalyticsService {
         UserAnalytics analytics = repository.findByUserId(userAnalytics.getUserId());
         if (analytics != null) {
             analytics.getAnalyzedData().addAll(userAnalytics.getAnalyzedData());
+            analytics.setUpdatedAt(String.valueOf(LocalDateTime.now()));
             return repository.save(analytics);
         } else {
+            userAnalytics.setCreatedAt(String.valueOf(LocalDateTime.now()));
             return repository.save(userAnalytics);
         }
     }

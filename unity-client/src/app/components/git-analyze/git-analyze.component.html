@@ -9,9 +9,14 @@
       <input type="text" class="form-control" placeholder="Analyze for..." [(ngModel)]="login">
       <span class="input-group-btn">
         <button class="btn btn-secondary btn-success" type="button"
-                data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Analyzing git profile..."
-                (click)="analyze()">Analyze</button>
+                data-loading-text=""
+                (click)="analyze()"
+                [ngClass]="{'disabled': loading}">
+          <span *ngIf="loading"><i class='fa fa-circle-o-notch fa-spin'></i> Analyzing git profile...</span>
+          <span *ngIf="!loading">Analyze</span>
+        </button>
       </span>
+      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
     </div>
   </div>
 
