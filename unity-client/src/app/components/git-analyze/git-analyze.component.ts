@@ -24,7 +24,7 @@ export class GitAnalyzeComponent implements OnInit {
     this.gitProfileService.analyzeGitProfileData(this.login)
       .subscribe(
         result => {
-          this.router.navigate(['/analyze/git/' + this.login + '/' + result.id])
+          this.router.navigate(['/analyze/git/' + this.login + '/' + result.reports[0].id]);
           this.loading = false;
         },
         error => {

@@ -3,6 +3,8 @@ import { Headers, Http, RequestOptions, Response } from "@angular/http";
 import { Observable } from "rxjs";
 import { GitAnalytics } from "../models/gitAnalytics";
 import { environment } from "../../environments/environment";
+import { AnalyzeReport } from "../models/analyzeReport";
+import { UserAnalytics } from "../models/userAnalytics";
 
 @Injectable()
 export class GitProfileService {
@@ -13,7 +15,7 @@ export class GitProfileService {
 
   }
 
-  analyzeGitProfileData(gitLogin: string): Observable<GitAnalytics> {
+  analyzeGitProfileData(gitLogin: string): Observable<UserAnalytics> {
     const headers = new Headers({
       'Content-Type': 'application/json',
       'x-auth-token': JSON.parse(localStorage.getItem('currentUser')).token
@@ -27,7 +29,7 @@ export class GitProfileService {
       }).catch(GitProfileService.handleError);
   }
 
-  getGitProfileData(gitLogin: string, analyzeId: string): Observable<GitAnalytics> {
+  getGitProfileData(gitLogin: string, analyzeId: string): Observable<UserAnalytics> {
     return this.http.get('./www/temp.json')
       .map((response: Response) => {
         this.gitProfile = GitProfileService.extractData(response);

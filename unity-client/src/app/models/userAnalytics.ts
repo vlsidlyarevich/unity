@@ -1,11 +1,13 @@
+import { AnalyzeReport } from "./analyzeReport";
+
 export class UserAnalytics {
   id: string;
   userId: string;
-  analyzedData: Array<any>;
+  reports: Array<AnalyzeReport>;
 
-  constructor(id: string, userId: string, analyzedData: Array<any>) {
+  constructor(id: string, userId: string, reports: Array<AnalyzeReport>) {
     this.id = id;
     this.userId = userId;
-    this.analyzedData = analyzedData;
+    this.reports = reports;
   }
 }
