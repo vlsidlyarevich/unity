@@ -31,12 +31,11 @@ public class GitDataAggregator {
     private GitRepositoryService gitRepositoryService;
 
     public Optional<GitProfileData> getGitProfileData(String gitLogin) {
-//        Optional<GitProfile> gitProfile = gitProfileService.getGitProfile(gitLogin);
-//        if (!gitProfile.isPresent()) {
-//            return Optional.empty();
-//        }
-//        return gitProfile.flatMap(this::aggregateData);
-        return Optional.of(new GitProfileData());
+        Optional<GitProfile> gitProfile = gitProfileService.getGitProfile(gitLogin);
+        if (!gitProfile.isPresent()) {
+            return Optional.empty();
+        }
+        return gitProfile.flatMap(this::aggregateData);
     }
 
     private Optional<GitProfileData> aggregateData(GitProfile gitProfile) {
