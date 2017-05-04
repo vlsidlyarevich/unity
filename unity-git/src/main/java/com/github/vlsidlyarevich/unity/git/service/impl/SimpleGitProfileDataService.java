@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class HttpGitProfileDataService implements GitProfileDataService {
+public class SimpleGitProfileDataService implements GitProfileDataService {
 
     @Autowired
     private GitDataAggregator gitDataAggregator;

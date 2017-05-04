@@ -1,10 +1,11 @@
 package com.github.vlsidlyarevich.unity.git.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.vlsidlyarevich.unity.common.model.GitResult;
 import lombok.Data;
 
 @Data
-public class GitRepoOwner {
+public class GitRepoOwner implements GitResult {
 
     private Integer id;
     private String login;

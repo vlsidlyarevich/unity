@@ -1,5 +1,7 @@
 package com.github.vlsidlyarevich.unity.git.model;
 
+import com.github.vlsidlyarevich.unity.common.model.AnalysisResult;
+import com.github.vlsidlyarevich.unity.common.model.GitResult;
 import lombok.Data;
 
 import java.util.Date;
@@ -7,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Data
-public class GitProfileData {
+public class GitProfileData extends AnalysisResult implements GitResult {
 
     private Integer id;
     private String login;
