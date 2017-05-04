@@ -9,15 +9,20 @@ public class AnalysisReport {
     private AnalyzedResource resource;
     private Date analyzedAt;
     private Long analysisTime;
-    private AnalysisResult result;
+    private Result result;
 
-    public AnalysisReport(AnalysisResult result, Date analyzedAt, Long analysisTime) {
+    public AnalysisReport(Result result, Date analyzedAt, Long analysisTime) {
         this.analyzedAt = analyzedAt;
         this.analysisTime = analysisTime;
         this.result = result;
+        this.setAnalyzedResource(result);
     }
 
-    public AnalyzedResource getAnalyzedResource() {
-        return this.result.getResource();
+    private void setAnalyzedResource(Result result) {
+        if (result instanceof GitResult) {
+            this.resource = AnalyzedResource.GITHUB;
+        } else {
+            this.resource = AnalyzedResource.UNKNOWN;
+        }
     }
 }

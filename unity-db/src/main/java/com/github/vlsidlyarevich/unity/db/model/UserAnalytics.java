@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.model;
 
+import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,5 +17,5 @@ public class UserAnalytics extends DbModel implements Serializable {
     @Id
     private String id;
     private String userId;
-    private List<Object> analyzedData;
+    private List<AnalysisReport> reports;
 }

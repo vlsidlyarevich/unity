@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Optional;
@@ -27,7 +28,7 @@ public class SimpleGitAnalyzeReportService implements GitAnalyzeService {
         Optional<AnalysisReport> report = Optional.empty();
 
         if (gitProfileData.isPresent()) {
-            Date analyzedAt = Date.from(Instant.from(LocalDateTime.now()));
+            Date analyzedAt = Date.from(Instant.from(LocalDateTime.now().toInstant(ZoneOffset.UTC)));
             Long analyzeTime = ChronoUnit.SECONDS.between(startDate, endDate);
             report = Optional.of(new AnalysisReport(gitProfileData.get(), analyzedAt, analyzeTime));
         }

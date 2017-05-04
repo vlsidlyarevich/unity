@@ -29,7 +29,7 @@ public class SimpleUserAnalyticsService implements UserAnalyticsService {
 
         UserAnalytics analytics = repository.findByUserId(userAnalytics.getUserId());
         if (analytics != null) {
-            analytics.getAnalyzedData().addAll(userAnalytics.getAnalyzedData());
+            analytics.getReports().addAll(userAnalytics.getReports());
             analytics.setUpdatedAt(String.valueOf(LocalDateTime.now()));
             return repository.save(analytics);
         } else {

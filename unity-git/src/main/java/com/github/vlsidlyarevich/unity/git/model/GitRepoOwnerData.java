@@ -1,11 +1,10 @@
 package com.github.vlsidlyarevich.unity.git.model;
 
-import com.github.vlsidlyarevich.unity.common.model.AnalysisResult;
 import com.github.vlsidlyarevich.unity.common.model.GitResult;
 import lombok.Data;
 
 @Data
-public class GitRepoOwnerData extends AnalysisResult implements GitResult {
+public class GitRepoOwnerData implements GitResult {
 
     private Integer id;
     private String login;
