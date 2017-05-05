@@ -11,28 +11,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/user/{id}/analytics")
+@RequestMapping("/api/user/{userId}/analytics")
 public class UserAnalyticsController {
 
     @Autowired
     private UserAnalyticsService service;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getAnalyticsByUserId(@PathVariable String id) {
-        UserAnalytics analytics = service.findByUserId(id);
+    public ResponseEntity<?> getAnalyticsByUserId(@PathVariable String userId) {
+        UserAnalytics analytics = service.findByUserId(userId);
         if (analytics == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(analytics, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteUserAnalyticsById(@PathVariable String id) {
-        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
+    @RequestMapping(value = "{reportId}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteUserAnalyticsReportById(@PathVariable String userId, @PathVariable String reportId) {
+        return new ResponseEntity<>(service.deleteReport(userId, reportId), HttpStatus.OK);
     }
 
     @RequestMapping(value = "all", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteAllUserAnalyticsById(@PathVariable String id) {
-        return new ResponseEntity<>(service.deleteAll(), HttpStatus.OK);
+    public ResponseEntity<?> deleteAllUserAnalyticsReports(@PathVariable String userId) {
+        return new ResponseEntity<>(service.deleteAllReports(userId), HttpStatus.OK);
     }
 }

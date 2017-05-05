@@ -60,11 +60,33 @@ public class SimpleUserAnalyticsService implements UserAnalyticsService {
     }
 
     @Override
+    public String deleteReport(String userId, String reportId) {
+        UserAnalytics analytics = repository.findByUserId(userId);
+        if (analytics != null) {
+            analytics.getReports()
+                    .removeIf(analysisReport -> analysisReport.getId().equals(reportId));
+        }
+        return reportId;
+    }
+
+    @Override
     public List<String> deleteAll() {
         List<String> result = new ArrayList<>();
         repository.findAll()
                 .forEach(userAnalytics -> result.add(userAnalytics.getId()));
         repository.deleteAll();
+        return result;
+    }
+
+    @Override
+    public List<String> deleteAllReports(String userId) {
+        UserAnalytics analytics = repository.findByUserId(userId);
+        List<String> result = new ArrayList<>();
+        if (analytics != null) {
+            analytics.getReports()
+                    .forEach(analysisReport -> result.add(analysisReport.getId()));
+            analytics.getReports().clear();
+        }
         return result;
     }
 }

@@ -16,5 +16,9 @@ public interface UserAnalyticsService {
 
     String delete(String id);
 
+    String deleteReport(String userId, String reportId);
+
     List<String> deleteAll();
+
+    List<String> deleteAllReports(String userId);
 }
