@@ -29,14 +29,6 @@ export class GitProfileService {
       }).catch(GitProfileService.handleError);
   }
 
-  getGitProfileData(gitLogin: string, analyzeId: string): Observable<UserAnalytics> {
-    return this.http.get('./www/temp.json')
-      .map((response: Response) => {
-        this.gitProfile = GitProfileService.extractData(response);
-        return GitProfileService.extractData(response);
-      }).catch(GitProfileService.handleError);
-  }
-
   private static extractData(res: Response) {
     let data = res.json();
     return data || {};
