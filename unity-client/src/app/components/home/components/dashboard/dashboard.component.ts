@@ -5,6 +5,7 @@ import { AnalyzeSource } from "../../../../models/analyzeSource";
 import { Router } from "@angular/router";
 import { UserAnalyticsService } from "../../../../services/UserAnalyticsService";
 import { UserAnalytics } from "../../../../models/userAnalytics";
+import { AuthenticationService } from "../../../../services/AuthenticationService";
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private dialogService: DialogService,
               private userAnalyticsService: UserAnalyticsService,
-              private router: Router,) {
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -47,8 +48,14 @@ export class DashboardComponent implements OnInit {
     }, 1000000);
   }
 
-  showSelected(username: string, id: string) {
-    this.router.navigate(['analyze/git/' + username + '/' + id]);
+  showSelected(login:string, id: string) {
+    this.router.navigate(['analyze/git/' + login + '/' + id]);
+  }
+
+  deleteSelected(id: string) {
+    this.userAnalyticsService.deleteUserAnalyticsById(id).subscribe((result) => {
+      location.reload();
+    });
   }
 
   private navigateToAnalyze() {

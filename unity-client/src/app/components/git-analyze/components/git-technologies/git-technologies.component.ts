@@ -28,7 +28,7 @@ export class GitTechnologiesComponent implements OnInit {
         this.gitProfileService.getGitProfileData(params['login'], params['analyzeId'])
           .subscribe(
             result => {
-              this.gitProfile = result.result;
+              this.gitProfile = result.reports[0];
               this.loading = false;
               Promise.all([this.initLanguageChartData(), this.initTopicChartData()]).then(() => {
                 this.isDataAvailable = true;

@@ -24,7 +24,7 @@ export class GitProfileComponent implements OnInit {
         this.gitProfileService.getGitProfileData(params['login'], params['id'])
           .subscribe(
             result => {
-              this.gitProfile = result.result;
+              this.gitProfile = result.reports[0];
               this.loading = false;
             },
             error => {

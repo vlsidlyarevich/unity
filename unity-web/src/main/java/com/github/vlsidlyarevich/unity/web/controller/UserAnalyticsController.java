@@ -26,12 +26,12 @@ public class UserAnalyticsController {
         return new ResponseEntity<>(analytics, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "{reportId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{reportId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteUserAnalyticsReportById(@PathVariable String userId, @PathVariable String reportId) {
         return new ResponseEntity<>(service.deleteReport(userId, reportId), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "all", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/all", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteAllUserAnalyticsReports(@PathVariable String userId) {
         return new ResponseEntity<>(service.deleteAllReports(userId), HttpStatus.OK);
     }

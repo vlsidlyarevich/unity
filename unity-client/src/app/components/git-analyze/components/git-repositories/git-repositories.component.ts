@@ -26,7 +26,7 @@ export class GitRepositoriesComponent implements OnInit {
         this.gitProfileService.getGitProfileData(params['login'], params['analyzeId'])
           .subscribe(
             result => {
-              this.gitProfile = result.result;
+              this.gitProfile = result.reports[0];
               this.loading = false;
             },
             error => {

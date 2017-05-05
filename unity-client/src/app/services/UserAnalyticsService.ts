@@ -36,7 +36,7 @@ export class UserAnalyticsService {
     const options = new RequestOptions({ headers: headers });
     return this.userService.getCurrentUser().flatMap(
       result => {
-        return this.http.get(environment.serverUrl + `${UserService.USER}/${result.id}${UserAnalyticsService.USER_ANALYTICS}/${id}`, options)
+        return this.http.delete(environment.serverUrl + `${UserService.USER}/${result.id}${UserAnalyticsService.USER_ANALYTICS}/${id}`, options)
           .map((response: Response) => {
             return UserAnalyticsService.extractData(response);
           }).catch(UserAnalyticsService.handleError);
@@ -51,7 +51,7 @@ export class UserAnalyticsService {
     const options = new RequestOptions({ headers: headers });
     return this.userService.getCurrentUser().flatMap(
       result => {
-        return this.http.delete(environment.serverUrl + `${UserService.USER}/${result.id}${UserAnalyticsService.USER_ANALYTICS}`, options)
+        return this.http.delete(environment.serverUrl + `${UserService.USER}/${result.id}${UserAnalyticsService.USER_ANALYTICS}/all`, options)
           .map((response: Response) => {
             return UserAnalyticsService.extractData(response);
           }).catch(UserAnalyticsService.handleError);
