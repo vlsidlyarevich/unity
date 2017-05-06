@@ -21,8 +21,8 @@ export class GitProfileComponent implements OnInit {
 
     //FIXME take from store
     this.route.parent.params.subscribe(params => {
-      if (params['login']) {
-        this.userAnalyticsService.getUserAnalyticsReport(params['id'])
+      if (params['analyzeId']) {
+        this.userAnalyticsService.getUserAnalyticsReport(params['analyzeId'])
           .subscribe(
             result => {
               this.report = result;
@@ -35,6 +35,5 @@ export class GitProfileComponent implements OnInit {
           )
       }
     });
-    // this.profile = this.gitProfileService.profile;
   }
 }

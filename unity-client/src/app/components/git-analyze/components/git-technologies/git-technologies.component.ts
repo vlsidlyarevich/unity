@@ -25,7 +25,7 @@ export class GitTechnologiesComponent implements OnInit {
 
     //FIXME take from store
     this.route.parent.params.subscribe(params => {
-      if (params['login']) {
+      if (params['analyzeId']) {
         this.userAnalyticsService.getUserAnalyticsReport(params['analyzeId'])
           .subscribe(
             result => {
@@ -45,21 +45,21 @@ export class GitTechnologiesComponent implements OnInit {
     });
   }
 
-  // pieChart
+  // languages chart
   public languageChartLabels: string[] = [];
   public languageChartData: number[] = [];
   public languageChartType: string = 'pie';
 
-  // doughnutChart
-  public topicChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  public topicChartData: number[] = [350, 450, 100];
+  // topic chart
+  public topicChartLabels: string[] = [];
+  public topicChartData: number[] = [];
   public topicChartType: string = 'doughnut';
 
-  // lineChart
+  // repo creation activity chart
   public lineChartData: Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
+    { data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C' }
   ];
   public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartOptions: any = {
@@ -144,11 +144,11 @@ export class GitTechnologiesComponent implements OnInit {
     for (let i = 0; i < this.report.result.repos.length; i++) {
       let repo = this.report.result.repos[i];
       if (repo.topics) {
-        for (const topic of Object.keys(repo.topics)) {
-          if (!this.topicsMap[topic]) {
-            this.topicsMap[topic] = Number.parseInt(repo.topics[topic]);
+        for (const topic of repo.topics) {
+          if (this.topicsMap[topic]) {
+            this.topicsMap[topic] += 1;
           } else {
-            this.topicsMap[topic] += Number.parseInt(repo.topics[topic]);
+            this.topicsMap[topic] = 1;
           }
         }
       }
