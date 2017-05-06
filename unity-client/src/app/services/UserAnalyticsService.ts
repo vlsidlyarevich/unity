@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
 import { UserService } from "./UserService";
 import { UserAnalytics } from "../models/userAnalytics";
+import { AnalyzeReport } from "../models/analyzeReport";
 
 @Injectable()
 export class UserAnalyticsService {
@@ -18,10 +19,25 @@ export class UserAnalyticsService {
       'Content-Type': 'application/json',
       'x-auth-token': JSON.parse(localStorage.getItem('currentUser')).token
     });
-    const options = new RequestOptions({ headers: headers });
+    const options = new RequestOptions({headers: headers});
     return this.userService.getCurrentUser().flatMap(
       result => {
         return this.http.get(environment.serverUrl + `${UserService.USER}/${result.id}${UserAnalyticsService.USER_ANALYTICS}`, options)
+          .map((response: Response) => {
+            return UserAnalyticsService.extractData(response);
+          }).catch(UserAnalyticsService.handleError);
+      }).catch(UserAnalyticsService.handleError);
+  }
+
+  getUserAnalyticsReport(id: string): Observable<AnalyzeReport> {
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'x-auth-token': JSON.parse(localStorage.getItem('currentUser')).token
+    });
+    const options = new RequestOptions({headers: headers});
+    return this.userService.getCurrentUser().flatMap(
+      result => {
+        return this.http.get(environment.serverUrl + `${UserService.USER}/${result.id}${UserAnalyticsService.USER_ANALYTICS}/${id}`, options)
           .map((response: Response) => {
             return UserAnalyticsService.extractData(response);
           }).catch(UserAnalyticsService.handleError);
@@ -33,7 +49,7 @@ export class UserAnalyticsService {
       'Content-Type': 'application/json',
       'x-auth-token': JSON.parse(localStorage.getItem('currentUser')).token
     });
-    const options = new RequestOptions({ headers: headers });
+    const options = new RequestOptions({headers: headers});
     return this.userService.getCurrentUser().flatMap(
       result => {
         return this.http.delete(environment.serverUrl + `${UserService.USER}/${result.id}${UserAnalyticsService.USER_ANALYTICS}/${id}`, options)
@@ -48,7 +64,7 @@ export class UserAnalyticsService {
       'Content-Type': 'application/json',
       'x-auth-token': JSON.parse(localStorage.getItem('currentUser')).token
     });
-    const options = new RequestOptions({ headers: headers });
+    const options = new RequestOptions({headers: headers});
     return this.userService.getCurrentUser().flatMap(
       result => {
         return this.http.delete(environment.serverUrl + `${UserService.USER}/${result.id}${UserAnalyticsService.USER_ANALYTICS}/all`, options)

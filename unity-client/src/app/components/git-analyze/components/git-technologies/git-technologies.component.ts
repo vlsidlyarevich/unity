@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import 'chart.js'
+import { Component, OnInit } from "@angular/core";
+import "chart.js";
 import { ActivatedRoute } from "@angular/router";
-import { GitProfileService } from "../../../../services/GitProfileService";
+import { AnalyzeReport } from "../../../../models/analyzeReport";
+import { UserAnalyticsService } from "../../../../services/UserAnalyticsService";
 
 @Component({
   selector: 'app-git-technologies',
@@ -10,13 +11,13 @@ import { GitProfileService } from "../../../../services/GitProfileService";
 })
 export class GitTechnologiesComponent implements OnInit {
   error = '';
-  gitProfile: any;
+  report: AnalyzeReport;
   loading = false;
   isDataAvailable: boolean = false;
   languagesMap: { [key: string]: number; } = {};
   topicsMap: { [key: string]: number; } = {};
 
-  constructor(private gitProfileService: GitProfileService, private route: ActivatedRoute) {
+  constructor(private userAnalyticsService: UserAnalyticsService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -25,10 +26,10 @@ export class GitTechnologiesComponent implements OnInit {
     //FIXME take from store
     this.route.parent.params.subscribe(params => {
       if (params['login']) {
-        this.gitProfileService.getGitProfileData(params['login'], params['analyzeId'])
+        this.userAnalyticsService.getUserAnalyticsReport(params['analyzeId'])
           .subscribe(
             result => {
-              this.gitProfile = result.reports[0];
+              this.report = result;
               this.loading = false;
               Promise.all([this.initLanguageChartData(), this.initTopicChartData()]).then(() => {
                 this.isDataAvailable = true;
@@ -56,9 +57,9 @@ export class GitTechnologiesComponent implements OnInit {
 
   // lineChart
   public lineChartData: Array<any> = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-    { data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C' }
+    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
+    {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
   ];
   public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartOptions: any = {
@@ -104,8 +105,8 @@ export class GitTechnologiesComponent implements OnInit {
   }
 
   initLanguagesMap(): Promise<any> {
-    for (let i = 0; i < this.gitProfile.repos.length; i++) {
-      let repo = this.gitProfile.repos[i];
+    for (let i = 0; i < this.report.result.repos.length; i++) {
+      let repo = this.report.result.repos[i];
       for (const language of Object.keys(repo.languages)) {
         if (!this.languagesMap[language]) {
           this.languagesMap[language] = Number.parseInt(repo.languages[language]);
@@ -140,8 +141,8 @@ export class GitTechnologiesComponent implements OnInit {
   }
 
   initTopicsMap(): Promise<any> {
-    for (let i = 0; i < this.gitProfile.repos.length; i++) {
-      let repo = this.gitProfile.repos[i];
+    for (let i = 0; i < this.report.result.repos.length; i++) {
+      let repo = this.report.result.repos[i];
       if (repo.topics) {
         for (const topic of Object.keys(repo.topics)) {
           if (!this.topicsMap[topic]) {

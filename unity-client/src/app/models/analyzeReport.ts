@@ -5,10 +5,10 @@ export class AnalyzeReport {
   resource: AnalyzeSource;
   analyzedAt: Date;
   analysisTime: number;
-  result: object;
+  result: any;
 
   constructor(id: string, resource: AnalyzeSource, analyzedAt: Date,
-              analysisTime: number, result: object) {
+              analysisTime: number, result: any) {
     this.id = id;
     this.resource = resource;
     this.analyzedAt = analyzedAt;

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { GitProfileService } from "../../../../services/GitProfileService";
+import { UserAnalyticsService } from "../../../../services/UserAnalyticsService";
+import { AnalyzeReport } from "../../../../models/analyzeReport";
 
 @Component({
   selector: 'app-git-profile',
@@ -9,10 +10,10 @@ import { GitProfileService } from "../../../../services/GitProfileService";
 })
 export class GitProfileComponent implements OnInit {
   error = '';
-  gitProfile: Object;
+  report: AnalyzeReport;
   loading = false;
 
-  constructor(private gitProfileService: GitProfileService, private route: ActivatedRoute) {
+  constructor(private userAnalyticsService: UserAnalyticsService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -21,10 +22,10 @@ export class GitProfileComponent implements OnInit {
     //FIXME take from store
     this.route.parent.params.subscribe(params => {
       if (params['login']) {
-        this.gitProfileService.getGitProfileData(params['login'], params['id'])
+        this.userAnalyticsService.getUserAnalyticsReport(params['id'])
           .subscribe(
             result => {
-              this.gitProfile = result.reports[0];
+              this.report = result;
               this.loading = false;
             },
             error => {

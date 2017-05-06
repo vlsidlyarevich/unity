@@ -2,7 +2,7 @@
 <div class="bg-faded" style="padding-left: 20px">
   <br/>
   <div class="text-center">
-    <h3>{{gitProfile?.login}}'s repositories</h3>
+    <h3>{{report?.result.login}}'s repositories</h3>
   </div>
   <br/>
   <div class="form-inline justify-content-end">
@@ -58,7 +58,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let repo of gitProfile?.repos | sortByProperty:topBy">
+      <tr *ngFor="let repo of report?.result.repos | sortByProperty:topBy">
         <th scope="row">{{repo.stargazersCount}}</th>
         <td><a class="nav-link" href="{{repo.htmlUrl}}">{{repo.name}}</a></td>
         <td>{{repo.description}}</td>

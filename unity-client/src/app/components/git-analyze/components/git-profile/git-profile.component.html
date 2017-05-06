@@ -3,19 +3,19 @@
   <div class="row">
     <div class="col-sm-2 pt-3">
       <img alt="" class="avatar width-full rounded-2" height="230"
-           src="{{gitProfile?.avatarUrl}}" width="230">
+           src="{{report?.result.avatarUrl}}" width="230">
     </div>
     <div class="col-sm-6 pt-3">
       <div class="row">
-        <h2>{{gitProfile?.name}}</h2>
+        <h2>{{report?.result.name}}</h2>
       </div>
       <hr/>
       <div class="row">
-        <h4>{{gitProfile?.login}}</h4>
+        <h4>{{report?.result.login}}</h4>
       </div>
       <hr/>
       <div class="row">
-        <p>{{gitProfile?.bio}}</p>
+        <p>{{report?.result.bio}}</p>
       </div>
     </div>
   </div>
@@ -28,13 +28,13 @@
   </div>
   <div class="row">
     <div class="col-sm-9 pt-3">
-      Email: <a href="mailto:{{gitProfile?.email}}">{{gitProfile?.email}}</a>
+      Email: <a href="mailto:{{report?.result.email}}">{{report?.result.email}}</a>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-9 pt-3">
-      Blog: <a href='{{gitProfile?.blog}}' class="url"
-               rel="nofollow me">{{gitProfile?.blog}}</a>
+      Blog: <a href="{{report?.result.blog}}" class="url"
+               rel="nofollow me">{{report?.result.blog}}</a>
     </div>
   </div>
 
@@ -45,22 +45,22 @@
   </div>
   <div class="row">
     <div class="col-sm-9 pt-3">
-      Company: {{gitProfile?.company}}
+      Company: {{report?.result.company}}
     </div>
   </div>
   <div class="row">
     <div class="col-sm-9 pt-3">
-      Followers: {{gitProfile?.followers}}
+      Followers: {{report?.result.followers}}
     </div>
   </div>
   <div class="row">
     <div class="col-sm-9 pt-3">
-      Following: {{gitProfile?.following}}
+      Following: {{report?.result.following}}
     </div>
   </div>
   <div class="row">
     <div class="col-sm-9 pt-3">
-      Created at: {{gitProfile?.createdAt | date:'dd/MM/yyyy'}}
+      Created at: {{report?.result.createdAt | date:'dd/MM/yyyy'}}
     </div>
   </div>
 </div>
