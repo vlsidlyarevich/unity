@@ -1,16 +1,18 @@
 export class User {
-  id: String;
-  authorities: String[];
-  username: String;
-  password: String;
+  id: string;
+  authorities: string[];
+  username: string;
+  password: string;
   accountNonExpired: boolean;
   accountNonLocked: boolean;
   credentialsNonExpired: boolean;
   enabled: boolean;
+  createdAt: string;
+  updatedAt: string;
 
-  constructor(id: String, authorities: String[], username: String, password: String,
+  constructor(id: string, authorities: string[], username: string, password: string,
               accountNonExpired: boolean, accountNonLocked: boolean, credentialsNonExpired: boolean,
-              enabled: boolean) {
+              enabled: boolean, createdAt: string, updatedAt: string) {
     this.id = id;
     this.authorities = authorities;
     this.username = username;
@@ -19,5 +21,7 @@ export class User {
     this.accountNonLocked = accountNonLocked;
     this.credentialsNonExpired = credentialsNonExpired;
     this.enabled = enabled;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
 }

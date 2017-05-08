@@ -35,7 +35,7 @@ export class UserService {
     });
     const options = new RequestOptions({ headers: headers });
 
-    return this.http.post(environment.serverUrl + `${UserService.USER_UPDATE}/${id}`, body, options)
+    return this.http.put(environment.serverUrl + `${UserService.USER_UPDATE}/${id}`, body, options)
       .map((response: Response) => {
         return response.status === 200;
       }).catch(UserService.handleError);

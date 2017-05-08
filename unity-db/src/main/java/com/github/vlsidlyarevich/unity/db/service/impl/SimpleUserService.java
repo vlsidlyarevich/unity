@@ -51,7 +51,7 @@ public class SimpleUserService implements UserService {
     }
 
     @Override
-    @PreAuthorize("@currentUserServiceImpl.canAccessUser(#id)")
+    @PreAuthorize("@securityContextCurrentUserService.canAccessUser(#id)")
     public User update(String id, User user) {
         user.setId(id);
 
@@ -68,7 +68,7 @@ public class SimpleUserService implements UserService {
     }
 
     @Override
-    @PreAuthorize("@currentUserServiceImpl.canAccessUser(#id)")
+    @PreAuthorize("@securityContextCurrentUserService.canAccessUser(#id)")
     public String delete(String id) {
         repository.delete(id);
         userSocialService.delete(id);
