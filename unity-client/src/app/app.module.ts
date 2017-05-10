@@ -16,7 +16,6 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { MyProfileModule } from "./components/my-profile/my-profile.module";
 import { UserSocialService } from "./services/UserSocialService";
 import { UserService } from "./services/UserService";
-import { BootstrapModalModule } from "ng2-bootstrap-modal";
 import { GitAnalyzeModule } from "./components/git-analyze/git-analyze.module";
 import { GitProfileService } from "./services/GitProfileService";
 import { FooterModule } from "./components/footer/footer.module";
@@ -31,7 +30,6 @@ import { UserAnalyticsService } from "./services/UserAnalyticsService";
   imports: [
     NgbModule.forRoot(),
     PipeModule.forRoot(),
-    BootstrapModalModule,
     BrowserModule,
     ReactiveFormsModule,
     HttpModule,
