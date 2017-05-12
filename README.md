@@ -16,8 +16,8 @@ Also have a look at [Assistant programmer](https://github.com/Karina-Denisevich/
 * [Docker](https://www.docker.com/)
 
 ---
-[Takari maven wrapper](https://github.com/takari/maven-wrapper) is used.
-If you don't have installed maven, or you don't want to install it, just type `./mvnw clean install`.
+[Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) is used.
+Type `./gradlew` and task if you have UNIX platform, or `gradlew` and task on Windows.
 
 ---
 ### Getting mongo

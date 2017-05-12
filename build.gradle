@@ -1,0 +1,32 @@
+version = '2.0'
+description = 'Unity-Human Resource Analyzing Tool'
+group = 'com.github.vlsidlyarevich'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+sourceCompatibility = javaVersion
+targetCompatibility = javaVersion
+
+jar {
+    baseName = 'unity-hrat'
+    version = "${version}"
+}
