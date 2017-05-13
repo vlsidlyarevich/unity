@@ -1,0 +1,15 @@
+version = '2.0'
+group = 'com.github.vlsidlyarevich'
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.apache.commons:commons-collections4:${commonsCollectionsVersion}")
+    compile("org.projectlombok:lombok:${lombokVersion}")
+    compile("org.apache.commons:commons-lang3:${commonsLang3Version}")
+    compile("com.google.guava:guava:${guavaVersion}")
+}
+
+jar {
+    baseName = 'unity-common'
+    version = "${version}"
+}

@@ -1,0 +1,19 @@
+version = '2.0'
+group = 'com.github.vlsidlyarevich'
+
+dependencies {
+    compile project(":unity-db")
+    compile project(":unity-common")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.boot:spring-boot-starter-aop")
+    compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
+}
+
+springBoot {
+    mainClass = 'com.github.vlsidlyarevich.unity.web.UnityAuth'
+}
+
+jar {
+    baseName = 'unity-auth'
+    version = "${version}"
+}

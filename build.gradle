@@ -11,22 +11,32 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    testCompile("org.springframework.boot:spring-boot-starter-test")
-}
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
 
-sourceCompatibility = javaVersion
-targetCompatibility = javaVersion
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
 
-jar {
-    baseName = 'unity-hrat'
-    version = "${version}"
+    springBoot {
+        mainClass = "com.github.vlsidlyarevich.unity.web.Application"
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    bootRepackage {
+        enabled = false
+    }
+
+    dependencies {
+        testCompile("org.springframework.boot:spring-boot-starter-test")
+        testCompile("org.hamcrest:hamcrest-library")
+        testCompile("junit:junit")
+    }
 }

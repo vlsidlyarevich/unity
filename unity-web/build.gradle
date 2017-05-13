@@ -1,0 +1,25 @@
+version = '2.0'
+group = 'com.github.vlsidlyarevich'
+
+dependencies {
+    compile project(":unity-auth")
+    compile project(":unity-git")
+    compile project(":unity-db")
+    compile project(":unity-common")
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.boot:spring-boot-starter-aop")
+    compile("org.apache.commons:commons-collections4:${commonsCollectionsVersion}")
+    compile("org.projectlombok:lombok:${lombokVersion}")
+    compile("com.google.guava:guava:${guavaVersion}")
+}
+
+bootRepackage {
+    enabled = true
+}
+
+jar {
+    baseName = 'unity-web'
+    version = "${version}"
+}

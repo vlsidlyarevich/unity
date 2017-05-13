@@ -47,7 +47,7 @@ public class FileSystemStorageServiceTest {
         List<Path> resolvedFiles = storageService.loadAll();
         resolvedFiles.forEach(Path::toFile);
 
-        Assert.assertTrue(storageService.loadAll().size() == 2);
+        Assert.assertTrue(resolvedFiles.size() == 2);
     }
 
     @Test

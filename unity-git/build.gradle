@@ -1,0 +1,20 @@
+version = '2.0'
+group = 'com.github.vlsidlyarevich'
+
+dependencies {
+    compile project(":unity-db")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.apache.httpcomponents:httpclient")
+    compile("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
+    compile("com.fasterxml.jackson.core:jackson-core:${jacksonVersion}")
+    compile("com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}")
+}
+
+springBoot {
+    mainClass = 'com.github.vlsidlyarevich.unity.git.UnityGit'
+}
+
+jar {
+    baseName = 'unity-git'
+    version = "${version}"
+}
