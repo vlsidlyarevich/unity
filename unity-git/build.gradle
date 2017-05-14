@@ -1,5 +1,8 @@
-version = '2.0'
-group = 'com.github.vlsidlyarevich'
+buildscript {
+    repositories { mavenCentral() }
+}
+
+plugins { id "io.spring.dependency-management" version "1.0.0.RELEASE" }
 
 dependencies {
     compile project(":unity-db")
@@ -10,8 +13,8 @@ dependencies {
     compile("com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}")
 }
 
-springBoot {
-    mainClass = 'com.github.vlsidlyarevich.unity.git.UnityGit'
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
 }
 
 jar {

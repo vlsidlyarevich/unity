@@ -1,6 +1,17 @@
 version = '2.0'
 group = 'com.github.vlsidlyarevich'
 
+apply plugin: 'org.springframework.boot'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
 dependencies {
     compile project(":unity-auth")
     compile project(":unity-git")

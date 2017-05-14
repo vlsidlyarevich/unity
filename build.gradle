@@ -2,36 +2,21 @@ version = '2.0'
 description = 'Unity-Human Resource Analyzing Tool'
 group = 'com.github.vlsidlyarevich'
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
-}
-
 repositories {
     mavenCentral()
 }
 
 subprojects {
+    version = '2.0'
+    group = 'com.github.vlsidlyarevich'
+
     apply plugin: 'java'
-    apply plugin: 'org.springframework.boot'
 
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
 
-    springBoot {
-        mainClass = "com.github.vlsidlyarevich.unity.web.Application"
-    }
-
     repositories {
         mavenCentral()
-    }
-
-    bootRepackage {
-        enabled = false
     }
 
     dependencies {

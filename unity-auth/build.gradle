@@ -1,5 +1,8 @@
-version = '2.0'
-group = 'com.github.vlsidlyarevich'
+buildscript {
+    repositories { mavenCentral() }
+}
+
+plugins { id "io.spring.dependency-management" version "1.0.0.RELEASE" }
 
 dependencies {
     compile project(":unity-db")
@@ -9,8 +12,8 @@ dependencies {
     compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
 }
 
-springBoot {
-    mainClass = 'com.github.vlsidlyarevich.unity.web.UnityAuth'
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
 }
 
 jar {

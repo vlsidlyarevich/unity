@@ -1,5 +1,8 @@
-version = '2.0'
-group = 'com.github.vlsidlyarevich'
+buildscript {
+    repositories { mavenCentral() }
+}
+
+plugins { id "io.spring.dependency-management" version "1.0.0.RELEASE" }
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
@@ -7,6 +10,10 @@ dependencies {
     compile("org.projectlombok:lombok:${lombokVersion}")
     compile("org.apache.commons:commons-lang3:${commonsLang3Version}")
     compile("com.google.guava:guava:${guavaVersion}")
+}
+
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
 }
 
 jar {
