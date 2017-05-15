@@ -1,8 +1,3 @@
-version = '2.0'
-group = 'com.github.vlsidlyarevich'
-
-apply plugin: 'org.springframework.boot'
-
 buildscript {
     repositories {
         mavenCentral()
@@ -11,6 +6,8 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
+
+apply plugin: 'spring-boot'
 
 dependencies {
     compile project(":unity-auth")
@@ -21,8 +18,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.springframework.boot:spring-boot-starter-aop")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
     compile("org.apache.commons:commons-collections4:${commonsCollectionsVersion}")
-    compile("org.projectlombok:lombok:${lombokVersion}")
     compile("com.google.guava:guava:${guavaVersion}")
 }
 
