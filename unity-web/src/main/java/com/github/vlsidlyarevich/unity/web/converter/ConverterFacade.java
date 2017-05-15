@@ -1,7 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.converter;
 
 import com.github.vlsidlyarevich.unity.common.converter.Converter;
-import com.github.vlsidlyarevich.unity.db.model.DbModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
