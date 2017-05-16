@@ -14,7 +14,7 @@ public final class FileUtils {
 
     }
 
-    public static File multipartToFile(MultipartFile multipart) {
+    public static File multipartToFile(final MultipartFile multipart) {
         try {
             File convFile = new File(multipart.getName());
             multipart.transferTo(convFile);
@@ -26,7 +26,7 @@ public final class FileUtils {
         return null;
     }
 
-    public static File multipartToFile(MultipartFile multipart, String fileName) {
+    public static File multipartToFile(final MultipartFile multipart, final String fileName) {
         try {
             File convFile = new File(fileName);
             multipart.transferTo(convFile);
@@ -38,7 +38,7 @@ public final class FileUtils {
         return null;
     }
 
-    public static void cleanDirectory(Path pathToDirectory) {
+    public static void cleanDirectory(final Path pathToDirectory) {
         for (File file : pathToDirectory.toFile().listFiles()) {
             file.delete();
         }

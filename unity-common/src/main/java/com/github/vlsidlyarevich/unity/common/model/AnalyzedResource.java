@@ -8,7 +8,7 @@ public enum AnalyzedResource {
 
     private String name;
 
-    AnalyzedResource(String string) {
+    AnalyzedResource(final String string) {
         this.name = name;
     }
 
