@@ -26,7 +26,8 @@ public final class FileUtils {
         return null;
     }
 
-    public static File multipartToFile(final MultipartFile multipart, final String fileName) {
+    public static File multipartToFile(final MultipartFile multipart,
+                                       final String fileName) {
         try {
             File convFile = new File(fileName);
             multipart.transferTo(convFile);

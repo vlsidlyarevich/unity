@@ -13,7 +13,8 @@ public class AnalysisReport {
     private Long analysisTime;
     private Result result;
 
-    public AnalysisReport(final Result result, final Date analyzedAt, final Long analysisTime) {
+    public AnalysisReport(final Result result, final Date analyzedAt,
+                          final Long analysisTime) {
         this.id = UUID.randomUUID().toString();
         this.analyzedAt = analyzedAt;
         this.analysisTime = analysisTime;
