@@ -11,7 +11,7 @@ public class UserAuthentication implements Authentication {
     private final User user;
     private boolean authenticated = true;
 
-    public UserAuthentication(User user) {
+    public UserAuthentication(final User user) {
         this.user = user;
     }
 
@@ -41,7 +41,8 @@ public class UserAuthentication implements Authentication {
     }
 
     @Override
-    public void setAuthenticated(boolean authenticated) throws IllegalArgumentException {
+    public void setAuthenticated(final boolean authenticated)
+            throws IllegalArgumentException {
         this.authenticated = authenticated;
     }
 

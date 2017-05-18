@@ -11,8 +11,9 @@ import org.springframework.stereotype.Service;
 public class SecurityContextCurrentUserService implements CurrentUserService {
 
     @Override
-    public boolean canAccessUser(String userId) {
-        UserAuthentication currentUser = (UserAuthentication) SecurityContextHolder.getContext().getAuthentication();
+    public boolean canAccessUser(final String userId) {
+        UserAuthentication currentUser
+                = (UserAuthentication) SecurityContextHolder.getContext().getAuthentication();
         return currentUser != null
                 && (currentUser.getAuthorities().contains(Authority.ROLE_ADMIN)
                 || ((User) currentUser.getDetails()).getId().equals(userId));
