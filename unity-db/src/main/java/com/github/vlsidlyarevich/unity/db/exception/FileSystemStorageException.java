@@ -10,19 +10,21 @@ public class FileSystemStorageException extends StorageException {
     private String key;
     private Object[] args;
 
-    public FileSystemStorageException(String key, Object[] args) {
+    public FileSystemStorageException(final String key, final Object[] args) {
         super();
         this.key = key;
         this.args = args;
     }
 
 
-    public FileSystemStorageException(String message, String key, Throwable cause) {
+    public FileSystemStorageException(final String message,
+                                      final String key, Throwable cause) {
         super(message, cause);
         this.key = key;
     }
 
-    public FileSystemStorageException(String message, Throwable cause, String key, Object[] args) {
+    public FileSystemStorageException(final String message, final Throwable cause,
+                                      final String key, Object[] args) {
         super(message, cause);
         this.key = key;
         this.args = args;

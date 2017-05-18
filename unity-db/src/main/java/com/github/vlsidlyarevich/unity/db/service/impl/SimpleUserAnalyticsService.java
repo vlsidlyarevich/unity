@@ -15,19 +15,23 @@ import java.util.List;
 @Service
 public class SimpleUserAnalyticsService implements UserAnalyticsService {
 
-    @Autowired
-    private UserAnalyticsRepository repository;
+    private final UserAnalyticsRepository repository;
+
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
+    public SimpleUserAnalyticsService(final UserAnalyticsRepository repository, final UserService userService) {
+        this.repository = repository;
+        this.userService = userService;
+    }
 
     @Override
-    public UserAnalytics add(UserAnalytics userAnalytics) {
+    public UserAnalytics add(final UserAnalytics userAnalytics) {
         if (userService.find(userAnalytics.getUserId()) == null) {
             throw new UserNotFoundException("User with user id: " + userAnalytics.getUserId() + " not found");
         }
 
-        UserAnalytics analytics = repository.findByUserId(userAnalytics.getUserId());
+        final UserAnalytics analytics = repository.findByUserId(userAnalytics.getUserId());
         if (analytics != null) {
             analytics.getReports().addAll(userAnalytics.getReports());
             analytics.setUpdatedAt(String.valueOf(LocalDateTime.now()));
