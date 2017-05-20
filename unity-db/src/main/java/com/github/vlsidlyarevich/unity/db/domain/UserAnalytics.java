@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.db.model;
+package com.github.vlsidlyarevich.unity.db.domain;
 
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import lombok.Data;

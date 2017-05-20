@@ -4,8 +4,7 @@ import com.github.vlsidlyarevich.unity.git.config.GitProperties;
 import com.github.vlsidlyarevich.unity.git.factory.RestTemplateFactory;
 import com.github.vlsidlyarevich.unity.git.model.GitProfile;
 import com.github.vlsidlyarevich.unity.git.service.GitProfileService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -14,21 +13,21 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.PostConstruct;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class HttpGitProfileService implements GitProfileService {
-
-    private static final Logger logger = LoggerFactory.getLogger(HttpGitProfileService.class);
 
     private final String gitApiUrl;
 
     private RestTemplate restTemplate;
 
-    @Autowired
-    private RestTemplateFactory restTemplateFactory;
+    private final RestTemplateFactory restTemplateFactory;
 
     @Autowired
-    public HttpGitProfileService(GitProperties gitProperties) {
+    public HttpGitProfileService(final GitProperties gitProperties,
+                                 final RestTemplateFactory restTemplateFactory) {
         this.gitApiUrl = gitProperties.getApiUrl() + "/users/{user}";
+        this.restTemplateFactory = restTemplateFactory;
     }
 
     @PostConstruct
@@ -36,18 +35,19 @@ public class HttpGitProfileService implements GitProfileService {
         try {
             this.restTemplate = restTemplateFactory.getObject();
         } catch (Exception e) {
-            logger.error("Can't initiate rest template factory with error: {}, using default one.", e.getCause());
+            log.error("Can't initiate rest template factory with error: {}, using default one.",
+                    e.getCause());
             this.restTemplate = new RestTemplate();
         }
     }
 
-    public Optional<GitProfile> getGitProfile(String gitProfile) {
+    public Optional<GitProfile> getGitProfile(final String gitProfile) {
         Optional<GitProfile> result;
         try {
             result = Optional.of(restTemplate.getForObject(gitApiUrl, GitProfile.class, gitProfile));
         } catch (HttpClientErrorException e) {
             result = Optional.empty();
-            logger.error("Can't find git profile: {} with error {}", gitProfile, e.getMessage());
+            log.error("Can't find git profile: {} with error {}", gitProfile, e.getMessage());
         }
         return result;
     }

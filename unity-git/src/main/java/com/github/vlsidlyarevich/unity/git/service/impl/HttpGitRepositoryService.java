@@ -4,8 +4,7 @@ import com.github.vlsidlyarevich.unity.git.config.GitProperties;
 import com.github.vlsidlyarevich.unity.git.factory.RestTemplateFactory;
 import com.github.vlsidlyarevich.unity.git.model.GitRepository;
 import com.github.vlsidlyarevich.unity.git.service.GitRepositoryService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -16,23 +15,23 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class HttpGitRepositoryService implements GitRepositoryService {
-
-    private static final Logger logger = LoggerFactory.getLogger(HttpGitRepositoryService.class);
 
     private final String gitUserRepositoriesUrl;
     private final String gitRepositoryUrl;
 
     private RestTemplate restTemplate;
 
-    @Autowired
-    private RestTemplateFactory restTemplateFactory;
+    private final RestTemplateFactory restTemplateFactory;
 
     @Autowired
-    public HttpGitRepositoryService(GitProperties gitProperties) {
+    public HttpGitRepositoryService(final GitProperties gitProperties,
+                                    final RestTemplateFactory restTemplateFactory) {
         this.gitUserRepositoriesUrl = gitProperties.getApiUrl() + "/users/{user}/repos";
         this.gitRepositoryUrl = gitProperties.getApiUrl() + "/repos/{user}/{repo}";
+        this.restTemplateFactory = restTemplateFactory;
     }
 
     @PostConstruct
@@ -40,29 +39,34 @@ public class HttpGitRepositoryService implements GitRepositoryService {
         try {
             this.restTemplate = restTemplateFactory.getObject();
         } catch (Exception e) {
-            logger.error("Can't initiate rest template factory with error: {}, using default one.", e.getCause());
+            log.error("Can't initiate rest template factory with error: {}," +
+                    " using default one.", e.getCause());
             this.restTemplate = new RestTemplate();
         }
     }
 
-    public Optional<List<GitRepository>> getGitRepositories(String gitProfile) {
+    public Optional<List<GitRepository>> getGitRepositories(final String gitProfile) {
         Optional<List<GitRepository>> repositories;
         try {
-            repositories = Optional.of(Arrays.asList(restTemplate.getForObject(gitUserRepositoriesUrl, GitRepository[].class, gitProfile)));
+            repositories = Optional.of(Arrays.asList(restTemplate
+                    .getForObject(gitUserRepositoriesUrl, GitRepository[].class, gitProfile)));
         } catch (HttpClientErrorException e) {
             repositories = Optional.empty();
-            logger.error("Can't get git repositories of profile: {} with error {}", gitProfile, e.getMessage());
+            log.error("Can't get git repositories of profile: {} with error {}",
+                    gitProfile, e.getMessage());
         }
         return repositories;
     }
 
-    public Optional<GitRepository> getGitRepository(String gitProfile, String repo) {
+    public Optional<GitRepository> getGitRepository(final String gitProfile, final String repo) {
         Optional<GitRepository> repositories;
         try {
-            repositories = Optional.of(restTemplate.getForObject(gitRepositoryUrl, GitRepository.class, gitProfile, repo));
+            repositories = Optional.of(restTemplate
+                    .getForObject(gitRepositoryUrl, GitRepository.class, gitProfile, repo));
         } catch (HttpClientErrorException e) {
             repositories = Optional.empty();
-            logger.error("Can't get git repository: {} of profile: {} with error {}", repo, gitProfile, e.getMessage());
+            log.error("Can't get git repository: {} of profile: {} with error {}",
+                    repo, gitProfile, e.getMessage());
         }
         return repositories;
     }

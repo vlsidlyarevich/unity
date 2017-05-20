@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.db.service.impl;
 
 import com.github.vlsidlyarevich.unity.common.exception.UserNotFoundException;
-import com.github.vlsidlyarevich.unity.db.model.UserAnalytics;
+import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 import com.github.vlsidlyarevich.unity.db.repository.UserAnalyticsRepository;
 import com.github.vlsidlyarevich.unity.db.service.UserAnalyticsService;
 import com.github.vlsidlyarevich.unity.db.service.UserService;
@@ -20,7 +20,8 @@ public class SimpleUserAnalyticsService implements UserAnalyticsService {
     private final UserService userService;
 
     @Autowired
-    public SimpleUserAnalyticsService(final UserAnalyticsRepository repository, final UserService userService) {
+    public SimpleUserAnalyticsService(final UserAnalyticsRepository repository,
+                                      final UserService userService) {
         this.repository = repository;
         this.userService = userService;
     }
@@ -28,7 +29,8 @@ public class SimpleUserAnalyticsService implements UserAnalyticsService {
     @Override
     public UserAnalytics add(final UserAnalytics userAnalytics) {
         if (userService.find(userAnalytics.getUserId()) == null) {
-            throw new UserNotFoundException("User with user id: " + userAnalytics.getUserId() + " not found");
+            throw new UserNotFoundException("User with user id: "
+                    + userAnalytics.getUserId() + " not found");
         }
 
         final UserAnalytics analytics = repository.findByUserId(userAnalytics.getUserId());
@@ -43,12 +45,12 @@ public class SimpleUserAnalyticsService implements UserAnalyticsService {
     }
 
     @Override
-    public UserAnalytics find(String id) {
+    public UserAnalytics find(final String id) {
         return repository.findOne(id);
     }
 
     @Override
-    public UserAnalytics findByUserId(String userId) {
+    public UserAnalytics findByUserId(final String userId) {
         return repository.findByUserId(userId);
     }
 
@@ -58,14 +60,14 @@ public class SimpleUserAnalyticsService implements UserAnalyticsService {
     }
 
     @Override
-    public String delete(String id) {
+    public String delete(final String id) {
         repository.delete(id);
         return id;
     }
 
     @Override
-    public String deleteReport(String userId, String reportId) {
-        UserAnalytics analytics = repository.findByUserId(userId);
+    public String deleteReport(final String userId, final String reportId) {
+        final UserAnalytics analytics = repository.findByUserId(userId);
         if (analytics != null) {
             analytics.getReports()
                     .removeIf(analysisReport -> analysisReport.getId().equals(reportId));
@@ -83,8 +85,8 @@ public class SimpleUserAnalyticsService implements UserAnalyticsService {
     }
 
     @Override
-    public List<String> deleteAllReports(String userId) {
-        UserAnalytics analytics = repository.findByUserId(userId);
+    public List<String> deleteAllReports(final String userId) {
+        final UserAnalytics analytics = repository.findByUserId(userId);
         List<String> result = new ArrayList<>();
         if (analytics != null) {
             analytics.getReports()

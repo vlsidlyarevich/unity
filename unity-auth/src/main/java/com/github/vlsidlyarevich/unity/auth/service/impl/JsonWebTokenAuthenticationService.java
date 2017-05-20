@@ -5,7 +5,7 @@ import com.github.vlsidlyarevich.unity.auth.models.UserAuthentication;
 import com.github.vlsidlyarevich.unity.auth.service.TokenAuthenticationService;
 import com.github.vlsidlyarevich.unity.auth.service.TokenService;
 import com.github.vlsidlyarevich.unity.common.exception.UserNotFoundException;
-import com.github.vlsidlyarevich.unity.db.model.User;
+import com.github.vlsidlyarevich.unity.db.domain.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;

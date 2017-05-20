@@ -142,12 +142,11 @@
 
         <!-- Checks for common coding problems               -->
         <!-- See http://checkstyle.sf.net/config_coding.html -->
-        <module name="AvoidInlineConditionals"/>
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
-        <module name="HiddenField" >
-            <property name="ignoreSetter" value="true" />
-            <property name="ignoreConstructorParameter" value="true" />
+        <module name="HiddenField">
+            <property name="ignoreSetter" value="true"/>
+            <property name="ignoreConstructorParameter" value="true"/>
         </module>
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
@@ -160,7 +159,7 @@
         <!-- See http://checkstyle.sf.net/config_design.html -->
 
         <!--<module name="DesignForExtension">-->
-            <!--<property name="ignoredAnnotations" value="Override, Test"/>-->
+        <!--<property name="ignoredAnnotations" value="Override, Test"/>-->
         <!--</module>-->
 
         <module name="FinalClass"/>
@@ -176,5 +175,4 @@
         <module name="UpperEll"/>
 
     </module>
-
 </module>

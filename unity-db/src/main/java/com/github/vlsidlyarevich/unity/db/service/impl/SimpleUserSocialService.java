@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.db.service.impl;
 
 import com.github.vlsidlyarevich.unity.common.exception.UserNotFoundException;
-import com.github.vlsidlyarevich.unity.db.model.UserSocial;
+import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
 import com.github.vlsidlyarevich.unity.db.service.UserService;
 import com.github.vlsidlyarevich.unity.db.service.UserSocialService;
@@ -15,30 +15,36 @@ import java.util.List;
 @Service
 public class SimpleUserSocialService implements UserSocialService {
 
-    @Autowired
-    private UserSocialRepository repository;
+    private final UserSocialRepository repository;
+
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
+    public SimpleUserSocialService(final UserSocialRepository repository,
+                                   final UserService userService) {
+        this.repository = repository;
+        this.userService = userService;
+    }
 
     @Override
-    public UserSocial create(UserSocial userSocial) {
+    public UserSocial create(final UserSocial userSocial) {
         if (userService.find(userSocial.getUserId()) != null) {
             repository.deleteByUserId(userSocial.getUserId());
             userSocial.setCreatedAt(String.valueOf(LocalDateTime.now()));
             return repository.save(userSocial);
         } else {
-            throw new UserNotFoundException("User with user id: " + userSocial.getUserId() + " not found");
+            throw new UserNotFoundException("User with user id: "
+                    + userSocial.getUserId() + " not found");
         }
     }
 
     @Override
-    public UserSocial find(String id) {
+    public UserSocial find(final String id) {
         return repository.findOne(id);
     }
 
     @Override
-    public UserSocial findByUserId(String userId) {
+    public UserSocial findByUserId(final String userId) {
         return repository.findByUserId(userId);
     }
 
@@ -50,7 +56,7 @@ public class SimpleUserSocialService implements UserSocialService {
 
     @Override
     @PreAuthorize("@currentUserServiceImpl.canAccessUser(#id)")
-    public UserSocial update(String id, UserSocial userSocial) {
+    public UserSocial update(final String id, final UserSocial userSocial) {
         userSocial.setUserId(id);
         UserSocial saved = repository.findOne(userSocial.getUserId());
 
@@ -66,7 +72,7 @@ public class SimpleUserSocialService implements UserSocialService {
 
     @Override
     @PreAuthorize("@currentUserServiceImpl.canAccessUser(#id)")
-    public String delete(String id) {
+    public String delete(final String id) {
         repository.delete(id);
         return id;
     }

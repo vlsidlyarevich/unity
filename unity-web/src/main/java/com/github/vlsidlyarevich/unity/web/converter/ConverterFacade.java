@@ -10,10 +10,14 @@ import java.util.List;
 @Component
 public class ConverterFacade {
 
-    @Autowired
-    private List<Converter> converters;
+    private final List<Converter> converters;
 
-    public Object convert(Serializable object) {
+    @Autowired
+    public ConverterFacade(final List<Converter> converters) {
+        this.converters = converters;
+    }
+
+    public Object convert(final Serializable object) {
         return converters.stream()
                 .filter(converter -> converter.canConvert(object))
                 .findFirst()

@@ -11,12 +11,12 @@
     <description>Angular 2 and java REST based Human Resourse Analysing tool</description>
 
     <modules>
+        <module>build-tools</module>
         <module>unity-web</module>
         <module>unity-db</module>
         <module>unity-common</module>
         <module>unity-auth</module>
         <module>unity-git</module>
-        <module>build-tools</module>
     </modules>
 
     <parent>
@@ -244,6 +244,7 @@
                 <version>${maven-checkstyle-plugin.version}</version>
                 <configuration>
                     <configLocation>quality/checkstyle/checkstyle.xml</configLocation>
+                    <suppressionsLocation>quality/checkstyle/checkstyle-suppress.xml</suppressionsLocation>
                 </configuration>
                 <executions>
                     <execution>

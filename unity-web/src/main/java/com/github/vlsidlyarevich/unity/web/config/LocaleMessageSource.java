@@ -10,7 +10,7 @@ public class LocaleMessageSource {
 
     @Bean
     public MessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("locale/messages");
         return messageSource;
     }

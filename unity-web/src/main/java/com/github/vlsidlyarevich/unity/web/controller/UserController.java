@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-import com.github.vlsidlyarevich.unity.db.model.User;
+import com.github.vlsidlyarevich.unity.db.domain.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,7 +14,8 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getCurrentUser() {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getDetails();
+        final User currentUser =
+                (User) SecurityContextHolder.getContext().getAuthentication().getDetails();
         return new ResponseEntity<>(currentUser, HttpStatus.OK);
     }
 }

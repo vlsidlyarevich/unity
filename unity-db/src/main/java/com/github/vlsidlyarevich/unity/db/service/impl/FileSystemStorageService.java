@@ -32,7 +32,7 @@ public class FileSystemStorageService implements StorageService {
     private final Path storeLocation;
 
     @Autowired
-    public FileSystemStorageService(StorageProperties properties) {
+    public FileSystemStorageService(final StorageProperties properties) {
         this.storeLocation = Paths.get(properties.getPath());
     }
 
@@ -46,8 +46,8 @@ public class FileSystemStorageService implements StorageService {
     }
 
     @Override
-    public String store(MultipartFile file) {
-        String id = UUID.randomUUID().toString();
+    public String store(final MultipartFile file) {
+        final String id = UUID.randomUUID().toString();
         try {
             if (file.isEmpty()) {
                 log.error("Failed to store empty file " + file.getOriginalFilename());
@@ -56,7 +56,8 @@ public class FileSystemStorageService implements StorageService {
             }
             Files.copy(file.getInputStream(), storeLocation.resolve(id));
         } catch (IOException e) {
-            throw new FileSystemStorageException(e.getMessage(), e.getCause(), "storage.filesystem.file.storeFail",
+            throw new FileSystemStorageException(e.getMessage(), e.getCause(),
+                    "storage.filesystem.file.storeFail",
                     new Object[]{file.getOriginalFilename()});
         }
         return id;
@@ -69,17 +70,18 @@ public class FileSystemStorageService implements StorageService {
                     .filter(path -> !path.equals(this.storeLocation))
                     .map(this.storeLocation::relativize).collect(Collectors.toList());
         } catch (IOException e) {
-            throw new FileSystemStorageException(e.getMessage(), "storage.filesystem.files.readFail", e.getCause());
+            throw new FileSystemStorageException(e.getMessage(),
+                    "storage.filesystem.files.readFail", e.getCause());
         }
     }
 
     @Override
-    public Path load(String filename) {
+    public Path load(final String filename) {
         return storeLocation.resolve(filename);
     }
 
     @Override
-    public Resource loadAsResource(String filename) {
+    public Resource loadAsResource(final String filename) {
         try {
             Path file = load(filename);
             Resource resource = new UrlResource(file.toUri());
@@ -89,13 +91,14 @@ public class FileSystemStorageService implements StorageService {
                 throw new FileNotFoundException();
             }
         } catch (MalformedURLException | FileNotFoundException e) {
-            throw new FileSystemFileNotFoundException(e.getMessage(), "storage.filesystem.file.readFail",
+            throw new FileSystemFileNotFoundException(e.getMessage(),
+                    "storage.filesystem.file.readFail",
                     new Object[]{filename});
         }
     }
 
     @Override
-    public Boolean exists(String filename) {
+    public Boolean exists(final String filename) {
         try {
             return Files.walk(this.storeLocation, 1)
                     .filter(path -> path.toFile().getName().equals(filename))
@@ -113,7 +116,7 @@ public class FileSystemStorageService implements StorageService {
     }
 
     @Override
-    public String delete(String id) {
+    public String delete(final String id) {
         try {
             Files.walk(this.storeLocation, 1)
                     .filter(path -> path.toFile().getName().equals(id))
@@ -121,8 +124,8 @@ public class FileSystemStorageService implements StorageService {
 
             return id;
         } catch (IOException | NoSuchElementException e) {
-            throw new FileSystemStorageException(e.getMessage(), e.getCause(), "storage.filesystem.file.deleteFail",
-                    new Object[]{id});
+            throw new FileSystemStorageException(e.getMessage(), e.getCause(),
+                    "storage.filesystem.file.deleteFail", new Object[]{id});
         }
     }
 }

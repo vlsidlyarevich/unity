@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.auth.models;
 
-import com.github.vlsidlyarevich.unity.db.model.User;
+import com.github.vlsidlyarevich.unity.db.domain.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 

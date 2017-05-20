@@ -1,8 +1,8 @@
 package com.github.vlsidlyarevich.unity.web.converter.dto;
 
 import com.github.vlsidlyarevich.unity.common.converter.Converter;
-import com.github.vlsidlyarevich.unity.db.model.Authority;
-import com.github.vlsidlyarevich.unity.db.model.User;
+import com.github.vlsidlyarevich.unity.db.domain.Authority;
+import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class UserDTOConverter implements Converter<UserDTO, User> {
 
     @Override
-    public User convert(UserDTO dto) {
+    public User convert(final UserDTO dto) {
         User user = new User();
         user.setUsername(dto.getUsername());
         user.setPassword(dto.getPassword());
@@ -28,7 +28,7 @@ public class UserDTOConverter implements Converter<UserDTO, User> {
         return user;
     }
 
-    public boolean canConvert(Object o) {
+    public boolean canConvert(final Object o) {
         return o instanceof UserDTO;
     }
 }

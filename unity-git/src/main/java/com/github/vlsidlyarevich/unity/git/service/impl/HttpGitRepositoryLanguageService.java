@@ -3,8 +3,7 @@ package com.github.vlsidlyarevich.unity.git.service.impl;
 import com.github.vlsidlyarevich.unity.git.config.GitProperties;
 import com.github.vlsidlyarevich.unity.git.factory.RestTemplateFactory;
 import com.github.vlsidlyarevich.unity.git.service.GitRepositoryLanguageService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -16,57 +15,64 @@ import javax.annotation.PostConstruct;
 import java.util.Map;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class HttpGitRepositoryLanguageService implements GitRepositoryLanguageService {
-
-    private static final Logger logger = LoggerFactory.getLogger(HttpGitRepositoryLanguageService.class);
 
     private final String gitApiUrl;
 
     private RestTemplate restTemplate;
 
+    private final RestTemplateFactory restTemplateFactory;
+
     @Autowired
-    private RestTemplateFactory restTemplateFactory;
+    public HttpGitRepositoryLanguageService(final GitProperties gitProperties,
+                                            final RestTemplateFactory restTemplateFactory) {
+        this.gitApiUrl = gitProperties.getApiUrl() + "/repos/{user}/{repo}/languages";
+        this.restTemplateFactory = restTemplateFactory;
+    }
 
     @PostConstruct
     public void init() {
         try {
             this.restTemplate = restTemplateFactory.getObject();
         } catch (Exception e) {
-            logger.error("Can't initiate rest template factory with error: {}, using default one.", e.getCause());
+            log.error("Can't initiate rest template factory with error: {}," +
+                    " using default one.", e.getCause());
             this.restTemplate = new RestTemplate();
         }
     }
 
-    @Autowired
-    public HttpGitRepositoryLanguageService(GitProperties gitProperties) {
-        this.gitApiUrl = gitProperties.getApiUrl() + "/repos/{user}/{repo}/languages";
-    }
-
     @Override
-    public Optional<Map<String, String>> getGitRepoLanguages(String url) {
+    public Optional<Map<String, String>> getGitRepoLanguages(final String url) {
         Optional<Map<String, String>> result;
-        ParameterizedTypeReference<Map<String, String>> response = new ParameterizedTypeReference<Map<String, String>>() {
+        ParameterizedTypeReference<Map<String, String>> response
+                = new ParameterizedTypeReference<Map<String, String>>() {
         };
         try {
-            result = Optional.of(restTemplate.exchange(url, HttpMethod.GET, null, response).getBody());
+            result = Optional.of(restTemplate.exchange(url, HttpMethod.GET,
+                    null, response).getBody());
         } catch (HttpClientErrorException e) {
             result = Optional.empty();
-            logger.error("Can't get languages by url: {} with error {}", url, e.getMessage());
+            log.error("Can't get languages by url: {} with error {}", url, e.getMessage());
         }
         return result;
     }
 
     @Override
-    public Optional<Map<String, String>> getGitRepoLanguages(String gitProfile, String repo) {
+    public Optional<Map<String, String>> getGitRepoLanguages(final String gitProfile,
+                                                             final String repo) {
         Optional<Map<String, String>> result;
-        ParameterizedTypeReference<Map<String, String>> response = new ParameterizedTypeReference<Map<String, String>>() {
+        ParameterizedTypeReference<Map<String, String>> response
+                = new ParameterizedTypeReference<Map<String, String>>() {
         };
         try {
-            result = Optional.of(restTemplate.exchange(gitApiUrl, HttpMethod.GET, null, response, gitProfile, repo).getBody());
+            result = Optional.of(restTemplate.exchange(gitApiUrl, HttpMethod.GET,
+                    null, response, gitProfile, repo).getBody());
         } catch (HttpClientErrorException e) {
             result = Optional.empty();
-            logger.error("Can't get languages of git profile's:{} repo {} with error {}", gitProfile, repo, e.getMessage());
+            log.error("Can't get languages of git profile's:{} repo {} with error {}",
+                    gitProfile, repo, e.getMessage());
         }
         return result;
     }

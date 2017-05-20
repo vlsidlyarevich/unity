@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.db.model;
+package com.github.vlsidlyarevich.unity.db.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 
