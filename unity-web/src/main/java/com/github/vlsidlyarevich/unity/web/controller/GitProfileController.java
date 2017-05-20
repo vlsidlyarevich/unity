@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -40,9 +41,12 @@ public class GitProfileController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         UserAnalytics userAnalytics = new UserAnalytics();
-        userAnalytics.setReports(new ArrayList() {{
-            add(report.get());
-        }});
+
+        List<AnalysisReport> reports = new ArrayList<>();
+        reports.add(report.get());
+
+        userAnalytics.setReports(reports);
+
         userAnalytics.setUserId(((User) SecurityContextHolder
                 .getContext().getAuthentication().getDetails()).getId());
         userAnalytics.setCreatedAt(String.valueOf(LocalDateTime.now()));

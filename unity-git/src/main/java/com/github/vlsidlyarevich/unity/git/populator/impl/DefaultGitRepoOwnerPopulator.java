@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class DefaultGitRepoOwnerPopulator implements GitRepoOwnerPopulator {
 
     @Override
-    public GitRepoOwnerData populate(GitRepoOwner model) {
+    public GitRepoOwnerData populate(final GitRepoOwner model) {
         GitRepoOwnerData result = new GitRepoOwnerData();
 
         result.setId(model.getId());
@@ -34,7 +34,7 @@ public class DefaultGitRepoOwnerPopulator implements GitRepoOwnerPopulator {
     }
 
     @Override
-    public boolean canPopulate(Object model) {
+    public boolean canPopulate(final Object model) {
         return model instanceof GitRepoOwner;
     }
 }

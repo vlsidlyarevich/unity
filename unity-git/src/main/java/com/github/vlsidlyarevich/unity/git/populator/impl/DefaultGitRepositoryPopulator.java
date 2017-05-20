@@ -11,13 +11,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultGitRepositoryPopulator implements GitRepositoryPopulator {
 
-    @Autowired
-    private GitRepositoryLanguageService gitRepositoryLanguageService;
+    private final GitRepositoryLanguageService gitRepositoryLanguageService;
+
+    private final GitRepoOwnerPopulator gitRepoOwnerPopulator;
 
     @Autowired
-    private GitRepoOwnerPopulator gitRepoOwnerPopulator;
+    public DefaultGitRepositoryPopulator(
+            final GitRepositoryLanguageService gitRepositoryLanguageService,
+            final GitRepoOwnerPopulator gitRepoOwnerPopulator) {
+        this.gitRepositoryLanguageService = gitRepositoryLanguageService;
+        this.gitRepoOwnerPopulator = gitRepoOwnerPopulator;
+    }
 
-    public GitRepositoryData populate(GitRepository gitRepository) {
+    public GitRepositoryData populate(final GitRepository gitRepository) {
         GitRepositoryData result = new GitRepositoryData();
 
         result.setId(gitRepository.getId());
@@ -48,7 +54,8 @@ public class DefaultGitRepositoryPopulator implements GitRepositoryPopulator {
         result.setStatusesUrl(gitRepository.getStatusesUrl());
         result.setTopics(gitRepository.getTopics());
 
-        result.setLanguages(gitRepositoryLanguageService.getGitRepoLanguages(gitRepository.getLanguagesUrl()).get());
+        result.setLanguages(gitRepositoryLanguageService
+                .getGitRepoLanguages(gitRepository.getLanguagesUrl()).get());
 
         result.setStargazersUrl(gitRepository.getStargazersUrl());
         result.setContributorsUrl(gitRepository.getContributorsUrl());
@@ -99,7 +106,7 @@ public class DefaultGitRepositoryPopulator implements GitRepositoryPopulator {
     }
 
     @Override
-    public boolean canPopulate(Object model) {
+    public boolean canPopulate(final Object model) {
         return model instanceof GitRepository;
     }
 }

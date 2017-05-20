@@ -22,6 +22,8 @@ public class SimpleGitProfileDataService implements GitProfileDataService {
     public Optional<GitProfileData> getGitProfileData(final String gitLogin) {
         if (gitLogin != null) {
             return gitDataAggregator.getGitProfileData(gitLogin);
-        } else return Optional.empty();
+        } else {
+            return Optional.empty();
+        }
     }
 }

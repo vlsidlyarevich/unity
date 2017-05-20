@@ -37,8 +37,8 @@ public class HttpGitRepositoryLanguageService implements GitRepositoryLanguageSe
         try {
             this.restTemplate = restTemplateFactory.getObject();
         } catch (Exception e) {
-            log.error("Can't initiate rest template factory with error: {}," +
-                    " using default one.", e.getCause());
+            log.error("Can't initiate rest template factory with error: {},"
+                    + " using default one.", e.getCause());
             this.restTemplate = new RestTemplate();
         }
     }
