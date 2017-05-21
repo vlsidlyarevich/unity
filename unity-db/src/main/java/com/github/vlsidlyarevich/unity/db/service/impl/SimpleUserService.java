@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class SimpleUserService implements UserService {
@@ -86,6 +87,6 @@ public class SimpleUserService implements UserService {
     private boolean usernameExists(final String username) {
         return repository.findAll()
                 .stream()
-                .anyMatch(user -> user.getUsername().equals(username));
+                .anyMatch(user -> Objects.equals(user.getUsername(), username));
     }
 }

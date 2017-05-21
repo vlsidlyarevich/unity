@@ -17,4 +17,6 @@ public interface UserSocialService {
     UserSocial update(String id, UserSocial object);
 
     String delete(String id);
+
+    String deleteByUserId(String userId);
 }

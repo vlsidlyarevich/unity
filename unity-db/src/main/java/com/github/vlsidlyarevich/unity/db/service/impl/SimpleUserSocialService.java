@@ -1,9 +1,7 @@
 package com.github.vlsidlyarevich.unity.db.service.impl;
 
-import com.github.vlsidlyarevich.unity.common.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
-import com.github.vlsidlyarevich.unity.db.service.UserService;
 import com.github.vlsidlyarevich.unity.db.service.UserSocialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,25 +15,15 @@ public class SimpleUserSocialService implements UserSocialService {
 
     private final UserSocialRepository repository;
 
-    private final UserService userService;
-
     @Autowired
-    public SimpleUserSocialService(final UserSocialRepository repository,
-                                   final UserService userService) {
+    public SimpleUserSocialService(final UserSocialRepository repository) {
         this.repository = repository;
-        this.userService = userService;
     }
 
     @Override
     public UserSocial create(final UserSocial userSocial) {
-        if (userService.find(userSocial.getUserId()) != null) {
-            repository.deleteByUserId(userSocial.getUserId());
-            userSocial.setCreatedAt(String.valueOf(LocalDateTime.now()));
-            return repository.save(userSocial);
-        } else {
-            throw new UserNotFoundException("User with user id: "
-                    + userSocial.getUserId() + " not found");
-        }
+        userSocial.setCreatedAt(String.valueOf(LocalDateTime.now()));
+        return repository.save(userSocial);
     }
 
     @Override
@@ -55,12 +43,13 @@ public class SimpleUserSocialService implements UserSocialService {
     }
 
     @Override
-    @PreAuthorize("@currentUserServiceImpl.canAccessUser(#id)")
+    @PreAuthorize("@securityContextCurrentUserService.canAccessUser(#id)")
     public UserSocial update(final String id, final UserSocial userSocial) {
         userSocial.setUserId(id);
-        UserSocial saved = repository.findOne(userSocial.getUserId());
+        UserSocial saved = repository.findByUserId(userSocial.getUserId());
 
         if (saved != null) {
+            userSocial.setId(saved.getId());
             userSocial.setCreatedAt(saved.getCreatedAt());
             userSocial.setUpdatedAt(String.valueOf(LocalDateTime.now()));
         } else {
@@ -71,9 +60,16 @@ public class SimpleUserSocialService implements UserSocialService {
     }
 
     @Override
-    @PreAuthorize("@currentUserServiceImpl.canAccessUser(#id)")
+    @PreAuthorize("@securityContextCurrentUserService.canAccessUser(#id)")
     public String delete(final String id) {
         repository.delete(id);
         return id;
+    }
+
+    @Override
+    @PreAuthorize("@securityContextCurrentUserService.canAccessUser(#userId)")
+    public String deleteByUserId(final String userId) {
+        repository.deleteByUserId(userId);
+        return userId;
     }
 }

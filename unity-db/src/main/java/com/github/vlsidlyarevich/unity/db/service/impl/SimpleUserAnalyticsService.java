@@ -1,10 +1,8 @@
 package com.github.vlsidlyarevich.unity.db.service.impl;
 
-import com.github.vlsidlyarevich.unity.common.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 import com.github.vlsidlyarevich.unity.db.repository.UserAnalyticsRepository;
 import com.github.vlsidlyarevich.unity.db.service.UserAnalyticsService;
-import com.github.vlsidlyarevich.unity.db.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,22 +15,13 @@ public class SimpleUserAnalyticsService implements UserAnalyticsService {
 
     private final UserAnalyticsRepository repository;
 
-    private final UserService userService;
-
     @Autowired
-    public SimpleUserAnalyticsService(final UserAnalyticsRepository repository,
-                                      final UserService userService) {
+    public SimpleUserAnalyticsService(final UserAnalyticsRepository repository) {
         this.repository = repository;
-        this.userService = userService;
     }
 
     @Override
     public UserAnalytics add(final UserAnalytics userAnalytics) {
-        if (userService.find(userAnalytics.getUserId()) == null) {
-            throw new UserNotFoundException("User with user id: "
-                    + userAnalytics.getUserId() + " not found");
-        }
-
         final UserAnalytics analytics = repository.findByUserId(userAnalytics.getUserId());
         if (analytics != null) {
             analytics.getReports().addAll(userAnalytics.getReports());
