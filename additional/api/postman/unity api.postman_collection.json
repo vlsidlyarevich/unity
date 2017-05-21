@@ -1,0 +1,438 @@
+{
+	"variables": [],
+	"info": {
+		"name": "unity api",
+		"_postman_id": "ccce7e85-46fa-6b71-5b1b-fe235d834248",
+		"description": "Api for Unity ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/api/auth",
+					"request": {
+						"url": "http://localhost:8080/api/auth",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"cat\",\n\"password\": \"12345Aa$\"\n}"
+						},
+						"description": "Auth"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "git profile api",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/api/signup copy",
+					"request": {
+						"url": "http://localhost:8080/api/signup",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"cat\",\n\"password\": \"12345Aa$\"\n}"
+						},
+						"description": "Signup"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "registration api",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/api/signup",
+					"request": {
+						"url": "http://localhost:8080/api/signup",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"cat\",\n\"password\": \"12345Aa$\"\n}"
+						},
+						"description": "Signup"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user analytics controller",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/api/users/ copy",
+					"request": {
+						"url": "http://localhost:8080/api/users/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"vlad\",\n\"password\": \"44354343Aa$\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api/users/ copy copy",
+					"request": {
+						"url": "http://localhost:8080/api/users/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"vlad\",\n\"password\": \"44354343Aa$\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api/users/ copy copy",
+					"request": {
+						"url": "http://localhost:8080/api/users/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"vlad\",\n\"password\": \"44354343Aa$\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api/users/ copy copy",
+					"request": {
+						"url": "http://localhost:8080/api/users/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"vlad\",\n\"password\": \"44354343Aa$\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user api",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/api/user",
+					"request": {
+						"url": "http://localhost:8080/api/user",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5NTMxNzc0ODE0NywidXNlcklEIjoiNTkyMGI1ZGY0Yzc3MmYxZmQ4YWFiYjI1IiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo1LCJkYXlPZlllYXIiOjE0MSwiZGF5T2ZXZWVrIjoiU1VOREFZIiwibW9udGgiOiJNQVkiLCJkYXlPZk1vbnRoIjoyMSwiaG91ciI6MCwibWludXRlIjozMiwic2Vjb25kIjoyOCwibmFubyI6MTQ3MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.wQN5GToS2qITsxNxbZZTGBD3Zu1CLrK3TBc9XUqQj9qeRACCzY8aNOIdG-BAWLFtF01vMgyypxsSjsEZ7iwVTg",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"vlad\",\n\"password\": \"44354343Aa$\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user social api",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/api/user/id/social",
+					"request": {
+						"url": "http://localhost:8080/api/user/59213c384c772f35c7aa9470/social",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"vlad\",\n\"password\": \"44354343Aa$\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api/user/id/social",
+					"request": {
+						"url": "http://localhost:8080/api/user/59213c384c772f35c7aa9470/social",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"firstName\": \"vlad\",\n\"lastName\": \"sidlyarevich\",\n\"email\": \"vlsidlyarevich@gmail.com\",\n\"skype\": \"vlsidlyarevich\",\n\"additional\": \"just vlad\",\n\"image\": \"\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api/user/id/social",
+					"request": {
+						"url": "http://localhost:8080/api/user/59213c384c772f35c7aa9470/social",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users api",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/api/users/",
+					"request": {
+						"url": "http://localhost:8080/api/users/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5NTM1NDEyOTc5OCwidXNlcklEIjoiNTkyMTNjMzg0Yzc3MmYzNWM3YWE5NDcwIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJkYXlPZlllYXIiOjE0MSwiZGF5T2ZXZWVrIjoiU1VOREFZIiwibW9udGgiOiJNQVkiLCJkYXlPZk1vbnRoIjoyMSwiaG91ciI6MTAsIm1pbnV0ZSI6MzgsInNlY29uZCI6NDksIm5hbm8iOjc5ODAwMDAwMCwieWVhciI6MjAxNywibW9udGhWYWx1ZSI6NSwiY2hyb25vbG9neSI6eyJjYWxlbmRhclR5cGUiOiJpc284NjAxIiwiaWQiOiJJU08ifX19.1IkuwgE_AtLT5aAIll9ResUS5SQZESoSXs4PDn2epdANyB7vqsaMsY2bVpVtyKn6mxxe98Yxfj7NGLosMhFtKA",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"vlad\",\n\"password\": \"44354343Aa$\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api/users/ copy copy copy",
+					"request": {
+						"url": "http://localhost:8080/api/users/id",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"vlad\",\n\"password\": \"44354343Aa$\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api/users/ copy copy copy",
+					"request": {
+						"url": "http://localhost:8080/api/users/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"vlad\",\n\"password\": \"44354343Aa$\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api/users/ copy copy copy",
+					"request": {
+						"url": "http://localhost:8080/api/users/id",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"vlad\",\n\"password\": \"44354343Aa$\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api/users/ copy copy copy copy",
+					"request": {
+						"url": "http://localhost:8080/api/users/id",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

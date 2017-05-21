@@ -79,8 +79,8 @@ public class SimpleUserService implements UserService {
     @PreAuthorize("@securityContextCurrentUserService.canAccessUser(#id)")
     public String delete(final String id) {
         repository.delete(id);
-        userSocialService.delete(id);
-        userAnalyticsService.delete(id);
+        userSocialService.deleteByUserId(id);
+        userAnalyticsService.deleteAllReports(id);
         return id;
     }
 
