@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
+import com.github.vlsidlyarevich.unity.auth.security.AuthenticationFacade;
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
@@ -8,7 +9,6 @@ import com.github.vlsidlyarevich.unity.git.service.GitAnalyzeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,11 +27,15 @@ public class GitProfileController {
 
     private final UserAnalyticsService userAnalyticsService;
 
+    private final AuthenticationFacade authenticationFacade;
+
     @Autowired
     public GitProfileController(final GitAnalyzeService gitAnalyzeService,
-                                final UserAnalyticsService userAnalyticsService) {
+                                final UserAnalyticsService userAnalyticsService,
+                                final AuthenticationFacade authenticationFacade) {
         this.gitAnalyzeService = gitAnalyzeService;
         this.userAnalyticsService = userAnalyticsService;
+        this.authenticationFacade = authenticationFacade;
     }
 
     @RequestMapping(value = "{gitLogin}", method = RequestMethod.GET)
@@ -47,8 +51,8 @@ public class GitProfileController {
 
         userAnalytics.setReports(reports);
 
-        userAnalytics.setUserId(((User) SecurityContextHolder
-                .getContext().getAuthentication().getDetails()).getId());
+        userAnalytics.setUserId(((User)
+                authenticationFacade.getAuthentication().getDetails()).getId());
         userAnalytics.setCreatedAt(String.valueOf(LocalDateTime.now()));
         userAnalyticsService.add(userAnalytics);
         return new ResponseEntity(userAnalytics, HttpStatus.OK);
