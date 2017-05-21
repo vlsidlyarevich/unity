@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
-import com.github.vlsidlyarevich.unity.db.model.User;
+import com.github.vlsidlyarevich.unity.db.domain.User;
 import java.util.List;
 
 public interface UserService {

@@ -17,11 +17,15 @@ import javax.validation.Valid;
 @RequestMapping("/api/auth")
 public class AuthenticationController {
 
+    private final TokenService tokenService;
+
     @Autowired
-    private TokenService tokenService;
+    public AuthenticationController(final TokenService tokenService) {
+        this.tokenService = tokenService;
+    }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> authenticate(@Valid @RequestBody LoginDTO dto) {
+    public ResponseEntity<?> authenticate(@Valid @RequestBody final LoginDTO dto) {
         String token = tokenService.getToken(dto.getUsername(), dto.getPassword());
         if (token != null) {
             TokenDTO response = new TokenDTO();

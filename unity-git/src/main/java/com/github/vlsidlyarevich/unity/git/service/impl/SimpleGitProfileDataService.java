@@ -11,13 +11,19 @@ import java.util.Optional;
 @Service
 public class SimpleGitProfileDataService implements GitProfileDataService {
 
+    private final GitDataAggregator gitDataAggregator;
+
     @Autowired
-    private GitDataAggregator gitDataAggregator;
+    public SimpleGitProfileDataService(final GitDataAggregator gitDataAggregator) {
+        this.gitDataAggregator = gitDataAggregator;
+    }
 
     @Override
-    public Optional<GitProfileData> getGitProfileData(String gitLogin) {
+    public Optional<GitProfileData> getGitProfileData(final String gitLogin) {
         if (gitLogin != null) {
             return gitDataAggregator.getGitProfileData(gitLogin);
-        } else return Optional.empty();
+        } else {
+            return Optional.empty();
+        }
     }
 }

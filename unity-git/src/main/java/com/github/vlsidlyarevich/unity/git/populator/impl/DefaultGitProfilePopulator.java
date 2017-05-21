@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultGitProfilePopulator implements GitProfilePopulator {
 
-    public GitProfileData populate(GitProfile gitProfile) {
+    public GitProfileData populate(final GitProfile gitProfile) {
         GitProfileData result = new GitProfileData();
 
         result.setId(gitProfile.getId());
@@ -39,7 +39,7 @@ public class DefaultGitProfilePopulator implements GitProfilePopulator {
     }
 
     @Override
-    public boolean canPopulate(Object model) {
+    public boolean canPopulate(final Object model) {
         return model instanceof GitProfile;
     }
 }

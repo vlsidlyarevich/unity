@@ -9,11 +9,11 @@ public class UsernameExistsException extends RuntimeException {
         super();
     }
 
-    public UsernameExistsException(String message) {
+    public UsernameExistsException(final String message) {
         super(message);
     }
 
-    public UsernameExistsException(String message, Throwable cause) {
+    public UsernameExistsException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }

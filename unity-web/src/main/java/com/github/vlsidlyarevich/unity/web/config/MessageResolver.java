@@ -9,22 +9,28 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessageResolver {
 
-    @Autowired
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
 
-    public String getMessage(String msg) {
+    @Autowired
+    public MessageResolver(final MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
+
+    public String getMessage(final String msg) {
         return getMessage(msg, new Object[]{});
     }
 
-    public String getMessage(String msg, Object... args) {
+    public String getMessage(final String msg, final Object... args) {
         return messageSource.getMessage(escapeMsg(msg), args, msg, LocaleContextHolder.getLocale());
     }
 
-    public String getMessage(String msg, Object[] args, String defaultMsg) {
-        return messageSource.getMessage(escapeMsg(msg), args, defaultMsg, LocaleContextHolder.getLocale());
+    public String getMessage(final String msg, final Object[] args,
+                             final String defaultMsg) {
+        return messageSource.getMessage(escapeMsg(msg), args, defaultMsg,
+                LocaleContextHolder.getLocale());
     }
 
-    private String escapeMsg(String msg) {
+    private String escapeMsg(final String msg) {
         if (StringUtils.isBlank(msg)) {
             return "";
         }

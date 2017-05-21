@@ -13,7 +13,8 @@ public class AnalysisReport {
     private Long analysisTime;
     private Result result;
 
-    public AnalysisReport(Result result, Date analyzedAt, Long analysisTime) {
+    public AnalysisReport(final Result result, final Date analyzedAt,
+                          final Long analysisTime) {
         this.id = UUID.randomUUID().toString();
         this.analyzedAt = analyzedAt;
         this.analysisTime = analysisTime;
@@ -21,8 +22,8 @@ public class AnalysisReport {
         this.setAnalyzedResource(result);
     }
 
-    private void setAnalyzedResource(Result result) {
-        if (result instanceof GitResult) {
+    private void setAnalyzedResource(final Result analyzedResource) {
+        if (analyzedResource instanceof GitResult) {
             this.resource = AnalyzedResource.GITHUB;
         } else {
             this.resource = AnalyzedResource.UNKNOWN;

@@ -10,12 +10,13 @@ public class GitProfileNotFoundException extends HttpClientErrorException {
     private String key;
     private Object[] args;
 
-    public GitProfileNotFoundException(HttpStatus statusCode, String key) {
+    public GitProfileNotFoundException(final HttpStatus statusCode, final String key) {
         super(statusCode);
         this.key = key;
     }
 
-    public GitProfileNotFoundException(HttpStatus statusCode, String key, Object[] args) {
+    public GitProfileNotFoundException(final HttpStatus statusCode,
+                                       final String key, final Object[] args) {
         super(statusCode);
         this.key = key;
         this.args = args;

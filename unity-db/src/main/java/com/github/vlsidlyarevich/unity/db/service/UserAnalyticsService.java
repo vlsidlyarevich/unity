@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
-import com.github.vlsidlyarevich.unity.db.model.UserAnalytics;
+import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 
 import java.util.List;
 

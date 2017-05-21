@@ -23,13 +23,19 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class UnityExceptionHandler {
 
+    private final MessageResolver messageResolver;
+
     @Autowired
-    private MessageResolver messageResolver;
+    public UnityExceptionHandler(final MessageResolver messageResolver) {
+        this.messageResolver = messageResolver;
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity handleMethodArgumentNotValidException(MethodArgumentNotValidException exception, HttpServletRequest req) {
+    public ResponseEntity handleMethodArgumentNotValidException(
+            final MethodArgumentNotValidException exception,
+            final HttpServletRequest req) {
         log.warn("Processing method argument not valid exception: " + exception.getMessage());
-        String message = exception.getBindingResult().getFieldErrors()
+        final String message = exception.getBindingResult().getFieldErrors()
                 .stream()
                 .map(fieldError -> fieldError.getDefaultMessage())
                 .collect(Collectors.joining("\n"));
@@ -38,7 +44,9 @@ public class UnityExceptionHandler {
     }
 
     @ExceptionHandler(FileSystemStorageException.class)
-    public ResponseEntity handleFileSystemStorageException(FileSystemStorageException exception, HttpServletRequest req) {
+    public ResponseEntity handleFileSystemStorageException(
+            final FileSystemStorageException exception,
+            final HttpServletRequest req) {
         log.warn("Processing file system storage exception:" + exception.getMessage());
 
         return new ResponseEntity<>(new ExceptionDTO(messageResolver.getMessage(exception.getKey(),
@@ -46,7 +54,9 @@ public class UnityExceptionHandler {
     }
 
     @ExceptionHandler(FileSystemFileNotFoundException.class)
-    public ResponseEntity handlefileSystemFileNotFoundException(FileSystemFileNotFoundException exception, HttpServletRequest req) {
+    public ResponseEntity handlefileSystemFileNotFoundException(
+            final FileSystemFileNotFoundException exception,
+            final HttpServletRequest req) {
         log.warn("Processing file system file not found exception:" + exception.getMessage());
 
         return new ResponseEntity<>(new ExceptionDTO(messageResolver.getMessage(exception.getKey(),
@@ -54,37 +64,47 @@ public class UnityExceptionHandler {
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity handleUserNotFoundException(UserNotFoundException exception, HttpServletRequest req) {
+    public ResponseEntity handleUserNotFoundException(final UserNotFoundException exception,
+                                                      final HttpServletRequest req) {
         log.warn("Processing user not found exception:" + exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
+                HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(UsernameExistsException.class)
-    public ResponseEntity handleUsernameExistsException(UsernameExistsException exception, HttpServletRequest req) {
+    public ResponseEntity handleUsernameExistsException(final UsernameExistsException exception,
+                                                        final HttpServletRequest req) {
         log.warn("Processing user with such username exists exception:" + exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
+                HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MongoException.class)
-    public ResponseEntity handleMongoException(MongoException exception, HttpServletRequest req) {
+    public ResponseEntity handleMongoException(final MongoException exception,
+                                               final HttpServletRequest req) {
         log.warn("Processing mongo exception:" + exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
+                HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity handleAccessDeniedException(AccessDeniedException exception, HttpServletRequest req) {
+    public ResponseEntity handleAccessDeniedException(final AccessDeniedException exception,
+                                                      final HttpServletRequest req) {
         log.warn("Processing access denied exception:" + exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()), HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
+                HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity handleAbstractException(Exception exception, HttpServletRequest req) {
+    public ResponseEntity handleAbstractException(final Exception exception,
+                                                  final HttpServletRequest req) {
         log.warn("Processing abstract exception:" + exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
+                HttpStatus.BAD_REQUEST);
     }
 }

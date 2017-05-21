@@ -17,18 +17,24 @@ import java.util.Optional;
 @Service
 public class SimpleGitAnalyzeReportService implements GitAnalyzeService {
 
+    private final GitProfileDataService gitProfileDataService;
+
     @Autowired
-    private GitProfileDataService gitProfileDataService;
+    public SimpleGitAnalyzeReportService(final GitProfileDataService gitProfileDataService) {
+        this.gitProfileDataService = gitProfileDataService;
+    }
 
     @Override
-    public Optional<AnalysisReport> analyze(String gitLogin) {
-        LocalDateTime startDate = LocalDateTime.now();
-        Optional<GitProfileData> gitProfileData = gitProfileDataService.getGitProfileData(gitLogin);
-        LocalDateTime endDate = LocalDateTime.now();
+    public Optional<AnalysisReport> analyze(final String gitLogin) {
+        final LocalDateTime startDate = LocalDateTime.now();
+        final Optional<GitProfileData> gitProfileData
+                = gitProfileDataService.getGitProfileData(gitLogin);
+        final LocalDateTime endDate = LocalDateTime.now();
         Optional<AnalysisReport> report = Optional.empty();
 
         if (gitProfileData.isPresent()) {
-            Date analyzedAt = Date.from(Instant.from(LocalDateTime.now().toInstant(ZoneOffset.UTC)));
+            Date analyzedAt
+                    = Date.from(Instant.from(LocalDateTime.now().toInstant(ZoneOffset.UTC)));
             Long analyzeTime = ChronoUnit.SECONDS.between(startDate, endDate);
             report = Optional.of(new AnalysisReport(gitProfileData.get(), analyzedAt, analyzeTime));
         }

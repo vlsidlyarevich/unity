@@ -20,8 +20,15 @@ import java.util.List;
 @Component
 public class ConfigurableRestTemplateFactory implements RestTemplateFactory {
 
+    private Configuration configuration;
+
+    private final GitProperties gitProperties;
+
     @Autowired
-    private GitProperties gitProperties;
+    public ConfigurableRestTemplateFactory(final GitProperties gitProperties) {
+        this.gitProperties = gitProperties;
+        this.configuration = new Configuration();
+    }
 
     public RestTemplate getObject() {
         return configureRestTemplate(new RestTemplate());
@@ -35,30 +42,47 @@ public class ConfigurableRestTemplateFactory implements RestTemplateFactory {
         return true;
     }
 
-    private RestTemplate configureRestTemplate(RestTemplate restTemplate) {
+    private RestTemplate configureRestTemplate(final RestTemplate restTemplate) {
         restTemplate.setRequestFactory(getClientHttpRequestFactory());
         restTemplate.setInterceptors(getInterceptors());
         return restTemplate;
     }
 
     private List<ClientHttpRequestInterceptor> getInterceptors() {
-        List<ClientHttpRequestInterceptor> interceptors = new ArrayList<ClientHttpRequestInterceptor>();
-        interceptors.add(new HeaderRequestInterceptor("Accept", Github.MEDIA_HEADER));
-        interceptors.add(new HeaderRequestInterceptor("x-oauth-basic", gitProperties.getAccessToken()));
+        List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
+        interceptors.add(new HeaderRequestInterceptor("Accept",
+                Github.MEDIA_HEADER));
+        interceptors.add(new HeaderRequestInterceptor("x-oauth-basic",
+                gitProperties.getAccessToken()));
         return interceptors;
     }
 
     private ClientHttpRequestFactory getClientHttpRequestFactory() {
-        int timeout = 5000;
         RequestConfig config = RequestConfig.custom()
-                .setConnectTimeout(timeout)
-                .setConnectionRequestTimeout(timeout)
-                .setSocketTimeout(timeout)
+                .setConnectTimeout(configuration.getTimeout())
+                .setConnectionRequestTimeout(configuration.getTimeout())
+                .setSocketTimeout(configuration.getTimeout())
                 .build();
         CloseableHttpClient client = HttpClientBuilder
                 .create()
                 .setDefaultRequestConfig(config)
                 .build();
         return new HttpComponentsClientHttpRequestFactory(client);
+    }
+
+    public Configuration getConfiguration() {
+        return this.configuration;
+    }
+
+    private class Configuration {
+        private int timeout = 5000;
+
+        public int getTimeout() {
+            return timeout;
+        }
+
+        public void setTimeout(final int timeout) {
+            this.timeout = timeout;
+        }
     }
 }

@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.converter.model;
 
 import com.github.vlsidlyarevich.unity.common.converter.Converter;
-import com.github.vlsidlyarevich.unity.db.model.UserSocial;
+import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 import com.github.vlsidlyarevich.unity.web.dto.UserSocialDTO;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class UserSocialConverter implements Converter<UserSocial, UserSocialDTO> {
 
     @Override
-    public UserSocialDTO convert(UserSocial source) {
+    public UserSocialDTO convert(final UserSocial source) {
         UserSocialDTO dto = new UserSocialDTO();
         dto.setFirstName(source.getFirstName() != null ? source.getFirstName() : "");
         dto.setLastName(source.getLastName() != null ? source.getLastName() : "");
@@ -22,7 +22,7 @@ public class UserSocialConverter implements Converter<UserSocial, UserSocialDTO>
     }
 
     @Override
-    public boolean canConvert(Object o) {
+    public boolean canConvert(final Object o) {
         return o instanceof UserSocial;
     }
 }

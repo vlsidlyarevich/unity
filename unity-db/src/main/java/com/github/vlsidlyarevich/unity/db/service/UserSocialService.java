@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
-import com.github.vlsidlyarevich.unity.db.model.UserSocial;
+import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 
 import java.util.List;
 
@@ -17,4 +17,6 @@ public interface UserSocialService {
     UserSocial update(String id, UserSocial object);
 
     String delete(String id);
+
+    String deleteByUserId(String userId);
 }
