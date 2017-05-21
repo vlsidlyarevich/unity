@@ -43,10 +43,5 @@ Type following commands in additional/docker/mongo folder.
 
 ---
 ### Api reference
-#### Signup api
-* POST `http://localhost:8080/api/signup` - create new user
 
-#### Auth api
-* GET `http://localhost:8080/api/workers/auth` - get authentification token
-
-Or you can import [json file](https://github.com/vlsidlyarevich/unity/blob/master/additional/insomnia/unity-api.json) to your Insomnia rest client
+Import [postman json file](https://github.com/vlsidlyarevich/unity/blob/master/additional/api/postman/unity%20api.postman_collection.json) to your Postman rest client
