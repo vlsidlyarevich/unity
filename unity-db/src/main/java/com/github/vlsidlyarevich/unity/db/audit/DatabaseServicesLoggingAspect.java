@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.web.aop;
+package com.github.vlsidlyarevich.unity.db.audit;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
+
 @Slf4j
 @Aspect
 @Component
-public class ServiceLoggingAspect {
+public class DatabaseServicesLoggingAspect {
 
     @Before("execution(* com.github.vlsidlyarevich.unity.db.service"
             + ".impl.SimpleUserService.*(..)))")
@@ -31,6 +32,13 @@ public class ServiceLoggingAspect {
             + ".impl.SimpleUserAnalyticsService.*(..)))")
     public void userAnalyticsServiceLog(final JoinPoint joinPoint) {
         log.info("UserAnalytics service : " + joinPoint.getSignature().getName()
+                + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
+    }
+
+    @Before("execution(* com.github.vlsidlyarevich.unity.db.service"
+            + ".impl.FileSystemStorageService.*(..)))")
+    public void storageServiceLog(final JoinPoint joinPoint) {
+        log.info("Storage service : " + joinPoint.getSignature().getName()
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
     }
 }
