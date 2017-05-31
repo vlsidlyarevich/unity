@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.db.service.impl;
+package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
@@ -11,12 +11,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class SimpleUserSocialService implements UserSocialService {
+public class DefaultUserSocialService implements UserSocialService {
 
     private final UserSocialRepository repository;
 
     @Autowired
-    public SimpleUserSocialService(final UserSocialRepository repository) {
+    public DefaultUserSocialService(final UserSocialRepository repository) {
         this.repository = repository;
     }
 

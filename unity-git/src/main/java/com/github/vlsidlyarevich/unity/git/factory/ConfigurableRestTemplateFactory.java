@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.git.factory.impl;
+package com.github.vlsidlyarevich.unity.git.factory;
 
 import com.github.vlsidlyarevich.unity.git.config.GitProperties;
 import com.github.vlsidlyarevich.unity.git.constant.Github;

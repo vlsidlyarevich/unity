@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.git.service.impl;
+package com.github.vlsidlyarevich.unity.git.service;
 
 import com.github.vlsidlyarevich.unity.git.aggregator.GitDataAggregator;
 import com.github.vlsidlyarevich.unity.git.model.GitProfileData;
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class SimpleGitProfileDataService implements GitProfileDataService {
+public class DefaultGitProfileDataService implements GitProfileDataService {
 
     private final GitDataAggregator gitDataAggregator;
 
     @Autowired
-    public SimpleGitProfileDataService(final GitDataAggregator gitDataAggregator) {
+    public DefaultGitProfileDataService(final GitDataAggregator gitDataAggregator) {
         this.gitDataAggregator = gitDataAggregator;
     }
 

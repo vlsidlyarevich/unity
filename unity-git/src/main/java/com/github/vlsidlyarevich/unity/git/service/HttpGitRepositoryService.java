@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.git.service.impl;
+package com.github.vlsidlyarevich.unity.git.service;
 
 import com.github.vlsidlyarevich.unity.git.config.GitProperties;
 import com.github.vlsidlyarevich.unity.git.factory.RestTemplateFactory;

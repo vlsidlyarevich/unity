@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.git.populator.impl;
+package com.github.vlsidlyarevich.unity.git.populator;
 
 import com.github.vlsidlyarevich.unity.git.model.GitRepoOwner;
 import com.github.vlsidlyarevich.unity.git.model.GitRepoOwnerData;

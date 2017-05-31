@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.auth.service.impl;
+package com.github.vlsidlyarevich.unity.auth.service;
 
 import com.github.vlsidlyarevich.unity.auth.models.UserAuthentication;
 import com.github.vlsidlyarevich.unity.auth.security.AuthenticationFacade;

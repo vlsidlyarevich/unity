@@ -15,28 +15,28 @@ import java.util.Arrays;
 public class DatabaseServicesLoggingAspect {
 
     @Before("execution(* com.github.vlsidlyarevich.unity.db.service"
-            + ".impl.SimpleUserService.*(..)))")
+            + ".DefaultUserService.*(..)))")
     public void userServiceLog(final JoinPoint joinPoint) {
         log.info("User service : " + joinPoint.getSignature().getName()
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
     }
 
     @Before("execution(* com.github.vlsidlyarevich.unity.db.service"
-            + ".impl.SimpleUserSocialService.*(..)))")
+            + ".DefaultUserSocialService.*(..)))")
     public void userSocialServiceLog(final JoinPoint joinPoint) {
         log.info("UserSocial service : " + joinPoint.getSignature().getName()
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
     }
 
     @Before("execution(* com.github.vlsidlyarevich.unity.db.service"
-            + ".impl.SimpleUserAnalyticsService.*(..)))")
+            + ".DefaultUserAnalyticsService.*(..)))")
     public void userAnalyticsServiceLog(final JoinPoint joinPoint) {
         log.info("UserAnalytics service : " + joinPoint.getSignature().getName()
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));
     }
 
     @Before("execution(* com.github.vlsidlyarevich.unity.db.service"
-            + ".impl.FileSystemStorageService.*(..)))")
+            + ".FileSystemStorageService.*(..)))")
     public void storageServiceLog(final JoinPoint joinPoint) {
         log.info("Storage service : " + joinPoint.getSignature().getName()
                 + "\n With parameters : " + Arrays.toString(joinPoint.getArgs()));

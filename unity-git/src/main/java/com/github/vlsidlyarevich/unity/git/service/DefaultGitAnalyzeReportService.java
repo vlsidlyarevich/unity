@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.git.service.impl;
+package com.github.vlsidlyarevich.unity.git.service;
 
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.git.model.GitProfileData;
@@ -15,12 +15,12 @@ import java.util.Date;
 import java.util.Optional;
 
 @Service
-public class SimpleGitAnalyzeReportService implements GitAnalyzeService {
+public class DefaultGitAnalyzeReportService implements GitAnalyzeService {
 
     private final GitProfileDataService gitProfileDataService;
 
     @Autowired
-    public SimpleGitAnalyzeReportService(final GitProfileDataService gitProfileDataService) {
+    public DefaultGitAnalyzeReportService(final GitProfileDataService gitProfileDataService) {
         this.gitProfileDataService = gitProfileDataService;
     }
 

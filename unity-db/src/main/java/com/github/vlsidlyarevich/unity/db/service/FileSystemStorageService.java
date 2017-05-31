@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.db.service.impl;
+package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.common.utils.FileUtils;
 import com.github.vlsidlyarevich.unity.db.config.StorageProperties;

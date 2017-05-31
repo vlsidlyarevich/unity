@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.db.service.impl;
+package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 import com.github.vlsidlyarevich.unity.db.repository.UserAnalyticsRepository;
@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class SimpleUserAnalyticsService implements UserAnalyticsService {
+public class DefaultUserAnalyticsService implements UserAnalyticsService {
 
     private final UserAnalyticsRepository repository;
 
     @Autowired
-    public SimpleUserAnalyticsService(final UserAnalyticsRepository repository) {
+    public DefaultUserAnalyticsService(final UserAnalyticsRepository repository) {
         this.repository = repository;
     }
 

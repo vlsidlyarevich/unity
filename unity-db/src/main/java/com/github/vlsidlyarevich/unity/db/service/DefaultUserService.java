@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.db.service.impl;
+package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
 import com.github.vlsidlyarevich.unity.db.domain.User;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class SimpleUserService implements UserService {
+public class DefaultUserService implements UserService {
 
     private final UserRepository repository;
 
@@ -24,9 +24,9 @@ public class SimpleUserService implements UserService {
     private final UserAnalyticsService userAnalyticsService;
 
     @Autowired
-    public SimpleUserService(final UserRepository repository,
-                             final UserSocialService userSocialService,
-                             final UserAnalyticsService userAnalyticsService) {
+    public DefaultUserService(final UserRepository repository,
+                              final UserSocialService userSocialService,
+                              final UserAnalyticsService userAnalyticsService) {
         this.repository = repository;
         this.userSocialService = userSocialService;
         this.userAnalyticsService = userAnalyticsService;

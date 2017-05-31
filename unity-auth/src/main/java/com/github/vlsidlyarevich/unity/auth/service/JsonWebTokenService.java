@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.auth.service.impl;
+package com.github.vlsidlyarevich.unity.auth.service;
 
 import com.github.vlsidlyarevich.unity.auth.service.TokenService;
 import com.github.vlsidlyarevich.unity.db.domain.User;
