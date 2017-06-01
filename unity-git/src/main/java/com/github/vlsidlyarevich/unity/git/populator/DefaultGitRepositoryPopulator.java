@@ -2,8 +2,6 @@ package com.github.vlsidlyarevich.unity.git.populator;
 
 import com.github.vlsidlyarevich.unity.git.model.GitRepository;
 import com.github.vlsidlyarevich.unity.git.model.GitRepositoryData;
-import com.github.vlsidlyarevich.unity.git.populator.GitRepoOwnerPopulator;
-import com.github.vlsidlyarevich.unity.git.populator.GitRepositoryPopulator;
 import com.github.vlsidlyarevich.unity.git.service.GitRepositoryLanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

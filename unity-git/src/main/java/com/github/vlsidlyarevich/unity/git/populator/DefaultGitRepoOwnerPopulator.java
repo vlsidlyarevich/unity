@@ -2,7 +2,6 @@ package com.github.vlsidlyarevich.unity.git.populator;
 
 import com.github.vlsidlyarevich.unity.git.model.GitRepoOwner;
 import com.github.vlsidlyarevich.unity.git.model.GitRepoOwnerData;
-import com.github.vlsidlyarevich.unity.git.populator.GitRepoOwnerPopulator;
 import org.springframework.stereotype.Component;
 
 @Component

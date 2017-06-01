@@ -2,7 +2,6 @@ package com.github.vlsidlyarevich.unity.git.service;
 
 import com.github.vlsidlyarevich.unity.git.config.GitProperties;
 import com.github.vlsidlyarevich.unity.git.factory.RestTemplateFactory;
-import com.github.vlsidlyarevich.unity.git.service.GitRepositoryLanguageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;

@@ -2,7 +2,6 @@ package com.github.vlsidlyarevich.unity.git.service;
 
 import com.github.vlsidlyarevich.unity.git.aggregator.GitDataAggregator;
 import com.github.vlsidlyarevich.unity.git.model.GitProfileData;
-import com.github.vlsidlyarevich.unity.git.service.GitProfileDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

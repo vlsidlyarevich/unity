@@ -4,7 +4,6 @@ import com.github.vlsidlyarevich.unity.common.utils.FileUtils;
 import com.github.vlsidlyarevich.unity.db.config.StorageProperties;
 import com.github.vlsidlyarevich.unity.db.exception.FileSystemFileNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.FileSystemStorageException;
-import com.github.vlsidlyarevich.unity.db.service.StorageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;

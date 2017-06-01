@@ -1,11 +1,8 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
-import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
 import com.github.vlsidlyarevich.unity.db.domain.User;
+import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
-import com.github.vlsidlyarevich.unity.db.service.UserAnalyticsService;
-import com.github.vlsidlyarevich.unity.db.service.UserService;
-import com.github.vlsidlyarevich.unity.db.service.UserSocialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;

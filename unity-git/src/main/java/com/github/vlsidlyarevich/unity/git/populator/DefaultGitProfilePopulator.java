@@ -2,7 +2,6 @@ package com.github.vlsidlyarevich.unity.git.populator;
 
 import com.github.vlsidlyarevich.unity.git.model.GitProfile;
 import com.github.vlsidlyarevich.unity.git.model.GitProfileData;
-import com.github.vlsidlyarevich.unity.git.populator.GitProfilePopulator;
 import org.springframework.stereotype.Component;
 
 @Component

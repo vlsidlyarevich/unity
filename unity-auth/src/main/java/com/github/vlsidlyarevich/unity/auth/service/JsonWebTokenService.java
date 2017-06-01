@@ -1,6 +1,5 @@
 package com.github.vlsidlyarevich.unity.auth.service;
 
-import com.github.vlsidlyarevich.unity.auth.service.TokenService;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;

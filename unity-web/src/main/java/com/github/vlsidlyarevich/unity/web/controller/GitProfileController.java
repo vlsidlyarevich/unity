@@ -38,7 +38,7 @@ public class GitProfileController {
         this.authenticationFacade = authenticationFacade;
     }
 
-    @RequestMapping(value = "{gitLogin}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{gitLogin}", method = RequestMethod.GET)
     public ResponseEntity getGitData(@PathVariable final String gitLogin) {
         Optional<AnalysisReport> report = gitAnalyzeService.analyze(gitLogin);
         if (!report.isPresent()) {

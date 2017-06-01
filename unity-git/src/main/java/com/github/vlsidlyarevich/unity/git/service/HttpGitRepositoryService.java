@@ -3,7 +3,6 @@ package com.github.vlsidlyarevich.unity.git.service;
 import com.github.vlsidlyarevich.unity.git.config.GitProperties;
 import com.github.vlsidlyarevich.unity.git.factory.RestTemplateFactory;
 import com.github.vlsidlyarevich.unity.git.model.GitRepository;
-import com.github.vlsidlyarevich.unity.git.service.GitRepositoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
