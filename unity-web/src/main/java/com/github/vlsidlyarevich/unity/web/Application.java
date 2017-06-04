@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.web;
 
 import com.github.vlsidlyarevich.unity.auth.UnityAuth;
+import com.github.vlsidlyarevich.unity.common.UnityCommon;
 import com.github.vlsidlyarevich.unity.db.UnityDatabase;
 import com.github.vlsidlyarevich.unity.db.config.StorageProperties;
 import com.github.vlsidlyarevich.unity.git.UnityGit;
@@ -12,7 +13,8 @@ import org.springframework.context.annotation.Import;
 @Import({
         UnityDatabase.class,
         UnityAuth.class,
-        UnityGit.class
+        UnityGit.class,
+        UnityCommon.class
 })
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)

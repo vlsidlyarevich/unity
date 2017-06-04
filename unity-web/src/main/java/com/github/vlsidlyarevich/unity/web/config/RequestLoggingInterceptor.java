@@ -2,7 +2,7 @@ package com.github.vlsidlyarevich.unity.web.config;
 
 import com.github.vlsidlyarevich.unity.auth.models.UserAuthentication;
 import com.github.vlsidlyarevich.unity.auth.security.AuthenticationFacade;
-import com.github.vlsidlyarevich.unity.web.audit.Audit;
+import com.github.vlsidlyarevich.unity.web.audit.HttpRequestAuditor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,11 +17,11 @@ public class RequestLoggingInterceptor extends HandlerInterceptorAdapter {
 
     private final AuthenticationFacade authenticationFacade;
 
-    private final Audit audit;
+    private final HttpRequestAuditor audit;
 
     @Autowired
     public RequestLoggingInterceptor(final AuthenticationFacade authenticationFacade,
-                                     final Audit audit) {
+                                     final HttpRequestAuditor audit) {
         this.authenticationFacade = authenticationFacade;
         this.audit = audit;
     }
