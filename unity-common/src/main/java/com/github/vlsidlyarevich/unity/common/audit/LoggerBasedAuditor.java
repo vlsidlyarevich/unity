@@ -22,4 +22,19 @@ public class LoggerBasedAuditor implements Auditor {
         log.info("Audit Log from User: {} - "
                 + "Message : Called controller for path: {} - {}", username, method, path);
     }
+
+    @Override
+    public void logService(final String serviceName, final String method,
+                           final Object[] args) {
+        if (StringUtils.isBlank(serviceName)) {
+            throw new IllegalArgumentException("Service method is mandatory");
+        }
+
+        if (StringUtils.isBlank(method)) {
+            throw new IllegalArgumentException("Method is mandatory");
+        }
+
+        log.info("Message : Called service: {} for method: {} with arguments: {}",
+                serviceName, method, args);
+    }
 }

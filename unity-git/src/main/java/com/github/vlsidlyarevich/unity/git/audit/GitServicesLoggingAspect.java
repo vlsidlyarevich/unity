@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.db.audit;
+package com.github.vlsidlyarevich.unity.git.audit;
 
 import com.github.vlsidlyarevich.unity.common.audit.Auditor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,16 +11,16 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Aspect
 @Component
-public class DatabaseServicesLoggingAspect {
+public class GitServicesLoggingAspect {
 
     private final Auditor auditor;
 
     @Autowired
-    public DatabaseServicesLoggingAspect(final Auditor auditor) {
+    public GitServicesLoggingAspect(final Auditor auditor) {
         this.auditor = auditor;
     }
 
-    @Before("com.github.vlsidlyarevich.unity.db.audit.pointcut.DatabaseLoggingPointcut.service()")
+    @Before("com.github.vlsidlyarevich.unity.git.audit.pointcut.GitLoggingAspect.service()")
     public void logService(final JoinPoint joinPoint) {
         auditor.logService(joinPoint.getTarget().toString(),
                 joinPoint.getSignature().getName(),
