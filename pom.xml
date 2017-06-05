@@ -72,7 +72,7 @@
             <properties>
                 <neo4j.uri>http://neo4j:unity@localhost:7474</neo4j.uri>
                 <mongodb.uri>mongodb://localhost/unity-hrat</mongodb.uri>
-                <skip.test>false</skip.test>
+                <skip.test>true</skip.test>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>

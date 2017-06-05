@@ -37,7 +37,8 @@ public class HttpRequestAuditor implements RequestAuditor {
                                            final Object handler) {
         Method requestedMethod = ((HandlerMethod) handler).getMethod();
 
-        auditor.logController("Unauthorized", requestedMethod.getName(), request.getRequestURI());
+        auditor.logController("Unauthorized", requestedMethod.getName(),
+                request.getRequestURI());
     }
 
     private void logAuthenticatedRequest(final UserAuthentication authentication,
@@ -45,6 +46,7 @@ public class HttpRequestAuditor implements RequestAuditor {
         Method requestedMethod = ((HandlerMethod) handler).getMethod();
         User user = (User) authentication.getDetails();
 
-        auditor.logController(user.getUsername(), requestedMethod.getName(), request.getRequestURI());
+        auditor.logController(user.getUsername(), requestedMethod.getName(),
+                request.getRequestURI());
     }
 }
