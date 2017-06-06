@@ -44,15 +44,14 @@ public class GitProfileController {
         if (!report.isPresent()) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        UserAnalytics userAnalytics = new UserAnalytics();
 
         List<AnalysisReport> reports = new ArrayList<>();
         reports.add(report.get());
 
-        userAnalytics.setReports(reports);
+        String userId = ((User)
+                authenticationFacade.getAuthentication().getDetails()).getId();
 
-        userAnalytics.setUserId(((User)
-                authenticationFacade.getAuthentication().getDetails()).getId());
+        UserAnalytics userAnalytics = new UserAnalytics(userId, reports);
         userAnalytics.setCreatedAt(String.valueOf(LocalDateTime.now()));
         userAnalyticsService.add(userAnalytics);
         return new ResponseEntity(userAnalytics, HttpStatus.OK);

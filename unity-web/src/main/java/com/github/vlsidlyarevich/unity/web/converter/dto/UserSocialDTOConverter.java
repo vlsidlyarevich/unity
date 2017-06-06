@@ -9,16 +9,10 @@ import org.springframework.stereotype.Component;
 public class UserSocialDTOConverter implements Converter<UserSocialDTO, UserSocial> {
 
     @Override
-    public UserSocial convert(final UserSocialDTO source) {
-        UserSocial userSocial = new UserSocial();
-        userSocial.setFirstName(source.getFirstName());
-        userSocial.setLastName(source.getLastName());
-        userSocial.setEmail(source.getEmail());
-        userSocial.setSkype(source.getSkype());
-        userSocial.setAdditional(source.getAdditional());
-        userSocial.setImage(source.getImage());
-
-        return userSocial;
+    public UserSocial convert(final UserSocialDTO dto) {
+        return new UserSocial(null, dto.getFirstName(),
+                dto.getLastName(), dto.getEmail(), dto.getSkype(),
+                dto.getAdditional(), dto.getImage());
     }
 
     @Override
