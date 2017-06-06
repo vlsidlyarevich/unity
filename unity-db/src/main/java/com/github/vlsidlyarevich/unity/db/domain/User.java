@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.db.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,6 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Document(collection = "users")
 public class User extends DbModel implements UserDetails {
 
@@ -24,6 +26,19 @@ public class User extends DbModel implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean isEnabled;
+
+    public User(final List<Authority> authorities, final String username,
+                final String password, final boolean accountNonExpired,
+                final boolean accountNonLocked, final boolean credentialsNonExpired,
+                final boolean isEnabled) {
+        this.authorities = authorities;
+        this.username = username;
+        this.password = password;
+        this.accountNonExpired = accountNonExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.isEnabled = isEnabled;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -13,11 +13,11 @@ public final class TestUtils {
 
     }
 
-    private static String getRandomString(int length) {
+    public static String getRandomString(int length) {
         return RandomStringUtils.random(length, true, true);
     }
 
-    private static Integer getRandomInt(int startInclusive, int endInclusive) {
+    public static Integer getRandomInt(int startInclusive, int endInclusive) {
         return RandomUtils.nextInt(startInclusive, endInclusive);
     }
 }
