@@ -1,9 +1,10 @@
-package com.github.vlsidlyarevich.unity.db.repository;
+package com.github.vlsidlyarevich.unity.db.repository.integrational;
 
 import com.github.vlsidlyarevich.unity.db.TestUtils;
 import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
 import com.github.vlsidlyarevich.unity.db.domain.Authority;
 import com.github.vlsidlyarevich.unity.db.domain.User;
+import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,7 +20,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @DataMongoTest
 @ContextConfiguration(classes = UnityDatabaseTest.class)
-public class UserRepositoryTest {
+public class UserRepositoryIntegrationalTest {
 
     @Autowired
     private UserRepository userRepository;

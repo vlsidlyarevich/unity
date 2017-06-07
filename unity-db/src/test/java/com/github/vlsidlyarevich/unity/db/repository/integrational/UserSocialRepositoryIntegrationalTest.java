@@ -1,8 +1,9 @@
-package com.github.vlsidlyarevich.unity.db.repository;
+package com.github.vlsidlyarevich.unity.db.repository.integrational;
 
 import com.github.vlsidlyarevich.unity.db.TestUtils;
 import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
+import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @DataMongoTest
 @ContextConfiguration(classes = UnityDatabaseTest.class)
-public class UserSocialRepositoryTest {
+public class UserSocialRepositoryIntegrationalTest {
 
     @Autowired
     private UserSocialRepository userSocialRepository;

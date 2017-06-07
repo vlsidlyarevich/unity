@@ -1,9 +1,10 @@
-package com.github.vlsidlyarevich.unity.db.repository;
+package com.github.vlsidlyarevich.unity.db.repository.integrational;
 
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.db.TestUtils;
 import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
+import com.github.vlsidlyarevich.unity.db.repository.UserAnalyticsRepository;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,7 +20,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @DataMongoTest
 @ContextConfiguration(classes = UnityDatabaseTest.class)
-public class UserAnalyticsRepositoryTest {
+public class UserAnalyticsRepositoryIntegrationalTest {
 
     @Autowired
     private UserAnalyticsRepository userAnalyticsRepository;
@@ -30,7 +31,7 @@ public class UserAnalyticsRepositoryTest {
     }
 
     @Test
-    public void findByUsernameTest() throws Exception {
+    public void findByUserIdTest() throws Exception {
         UserAnalytics userAnalytics = createUserAnalytics();
 
         userAnalyticsRepository.save(userAnalytics);
