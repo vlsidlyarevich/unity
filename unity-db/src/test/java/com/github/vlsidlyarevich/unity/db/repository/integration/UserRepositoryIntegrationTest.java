@@ -1,8 +1,6 @@
-package com.github.vlsidlyarevich.unity.db.repository.integrational;
+package com.github.vlsidlyarevich.unity.db.repository.integration;
 
-import com.github.vlsidlyarevich.unity.db.TestUtils;
 import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
-import com.github.vlsidlyarevich.unity.db.domain.Authority;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
 import org.junit.After;
@@ -14,13 +12,12 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.github.vlsidlyarevich.unity.db.TestUtils.createUser;
 
 @RunWith(SpringRunner.class)
 @DataMongoTest
 @ContextConfiguration(classes = UnityDatabaseTest.class)
-public class UserRepositoryIntegrationalTest {
+public class UserRepositoryIntegrationTest {
 
     @Autowired
     private UserRepository userRepository;
@@ -43,14 +40,5 @@ public class UserRepositoryIntegrationalTest {
         Assert.assertEquals(savedUser.getUsername(), savedUser.getUsername());
         Assert.assertEquals(savedUser.getPassword(), savedUser.getPassword());
         Assert.assertEquals(savedUser.getAuthorities(), savedUser.getAuthorities());
-    }
-
-    private User createUser() {
-        List<Authority> authorities = new ArrayList<>();
-        authorities.add(Authority.ROLE_USER);
-
-        return new User(authorities, TestUtils.getRandomString(8), TestUtils.getRandomString(8),
-                false, false, false,
-                true);
     }
 }

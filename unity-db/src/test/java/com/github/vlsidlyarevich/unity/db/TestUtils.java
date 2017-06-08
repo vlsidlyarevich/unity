@@ -1,23 +1,42 @@
 package com.github.vlsidlyarevich.unity.db;
 
-import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
+import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
+import com.github.vlsidlyarevich.unity.db.domain.Authority;
+import com.github.vlsidlyarevich.unity.db.domain.User;
+import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
+import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class TestUtils {
-
-    private static final int MAX_STRING_LENGTH = 15;
-    private static final int START_INCLUSIVE = 5000;
-    private static final int END_INCLUSIVE = 100000;
 
     private TestUtils() {
 
     }
 
-    public static String getRandomString(int length) {
-        return RandomStringUtils.random(length, true, true);
+    public static UserAnalytics createUserAnalytics() {
+        List<AnalysisReport> reports = new ArrayList<>();
+
+        return new UserAnalytics(TestRandomUtils.getRandomString(8), reports);
     }
 
-    public static Integer getRandomInt(int startInclusive, int endInclusive) {
-        return RandomUtils.nextInt(startInclusive, endInclusive);
+    public static User createUser() {
+        List<Authority> authorities = new ArrayList<>();
+        authorities.add(Authority.ROLE_USER);
+
+        return new User(authorities, TestRandomUtils.getRandomString(8), TestRandomUtils.getRandomString(8),
+                false, false, false,
+                true);
+    }
+
+    public static UserSocial createUserSocial() {
+        return new UserSocial(TestRandomUtils.getRandomString(8),
+                TestRandomUtils.getRandomString(8),
+                TestRandomUtils.getRandomString(8),
+                TestRandomUtils.getRandomString(8),
+                TestRandomUtils.getRandomString(8),
+                TestRandomUtils.getRandomString(8),
+                TestRandomUtils.getRandomString(8));
     }
 }

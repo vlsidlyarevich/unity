@@ -1,7 +1,5 @@
-package com.github.vlsidlyarevich.unity.db.repository.integrational;
+package com.github.vlsidlyarevich.unity.db.repository.integration;
 
-import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
-import com.github.vlsidlyarevich.unity.db.TestUtils;
 import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 import com.github.vlsidlyarevich.unity.db.repository.UserAnalyticsRepository;
@@ -14,13 +12,12 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.github.vlsidlyarevich.unity.db.TestUtils.createUserAnalytics;
 
 @RunWith(SpringRunner.class)
 @DataMongoTest
 @ContextConfiguration(classes = UnityDatabaseTest.class)
-public class UserAnalyticsRepositoryIntegrationalTest {
+public class UserAnalyticsRepositoryIntegrationTest {
 
     @Autowired
     private UserAnalyticsRepository userAnalyticsRepository;
@@ -41,11 +38,5 @@ public class UserAnalyticsRepositoryIntegrationalTest {
         Assert.assertNotNull(savedUserAnalytics);
         Assert.assertNotNull(savedUserAnalytics.getId());
         Assert.assertEquals(userAnalytics.getUserId(), savedUserAnalytics.getUserId());
-    }
-
-    private UserAnalytics createUserAnalytics() {
-        List<AnalysisReport> reports = new ArrayList<>();
-
-        return new UserAnalytics(TestUtils.getRandomString(8), reports);
     }
 }

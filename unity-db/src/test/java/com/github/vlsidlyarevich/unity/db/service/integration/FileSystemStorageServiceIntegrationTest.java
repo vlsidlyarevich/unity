@@ -1,6 +1,7 @@
-package com.github.vlsidlyarevich.unity.db.service;
+package com.github.vlsidlyarevich.unity.db.service.integration;
 
 import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
+import com.github.vlsidlyarevich.unity.db.service.StorageService;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = UnityDatabaseTest.class)
-public class FileSystemStorageServiceTest {
+public class FileSystemStorageServiceIntegrationTest {
 
     @Autowired
     private StorageService storageService;

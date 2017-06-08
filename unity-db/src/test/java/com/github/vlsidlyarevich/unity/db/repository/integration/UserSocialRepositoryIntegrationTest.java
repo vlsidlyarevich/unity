@@ -1,6 +1,5 @@
-package com.github.vlsidlyarevich.unity.db.repository.integrational;
+package com.github.vlsidlyarevich.unity.db.repository.integration;
 
-import com.github.vlsidlyarevich.unity.db.TestUtils;
 import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
@@ -13,10 +12,12 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static com.github.vlsidlyarevich.unity.db.TestUtils.createUserSocial;
+
 @RunWith(SpringRunner.class)
 @DataMongoTest
 @ContextConfiguration(classes = UnityDatabaseTest.class)
-public class UserSocialRepositoryIntegrationalTest {
+public class UserSocialRepositoryIntegrationTest {
 
     @Autowired
     private UserSocialRepository userSocialRepository;
@@ -49,15 +50,5 @@ public class UserSocialRepositoryIntegrationalTest {
 
         Assert.assertNull(userSocialRepository.findByUserId(userSocial.getUserId()));
         Assert.assertEquals(0, userSocialRepository.findAll().size());
-    }
-
-    private UserSocial createUserSocial() {
-        return new UserSocial(TestUtils.getRandomString(8),
-                TestUtils.getRandomString(8),
-                TestUtils.getRandomString(8),
-                TestUtils.getRandomString(8),
-                TestUtils.getRandomString(8),
-                TestUtils.getRandomString(8),
-                TestUtils.getRandomString(8));
     }
 }
