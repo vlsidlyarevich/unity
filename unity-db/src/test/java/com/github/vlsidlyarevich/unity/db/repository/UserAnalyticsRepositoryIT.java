@@ -1,8 +1,7 @@
-package com.github.vlsidlyarevich.unity.db.repository.integration;
+package com.github.vlsidlyarevich.unity.db.repository;
 
 import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
-import com.github.vlsidlyarevich.unity.db.repository.UserAnalyticsRepository;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,7 +16,7 @@ import static com.github.vlsidlyarevich.unity.db.TestUtils.createUserAnalytics;
 @RunWith(SpringRunner.class)
 @DataMongoTest
 @ContextConfiguration(classes = UnityDatabaseTest.class)
-public class UserAnalyticsRepositoryIntegrationTest {
+public class UserAnalyticsRepositoryIT {
 
     @Autowired
     private UserAnalyticsRepository userAnalyticsRepository;
@@ -28,7 +27,7 @@ public class UserAnalyticsRepositoryIntegrationTest {
     }
 
     @Test
-    public void findByUserIdTest() throws Exception {
+    public void findByUserId_Success_ifValid() throws Exception {
         UserAnalytics userAnalytics = createUserAnalytics();
 
         userAnalyticsRepository.save(userAnalytics);

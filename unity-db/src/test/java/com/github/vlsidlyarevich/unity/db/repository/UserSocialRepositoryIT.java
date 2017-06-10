@@ -1,8 +1,7 @@
-package com.github.vlsidlyarevich.unity.db.repository.integration;
+package com.github.vlsidlyarevich.unity.db.repository;
 
 import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
-import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,7 +16,7 @@ import static com.github.vlsidlyarevich.unity.db.TestUtils.createUserSocial;
 @RunWith(SpringRunner.class)
 @DataMongoTest
 @ContextConfiguration(classes = UnityDatabaseTest.class)
-public class UserSocialRepositoryIntegrationTest {
+public class UserSocialRepositoryIT {
 
     @Autowired
     private UserSocialRepository userSocialRepository;
@@ -28,7 +27,7 @@ public class UserSocialRepositoryIntegrationTest {
     }
 
     @Test
-    public void findByUserIdTest() throws Exception {
+    public void findByUserId_Success_ifValid() throws Exception {
         UserSocial userSocial = createUserSocial();
 
         userSocialRepository.save(userSocial);
@@ -41,7 +40,7 @@ public class UserSocialRepositoryIntegrationTest {
     }
 
     @Test
-    public void deleteByUserIdTest() throws Exception {
+    public void deleteByUserId_Success_ifValid() throws Exception {
         UserSocial userSocial = createUserSocial();
 
         userSocialRepository.save(userSocial);

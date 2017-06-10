@@ -1,14 +1,16 @@
-package com.github.vlsidlyarevich.unity.db.service.integration;
+package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = UnityDatabaseTest.class)
-public class DefaultUserAnalyticsServiceIntegrationTest {
+@DataMongoTest
+@ContextConfiguration(classes = UnityDatabaseTest.class)
+public class DefaultUserAnalyticsServiceIT {
 
     @Test
     public void add() throws Exception {

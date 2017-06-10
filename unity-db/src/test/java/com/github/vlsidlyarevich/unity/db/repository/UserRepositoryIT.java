@@ -1,8 +1,7 @@
-package com.github.vlsidlyarevich.unity.db.repository.integration;
+package com.github.vlsidlyarevich.unity.db.repository;
 
 import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
 import com.github.vlsidlyarevich.unity.db.domain.User;
-import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,7 +16,7 @@ import static com.github.vlsidlyarevich.unity.db.TestUtils.createUser;
 @RunWith(SpringRunner.class)
 @DataMongoTest
 @ContextConfiguration(classes = UnityDatabaseTest.class)
-public class UserRepositoryIntegrationTest {
+public class UserRepositoryIT {
 
     @Autowired
     private UserRepository userRepository;
@@ -28,7 +27,7 @@ public class UserRepositoryIntegrationTest {
     }
 
     @Test
-    public void findByUsernameTest() throws Exception {
+    public void findByUsername_Success_ifValid() throws Exception {
         User user = createUser();
 
         userRepository.save(user);
