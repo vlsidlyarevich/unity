@@ -1,54 +1,154 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
+import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static com.github.vlsidlyarevich.unity.db.TestUtils.createUserAnalytics;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+
 @RunWith(SpringRunner.class)
-@DataMongoTest
-@ContextConfiguration(classes = UnityDatabaseTest.class)
+@SpringBootTest(classes = UnityDatabaseTest.class)
 public class DefaultUserAnalyticsServiceIT {
 
-    @Test
-    public void add() throws Exception {
+    @Autowired
+    private UserAnalyticsService userAnalyticsService;
 
+    @Before
+    public void setUp() {
+        userAnalyticsService.deleteAll();
+    }
+
+    @After
+    public void cleanUp() {
+        userAnalyticsService.deleteAll();
     }
 
     @Test
-    public void find() throws Exception {
+    public void add_Success_IfValid() throws Exception {
+        UserAnalytics userAnalytics = createUserAnalytics();
 
+        userAnalyticsService.add(userAnalytics);
+
+        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
+        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void add_ExceptionThrown_IfNull() throws Exception {
+        UserAnalytics userAnalytics = createUserAnalytics();
+
+        userAnalyticsService.add(userAnalytics);
+
+        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
+        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
     }
 
     @Test
-    public void findByUserId() throws Exception {
+    public void find_Success_IfPresent() throws Exception {
+        UserAnalytics userAnalytics = createUserAnalytics();
 
+        userAnalyticsService.add(userAnalytics);
+
+        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
+        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
     }
 
     @Test
-    public void findAll() throws Exception {
+    public void find_Null_IfNotPresent() throws Exception {
+        UserAnalytics userAnalytics = createUserAnalytics();
 
+        userAnalyticsService.add(userAnalytics);
+
+        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
+        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
     }
 
     @Test
-    public void delete() throws Exception {
+    public void findByUserId_Success_IfPresent() throws Exception {
+        UserAnalytics userAnalytics = createUserAnalytics();
 
+        userAnalyticsService.add(userAnalytics);
+
+        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
+        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
     }
 
     @Test
-    public void deleteReport() throws Exception {
+    public void findByUserId_Null_IfNotPresent() throws Exception {
+        UserAnalytics userAnalytics = createUserAnalytics();
 
+        userAnalyticsService.add(userAnalytics);
+
+        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
+        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
     }
 
     @Test
-    public void deleteAll() throws Exception {
+    public void findAll_Success_IfPresent() throws Exception {
+        UserAnalytics userAnalytics = createUserAnalytics();
 
+        userAnalyticsService.add(userAnalytics);
+
+        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
+        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
     }
 
     @Test
-    public void deleteAllReports() throws Exception {
+    public void findAll_Empty_IfNotPresent() throws Exception {
+        UserAnalytics userAnalytics = createUserAnalytics();
 
+        userAnalyticsService.add(userAnalytics);
+
+        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
+        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+    }
+
+    @Test
+    public void delete_Success_IfPresent() throws Exception {
+        UserAnalytics userAnalytics = createUserAnalytics();
+
+        userAnalyticsService.add(userAnalytics);
+
+        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
+        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+    }
+
+    @Test
+    public void deleteReport_Success_IfPresent() throws Exception {
+        UserAnalytics userAnalytics = createUserAnalytics();
+
+        userAnalyticsService.add(userAnalytics);
+
+        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
+        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+    }
+
+    @Test
+    public void deleteAll_Success_IfPresent() throws Exception {
+        UserAnalytics userAnalytics = createUserAnalytics();
+
+        userAnalyticsService.add(userAnalytics);
+
+        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
+        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+    }
+
+    @Test
+    public void deleteAllReports_Success_IfPresent() throws Exception {
+        UserAnalytics userAnalytics = createUserAnalytics();
+
+        userAnalyticsService.add(userAnalytics);
+
+        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
+        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
     }
 }

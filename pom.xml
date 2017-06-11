@@ -204,7 +204,7 @@
                     <excludes>
                         <exclude>**/*aop/*.class</exclude>
                         <exclude>**/*config/*.class</exclude>
-                        <exclude>**/*model/*.class</exclude>
+                        <exclude>**/*domain/*.class</exclude>
                         <exclude>**/*exception/**/*.class</exclude>
                         <exclude>**/*dto/*.class</exclude>
                         <exclude>**/Application.class</exclude>

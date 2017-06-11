@@ -1,0 +1,22 @@
+spring: 
+  data: 
+    mongodb: 
+      uri: @mongodb.uri@
+      database: unity
+
+security: 
+  token:
+    secret:
+      key: Asjfwol2asf123142Ags1k23hnSA36as6f4qQ324FEsvb
+
+server:
+  port: 8080
+#logging: 
+#  file: ../temp/logs/unity-log.log
+
+storage: 
+  path: ../temp/files
+
+git: 
+  apiUrl: https://api.github.com
+  accessToken: ${GIT_ACCESS_TOKEN}
