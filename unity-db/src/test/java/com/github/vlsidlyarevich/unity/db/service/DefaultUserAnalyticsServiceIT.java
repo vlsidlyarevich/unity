@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
+import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 import org.junit.After;
@@ -11,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static com.github.vlsidlyarevich.unity.db.TestUtils.createAnalysisReport;
 import static com.github.vlsidlyarevich.unity.db.TestUtils.createUserAnalytics;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = UnityDatabaseTest.class)
@@ -39,17 +42,12 @@ public class DefaultUserAnalyticsServiceIT {
         userAnalyticsService.add(userAnalytics);
 
         Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
-        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), is(userAnalytics));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void add_ExceptionThrown_IfNull() throws Exception {
-        UserAnalytics userAnalytics = createUserAnalytics();
-
-        userAnalyticsService.add(userAnalytics);
-
-        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
-        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+        userAnalyticsService.add(null);
     }
 
     @Test
@@ -65,11 +63,9 @@ public class DefaultUserAnalyticsServiceIT {
     @Test
     public void find_Null_IfNotPresent() throws Exception {
         UserAnalytics userAnalytics = createUserAnalytics();
+        userAnalytics.setId("id");
 
-        userAnalyticsService.add(userAnalytics);
-
-        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
-        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), nullValue());
     }
 
     @Test
@@ -78,18 +74,14 @@ public class DefaultUserAnalyticsServiceIT {
 
         userAnalyticsService.add(userAnalytics);
 
-        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
-        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+        Assert.assertThat(userAnalyticsService.findByUserId(userAnalytics.getUserId()), is(userAnalytics));
     }
 
     @Test
     public void findByUserId_Null_IfNotPresent() throws Exception {
         UserAnalytics userAnalytics = createUserAnalytics();
 
-        userAnalyticsService.add(userAnalytics);
-
-        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
-        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+        Assert.assertThat(userAnalyticsService.findByUserId(userAnalytics.getUserId()), nullValue());
     }
 
     @Test
@@ -99,17 +91,12 @@ public class DefaultUserAnalyticsServiceIT {
         userAnalyticsService.add(userAnalytics);
 
         Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
-        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+        Assert.assertTrue(userAnalyticsService.findAll().contains(userAnalytics));
     }
 
     @Test
     public void findAll_Empty_IfNotPresent() throws Exception {
-        UserAnalytics userAnalytics = createUserAnalytics();
-
-        userAnalyticsService.add(userAnalytics);
-
-        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
-        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+        Assert.assertTrue(userAnalyticsService.findAll().isEmpty());
     }
 
     @Test
@@ -117,14 +104,15 @@ public class DefaultUserAnalyticsServiceIT {
         UserAnalytics userAnalytics = createUserAnalytics();
 
         userAnalyticsService.add(userAnalytics);
+        userAnalyticsService.delete(userAnalytics.getId());
 
-        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
-        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+        Assert.assertTrue(userAnalyticsService.findAll().isEmpty());
     }
 
     @Test
     public void deleteReport_Success_IfPresent() throws Exception {
         UserAnalytics userAnalytics = createUserAnalytics();
+        AnalysisReport analysisReport = createAnalysisReport();
 
         userAnalyticsService.add(userAnalytics);
 

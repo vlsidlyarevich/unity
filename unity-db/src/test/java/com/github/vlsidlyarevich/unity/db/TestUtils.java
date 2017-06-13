@@ -6,7 +6,9 @@ import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public final class TestUtils {
@@ -19,6 +21,10 @@ public final class TestUtils {
         List<AnalysisReport> reports = new ArrayList<>();
 
         return new UserAnalytics(TestRandomUtils.getRandomString(8), reports);
+    }
+
+    public static AnalysisReport createAnalysisReport() {
+        return new AnalysisReport(null, new Date(), 1L);
     }
 
     public static User createUser() {
