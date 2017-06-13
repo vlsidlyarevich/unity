@@ -113,11 +113,12 @@ public class DefaultUserAnalyticsServiceIT {
     public void deleteReport_Success_IfPresent() throws Exception {
         UserAnalytics userAnalytics = createUserAnalytics();
         AnalysisReport analysisReport = createAnalysisReport();
+        userAnalytics.getReports().add(analysisReport);
 
         userAnalyticsService.add(userAnalytics);
+        userAnalyticsService.deleteReport(userAnalytics.getUserId(), analysisReport.getId());
 
-        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
-        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+        Assert.assertTrue(userAnalyticsService.find(userAnalytics.getId()).getReports().isEmpty());
     }
 
     @Test
@@ -125,18 +126,20 @@ public class DefaultUserAnalyticsServiceIT {
         UserAnalytics userAnalytics = createUserAnalytics();
 
         userAnalyticsService.add(userAnalytics);
+        userAnalyticsService.deleteAll();
 
-        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
-        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+        Assert.assertTrue(userAnalyticsService.findAll().isEmpty());
     }
 
     @Test
     public void deleteAllReports_Success_IfPresent() throws Exception {
         UserAnalytics userAnalytics = createUserAnalytics();
+        AnalysisReport analysisReport = createAnalysisReport();
+        userAnalytics.getReports().add(analysisReport);
 
         userAnalyticsService.add(userAnalytics);
+        userAnalyticsService.deleteAllReports(userAnalytics.getUserId());
 
-        Assert.assertThat(userAnalyticsService.findAll().size(), is(1));
-        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
+        Assert.assertTrue(userAnalyticsService.find(userAnalytics.getId()).getReports().isEmpty());
     }
 }

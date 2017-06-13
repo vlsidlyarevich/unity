@@ -59,6 +59,8 @@ public class DefaultUserAnalyticsService implements UserAnalyticsService {
         if (analytics != null) {
             analytics.getReports()
                     .removeIf(analysisReport -> analysisReport.getId().equals(reportId));
+
+            repository.save(analytics);
         }
         return reportId;
     }
@@ -80,6 +82,8 @@ public class DefaultUserAnalyticsService implements UserAnalyticsService {
             analytics.getReports()
                     .forEach(analysisReport -> result.add(analysisReport.getId()));
             analytics.getReports().clear();
+
+            repository.save(analytics);
         }
         return result;
     }
