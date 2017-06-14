@@ -63,7 +63,8 @@
             <properties>
                 <neo4j.uri>http://neo4j:test@localhost:7473</neo4j.uri>
                 <mongodb.uri>mongodb://localhost/unity-hrat-test</mongodb.uri>
-                <skip.test>false</skip.test>
+                <skip.integration.tests>false</skip.integration.tests>
+                <skip.unit.tests>false</skip.unit.tests>
             </properties>
         </profile>
 
@@ -72,7 +73,8 @@
             <properties>
                 <neo4j.uri>http://neo4j:unity@localhost:7474</neo4j.uri>
                 <mongodb.uri>mongodb://localhost/unity-hrat</mongodb.uri>
-                <skip.test>true</skip.test>
+                <skip.integration.tests>true</skip.integration.tests>
+                <skip.unit.tests>false</skip.unit.tests>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -83,7 +85,8 @@
             <id>heroku</id>
             <properties>
                 <mongodb.uri>${MONGODB_URI}</mongodb.uri>
-                <skip.test>false</skip.test>
+                <skip.integration.tests>false</skip.integration.tests>
+                <skip.unit.tests>false</skip.unit.tests>
             </properties>
         </profile>
     </profiles>
@@ -181,8 +184,45 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <skipTests>${skip.test}</skipTests>
+                    <skipTests>${skip.unit.tests}</skipTests>
                 </configuration>
+            </plugin>
+
+            <!--Failsafe plugin-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skipTests>${skip.integration.tests}</skipTests>
+                </configuration>
+            </plugin>
+
+            <!--Build helper plugin-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/integration-test/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- Coveralls -->
