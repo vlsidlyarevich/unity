@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
-import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
+import com.github.vlsidlyarevich.unity.db.UnityDatabaseIT;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 import org.junit.After;
 import org.junit.Assert;
@@ -19,7 +19,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = UnityDatabaseTest.class)
+@SpringBootTest(classes = UnityDatabaseIT.class)
 public class DefaultUserAnalyticsServiceIT {
 
     @Autowired

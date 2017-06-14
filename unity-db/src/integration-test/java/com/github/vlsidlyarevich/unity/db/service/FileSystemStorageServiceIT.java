@@ -1,12 +1,13 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
-import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
+import com.github.vlsidlyarevich.unity.db.UnityDatabaseIT;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -16,8 +17,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@DataMongoTest
-@ContextConfiguration(classes = UnityDatabaseTest.class)
+@SpringBootTest(classes = UnityDatabaseIT.class)
 public class FileSystemStorageServiceIT {
 
     @Autowired

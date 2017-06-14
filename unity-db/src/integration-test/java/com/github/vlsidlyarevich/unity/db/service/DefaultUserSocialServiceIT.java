@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
-import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
+import com.github.vlsidlyarevich.unity.db.UnityDatabaseIT;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @DataMongoTest
-@ContextConfiguration(classes = UnityDatabaseTest.class)
+@ContextConfiguration(classes = UnityDatabaseIT.class)
 public class DefaultUserSocialServiceIT {
 
     @Test

@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.repository;
 
-import com.github.vlsidlyarevich.unity.db.UnityDatabaseTest;
+import com.github.vlsidlyarevich.unity.db.UnityDatabaseIT;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 import org.junit.After;
 import org.junit.Assert;
@@ -15,7 +15,7 @@ import static com.github.vlsidlyarevich.unity.db.TestUtils.createUserAnalytics;
 
 @RunWith(SpringRunner.class)
 @DataMongoTest
-@ContextConfiguration(classes = UnityDatabaseTest.class)
+@ContextConfiguration(classes = UnityDatabaseIT.class)
 public class UserAnalyticsRepositoryIT {
 
     @Autowired

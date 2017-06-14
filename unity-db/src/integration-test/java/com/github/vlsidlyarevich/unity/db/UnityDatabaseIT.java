@@ -11,6 +11,6 @@ import org.springframework.context.annotation.Import;
 })
 @EnableConfigurationProperties(StorageProperties.class)
 @SpringBootApplication
-public class UnityDatabaseTest {
+public class UnityDatabaseIT {
 
 }
