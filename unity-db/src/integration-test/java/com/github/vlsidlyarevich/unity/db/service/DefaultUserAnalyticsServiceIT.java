@@ -62,10 +62,7 @@ public class DefaultUserAnalyticsServiceIT {
 
     @Test
     public void find_Null_IfNotPresent() throws Exception {
-        UserAnalytics userAnalytics = createUserAnalytics();
-        userAnalytics.setId("id");
-
-        Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), nullValue());
+        Assert.assertThat(userAnalyticsService.find("id"), nullValue());
     }
 
     @Test
@@ -79,9 +76,7 @@ public class DefaultUserAnalyticsServiceIT {
 
     @Test
     public void findByUserId_Null_IfNotPresent() throws Exception {
-        UserAnalytics userAnalytics = createUserAnalytics();
-
-        Assert.assertThat(userAnalyticsService.findByUserId(userAnalytics.getUserId()), nullValue());
+        Assert.assertThat(userAnalyticsService.findByUserId("userid"), nullValue());
     }
 
     @Test
