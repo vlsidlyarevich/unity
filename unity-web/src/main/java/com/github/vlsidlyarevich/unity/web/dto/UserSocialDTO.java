@@ -1,13 +1,11 @@
 package com.github.vlsidlyarevich.unity.web.dto;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
-@EqualsAndHashCode
 @NoArgsConstructor
 public final class UserSocialDTO implements Serializable {
     private static final long serialVersionUID = -8632737767330638824L;

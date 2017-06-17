@@ -1,7 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.dto;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -9,7 +8,6 @@ import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 @Data
-@EqualsAndHashCode
 @NoArgsConstructor
 public final class UserDTO implements Serializable {
     private static final long serialVersionUID = -7579103181077856718L;

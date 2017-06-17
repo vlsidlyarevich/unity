@@ -1,14 +1,12 @@
 package com.github.vlsidlyarevich.unity.web.dto;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.io.Serializable;
 
 @Data
-@EqualsAndHashCode
 @NoArgsConstructor
 public final class LoginDTO implements Serializable {
     private static final long serialVersionUID = -3269151399045119448L;
