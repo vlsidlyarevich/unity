@@ -10,15 +10,6 @@
     <name>Unity</name>
     <description>Angular 2 and java REST based Human Resourse Analysing tool</description>
 
-    <modules>
-        <module>build-tools</module>
-        <module>unity-web</module>
-        <module>unity-db</module>
-        <module>unity-common</module>
-        <module>unity-auth</module>
-        <module>unity-git</module>
-    </modules>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -91,83 +82,118 @@
         </profile>
     </profiles>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.github.vlsidlyarevich</groupId>
-                <artifactId>unity-web</artifactId>
-                <version>${project-lib.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.vlsidlyarevich</groupId>
-                <artifactId>unity-db</artifactId>
-                <version>${project-lib.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.vlsidlyarevich</groupId>
-                <artifactId>unity-common</artifactId>
-                <version>${project-lib.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.vlsidlyarevich</groupId>
-                <artifactId>unity-auth</artifactId>
-                <version>${project-lib.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.vlsidlyarevich</groupId>
-                <artifactId>unity-git</artifactId>
-                <version>${project-lib.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.vlsidlyarevich</groupId>
-                <artifactId>build-tools</artifactId>
-                <version>${project-lib.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-collections4</artifactId>
-                <version>${commons-collections4.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${commons-lang3.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>${jjwt.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${commons-collections4.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
+            <!--Spring boot maven plugin-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <jvmArguments>
+                        -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
+                    </jvmArguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+            </plugin>
+
             <!--Compiler plugin-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -267,7 +293,7 @@
                 <version>${maven-pmd-plugin.version}</version>
                 <configuration>
                     <rulesets>
-                        <ruleset>quality/pmd/pmd-ruleset.xml</ruleset>
+                        <ruleset>${basedir}/build-tools/quality/pmd/pmd-ruleset.xml</ruleset>
                     </rulesets>
                     <printFailingErrors>true</printFailingErrors>
                 </configuration>
@@ -278,13 +304,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.github.vlsidlyarevich</groupId>
-                        <artifactId>build-tools</artifactId>
-                        <version>${project-lib.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
 
             <!--Checkstyle-->
@@ -293,8 +312,9 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${maven-checkstyle-plugin.version}</version>
                 <configuration>
-                    <configLocation>quality/checkstyle/checkstyle.xml</configLocation>
-                    <suppressionsLocation>quality/checkstyle/checkstyle-suppress.xml</suppressionsLocation>
+                    <configLocation>${basedir}/build-tools/quality/checkstyle/checkstyle.xml</configLocation>
+                    <suppressionsLocation>${basedir}/build-tools/quality/checkstyle/checkstyle-suppress.xml
+                    </suppressionsLocation>
                 </configuration>
                 <executions>
                     <execution>
@@ -303,13 +323,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.github.vlsidlyarevich</groupId>
-                        <artifactId>build-tools</artifactId>
-                        <version>${project-lib.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
