@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.audit;
 
-import com.github.vlsidlyarevich.unity.web.security.models.UserAuthentication;
+import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import com.github.vlsidlyarevich.unity.common.audit.Auditor;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import lombok.extern.slf4j.Slf4j;

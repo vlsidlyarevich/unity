@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.common.patterns;
+package com.github.vlsidlyarevich.unity.common.pattern;
 
 public final class ValidationPatterns {
 

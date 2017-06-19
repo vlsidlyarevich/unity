@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.web.security.models;
+package com.github.vlsidlyarevich.unity.web.security.model;
 
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import org.springframework.security.core.Authentication;
