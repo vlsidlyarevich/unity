@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.audit;
 
-import com.github.vlsidlyarevich.unity.auth.models.UserAuthentication;
+import com.github.vlsidlyarevich.unity.web.security.models.UserAuthentication;
 
 import javax.servlet.http.HttpServletRequest;
 

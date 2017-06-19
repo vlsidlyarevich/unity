@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.auth.service;
+package com.github.vlsidlyarevich.unity.web.security.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import io.jsonwebtoken.JwtBuilder;

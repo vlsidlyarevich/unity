@@ -1,6 +1,6 @@
-package com.github.vlsidlyarevich.unity.auth.filter;
+package com.github.vlsidlyarevich.unity.web.security.filter;
 
-import com.github.vlsidlyarevich.unity.auth.service.TokenAuthenticationService;
+import com.github.vlsidlyarevich.unity.web.security.service.TokenAuthenticationService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;

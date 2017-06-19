@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.auth.audit;
+package com.github.vlsidlyarevich.unity.web.security.audit;
 
 import com.github.vlsidlyarevich.unity.common.audit.Auditor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ public class AuthServicesLoggingAspect {
         this.auditor = auditor;
     }
 
-    @Before("com.github.vlsidlyarevich.unity.auth.audit.pointcut.AuthLoggingPointcut.service()")
+    @Before("com.github.vlsidlyarevich.unity.web.security.audit.pointcut.AuthLoggingPointcut.service()")
     public void logService(final JoinPoint joinPoint) {
         auditor.logService(joinPoint.getTarget().toString(),
                 joinPoint.getSignature().getName(),

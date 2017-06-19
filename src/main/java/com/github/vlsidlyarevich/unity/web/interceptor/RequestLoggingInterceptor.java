@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.interceptor;
 
-import com.github.vlsidlyarevich.unity.auth.models.UserAuthentication;
-import com.github.vlsidlyarevich.unity.auth.security.AuthenticationFacade;
+import com.github.vlsidlyarevich.unity.web.security.models.UserAuthentication;
+import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
 import com.github.vlsidlyarevich.unity.web.audit.HttpRequestAuditor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

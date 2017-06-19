@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-import com.github.vlsidlyarevich.unity.auth.service.TokenService;
+import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import com.github.vlsidlyarevich.unity.web.dto.LoginDTO;
 import com.github.vlsidlyarevich.unity.web.dto.TokenDTO;
 import org.springframework.beans.factory.annotation.Autowired;

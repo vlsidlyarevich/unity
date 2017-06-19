@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.auth.security;
+package com.github.vlsidlyarevich.unity.web.security.facade;
 
 import org.springframework.security.core.Authentication;
 

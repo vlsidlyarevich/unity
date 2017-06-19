@@ -1,7 +1,7 @@
-package com.github.vlsidlyarevich.unity.auth.config;
+package com.github.vlsidlyarevich.unity.web.security.config;
 
-import com.github.vlsidlyarevich.unity.auth.filter.AuthenticationTokenFilter;
-import com.github.vlsidlyarevich.unity.auth.service.TokenAuthenticationService;
+import com.github.vlsidlyarevich.unity.web.security.filter.AuthenticationTokenFilter;
+import com.github.vlsidlyarevich.unity.web.security.service.TokenAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

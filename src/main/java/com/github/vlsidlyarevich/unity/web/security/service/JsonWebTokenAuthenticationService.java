@@ -1,7 +1,7 @@
-package com.github.vlsidlyarevich.unity.auth.service;
+package com.github.vlsidlyarevich.unity.web.security.service;
 
-import com.github.vlsidlyarevich.unity.auth.constants.SecurityConstants;
-import com.github.vlsidlyarevich.unity.auth.models.UserAuthentication;
+import com.github.vlsidlyarevich.unity.web.security.constants.SecurityConstants;
+import com.github.vlsidlyarevich.unity.web.security.models.UserAuthentication;
 import com.github.vlsidlyarevich.unity.common.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import io.jsonwebtoken.Claims;

@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.auth;
+package com.github.vlsidlyarevich.unity.web.security;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

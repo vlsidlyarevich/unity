@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.auth.constants;
+package com.github.vlsidlyarevich.unity.web.security.constants;
 
 
 public final class SecurityConstants {

@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-import com.github.vlsidlyarevich.unity.auth.security.AuthenticationFacade;
+import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;

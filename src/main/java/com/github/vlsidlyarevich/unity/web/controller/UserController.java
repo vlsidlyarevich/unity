@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-import com.github.vlsidlyarevich.unity.auth.security.AuthenticationFacade;
+import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
