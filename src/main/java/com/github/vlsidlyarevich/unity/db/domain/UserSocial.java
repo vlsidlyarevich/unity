@@ -36,7 +36,7 @@ public class UserSocial extends DbModel implements Serializable {
         this.image = image;
     }
 
-    public static UserSocial fromDTO(UserSocialDTO dto) {
+    public static UserSocial fromDTO(final UserSocialDTO dto) {
         return new UserSocial(dto.getFirstName(),
                 dto.getLastName(), dto.getEmail(), dto.getSkype(),
                 dto.getAdditional(), dto.getImage());

@@ -42,7 +42,7 @@ public class User extends DbModel implements UserDetails {
         this.isEnabled = isEnabled;
     }
 
-    public static User fromDTO(UserDTO dto) {
+    public static User fromDTO(final UserDTO dto) {
         List<Authority> authorities = new ArrayList<>();
         authorities.add(Authority.ROLE_USER);
 

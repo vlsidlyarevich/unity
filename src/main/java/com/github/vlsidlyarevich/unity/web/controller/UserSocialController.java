@@ -45,7 +45,8 @@ public class UserSocialController {
         userSocial.setUserId(id);
 
         if (userService.find(userSocial.getUserId()) != null) {
-            return new ResponseEntity<>(UserSocialDTO.fromDomain(service.update(id, userSocial)), HttpStatus.OK);
+            return new ResponseEntity<>(
+                    UserSocialDTO.fromDomain(service.update(id, userSocial)), HttpStatus.OK);
         } else {
             throw new UserNotFoundException("User with user id: "
                     + userSocial.getUserId() + " not found");

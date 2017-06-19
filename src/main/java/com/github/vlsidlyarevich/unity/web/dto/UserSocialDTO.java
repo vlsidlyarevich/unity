@@ -29,7 +29,7 @@ public final class UserSocialDTO implements Serializable {
         this.image = image;
     }
 
-    public static UserSocialDTO fromDomain(UserSocial model) {
+    public static UserSocialDTO fromDomain(final UserSocial model) {
         UserSocialDTO dto = new UserSocialDTO();
         dto.setFirstName(model.getFirstName() != null ? model.getFirstName() : "");
         dto.setLastName(model.getLastName() != null ? model.getLastName() : "");

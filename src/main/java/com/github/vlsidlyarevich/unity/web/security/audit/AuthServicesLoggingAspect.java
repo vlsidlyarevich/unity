@@ -20,7 +20,8 @@ public class AuthServicesLoggingAspect {
         this.auditor = auditor;
     }
 
-    @Before("com.github.vlsidlyarevich.unity.web.security.audit.pointcut.AuthLoggingPointcut.service()")
+    @Before("com.github.vlsidlyarevich.unity.web"
+            + ".security.audit.pointcut.AuthLoggingPointcut.service()")
     public void logService(final JoinPoint joinPoint) {
         auditor.logService(joinPoint.getTarget().toString(),
                 joinPoint.getSignature().getName(),
