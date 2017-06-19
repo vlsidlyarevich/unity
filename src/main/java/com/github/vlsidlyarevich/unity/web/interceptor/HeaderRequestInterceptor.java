@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.git.interceptors;
+package com.github.vlsidlyarevich.unity.web.interceptor;
 
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;

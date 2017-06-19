@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.config;
 
+import com.github.vlsidlyarevich.unity.web.interceptor.RequestLoggingInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

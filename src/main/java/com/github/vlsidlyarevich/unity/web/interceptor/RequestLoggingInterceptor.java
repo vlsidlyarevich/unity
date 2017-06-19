@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.web.config;
+package com.github.vlsidlyarevich.unity.web.interceptor;
 
 import com.github.vlsidlyarevich.unity.auth.models.UserAuthentication;
 import com.github.vlsidlyarevich.unity.auth.security.AuthenticationFacade;

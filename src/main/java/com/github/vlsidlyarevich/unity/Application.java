@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.web;
+package com.github.vlsidlyarevich.unity;
 
 import com.github.vlsidlyarevich.unity.db.config.StorageProperties;
 import com.github.vlsidlyarevich.unity.git.config.GitProperties;

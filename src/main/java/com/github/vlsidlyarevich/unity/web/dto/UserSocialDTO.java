@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.dto;
 
+import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,5 +27,17 @@ public final class UserSocialDTO implements Serializable {
         this.skype = skype;
         this.additional = additional;
         this.image = image;
+    }
+
+    public static UserSocialDTO fromDomain(UserSocial model) {
+        UserSocialDTO dto = new UserSocialDTO();
+        dto.setFirstName(model.getFirstName() != null ? model.getFirstName() : "");
+        dto.setLastName(model.getLastName() != null ? model.getLastName() : "");
+        dto.setEmail(model.getEmail() != null ? model.getEmail() : "");
+        dto.setSkype(model.getSkype() != null ? model.getSkype() : "");
+        dto.setAdditional(model.getAdditional() != null ? model.getAdditional() : "");
+        dto.setImage(model.getImage() != null ? model.getImage() : "");
+
+        return dto;
     }
 }

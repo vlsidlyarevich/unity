@@ -2,7 +2,7 @@ package com.github.vlsidlyarevich.unity.git.factory;
 
 import com.github.vlsidlyarevich.unity.git.config.GitProperties;
 import com.github.vlsidlyarevich.unity.git.constant.Github;
-import com.github.vlsidlyarevich.unity.git.interceptors.HeaderRequestInterceptor;
+import com.github.vlsidlyarevich.unity.web.interceptor.HeaderRequestInterceptor;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;

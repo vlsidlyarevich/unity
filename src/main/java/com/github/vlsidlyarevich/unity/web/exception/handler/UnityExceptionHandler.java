@@ -4,7 +4,7 @@ import com.github.vlsidlyarevich.unity.common.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.FileSystemFileNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.FileSystemStorageException;
 import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
-import com.github.vlsidlyarevich.unity.web.config.MessageResolver;
+import com.github.vlsidlyarevich.unity.i18n.MessageResolver;
 import com.github.vlsidlyarevich.unity.web.dto.ExceptionDTO;
 import com.mongodb.MongoException;
 import lombok.extern.slf4j.Slf4j;

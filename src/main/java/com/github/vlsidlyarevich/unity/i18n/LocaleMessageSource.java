@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.web.config;
+package com.github.vlsidlyarevich.unity.i18n;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

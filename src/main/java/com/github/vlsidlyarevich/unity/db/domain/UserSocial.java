@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.domain;
 
+import com.github.vlsidlyarevich.unity.web.dto.UserSocialDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.Id;
@@ -24,15 +25,20 @@ public class UserSocial extends DbModel implements Serializable {
     private String additional;
     private String image;
 
-    public UserSocial(final String userId, final String firstName,
+    public UserSocial(final String firstName,
                       final String lastName, final String email,
                       final String skype, final String additional, final String image) {
-        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.skype = skype;
         this.additional = additional;
         this.image = image;
+    }
+
+    public static UserSocial fromDTO(UserSocialDTO dto) {
+        return new UserSocial(dto.getFirstName(),
+                dto.getLastName(), dto.getEmail(), dto.getSkype(),
+                dto.getAdditional(), dto.getImage());
     }
 }

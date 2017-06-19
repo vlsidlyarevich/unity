@@ -2,7 +2,6 @@ package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.service.UserService;
-import com.github.vlsidlyarevich.unity.web.converter.ConverterFacade;
 import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,13 +20,9 @@ public class UsersController {
 
     private final UserService service;
 
-    private final ConverterFacade converterFacade;
-
     @Autowired
-    public UsersController(final UserService service,
-                           final ConverterFacade converterFacade) {
+    public UsersController(final UserService service) {
         this.service = service;
-        this.converterFacade = converterFacade;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -45,16 +40,16 @@ public class UsersController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> addUser(@Valid @RequestBody final UserDTO user) {
+    public ResponseEntity<?> addUser(@Valid @RequestBody final UserDTO dto) {
         return new ResponseEntity<>(service
-                .create((User) converterFacade.convert(user)), HttpStatus.CREATED);
+                .create(User.fromDTO(dto)), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateUserById(@PathVariable final String id,
-                                            @Valid @RequestBody final UserDTO user) {
+                                            @Valid @RequestBody final UserDTO dto) {
         return new ResponseEntity<>(service
-                .update(id, (User) converterFacade.convert(user)), HttpStatus.OK);
+                .update(id, User.fromDTO(dto)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

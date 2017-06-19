@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.domain;
 
+import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.Id;
@@ -7,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -38,6 +40,15 @@ public class User extends DbModel implements UserDetails {
         this.accountNonLocked = accountNonLocked;
         this.credentialsNonExpired = credentialsNonExpired;
         this.isEnabled = isEnabled;
+    }
+
+    public static User fromDTO(UserDTO dto) {
+        List<Authority> authorities = new ArrayList<>();
+        authorities.add(Authority.ROLE_USER);
+
+        return new User(authorities, dto.getUsername(), dto.getPassword(),
+                false, false, false,
+                true);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.web.config;
+package com.github.vlsidlyarevich.unity.i18n;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
