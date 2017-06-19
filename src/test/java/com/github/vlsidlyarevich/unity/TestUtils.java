@@ -41,7 +41,6 @@ public final class TestUtils {
                 TestRandomUtils.getRandomString(8),
                 TestRandomUtils.getRandomString(8),
                 TestRandomUtils.getRandomString(8),
-                TestRandomUtils.getRandomString(8),
                 TestRandomUtils.getRandomString(8));
     }
 }
