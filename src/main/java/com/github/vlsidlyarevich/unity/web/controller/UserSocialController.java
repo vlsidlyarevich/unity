@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/user/{id}/social")
+@RequestMapping("/api/v1/user/{id}/social")
 public class UserSocialController {
 
     private final UserSocialService service;

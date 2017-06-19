@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/git/profile")
+@RequestMapping("/api/v1/git/profile")
 public class GitProfileController {
 
     private final GitAnalyzeService gitAnalyzeService;
