@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -42,20 +43,20 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
     }
 
     @Override
-    public Authentication authenticate(final HttpServletRequest request) {
-        String token = request.getHeader(SecurityConstants.AUTH_HEADER_NAME);
-        Jws<Claims> tokenData = parseToken(token);
-        if (tokenData != null) {
+    public Optional<Authentication> authenticate(final HttpServletRequest request) {
+        final String token = request.getHeader(SecurityConstants.AUTH_HEADER_NAME);
+        final Optional<Jws<Claims>> tokenData = parseToken(token);
+        if (tokenData.isPresent()) {
             try {
-                User user = getUserFromToken(tokenData);
-                if (user != null) {
-                    return new UserAuthentication(user);
+                Optional<User> user = getUserFromToken(tokenData.get());
+                if (user.isPresent()) {
+                    return Optional.of(new UserAuthentication(user.get()));
                 }
             } catch (UserNotFoundException e) {
                 log.warn(e.getMessage());
             }
         }
-        return null;
+        return Optional.empty();
     }
 
     @Override
@@ -63,26 +64,27 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
                                   final UserDetails userDetails) {
         final User user = (User) userDetails;
         response.addHeader(SecurityConstants.AUTH_HEADER_NAME,
-                tokenService.getToken(user.getUsername(), user.getPassword()));
+                tokenService.getToken(user.getUsername(), user.getPassword()).get());
     }
 
-    private Jws<Claims> parseToken(final String token) {
+    private Optional<Jws<Claims>> parseToken(final String token) {
+        Optional<Jws<Claims>> result = Optional.empty();
         if (token != null) {
             try {
-                return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+                result = Optional.of(Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token));
             } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException
                     | SignatureException | IllegalArgumentException e) {
-                return null;
+                return result;
             }
         }
-        return null;
+        return result;
     }
 
-    private User getUserFromToken(final Jws<Claims> tokenData)
+    private Optional<User> getUserFromToken(final Jws<Claims> tokenData)
             throws UserNotFoundException {
         try {
-            return (User) userDetailsService.loadUserByUsername(tokenData.getBody()
-                    .get("username").toString());
+            return Optional.ofNullable((User) userDetailsService.loadUserByUsername(tokenData.getBody()
+                    .get("username").toString()));
         } catch (UsernameNotFoundException e) {
             throw new UserNotFoundException("User " + tokenData.getBody()
                     .get("username").toString() + " not found");

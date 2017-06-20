@@ -20,10 +20,10 @@
         <project-lib.version>0.0.1-SNAPSHOT</project-lib.version>
         <commons-collections4.version>4.1</commons-collections4.version>
         <lombok.version>1.16.16</lombok.version>
-        <commons-lang3.version>3.5</commons-lang3.version>
+        <commons-lang3.version>3.6</commons-lang3.version>
         <guava.version>22.0</guava.version>
         <jjwt.version>0.7.0</jjwt.version>
-        <jackson.version>2.9.0.pr3</jackson.version>
+        <jackson.version>2.9.0.pr4</jackson.version>
 
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>

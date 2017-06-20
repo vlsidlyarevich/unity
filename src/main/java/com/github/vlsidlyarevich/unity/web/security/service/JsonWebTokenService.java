@@ -4,8 +4,10 @@ import com.github.vlsidlyarevich.unity.db.domain.User;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,9 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
+@Slf4j
 @Service
 public class JsonWebTokenService implements TokenService {
 
@@ -30,13 +34,15 @@ public class JsonWebTokenService implements TokenService {
     }
 
     @Override
-    public String getToken(final String username, final String password) {
+    public Optional<String> getToken(final String username, final String password) {
+        Optional<String> result = Optional.empty();
+
         if (username == null || password == null) {
-            return null;
+            return result;
         }
 
-        User user = (User) userDetailsService.loadUserByUsername(username);
-        Map<String, Object> tokenData = new HashMap<>();
+        final User user = (User) userDetailsService.loadUserByUsername(username);
+        final Map<String, Object> tokenData = new HashMap<>();
         if (password.equals(user.getPassword())) {
             tokenData.put("clientType", "user");
             tokenData.put("userID", user.getId());
@@ -45,14 +51,14 @@ public class JsonWebTokenService implements TokenService {
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.MINUTE, TOKEN_EXPIRATION_TIME);
             tokenData.put("token_expiration_date", calendar.getTime());
-            JwtBuilder jwtBuilder = Jwts.builder();
+            final JwtBuilder jwtBuilder = Jwts.builder();
             jwtBuilder.setExpiration(calendar.getTime());
             jwtBuilder.setClaims(tokenData);
-            return jwtBuilder.signWith(SignatureAlgorithm.HS512, tokenKey).compact();
+            result = Optional.of(jwtBuilder.signWith(SignatureAlgorithm.HS512, tokenKey).compact());
         } else {
-//            throw new Exception("Authentication error");
-            System.out.println("Authentication Error, credentials not matching");
-            return null;
+            log.warn("Authentication Error, credentials not matching");
         }
+
+        return result;
     }
 }

@@ -5,11 +5,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 
 public interface TokenAuthenticationService {
 
-    Authentication authenticate(HttpServletRequest request);
+    Optional<Authentication> authenticate(HttpServletRequest request);
 
     void addAuthentication(HttpServletResponse response, UserDetails userDetails);
 }
