@@ -9,6 +9,7 @@ import com.github.vlsidlyarevich.unity.web.dto.ExceptionDTO;
 import com.mongodb.MongoException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -37,7 +38,7 @@ public class UnityExceptionHandler {
         log.warn("Processing method argument not valid exception: " + exception.getMessage());
         final String message = exception.getBindingResult().getFieldErrors()
                 .stream()
-                .map(fieldError -> fieldError.getDefaultMessage())
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.joining("\n"));
 
         return new ResponseEntity<>(new ExceptionDTO(message), HttpStatus.BAD_REQUEST);
@@ -50,7 +51,7 @@ public class UnityExceptionHandler {
         log.warn("Processing file system storage exception:" + exception.getMessage());
 
         return new ResponseEntity<>(new ExceptionDTO(messageResolver.getMessage(exception.getKey(),
-                exception.getArgs())), HttpStatus.BAD_REQUEST);
+                exception.getArgs())), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(FileSystemFileNotFoundException.class)
@@ -69,7 +70,7 @@ public class UnityExceptionHandler {
         log.warn("Processing user not found exception:" + exception.getMessage());
 
         return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
-                HttpStatus.BAD_REQUEST);
+                HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(UsernameExistsException.class)
@@ -87,7 +88,7 @@ public class UnityExceptionHandler {
         log.warn("Processing mongo exception:" + exception.getMessage());
 
         return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
-                HttpStatus.BAD_REQUEST);
+                HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(AccessDeniedException.class)

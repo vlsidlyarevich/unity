@@ -25,7 +25,7 @@ public class SignUpController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> signUp(@Valid @RequestBody final UserDTO dto) {
+    public ResponseEntity signUp(@Valid @RequestBody final UserDTO dto) {
         return new ResponseEntity<>(service
                 .create(User.fromDTO(dto)), HttpStatus.OK);
     }

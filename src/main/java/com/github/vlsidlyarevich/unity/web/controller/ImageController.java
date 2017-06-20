@@ -31,7 +31,7 @@ public class ImageController {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public ResponseEntity uploadImage(@RequestParam("file") final MultipartFile file) {
-        return new ResponseEntity<>(storageService.store(file), HttpStatus.OK);
+        return new ResponseEntity<>(storageService.store(file), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

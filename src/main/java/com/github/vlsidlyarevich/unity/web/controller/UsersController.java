@@ -26,12 +26,12 @@ public class UsersController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getAllUsers() {
+    public ResponseEntity getAllUsers() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getUserById(@PathVariable final String id) {
+    public ResponseEntity getUserById(@PathVariable final String id) {
         final User user = service.find(id);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -40,20 +40,20 @@ public class UsersController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> addUser(@Valid @RequestBody final UserDTO dto) {
+    public ResponseEntity addUser(@Valid @RequestBody final UserDTO dto) {
         return new ResponseEntity<>(service
                 .create(User.fromDTO(dto)), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateUserById(@PathVariable final String id,
+    public ResponseEntity updateUserById(@PathVariable final String id,
                                             @Valid @RequestBody final UserDTO dto) {
         return new ResponseEntity<>(service
                 .update(id, User.fromDTO(dto)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteUserById(@PathVariable final String id) {
+    public ResponseEntity deleteUserById(@PathVariable final String id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }

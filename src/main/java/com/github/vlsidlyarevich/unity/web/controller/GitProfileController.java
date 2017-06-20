@@ -42,7 +42,7 @@ public class GitProfileController {
     public ResponseEntity getGitData(@PathVariable final String gitLogin) {
         Optional<AnalysisReport> report = gitAnalyzeService.analyze(gitLogin);
         if (!report.isPresent()) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         List<AnalysisReport> reports = new ArrayList<>();
@@ -54,6 +54,6 @@ public class GitProfileController {
         UserAnalytics userAnalytics = new UserAnalytics(userId, reports);
         userAnalytics.setCreatedAt(String.valueOf(LocalDateTime.now()));
         userAnalyticsService.add(userAnalytics);
-        return new ResponseEntity(userAnalytics, HttpStatus.OK);
+        return new ResponseEntity<>(userAnalytics, HttpStatus.OK);
     }
 }

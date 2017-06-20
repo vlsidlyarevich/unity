@@ -25,7 +25,7 @@ public class UserAnalyticsController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getAnalyticsByUserId(@PathVariable final String userId) {
+    public ResponseEntity getAnalyticsByUserId(@PathVariable final String userId) {
         final UserAnalytics analytics = service.findByUserId(userId);
         if (analytics == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -34,7 +34,7 @@ public class UserAnalyticsController {
     }
 
     @RequestMapping(value = "/{reportId}", method = RequestMethod.GET)
-    public ResponseEntity<?> getAnalyticsReportById(@PathVariable final String userId,
+    public ResponseEntity getAnalyticsReportById(@PathVariable final String userId,
                                                     @PathVariable final String reportId) {
         final UserAnalytics analytics = service.findByUserId(userId);
         if (analytics == null) {
@@ -53,13 +53,13 @@ public class UserAnalyticsController {
     }
 
     @RequestMapping(value = "/{reportId}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteAnalyticsReportById(@PathVariable final String userId,
+    public ResponseEntity deleteAnalyticsReportById(@PathVariable final String userId,
                                                        @PathVariable final String reportId) {
         return new ResponseEntity<>(service.deleteReport(userId, reportId), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteAllAnalyticsReports(@PathVariable final String userId) {
+    public ResponseEntity deleteAllAnalyticsReports(@PathVariable final String userId) {
         return new ResponseEntity<>(service.deleteAllReports(userId), HttpStatus.OK);
     }
 }
