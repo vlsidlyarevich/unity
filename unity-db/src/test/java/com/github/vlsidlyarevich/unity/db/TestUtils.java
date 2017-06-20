@@ -1,60 +1,48 @@
 package com.github.vlsidlyarevich.unity.db;
 
-import com.github.vlsidlyarevich.unity.db.model.*;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
+import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
+import com.github.vlsidlyarevich.unity.db.domain.Authority;
+import com.github.vlsidlyarevich.unity.db.domain.User;
+import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
+import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public final class TestUtils {
-
-    private static final int MAX_STRING_LENGTH = 15;
-    private static final int START_INCLUSIVE = 5000;
-    private static final int END_INCLUSIVE = 100000;
 
     private TestUtils() {
 
     }
 
-    private static String getRandomString(int length) {
-        return RandomStringUtils.random(length, true, true);
+    public static UserAnalytics createUserAnalytics() {
+        List<AnalysisReport> reports = new ArrayList<>();
+
+        return new UserAnalytics(TestRandomUtils.getRandomString(8), reports);
     }
 
-    private static Integer getRandomInt(int startInclusive, int endInclusive) {
-        return RandomUtils.nextInt(startInclusive, endInclusive);
+    public static AnalysisReport createAnalysisReport() {
+        return new AnalysisReport(null, new Date(), 1L);
     }
 
-    public static WorkerProfile generateWorkerProfile() {
-        WorkerProfile workerProfile = new WorkerProfile();
-        workerProfile.setName(new Name(getRandomString(MAX_STRING_LENGTH), getRandomString(MAX_STRING_LENGTH)));
-        workerProfile.setSpeciality(Speciality.SOFTWARE_ENGINEER);
-        workerProfile.setAge(getRandomInt(18, 50));
-        workerProfile.setSkype(getRandomString(MAX_STRING_LENGTH));
-        workerProfile.setGender(Gender.MALE);
-        workerProfile.setPhone("8 800 555 35 35");
+    public static User createUser() {
+        List<Authority> authorities = new ArrayList<>();
+        authorities.add(Authority.ROLE_USER);
 
-        return workerProfile;
+        return new User(authorities, TestRandomUtils.getRandomString(8), TestRandomUtils.getRandomString(8),
+                false, false, false,
+                true);
     }
 
-    public static Vacancy generateVacancy() {
-        Vacancy vacancy = new Vacancy();
-        vacancy.setSpeciality(Speciality.SOFTWARE_ENGINEER);
-        vacancy.setSalary(getRandomInt(0, 2000).toString());
-        vacancy.setJobType(JobType.CONTRACT);
-        vacancy.setDescription(getRandomString(20));
-        vacancy.setLocation(getRandomString(10));
-
-        return vacancy;
-    }
-
-    public static Candidate generateCandidate() {
-        Candidate candidate = new Candidate();
-        candidate.setGender(Gender.MALE);
-        candidate.setName(new Name(getRandomString(MAX_STRING_LENGTH), getRandomString(MAX_STRING_LENGTH)));
-        candidate.setGithubUrl(getRandomString(MAX_STRING_LENGTH) + "@git");
-        candidate.setHrSkype(getRandomString(MAX_STRING_LENGTH));
-        candidate.setLinkedInUrl("https://www.linkedin.com/in" + getRandomString(MAX_STRING_LENGTH));
-        candidate.setImageId(getRandomString(MAX_STRING_LENGTH));
-
-        return candidate;
+    public static UserSocial createUserSocial() {
+        return new UserSocial(TestRandomUtils.getRandomString(8),
+                TestRandomUtils.getRandomString(8),
+                TestRandomUtils.getRandomString(8),
+                TestRandomUtils.getRandomString(8),
+                TestRandomUtils.getRandomString(8),
+                TestRandomUtils.getRandomString(8),
+                TestRandomUtils.getRandomString(8));
     }
 }

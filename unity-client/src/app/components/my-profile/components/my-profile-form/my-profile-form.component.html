@@ -1,0 +1,172 @@
+<div class="container-fluid">
+  <br/>
+  <br/>
+  <div class="col-md-9 offset-md-1">
+    <h2>Edit profile</h2>
+    <hr/>
+  </div>
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-4">
+      <div class="text-center">
+        <img
+          src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
+          class="img-circle img-responsive" alt="avatar"
+          style="height:350px; width: 350px">
+        <h6 class="pt-2">Upload a different photo...</h6>
+        <div class="card-block justify-content-center">
+          <input type="file" class="text-center justify-content-center card card-block bg-faded">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <br/>
+      <h2>Account info</h2>
+      <hr>
+      <form name="accountForm" novalidate [formGroup]="accountForm" (ngSubmit)="onAccountFormSubmit()">
+        <div *ngIf="message" class="alert alert-success alert-dismissable">{{message}}</div>
+        <div class="form-group row">
+          <label for="username" class="col-2 col-form-label">Username</label>
+          <div class="col-10">
+            <input type="text" class="form-control" id="username" formControlName="username" required>
+          </div>
+          <div *ngIf="accountForm.get('username').hasError('required') && accountForm.get('username').touched"
+               class="pt-2 pl-2">
+            <div class="alert alert-danger alert-dismissable">
+              Username is required
+            </div>
+          </div>
+          <div *ngIf="accountForm.get('username').hasError('minlength') && accountForm.get('username').touched"
+               class="pt-2 pl-2">
+            <div class="alert alert-danger alert-dismissable">
+              Minimum of 4 characters
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="password" class="col-2 col-form-label">Password</label>
+          <div class="col-10 input-group">
+            <span class="input-group-addon">
+              <input type="checkbox" aria-label="Checkbox for following text input" (click)="showPassword(password)">
+            </span>
+            <input type="password" #password class="form-control" id="password" formControlName="password" required>
+          </div>
+          <div *ngIf="accountForm.get('password').hasError('required') && accountForm.get('password').touched"
+               class="pt-2 pl-2">
+            <div class="alert alert-danger alert-dismissable">
+              Password is required
+            </div>
+          </div>
+          <div *ngIf="accountForm.get('password').hasError('pattern') && accountForm.get('password').touched"
+               class="pt-2 pl-2">
+            <div class="alert alert-danger alert-dismissable">
+              Password should be length of at least 5 and contain at least 1 digit, 1 uppercase letter and 1 special
+              symbol
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="expiration" class="col-2 col-form-label">Non expired</label>
+          <div class="col-10">
+            <span type="text" class="form-control" id="expiration">{{user?.accountNonExpired}}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="lock" class="col-2 col-form-label">Non locked</label>
+          <div class="col-10">
+            <span type="text" class="form-control" id="lock">{{user?.accountNonLocked}}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="cred-expiration" class="col-2 col-form-label">Credentials non expired</label>
+          <div class="col-10">
+            <span type="text" class="form-control" id="cred-expiration">{{user?.credentialsNonExpired}}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="enabled" class="col-2 col-form-label">Enabled</label>
+          <div class="col-10">
+            <span type="text" class="form-control" id="enabled">{{user?.enabled}}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="authority" class="col-2 col-form-label">Authority</label>
+          <div class="col-10">
+            <span type="text" class="form-control" id="authority">{{getUserAuthority(user?.authorities)}}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="date" class="col-2 col-form-label">Registration date</label>
+          <div class="col-10">
+            <span type="text" class="form-control" id="date">{{user?.createdAt |  date:"MM/dd/yyyy 'at' h:mma"}}</span>
+          </div>
+        </div>
+        <div *ngIf="accountError" class="alert alert-danger">{{accountError}}</div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <div class="pull-right">
+              <button type="button" (click)="cancelAccount()" class="btn btn-default">Cancel</button>
+              <button type="submit" class="btn btn-primary"
+                      [disabled]="accountForm.invalid || loading || !accountForm.dirty">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <br/>
+      <h2>Additional info</h2>
+      <hr>
+      <form name="additionalInfoForm" novalidate [formGroup]="additionalForm"
+            (ngSubmit)="onAdditionalInfoFormSubmit()">
+        <div class="form-group row">
+          <label for="first-name" class="col-2 col-form-label">First name</label>
+          <div class="col-4">
+            <input type="text" class="form-control"
+                   id="first-name" formControlName="firstName">
+          </div>
+          <label for="last-name" class="col-2 col-form-label">Last name</label>
+          <div class="col-4">
+            <input type="text" class="form-control"
+                   id="last-name" formControlName="lastName">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="email" class="col-2 col-form-label">Email</label>
+          <div class="col-10">
+            <input type="text" class="form-control"
+                   id="email" formControlName="email">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="skype" class="col-2 col-form-label">Skype</label>
+          <div class="col-10">
+            <input type="text" class="form-control"
+                   id="skype" formControlName="skype">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="additional" class="col-2 col-form-label">Additional</label>
+          <div class="col-10">
+          <textarea rows="3" class="form-control" type="text"
+                    id="additional" formControlName="additional"></textarea>
+          </div>
+        </div>
+        <img *ngIf="loading"
+             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+        <div *ngIf="additionalError" class="alert alert-danger">{{additionalError}}</div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <div class="pull-right">
+              <button type="button" (click)="cancelAdditional()" class="btn btn-default">Cancel</button>
+              <button type="submit" class="btn btn-primary"
+                      [disabled]="additionalForm.invalid || loading || !additionalForm.touched">Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

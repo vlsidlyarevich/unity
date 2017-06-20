@@ -1,0 +1,72 @@
+<h1>Repositories</h1>
+<div class="bg-faded" style="padding-left: 20px">
+  <br/>
+  <div class="text-center">
+    <h3>{{report?.result.login}}'s repositories</h3>
+  </div>
+  <br/>
+  <div class="form-inline justify-content-end">
+    <div class="col-sm-auto form-group">
+      <label for="topBySelect" class="pr-3">Top by:</label>
+      <select id="topBySelect" class="custom-select form-control" [(ngModel)]="topBy">
+        <option value=" ">
+          Nothing
+        </option>
+        <option value="stargazersCount">
+          Stars
+        </option>
+        <option value="size">
+          Size
+        </option>
+        <option value="watchersCount">
+          Watchers
+        </option>
+      </select>
+    </div>
+    <!--<div class="col-sm-auto form-group">-->
+      <!--<label for="searchBySelect" class="pr-3 pl-4">Search by:</label>-->
+      <!--<select id="searchBySelect" class="custom-select form-control pr-3" [(ngModel)]="searchBy">-->
+        <!--<option value=" ">-->
+          <!--Nothing-->
+        <!--</option>-->
+        <!--<option value="size">-->
+          <!--Size-->
+        <!--</option>-->
+        <!--<option value="createdAt">-->
+          <!--Creation Date-->
+        <!--</option>-->
+        <!--<option value="name">-->
+          <!--Name-->
+        <!--</option>-->
+        <!--<option value="description">-->
+          <!--Description-->
+        <!--</option>-->
+      <!--</select>-->
+      <!--<input type="text" id="searchByInput" class="form-control" placeholder="search argument"/>-->
+    <!--</div>-->
+  <!--</div>-->
+  <div class="col-sm-12">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Stars</th>
+        <th>Repository name</th>
+        <th>Description</th>
+        <th>Size</th>
+        <th>Watchers</th>
+        <th>Creation date</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let repo of report?.result.repos | sortByProperty:topBy">
+        <th scope="row">{{repo.stargazersCount}}</th>
+        <td><a class="nav-link" href="{{repo.htmlUrl}}">{{repo.name}}</a></td>
+        <td>{{repo.description}}</td>
+        <td>{{repo.size}}</td>
+        <td>{{repo.watchersCount}}</td>
+        <td>{{repo.createdAt | date:'dd/MM/yyyy'}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

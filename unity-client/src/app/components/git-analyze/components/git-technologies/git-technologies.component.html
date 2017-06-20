@@ -1,0 +1,75 @@
+<h1>Technologies</h1>
+<div class="bg-faded" style="padding-left: 20px" *ngIf="isDataAvailable">
+  <div class="col-sm-12">
+    <br/>
+    <div class="row">
+      <div class="col-sm-8 offset-sm-2 pt-3">
+        <div class="text-center">
+          <h3>Language usage</h3>
+        </div>
+        <br/>
+        <div style="display: block">
+          <canvas baseChart
+                  [data]="languageChartData"
+                  [labels]="languageChartLabels"
+                  [chartType]="languageChartType"></canvas>
+        </div>
+        <div class="text-center" *ngIf="languagesMap.length === 0">
+          <h2>No information available</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8 offset-sm-2 pt-3">
+        <div class="text-center">
+          <h3>Technologies usage</h3>
+        </div>
+        <br/>
+        <div style="display: block" *ngIf="topicsMap.length != 0">
+          <canvas baseChart
+                  [data]="topicChartData"
+                  [labels]="topicChartLabels"
+                  [chartType]="topicChartType"></canvas>
+        </div>
+        <div class="text-center" *ngIf="topicsMap.length === 0">
+          <h2>No information available</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <br/>
+  <!--<div class="row">-->
+  <!--<div class="col-sm-12">-->
+  <!--<div class="text-center">-->
+  <!--<h3>Technologies usage by time</h3>-->
+  <!--</div>-->
+  <!--<br/>-->
+  <!--<div class="row">-->
+  <!--<div class="col-sm-7">-->
+  <!--<div style="display: block;">-->
+  <!--<canvas baseChart-->
+  <!--[datasets]="lineChartData"-->
+  <!--[labels]="lineChartLabels"-->
+  <!--[options]="lineChartOptions"-->
+  <!--[colors]="lineChartColors"-->
+  <!--[legend]="lineChartLegend"-->
+  <!--[chartType]="lineChartType"-->
+  <!--(chartHover)="chartHovered($event)"-->
+  <!--(chartClick)="chartClicked($event)"></canvas>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="col-sm-5">-->
+  <!--<table class="table table-responsive table-condensed">-->
+  <!--<tr>-->
+  <!--<th *ngFor="let label of lineChartLabels">{{label}}</th>-->
+  <!--</tr>-->
+  <!--<tr *ngFor="let d of lineChartData">-->
+  <!--<td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>-->
+  <!--</tr>-->
+  <!--</table>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+</div>

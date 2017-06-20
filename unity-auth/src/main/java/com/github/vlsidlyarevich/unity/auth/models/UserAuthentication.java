@@ -1,18 +1,17 @@
 package com.github.vlsidlyarevich.unity.auth.models;
 
-import com.github.vlsidlyarevich.unity.db.model.User;
+import com.github.vlsidlyarevich.unity.db.domain.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
-
-public class UserAuthentication implements Authentication{
+public class UserAuthentication implements Authentication {
 
     private final User user;
     private boolean authenticated = true;
 
-    public UserAuthentication(User user) {
+    public UserAuthentication(final User user) {
         this.user = user;
     }
 
@@ -42,7 +41,8 @@ public class UserAuthentication implements Authentication{
     }
 
     @Override
-    public void setAuthenticated(boolean authenticated) throws IllegalArgumentException {
+    public void setAuthenticated(final boolean authenticated)
+            throws IllegalArgumentException {
         this.authenticated = authenticated;
     }
 
