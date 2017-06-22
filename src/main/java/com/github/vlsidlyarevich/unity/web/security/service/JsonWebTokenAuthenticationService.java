@@ -1,9 +1,9 @@
 package com.github.vlsidlyarevich.unity.web.security.service;
 
-import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
-import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import com.github.vlsidlyarevich.unity.common.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.domain.User;
+import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
+import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
@@ -71,7 +71,8 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
         Optional<Jws<Claims>> result = Optional.empty();
         if (token != null) {
             try {
-                result = Optional.of(Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token));
+                result = Optional.ofNullable(Jwts.parser()
+                        .setSigningKey(secretKey).parseClaimsJws(token));
             } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException
                     | SignatureException | IllegalArgumentException e) {
                 return result;
@@ -83,7 +84,8 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
     private Optional<User> getUserFromToken(final Jws<Claims> tokenData)
             throws UserNotFoundException {
         try {
-            return Optional.ofNullable((User) userDetailsService.loadUserByUsername(tokenData.getBody()
+            return Optional.ofNullable((User) userDetailsService
+                    .loadUserByUsername(tokenData.getBody()
                     .get("username").toString()));
         } catch (UsernameNotFoundException e) {
             throw new UserNotFoundException("User " + tokenData.getBody()

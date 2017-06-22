@@ -11,6 +11,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Optional;
 
 public class AuthenticationTokenFilter extends GenericFilterBean {
 
@@ -24,8 +25,8 @@ public class AuthenticationTokenFilter extends GenericFilterBean {
     public void doFilter(final ServletRequest request, final ServletResponse response,
                          final FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        Authentication authentication = authenticationService.authenticate(httpRequest);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        Optional<Authentication> authentication = authenticationService.authenticate(httpRequest);
+        SecurityContextHolder.getContext().setAuthentication(authentication.orElse(null));
         filterChain.doFilter(request, response);
         SecurityContextHolder.getContext().setAuthentication(null);
     }

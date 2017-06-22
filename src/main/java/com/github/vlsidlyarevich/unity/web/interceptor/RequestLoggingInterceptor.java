@@ -1,8 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.interceptor;
 
-import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
-import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
 import com.github.vlsidlyarevich.unity.web.audit.HttpRequestAuditor;
+import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,8 +29,10 @@ public class RequestLoggingInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(final HttpServletRequest request,
                              final HttpServletResponse response,
                              final Object handler) throws Exception {
-        audit.logRequest((UserAuthentication) authenticationFacade.getAuthentication(),
-                request, handler);
+        //FIXME AnonymousAuthenticationToken
+        // cannot be cast to com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication
+//        audit.logRequest((UserAuthentication) authenticationFacade.getAuthentication(),
+//                request, handler);
         return super.preHandle(request, response, handler);
     }
 }
