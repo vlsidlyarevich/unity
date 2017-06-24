@@ -1,6 +1,5 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
-import com.github.vlsidlyarevich.unity.db.UnityDatabaseIT;
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
 import org.junit.After;
@@ -18,7 +17,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = UnityDatabaseIT.class)
+@SpringBootTest
 public class DefaultUserSocialServiceIT {
 
     @Autowired

@@ -1,21 +1,18 @@
 package com.github.vlsidlyarevich.unity.db.repository;
 
-import com.github.vlsidlyarevich.unity.db.UnityDatabaseIT;
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static com.github.vlsidlyarevich.unity.TestUtils.createUserSocial;
 
 @RunWith(SpringRunner.class)
-@DataMongoTest
-@ContextConfiguration(classes = UnityDatabaseIT.class)
+@SpringBootTest
 public class UserSocialRepositoryIT {
 
     @Autowired

@@ -10,9 +10,14 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import static com.github.vlsidlyarevich.unity.TestUtils.createAnalysisReport;
 import static com.github.vlsidlyarevich.unity.TestUtils.createUserAnalytics;
 import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
@@ -55,8 +60,6 @@ public class DefaultUserAnalyticsServiceTest {
         assertThat(userAnalyticsService.find(userAnalytics.getId()), equalTo(userAnalytics));
 
         verify(userAnalyticsRepository).findOne(userAnalytics.getId());
-
-        userAnalyticsService.add(userAnalytics);
     }
 
     @Test
@@ -72,39 +75,46 @@ public class DefaultUserAnalyticsServiceTest {
     public void findByUserId_Success_IfPresent() throws Exception {
         UserAnalytics userAnalytics = createUserAnalytics();
 
-        userAnalyticsService.add(userAnalytics);
+        doReturn(userAnalytics).when(userAnalyticsRepository).findByUserId(userAnalytics.getUserId());
 
         assertThat(userAnalyticsService.findByUserId(userAnalytics.getUserId()), is(userAnalytics));
+        verify(userAnalyticsRepository).findByUserId(userAnalytics.getUserId());
     }
 
     @Test
     public void findByUserId_Null_IfNotPresent() throws Exception {
         assertThat(userAnalyticsService.findByUserId("userid"), nullValue());
+        verify(userAnalyticsRepository).findByUserId("userid");
     }
 
     @Test
     public void findAll_Success_IfPresent() throws Exception {
         UserAnalytics userAnalytics = createUserAnalytics();
+        ArrayList userAnalyticsList = new ArrayList() {{
+            add(userAnalytics);
+        }};
 
-        userAnalyticsService.add(userAnalytics);
+        doReturn(userAnalyticsList).when(userAnalyticsRepository).findAll();
 
-        assertThat(userAnalyticsService.findAll().size(), is(1));
-        Assert.assertTrue(userAnalyticsService.findAll().contains(userAnalytics));
+        assertThat(userAnalyticsService.findAll(), containsInAnyOrder(userAnalyticsList.toArray()));
+        verify(userAnalyticsRepository).findAll();
     }
 
     @Test
     public void findAll_Empty_IfNotPresent() throws Exception {
-        Assert.assertTrue(userAnalyticsService.findAll().isEmpty());
+        doReturn(Collections.emptyList()).when(userAnalyticsRepository).findAll();
+
+        assertThat(userAnalyticsService.findAll(), emptyCollectionOf(UserAnalytics.class));
+        verify(userAnalyticsRepository).findAll();
     }
 
     @Test
     public void delete_Success_IfPresent() throws Exception {
         UserAnalytics userAnalytics = createUserAnalytics();
 
-        userAnalyticsService.add(userAnalytics);
         userAnalyticsService.delete(userAnalytics.getId());
 
-        Assert.assertTrue(userAnalyticsService.findAll().isEmpty());
+        verify(userAnalyticsRepository).delete(userAnalytics.getId());
     }
 
     @Test
@@ -113,20 +123,18 @@ public class DefaultUserAnalyticsServiceTest {
         AnalysisReport analysisReport = createAnalysisReport();
         userAnalytics.getReports().add(analysisReport);
 
-        userAnalyticsService.add(userAnalytics);
+        doReturn(userAnalytics).when(userAnalyticsRepository).findByUserId(userAnalytics.getUserId());
+
         userAnalyticsService.deleteReport(userAnalytics.getUserId(), analysisReport.getId());
 
-        Assert.assertTrue(userAnalyticsService.find(userAnalytics.getId()).getReports().isEmpty());
+        assertThat(userAnalyticsService.findByUserId(userAnalytics.getUserId()).getReports().size(), is(0));
     }
 
     @Test
     public void deleteAll_Success_IfPresent() throws Exception {
-        UserAnalytics userAnalytics = createUserAnalytics();
-
-        userAnalyticsService.add(userAnalytics);
         userAnalyticsService.deleteAll();
 
-        Assert.assertTrue(userAnalyticsService.findAll().isEmpty());
+        verify(userAnalyticsRepository).deleteAll();
     }
 
     @Test
@@ -135,9 +143,10 @@ public class DefaultUserAnalyticsServiceTest {
         AnalysisReport analysisReport = createAnalysisReport();
         userAnalytics.getReports().add(analysisReport);
 
-        userAnalyticsService.add(userAnalytics);
+        doReturn(userAnalytics).when(userAnalyticsRepository).findByUserId(userAnalytics.getUserId());
+
         userAnalyticsService.deleteAllReports(userAnalytics.getUserId());
 
-        Assert.assertTrue(userAnalyticsService.find(userAnalytics.getId()).getReports().isEmpty());
+        assertThat(userAnalyticsService.findByUserId(userAnalytics.getUserId()).getReports().size(), is(0));
     }
 }

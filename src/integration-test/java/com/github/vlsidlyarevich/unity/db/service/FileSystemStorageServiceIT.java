@@ -1,6 +1,5 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
-import com.github.vlsidlyarevich.unity.db.UnityDatabaseIT;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,7 +14,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = UnityDatabaseIT.class)
+@SpringBootTest
 public class FileSystemStorageServiceIT {
 
     @Autowired
