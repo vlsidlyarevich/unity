@@ -1,8 +1,10 @@
 package com.github.vlsidlyarevich.unity.db.exception;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class FileSystemFileNotFoundException extends RuntimeException {
 
     private static final long serialVersionUID = 3194206510987651825L;

@@ -3,7 +3,6 @@ package com.github.vlsidlyarevich.unity.db.service;
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 import com.github.vlsidlyarevich.unity.db.repository.UserAnalyticsRepository;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,12 +11,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import static com.github.vlsidlyarevich.unity.TestUtils.createAnalysisReport;
 import static com.github.vlsidlyarevich.unity.TestUtils.createUserAnalytics;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
@@ -78,12 +75,14 @@ public class DefaultUserAnalyticsServiceTest {
         doReturn(userAnalytics).when(userAnalyticsRepository).findByUserId(userAnalytics.getUserId());
 
         assertThat(userAnalyticsService.findByUserId(userAnalytics.getUserId()), is(userAnalytics));
+
         verify(userAnalyticsRepository).findByUserId(userAnalytics.getUserId());
     }
 
     @Test
     public void findByUserId_Null_IfNotPresent() throws Exception {
         assertThat(userAnalyticsService.findByUserId("userid"), nullValue());
+
         verify(userAnalyticsRepository).findByUserId("userid");
     }
 
@@ -97,6 +96,7 @@ public class DefaultUserAnalyticsServiceTest {
         doReturn(userAnalyticsList).when(userAnalyticsRepository).findAll();
 
         assertThat(userAnalyticsService.findAll(), containsInAnyOrder(userAnalyticsList.toArray()));
+
         verify(userAnalyticsRepository).findAll();
     }
 
@@ -105,6 +105,7 @@ public class DefaultUserAnalyticsServiceTest {
         doReturn(Collections.emptyList()).when(userAnalyticsRepository).findAll();
 
         assertThat(userAnalyticsService.findAll(), emptyCollectionOf(UserAnalytics.class));
+
         verify(userAnalyticsRepository).findAll();
     }
 
