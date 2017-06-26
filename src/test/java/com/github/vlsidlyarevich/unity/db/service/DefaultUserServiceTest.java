@@ -13,10 +13,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import static com.github.vlsidlyarevich.unity.TestUtils.createUser;
+import static org.hamcrest.CoreMatchers.any;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.isA;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.collection.IsEmptyCollection.emptyCollectionOf;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
@@ -44,6 +47,8 @@ public class DefaultUserServiceTest {
     public void create_Success_IfValid() throws Exception {
         User user = createUser();
 
+        doReturn(user).when(userRepository).save((User) anyObject());
+
         userService.create(user);
 
         verify(userRepository).save(user);
@@ -53,6 +58,12 @@ public class DefaultUserServiceTest {
     public void create_ExceptionThrown_ifNull() throws Exception {
         userService.create(null);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void create_ExceptionThrown_ifUsernameExists() throws Exception {
+
+    }
+
 
     @Test
     public void find_Success_IfPresent() throws Exception {
@@ -122,6 +133,7 @@ public class DefaultUserServiceTest {
         User user = createUser();
 
         doReturn(user).when(userRepository).findOne(user.getId());
+        doReturn(user).when(userRepository).save((User) anyObject());
 
         userService.update(user.getId(), user);
 
@@ -142,6 +154,7 @@ public class DefaultUserServiceTest {
         User user = createUser();
 
         doReturn(user).when(userRepository).findOne(user.getId());
+        doReturn(user).when(userRepository).save((User) anyObject());
 
         userService.update("not present", user);
 

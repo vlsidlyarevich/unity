@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class DefaultUserService implements UserService {
@@ -31,12 +32,13 @@ public class DefaultUserService implements UserService {
 
     @Override
     public User create(final User user) {
-        if (usernameExists(user.getUsername())) {
-            throw new UsernameExistsException("User with username: "
-                    + user.getUsername() + " exists");
-        }
-        user.setCreatedAt(String.valueOf(LocalDateTime.now()));
-        return repository.save(user);
+        return Optional.ofNullable(user)
+                .map(usr -> {
+                    checkForUsernameExistance(user.getUsername());
+
+                    user.setCreatedAt(String.valueOf(LocalDateTime.now()));
+                    return repository.save(user);
+                }).orElseThrow(() -> new IllegalArgumentException("User should not be empty"));
     }
 
     @Override
@@ -58,18 +60,21 @@ public class DefaultUserService implements UserService {
     @Override
     @PreAuthorize("@securityContextCurrentUserService.canAccessUser(#id)")
     public User update(final String id, final User user) {
-        user.setId(id);
+        return Optional.ofNullable(user)
+                .map(usr -> {
+                    usr.setId(id);
 
-        final User saved = repository.findOne(id);
+                    final Optional<User> saved = Optional.ofNullable(repository.findOne(id));
 
-        if (saved != null) {
-            user.setCreatedAt(saved.getCreatedAt());
-            user.setUpdatedAt(String.valueOf(LocalDateTime.now()));
-        } else {
-            user.setCreatedAt(String.valueOf(LocalDateTime.now()));
-        }
-        repository.save(user);
-        return user;
+                    if (saved.isPresent()) {
+                        usr.setCreatedAt(saved.get().getCreatedAt());
+                        usr.setUpdatedAt(String.valueOf(LocalDateTime.now()));
+                    } else {
+                        usr.setCreatedAt(String.valueOf(LocalDateTime.now()));
+                    }
+
+                    return repository.save(usr);
+                }).orElseThrow(() -> new IllegalArgumentException("User should not be empty"));
     }
 
     @Override
@@ -79,6 +84,13 @@ public class DefaultUserService implements UserService {
         userSocialService.deleteByUserId(id);
         userAnalyticsService.deleteAllReports(id);
         return id;
+    }
+
+    private void checkForUsernameExistance(final String username) {
+        if (usernameExists(username)) {
+            throw new UsernameExistsException("User with username: "
+                    + username + " exists");
+        }
     }
 
     private boolean usernameExists(final String username) {

@@ -23,7 +23,6 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-
 @Slf4j
 @Service
 public class FileSystemStorageService implements StorageService {
@@ -100,8 +99,7 @@ public class FileSystemStorageService implements StorageService {
     public Boolean exists(final String filename) {
         try {
             return Files.walk(this.storeLocation, 1)
-                    .filter(path -> path.toFile().getName().equals(filename))
-                    .findFirst().isPresent();
+                    .anyMatch(path -> path.toFile().getName().equals(filename));
 
         } catch (IOException | NoSuchElementException e) {
             log.warn("Can't check existing of file:" + filename);
