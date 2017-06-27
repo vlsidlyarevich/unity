@@ -19,6 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.emptyCollectionOf;
 import static org.hamcrest.core.Is.is;
+import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
@@ -39,6 +40,8 @@ public class DefaultUserSocialServiceTest {
     @Test
     public void create_Success_IfValid() throws Exception {
         UserSocial userSocial = createUserSocial();
+
+        doReturn(userSocial).when(userSocialRepository).save((UserSocial) anyObject());
 
         userSocialService.create(userSocial);
 
@@ -116,6 +119,7 @@ public class DefaultUserSocialServiceTest {
         UserSocial userSocial = createUserSocial();
 
         doReturn(userSocial).when(userSocialRepository).findOne(userSocial.getId());
+        doReturn(userSocial).when(userSocialRepository).save((UserSocial) anyObject());
 
         userSocialService.update(userSocial.getId(), userSocial);
 
@@ -136,6 +140,7 @@ public class DefaultUserSocialServiceTest {
         UserSocial userSocial = createUserSocial();
 
         doReturn(userSocial).when(userSocialRepository).findOne(userSocial.getId());
+        doReturn(userSocial).when(userSocialRepository).save((UserSocial) anyObject());
 
         userSocialService.update("not present", userSocial);
 
@@ -155,9 +160,8 @@ public class DefaultUserSocialServiceTest {
     public void deleteByUserId_Success_IfPresent() throws Exception {
         UserSocial userSocial = createUserSocial();
 
-        userSocialService.create(userSocial);
         userSocialService.deleteByUserId(userSocial.getUserId());
 
-        Assert.assertTrue(userSocialService.findAll().isEmpty());
+        verify(userSocialRepository).deleteByUserId(userSocial.getUserId());
     }
 }

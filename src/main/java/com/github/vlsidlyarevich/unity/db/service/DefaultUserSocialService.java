@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DefaultUserSocialService implements UserSocialService {
@@ -21,8 +22,13 @@ public class DefaultUserSocialService implements UserSocialService {
 
     @Override
     public UserSocial create(final UserSocial userSocial) {
-        userSocial.setCreatedAt(String.valueOf(LocalDateTime.now()));
-        return repository.save(userSocial);
+        return Optional.ofNullable(userSocial)
+                .map(usrSocial -> {
+                    usrSocial.setCreatedAt(String.valueOf(LocalDateTime.now()));
+                    return repository.save(usrSocial);
+                })
+                .orElseThrow(() ->
+                        new IllegalArgumentException("User social data must not be empty"));
     }
 
     @Override
@@ -44,18 +50,23 @@ public class DefaultUserSocialService implements UserSocialService {
     @Override
     @PreAuthorize("@securityContextCurrentUserService.canAccessUser(#id)")
     public UserSocial update(final String id, final UserSocial userSocial) {
-        userSocial.setUserId(id);
-        UserSocial saved = repository.findByUserId(userSocial.getUserId());
+        return Optional.ofNullable(userSocial)
+                .map(usrSocial -> {
+                    usrSocial.setUserId(id);
 
-        if (saved != null) {
-            userSocial.setId(saved.getId());
-            userSocial.setCreatedAt(saved.getCreatedAt());
-            userSocial.setUpdatedAt(String.valueOf(LocalDateTime.now()));
-        } else {
-            userSocial.setCreatedAt(String.valueOf(LocalDateTime.now()));
-        }
-        repository.save(userSocial);
-        return userSocial;
+                    UserSocial saved = repository.findByUserId(userSocial.getUserId());
+
+                    if (saved != null) {
+                        userSocial.setId(saved.getId());
+                        userSocial.setCreatedAt(saved.getCreatedAt());
+                        userSocial.setUpdatedAt(String.valueOf(LocalDateTime.now()));
+                    } else {
+                        userSocial.setCreatedAt(String.valueOf(LocalDateTime.now()));
+                    }
+
+                    return repository.save(usrSocial);
+                }).orElseThrow(()
+                        -> new IllegalArgumentException("User social data must not be empty"));
     }
 
     @Override

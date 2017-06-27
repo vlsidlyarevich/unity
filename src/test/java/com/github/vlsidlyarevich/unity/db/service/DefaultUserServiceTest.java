@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.User;
+import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -59,9 +60,15 @@ public class DefaultUserServiceTest {
         userService.create(null);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = UsernameExistsException.class)
     public void create_ExceptionThrown_ifUsernameExists() throws Exception {
+        User user = createUser();
 
+        doReturn(new ArrayList<User>() {{
+            add(user);
+        }}).when(userRepository).findAll();
+
+        userService.create(user);
     }
 
 

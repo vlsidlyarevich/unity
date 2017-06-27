@@ -1,8 +1,10 @@
 package com.github.vlsidlyarevich.unity.db.exception;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class FileSystemStorageException extends StorageException {
 
     private static final long serialVersionUID = 7520480870078081658L;
@@ -15,7 +17,6 @@ public class FileSystemStorageException extends StorageException {
         this.key = key;
         this.args = args;
     }
-
 
     public FileSystemStorageException(final String message,
                                       final String key, final Throwable cause) {
@@ -30,3 +31,4 @@ public class FileSystemStorageException extends StorageException {
         this.args = args;
     }
 }
+
