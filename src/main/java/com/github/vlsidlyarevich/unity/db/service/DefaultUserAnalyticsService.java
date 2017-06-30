@@ -24,10 +24,8 @@ public class DefaultUserAnalyticsService implements UserAnalyticsService {
         final UserAnalytics analytics = repository.findByUserId(userAnalytics.getUserId());
         if (analytics != null) {
             analytics.getReports().addAll(userAnalytics.getReports());
-            analytics.setUpdatedAt(String.valueOf(LocalDateTime.now()));
             return repository.save(analytics);
         } else {
-            userAnalytics.setCreatedAt(String.valueOf(LocalDateTime.now()));
             return repository.save(userAnalytics);
         }
     }

@@ -40,7 +40,7 @@ public class CorsFilter implements Filter {
 
         final HttpServletRequest request = (HttpServletRequest) req;
 
-        if (request.getMethod().equals("OPTIONS")) {
+        if ("OPTIONS".equals(request.getMethod())) {
             try {
                 response.getWriter().print("OK");
                 response.getWriter().flush();

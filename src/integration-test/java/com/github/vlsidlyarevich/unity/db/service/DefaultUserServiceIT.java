@@ -1,7 +1,9 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
+import com.github.vlsidlyarevich.unity.db.domain.Authority;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
+import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static com.github.vlsidlyarevich.unity.TestUtils.createUser;
@@ -29,6 +32,9 @@ public class DefaultUserServiceIT {
     @Before
     public void setUp() {
         userRepository.deleteAll();
+        User currentUser = createUser();
+        currentUser.getAuthorities().add(Authority.ROLE_ADMIN);
+        SecurityContextHolder.getContext().setAuthentication(new UserAuthentication(currentUser));
     }
 
     @After

@@ -52,7 +52,6 @@ public class GitProfileController {
                 authenticationFacade.getAuthentication().getDetails()).getId();
 
         UserAnalytics userAnalytics = new UserAnalytics(userId, reports);
-        userAnalytics.setCreatedAt(String.valueOf(LocalDateTime.now()));
         userAnalyticsService.add(userAnalytics);
         return new ResponseEntity<>(userAnalytics, HttpStatus.OK);
     }

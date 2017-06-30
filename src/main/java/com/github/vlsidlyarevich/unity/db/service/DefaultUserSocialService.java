@@ -24,7 +24,6 @@ public class DefaultUserSocialService implements UserSocialService {
     public UserSocial create(final UserSocial userSocial) {
         return Optional.ofNullable(userSocial)
                 .map(usrSocial -> {
-                    usrSocial.setCreatedAt(String.valueOf(LocalDateTime.now()));
                     return repository.save(usrSocial);
                 })
                 .orElseThrow(() ->
@@ -59,9 +58,7 @@ public class DefaultUserSocialService implements UserSocialService {
                     if (saved != null) {
                         userSocial.setId(saved.getId());
                         userSocial.setCreatedAt(saved.getCreatedAt());
-                        userSocial.setUpdatedAt(String.valueOf(LocalDateTime.now()));
                     } else {
-                        userSocial.setCreatedAt(String.valueOf(LocalDateTime.now()));
                     }
 
                     return repository.save(usrSocial);

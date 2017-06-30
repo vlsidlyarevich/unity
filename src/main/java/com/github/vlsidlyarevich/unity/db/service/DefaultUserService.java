@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -35,8 +34,6 @@ public class DefaultUserService implements UserService {
         return Optional.ofNullable(user)
                 .map(usr -> {
                     checkForUsernameExistance(user.getUsername());
-
-                    user.setCreatedAt(String.valueOf(LocalDateTime.now()));
                     return repository.save(user);
                 }).orElseThrow(() -> new IllegalArgumentException("User should not be empty"));
     }
@@ -63,16 +60,6 @@ public class DefaultUserService implements UserService {
         return Optional.ofNullable(user)
                 .map(usr -> {
                     usr.setId(id);
-
-                    final Optional<User> saved = Optional.ofNullable(repository.findOne(id));
-
-                    if (saved.isPresent()) {
-                        usr.setCreatedAt(saved.get().getCreatedAt());
-                        usr.setUpdatedAt(String.valueOf(LocalDateTime.now()));
-                    } else {
-                        usr.setCreatedAt(String.valueOf(LocalDateTime.now()));
-                    }
-
                     return repository.save(usr);
                 }).orElseThrow(() -> new IllegalArgumentException("User should not be empty"));
     }
