@@ -25,14 +25,16 @@ public class DefaultUserAnalyticsService implements UserAnalyticsService {
                 .map(analytics -> {
 
                     final Optional<UserAnalytics> savedAnalytics
-                            = Optional.ofNullable(repository.findByUserId(userAnalytics.getUserId()));
+                            = Optional.ofNullable(repository
+                            .findByUserId(userAnalytics.getUserId()));
 
                     savedAnalytics.ifPresent(savedAnalyt ->
                             userAnalytics.getReports().addAll(savedAnalyt.getReports())
                     );
 
                     return repository.save(analytics);
-                }).orElseThrow(() -> new IllegalArgumentException("User analytics should not be empty"));
+                }).orElseThrow(()
+                        -> new IllegalArgumentException("User analytics should not be empty"));
     }
 
     @Override
