@@ -51,6 +51,10 @@ public class User extends DbModel implements UserDetails {
                 true);
     }
 
+    public void addAuthority(Authority authority) {
+        this.authorities.add(authority);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;

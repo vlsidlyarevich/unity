@@ -1,7 +1,10 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
+import com.github.vlsidlyarevich.unity.db.domain.Authority;
+import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
+import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,8 +12,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static com.github.vlsidlyarevich.unity.TestUtils.createUser;
 import static com.github.vlsidlyarevich.unity.TestUtils.createUserSocial;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.core.Is.is;
@@ -29,6 +34,10 @@ public class DefaultUserSocialServiceIT {
     @Before
     public void setUp() {
         userSocialRepository.deleteAll();
+
+        User currentUser = createUser();
+        currentUser.addAuthority(Authority.ROLE_ADMIN);
+        SecurityContextHolder.getContext().setAuthentication(new UserAuthentication(currentUser));
     }
 
     @After

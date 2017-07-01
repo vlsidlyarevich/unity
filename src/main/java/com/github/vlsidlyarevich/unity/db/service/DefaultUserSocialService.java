@@ -22,9 +22,7 @@ public class DefaultUserSocialService implements UserSocialService {
     @Override
     public UserSocial create(final UserSocial userSocial) {
         return Optional.ofNullable(userSocial)
-                .map(usrSocial -> {
-                    return repository.save(usrSocial);
-                })
+                .map(repository::save)
                 .orElseThrow(() ->
                         new IllegalArgumentException("User social data must not be empty"));
     }
@@ -51,14 +49,6 @@ public class DefaultUserSocialService implements UserSocialService {
         return Optional.ofNullable(userSocial)
                 .map(usrSocial -> {
                     usrSocial.setUserId(id);
-
-                    UserSocial saved = repository.findByUserId(userSocial.getUserId());
-
-                    if (saved != null) {
-                        userSocial.setId(saved.getId());
-                        userSocial.setCreatedAt(saved.getCreatedAt());
-                    }
-
                     return repository.save(usrSocial);
                 }).orElseThrow(()
                         -> new IllegalArgumentException("User social data must not be empty"));

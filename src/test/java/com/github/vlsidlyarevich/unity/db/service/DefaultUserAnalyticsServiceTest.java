@@ -36,6 +36,8 @@ public class DefaultUserAnalyticsServiceTest {
     public void add_Success_IfValid() throws Exception {
         UserAnalytics userAnalytics = createUserAnalytics();
 
+        doReturn(userAnalytics).when(userAnalyticsRepository).save((UserAnalytics) anyObject());
+
         userAnalyticsService.add(userAnalytics);
 
         verify(userAnalyticsRepository).save(userAnalytics);

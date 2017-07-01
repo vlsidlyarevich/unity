@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DefaultUserAnalyticsService implements UserAnalyticsService {
@@ -20,13 +21,18 @@ public class DefaultUserAnalyticsService implements UserAnalyticsService {
 
     @Override
     public UserAnalytics add(final UserAnalytics userAnalytics) {
-        final UserAnalytics analytics = repository.findByUserId(userAnalytics.getUserId());
-        if (analytics != null) {
-            analytics.getReports().addAll(userAnalytics.getReports());
-            return repository.save(analytics);
-        } else {
-            return repository.save(userAnalytics);
-        }
+        return Optional.ofNullable(userAnalytics)
+                .map(analytics -> {
+
+                    final Optional<UserAnalytics> savedAnalytics
+                            = Optional.ofNullable(repository.findByUserId(userAnalytics.getUserId()));
+
+                    savedAnalytics.ifPresent(savedAnalyt ->
+                            userAnalytics.getReports().addAll(savedAnalyt.getReports())
+                    );
+
+                    return repository.save(analytics);
+                }).orElseThrow(() -> new IllegalArgumentException("User analytics should not be empty"));
     }
 
     @Override
@@ -52,13 +58,16 @@ public class DefaultUserAnalyticsService implements UserAnalyticsService {
 
     @Override
     public String deleteReport(final String userId, final String reportId) {
-        final UserAnalytics analytics = repository.findByUserId(userId);
-        if (analytics != null) {
-            analytics.getReports()
+        final Optional<UserAnalytics> analytics
+                = Optional.ofNullable(repository.findByUserId(userId));
+
+        analytics.map(analyt -> {
+            analyt.getReports()
                     .removeIf(analysisReport -> analysisReport.getId().equals(reportId));
 
-            repository.save(analytics);
-        }
+            return repository.save(analyt);
+        });
+
         return reportId;
     }
 
@@ -67,21 +76,26 @@ public class DefaultUserAnalyticsService implements UserAnalyticsService {
         List<String> result = new ArrayList<>();
         repository.findAll()
                 .forEach(userAnalytics -> result.add(userAnalytics.getId()));
+
         repository.deleteAll();
+
         return result;
     }
 
     @Override
     public List<String> deleteAllReports(final String userId) {
-        final UserAnalytics analytics = repository.findByUserId(userId);
+        final Optional<UserAnalytics> analytics
+                = Optional.ofNullable(repository.findByUserId(userId));
         List<String> result = new ArrayList<>();
-        if (analytics != null) {
-            analytics.getReports()
-                    .forEach(analysisReport -> result.add(analysisReport.getId()));
-            analytics.getReports().clear();
 
-            repository.save(analytics);
-        }
+        analytics.ifPresent(analyt -> {
+            analyt.getReports()
+                    .forEach(analysisReport -> result.add(analysisReport.getId()));
+            analyt.getReports().clear();
+
+            repository.save(analyt);
+        });
+
         return result;
     }
 }
