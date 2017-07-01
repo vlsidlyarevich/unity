@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,7 +57,6 @@ public class DefaultUserSocialService implements UserSocialService {
                     if (saved != null) {
                         userSocial.setId(saved.getId());
                         userSocial.setCreatedAt(saved.getCreatedAt());
-                    } else {
                     }
 
                     return repository.save(usrSocial);

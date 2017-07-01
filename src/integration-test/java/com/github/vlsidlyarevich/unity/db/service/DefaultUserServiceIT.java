@@ -33,7 +33,7 @@ public class DefaultUserServiceIT {
     public void setUp() {
         userRepository.deleteAll();
         User currentUser = createUser();
-        currentUser.getAuthorities().add(Authority.ROLE_ADMIN);
+//        currentUser.getAuthorities().add(Authority.ROLE_ADMIN);
         SecurityContextHolder.getContext().setAuthentication(new UserAuthentication(currentUser));
     }
 
