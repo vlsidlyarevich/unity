@@ -44,7 +44,7 @@ public class DefaultUserSocialService implements UserSocialService {
     }
 
     @Override
-    @PreAuthorize("@securityContextCurrentUserService.canAccessUser(#id)")
+    @PreAuthorize("@securityContextCurrentUserService.canAccessUserOrAdmin(#id)")
     public UserSocial update(final String id, final UserSocial userSocial) {
         return Optional.ofNullable(userSocial)
                 .map(usrSocial -> {
@@ -55,14 +55,14 @@ public class DefaultUserSocialService implements UserSocialService {
     }
 
     @Override
-    @PreAuthorize("@securityContextCurrentUserService.canAccessUser(#id)")
+    @PreAuthorize("@securityContextCurrentUserService.canAccessUserOrAdmin(#id)")
     public String delete(final String id) {
         repository.delete(id);
         return id;
     }
 
     @Override
-    @PreAuthorize("@securityContextCurrentUserService.canAccessUser(#userId)")
+    @PreAuthorize("@securityContextCurrentUserService.canAccessUserOrAdmin(#userId)")
     public String deleteByUserId(final String userId) {
         repository.deleteByUserId(userId);
         return userId;

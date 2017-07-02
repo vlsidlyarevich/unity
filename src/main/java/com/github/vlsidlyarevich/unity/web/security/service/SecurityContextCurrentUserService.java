@@ -18,7 +18,7 @@ public class SecurityContextCurrentUserService implements CurrentUserService {
     }
 
     @Override
-    public boolean canAccessUser(final String userId) {
+    public boolean canAccessUserOrAdmin(final String userId) {
         UserAuthentication currentUser
                 = (UserAuthentication) authenticationFacade.getAuthentication();
         return currentUser != null

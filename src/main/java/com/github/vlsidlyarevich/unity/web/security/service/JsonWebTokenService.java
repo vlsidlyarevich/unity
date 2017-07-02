@@ -41,23 +41,44 @@ public class JsonWebTokenService implements TokenService {
         }
 
         final User user = (User) userDetailsService.loadUserByUsername(username);
-        final Map<String, Object> tokenData = new HashMap<>();
+
         if (password.equals(user.getPassword())) {
-            tokenData.put("clientType", "user");
-            tokenData.put("userID", user.getId());
-            tokenData.put("username", user.getUsername());
-            tokenData.put("token_create_date", LocalDateTime.now());
-            Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.MINUTE, TOKEN_EXPIRATION_TIME);
-            tokenData.put("token_expiration_date", calendar.getTime());
-            final JwtBuilder jwtBuilder = Jwts.builder();
-            jwtBuilder.setExpiration(calendar.getTime());
-            jwtBuilder.setClaims(tokenData);
-            result = Optional.of(jwtBuilder.signWith(SignatureAlgorithm.HS512, tokenKey).compact());
+            final Map<String, Object> tokenData = new HashMap<>();
+            result = createToken(tokenData, user);
         } else {
+            //FIXME throw BadCredentialsException
             log.warn("Authentication Error, credentials not matching");
         }
 
         return result;
+    }
+
+    private Optional<String> createToken(final Map<String, Object> tokenData, final User user) {
+        fulfillTokenUserData(tokenData, user);
+        fulfillTokenDates(tokenData);
+
+        final JwtBuilder jwtBuilder = Jwts.builder();
+        prepareJwtBuilder(jwtBuilder);
+        jwtBuilder.setClaims(tokenData);
+
+        return Optional.of(jwtBuilder.signWith(SignatureAlgorithm.HS512, tokenKey).compact());
+    }
+
+    private void fulfillTokenUserData(final Map<String, Object> tokenData, final User user) {
+        tokenData.put("clientType", "user");
+        tokenData.put("userID", user.getId());
+        tokenData.put("username", user.getUsername());
+    }
+
+    private void fulfillTokenDates(final Map<String, Object> tokenData) {
+        final Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MINUTE, TOKEN_EXPIRATION_TIME);
+        tokenData.put("token_expiration_date", calendar.getTime());
+        tokenData.put("token_create_date", LocalDateTime.now());
+    }
+
+    private void prepareJwtBuilder(final JwtBuilder jwtBuilder) {
+        final Calendar calendar = Calendar.getInstance();
+        jwtBuilder.setExpiration(calendar.getTime());
     }
 }

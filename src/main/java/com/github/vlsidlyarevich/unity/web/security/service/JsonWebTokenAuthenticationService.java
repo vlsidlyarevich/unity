@@ -15,13 +15,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 @Slf4j
@@ -31,14 +29,10 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
     @Value("security.token.secret.key")
     private String secretKey;
 
-    private final TokenService tokenService;
-
     private final UserDetailsService userDetailsService;
 
     @Autowired
-    public JsonWebTokenAuthenticationService(final TokenService tokenService,
-                                             final UserDetailsService userDetailsService) {
-        this.tokenService = tokenService;
+    public JsonWebTokenAuthenticationService(final UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -46,9 +40,11 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
     public Optional<Authentication> authenticate(final HttpServletRequest request) {
         final String token = request.getHeader(SecurityConstants.AUTH_HEADER_NAME);
         final Optional<Jws<Claims>> tokenData = parseToken(token);
+
         if (tokenData.isPresent()) {
             try {
-                Optional<User> user = getUserFromToken(tokenData.get());
+                final Optional<User> user = getUserFromToken(tokenData.get());
+
                 if (user.isPresent()) {
                     return Optional.of(new UserAuthentication(user.get()));
                 }
@@ -56,28 +52,23 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
                 log.warn(e.getMessage());
             }
         }
-        return Optional.empty();
-    }
 
-    @Override
-    public void addAuthentication(final HttpServletResponse response,
-                                  final UserDetails userDetails) {
-        final User user = (User) userDetails;
-        response.addHeader(SecurityConstants.AUTH_HEADER_NAME,
-                tokenService.getToken(user.getUsername(), user.getPassword()).get());
+        return Optional.empty();
     }
 
     private Optional<Jws<Claims>> parseToken(final String token) {
         Optional<Jws<Claims>> result = Optional.empty();
+
         if (token != null) {
             try {
                 result = Optional.ofNullable(Jwts.parser()
                         .setSigningKey(secretKey).parseClaimsJws(token));
             } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException
                     | SignatureException | IllegalArgumentException e) {
-                return result;
+                log.warn(e.getMessage());
             }
         }
+
         return result;
     }
 
@@ -86,10 +77,11 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
         try {
             return Optional.ofNullable((User) userDetailsService
                     .loadUserByUsername(tokenData.getBody()
-                    .get("username").toString()));
+                            .get("username").toString()));
+
         } catch (UsernameNotFoundException e) {
-            throw new UserNotFoundException("User " + tokenData.getBody()
-                    .get("username").toString() + " not found");
+            throw new UserNotFoundException(String.format("User %s not found", tokenData.getBody()
+                    .get("username").toString()));
         }
     }
 }

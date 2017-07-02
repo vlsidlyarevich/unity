@@ -33,8 +33,8 @@ public class UserRepositoryIT {
 
         Assert.assertNotNull(savedUser);
         Assert.assertNotNull(savedUser.getId());
-        Assert.assertEquals(savedUser.getUsername(), savedUser.getUsername());
-        Assert.assertEquals(savedUser.getPassword(), savedUser.getPassword());
-        Assert.assertEquals(savedUser.getAuthorities(), savedUser.getAuthorities());
+        Assert.assertEquals(user.getUsername(), savedUser.getUsername());
+        Assert.assertEquals(user.getPassword(), savedUser.getPassword());
+        Assert.assertEquals(user.getAuthorities(), savedUser.getAuthorities());
     }
 }
