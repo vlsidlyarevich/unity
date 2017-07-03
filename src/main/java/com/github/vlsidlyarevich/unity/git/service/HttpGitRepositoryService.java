@@ -45,28 +45,30 @@ public class HttpGitRepositoryService implements GitRepositoryService {
     }
 
     public Optional<List<GitRepository>> getGitRepositories(final String gitProfile) {
-        Optional<List<GitRepository>> repositories;
+        Optional<List<GitRepository>> repositories = Optional.empty();
+
         try {
             repositories = Optional.of(Arrays.asList(restTemplate
                     .getForObject(gitUserRepositoriesUrl, GitRepository[].class, gitProfile)));
         } catch (HttpClientErrorException e) {
-            repositories = Optional.empty();
             log.error("Can't get git repositories of profile: {} with error {}",
                     gitProfile, e.getMessage());
         }
+
         return repositories;
     }
 
     public Optional<GitRepository> getGitRepository(final String gitProfile, final String repo) {
-        Optional<GitRepository> repositories;
+        Optional<GitRepository> repositories = Optional.empty();
+
         try {
             repositories = Optional.of(restTemplate
                     .getForObject(gitRepositoryUrl, GitRepository.class, gitProfile, repo));
         } catch (HttpClientErrorException e) {
-            repositories = Optional.empty();
             log.error("Can't get git repository: {} of profile: {} with error {}",
                     repo, gitProfile, e.getMessage());
         }
+
         return repositories;
     }
 }

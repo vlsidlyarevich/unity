@@ -39,9 +39,6 @@ public class GitDataAggregator {
 
     public Optional<GitProfileData> getGitProfileData(final String gitLogin) {
         Optional<GitProfile> gitProfile = gitProfileService.getGitProfile(gitLogin);
-        if (!gitProfile.isPresent()) {
-            return Optional.empty();
-        }
         return gitProfile.flatMap(this::aggregateData);
     }
 
@@ -57,16 +54,15 @@ public class GitDataAggregator {
     private void appendGitRepos(final GitProfileData gitProfileData) {
         Optional<List<GitRepository>> gitRepositories
                 = gitRepositoryService.getGitRepositories(gitProfileData.getLogin());
-        if (gitRepositories.isPresent()) {
-            gitProfileData.setRepos(getRepositoryData(gitRepositories).get());
-        }
+        gitRepositories.ifPresent(gitRepos ->
+                gitProfileData.setRepos(getRepositoryData(gitRepos))
+        );
     }
 
-    private Optional<List<GitRepositoryData>> getRepositoryData(
-            final Optional<List<GitRepository>> gitRepositories) {
-        return gitRepositories.map(gitRepositories1 -> gitRepositories1
-                .stream()
-                .map(gitRepository -> gitRepositoryPopulator.populate(gitRepository))
-                .collect(Collectors.toList()));
+    private List<GitRepositoryData> getRepositoryData(
+            final List<GitRepository> gitRepositories) {
+        return gitRepositories.stream()
+                .map(gitRepositoryPopulator::populate)
+                .collect(Collectors.toList());
     }
 }

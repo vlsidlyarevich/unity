@@ -19,10 +19,6 @@ public class DefaultGitProfileDataService implements GitProfileDataService {
 
     @Override
     public Optional<GitProfileData> getGitProfileData(final String gitLogin) {
-        if (gitLogin != null) {
-            return gitDataAggregator.getGitProfileData(gitLogin);
-        } else {
-            return Optional.empty();
-        }
+        return gitLogin != null ? gitDataAggregator.getGitProfileData(gitLogin) : Optional.empty();
     }
 }

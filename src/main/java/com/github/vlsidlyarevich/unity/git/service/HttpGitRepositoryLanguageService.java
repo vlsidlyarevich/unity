@@ -27,7 +27,7 @@ public class HttpGitRepositoryLanguageService implements GitRepositoryLanguageSe
     @Autowired
     public HttpGitRepositoryLanguageService(final GitProperties gitProperties,
                                             final RestTemplateFactory restTemplateFactory) {
-        this.gitApiUrl = gitProperties.getApiUrl() + "/repos/{user}/{repo}/languages";
+        this.gitApiUrl = String.format("%s/repos/{user}/{repo}/languages", gitProperties.getApiUrl());
         this.restTemplateFactory = restTemplateFactory;
     }
 
@@ -44,35 +44,37 @@ public class HttpGitRepositoryLanguageService implements GitRepositoryLanguageSe
 
     @Override
     public Optional<Map<String, String>> getGitRepoLanguages(final String url) {
-        Optional<Map<String, String>> result;
+        Optional<Map<String, String>> result = Optional.empty();
         ParameterizedTypeReference<Map<String, String>> response
                 = new ParameterizedTypeReference<Map<String, String>>() {
         };
+
         try {
             result = Optional.of(restTemplate.exchange(url, HttpMethod.GET,
                     null, response).getBody());
         } catch (HttpClientErrorException e) {
-            result = Optional.empty();
             log.error("Can't get languages by url: {} with error {}", url, e.getMessage());
         }
+
         return result;
     }
 
     @Override
     public Optional<Map<String, String>> getGitRepoLanguages(final String gitProfile,
                                                              final String repo) {
-        Optional<Map<String, String>> result;
+        Optional<Map<String, String>> result = Optional.empty();
         ParameterizedTypeReference<Map<String, String>> response
                 = new ParameterizedTypeReference<Map<String, String>>() {
         };
+
         try {
             result = Optional.of(restTemplate.exchange(gitApiUrl, HttpMethod.GET,
                     null, response, gitProfile, repo).getBody());
         } catch (HttpClientErrorException e) {
-            result = Optional.empty();
             log.error("Can't get languages of git profile's:{} repo {} with error {}",
                     gitProfile, repo, e.getMessage());
         }
+
         return result;
     }
 }

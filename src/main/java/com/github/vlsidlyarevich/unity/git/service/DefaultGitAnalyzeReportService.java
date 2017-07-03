@@ -34,6 +34,7 @@ public class DefaultGitAnalyzeReportService implements GitAnalyzeService {
             Date analyzedAt
                     = Date.from(Instant.from(LocalDateTime.now().toInstant(ZoneOffset.UTC)));
             Long analyzeTime = ChronoUnit.SECONDS.between(startDate, endDate);
+
             report = Optional.of(new AnalysisReport(gitProfileData.get(), analyzedAt, analyzeTime));
         }
 

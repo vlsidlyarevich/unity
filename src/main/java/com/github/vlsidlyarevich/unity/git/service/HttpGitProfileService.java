@@ -35,20 +35,21 @@ public class HttpGitProfileService implements GitProfileService {
             this.restTemplate = restTemplateFactory.getObject();
         } catch (Exception e) {
             log.error("Can't initiate rest template factory with error: {}, using default one.",
-                    e.getCause());
+                    e);
             this.restTemplate = new RestTemplate();
         }
     }
 
     public Optional<GitProfile> getGitProfile(final String gitProfile) {
-        Optional<GitProfile> result;
+        Optional<GitProfile> result = Optional.empty();
+
         try {
             result = Optional.of(restTemplate.getForObject(gitApiUrl,
                     GitProfile.class, gitProfile));
         } catch (HttpClientErrorException e) {
-            result = Optional.empty();
             log.error("Can't find git profile: {} with error {}", gitProfile, e.getMessage());
         }
+
         return result;
     }
 }
