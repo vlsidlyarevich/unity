@@ -27,7 +27,8 @@ public class HttpGitRepositoryLanguageService implements GitRepositoryLanguageSe
     @Autowired
     public HttpGitRepositoryLanguageService(final GitProperties gitProperties,
                                             final RestTemplateFactory restTemplateFactory) {
-        this.gitApiUrl = String.format("%s/repos/{user}/{repo}/languages", gitProperties.getApiUrl());
+        this.gitApiUrl
+                = String.format("%s/repos/{user}/{repo}/languages", gitProperties.getApiUrl());
         this.restTemplateFactory = restTemplateFactory;
     }
 
