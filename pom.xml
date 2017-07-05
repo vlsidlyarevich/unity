@@ -6,7 +6,7 @@
     <groupId>com.github.vlsidlyarevich</groupId>
     <artifactId>unity</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <name>Unity</name>
     <description>Angular 2 and java REST based Human Resourse Analysing tool</description>
 
@@ -84,7 +84,6 @@
     </profiles>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -285,6 +284,7 @@
                     <excludes>
                         <exclude>**/*aop/*.class</exclude>
                         <exclude>**/*config/*.class</exclude>
+                        <exclude>**/*model/*.class</exclude>
                         <exclude>**/*domain/*.class</exclude>
                         <exclude>**/*exception/**/*.class</exclude>
                         <exclude>**/*dto/*.class</exclude>

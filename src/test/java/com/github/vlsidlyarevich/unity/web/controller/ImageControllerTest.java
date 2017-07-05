@@ -45,10 +45,10 @@ public class ImageControllerTest {
     public void uploadImageTest() throws Exception {
         MockMultipartFile image = new MockMultipartFile("file", "Image.png", null, "content".getBytes());
 
-        mvc.perform(MockMvcRequestBuilders.fileUpload("/api/images/upload")
+        mvc.perform(MockMvcRequestBuilders.fileUpload("/api/v1/images/upload")
                 .file(image)
                 .contentType(MediaType.MULTIPART_FORM_DATA))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isCreated());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class ImageControllerTest {
         MockMultipartFile image = new MockMultipartFile("file", "Image.png", null, "content".getBytes());
         String imageId = storageService.store(image);
 
-        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/images/" + imageId)
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/images/" + imageId)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -68,7 +68,7 @@ public class ImageControllerTest {
         MockMultipartFile image = new MockMultipartFile("file", "Image.png", null, "content".getBytes());
         String imageId = storageService.store(image);
 
-        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/images/" + imageId)
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/v1/images/" + imageId)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
