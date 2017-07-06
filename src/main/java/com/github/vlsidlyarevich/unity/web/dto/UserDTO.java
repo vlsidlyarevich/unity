@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public final class UserDTO implements Serializable {
     private static final long serialVersionUID = -7579103181077856718L;
 
@@ -20,9 +22,4 @@ public final class UserDTO implements Serializable {
             message = "User password should be at least 4 symbols, 1 upper, "
                     + "1 lower case letter and 1 special")
     private String password;
-
-    public UserDTO(final String username, final String password) {
-        this.username = username;
-        this.password = password;
-    }
 }
