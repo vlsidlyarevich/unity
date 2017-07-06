@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 public final class FileUtils {
@@ -15,10 +15,10 @@ public final class FileUtils {
     }
 
     public static void cleanDirectory(final Path pathToDirectory) {
-        if (Objects.nonNull(pathToDirectory)
-                && Objects.nonNull(pathToDirectory.toFile())) {
-            Arrays.stream(pathToDirectory.toFile().listFiles())
-                    .forEach(File::delete);
-        }
+        Optional.ofNullable(pathToDirectory)
+                .ifPresent(path ->
+                        Arrays.stream(pathToDirectory.toFile().listFiles())
+                                .forEach(File::delete)
+                );
     }
 }
