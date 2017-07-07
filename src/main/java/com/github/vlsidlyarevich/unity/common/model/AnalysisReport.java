@@ -2,11 +2,15 @@ package com.github.vlsidlyarevich.unity.common.model;
 
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
 @Getter
-public class AnalysisReport {
+public class AnalysisReport implements Serializable {
+
+    private static final long serialVersionUID = -373736423253240530L;
+
     private String id;
     private AnalyzedResource resource;
     private Date analyzedAt;

@@ -1,5 +1,10 @@
 package com.github.vlsidlyarevich.unity.common.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public enum AnalyzedResource {
     GITHUB("github"),
     FACEBOOK("facebook"),
@@ -7,12 +12,4 @@ public enum AnalyzedResource {
     UNKNOWN("unknown");
 
     private String name;
-
-    AnalyzedResource(final String string) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
 }

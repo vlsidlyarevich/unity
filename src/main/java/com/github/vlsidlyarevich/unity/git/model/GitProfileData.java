@@ -9,6 +9,8 @@ import java.util.List;
 @Data
 public class GitProfileData implements GitResult {
 
+    private static final long serialVersionUID = 796518780368910481L;
+
     private Integer id;
     private String login;
     private String avatarUrl;

@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.security.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.User;
+import com.github.vlsidlyarevich.unity.web.security.exception.BadCredentialsException;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -14,7 +15,6 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -33,27 +33,18 @@ public class JsonWebTokenService implements TokenService {
     }
 
     @Override
-    public Optional<String> getToken(final String username, final String password) {
-        Optional<String> result = Optional.empty();
-
-        if (username == null || password == null) {
-            return result;
-        }
-
+    public String getToken(final String username, final String password) {
         final User user = (User) userDetailsService.loadUserByUsername(username);
 
         if (password.equals(user.getPassword())) {
             final Map<String, Object> tokenData = new HashMap<>();
-            result = createToken(tokenData, user);
+            return createToken(tokenData, user);
         } else {
-            //FIXME throw BadCredentialsException
-            log.warn("Authentication Error, credentials not matching");
+            throw new BadCredentialsException("Authentication Error, credentials not matching");
         }
-
-        return result;
     }
 
-    private Optional<String> createToken(final Map<String, Object> tokenData, final User user) {
+    private String createToken(final Map<String, Object> tokenData, final User user) {
         fulfillTokenUserData(tokenData, user);
         fulfillTokenDates(tokenData);
 
@@ -61,7 +52,7 @@ public class JsonWebTokenService implements TokenService {
         prepareJwtBuilder(jwtBuilder);
         jwtBuilder.setClaims(tokenData);
 
-        return Optional.of(jwtBuilder.signWith(SignatureAlgorithm.HS512, tokenKey).compact());
+        return jwtBuilder.signWith(SignatureAlgorithm.HS512, tokenKey).compact();
     }
 
     private void fulfillTokenUserData(final Map<String, Object> tokenData, final User user) {

@@ -6,6 +6,8 @@ import lombok.Data;
 @Data
 public class GitRepoOwnerData implements GitResult {
 
+    private static final long serialVersionUID = 6471058629012693454L;
+
     private Integer id;
     private String login;
     private String avatarUrl;

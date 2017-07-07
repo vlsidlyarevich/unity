@@ -10,6 +10,8 @@ import java.util.Map;
 @Data
 public class GitRepositoryData implements GitResult {
 
+    private static final long serialVersionUID = -7789119471820389522L;
+
     private Integer id;
     private String name;
     private String fullName;

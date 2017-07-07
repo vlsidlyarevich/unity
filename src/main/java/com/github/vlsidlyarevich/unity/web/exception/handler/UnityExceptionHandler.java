@@ -6,6 +6,7 @@ import com.github.vlsidlyarevich.unity.db.exception.FileSystemStorageException;
 import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
 import com.github.vlsidlyarevich.unity.i18n.MessageResolver;
 import com.github.vlsidlyarevich.unity.web.dto.ExceptionDTO;
+import com.github.vlsidlyarevich.unity.web.security.exception.BadCredentialsException;
 import com.mongodb.MongoException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,15 @@ public class UnityExceptionHandler {
 
         return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
                 HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity handleBadCredentialsException(final BadCredentialsException exception,
+                                                        final HttpServletRequest req) {
+        log.warn("Processing bad credentials exception:" + exception.getMessage());
+
+        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
+                HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(MongoException.class)

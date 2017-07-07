@@ -117,7 +117,8 @@ public class FileSystemStorageService implements StorageService {
         try {
             Files.walk(this.storeLocation, 1)
                     .filter(path -> path.toFile().getName().equals(id))
-                    .findFirst().get().toFile().delete();
+                    .findFirst()
+                    .map(path -> path.toFile().delete());
 
             return id;
         } catch (IOException | NoSuchElementException e) {
