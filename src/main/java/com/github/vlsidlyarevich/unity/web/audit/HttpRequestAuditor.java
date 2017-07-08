@@ -1,16 +1,18 @@
 package com.github.vlsidlyarevich.unity.web.audit;
 
-import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import com.github.vlsidlyarevich.unity.common.audit.Auditor;
 import com.github.vlsidlyarevich.unity.db.domain.User;
+import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
-import java.util.Objects;
+
+import static java.util.Objects.isNull;
 
 @Slf4j
 @Component
@@ -24,12 +26,12 @@ public class HttpRequestAuditor implements RequestAuditor {
     }
 
     @Override
-    public void logRequest(final UserAuthentication authentication,
+    public void logRequest(final Authentication authentication,
                            final HttpServletRequest request, final Object handler) {
-        if (Objects.isNull(authentication)) {
+        if (isNull(authentication)) {
             logUnauthenticatedRequest(request, handler);
         } else {
-            logAuthenticatedRequest(authentication, request, handler);
+            logAuthenticatedRequest((UserAuthentication) authentication, request, handler);
         }
     }
 

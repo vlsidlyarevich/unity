@@ -26,20 +26,15 @@ public class UserAnalyticsController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getAnalyticsByUserId(@PathVariable final String userId) {
-        final UserAnalytics analytics = service.findByUserId(userId);
-        if (analytics == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(analytics, HttpStatus.OK);
+        return new ResponseEntity<>(service.findByUserId(userId), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{reportId}", method = RequestMethod.GET)
     public ResponseEntity getAnalyticsReportById(@PathVariable final String userId,
-                                                    @PathVariable final String reportId) {
+                                                 @PathVariable final String reportId) {
         final UserAnalytics analytics = service.findByUserId(userId);
-        if (analytics == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+
+        //FIXME separate that in service
         final AnalysisReport result = analytics.getReports()
                 .stream()
                 .filter(analysisReport -> Objects.equals(analysisReport.getId(), reportId))
@@ -54,7 +49,7 @@ public class UserAnalyticsController {
 
     @RequestMapping(value = "/{reportId}", method = RequestMethod.DELETE)
     public ResponseEntity deleteAnalyticsReportById(@PathVariable final String userId,
-                                                       @PathVariable final String reportId) {
+                                                    @PathVariable final String reportId) {
         return new ResponseEntity<>(service.deleteReport(userId, reportId), HttpStatus.OK);
     }
 

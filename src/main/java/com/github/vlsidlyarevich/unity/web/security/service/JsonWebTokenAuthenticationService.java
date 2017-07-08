@@ -72,8 +72,7 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
         return result;
     }
 
-    private Optional<User> getUserFromToken(final Jws<Claims> tokenData)
-            throws UserNotFoundException {
+    private Optional<User> getUserFromToken(final Jws<Claims> tokenData) {
         try {
             return Optional.ofNullable((User) userDetailsService
                     .loadUserByUsername(tokenData.getBody()

@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
+import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.db.repository.UserAnalyticsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,12 +40,16 @@ public class DefaultUserAnalyticsService implements UserAnalyticsService {
 
     @Override
     public UserAnalytics find(final String id) {
-        return repository.findOne(id);
+        return Optional.ofNullable(repository.findOne(id))
+                .orElseThrow(() -> new ResourceNotFoundException(String
+                        .format("User Analytics with id:%s not found", id)));
     }
 
     @Override
     public UserAnalytics findByUserId(final String userId) {
-        return repository.findByUserId(userId);
+        return Optional.ofNullable(repository.findByUserId(userId))
+                .orElseThrow(() -> new ResourceNotFoundException(String
+                        .format("User Analytics with user id:%s not found", userId)));
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.github.vlsidlyarevich.unity.web.exception.handler;
 import com.github.vlsidlyarevich.unity.common.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.FileSystemFileNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.FileSystemStorageException;
+import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
 import com.github.vlsidlyarevich.unity.i18n.MessageResolver;
 import com.github.vlsidlyarevich.unity.web.dto.ExceptionDTO;
@@ -43,6 +44,16 @@ public class UnityExceptionHandler {
                 .collect(Collectors.joining("\n"));
 
         return new ResponseEntity<>(new ExceptionDTO(message), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity handleResourceNotFoundException(
+            final ResourceNotFoundException exception,
+            final HttpServletRequest req) {
+        log.warn("Processing resource not found exception:" + exception.getMessage());
+
+        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
+                HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(FileSystemStorageException.class)

@@ -20,8 +20,7 @@ public class DatabaseUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(final String username)
-            throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(final String username) {
         return Optional.ofNullable(userService.findByUsername(username))
                 .orElseThrow(() ->
                         new UsernameNotFoundException(String

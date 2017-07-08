@@ -43,8 +43,7 @@ public class UserAuthentication implements Authentication {
     }
 
     @Override
-    public void setAuthenticated(final boolean authenticated)
-            throws IllegalArgumentException {
+    public void setAuthenticated(final boolean authenticated) {
         this.authenticated = authenticated;
     }
 

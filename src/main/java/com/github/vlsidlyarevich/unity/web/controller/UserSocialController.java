@@ -32,13 +32,10 @@ public class UserSocialController {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getUserSocialData(@PathVariable final String id) {
         final UserSocial userSocial = service.findByUserId(id);
-        if (userSocial == null) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
         return new ResponseEntity<>(UserSocialDTO.fromDomain(userSocial), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity updateUserSocialData(@PathVariable final String id,
                                                @RequestBody final UserSocialDTO dto) {
         final UserSocial userSocial = UserSocial.fromDTO(dto);

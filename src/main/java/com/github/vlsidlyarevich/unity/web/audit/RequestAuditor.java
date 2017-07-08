@@ -1,11 +1,11 @@
 package com.github.vlsidlyarevich.unity.web.audit;
 
-import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
+import org.springframework.security.core.Authentication;
 
 import javax.servlet.http.HttpServletRequest;
 
 public interface RequestAuditor {
 
-    void logRequest(UserAuthentication authentication, HttpServletRequest request,
+    void logRequest(Authentication authentication, HttpServletRequest request,
                     Object handler);
 }
