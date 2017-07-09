@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
+import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 
 import java.util.List;
@@ -11,6 +12,8 @@ public interface UserAnalyticsService {
     UserAnalytics find(String id);
 
     UserAnalytics findByUserId(String userId);
+
+    AnalysisReport findReportById(String userId, String reportId);
 
     List<UserAnalytics> findAll();
 

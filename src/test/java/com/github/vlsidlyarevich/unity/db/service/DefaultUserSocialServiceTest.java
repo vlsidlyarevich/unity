@@ -1,9 +1,9 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
+import com.github.vlsidlyarevich.unity.db.helper.UserHelper;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
 import org.hamcrest.Matchers;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,9 +32,12 @@ public class DefaultUserSocialServiceTest {
     @Mock
     private UserSocialRepository userSocialRepository;
 
+    @Mock
+    private UserHelper userHelper;
+
     @Before
     public void setUp() {
-        userSocialService = new DefaultUserSocialService(userSocialRepository);
+        userSocialService = new DefaultUserSocialService(userSocialRepository, userHelper);
     }
 
     @Test

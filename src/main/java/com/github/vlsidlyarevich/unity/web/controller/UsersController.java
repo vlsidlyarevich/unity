@@ -32,10 +32,6 @@ public class UsersController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity getUserById(@PathVariable final String id) {
-        final User user = service.find(id);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(service.find(id), HttpStatus.OK);
     }
 
@@ -47,7 +43,7 @@ public class UsersController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity updateUserById(@PathVariable final String id,
-                                            @Valid @RequestBody final UserDTO dto) {
+                                         @Valid @RequestBody final UserDTO dto) {
         return new ResponseEntity<>(service
                 .update(id, User.fromDTO(dto)), HttpStatus.OK);
     }

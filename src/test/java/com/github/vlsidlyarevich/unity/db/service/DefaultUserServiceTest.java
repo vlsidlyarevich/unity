@@ -2,6 +2,7 @@ package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
+import com.github.vlsidlyarevich.unity.db.helper.UserHelper;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -14,9 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import static com.github.vlsidlyarevich.unity.TestUtils.createUser;
-import static org.hamcrest.CoreMatchers.any;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.isA;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.collection.IsEmptyCollection.emptyCollectionOf;
 import static org.junit.Assert.assertThat;
@@ -39,9 +38,12 @@ public class DefaultUserServiceTest {
     @Mock
     private UserAnalyticsService userAnalyticsService;
 
+    @Mock
+    private UserHelper userHelper;
+
     @Before
     public void setUp() {
-        this.userService = new DefaultUserService(userRepository, userSocialService, userAnalyticsService);
+        this.userService = new DefaultUserService(userRepository, userSocialService, userAnalyticsService, userHelper);
     }
 
     @Test

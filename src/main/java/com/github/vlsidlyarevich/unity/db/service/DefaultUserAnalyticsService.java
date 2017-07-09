@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
+import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.db.repository.UserAnalyticsRepository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -43,6 +45,21 @@ public class DefaultUserAnalyticsService implements UserAnalyticsService {
         return Optional.ofNullable(repository.findOne(id))
                 .orElseThrow(() -> new ResourceNotFoundException(String
                         .format("User Analytics with id:%s not found", id)));
+    }
+
+    @Override
+    public AnalysisReport findReportById(final String userId, final String reportId) {
+        final UserAnalytics analytics = findByUserId(userId);
+
+        return Optional.ofNullable(analytics.getReports()
+                .stream()
+                .filter(analysisReport -> Objects.equals(analysisReport.getId(), reportId))
+                .findFirst()
+                .orElse(null))
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        String.format("Analytics report with id:%s of user with id:%s not found",
+                                reportId, userId)));
+
     }
 
     @Override

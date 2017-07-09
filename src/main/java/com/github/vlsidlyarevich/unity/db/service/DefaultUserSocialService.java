@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
+import com.github.vlsidlyarevich.unity.db.helper.UserHelper;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,9 +15,13 @@ public class DefaultUserSocialService implements UserSocialService {
 
     private final UserSocialRepository repository;
 
+    private final UserHelper userHelper;
+
     @Autowired
-    public DefaultUserSocialService(final UserSocialRepository repository) {
+    public DefaultUserSocialService(final UserSocialRepository repository,
+                                    final UserHelper userHelper) {
         this.repository = repository;
+        this.userHelper = userHelper;
     }
 
     @Override
@@ -46,6 +51,8 @@ public class DefaultUserSocialService implements UserSocialService {
     @Override
     @PreAuthorize("@securityContextCurrentUserService.canAccessUserOrAdmin(#id)")
     public UserSocial update(final String id, final UserSocial userSocial) {
+        userHelper.checkForUserExistance(id);
+
         return Optional.ofNullable(userSocial)
                 .map(usrSocial -> {
                     usrSocial.setUserId(id);
