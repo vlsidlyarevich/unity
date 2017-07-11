@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.helper;
 
-import com.github.vlsidlyarevich.unity.common.exception.UserNotFoundException;
+import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
 import org.springframework.stereotype.Component;

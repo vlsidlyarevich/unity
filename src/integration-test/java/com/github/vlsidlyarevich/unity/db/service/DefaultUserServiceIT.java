@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
+import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.domain.Authority;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
@@ -68,8 +69,8 @@ public class DefaultUserServiceIT {
         Assert.assertThat(userService.find(user.getId()), notNullValue());
     }
 
-    @Test
-    public void find_Null_IfNotPresent() throws Exception {
+    @Test(expected = UserNotFoundException.class)
+    public void find_ExceptionThrown_IfNotPresent() throws Exception {
         Assert.assertThat(userService.find("id"), nullValue());
     }
 
@@ -83,8 +84,8 @@ public class DefaultUserServiceIT {
         Assert.assertThat(userService.findByUsername(user.getUsername()), is(user));
     }
 
-    @Test
-    public void findByUsername_Null_IfNotPresent() throws Exception {
+    @Test(expected = UserNotFoundException.class)
+    public void findByUsername_ExceptionThrown_IfNotPresent() throws Exception {
         Assert.assertThat(userService.find("id"), nullValue());
     }
 

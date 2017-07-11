@@ -29,16 +29,9 @@ public class ConfigurableRestTemplateFactory implements RestTemplateFactory {
         this.configuration = new Configuration();
     }
 
+    @Override
     public RestTemplate getObject() {
         return configureRestTemplate(new RestTemplate());
-    }
-
-    public Class<RestTemplate> getObjectType() {
-        return RestTemplate.class;
-    }
-
-    public boolean isSingleton() {
-        return true;
     }
 
     private RestTemplate configureRestTemplate(final RestTemplate restTemplate) {

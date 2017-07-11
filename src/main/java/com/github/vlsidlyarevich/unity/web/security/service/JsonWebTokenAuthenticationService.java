@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.security.service;
 
-import com.github.vlsidlyarevich.unity.common.exception.UserNotFoundException;
+import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
 import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;

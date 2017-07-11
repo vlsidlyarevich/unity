@@ -3,6 +3,7 @@ package com.github.vlsidlyarevich.unity.db.service;
 import com.github.vlsidlyarevich.unity.db.domain.Authority;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
+import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
 import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import org.junit.After;
@@ -70,8 +71,8 @@ public class DefaultUserSocialServiceIT {
         Assert.assertThat(userSocialService.find(userSocial.getId()), notNullValue());
     }
 
-    @Test
-    public void find_Null_IfNotPresent() throws Exception {
+    @Test(expected = ResourceNotFoundException.class)
+    public void find_ExceptionThrown_IfNotPresent() throws Exception {
         Assert.assertThat(userSocialService.find("id"), nullValue());
     }
 
@@ -84,8 +85,8 @@ public class DefaultUserSocialServiceIT {
         Assert.assertThat(userSocialService.findByUserId(userSocial.getUserId()), is(userSocial));
     }
 
-    @Test
-    public void findByUserId_Null_IfNotPresent() throws Exception {
+    @Test(expected = ResourceNotFoundException.class)
+    public void findByUserId_ExceptionThrown_IfNotPresent() throws Exception {
         Assert.assertThat(userSocialService.findByUserId("userid"), nullValue());
     }
 
@@ -110,6 +111,7 @@ public class DefaultUserSocialServiceIT {
 
         userSocialService.create(userSocial);
         userSocial.setFirstName("new name");
+        userSocial.setUserId("id");
 
         userSocialService.update(userSocial.getUserId(), userSocial);
 

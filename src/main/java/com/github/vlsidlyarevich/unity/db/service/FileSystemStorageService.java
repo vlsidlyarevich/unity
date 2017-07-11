@@ -46,18 +46,22 @@ public class FileSystemStorageService implements StorageService {
     @Override
     public String store(final MultipartFile file) {
         final String id = UUID.randomUUID().toString();
+
         try {
             if (file.isEmpty()) {
                 log.error("Failed to store empty file " + file.getOriginalFilename());
                 throw new FileSystemStorageException("storage.filesystem.file.empty",
                         new Object[]{file.getOriginalFilename()});
             }
+
             Files.copy(file.getInputStream(), storeLocation.resolve(id));
+
         } catch (IOException e) {
             throw new FileSystemStorageException(e.getMessage(), e.getCause(),
                     "storage.filesystem.file.storeFail",
                     new Object[]{file.getOriginalFilename()});
         }
+
         return id;
     }
 
@@ -66,7 +70,9 @@ public class FileSystemStorageService implements StorageService {
         try {
             return Files.walk(this.storeLocation, 1)
                     .filter(path -> !path.equals(this.storeLocation))
-                    .map(this.storeLocation::relativize).collect(Collectors.toList());
+                    .map(this.storeLocation::relativize)
+                    .collect(Collectors.toList());
+
         } catch (IOException e) {
             throw new FileSystemStorageException(e.getMessage(),
                     "storage.filesystem.files.readFail", e.getCause());
@@ -82,12 +88,15 @@ public class FileSystemStorageService implements StorageService {
     public Resource loadAsResource(final String filename) {
         try {
             Path file = load(filename);
+
             Resource resource = new UrlResource(file.toUri());
+
             if (resource.exists() || resource.isReadable()) {
                 return resource;
             } else {
                 throw new FileNotFoundException();
             }
+
         } catch (MalformedURLException | FileNotFoundException e) {
             throw new FileSystemFileNotFoundException(e.getMessage(),
                     "storage.filesystem.file.readFail",
@@ -104,6 +113,7 @@ public class FileSystemStorageService implements StorageService {
         } catch (IOException | NoSuchElementException e) {
             log.warn("Can't check existing of file:" + filename);
         }
+
         return false;
     }
 

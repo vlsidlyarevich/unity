@@ -2,6 +2,7 @@ package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
+import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -57,8 +58,8 @@ public class DefaultUserAnalyticsServiceIT {
         Assert.assertThat(userAnalyticsService.find(userAnalytics.getId()), notNullValue());
     }
 
-    @Test
-    public void find_Null_IfNotPresent() throws Exception {
+    @Test(expected = ResourceNotFoundException.class)
+    public void find_ExceptionThrown_IfNotPresent() throws Exception {
         Assert.assertThat(userAnalyticsService.find("id"), nullValue());
     }
 
@@ -71,8 +72,8 @@ public class DefaultUserAnalyticsServiceIT {
         Assert.assertThat(userAnalyticsService.findByUserId(userAnalytics.getUserId()), is(userAnalytics));
     }
 
-    @Test
-    public void findByUserId_Null_IfNotPresent() throws Exception {
+    @Test(expected = ResourceNotFoundException.class)
+    public void findByUserId_ExceptionThrown_IfNotPresent() throws Exception {
         Assert.assertThat(userAnalyticsService.findByUserId("userid"), nullValue());
     }
 

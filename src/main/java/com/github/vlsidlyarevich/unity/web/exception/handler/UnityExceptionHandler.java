@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.exception.handler;
 
-import com.github.vlsidlyarevich.unity.common.exception.UserNotFoundException;
+import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.FileSystemFileNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.FileSystemStorageException;
 import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;

@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
+import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.db.helper.UserHelper;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +35,16 @@ public class DefaultUserSocialService implements UserSocialService {
 
     @Override
     public UserSocial find(final String id) {
-        return repository.findOne(id);
+        return Optional.ofNullable(repository.findOne(id))
+                .orElseThrow(() -> new ResourceNotFoundException(String
+                        .format("User Social with id:%s not found", id)));
     }
 
     @Override
     public UserSocial findByUserId(final String userId) {
-        return repository.findByUserId(userId);
+        return Optional.ofNullable(repository.findByUserId(userId))
+                .orElseThrow(() -> new ResourceNotFoundException(String
+                        .format("User Social with user id:%s not found", userId)));
     }
 
     @Override
