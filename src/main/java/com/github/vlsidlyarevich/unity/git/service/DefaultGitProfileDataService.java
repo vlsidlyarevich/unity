@@ -19,6 +19,8 @@ public class DefaultGitProfileDataService implements GitProfileDataService {
 
     @Override
     public Optional<GitProfileData> getGitProfileData(final String gitLogin) {
-        return gitLogin != null ? gitDataAggregator.getGitProfileData(gitLogin) : Optional.empty();
+        return Optional.ofNullable(gitLogin)
+                .map(login -> gitDataAggregator.getGitProfileData(gitLogin))
+                .orElseThrow(() -> new IllegalArgumentException("Git login should not be empty"));
     }
 }

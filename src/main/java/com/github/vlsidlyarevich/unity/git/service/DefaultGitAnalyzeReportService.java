@@ -25,8 +25,10 @@ public class DefaultGitAnalyzeReportService implements GitAnalyzeService {
     @Override
     public Optional<AnalysisReport> analyze(final String gitLogin) {
         final LocalDateTime startDate = LocalDateTime.now();
+
         final Optional<GitProfileData> gitProfileData
                 = gitProfileDataService.getGitProfileData(gitLogin);
+
         final LocalDateTime endDate = LocalDateTime.now();
         Optional<AnalysisReport> report = Optional.empty();
 

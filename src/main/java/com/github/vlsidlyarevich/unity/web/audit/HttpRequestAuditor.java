@@ -28,10 +28,10 @@ public class HttpRequestAuditor implements RequestAuditor {
     @Override
     public void logRequest(final Authentication authentication,
                            final HttpServletRequest request, final Object handler) {
-        if (isNull(authentication)) {
-            logUnauthenticatedRequest(request, handler);
-        } else {
+        if (authentication instanceof UserAuthentication) {
             logAuthenticatedRequest((UserAuthentication) authentication, request, handler);
+        } else {
+            logUnauthenticatedRequest(request, handler);
         }
     }
 
