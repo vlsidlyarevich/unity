@@ -12,8 +12,6 @@ import org.springframework.web.method.HandlerMethod;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 
-import static java.util.Objects.isNull;
-
 @Slf4j
 @Component
 public class HttpRequestAuditor implements RequestAuditor {
