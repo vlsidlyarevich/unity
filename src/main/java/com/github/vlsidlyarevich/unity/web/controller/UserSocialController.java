@@ -6,7 +6,11 @@ import com.github.vlsidlyarevich.unity.web.dto.UserSocialDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/user/{id}/social")
@@ -29,7 +33,8 @@ public class UserSocialController {
     public ResponseEntity updateUserSocialData(@PathVariable final String id,
                                                @RequestBody final UserSocialDTO dto) {
         return new ResponseEntity<>(
-                UserSocialDTO.fromDomain(service.update(id, UserSocial.fromDTO(dto))), HttpStatus.OK);
+                UserSocialDTO.fromDomain(service
+                        .update(id, UserSocial.fromDTO(dto))), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)

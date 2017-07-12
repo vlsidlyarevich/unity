@@ -2,6 +2,7 @@ package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
+import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.db.repository.UserAnalyticsRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -61,13 +62,11 @@ public class DefaultUserAnalyticsServiceTest {
         verify(userAnalyticsRepository).findOne(userAnalytics.getId());
     }
 
-    @Test
+    @Test(expected = ResourceNotFoundException.class)
     public void find_Null_IfNotPresent() throws Exception {
         doReturn(null).when(userAnalyticsRepository).findOne(anyString());
 
-        assertThat(userAnalyticsService.find("id"), nullValue());
-
-        verify(userAnalyticsRepository).findOne("id");
+        userAnalyticsService.find("id");
     }
 
     @Test
@@ -81,11 +80,11 @@ public class DefaultUserAnalyticsServiceTest {
         verify(userAnalyticsRepository).findByUserId(userAnalytics.getUserId());
     }
 
-    @Test
+    @Test(expected = ResourceNotFoundException.class)
     public void findByUserId_Null_IfNotPresent() throws Exception {
         assertThat(userAnalyticsService.findByUserId("userid"), nullValue());
 
-        verify(userAnalyticsRepository).findByUserId("userid");
+        userAnalyticsRepository.findByUserId("userid");
     }
 
     @Test

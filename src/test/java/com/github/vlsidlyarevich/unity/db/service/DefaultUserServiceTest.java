@@ -1,6 +1,8 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.User;
+import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
+import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
 import com.github.vlsidlyarevich.unity.db.helper.UserHelper;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
@@ -38,12 +40,9 @@ public class DefaultUserServiceTest {
     @Mock
     private UserAnalyticsService userAnalyticsService;
 
-    @Mock
-    private UserHelper userHelper;
-
     @Before
     public void setUp() {
-        this.userService = new DefaultUserService(userRepository, userSocialService, userAnalyticsService, userHelper);
+        this.userService = new DefaultUserService(userRepository, userSocialService, userAnalyticsService, new UserHelper(userRepository));
     }
 
     @Test
@@ -69,6 +68,7 @@ public class DefaultUserServiceTest {
         doReturn(new ArrayList<User>() {{
             add(user);
         }}).when(userRepository).findAll();
+        doReturn(user).when(userRepository).save((User) anyObject());
 
         userService.create(user);
     }
@@ -85,13 +85,11 @@ public class DefaultUserServiceTest {
         verify(userRepository).findOne(user.getId());
     }
 
-    @Test
+    @Test(expected = UserNotFoundException.class)
     public void find_Null_IfNotPresent() throws Exception {
         doReturn(null).when(userRepository).findOne(anyString());
 
-        assertThat(userService.find("id"), Matchers.nullValue());
-
-        verify(userRepository).findOne("id");
+        userService.find("id");
     }
 
     @Test
@@ -105,13 +103,11 @@ public class DefaultUserServiceTest {
         verify(userRepository).findByUsername(user.getUsername());
     }
 
-    @Test
+    @Test(expected = UserNotFoundException.class)
     public void findByUsername_Null_IfNotPresent() throws Exception {
         doReturn(null).when(userRepository).findByUsername(anyString());
 
-        assertThat(userService.find("username"), Matchers.nullValue());
-
-        verify(userRepository).findOne("username");
+        userService.findByUsername("username");
     }
 
     @Test

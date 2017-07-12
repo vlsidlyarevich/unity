@@ -51,7 +51,10 @@ public class DefaultUserService implements UserService {
 
     @Override
     public User findByUsername(final String userName) {
-        return repository.findByUsername(userName);
+        return Optional.ofNullable(repository.findByUsername(userName))
+                .orElseThrow(() ->
+                        new UserNotFoundException(String
+                                .format("User with username:%s not found", userName)));
     }
 
     @Override

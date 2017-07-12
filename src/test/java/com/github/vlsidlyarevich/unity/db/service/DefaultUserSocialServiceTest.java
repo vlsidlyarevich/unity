@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
+import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.db.helper.UserHelper;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
 import org.hamcrest.Matchers;
@@ -67,13 +68,11 @@ public class DefaultUserSocialServiceTest {
         verify(userSocialRepository).findOne(userSocial.getId());
     }
 
-    @Test
+    @Test(expected = ResourceNotFoundException.class)
     public void find_Null_IfNotPresent() throws Exception {
         doReturn(null).when(userSocialRepository).findOne(anyString());
 
-        assertThat(userSocialService.find("id"), Matchers.nullValue());
-
-        verify(userSocialRepository).findOne("id");
+        userSocialService.find("id");
     }
 
     @Test
@@ -87,11 +86,11 @@ public class DefaultUserSocialServiceTest {
         verify(userSocialRepository).findByUserId(userSocial.getUserId());
     }
 
-    @Test
+    @Test(expected = ResourceNotFoundException.class)
     public void findByUserId_Null_IfNotPresent() throws Exception {
         assertThat(userSocialService.findByUserId("userid"), nullValue());
 
-        verify(userSocialRepository).findByUserId("userid");
+        userSocialRepository.findByUserId("userid");
     }
 
     @Test
