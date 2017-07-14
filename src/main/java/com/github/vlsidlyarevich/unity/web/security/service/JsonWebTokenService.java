@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.security.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.User;
+import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.web.security.exception.BadCredentialsException;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -8,6 +9,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -34,12 +37,13 @@ public class JsonWebTokenService implements TokenService {
 
     @Override
     public String getToken(final String username, final String password) {
-        final User user = (User) userDetailsService.loadUserByUsername(username);
+        try {
+            return Optional.ofNullable(userDetailsService.loadUserByUsername(username))
+                    .filter(userDetails -> password.equals(userDetails.getPassword()))
+                    .map(userDetails -> createToken(new HashMap<>(), (User) userDetails))
+                    .orElseThrow(() -> new BadCredentialsException("Authentication Error, credentials not matching"));
 
-        if (password.equals(user.getPassword())) {
-            final Map<String, Object> tokenData = new HashMap<>();
-            return createToken(tokenData, user);
-        } else {
+        } catch (UserNotFoundException e) {
             throw new BadCredentialsException("Authentication Error, credentials not matching");
         }
     }

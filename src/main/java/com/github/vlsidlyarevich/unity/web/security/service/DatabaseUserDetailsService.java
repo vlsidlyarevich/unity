@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.security.service;
 
+import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,7 +24,7 @@ public class DatabaseUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(final String username) {
         return Optional.ofNullable(userService.findByUsername(username))
                 .orElseThrow(() ->
-                        new UsernameNotFoundException(String
+                        new UserNotFoundException(String
                                 .format("User with username:%s not found", username)));
     }
 }

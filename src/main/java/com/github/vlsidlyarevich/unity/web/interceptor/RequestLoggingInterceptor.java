@@ -29,8 +29,6 @@ public class RequestLoggingInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(final HttpServletRequest request,
                              final HttpServletResponse response,
                              final Object handler) throws Exception {
-        //FIXME AnonymousAuthenticationToken
-        // cannot be cast to com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication
         audit.logRequest(authenticationFacade.getAuthentication(),
                 request, handler);
         return super.preHandle(request, response, handler);

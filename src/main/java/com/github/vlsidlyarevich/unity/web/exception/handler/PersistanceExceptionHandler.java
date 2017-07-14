@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class PersistanceExceptionHandler {
 
-
     private final MessageResolver messageResolver;
 
     @Autowired
