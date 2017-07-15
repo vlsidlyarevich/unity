@@ -1,6 +1,5 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
 import com.github.vlsidlyarevich.unity.web.dto.LoginDTO;
@@ -12,26 +11,16 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.nio.charset.Charset;
-
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class, SecurityExceptionHandler.class})
 @WebAppConfiguration
-public class SignupControllerIT {
-
-    private final MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
-            MediaType.APPLICATION_JSON.getSubtype(),
-            Charset.forName("utf8"));
+public class SignupControllerIT extends AbstractControllerIT {
 
     @Autowired
     private WebApplicationContext context;
@@ -39,14 +28,9 @@ public class SignupControllerIT {
     @Autowired
     private UserRepository userRepository;
 
-    private MockMvc mvc;
-
-    private ObjectMapper objectMapper;
-
     @Before
     public void setUp() {
-        objectMapper = new ObjectMapper();
-        this.mvc = webAppContextSetup(context).build();
+        init(context);
         userRepository.deleteAll();
     }
 

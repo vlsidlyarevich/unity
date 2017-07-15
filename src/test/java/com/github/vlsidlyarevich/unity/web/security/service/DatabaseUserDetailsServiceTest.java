@@ -1,13 +1,13 @@
 package com.github.vlsidlyarevich.unity.web.security.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.User;
+import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.service.UserService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static com.github.vlsidlyarevich.unity.TestUtils.createUser;
@@ -39,7 +39,7 @@ public class DatabaseUserDetailsServiceTest {
         verify(userService).findByUsername(user.getUsername());
     }
 
-    @Test(expected = UsernameNotFoundException.class)
+    @Test(expected = UserNotFoundException.class)
     public void loadUserByUsername_ExceptionThrown_IfNotPresent() throws Exception {
         service.loadUserByUsername("username");
     }

@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-public class UserAnalyticsControllerIT {
+public class UserAnalyticsControllerIT extends AbstractControllerIT {
 
     public void getAnalyticsByUserId_Success_IfAnalyticsAndUserPresent() {
     }

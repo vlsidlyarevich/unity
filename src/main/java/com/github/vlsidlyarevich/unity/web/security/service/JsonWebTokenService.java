@@ -9,7 +9,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +40,8 @@ public class JsonWebTokenService implements TokenService {
             return Optional.ofNullable(userDetailsService.loadUserByUsername(username))
                     .filter(userDetails -> password.equals(userDetails.getPassword()))
                     .map(userDetails -> createToken(new HashMap<>(), (User) userDetails))
-                    .orElseThrow(() -> new BadCredentialsException("Authentication Error, credentials not matching"));
+                    .orElseThrow(() -> new BadCredentialsException(
+                            "Authentication Error, credentials not matching"));
 
         } catch (UserNotFoundException e) {
             throw new BadCredentialsException("Authentication Error, credentials not matching");

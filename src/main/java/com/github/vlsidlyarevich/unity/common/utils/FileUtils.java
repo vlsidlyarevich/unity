@@ -15,10 +15,10 @@ public final class FileUtils {
     }
 
     public static void cleanDirectory(final Path pathToDirectory) {
-        Optional.ofNullable(pathToDirectory)
-                .ifPresent(path ->
-                        Arrays.stream(pathToDirectory.toFile().listFiles())
-                                .forEach(File::delete)
-                );
-    }
+    Optional.ofNullable(pathToDirectory)
+            .ifPresent(path ->
+                    Arrays.stream(pathToDirectory.toFile().listFiles())
+                            .forEach(File::delete)
+            );
+}
 }

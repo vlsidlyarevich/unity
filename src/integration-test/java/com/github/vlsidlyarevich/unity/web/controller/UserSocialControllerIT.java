@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-public class UserSocialControllerIT {
+public class UserSocialControllerIT extends AbstractControllerIT {
 
     public void getUserSocialData_Success_IfPresent() {
     }
