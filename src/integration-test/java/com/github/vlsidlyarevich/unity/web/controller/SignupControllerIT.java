@@ -30,7 +30,7 @@ public class SignupControllerIT extends AbstractControllerIT {
 
     @Before
     public void setUp() {
-        init(context);
+        prepareTestContext(context);
         userRepository.deleteAll();
     }
 

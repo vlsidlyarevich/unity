@@ -33,7 +33,7 @@ public class UserControllerIT extends AbstractControllerIT {
 
     @Before
     public void setUp() {
-        init(context);
+        prepareTestContext(context);
         userRepository.deleteAll();
         userService.create(user);
         this.token = tokenService.getToken(user.getUsername(), user.getPassword());

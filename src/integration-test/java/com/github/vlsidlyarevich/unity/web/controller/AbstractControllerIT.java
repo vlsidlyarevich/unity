@@ -26,7 +26,7 @@ abstract class AbstractControllerIT {
 
     protected ObjectMapper objectMapper;
 
-    protected void init(final WebApplicationContext context) {
+    protected void prepareTestContext(final WebApplicationContext context) {
         user = createUser();
         objectMapper = new ObjectMapper();
         this.mvc = webAppContextSetup(context)

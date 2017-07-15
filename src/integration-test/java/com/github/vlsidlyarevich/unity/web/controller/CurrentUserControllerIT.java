@@ -36,7 +36,7 @@ public class CurrentUserControllerIT extends AbstractControllerIT {
 
     @Before
     public void setUp() {
-        init(context);
+        prepareTestContext(context);
         userService.create(user);
         this.token = tokenService.getToken(user.getUsername(), user.getPassword());
     }
