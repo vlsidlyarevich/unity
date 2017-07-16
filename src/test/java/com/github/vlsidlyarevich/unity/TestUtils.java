@@ -35,6 +35,15 @@ public final class TestUtils {
                 true);
     }
 
+    public static User createAdmin() {
+        List<Authority> authorities = new ArrayList<>();
+        authorities.add(Authority.ROLE_ADMIN);
+
+        return new User(authorities, TestRandomUtils.getRandomString(8), TestRandomUtils.getRandomString(8),
+                false, false, false,
+                true);
+    }
+
     public static UserSocial createUserSocial() {
         return new UserSocial(TestRandomUtils.getRandomString(8),
                 TestRandomUtils.getRandomString(8),

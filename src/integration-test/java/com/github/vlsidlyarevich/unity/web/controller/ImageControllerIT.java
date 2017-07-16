@@ -4,7 +4,6 @@ import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.db.service.StorageService;
 import com.github.vlsidlyarevich.unity.db.service.UserService;
 import com.github.vlsidlyarevich.unity.web.exception.handler.PersistanceExceptionHandler;
-import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import org.junit.After;
@@ -42,7 +41,7 @@ public class ImageControllerIT extends AbstractControllerIT {
     @Before
     public void setupMvc() throws Exception {
         storageService.deleteAll();
-        prepareTestContext(context);
+        prepareTestContextWithUser(context);
         userService.create(user);
         this.token = tokenService.getToken(user.getUsername(), user.getPassword());
     }

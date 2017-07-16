@@ -8,6 +8,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.nio.charset.Charset;
 
+import static com.github.vlsidlyarevich.unity.TestUtils.createAdmin;
 import static com.github.vlsidlyarevich.unity.TestUtils.createUser;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
@@ -26,8 +27,16 @@ abstract class AbstractControllerIT {
 
     protected ObjectMapper objectMapper;
 
-    protected void prepareTestContext(final WebApplicationContext context) {
+    protected void prepareTestContextWithUser(final WebApplicationContext context) {
         user = createUser();
+        objectMapper = new ObjectMapper();
+        this.mvc = webAppContextSetup(context)
+                .apply(springSecurity())
+                .build();
+    }
+
+    protected void prepareTestContextWithAdmin(final WebApplicationContext context) {
+        user = createAdmin();
         objectMapper = new ObjectMapper();
         this.mvc = webAppContextSetup(context)
                 .apply(springSecurity())

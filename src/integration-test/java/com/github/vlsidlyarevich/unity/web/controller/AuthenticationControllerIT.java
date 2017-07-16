@@ -31,7 +31,7 @@ public class AuthenticationControllerIT extends AbstractControllerIT {
 
     @Before
     public void setUp() {
-        prepareTestContext(context);
+        prepareTestContextWithUser(context);
         userService.create(user);
     }
 
