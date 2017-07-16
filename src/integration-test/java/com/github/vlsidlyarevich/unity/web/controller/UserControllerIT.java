@@ -3,6 +3,7 @@ package com.github.vlsidlyarevich.unity.web.controller;
 import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
 import com.github.vlsidlyarevich.unity.db.service.UserService;
+import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
 import com.github.vlsidlyarevich.unity.web.exception.handler.PersistanceExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
@@ -81,18 +82,121 @@ public class UserControllerIT extends AbstractControllerIT {
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
+    @Test
     public void addUser_Сreated_IfValidDTO() throws Exception {
+        UserDTO dto = new UserDTO("user", "passS$123");
+
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/user")
+                .accept(contentType)
+                .content(objectMapper.writeValueAsString(dto))
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isCreated());
     }
 
-    public void addUser_BadRequest_IfNotValidDTO() throws Exception {
+    @Test
+    public void addUser_BadRequest_IfEmptyUsername() throws Exception {
+        UserDTO dto = new UserDTO("", "passS$123");
+
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/user")
+                .accept(contentType)
+                .content(objectMapper.writeValueAsString(dto))
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
+    @Test
+    public void addUser_BadRequest_IfEmptyPassword() throws Exception {
+        UserDTO dto = new UserDTO("user", "");
+
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/user")
+                .accept(contentType)
+                .content(objectMapper.writeValueAsString(dto))
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
+
+    @Test
+    public void addUser_BadRequest_IfWeakPassword() throws Exception {
+        UserDTO dto = new UserDTO("user", "pass");
+
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/user")
+                .accept(contentType)
+                .content(objectMapper.writeValueAsString(dto))
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
+
+    @Test
+    public void addUser_BadRequest_IfUsernameExists() throws Exception {
+        UserDTO dto = new UserDTO(user.getUsername(), "passS$123");
+
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/user")
+                .accept(contentType)
+                .content(objectMapper.writeValueAsString(dto))
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
+
+    @Test
     public void updateUserById_Success_IfValidDTO() throws Exception {
+        UserDTO dto = new UserDTO("user", "passS$123");
+
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT, "/api/v1/user/" + user.getId())
+                .accept(contentType)
+                .content(objectMapper.writeValueAsString(dto))
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
-    public void updateUserById_Success_IfNotValidDTO() throws Exception {
+    @Test
+    public void updateUserById_BadRequest_IfEmptyUsername() throws Exception {
+        UserDTO dto = new UserDTO("", "passS$123");
+
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT, "/api/v1/user/" + user.getId())
+                .accept(contentType)
+                .content(objectMapper.writeValueAsString(dto))
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
+    @Test
+    public void updateUserById_BadRequest_IfEmptyPassword() throws Exception {
+        UserDTO dto = new UserDTO("", "");
+
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT, "/api/v1/user/" + user.getId())
+                .accept(contentType)
+                .content(objectMapper.writeValueAsString(dto))
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
+
+    @Test
+    public void updateUserById_BadRequest_IfWeakPassword() throws Exception {
+        UserDTO dto = new UserDTO("user", "pass");
+
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT, "/api/v1/user/" + user.getId())
+                .accept(contentType)
+                .content(objectMapper.writeValueAsString(dto))
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
+
+
+    @Test
     public void deleteUserById_Success() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/v1/user/" + user.getId())
+                .accept(contentType)
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
