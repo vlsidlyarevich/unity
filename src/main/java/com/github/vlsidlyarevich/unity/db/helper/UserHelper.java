@@ -17,7 +17,7 @@ public class UserHelper {
     }
 
     public void checkForUserExistance(final String id) {
-        if (userExists(id)) {
+        if (!userExists(id)) {
             throw new UserNotFoundException(String
                     .format("User with user id: %s not found", id));
         }

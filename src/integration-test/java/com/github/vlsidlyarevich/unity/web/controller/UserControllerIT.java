@@ -44,8 +44,10 @@ public class UserControllerIT extends AbstractControllerIT {
     @Before
     public void setUp() {
         prepareTestContextWithAdmin(context);
+
         userRepository.deleteAll();
         userService.create(user);
+
         this.token = tokenService.getToken(user.getUsername(), user.getPassword());
     }
 
@@ -189,7 +191,6 @@ public class UserControllerIT extends AbstractControllerIT {
                 .header(SecurityConstants.AUTH_HEADER_NAME, token))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
-
 
     @Test
     public void deleteUserById_Success() throws Exception {

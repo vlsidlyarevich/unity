@@ -1,22 +1,107 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
+import com.github.vlsidlyarevich.unity.Application;
+import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
+import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
+import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
+import com.github.vlsidlyarevich.unity.db.service.UserService;
+import com.github.vlsidlyarevich.unity.web.dto.UserSocialDTO;
+import com.github.vlsidlyarevich.unity.web.exception.handler.PersistanceExceptionHandler;
+import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
+import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
+import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpMethod;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.web.context.WebApplicationContext;
+
+import static com.github.vlsidlyarevich.unity.TestUtils.createUserSocial;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = {Application.class, PersistanceExceptionHandler.class,
+        SecurityExceptionHandler.class})
+@WebAppConfiguration
 public class UserSocialControllerIT extends AbstractControllerIT {
 
-    public void getUserSocialData_Success_IfPresent() {
+    @Autowired
+    private WebApplicationContext context;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private UserSocialRepository userSocialRepository;
+
+    @Autowired
+    private TokenService tokenService;
+
+    private UserSocial userSocial;
+
+    @Before
+    public void setUp() {
+        prepareTestContextWithUser(context);
+
+        userRepository.deleteAll();
+        userSocial = createUserSocial();
+
+        userRepository.deleteAll();
+        userService.create(user);
+
+        this.token = tokenService.getToken(user.getUsername(), user.getPassword());
     }
 
-    public void getUserSocialData_NoContent_IfNotPresent() {
+    public void getUserSocialData_Success_IfPresent() throws Exception {
+
     }
 
-    public void updateUserSocialData_Success_IfUserPresentAndValidDTO() {
+    @Test
+    public void getUserSocialData_NotFound_IfNotPresent() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/" + user.getId() + "/social")
+                .accept(contentType)
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
-    public void updateUserSocialData_BadRequest_IfUserNotPresentAndValidDTO() {
+    @Test
+    public void updateUserSocialData_Success_IfUserPresentAndValidDTO() throws Exception {
+        UserSocialDTO dto = UserSocialDTO.fromDomain(userSocial);
+
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT, "/api/v1/user/" + user.getId() + "/social")
+                .accept(contentType)
+                .content(objectMapper.writeValueAsString(dto))
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
-    public void updateUserSocialData_BadRequest_IfUserPresentAndNotValidDTO() {
+    @Test
+    public void updateUserSocialData_Unauthorized_IfUserNotPresentAndValidDTO() throws Exception {
+        UserSocialDTO dto = UserSocialDTO.fromDomain(userSocial);
+
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT, "/api/v1/user/id0/social")
+                .accept(contentType)
+                .content(objectMapper.writeValueAsString(dto))
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
-    public void deleteUserSocialDataByUserId_Success() {
+    public void updateUserSocialData_BadRequest_IfUserPresentAndNotValidDTO() throws Exception {
+
+    }
+
+    public void deleteUserSocialDataByUserId_Success() throws Exception {
+
     }
 }
