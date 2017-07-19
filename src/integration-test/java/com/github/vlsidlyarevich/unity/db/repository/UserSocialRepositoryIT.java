@@ -3,6 +3,7 @@ package com.github.vlsidlyarevich.unity.db.repository;
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class UserSocialRepositoryIT {
     @Autowired
     private UserSocialRepository userSocialRepository;
 
-    @After
+    @Before
     public void cleanUp() {
         userSocialRepository.deleteAll();
     }

@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.Application;
+import com.github.vlsidlyarevich.unity.db.domain.Authority;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
 import com.github.vlsidlyarevich.unity.db.service.UserService;
 import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
@@ -20,8 +21,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.stream.Collectors;
+
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.core.IsNull.notNullValue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class, PersistanceExceptionHandler.class,
@@ -58,9 +60,15 @@ public class UserControllerIT extends AbstractControllerIT {
                 .contentType(contentType)
                 .header(SecurityConstants.AUTH_HEADER_NAME, token))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id", notNullValue(String.class)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id", is(user.getId())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].username", is(user.getUsername())))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].password", is(user.getPassword())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].password", is(user.getPassword())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].createdAt", is(user.getCreatedAt().getTime())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].updatedAt", is(user.getUpdatedAt().getTime())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].authorities", is(user.getAuthorities()
+                        .stream()
+                        .map(Authority::getAuthority)
+                        .collect(Collectors.toList()))));
     }
 
     @Test
@@ -72,7 +80,13 @@ public class UserControllerIT extends AbstractControllerIT {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(user.getId())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.username", is(user.getUsername())))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.password", is(user.getPassword())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.password", is(user.getPassword())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.createdAt", is(user.getCreatedAt().getTime())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.updatedAt", is(user.getUpdatedAt().getTime())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.authorities", is(user.getAuthorities()
+                        .stream()
+                        .map(Authority::getAuthority)
+                        .collect(Collectors.toList()))));
     }
 
     @Test
@@ -198,6 +212,7 @@ public class UserControllerIT extends AbstractControllerIT {
                 .accept(contentType)
                 .contentType(contentType)
                 .header(SecurityConstants.AUTH_HEADER_NAME, token))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(is(user.getId())));
     }
 }

@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.Application;
+import com.github.vlsidlyarevich.unity.db.domain.Authority;
 import com.github.vlsidlyarevich.unity.db.service.UserService;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
@@ -17,8 +18,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.stream.Collectors;
+
+import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.core.IsNull.notNullValue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class, SecurityExceptionHandler.class})
@@ -56,8 +60,14 @@ public class CurrentUserControllerIT extends AbstractControllerIT {
                 .contentType(contentType)
                 .header(SecurityConstants.AUTH_HEADER_NAME, token))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id", notNullValue(String.class)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(user.getId())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.username", is(user.getUsername())))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.password", is(user.getPassword())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.password", is(user.getPassword())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.createdAt", is(user.getCreatedAt().getTime())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.updatedAt", is(user.getUpdatedAt().getTime())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.authorities", is(user.getAuthorities()
+                        .stream()
+                        .map(Authority::getAuthority)
+                        .collect(Collectors.toList()))));
     }
 }

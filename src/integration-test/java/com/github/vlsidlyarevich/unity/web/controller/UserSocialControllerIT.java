@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.context.WebApplicationContext;
 
 import static com.github.vlsidlyarevich.unity.TestUtils.createUserSocial;
+import static org.hamcrest.Matchers.is;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class, PersistanceExceptionHandler.class,
@@ -60,8 +61,25 @@ public class UserSocialControllerIT extends AbstractControllerIT {
         this.token = tokenService.getToken(user.getUsername(), user.getPassword());
     }
 
+    @Test
     public void getUserSocialData_Success_IfPresent() throws Exception {
+        userSocial.setUserId(user.getId());
+        userSocialRepository.save(userSocial);
 
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/" + user.getId() + "/social")
+                .accept(contentType)
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(userSocial.getId())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.email", is(userSocial.getEmail())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.firstName", is(userSocial.getFirstName())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.lastName", is(userSocial.getLastName())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.skype", is(userSocial.getSkype())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.userId", is(userSocial.getUserId())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.image", is(userSocial.getImage())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.createdAt", is(userSocial.getCreatedAt().getTime())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.updatedAt", is(userSocial.getUpdatedAt().getTime())));
     }
 
     @Test
@@ -97,11 +115,18 @@ public class UserSocialControllerIT extends AbstractControllerIT {
                 .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
-    public void updateUserSocialData_BadRequest_IfUserPresentAndNotValidDTO() throws Exception {
-
-    }
-
+    @Test
     public void deleteUserSocialDataByUserId_Success() throws Exception {
+        userSocialRepository.save(userSocial);
 
+        UserSocialDTO dto = UserSocialDTO.fromDomain(userSocial);
+
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/v1/user/" + user.getId() + "/social")
+                .accept(contentType)
+                .content(objectMapper.writeValueAsString(dto))
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(is(user.getId())));
     }
 }

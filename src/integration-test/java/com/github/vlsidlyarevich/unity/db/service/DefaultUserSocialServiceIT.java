@@ -4,6 +4,7 @@ import com.github.vlsidlyarevich.unity.db.domain.Authority;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
+import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
 import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import org.junit.After;
@@ -26,6 +27,11 @@ import static org.hamcrest.core.IsNull.notNullValue;
 @SpringBootTest
 public class DefaultUserSocialServiceIT {
 
+    private User currentUser;
+
+    @Autowired
+    private UserService userService;
+
     @Autowired
     private UserSocialService userSocialService;
 
@@ -36,8 +42,11 @@ public class DefaultUserSocialServiceIT {
     public void setUp() {
         userSocialRepository.deleteAll();
 
-        User currentUser = createUser();
+        currentUser = createUser();
         currentUser.addAuthority(Authority.ROLE_ADMIN);
+
+        userService.create(currentUser);
+
         SecurityContextHolder.getContext().setAuthentication(new UserAuthentication(currentUser));
     }
 
@@ -111,7 +120,7 @@ public class DefaultUserSocialServiceIT {
 
         userSocialService.create(userSocial);
         userSocial.setFirstName("new name");
-        userSocial.setUserId("id");
+        userSocial.setUserId(currentUser.getId());
 
         userSocialService.update(userSocial.getUserId(), userSocial);
 
@@ -128,16 +137,14 @@ public class DefaultUserSocialServiceIT {
         userSocialService.update(userSocial.getUserId(), null);
     }
 
-    @Test
-    public void update_NewCreated_ifNotPresent() throws Exception {
+    @Test(expected = UserNotFoundException.class)
+    public void update_ExceptionThrown_ifUserNotPresent() throws Exception {
         UserSocial userSocial = createUserSocial();
 
         userSocialService.create(userSocial);
         userSocial.setFirstName("new name");
 
         userSocialService.update("this id does not exist", userSocial);
-
-        Assert.assertFalse(userSocialService.findAll().isEmpty());
     }
 
     @Test
