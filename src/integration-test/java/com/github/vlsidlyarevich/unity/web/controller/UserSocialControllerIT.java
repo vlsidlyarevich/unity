@@ -31,6 +31,8 @@ import static org.hamcrest.Matchers.is;
 @WebAppConfiguration
 public class UserSocialControllerIT extends AbstractControllerIT {
 
+    private UserSocial userSocial;
+
     @Autowired
     private WebApplicationContext context;
 
@@ -45,8 +47,6 @@ public class UserSocialControllerIT extends AbstractControllerIT {
 
     @Autowired
     private TokenService tokenService;
-
-    private UserSocial userSocial;
 
     @Before
     public void setUp() {

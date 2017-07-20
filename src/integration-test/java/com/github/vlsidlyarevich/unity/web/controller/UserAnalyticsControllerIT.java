@@ -1,7 +1,9 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.Application;
+import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
+import com.github.vlsidlyarevich.unity.db.service.UserAnalyticsService;
 import com.github.vlsidlyarevich.unity.db.service.UserService;
 import com.github.vlsidlyarevich.unity.web.exception.handler.PersistanceExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
@@ -15,11 +17,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
 
+import static com.github.vlsidlyarevich.unity.TestUtils.createUserAnalytics;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class, PersistanceExceptionHandler.class,
         SecurityExceptionHandler.class})
 @WebAppConfiguration
 public class UserAnalyticsControllerIT extends AbstractControllerIT {
+
+    private UserAnalytics analytics;
 
     @Autowired
     private WebApplicationContext context;
@@ -33,9 +39,13 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private UserAnalyticsService analyticsService;
+
     @Before
     public void setUp() {
         prepareTestContextWithAdmin(context);
+        analytics = createUserAnalytics();
 
         userRepository.deleteAll();
         userService.create(user);
