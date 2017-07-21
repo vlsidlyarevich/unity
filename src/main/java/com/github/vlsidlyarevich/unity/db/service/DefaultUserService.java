@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
+import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.helper.UserHelper;
@@ -77,8 +78,14 @@ public class DefaultUserService implements UserService {
     @PreAuthorize("@securityContextCurrentUserService.canAccessUserOrAdmin(#id)")
     public String delete(final String id) {
         repository.delete(id);
-        userSocialService.deleteByUserId(id);
-        userAnalyticsService.deleteAllReports(id);
+
+        try {
+            userSocialService.deleteByUserId(id);
+            userAnalyticsService.deleteAllReports(id);
+        } catch (ResourceNotFoundException ignored) {
+
+        }
+
         return id;
     }
 }

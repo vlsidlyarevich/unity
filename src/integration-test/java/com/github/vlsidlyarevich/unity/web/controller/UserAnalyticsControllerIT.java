@@ -62,52 +62,60 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
 
     }
 
-    public void getAnalyticsByUserId_BadRequest_IfUserNotPresent() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/id0/analytics/id0")
-                .accept(contentType)
-                .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
-                .andExpect(MockMvcResultMatchers.status().isBadRequest());
-    }
-
-    public void getAnalyticsReportById_Success_IfAnalyticsAndUserPresent() throws Exception {
-
-    }
-
-    public void getAnalyticsReportById_NoContent_IfAnalyticsNotPresent() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/" + user.getId() + "/analytics/id0")
-                .accept(contentType)
-                .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
-                .andExpect(MockMvcResultMatchers.status().isNoContent());
-    }
-
-    public void getAnalyticsReportById_BadRequest_IfUserNotPresent() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/id0")
-                .accept(contentType)
-                .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
-                .andExpect(MockMvcResultMatchers.status().isBadRequest());
-    }
-
-    public void deleteAnalyticsReportById_Success_IfAnalyticsAndUserPresent() throws Exception {
-
-    }
-
-    public void deleteAnalyticsReportById_BadRequest_IfUserNotPresent() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/id0")
+    @Test
+    public void getAnalyticsByUserId_NotFound_IfUserNotPresent() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/id0/analytics")
                 .accept(contentType)
                 .contentType(contentType)
                 .header(SecurityConstants.AUTH_HEADER_NAME, token))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
+    @Test
+    public void getAnalyticsReportById_Success_IfAnalyticsAndUserPresent() throws Exception {
+
+    }
+
+    @Test
+    public void getAnalyticsReportById_NoContent_IfAnalyticsNotPresent() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/" + user.getId() + "/analytics/id0")
+                .accept(contentType)
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
+    public void getAnalyticsReportById_NotFound_IfUserNotPresent() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/id0/analytics/id0")
+                .accept(contentType)
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
+    public void deleteAnalyticsReportById_Success_IfAnalyticsAndUserPresent() throws Exception {
+
+    }
+
+    @Test
+    public void deleteAnalyticsReportById_NotFound_IfUserNotPresent() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/v1/user/id0/analytics/id0")
+                .accept(contentType)
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
     public void deleteAllAnalyticsReports_Success_IfUserPresent() throws Exception {
 
     }
 
-    public void deleteAllAnalyticsReports_BadRequest_IfUserNotPresent() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/id0")
+    @Test
+    public void deleteAllAnalyticsReports_NotFound_IfUserNotPresent() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/v1/user/id0/analytics/all")
                 .accept(contentType)
                 .contentType(contentType)
                 .header(SecurityConstants.AUTH_HEADER_NAME, token))

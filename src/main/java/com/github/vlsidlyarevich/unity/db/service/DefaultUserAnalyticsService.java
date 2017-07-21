@@ -90,14 +90,15 @@ public class DefaultUserAnalyticsService implements UserAnalyticsService {
                     .removeIf(analysisReport -> analysisReport.getId().equals(reportId));
 
             return repository.save(analyt);
-        });
+        }).orElseThrow(() -> new ResourceNotFoundException(String
+                .format("User Analytics with user id:%s not found", userId)));
 
         return reportId;
     }
 
     @Override
     public List<String> deleteAll() {
-        List<String> result = new ArrayList<>();
+        final List<String> result = new ArrayList<>();
         repository.findAll()
                 .forEach(userAnalytics -> result.add(userAnalytics.getId()));
 
@@ -110,15 +111,16 @@ public class DefaultUserAnalyticsService implements UserAnalyticsService {
     public List<String> deleteAllReports(final String userId) {
         final Optional<UserAnalytics> analytics
                 = Optional.ofNullable(repository.findByUserId(userId));
-        List<String> result = new ArrayList<>();
+        final List<String> result = new ArrayList<>();
 
-        analytics.ifPresent(analyt -> {
+        analytics.map(analyt -> {
             analyt.getReports()
                     .forEach(analysisReport -> result.add(analysisReport.getId()));
             analyt.getReports().clear();
 
-            repository.save(analyt);
-        });
+            return repository.save(analyt);
+        }).orElseThrow(() -> new ResourceNotFoundException(String
+                .format("User Analytics with user id:%s not found", userId)));
 
         return result;
     }

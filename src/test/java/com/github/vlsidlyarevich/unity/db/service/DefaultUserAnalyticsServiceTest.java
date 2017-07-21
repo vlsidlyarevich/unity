@@ -7,6 +7,7 @@ import com.github.vlsidlyarevich.unity.db.repository.UserAnalyticsRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -126,6 +127,7 @@ public class DefaultUserAnalyticsServiceTest {
         userAnalytics.getReports().add(analysisReport);
 
         doReturn(userAnalytics).when(userAnalyticsRepository).findByUserId(userAnalytics.getUserId());
+        doReturn(userAnalytics).when(userAnalyticsRepository).save(Matchers.any(UserAnalytics.class));
 
         userAnalyticsService.deleteReport(userAnalytics.getUserId(), analysisReport.getId());
 
@@ -146,6 +148,7 @@ public class DefaultUserAnalyticsServiceTest {
         userAnalytics.getReports().add(analysisReport);
 
         doReturn(userAnalytics).when(userAnalyticsRepository).findByUserId(userAnalytics.getUserId());
+        doReturn(userAnalytics).when(userAnalyticsRepository).save(Matchers.any(UserAnalytics.class));
 
         userAnalyticsService.deleteAllReports(userAnalytics.getUserId());
 
