@@ -105,11 +105,10 @@ public class DefaultUserAnalyticsServiceIT {
     @Test
     public void deleteReport_Success_IfPresent() throws Exception {
         UserAnalytics userAnalytics = createUserAnalytics();
-        AnalysisReport analysisReport = createAnalysisReport();
-        userAnalytics.getReports().add(analysisReport);
 
         userAnalyticsService.add(userAnalytics);
-        userAnalyticsService.deleteReport(userAnalytics.getUserId(), analysisReport.getId());
+        userAnalyticsService.deleteReport(userAnalytics.getUserId(),
+                userAnalytics.getReports().get(0).getId());
 
         Assert.assertTrue(userAnalyticsService.find(userAnalytics.getId()).getReports().isEmpty());
     }

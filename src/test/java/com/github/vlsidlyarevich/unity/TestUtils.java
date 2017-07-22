@@ -17,7 +17,8 @@ public final class TestUtils {
     }
 
     public static UserAnalytics createUserAnalytics() {
-        List<AnalysisReport> reports = new ArrayList<>();
+        final List<AnalysisReport> reports = new ArrayList<>();
+        reports.add(createAnalysisReport());
 
         return new UserAnalytics(TestRandomUtils.getRandomString(8), reports);
     }
@@ -27,7 +28,7 @@ public final class TestUtils {
     }
 
     public static User createUser() {
-        List<Authority> authorities = new ArrayList<>();
+        final List<Authority> authorities = new ArrayList<>();
         authorities.add(Authority.ROLE_USER);
 
         return new User(authorities, TestRandomUtils.getRandomString(8), TestRandomUtils.getRandomString(8),
@@ -36,7 +37,7 @@ public final class TestUtils {
     }
 
     public static User createAdmin() {
-        List<Authority> authorities = new ArrayList<>();
+        final List<Authority> authorities = new ArrayList<>();
         authorities.add(Authority.ROLE_ADMIN);
 
         return new User(authorities, TestRandomUtils.getRandomString(8), TestRandomUtils.getRandomString(8),

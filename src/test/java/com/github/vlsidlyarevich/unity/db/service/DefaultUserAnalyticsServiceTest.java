@@ -123,13 +123,11 @@ public class DefaultUserAnalyticsServiceTest {
     @Test
     public void deleteReport_Success_IfPresent() throws Exception {
         UserAnalytics userAnalytics = createUserAnalytics();
-        AnalysisReport analysisReport = createAnalysisReport();
-        userAnalytics.getReports().add(analysisReport);
 
         doReturn(userAnalytics).when(userAnalyticsRepository).findByUserId(userAnalytics.getUserId());
         doReturn(userAnalytics).when(userAnalyticsRepository).save(Matchers.any(UserAnalytics.class));
 
-        userAnalyticsService.deleteReport(userAnalytics.getUserId(), analysisReport.getId());
+        userAnalyticsService.deleteReport(userAnalytics.getUserId(), userAnalytics.getReports().get(0).getId());
 
         assertThat(userAnalyticsService.findByUserId(userAnalytics.getUserId()).getReports().size(), is(0));
     }

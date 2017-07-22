@@ -22,6 +22,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.context.WebApplicationContext;
 
 import static com.github.vlsidlyarevich.unity.TestUtils.createUserAnalytics;
+import static org.hamcrest.Matchers.is;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class, PersistanceExceptionHandler.class,
@@ -49,17 +50,29 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
     @Before
     public void setUp() {
         prepareTestContextWithAdmin(context);
-        analytics = createUserAnalytics();
 
         userRepository.deleteAll();
         userService.create(user);
+
+        analytics = createUserAnalytics();
+        analytics.setUserId(user.getId());
+        analyticsService.add(analytics);
 
         this.token = tokenService.getToken(user.getUsername(), user.getPassword());
     }
 
     @Test
     public void getAnalyticsByUserId_Success_IfAnalyticsAndUserPresent() throws Exception {
-
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/" + user.getId() + "/analytics")
+                .accept(contentType)
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(analytics.getId())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.userId", is(analytics.getUserId())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.createdAt", is(analytics.getCreatedAt().getTime())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.updatedAt", is(analytics.getUpdatedAt().getTime())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.reports", is(analytics.getReports())));
     }
 
     @Test
@@ -73,7 +86,17 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
 
     @Test
     public void getAnalyticsReportById_Success_IfAnalyticsAndUserPresent() throws Exception {
-
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/" + user.getId()
+                + "/analytics/" + analytics.getReports().get(0).getId())
+                .accept(contentType)
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(analytics.getReports().get(0).getId())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.analysisTime", is(analytics.getReports().get(0).getAnalysisTime().intValue())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.analyzedAt", is(analytics.getReports().get(0).getAnalyzedAt().getTime())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.resource", is(analytics.getReports().get(0).getResource().toString())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.result", is(analytics.getReports().get(0).getResult())));
     }
 
     @Test
@@ -96,7 +119,11 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
 
     @Test
     public void deleteAnalyticsReportById_Success_IfAnalyticsAndUserPresent() throws Exception {
-
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/v1/user/" + user.getId() + "/analytics/" + analytics.getId())
+                .accept(contentType)
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
@@ -110,7 +137,11 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
 
     @Test
     public void deleteAllAnalyticsReports_Success_IfUserPresent() throws Exception {
-
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/v1/user/" + user.getId() + "/analytics/all")
+                .accept(contentType)
+                .contentType(contentType)
+                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test

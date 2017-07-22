@@ -2,8 +2,10 @@ package com.github.vlsidlyarevich.unity.git.model;
 
 import com.github.vlsidlyarevich.unity.common.model.GitResult;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode
 public class GitRepoOwnerData implements GitResult {
 
     private static final long serialVersionUID = 6471058629012693454L;

@@ -2,12 +2,14 @@ package com.github.vlsidlyarevich.unity.git.model;
 
 import com.github.vlsidlyarevich.unity.common.model.GitResult;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 @Data
+@EqualsAndHashCode
 public class GitRepositoryData implements GitResult {
 
     private static final long serialVersionUID = -7789119471820389522L;

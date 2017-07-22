@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.common.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.io.Serializable;
@@ -7,6 +8,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Getter
+@EqualsAndHashCode
 public class AnalysisReport implements Serializable {
 
     private static final long serialVersionUID = -373736423253240530L;
@@ -15,9 +17,9 @@ public class AnalysisReport implements Serializable {
     private AnalyzedResource resource;
     private Date analyzedAt;
     private Long analysisTime;
-    private Result result;
+    private AnalysisResult result;
 
-    public AnalysisReport(final Result result, final Date analyzedAt,
+    public AnalysisReport(final AnalysisResult result, final Date analyzedAt,
                           final Long analysisTime) {
         this.id = UUID.randomUUID().toString();
         this.analyzedAt = analyzedAt;
@@ -26,7 +28,7 @@ public class AnalysisReport implements Serializable {
         this.setAnalyzedResource(result);
     }
 
-    private void setAnalyzedResource(final Result analyzedResource) {
+    private void setAnalyzedResource(final AnalysisResult analyzedResource) {
         if (analyzedResource instanceof GitResult) {
             this.resource = AnalyzedResource.GITHUB;
         } else {
