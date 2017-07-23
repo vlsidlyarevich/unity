@@ -3,6 +3,7 @@ package com.github.vlsidlyarevich.unity.web.controller;
 import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.common.model.AnalyzedResource;
 import com.github.vlsidlyarevich.unity.db.service.UserService;
+import com.github.vlsidlyarevich.unity.web.exception.handler.PersistanceExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
@@ -22,7 +23,8 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {Application.class, SecurityExceptionHandler.class})
+@SpringBootTest(classes = {Application.class, SecurityExceptionHandler.class,
+        PersistanceExceptionHandler.class})
 @WebAppConfiguration
 public class GitProfileAnalyticsControllerIT extends AbstractControllerIT {
 
