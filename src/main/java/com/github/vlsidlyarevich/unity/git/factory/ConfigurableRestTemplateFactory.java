@@ -44,8 +44,8 @@ public class ConfigurableRestTemplateFactory implements RestTemplateFactory {
         List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
         interceptors.add(new HeaderRequestInterceptor("Accept",
                 Github.MEDIA_HEADER));
-        interceptors.add(new HeaderRequestInterceptor("x-oauth-basic",
-                gitProperties.getAccessToken()));
+        interceptors.add(new HeaderRequestInterceptor("Authorization",
+                String.format("token %s", gitProperties.getAccessToken())));
         return interceptors;
     }
 

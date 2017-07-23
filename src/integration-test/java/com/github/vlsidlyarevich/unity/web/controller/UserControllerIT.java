@@ -207,7 +207,7 @@ public class UserControllerIT extends AbstractControllerIT {
     }
 
     @Test
-    public void deleteUserById_Success() throws Exception {
+    public void deleteUserById_Success_IfUserPresent() throws Exception {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/v1/user/" + user.getId())
                 .accept(contentType)
                 .contentType(contentType)

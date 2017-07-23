@@ -59,23 +59,4 @@ public class HttpGitRepositoryLanguageService implements GitRepositoryLanguageSe
 
         return result;
     }
-
-    @Override
-    public Optional<Map<String, String>> getGitRepoLanguages(final String gitProfile,
-                                                             final String repo) {
-        Optional<Map<String, String>> result = Optional.empty();
-        ParameterizedTypeReference<Map<String, String>> response
-                = new ParameterizedTypeReference<Map<String, String>>() {
-        };
-
-        try {
-            result = Optional.of(restTemplate.exchange(gitApiUrl, HttpMethod.GET,
-                    null, response, gitProfile, repo).getBody());
-        } catch (HttpClientErrorException e) {
-            log.error("Can't get languages of git profile's:{} repo {} with error {}",
-                    gitProfile, repo, e.getMessage());
-        }
-
-        return result;
-    }
 }

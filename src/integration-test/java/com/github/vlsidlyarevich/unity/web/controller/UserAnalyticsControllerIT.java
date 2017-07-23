@@ -72,7 +72,11 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.userId", is(analytics.getUserId())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.createdAt", is(analytics.getCreatedAt().getTime())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.updatedAt", is(analytics.getUpdatedAt().getTime())))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.reports", is(analytics.getReports())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.reports[0].result", is(analytics.getReports().get(0).getResult())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.reports[0].id", is(analytics.getReports().get(0).getId())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.reports[0].resource", is(analytics.getReports().get(0).getResource().toString())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.reports[0].analyzedAt", is(analytics.getReports().get(0).getAnalyzedAt().getTime())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.reports[0].analysisTime", is(analytics.getReports().get(0).getAnalysisTime().intValue())));
     }
 
     @Test

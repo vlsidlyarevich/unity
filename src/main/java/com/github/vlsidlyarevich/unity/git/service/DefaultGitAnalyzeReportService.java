@@ -24,6 +24,8 @@ public class DefaultGitAnalyzeReportService implements GitAnalyzeService {
 
     @Override
     public Optional<AnalysisReport> analyze(final String gitLogin) {
+
+        //FIXME refactor, use high order func
         final LocalDateTime startDate = LocalDateTime.now();
 
         final Optional<GitProfileData> gitProfileData
