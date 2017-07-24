@@ -24,8 +24,6 @@ public class DefaultGitAnalyzeReportService implements GitAnalyzeService {
 
     @Override
     public Optional<AnalysisReport> analyze(final String gitLogin) {
-
-        //FIXME refactor, use high order func
         final LocalDateTime startDate = LocalDateTime.now();
 
         final Optional<GitProfileData> gitProfileData
@@ -35,9 +33,9 @@ public class DefaultGitAnalyzeReportService implements GitAnalyzeService {
         Optional<AnalysisReport> report = Optional.empty();
 
         if (gitProfileData.isPresent()) {
-            Date analyzedAt
+            final Date analyzedAt
                     = Date.from(Instant.from(LocalDateTime.now().toInstant(ZoneOffset.UTC)));
-            Long analyzeTime = ChronoUnit.SECONDS.between(startDate, endDate);
+            final Long analyzeTime = ChronoUnit.SECONDS.between(startDate, endDate);
 
             report = Optional.of(new AnalysisReport(gitProfileData.get(), analyzedAt, analyzeTime));
         }
