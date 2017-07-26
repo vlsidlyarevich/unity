@@ -10,9 +10,6 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Path;
-import java.util.List;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class FileSystemStorageServiceIT {
@@ -40,11 +37,8 @@ public class FileSystemStorageServiceIT {
         MultipartFile file1 = new MockMultipartFile("file1", "file.gif", "image/png", "nonsensecontent 1".getBytes());
         MultipartFile file2 = new MockMultipartFile("file2", "file.gif", "image/png", "nonsensecontent 2".getBytes());
 
-        String id1 = storageService.store(file1);
-        String id2 = storageService.store(file2);
-
-        List<Path> resolvedFiles = storageService.loadAll();
-        resolvedFiles.forEach(Path::toFile);
+        storageService.store(file1);
+        storageService.store(file2);
 
         Assert.assertTrue(storageService.loadAll().size() == 2);
     }
@@ -66,6 +60,16 @@ public class FileSystemStorageServiceIT {
         String id = storageService.store(file);
 
         storageService.delete(id);
+        Assert.assertEquals(storageService.loadAll().size(), 0);
+    }
+
+    @Test
+    public void deleteAll_Success_IfFilePresent() throws Exception {
+        MultipartFile file = new MockMultipartFile("file", "file.gif", "image/png", "nonsensecontent".getBytes());
+
+        storageService.store(file);
+
+        storageService.deleteAll();
         Assert.assertEquals(storageService.loadAll().size(), 0);
     }
 }

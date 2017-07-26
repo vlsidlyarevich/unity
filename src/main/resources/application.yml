@@ -12,10 +12,10 @@ security:
 server:
   port: 8080
 #logging: 
-#  file: ../temp/logs/unity-log.log
+#  file: temp/logs/unity-log.log
 
 storage: 
-  path: ../temp/files
+  path: temp/files
 
 git: 
   apiUrl: https://api.github.com

@@ -1,6 +1,5 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
-import com.github.vlsidlyarevich.unity.common.utils.FileUtils;
 import com.github.vlsidlyarevich.unity.db.config.StorageProperties;
 import com.github.vlsidlyarevich.unity.db.exception.FileSystemFileNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.FileSystemStorageException;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -20,6 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -119,7 +120,15 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     public void deleteAll() {
-        FileUtils.cleanDirectory(storeLocation);
+        try {
+            Files.walk(this.storeLocation, 1)
+                    .forEach(path -> Optional.ofNullable(path.toFile())
+                            .filter(file -> !file.isDirectory())
+                            .ifPresent(File::delete));
+        } catch (IOException | NoSuchElementException e) {
+            throw new FileSystemStorageException(e.getMessage(), e.getCause(),
+                    "storage.filesystem.file.deleteFail", new Object[]{});
+        }
     }
 
     @Override
