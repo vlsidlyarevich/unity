@@ -6,6 +6,8 @@ import com.github.vlsidlyarevich.unity.git.service.GitRepositoryLanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+
 @Component
 public class DefaultGitRepositoryPopulator implements GitRepositoryPopulator {
 
@@ -53,7 +55,8 @@ public class DefaultGitRepositoryPopulator implements GitRepositoryPopulator {
         result.setTopics(gitRepository.getTopics());
 
         result.setLanguages(gitRepositoryLanguageService
-                .getGitRepoLanguages(gitRepository.getLanguagesUrl()).get());
+                .getGitRepoLanguages(gitRepository.getLanguagesUrl())
+                .orElse(new HashMap<>()));
 
         result.setStargazersUrl(gitRepository.getStargazersUrl());
         result.setContributorsUrl(gitRepository.getContributorsUrl());

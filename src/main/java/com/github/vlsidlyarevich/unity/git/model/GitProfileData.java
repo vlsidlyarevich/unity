@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @EqualsAndHashCode
@@ -24,6 +25,8 @@ public class GitProfileData implements GitResult {
     private String subscriptionsUrl;
     private String organizationsUrl;
     private List<GitRepositoryData> repos;
+    private Map<String, Integer> languagesTotal;
+    private Map<String, Integer> topicsTotal;
     private String type;
     private String name;
     private String company;

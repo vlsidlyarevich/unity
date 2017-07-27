@@ -11,7 +11,9 @@ import com.github.vlsidlyarevich.unity.git.service.GitRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -43,16 +45,20 @@ public class GitDataAggregator {
     }
 
     private Optional<GitProfileData> aggregateData(final GitProfile gitProfile) {
-        Optional<GitProfileData> result;
-        result = Optional.of(gitProfilePopulator.populate(gitProfile));
+        final Optional<GitProfileData> result
+                = Optional.of(gitProfilePopulator.populate(gitProfile));
 
-        appendGitRepos(result.get());
+        result.ifPresent(gitProfileData -> {
+            appendGitRepos(gitProfileData);
+            appendLanguagesTotal(gitProfileData);
+            appendTopicsTotal(gitProfileData);
+        });
 
         return result;
     }
 
     private void appendGitRepos(final GitProfileData gitProfileData) {
-        Optional<List<GitRepository>> gitRepositories
+        final Optional<List<GitRepository>> gitRepositories
                 = gitRepositoryService.getGitRepositories(gitProfileData.getLogin());
         gitRepositories.ifPresent(gitRepos ->
                 gitProfileData.setRepos(getRepositoryData(gitRepos))
@@ -64,5 +70,33 @@ public class GitDataAggregator {
         return gitRepositories.stream()
                 .map(gitRepositoryPopulator::populate)
                 .collect(Collectors.toList());
+    }
+
+    private void appendLanguagesTotal(final GitProfileData gitProfileData) {
+        final Map<String, Integer> languagesTotal = new HashMap<>();
+
+        gitProfileData.getRepos()
+                .stream()
+                .map(GitRepositoryData::getLanguages)
+                .forEach(languagesList -> languagesList.forEach((languageName, languageCounter) -> {
+                    languagesTotal.computeIfPresent(languageName, (key, value) -> value + Integer.valueOf(languageCounter));
+                    languagesTotal.putIfAbsent(languageName, Integer.valueOf(languageCounter));
+                }));
+
+        gitProfileData.setLanguagesTotal(languagesTotal);
+    }
+
+    private void appendTopicsTotal(final GitProfileData gitProfileData) {
+        final Map<String, Integer> topicsTotal = new HashMap<>();
+
+        gitProfileData.getRepos()
+                .stream()
+                .map(GitRepositoryData::getTopics)
+                .forEach(languagesList -> languagesList.forEach((topicName) -> {
+                    topicsTotal.computeIfPresent(topicName, (key, value) -> value + 1);
+                    topicsTotal.putIfAbsent(topicName, 1);
+                }));
+
+        gitProfileData.setTopicsTotal(topicsTotal);
     }
 }
