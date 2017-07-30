@@ -51,7 +51,9 @@ public class GitDataAggregator {
         result.ifPresent(gitProfileData -> {
             appendGitRepos(gitProfileData);
             appendLanguagesTotal(gitProfileData);
+            appendForkLanguagesTotal(gitProfileData);
             appendTopicsTotal(gitProfileData);
+            appendForkTopicsTotal(gitProfileData);
         });
 
         return result;
@@ -73,30 +75,72 @@ public class GitDataAggregator {
     }
 
     private void appendLanguagesTotal(final GitProfileData gitProfileData) {
-        final Map<String, Integer> languagesTotal = new HashMap<>();
+        final List<GitRepositoryData> repositoryDataList =
+                gitProfileData.getRepos()
+                        .stream()
+                        .filter(gitRepositoryData -> !gitRepositoryData.getIsFork())
+                        .collect(Collectors.toList());
 
-        gitProfileData.getRepos()
-                .stream()
-                .map(GitRepositoryData::getLanguages)
-                .forEach(languagesList -> languagesList.forEach((languageName, languageCounter) -> {
-                    languagesTotal.computeIfPresent(languageName, (key, value) -> value + Integer.valueOf(languageCounter));
-                    languagesTotal.putIfAbsent(languageName, Integer.valueOf(languageCounter));
-                }));
+        gitProfileData.setLanguagesTotal(calculateLanguagesTotal(repositoryDataList));
+    }
 
-        gitProfileData.setLanguagesTotal(languagesTotal);
+    private void appendForkLanguagesTotal(final GitProfileData gitProfileData) {
+        final List<GitRepositoryData> repositoryDataList =
+                gitProfileData.getRepos()
+                        .stream()
+                        .filter(GitRepositoryData::getIsFork)
+                        .collect(Collectors.toList());
+
+        gitProfileData.setForksLanguagesTotal(calculateLanguagesTotal(repositoryDataList));
     }
 
     private void appendTopicsTotal(final GitProfileData gitProfileData) {
+        final List<GitRepositoryData> repositoryDataList =
+                gitProfileData.getRepos()
+                        .stream()
+                        .filter(gitRepositoryData -> !gitRepositoryData.getIsFork())
+                        .collect(Collectors.toList());
+
+        gitProfileData.setTopicsTotal(calculateTopicsTotal(repositoryDataList));
+    }
+
+    private void appendForkTopicsTotal(final GitProfileData gitProfileData) {
+        final List<GitRepositoryData> repositoryDataList =
+                gitProfileData.getRepos()
+                        .stream()
+                        .filter(GitRepositoryData::getIsFork)
+                        .collect(Collectors.toList());
+
+        gitProfileData.setForksTopicsTotal(calculateTopicsTotal(repositoryDataList));
+    }
+
+    private Map<String, Integer> calculateLanguagesTotal(
+            final List<GitRepositoryData> gitRepositoryDataList) {
+        final Map<String, Integer> languagesTotal = new HashMap<>();
+
+        gitRepositoryDataList
+                .stream()
+                .map(GitRepositoryData::getLanguages)
+                .forEach(languagesList -> languagesList.forEach((languageName, languageCounter) -> {
+                    languagesTotal.computeIfPresent(languageName,
+                            (key, value) -> value + Integer.valueOf(languageCounter));
+                    languagesTotal.putIfAbsent(languageName, Integer.valueOf(languageCounter));
+                }));
+
+        return languagesTotal;
+    }
+
+    private Map<String, Integer> calculateTopicsTotal(
+            final List<GitRepositoryData> gitRepositoryDataList) {
         final Map<String, Integer> topicsTotal = new HashMap<>();
 
-        gitProfileData.getRepos()
-                .stream()
+        gitRepositoryDataList.stream()
                 .map(GitRepositoryData::getTopics)
                 .forEach(languagesList -> languagesList.forEach((topicName) -> {
                     topicsTotal.computeIfPresent(topicName, (key, value) -> value + 1);
                     topicsTotal.putIfAbsent(topicName, 1);
                 }));
 
-        gitProfileData.setTopicsTotal(topicsTotal);
+        return topicsTotal;
     }
 }

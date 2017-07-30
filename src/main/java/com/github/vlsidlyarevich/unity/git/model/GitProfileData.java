@@ -27,6 +27,8 @@ public class GitProfileData implements GitResult {
     private List<GitRepositoryData> repos;
     private Map<String, Integer> languagesTotal;
     private Map<String, Integer> topicsTotal;
+    private Map<String, Integer> forksLanguagesTotal;
+    private Map<String, Integer> forksTopicsTotal;
     private String type;
     private String name;
     private String company;
