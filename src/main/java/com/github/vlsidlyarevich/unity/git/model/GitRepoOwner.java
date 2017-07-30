@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode
-public class GitRepoOwner implements GitResult {
+@EqualsAndHashCode(callSuper = false)
+public class GitRepoOwner extends GitResult {
 
     private static final long serialVersionUID = 1953282483752857653L;
 

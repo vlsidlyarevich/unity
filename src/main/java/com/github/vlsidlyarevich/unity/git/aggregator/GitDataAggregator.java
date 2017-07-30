@@ -6,14 +6,13 @@ import com.github.vlsidlyarevich.unity.git.model.GitRepository;
 import com.github.vlsidlyarevich.unity.git.model.GitRepositoryData;
 import com.github.vlsidlyarevich.unity.git.populator.GitProfilePopulator;
 import com.github.vlsidlyarevich.unity.git.populator.GitRepositoryPopulator;
+import com.github.vlsidlyarevich.unity.git.service.GitDataTotalCalculator;
 import com.github.vlsidlyarevich.unity.git.service.GitProfileService;
 import com.github.vlsidlyarevich.unity.git.service.GitRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -28,15 +27,23 @@ public class GitDataAggregator {
 
     private final GitRepositoryService gitRepositoryService;
 
+    private final GitDataTotalCalculator gitRepositoryLanguagesTotalCalculator;
+
+    private final GitDataTotalCalculator gitRepositoryTopicsTotalCalculator;
+
     @Autowired
     public GitDataAggregator(final GitProfilePopulator gitProfilePopulator,
                              final GitRepositoryPopulator gitRepositoryPopulator,
                              final GitProfileService gitProfileService,
-                             final GitRepositoryService gitRepositoryService) {
+                             final GitRepositoryService gitRepositoryService,
+                             final GitDataTotalCalculator gitRepositoryLanguagesTotalCalculator,
+                             final GitDataTotalCalculator gitRepositoryTopicsTotalCalculator) {
         this.gitProfilePopulator = gitProfilePopulator;
         this.gitRepositoryPopulator = gitRepositoryPopulator;
         this.gitProfileService = gitProfileService;
         this.gitRepositoryService = gitRepositoryService;
+        this.gitRepositoryLanguagesTotalCalculator = gitRepositoryLanguagesTotalCalculator;
+        this.gitRepositoryTopicsTotalCalculator = gitRepositoryTopicsTotalCalculator;
     }
 
     public Optional<GitProfileData> getGitProfileData(final String gitLogin) {
@@ -81,7 +88,8 @@ public class GitDataAggregator {
                         .filter(gitRepositoryData -> !gitRepositoryData.getIsFork())
                         .collect(Collectors.toList());
 
-        gitProfileData.setLanguagesTotal(calculateLanguagesTotal(repositoryDataList));
+        gitProfileData.setLanguagesTotal(gitRepositoryLanguagesTotalCalculator.calculateTotal(
+                repositoryDataList));
     }
 
     private void appendForkLanguagesTotal(final GitProfileData gitProfileData) {
@@ -91,7 +99,8 @@ public class GitDataAggregator {
                         .filter(GitRepositoryData::getIsFork)
                         .collect(Collectors.toList());
 
-        gitProfileData.setForksLanguagesTotal(calculateLanguagesTotal(repositoryDataList));
+        gitProfileData.setForksLanguagesTotal(gitRepositoryLanguagesTotalCalculator.calculateTotal(
+                repositoryDataList));
     }
 
     private void appendTopicsTotal(final GitProfileData gitProfileData) {
@@ -101,7 +110,8 @@ public class GitDataAggregator {
                         .filter(gitRepositoryData -> !gitRepositoryData.getIsFork())
                         .collect(Collectors.toList());
 
-        gitProfileData.setTopicsTotal(calculateTopicsTotal(repositoryDataList));
+        gitProfileData.setTopicsTotal(gitRepositoryTopicsTotalCalculator
+                .calculateTotal(repositoryDataList));
     }
 
     private void appendForkTopicsTotal(final GitProfileData gitProfileData) {
@@ -111,36 +121,7 @@ public class GitDataAggregator {
                         .filter(GitRepositoryData::getIsFork)
                         .collect(Collectors.toList());
 
-        gitProfileData.setForksTopicsTotal(calculateTopicsTotal(repositoryDataList));
-    }
-
-    private Map<String, Integer> calculateLanguagesTotal(
-            final List<GitRepositoryData> gitRepositoryDataList) {
-        final Map<String, Integer> languagesTotal = new HashMap<>();
-
-        gitRepositoryDataList
-                .stream()
-                .map(GitRepositoryData::getLanguages)
-                .forEach(languagesList -> languagesList.forEach((languageName, languageCounter) -> {
-                    languagesTotal.computeIfPresent(languageName,
-                            (key, value) -> value + Integer.valueOf(languageCounter));
-                    languagesTotal.putIfAbsent(languageName, Integer.valueOf(languageCounter));
-                }));
-
-        return languagesTotal;
-    }
-
-    private Map<String, Integer> calculateTopicsTotal(
-            final List<GitRepositoryData> gitRepositoryDataList) {
-        final Map<String, Integer> topicsTotal = new HashMap<>();
-
-        gitRepositoryDataList.stream()
-                .map(GitRepositoryData::getTopics)
-                .forEach(languagesList -> languagesList.forEach((topicName) -> {
-                    topicsTotal.computeIfPresent(topicName, (key, value) -> value + 1);
-                    topicsTotal.putIfAbsent(topicName, 1);
-                }));
-
-        return topicsTotal;
+        gitProfileData.setForksTopicsTotal(gitRepositoryTopicsTotalCalculator
+                .calculateTotal(repositoryDataList));
     }
 }
