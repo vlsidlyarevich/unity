@@ -23,7 +23,7 @@
         <commons-lang3.version>3.6</commons-lang3.version>
         <guava.version>22.0</guava.version>
         <jjwt.version>0.7.0</jjwt.version>
-        <jackson.version>2.9.0.pr4</jackson.version>
+        <jackson.version>2.9.0</jackson.version>
         <swagger.version>2.7.0</swagger.version>
 
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
