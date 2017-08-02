@@ -5,6 +5,11 @@
 ### Angular 2 and Java 8 based Human resourse analysing tool
 
 Also have a look at [Assistant programmer](https://github.com/Karina-Denisevich/Assistant-Programmer) for more Git-based workflow and [woodstock](https://github.com/solairerove/woodstock) lms.
+---
+##### Features:
+* Git data analysis
+* Analysing results caching
+* Json Web Token based Security
 
 ---
 ##### Technologies:
