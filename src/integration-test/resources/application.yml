@@ -1,9 +1,8 @@
 spring:
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: unity-test
+      uri: @mongodb.uri@
+
 server:
   port: 8080
 
