@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.dto;
 
+import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ public final class UserDTO implements Serializable {
     private String username;
 
     @NotEmpty(message = "User password should not be empty")
-    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$",
+    @Pattern(regexp = SecurityConstants.PASSWORD_REGEXP,
             message = "User password should be at least 4 symbols, 1 upper, "
                     + "1 lower case letter and 1 special")
     private String password;
