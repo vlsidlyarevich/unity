@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.web.controller;
+package com.github.vlsidlyarevich.unity.web.controller.api;
 
 import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.db.service.StorageService;

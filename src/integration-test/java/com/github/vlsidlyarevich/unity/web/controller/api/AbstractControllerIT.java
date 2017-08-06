@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.web.controller;
+package com.github.vlsidlyarevich.unity.web.controller.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.vlsidlyarevich.unity.db.domain.User;

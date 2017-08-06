@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.web.controller;
+package com.github.vlsidlyarevich.unity.web.controller.api;
 
 import com.github.vlsidlyarevich.unity.git.service.GitProfileAnalyticsService;
 import org.springframework.beans.factory.annotation.Autowired;
