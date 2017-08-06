@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.controller.api;
 
 import com.github.vlsidlyarevich.unity.db.service.StorageService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,15 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/v1/image")
 public class ImageController {
 
     private final StorageService storageService;
-
-    @Autowired
-    public ImageController(final StorageService storageService) {
-        this.storageService = storageService;
-    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity getImage(@PathVariable final String id) {

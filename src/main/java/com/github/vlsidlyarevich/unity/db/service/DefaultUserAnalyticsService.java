@@ -4,7 +4,7 @@ import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.db.repository.UserAnalyticsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,14 +13,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class DefaultUserAnalyticsService implements UserAnalyticsService {
 
     private final UserAnalyticsRepository repository;
-
-    @Autowired
-    public DefaultUserAnalyticsService(final UserAnalyticsRepository repository) {
-        this.repository = repository;
-    }
 
     @Override
     public UserAnalytics add(final UserAnalytics userAnalytics) {

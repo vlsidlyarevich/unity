@@ -3,25 +3,18 @@ package com.github.vlsidlyarevich.unity.git.populator;
 import com.github.vlsidlyarevich.unity.git.model.GitRepository;
 import com.github.vlsidlyarevich.unity.git.model.GitRepositoryData;
 import com.github.vlsidlyarevich.unity.git.service.GitRepositoryLanguageService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 
 @Component
+@AllArgsConstructor
 public class DefaultGitRepositoryPopulator implements GitRepositoryPopulator {
 
     private final GitRepositoryLanguageService gitRepositoryLanguageService;
 
     private final GitRepoOwnerPopulator gitRepoOwnerPopulator;
-
-    @Autowired
-    public DefaultGitRepositoryPopulator(
-            final GitRepositoryLanguageService gitRepositoryLanguageService,
-            final GitRepoOwnerPopulator gitRepoOwnerPopulator) {
-        this.gitRepositoryLanguageService = gitRepositoryLanguageService;
-        this.gitRepoOwnerPopulator = gitRepoOwnerPopulator;
-    }
 
     public GitRepositoryData populate(final GitRepository gitRepository) {
         GitRepositoryData result = new GitRepositoryData();

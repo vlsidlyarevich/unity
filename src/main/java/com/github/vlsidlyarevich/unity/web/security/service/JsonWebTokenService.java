@@ -6,8 +6,8 @@ import com.github.vlsidlyarevich.unity.web.security.exception.BadCredentialsExce
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
@@ -20,6 +20,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class JsonWebTokenService implements TokenService {
 
     private static final int TOKEN_EXPIRATION_TIME = 30;
@@ -28,11 +29,6 @@ public class JsonWebTokenService implements TokenService {
     private String tokenKey;
 
     private final UserDetailsService userDetailsService;
-
-    @Autowired
-    public JsonWebTokenService(final UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
 
     @Override
     public String getToken(final String username, final String password) {

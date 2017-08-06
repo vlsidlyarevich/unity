@@ -3,7 +3,7 @@ package com.github.vlsidlyarevich.unity.web.controller.api;
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 import com.github.vlsidlyarevich.unity.db.service.UserSocialService;
 import com.github.vlsidlyarevich.unity.web.dto.UserSocialDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,15 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/v1/user/{id}/social")
 public class UserSocialController {
 
     private final UserSocialService service;
-
-    @Autowired
-    public UserSocialController(final UserSocialService service) {
-        this.service = service;
-    }
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getUserSocialData(@PathVariable final String id) {

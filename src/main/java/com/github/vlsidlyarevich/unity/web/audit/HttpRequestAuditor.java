@@ -3,8 +3,8 @@ package com.github.vlsidlyarevich.unity.web.audit;
 import com.github.vlsidlyarevich.unity.common.audit.Auditor;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -14,14 +14,10 @@ import java.lang.reflect.Method;
 
 @Slf4j
 @Component
+@AllArgsConstructor
 public class HttpRequestAuditor implements RequestAuditor {
 
     private final Auditor auditor;
-
-    @Autowired
-    public HttpRequestAuditor(final Auditor auditor) {
-        this.auditor = auditor;
-    }
 
     @Override
     public void logRequest(final Authentication authentication,

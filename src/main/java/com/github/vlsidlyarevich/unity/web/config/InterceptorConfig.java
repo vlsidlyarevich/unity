@@ -1,20 +1,16 @@
 package com.github.vlsidlyarevich.unity.web.config;
 
 import com.github.vlsidlyarevich.unity.web.interceptor.RequestLoggingInterceptor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
+@AllArgsConstructor
 public class InterceptorConfig extends WebMvcConfigurerAdapter {
 
     private final RequestLoggingInterceptor requestLoggingInterceptor;
-
-    @Autowired
-    public InterceptorConfig(final RequestLoggingInterceptor requestLoggingInterceptor) {
-        this.requestLoggingInterceptor = requestLoggingInterceptor;
-    }
 
     @Override
     public void addInterceptors(final InterceptorRegistry registry) {

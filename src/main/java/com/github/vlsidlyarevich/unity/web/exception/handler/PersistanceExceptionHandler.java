@@ -8,8 +8,8 @@ import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
 import com.github.vlsidlyarevich.unity.i18n.MessageResolver;
 import com.github.vlsidlyarevich.unity.web.dto.ExceptionDTO;
 import com.mongodb.MongoException;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,14 +19,10 @@ import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
 @ControllerAdvice
+@AllArgsConstructor
 public class PersistanceExceptionHandler {
 
     private final MessageResolver messageResolver;
-
-    @Autowired
-    public PersistanceExceptionHandler(final MessageResolver messageResolver) {
-        this.messageResolver = messageResolver;
-    }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity handleResourceNotFoundException(

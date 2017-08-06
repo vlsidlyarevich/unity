@@ -11,8 +11,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,17 +24,13 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class JsonWebTokenAuthenticationService implements TokenAuthenticationService {
 
     @Value("security.token.secret.key")
     private String secretKey;
 
     private final UserDetailsService userDetailsService;
-
-    @Autowired
-    public JsonWebTokenAuthenticationService(final UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
 
     @Override
     public Optional<Authentication> authenticate(final HttpServletRequest request) {

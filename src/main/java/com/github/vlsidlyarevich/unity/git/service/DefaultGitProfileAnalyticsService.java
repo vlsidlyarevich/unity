@@ -6,7 +6,7 @@ import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
 import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.db.service.UserAnalyticsService;
 import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class DefaultGitProfileAnalyticsService implements GitProfileAnalyticsService {
 
     private final GitAnalyzeService gitAnalyzeService;
@@ -21,15 +22,6 @@ public class DefaultGitProfileAnalyticsService implements GitProfileAnalyticsSer
     private final UserAnalyticsService userAnalyticsService;
 
     private final AuthenticationFacade authenticationFacade;
-
-    @Autowired
-    public DefaultGitProfileAnalyticsService(final GitAnalyzeService gitAnalyzeService,
-                                             final UserAnalyticsService userAnalyticsService,
-                                             final AuthenticationFacade authenticationFacade) {
-        this.gitAnalyzeService = gitAnalyzeService;
-        this.userAnalyticsService = userAnalyticsService;
-        this.authenticationFacade = authenticationFacade;
-    }
 
     @Override
     public UserAnalytics getGitProfileAnalytics(final String gitLogin) {

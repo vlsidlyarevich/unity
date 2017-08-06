@@ -1,11 +1,11 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
+import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
-import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.helper.UserHelper;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class DefaultUserService implements UserService {
 
     private final UserRepository repository;
@@ -22,17 +23,6 @@ public class DefaultUserService implements UserService {
     private final UserAnalyticsService userAnalyticsService;
 
     private final UserHelper userHelper;
-
-    @Autowired
-    public DefaultUserService(final UserRepository repository,
-                              final UserSocialService userSocialService,
-                              final UserAnalyticsService userAnalyticsService,
-                              final UserHelper userHelper) {
-        this.repository = repository;
-        this.userSocialService = userSocialService;
-        this.userAnalyticsService = userAnalyticsService;
-        this.userHelper = userHelper;
-    }
 
     @Override
     public User create(final User user) {

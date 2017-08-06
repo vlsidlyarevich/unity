@@ -1,21 +1,19 @@
 package com.github.vlsidlyarevich.unity.web.security.model;
 
 import com.github.vlsidlyarevich.unity.db.domain.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
+@RequiredArgsConstructor
 public class UserAuthentication implements Authentication {
 
     private static final long serialVersionUID = 8464592409085068967L;
 
     private final User user;
     private boolean authenticated = true;
-
-    public UserAuthentication(final User user) {
-        this.user = user;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

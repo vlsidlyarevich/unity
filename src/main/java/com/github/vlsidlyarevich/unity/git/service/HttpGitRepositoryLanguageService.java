@@ -1,9 +1,8 @@
 package com.github.vlsidlyarevich.unity.git.service;
 
-import com.github.vlsidlyarevich.unity.git.config.GitProperties;
 import com.github.vlsidlyarevich.unity.git.factory.RestTemplateFactory;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -16,21 +15,12 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class HttpGitRepositoryLanguageService implements GitRepositoryLanguageService {
-
-    private final String gitApiUrl;
 
     private RestTemplate restTemplate;
 
     private final RestTemplateFactory restTemplateFactory;
-
-    @Autowired
-    public HttpGitRepositoryLanguageService(final GitProperties gitProperties,
-                                            final RestTemplateFactory restTemplateFactory) {
-        this.gitApiUrl
-                = String.format("%s/repos/{user}/{repo}/languages", gitProperties.getApiUrl());
-        this.restTemplateFactory = restTemplateFactory;
-    }
 
     @PostConstruct
     public void init() {
@@ -46,6 +36,7 @@ public class HttpGitRepositoryLanguageService implements GitRepositoryLanguageSe
     @Override
     public Optional<Map<String, String>> getGitRepoLanguages(final String url) {
         Optional<Map<String, String>> result = Optional.empty();
+
         ParameterizedTypeReference<Map<String, String>> response
                 = new ParameterizedTypeReference<Map<String, String>>() {
         };

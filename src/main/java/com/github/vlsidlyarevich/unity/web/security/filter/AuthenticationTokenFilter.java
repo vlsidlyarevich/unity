@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.security.filter;
 
 import com.github.vlsidlyarevich.unity.web.security.service.TokenAuthenticationService;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
@@ -13,13 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Optional;
 
+@AllArgsConstructor
 public class AuthenticationTokenFilter extends GenericFilterBean {
 
     private final TokenAuthenticationService authenticationService;
-
-    public AuthenticationTokenFilter(final TokenAuthenticationService authenticationService) {
-        this.authenticationService = authenticationService;
-    }
 
     @Override
     public void doFilter(final ServletRequest request, final ServletResponse response,

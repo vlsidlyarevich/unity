@@ -4,18 +4,14 @@ import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
 import com.github.vlsidlyarevich.unity.db.domain.Authority;
 import com.github.vlsidlyarevich.unity.db.domain.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class SecurityContextCurrentUserService implements CurrentUserService {
 
     private final AuthenticationFacade authenticationFacade;
-
-    @Autowired
-    public SecurityContextCurrentUserService(final AuthenticationFacade authenticationFacade) {
-        this.authenticationFacade = authenticationFacade;
-    }
 
     @Override
     public boolean canAccessUserOrAdmin(final String userId) {

@@ -4,7 +4,7 @@ import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.db.helper.UserHelper;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
@@ -12,18 +12,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class DefaultUserSocialService implements UserSocialService {
 
     private final UserSocialRepository repository;
 
     private final UserHelper userHelper;
-
-    @Autowired
-    public DefaultUserSocialService(final UserSocialRepository repository,
-                                    final UserHelper userHelper) {
-        this.repository = repository;
-        this.userHelper = userHelper;
-    }
 
     @Override
     public UserSocial create(final UserSocial userSocial) {

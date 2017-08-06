@@ -2,7 +2,7 @@ package com.github.vlsidlyarevich.unity.git.service;
 
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.git.model.GitProfileData;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -13,14 +13,10 @@ import java.util.Date;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class DefaultGitAnalyzeReportService implements GitAnalyzeService {
 
     private final GitProfileDataService gitProfileDataService;
-
-    @Autowired
-    public DefaultGitAnalyzeReportService(final GitProfileDataService gitProfileDataService) {
-        this.gitProfileDataService = gitProfileDataService;
-    }
 
     @Override
     public Optional<AnalysisReport> analyze(final String gitLogin) {

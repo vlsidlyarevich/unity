@@ -9,7 +9,7 @@ import com.github.vlsidlyarevich.unity.git.populator.GitRepositoryPopulator;
 import com.github.vlsidlyarevich.unity.git.service.GitDataTotalCalculator;
 import com.github.vlsidlyarevich.unity.git.service.GitProfileService;
 import com.github.vlsidlyarevich.unity.git.service.GitRepositoryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,6 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
+@AllArgsConstructor
 public class GitDataAggregator {
 
     private final GitProfilePopulator gitProfilePopulator;
@@ -30,21 +31,6 @@ public class GitDataAggregator {
     private final GitDataTotalCalculator gitRepositoryLanguagesTotalCalculator;
 
     private final GitDataTotalCalculator gitRepositoryTopicsTotalCalculator;
-
-    @Autowired
-    public GitDataAggregator(final GitProfilePopulator gitProfilePopulator,
-                             final GitRepositoryPopulator gitRepositoryPopulator,
-                             final GitProfileService gitProfileService,
-                             final GitRepositoryService gitRepositoryService,
-                             final GitDataTotalCalculator gitRepositoryLanguagesTotalCalculator,
-                             final GitDataTotalCalculator gitRepositoryTopicsTotalCalculator) {
-        this.gitProfilePopulator = gitProfilePopulator;
-        this.gitRepositoryPopulator = gitRepositoryPopulator;
-        this.gitProfileService = gitProfileService;
-        this.gitRepositoryService = gitRepositoryService;
-        this.gitRepositoryLanguagesTotalCalculator = gitRepositoryLanguagesTotalCalculator;
-        this.gitRepositoryTopicsTotalCalculator = gitRepositoryTopicsTotalCalculator;
-    }
 
     public Optional<GitProfileData> getGitProfileData(final String gitLogin) {
         Optional<GitProfile> gitProfile = gitProfileService.getGitProfile(gitLogin);
