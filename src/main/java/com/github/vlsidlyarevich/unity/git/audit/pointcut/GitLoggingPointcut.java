@@ -4,7 +4,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
-public class GitLoggingAspect {
+public class GitLoggingPointcut {
 
     @Pointcut("execution(* com.github.vlsidlyarevich.unity.git.service.*.*(..)))")
     public void service() {

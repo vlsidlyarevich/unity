@@ -37,4 +37,14 @@ public class LoggerBasedAuditor implements Auditor {
         log.info("Message : Called service: {} for method: {} with arguments: {}",
                 serviceName, method, args);
     }
+
+    @Override
+    public void logException(final String serviceName, final Throwable exception) {
+        if (StringUtils.isBlank(serviceName)) {
+            throw new IllegalArgumentException("Service method is mandatory");
+        }
+
+        log.info("Message : Throwed exception: '{}' in service: {}",
+                exception, serviceName);
+    }
 }
