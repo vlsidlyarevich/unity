@@ -1,16 +1,19 @@
-spring: 
-  data: 
-    mongodb: 
-      uri: @mongodb.uri@
-
-security: 
-  token:
-    secret:
-      key: Asjfwol2asf123142Ags1k23hnSA36as6f4qQ324FEsvb
-
 server:
   port: 8080
-#logging: 
+
+spring:
+  data:
+    mongodb:
+      uri: @mongodb.uri@
+  social:
+    twitter:
+      app-id: lwiBGQ7pkItjZkfeYWONOEmZy
+      app-secret: Hsph271KohkmOPLm30cbPakdPfjrweQF9Udw0WP7d6nR1zXjIE
+    facebook:
+      app-id: 110570572950923
+      app-secret: 493a29907f64c3b9dba5abdc71adac41
+
+#logging:
 #  file: temp/logs/unity-log.log
 
 storage: 
@@ -19,3 +22,8 @@ storage:
 git: 
   apiUrl: https://api.github.com
   accessToken: ${GIT_ACCESS_TOKEN}
+
+security:
+  token:
+    secret:
+      key: Asjfwol2asf123142Ags1k23hnSA36as6f4qQ324FEsvb
