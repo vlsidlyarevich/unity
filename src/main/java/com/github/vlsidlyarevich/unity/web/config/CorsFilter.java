@@ -18,10 +18,10 @@ import java.io.IOException;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
 
-    public static final String CORS_ALLOWED_METHODS = "POST, GET, PUT, OPTIONS, DELETE, PATCH";
-    public static final int CORS_MAX_AGE = 3600;
-    public static final String CORS_ALLOW_HEADERS = "x-auth-token, Content-Type";
-    public static final String CORS_EXPOSE_HEADERS = "x-auth-token, Content-Type";
+    private static final String CORS_ALLOWED_METHODS = "POST, GET, PUT, OPTIONS, DELETE, PATCH";
+    private static final int CORS_MAX_AGE = 3600;
+    private static final String CORS_ALLOW_HEADERS = "x-auth-token, Content-Type";
+    private static final String CORS_EXPOSE_HEADERS = "x-auth-token, Content-Type";
 
     @Override
     public void init(final FilterConfig filterConfig) throws ServletException {

@@ -6,5 +6,7 @@ public interface Auditor {
 
     void logService(String serviceName, String method, Object[] args);
 
+    void logAdapter(String adapterName);
+
     void logException(String serviceName, Throwable exception);
 }

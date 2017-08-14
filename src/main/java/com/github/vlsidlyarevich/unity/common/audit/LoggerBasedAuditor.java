@@ -27,7 +27,7 @@ public class LoggerBasedAuditor implements Auditor {
     public void logService(final String serviceName, final String method,
                            final Object[] args) {
         if (StringUtils.isBlank(serviceName)) {
-            throw new IllegalArgumentException("Service method is mandatory");
+            throw new IllegalArgumentException("Service name is mandatory");
         }
 
         if (StringUtils.isBlank(method)) {
@@ -39,9 +39,18 @@ public class LoggerBasedAuditor implements Auditor {
     }
 
     @Override
+    public void logAdapter(final String adapterName) {
+        if (StringUtils.isBlank(adapterName)) {
+            throw new IllegalArgumentException("Adapter name is mandatory");
+        }
+
+        log.info("Message : Called adapter: {}", adapterName);
+    }
+
+    @Override
     public void logException(final String serviceName, final Throwable exception) {
         if (StringUtils.isBlank(serviceName)) {
-            throw new IllegalArgumentException("Service method is mandatory");
+            throw new IllegalArgumentException("Service name is mandatory");
         }
 
         log.info("Message : Throwed exception: '{}' in service: {}",

@@ -31,10 +31,10 @@ public class HttpRequestAuditor implements RequestAuditor {
 
     private void logUnauthenticatedRequest(final HttpServletRequest request,
                                            final Object handler) {
-        Method requestedMethod = ((HandlerMethod) handler).getMethod();
-
-        auditor.logController("Unauthorized", requestedMethod.getName(),
-                request.getRequestURI());
+//        Method requestedMethod = ((HandlerMethod) handler).getMethod();
+//
+//        auditor.logController("Unauthorized", requestedMethod.getName(),
+//                request.getRequestURI());
     }
 
     private void logAuthenticatedRequest(final UserAuthentication authentication,
