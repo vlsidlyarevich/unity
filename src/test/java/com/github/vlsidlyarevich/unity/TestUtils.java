@@ -31,18 +31,30 @@ public final class TestUtils {
         final List<Authority> authorities = new ArrayList<>();
         authorities.add(Authority.ROLE_USER);
 
-        return new User(authorities, TestRandomUtils.getRandomString(8), TestRandomUtils.getRandomString(8),
-                false, false, false,
-                true);
+        return User.builder()
+                .authorities(authorities)
+                .username(TestRandomUtils.getRandomString(8))
+                .password(TestRandomUtils.getRandomString(8))
+                .accountNonExpired(true)
+                .accountNonLocked(true)
+                .isEnabled(true)
+                .credentialsNonExpired(true)
+                .build();
     }
 
     public static User createAdmin() {
         final List<Authority> authorities = new ArrayList<>();
         authorities.add(Authority.ROLE_ADMIN);
 
-        return new User(authorities, TestRandomUtils.getRandomString(8), TestRandomUtils.getRandomString(8),
-                false, false, false,
-                true);
+        return User.builder()
+                .authorities(authorities)
+                .username(TestRandomUtils.getRandomString(8))
+                .password(TestRandomUtils.getRandomString(8))
+                .accountNonExpired(true)
+                .accountNonLocked(true)
+                .isEnabled(true)
+                .credentialsNonExpired(true)
+                .build();
     }
 
     public static UserSocial createUserSocial() {

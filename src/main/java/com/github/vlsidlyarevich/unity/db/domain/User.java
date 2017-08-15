@@ -1,8 +1,12 @@
 package com.github.vlsidlyarevich.unity.db.domain;
 
 import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
+import com.github.vlsidlyarevich.unity.web.security.social.model.SocialMediaService;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,6 +17,8 @@ import java.util.List;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Document(collection = "users")
 public class User extends DbModel implements UserDetails {
@@ -24,31 +30,29 @@ public class User extends DbModel implements UserDetails {
     private List<Authority> authorities;
     private String username;
     private String password;
+    private SocialMediaService socialSignInProvider;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean isEnabled;
 
-    public User(final List<Authority> authorities, final String username,
-                final String password, final boolean accountNonExpired,
-                final boolean accountNonLocked, final boolean credentialsNonExpired,
-                final boolean isEnabled) {
-        this.authorities = authorities;
-        this.username = username;
-        this.password = password;
-        this.accountNonExpired = accountNonExpired;
-        this.accountNonLocked = accountNonLocked;
-        this.credentialsNonExpired = credentialsNonExpired;
-        this.isEnabled = isEnabled;
+    public User() {
+
     }
 
     public static User fromDTO(final UserDTO dto) {
         List<Authority> authorities = new ArrayList<>();
         authorities.add(Authority.ROLE_USER);
 
-        return new User(authorities, dto.getUsername(), dto.getPassword(),
-                false, false, false,
-                true);
+        return User.builder()
+                .authorities(authorities)
+                .username(dto.getUsername())
+                .password(dto.getPassword())
+                .accountNonExpired(true)
+                .accountNonLocked(true)
+                .isEnabled(true)
+                .credentialsNonExpired(true)
+                .build();
     }
 
     public void addAuthority(final Authority authority) {
