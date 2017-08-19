@@ -16,6 +16,9 @@ import javax.servlet.http.Cookie;
 @AllArgsConstructor
 public class SocialSignInAdapter implements SignInAdapter {
 
+    private final static String SOCIAL_AUTH_URL = "/#/social-auth";
+    private final static String SOCIAL_AUTHENTICATION_COOKIE_NAME = "social-authentication";
+
     private final UserDetailsService userDetailsService;
 
     private final TokenService tokenService;
@@ -30,11 +33,11 @@ public class SocialSignInAdapter implements SignInAdapter {
 
         servletWebRequest.getResponse().addCookie(getSocialAuthenticationCookie(jwt));
 
-        return "/#/social-auth";
+        return SOCIAL_AUTH_URL;
     }
 
     private Cookie getSocialAuthenticationCookie(final String token) {
-        final Cookie socialAuthCookie = new Cookie("social-authentication", token);
+        final Cookie socialAuthCookie = new Cookie(SOCIAL_AUTHENTICATION_COOKIE_NAME, token);
 
         socialAuthCookie.setPath("/");
         socialAuthCookie.setMaxAge(10);

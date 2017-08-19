@@ -31,6 +31,7 @@ public class JsonWebTokenService implements TokenService {
     private final UserDetailsService userDetailsService;
 
     @Override
+    //FIXME refactor this to use Authentication and rememberMe option
     public String getToken(final String username, final String password) {
         try {
             return Optional.ofNullable(userDetailsService.loadUserByUsername(username))

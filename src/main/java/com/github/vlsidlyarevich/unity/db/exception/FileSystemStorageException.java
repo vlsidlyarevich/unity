@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 public class FileSystemStorageException extends RuntimeException {
 
     private static final long serialVersionUID = 7520480870078081658L;
@@ -40,4 +40,3 @@ public class FileSystemStorageException extends RuntimeException {
         this.args = args;
     }
 }
-

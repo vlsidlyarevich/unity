@@ -5,7 +5,7 @@ import org.springframework.social.connect.Connection;
 
 public interface SocialUserService {
 
-    User create(Connection<?> connection, String language);
+    User create(Connection<?> connection);
 
-    String delete(String username);
+    void delete(String username);
 }

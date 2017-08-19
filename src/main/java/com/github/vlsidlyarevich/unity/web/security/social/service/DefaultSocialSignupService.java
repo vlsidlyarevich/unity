@@ -12,23 +12,21 @@ import org.springframework.web.servlet.view.RedirectView;
 @AllArgsConstructor
 public class DefaultSocialSignupService implements SocialSignupService {
 
+    private final static String SOCIAL_REGISTER_URL = "/#/social-register/";
+
     private final SocialUserService socialUserService;
 
     private final ProviderSignInUtils providerSignInUtils;
 
     @Override
-    public RedirectView signup(final WebRequest request, final String language) {
-        try {
-            Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
-            socialUserService.create(connection, language.replace("\"", ""));
-            return new RedirectView(URIBuilder.fromUri("/#/social-register/" + connection.getKey().getProviderId())
-                    .queryParam("success", "true")
-                    .build().toString(), true);
-        } catch (Exception e) {
-//            log.error("Exception creating social user: ", e);
-            return new RedirectView(URIBuilder.fromUri("/#/social-register/no-provider")
-                    .queryParam("success", "false")
-                    .build().toString(), true);
-        }
+    public RedirectView signup(final WebRequest request) {
+        final Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
+
+        socialUserService.create(connection);
+
+        return new RedirectView(URIBuilder.fromUri(String
+                .format("%s%s", SOCIAL_REGISTER_URL, connection.getKey().getProviderId()))
+                .queryParam("success", "true")
+                .build().toString(), true);
     }
 }

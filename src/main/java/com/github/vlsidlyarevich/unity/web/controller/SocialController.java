@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.web.security.social.controller;
+package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.web.security.social.service.SocialSignupService;
 import lombok.AllArgsConstructor;
@@ -17,8 +17,7 @@ public class SocialController {
     private final SocialSignupService signupService;
 
     @GetMapping("/signup")
-    public RedirectView signUp(final WebRequest webRequest, @CookieValue(name = "NG_TRANSLATE_LANG_KEY",
-            required = false, defaultValue = "\"en\"") final String language) {
-        return signupService.signup(webRequest, language);
+    public RedirectView signUp(final WebRequest webRequest) {
+        return signupService.signup(webRequest);
     }
 }
