@@ -4,12 +4,13 @@ import com.github.vlsidlyarevich.unity.git.model.GitRepository;
 import com.github.vlsidlyarevich.unity.git.model.GitRepositoryData;
 import com.github.vlsidlyarevich.unity.git.service.GitRepositoryLanguageService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 
 @Component
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultGitRepositoryPopulator implements GitRepositoryPopulator {
 
     private final GitRepositoryLanguageService gitRepositoryLanguageService;

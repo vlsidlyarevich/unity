@@ -5,6 +5,7 @@ import com.github.vlsidlyarevich.unity.web.security.service.TokenAuthenticationS
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import com.github.vlsidlyarevich.unity.web.security.social.adapter.SocialSignInAdapter;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,7 +21,7 @@ import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.connect.web.SignInAdapter;
 
 @EnableWebSecurity
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 

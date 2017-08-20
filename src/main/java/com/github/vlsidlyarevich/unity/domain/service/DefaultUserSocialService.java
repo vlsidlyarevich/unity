@@ -5,6 +5,7 @@ import com.github.vlsidlyarevich.unity.domain.exception.ResourceNotFoundExceptio
 import com.github.vlsidlyarevich.unity.domain.assistant.UserAssistant;
 import com.github.vlsidlyarevich.unity.domain.repository.UserSocialRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultUserSocialService implements UserSocialService {
 
     private final UserSocialRepository repository;

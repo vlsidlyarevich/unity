@@ -2,6 +2,7 @@ package com.github.vlsidlyarevich.unity.web.security.social.adapter;
 
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.social.connect.Connection;
@@ -13,7 +14,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 import javax.servlet.http.Cookie;
 
 @Component
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SocialSignInAdapter implements SignInAdapter {
 
     private static final String SOCIAL_AUTH_URL = "/#/social-auth";

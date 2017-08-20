@@ -5,10 +5,11 @@ import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
 import com.github.vlsidlyarevich.unity.web.security.model.Authority;
 import com.github.vlsidlyarevich.unity.domain.model.User;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SecurityContextCurrentUserService implements CurrentUserService {
 
     private final AuthenticationFacade authenticationFacade;

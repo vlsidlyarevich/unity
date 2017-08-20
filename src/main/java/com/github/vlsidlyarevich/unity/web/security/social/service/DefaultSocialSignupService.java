@@ -2,6 +2,7 @@ package com.github.vlsidlyarevich.unity.web.security.social.service;
 
 import com.github.vlsidlyarevich.unity.domain.service.SocialUserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.support.URIBuilder;
@@ -10,7 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Service
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultSocialSignupService implements SocialSignupService {
 
     private static final String SOCIAL_REGISTER_URL = "/#/social-register/";

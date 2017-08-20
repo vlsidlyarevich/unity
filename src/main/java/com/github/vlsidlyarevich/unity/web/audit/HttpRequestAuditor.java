@@ -5,6 +5,7 @@ import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -14,7 +15,7 @@ import java.lang.reflect.Method;
 
 @Slf4j
 @Component
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class HttpRequestAuditor implements RequestAuditor {
 
     private final Auditor auditor;

@@ -4,6 +4,7 @@ import com.github.vlsidlyarevich.unity.web.dto.LoginDTO;
 import com.github.vlsidlyarevich.unity.web.dto.TokenDTO;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/api/v1/auth")
 public class AuthenticationController {
 

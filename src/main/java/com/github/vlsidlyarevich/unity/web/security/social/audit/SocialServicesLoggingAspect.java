@@ -7,12 +7,13 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Aspect
 @Component
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SocialServicesLoggingAspect {
 
     private final Auditor auditor;

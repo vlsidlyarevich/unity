@@ -5,6 +5,7 @@ import com.github.vlsidlyarevich.unity.domain.model.UserAnalytics;
 import com.github.vlsidlyarevich.unity.domain.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.domain.repository.UserAnalyticsRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultUserAnalyticsService implements UserAnalyticsService {
 
     private final UserAnalyticsRepository repository;

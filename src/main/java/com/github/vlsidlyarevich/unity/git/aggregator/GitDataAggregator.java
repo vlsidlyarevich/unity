@@ -10,6 +10,7 @@ import com.github.vlsidlyarevich.unity.git.service.GitDataTotalCalculator;
 import com.github.vlsidlyarevich.unity.git.service.GitProfileService;
 import com.github.vlsidlyarevich.unity.git.service.GitRepositoryService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class GitDataAggregator {
 
     private final GitProfilePopulator gitProfilePopulator;

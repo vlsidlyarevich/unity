@@ -6,6 +6,7 @@ import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.domain.repository.UserRepository;
 import com.github.vlsidlyarevich.unity.web.security.social.model.SocialProvider;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UserProfile;
@@ -18,7 +19,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultSocialUserService implements SocialUserService {
 
     private final UsersConnectionRepository usersConnectionRepository;

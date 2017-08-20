@@ -4,6 +4,7 @@ import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.domain.service.UserService;
 import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/api/v1/signup")
 public class SignUpController {
 

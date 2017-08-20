@@ -7,6 +7,7 @@ import com.github.vlsidlyarevich.unity.domain.exception.ResourceNotFoundExceptio
 import com.github.vlsidlyarevich.unity.domain.service.UserAnalyticsService;
 import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultGitProfileAnalyticsService implements GitProfileAnalyticsService {
 
     private final GitAnalyzeService gitAnalyzeService;
