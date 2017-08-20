@@ -2,7 +2,7 @@ package com.github.vlsidlyarevich.unity.domain.model;
 
 import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
 import com.github.vlsidlyarevich.unity.web.security.model.Authority;
-import com.github.vlsidlyarevich.unity.web.security.social.model.SocialMediaService;
+import com.github.vlsidlyarevich.unity.web.security.social.model.SocialProvider;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -30,7 +30,7 @@ public class User extends DbModel implements UserDetails {
     private List<Authority> authorities;
     private String username;
     private String password;
-    private SocialMediaService socialSignInProvider;
+    private SocialProvider socialSignInProvider;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;

@@ -4,7 +4,7 @@ import com.github.vlsidlyarevich.unity.common.assistant.RandomAssistant;
 import com.github.vlsidlyarevich.unity.web.security.model.Authority;
 import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.domain.repository.UserRepository;
-import com.github.vlsidlyarevich.unity.web.security.social.model.SocialMediaService;
+import com.github.vlsidlyarevich.unity.web.security.social.model.SocialProvider;
 import lombok.AllArgsConstructor;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
@@ -70,7 +70,7 @@ public class DefaultSocialUserService implements SocialUserService {
                             .username(usrname)
                             .password(RandomAssistant.randomAlphaNumeric())
                             .authorities(authorities)
-                            .socialSignInProvider(SocialMediaService.valueOf(providerId.toUpperCase()))
+                            .socialSignInProvider(SocialProvider.valueOf(providerId.toUpperCase()))
                             .accountNonExpired(true)
                             .accountNonLocked(true)
                             .credentialsNonExpired(true)
