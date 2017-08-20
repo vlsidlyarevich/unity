@@ -1,8 +1,8 @@
 package com.github.vlsidlyarevich.unity.web.security.service;
 
-import com.github.vlsidlyarevich.unity.db.domain.User;
-import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
-import com.github.vlsidlyarevich.unity.db.service.UserService;
+import com.github.vlsidlyarevich.unity.domain.model.User;
+import com.github.vlsidlyarevich.unity.domain.exception.UserNotFoundException;
+import com.github.vlsidlyarevich.unity.domain.service.UserService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller.api;
 
-import com.github.vlsidlyarevich.unity.db.service.StorageService;
+import com.github.vlsidlyarevich.unity.domain.service.StorageService;
 import lombok.AllArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;

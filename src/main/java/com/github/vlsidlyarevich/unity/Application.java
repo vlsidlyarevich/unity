@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity;
 
-import com.github.vlsidlyarevich.unity.db.config.StorageProperties;
+import com.github.vlsidlyarevich.unity.domain.config.StorageProperties;
 import com.github.vlsidlyarevich.unity.git.config.GitProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,10 +1,10 @@
 package com.github.vlsidlyarevich.unity.web.controller.api;
 
 import com.github.vlsidlyarevich.unity.Application;
-import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
-import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
-import com.github.vlsidlyarevich.unity.db.service.UserAnalyticsService;
-import com.github.vlsidlyarevich.unity.db.service.UserService;
+import com.github.vlsidlyarevich.unity.domain.model.UserAnalytics;
+import com.github.vlsidlyarevich.unity.domain.repository.UserRepository;
+import com.github.vlsidlyarevich.unity.domain.service.UserAnalyticsService;
+import com.github.vlsidlyarevich.unity.domain.service.UserService;
 import com.github.vlsidlyarevich.unity.web.exception.handler.PersistanceExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;

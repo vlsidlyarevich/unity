@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.security.social.repository;
 
-import com.github.vlsidlyarevich.unity.web.security.social.domain.SocialUserConnection;
+import com.github.vlsidlyarevich.unity.domain.model.SocialUserConnection;
+import com.github.vlsidlyarevich.unity.domain.repository.SocialUserConnectionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionFactoryLocator;

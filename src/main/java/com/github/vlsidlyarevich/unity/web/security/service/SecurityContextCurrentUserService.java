@@ -2,8 +2,8 @@ package com.github.vlsidlyarevich.unity.web.security.service;
 
 import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
-import com.github.vlsidlyarevich.unity.db.domain.Authority;
-import com.github.vlsidlyarevich.unity.db.domain.User;
+import com.github.vlsidlyarevich.unity.web.security.model.Authority;
+import com.github.vlsidlyarevich.unity.domain.model.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.dto;
 
-import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
+import com.github.vlsidlyarevich.unity.domain.model.UserSocial;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

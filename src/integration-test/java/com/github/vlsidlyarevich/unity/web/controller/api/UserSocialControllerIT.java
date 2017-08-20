@@ -1,10 +1,10 @@
 package com.github.vlsidlyarevich.unity.web.controller.api;
 
 import com.github.vlsidlyarevich.unity.Application;
-import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
-import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
-import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
-import com.github.vlsidlyarevich.unity.db.service.UserService;
+import com.github.vlsidlyarevich.unity.domain.model.UserSocial;
+import com.github.vlsidlyarevich.unity.domain.repository.UserRepository;
+import com.github.vlsidlyarevich.unity.domain.repository.UserSocialRepository;
+import com.github.vlsidlyarevich.unity.domain.service.UserService;
 import com.github.vlsidlyarevich.unity.web.dto.UserSocialDTO;
 import com.github.vlsidlyarevich.unity.web.exception.handler.PersistanceExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;

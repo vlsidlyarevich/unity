@@ -8,7 +8,7 @@
         <logger name="com.github.vlsidlyarevich.unity.common" level="DEBUG" additivity="false">
             <appender-ref ref="CONSOLE"/>
         </logger>
-        <logger name="com.github.vlsidlyarevich.unity.db" level="DEBUG" additivity="false">
+        <logger name="com.github.vlsidlyarevich.unity.domain" level="DEBUG" additivity="false">
             <appender-ref ref="CONSOLE"/>
         </logger>
     </springProfile>
@@ -21,7 +21,7 @@
             <appender-ref ref="CONSOLE"/>
             <appender-ref ref="FILE"/>
         </logger>
-        <logger name="com.github.vlsidlyarevich.unity.db" level="INFO" additivity="false">
+        <logger name="com.github.vlsidlyarevich.unity.domain" level="INFO" additivity="false">
             <appender-ref ref="CONSOLE"/>
             <appender-ref ref="FILE"/>
         </logger>

@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.controller.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.vlsidlyarevich.unity.db.domain.User;
+import com.github.vlsidlyarevich.unity.domain.model.User;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;

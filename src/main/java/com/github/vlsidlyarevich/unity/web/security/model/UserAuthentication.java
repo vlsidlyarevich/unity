@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.security.model;
 
-import com.github.vlsidlyarevich.unity.db.domain.User;
+import com.github.vlsidlyarevich.unity.domain.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;

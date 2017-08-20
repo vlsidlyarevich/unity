@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.git.service;
 
-import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
+import com.github.vlsidlyarevich.unity.domain.model.UserAnalytics;
 
 public interface GitProfileAnalyticsService {
 

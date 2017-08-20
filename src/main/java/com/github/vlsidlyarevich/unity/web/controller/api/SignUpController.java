@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.controller.api;
 
-import com.github.vlsidlyarevich.unity.db.domain.User;
-import com.github.vlsidlyarevich.unity.db.service.UserService;
+import com.github.vlsidlyarevich.unity.domain.model.User;
+import com.github.vlsidlyarevich.unity.domain.service.UserService;
 import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

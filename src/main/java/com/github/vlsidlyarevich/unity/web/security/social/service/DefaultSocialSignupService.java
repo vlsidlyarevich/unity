@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.security.social.service;
 
+import com.github.vlsidlyarevich.unity.domain.service.SocialUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.web.ProviderSignInUtils;

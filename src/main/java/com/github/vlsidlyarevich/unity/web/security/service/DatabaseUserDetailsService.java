@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.security.service;
 
-import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
-import com.github.vlsidlyarevich.unity.db.service.UserService;
+import com.github.vlsidlyarevich.unity.domain.exception.UserNotFoundException;
+import com.github.vlsidlyarevich.unity.domain.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

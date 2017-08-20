@@ -1,10 +1,10 @@
 package com.github.vlsidlyarevich.unity;
 
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
-import com.github.vlsidlyarevich.unity.db.domain.Authority;
-import com.github.vlsidlyarevich.unity.db.domain.User;
-import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
-import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
+import com.github.vlsidlyarevich.unity.web.security.model.Authority;
+import com.github.vlsidlyarevich.unity.domain.model.User;
+import com.github.vlsidlyarevich.unity.domain.model.UserAnalytics;
+import com.github.vlsidlyarevich.unity.domain.model.UserSocial;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,10 +1,10 @@
 package com.github.vlsidlyarevich.unity.web.exception.handler;
 
-import com.github.vlsidlyarevich.unity.db.exception.FileSystemFileNotFoundException;
-import com.github.vlsidlyarevich.unity.db.exception.FileSystemStorageException;
-import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
-import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
-import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
+import com.github.vlsidlyarevich.unity.domain.exception.FileSystemFileNotFoundException;
+import com.github.vlsidlyarevich.unity.domain.exception.FileSystemStorageException;
+import com.github.vlsidlyarevich.unity.domain.exception.ResourceNotFoundException;
+import com.github.vlsidlyarevich.unity.domain.exception.UserNotFoundException;
+import com.github.vlsidlyarevich.unity.domain.exception.UsernameExistsException;
 import com.github.vlsidlyarevich.unity.i18n.MessageResolver;
 import com.github.vlsidlyarevich.unity.web.dto.ExceptionDTO;
 import com.mongodb.MongoException;

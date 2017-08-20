@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller.api;
 
-import com.github.vlsidlyarevich.unity.db.service.UserAnalyticsService;
+import com.github.vlsidlyarevich.unity.domain.service.UserAnalyticsService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

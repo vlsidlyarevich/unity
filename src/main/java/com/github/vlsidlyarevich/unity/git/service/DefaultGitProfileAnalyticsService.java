@@ -1,10 +1,10 @@
 package com.github.vlsidlyarevich.unity.git.service;
 
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
-import com.github.vlsidlyarevich.unity.db.domain.User;
-import com.github.vlsidlyarevich.unity.db.domain.UserAnalytics;
-import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
-import com.github.vlsidlyarevich.unity.db.service.UserAnalyticsService;
+import com.github.vlsidlyarevich.unity.domain.model.User;
+import com.github.vlsidlyarevich.unity.domain.model.UserAnalytics;
+import com.github.vlsidlyarevich.unity.domain.exception.ResourceNotFoundException;
+import com.github.vlsidlyarevich.unity.domain.service.UserAnalyticsService;
 import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
