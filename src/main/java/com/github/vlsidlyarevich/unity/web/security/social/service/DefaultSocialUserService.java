@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.security.social.service;
 
-import com.github.vlsidlyarevich.unity.common.helper.RandomHelper;
+import com.github.vlsidlyarevich.unity.common.assistant.RandomAssistant;
 import com.github.vlsidlyarevich.unity.db.domain.Authority;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
@@ -68,7 +68,7 @@ public class DefaultSocialUserService implements SocialUserService {
 
                     final User newUser = User.builder()
                             .username(usrname)
-                            .password(RandomHelper.randomAlphaNumeric())
+                            .password(RandomAssistant.randomAlphaNumeric())
                             .authorities(authorities)
                             .socialSignInProvider(SocialMediaService.valueOf(providerId.toUpperCase()))
                             .accountNonExpired(true)

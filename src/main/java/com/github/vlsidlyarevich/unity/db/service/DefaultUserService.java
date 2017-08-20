@@ -3,7 +3,7 @@ package com.github.vlsidlyarevich.unity.db.service;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
-import com.github.vlsidlyarevich.unity.db.helper.UserHelper;
+import com.github.vlsidlyarevich.unity.db.assistant.UserAssistant;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,7 +22,7 @@ public class DefaultUserService implements UserService {
 
     private final UserAnalyticsService userAnalyticsService;
 
-    private final UserHelper userHelper;
+    private final UserAssistant userHelper;
 
     @Override
     public User create(final User user) {

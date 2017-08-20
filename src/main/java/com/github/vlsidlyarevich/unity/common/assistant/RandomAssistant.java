@@ -1,12 +1,12 @@
-package com.github.vlsidlyarevich.unity.common.helper;
+package com.github.vlsidlyarevich.unity.common.assistant;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-public final class RandomHelper {
+public final class RandomAssistant {
 
     private static final Integer RANDOM_STRING_LENGTH = 6;
 
-    private RandomHelper() {
+    private RandomAssistant() {
 
     }
 

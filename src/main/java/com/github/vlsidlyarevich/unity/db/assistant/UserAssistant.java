@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.db.helper;
+package com.github.vlsidlyarevich.unity.db.assistant;
 
 import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 import java.util.Objects;
 
 @Component
-public class UserHelper {
+public class UserAssistant {
 
     private final UserRepository repository;
 
-    public UserHelper(final UserRepository repository) {
+    public UserAssistant(final UserRepository repository) {
         this.repository = repository;
     }
 

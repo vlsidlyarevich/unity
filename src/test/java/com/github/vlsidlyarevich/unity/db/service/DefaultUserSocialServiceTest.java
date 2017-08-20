@@ -2,9 +2,8 @@ package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.UserSocial;
 import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
-import com.github.vlsidlyarevich.unity.db.helper.UserHelper;
+import com.github.vlsidlyarevich.unity.db.assistant.UserAssistant;
 import com.github.vlsidlyarevich.unity.db.repository.UserSocialRepository;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +33,7 @@ public class DefaultUserSocialServiceTest {
     private UserSocialRepository userSocialRepository;
 
     @Mock
-    private UserHelper userHelper;
+    private UserAssistant userHelper;
 
     @Before
     public void setUp() {

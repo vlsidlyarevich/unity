@@ -1,12 +1,10 @@
 package com.github.vlsidlyarevich.unity.db.service;
 
 import com.github.vlsidlyarevich.unity.db.domain.User;
-import com.github.vlsidlyarevich.unity.db.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.db.exception.UsernameExistsException;
-import com.github.vlsidlyarevich.unity.db.helper.UserHelper;
+import com.github.vlsidlyarevich.unity.db.assistant.UserAssistant;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,7 +40,7 @@ public class DefaultUserServiceTest {
 
     @Before
     public void setUp() {
-        this.userService = new DefaultUserService(userRepository, userSocialService, userAnalyticsService, new UserHelper(userRepository));
+        this.userService = new DefaultUserService(userRepository, userSocialService, userAnalyticsService, new UserAssistant(userRepository));
     }
 
     @Test
