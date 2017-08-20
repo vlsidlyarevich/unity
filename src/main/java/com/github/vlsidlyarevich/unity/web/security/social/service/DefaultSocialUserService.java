@@ -1,11 +1,11 @@
 package com.github.vlsidlyarevich.unity.web.security.social.service;
 
+import com.github.vlsidlyarevich.unity.common.helper.RandomHelper;
 import com.github.vlsidlyarevich.unity.db.domain.Authority;
 import com.github.vlsidlyarevich.unity.db.domain.User;
 import com.github.vlsidlyarevich.unity.db.repository.UserRepository;
 import com.github.vlsidlyarevich.unity.web.security.social.model.SocialMediaService;
 import lombok.AllArgsConstructor;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UserProfile;
@@ -63,12 +63,12 @@ public class DefaultSocialUserService implements SocialUserService {
                         return user;
                     }
 
-                    List<Authority> authorities = new ArrayList<>();
+                    final List<Authority> authorities = new ArrayList<>();
                     authorities.add(Authority.ROLE_USER);
 
-                    User newUser = User.builder()
+                    final User newUser = User.builder()
                             .username(usrname)
-                            .password(RandomStringUtils.randomAlphanumeric(6))
+                            .password(RandomHelper.randomAlphaNumeric())
                             .authorities(authorities)
                             .socialSignInProvider(SocialMediaService.valueOf(providerId.toUpperCase()))
                             .accountNonExpired(true)

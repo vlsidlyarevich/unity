@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @AllArgsConstructor
 public class DefaultSocialSignupService implements SocialSignupService {
 
-    private final static String SOCIAL_REGISTER_URL = "/#/social-register/";
+    private static final String SOCIAL_REGISTER_URL = "/#/social-register/";
 
     private final SocialUserService socialUserService;
 

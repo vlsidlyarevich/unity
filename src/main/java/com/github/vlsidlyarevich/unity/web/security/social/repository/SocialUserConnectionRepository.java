@@ -18,9 +18,11 @@ public interface SocialUserConnectionRepository extends MongoRepository<SocialUs
 
     List<SocialUserConnection> findAllByUserIdAndProviderIdOrderByRankAsc(String userId, String providerId);
 
-    List<SocialUserConnection> findAllByUserIdAndProviderIdAndProviderUserIdIn(String userId, String providerId, List<String> provideUserId);
+    List<SocialUserConnection> findAllByUserIdAndProviderIdAndProviderUserIdIn(String userId, String providerId,
+                                                                               List<String> provideUserId);
 
-    SocialUserConnection findOneByUserIdAndProviderIdAndProviderUserId(String userId, String providerId, String providerUserId);
+    SocialUserConnection findOneByUserIdAndProviderIdAndProviderUserId(String userId, String providerId,
+                                                                       String providerUserId);
 
     void deleteByUserIdAndProviderId(String userId, String providerId);
 

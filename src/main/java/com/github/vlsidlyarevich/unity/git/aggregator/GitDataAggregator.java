@@ -60,9 +60,9 @@ public class GitDataAggregator {
         );
     }
 
-    private List<GitRepositoryData> getRepositoryData(
-            final List<GitRepository> gitRepositories) {
-        return gitRepositories.stream()
+    private List<GitRepositoryData> getRepositoryData(final List<GitRepository> gitRepositories) {
+        return gitRepositories
+                .stream()
                 .map(gitRepositoryPopulator::populate)
                 .collect(Collectors.toList());
     }

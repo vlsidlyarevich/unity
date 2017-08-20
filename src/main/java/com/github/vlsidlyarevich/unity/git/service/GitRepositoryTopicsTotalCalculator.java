@@ -19,7 +19,8 @@ public class GitRepositoryTopicsTotalCalculator implements GitDataTotalCalculato
         List<GitRepositoryData> gitRepositoryDataList
                 = (List<GitRepositoryData>) gitResultCollection;
 
-        gitRepositoryDataList.stream()
+        gitRepositoryDataList
+                .stream()
                 .map(GitRepositoryData::getTopics)
                 .forEach(languagesList -> languagesList.forEach((topicName) -> {
                     topicsTotal.computeIfPresent(topicName, (key, value) -> value + 1);

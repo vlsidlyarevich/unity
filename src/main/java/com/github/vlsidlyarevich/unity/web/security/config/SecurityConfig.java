@@ -14,9 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.social.connect.ConnectionFactoryLocator;
-import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UsersConnectionRepository;
-import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInController;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.connect.web.SignInAdapter;
@@ -28,25 +26,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final TokenAuthenticationService tokenAuthenticationService;
 
-    private final ConnectionFactoryLocator connectionFactoryLocator;
-
-    private final UsersConnectionRepository usersConnectionRepository;
-
-//    private final ConnectionSignUp socialConnectionSignup;
-
-    private final UserDetailsService userDetailsService;
-
-    private final TokenService tokenService;
-
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/api/v1/auth").permitAll()
                 .antMatchers("/api/v1/signup").permitAll()
                 .antMatchers("/swagger-ui.html").permitAll()
-
-                .antMatchers("/login**", "/signin/**", "/signup/**", "/connect/**", "/social/signup").permitAll()
-
+                .antMatchers("/login**", "/signin/**",
+                        "/signup/**", "/connect/**", "/social/signup").permitAll()
                 .antMatchers("/webjars/springfox-swagger-ui/**").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/v2/api-docs").permitAll()
@@ -59,35 +46,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .csrf().disable();
-//                .headers()
-//                .frameOptions()
-//                .disable();
     }
-//
-//    @Bean
-//    public ProviderSignInController providerSignInController() {
-//        ((InMemoryUsersConnectionRepository) usersConnectionRepository)
-//                .setConnectionSignUp(socialConnectionSignup);
-//
-//        return new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository,
-//                new SocialSignInAdapter(userDetailsService, tokenService));
-//    }
-
 
     @Bean
-    public SignInAdapter signInAdapter(UserDetailsService userDetailsService, TokenService tokenService) {
+    public SignInAdapter signInAdapter(final UserDetailsService userDetailsService,
+                                       final TokenService tokenService) {
         return new SocialSignInAdapter(userDetailsService, tokenService);
     }
 
     @Bean
-    public ProviderSignInController providerSignInController(ConnectionFactoryLocator connectionFactoryLocator, UsersConnectionRepository usersConnectionRepository, SignInAdapter signInAdapter) {
-        ProviderSignInController providerSignInController = new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository, signInAdapter);
+    public ProviderSignInController providerSignInController(final ConnectionFactoryLocator connectionFactoryLocator,
+                                                             final UsersConnectionRepository usersConnectionRepository,
+                                                             final SignInAdapter signInAdapter) {
+        final ProviderSignInController providerSignInController = new ProviderSignInController(
+                connectionFactoryLocator, usersConnectionRepository, signInAdapter);
+
         providerSignInController.setSignUpUrl("/social/signup");
+
         return providerSignInController;
     }
 
     @Bean
-    public ProviderSignInUtils getProviderSignInUtils(ConnectionFactoryLocator connectionFactoryLocator, UsersConnectionRepository usersConnectionRepository) {
+    public ProviderSignInUtils getProviderSignInUtils(final ConnectionFactoryLocator connectionFactoryLocator,
+                                                      final UsersConnectionRepository usersConnectionRepository) {
         return new ProviderSignInUtils(connectionFactoryLocator, usersConnectionRepository);
     }
 }
