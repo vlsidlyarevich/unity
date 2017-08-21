@@ -5,7 +5,7 @@ import com.github.vlsidlyarevich.unity.domain.service.UserService;
 import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,14 +16,13 @@ import javax.validation.Valid;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping("/api/v1/signup")
+@RequestMapping(path = "/api/v1/signup", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SignUpController {
 
     private final UserService service;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity signUp(@Valid @RequestBody final UserDTO dto) {
-        return new ResponseEntity<>(service
-                .create(User.fromDTO(dto)), HttpStatus.OK);
+        return ResponseEntity.ok(service.create(User.fromDTO(dto)));
     }
 }

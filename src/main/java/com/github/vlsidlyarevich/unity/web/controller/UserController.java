@@ -6,6 +6,7 @@ import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ import javax.validation.Valid;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping("/api/v1/user")
+@RequestMapping(path = "/api/v1/user", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
     private final UserService service;

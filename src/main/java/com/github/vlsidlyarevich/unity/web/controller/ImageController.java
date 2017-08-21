@@ -23,7 +23,7 @@ public class ImageController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity getImage(@PathVariable final String id) {
         Resource resource = storageService.loadAsResource(id);
-        return new ResponseEntity<>(resource, HttpStatus.OK);
+        return ResponseEntity.ok(resource);
     }
 
     @RequestMapping(method = RequestMethod.POST)
