@@ -54,7 +54,8 @@ public class DefaultSocialUserService implements SocialUserService {
 
 
     private User createUserIfNotExist(final UserProfile userProfile, final String providerId) {
-        final String username = userProfile.getUsername();
+        final String username = Optional.ofNullable(userProfile.getUsername())
+                .orElse(userProfile.getEmail());
 
         return Optional.ofNullable(username)
                 .map(usrname -> {
@@ -68,7 +69,7 @@ public class DefaultSocialUserService implements SocialUserService {
                     authorities.add(Authority.ROLE_USER);
 
                     final User newUser = User.builder()
-                            .username(usrname)
+                            .username(username)
                             .password(RandomAssistant.randomAlphaNumeric())
                             .authorities(authorities)
                             .socialSignInProvider(SocialProvider.valueOf(providerId.toUpperCase()))

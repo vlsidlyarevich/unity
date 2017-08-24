@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
@@ -32,16 +33,20 @@ public class HttpRequestAuditor implements RequestAuditor {
 
     private void logUnauthenticatedRequest(final HttpServletRequest request,
                                            final Object handler) {
-//        Method requestedMethod = ((HandlerMethod) handler).getMethod();
-//
-//        auditor.logController("Unauthorized", requestedMethod.getName(),
-//                request.getRequestURI());
+        try {
+            final Method requestedMethod = ((HandlerMethod) handler).getMethod();
+
+            auditor.logController("Unauthorized", requestedMethod.getName(),
+                    request.getRequestURI());
+        } catch (ClassCastException ignored) {
+
+        }
     }
 
     private void logAuthenticatedRequest(final UserAuthentication authentication,
                                          final HttpServletRequest request, final Object handler) {
-        Method requestedMethod = ((HandlerMethod) handler).getMethod();
-        User user = (User) authentication.getDetails();
+        final Method requestedMethod = ((HandlerMethod) handler).getMethod();
+        final User user = (User) authentication.getDetails();
 
         auditor.logController(user.getUsername(), requestedMethod.getName(),
                 request.getRequestURI());

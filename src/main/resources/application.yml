@@ -12,6 +12,12 @@ spring:
     facebook:
       app-id: 110570572950923
       app-secret: 493a29907f64c3b9dba5abdc71adac41
+    linkedin:
+      app-id: 7866fl49abcya5
+      app-secret: fFEq66FckiZtJYT5
+  thymeleaf:
+    cache: false
+
 
 #logging:
 #  file: temp/logs/unity-log.log
