@@ -2,7 +2,7 @@ package com.github.vlsidlyarevich.unity.web.controller.api;
 
 import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.domain.service.UserService;
-import com.github.vlsidlyarevich.unity.web.dto.LoginDTO;
+import com.github.vlsidlyarevich.unity.web.dto.JwtAuthenticationRequest;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,22 +37,22 @@ public class AuthenticationControllerIT extends AbstractControllerIT {
 
     @Test
     public void authenticate_Unauthorized_IfBadCredentials() throws Exception {
-        LoginDTO dto = new LoginDTO("bad username", "bad password");
+        JwtAuthenticationRequest request = new JwtAuthenticationRequest("bad username", "bad password");
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/auth")
                 .accept(contentType)
-                .content(objectMapper.writeValueAsString(dto))
+                .content(objectMapper.writeValueAsString(request))
                 .contentType(contentType))
                 .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
     public void authenticate_Success_IfCorrectCredentials() throws Exception {
-        LoginDTO dto = new LoginDTO(user.getUsername(), user.getPassword());
+        JwtAuthenticationRequest request = new JwtAuthenticationRequest(user.getUsername(), user.getPassword());
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/auth")
                 .accept(contentType)
-                .content(objectMapper.writeValueAsString(dto))
+                .content(objectMapper.writeValueAsString(request))
                 .contentType(contentType))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.token", notNullValue(String.class)));

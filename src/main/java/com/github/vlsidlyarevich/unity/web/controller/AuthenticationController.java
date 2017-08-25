@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-import com.github.vlsidlyarevich.unity.web.dto.LoginDTO;
-import com.github.vlsidlyarevich.unity.web.dto.TokenDTO;
+import com.github.vlsidlyarevich.unity.web.dto.JwtAuthenticationRequest;
+import com.github.vlsidlyarevich.unity.web.dto.JwtAuthenticationResponse;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,11 @@ public class AuthenticationController {
     private final TokenService tokenService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity authenticate(@Valid @RequestBody final LoginDTO dto) {
-        return ResponseEntity.ok(new TokenDTO(tokenService.getToken(dto.getUsername(),
-                dto.getPassword())));
+    public ResponseEntity authenticate(@Valid @RequestBody final JwtAuthenticationRequest request) {
+        final String token = tokenService.getToken(request.getUsername(), request.getPassword());
+
+        final JwtAuthenticationResponse response = new JwtAuthenticationResponse(token);
+
+        return ResponseEntity.ok(response);
     }
 }

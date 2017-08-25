@@ -33,7 +33,7 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
     private final UserDetailsService userDetailsService;
 
     @Override
-    public Optional<Authentication> authenticate(final HttpServletRequest request) {
+    public Authentication authenticate(final HttpServletRequest request) {
         final String token = request.getHeader(SecurityConstants.AUTH_HEADER_NAME);
         final Optional<Jws<Claims>> tokenData = parseToken(token);
 
@@ -42,14 +42,14 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
                 final Optional<User> user = getUserFromToken(tokenData.get());
 
                 if (user.isPresent()) {
-                    return Optional.of(new UserAuthentication(user.get()));
+                    return new UserAuthentication(user.get());
                 }
             } catch (UserNotFoundException e) {
                 log.warn(e.getMessage());
             }
         }
 
-        return Optional.empty();
+        return null;
     }
 
     private Optional<Jws<Claims>> parseToken(final String token) {

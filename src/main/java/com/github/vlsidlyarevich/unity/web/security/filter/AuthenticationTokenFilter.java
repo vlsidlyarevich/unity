@@ -24,8 +24,8 @@ public class AuthenticationTokenFilter extends GenericFilterBean {
                          final FilterChain filterChain) throws IOException, ServletException {
         final HttpServletRequest httpRequest = (HttpServletRequest) request;
 
-        final Optional<Authentication> authentication = authenticationService.authenticate(httpRequest);
-        SecurityContextHolder.getContext().setAuthentication(authentication.orElse(null));
+        final Authentication authentication = authenticationService.authenticate(httpRequest);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         filterChain.doFilter(request, response);
         SecurityContextHolder.getContext().setAuthentication(null);

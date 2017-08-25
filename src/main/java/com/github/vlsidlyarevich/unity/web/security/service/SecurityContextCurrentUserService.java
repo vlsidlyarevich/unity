@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SecurityContextCurrentUserService implements CurrentUserService {
@@ -16,9 +18,10 @@ public class SecurityContextCurrentUserService implements CurrentUserService {
 
     @Override
     public boolean canAccessUserOrAdmin(final String userId) {
-        UserAuthentication currentUser
+        final UserAuthentication currentUser
                 = (UserAuthentication) authenticationFacade.getAuthentication();
-        return currentUser != null
+
+        return Objects.nonNull(currentUser)
                 && (currentUser.getAuthorities().contains(Authority.ROLE_ADMIN)
                 || ((User) currentUser.getDetails()).getId().equals(userId));
     }
