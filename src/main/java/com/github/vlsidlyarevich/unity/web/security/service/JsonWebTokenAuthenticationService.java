@@ -4,27 +4,22 @@ import com.github.vlsidlyarevich.unity.domain.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
 import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureException;
-import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class JsonWebTokenAuthenticationService implements TokenAuthenticationService {
 
     @Value("security.token.secret.key")
@@ -39,11 +34,9 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
 
         if (tokenData.isPresent()) {
             try {
-                final Optional<User> user = getUserFromToken(tokenData.get());
+                final User user = getUserFromToken(tokenData.get());
 
-                if (user.isPresent()) {
-                    return new UserAuthentication(user.get());
-                }
+                return new UserAuthentication(user);
             } catch (UserNotFoundException e) {
                 log.warn(e.getMessage());
             }
@@ -55,10 +48,9 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
     private Optional<Jws<Claims>> parseToken(final String token) {
         Optional<Jws<Claims>> result = Optional.empty();
 
-        if (token != null) {
+        if (Objects.nonNull(token)) {
             try {
-                result = Optional.ofNullable(Jwts.parser()
-                        .setSigningKey(secretKey).parseClaimsJws(token));
+                result = Optional.ofNullable(Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token));
             } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException
                     | SignatureException | IllegalArgumentException e) {
                 log.warn(e.getMessage());
@@ -68,15 +60,10 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
         return result;
     }
 
-    private Optional<User> getUserFromToken(final Jws<Claims> tokenData) {
-        try {
-            return Optional.ofNullable((User) userDetailsService
-                    .loadUserByUsername(tokenData.getBody()
-                            .get("username").toString()));
+    private User getUserFromToken(final Jws<Claims> tokenData) {
+        final String username = tokenData.getBody().get("username").toString();
 
-        } catch (UsernameNotFoundException e) {
-            throw new UserNotFoundException(String.format("User %s not found", tokenData.getBody()
-                    .get("username").toString()));
-        }
+        return Optional.ofNullable((User) userDetailsService.loadUserByUsername(username))
+                .orElseThrow(() -> new UserNotFoundException(String.format("User %s not found", username)));
     }
 }

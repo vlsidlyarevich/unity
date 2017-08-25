@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/social")
-public class SocialController {
+public class SocialSignUpController {
 
     private final SocialSignupService signupService;
 
