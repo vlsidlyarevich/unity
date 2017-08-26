@@ -2,7 +2,7 @@ package com.github.vlsidlyarevich.unity.web.controller.api;
 
 import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.domain.repository.UserRepository;
-import com.github.vlsidlyarevich.unity.web.dto.LoginDTO;
+import com.github.vlsidlyarevich.unity.web.dto.JwtAuthenticationRequest;
 import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
 import org.junit.Before;
@@ -69,11 +69,11 @@ public class SignupControllerIT extends AbstractControllerIT {
 
     @Test
     public void authenticate_Success_IfCorrectUsernameAndPassword() throws Exception {
-        LoginDTO dto = new LoginDTO("username", "pasS$123");
+        JwtAuthenticationRequest request = new JwtAuthenticationRequest("username", "pasS$123");
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/signup")
                 .accept(contentType)
-                .content(objectMapper.writeValueAsString(dto))
+                .content(objectMapper.writeValueAsString(request))
                 .contentType(contentType))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }

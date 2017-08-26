@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public final class LoginDTO implements Serializable {
+public final class JwtAuthenticationRequest implements Serializable {
     private static final long serialVersionUID = -3269151399045119448L;
 
     @NotEmpty(message = "Username should not be empty")

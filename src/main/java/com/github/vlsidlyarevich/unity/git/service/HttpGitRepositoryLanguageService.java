@@ -3,6 +3,7 @@ package com.github.vlsidlyarevich.unity.git.service;
 import com.github.vlsidlyarevich.unity.git.factory.RestTemplateFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class HttpGitRepositoryLanguageService implements GitRepositoryLanguageService {
 
     private RestTemplate restTemplate;

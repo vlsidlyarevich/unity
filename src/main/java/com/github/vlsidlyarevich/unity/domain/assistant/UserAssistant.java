@@ -17,7 +17,7 @@ public class UserAssistant {
     }
 
     public void checkForUserExistance(final String id) {
-        if (!userExists(id)) {
+        if (userNotExists(id)) {
             throw new UserNotFoundException(String
                     .format("User with user id: %s not found", id));
         }
@@ -36,7 +36,7 @@ public class UserAssistant {
                 .anyMatch(user -> Objects.equals(user.getUsername(), username));
     }
 
-    public boolean userExists(final String id) {
-        return Objects.nonNull(repository.findOne(id));
+    public boolean userNotExists(final String id) {
+        return Objects.isNull(repository.findOne(id));
     }
 }
