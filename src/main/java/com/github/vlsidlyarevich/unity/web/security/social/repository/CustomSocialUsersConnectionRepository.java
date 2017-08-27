@@ -4,6 +4,7 @@ import com.github.vlsidlyarevich.unity.domain.model.SocialUserConnection;
 import com.github.vlsidlyarevich.unity.domain.repository.SocialUserConnectionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.ConnectionKey;
@@ -16,6 +17,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Primary
 @Repository
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class CustomSocialUsersConnectionRepository implements UsersConnectionRepository {

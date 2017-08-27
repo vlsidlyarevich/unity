@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Document(collection = "usersSocial")
+@Document(collection = "users_social")
 public class UserSocial extends DbModel implements Serializable {
 
     private static final long serialVersionUID = 3134293756973082637L;

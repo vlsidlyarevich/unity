@@ -69,7 +69,7 @@ public class DefaultSocialUserService implements SocialUserService {
                     authorities.add(Authority.ROLE_USER);
 
                     final User newUser = User.builder()
-                            .username(username)
+                            .username(usrname)
                             .password(RandomAssistant.randomAlphaNumeric())
                             .authorities(authorities)
                             .socialSignInProvider(SocialProvider.valueOf(providerId.toUpperCase()))

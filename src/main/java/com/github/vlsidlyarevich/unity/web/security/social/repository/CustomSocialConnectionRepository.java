@@ -190,7 +190,7 @@ public class CustomSocialConnectionRepository implements ConnectionRepository {
         final ConnectionData connectionData = connection.createData();
 
         return SocialUserConnection.builder()
-                .id(userId)
+                .userId(userId)
                 .providerId(connection.getKey().getProviderId())
                 .providerUserId(connection.getKey().getProviderUserId())
                 .rank(rank)

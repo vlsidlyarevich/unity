@@ -11,7 +11,7 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Document(collection = "usersAnalytics")
+@Document(collection = "users_analytics")
 public class UserAnalytics extends DbModel implements Serializable {
 
     private static final long serialVersionUID = 1632724154325649381L;
