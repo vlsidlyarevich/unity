@@ -1,9 +1,9 @@
-package com.github.vlsidlyarevich.unity.git.service;
+package com.github.vlsidlyarevich.unity.linkedin.service;
 
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
+import com.github.vlsidlyarevich.unity.domain.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.domain.model.UserAnalytics;
-import com.github.vlsidlyarevich.unity.domain.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.domain.service.UserAnalyticsService;
 import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
 import lombok.AllArgsConstructor;
@@ -16,26 +16,27 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class DefaultGitProfileAnalyticsService implements GitProfileAnalyticsService {
-
-    private final GitAnalyzeService gitAnalyzeService;
+public class DefaultLinkedInAnalyticsService implements LinkedInAnalyticsService {
 
     private final UserAnalyticsService userAnalyticsService;
 
     private final AuthenticationFacade authenticationFacade;
 
+    private final LinkedInAnalyzeService linkedInAnalyzeService;
+
     @Override
-    public UserAnalytics getGitProfileAnalytics(final String username) {
-        final Optional<AnalysisReport> report = gitAnalyzeService.analyze(username);
+    public UserAnalytics getLinkedInProfileAnalytics(final String userUrl) {
+        final Optional<AnalysisReport> report = linkedInAnalyzeService.analyze(userUrl);
 
         if (report.isPresent()) {
             return createAndSaveUserAnalytics(report.get());
         } else {
             throw new ResourceNotFoundException(String
-                    .format("Git profile data with login:%s not found", username));
+                    .format("LinkedIn profile with url:%s not found", userUrl));
         }
     }
 
+    //FIXME duplicated in DefaultGitProfileAnalyticsService
     private UserAnalytics createAndSaveUserAnalytics(final AnalysisReport report) {
         final List<AnalysisReport> reports = new ArrayList<>();
         reports.add(report);

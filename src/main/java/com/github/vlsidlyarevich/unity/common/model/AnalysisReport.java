@@ -31,6 +31,8 @@ public class AnalysisReport implements Serializable {
     private void setAnalyzedResource(final AnalysisResult analyzedResource) {
         if (analyzedResource instanceof GitResult) {
             this.resource = AnalyzedResource.GITHUB;
+        } else if (analyzedResource instanceof LinkedInResult) {
+            this.resource = AnalyzedResource.LINKEDIN;
         } else {
             this.resource = AnalyzedResource.UNKNOWN;
         }

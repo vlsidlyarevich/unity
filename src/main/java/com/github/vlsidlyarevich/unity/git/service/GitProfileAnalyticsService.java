@@ -4,5 +4,5 @@ import com.github.vlsidlyarevich.unity.domain.model.UserAnalytics;
 
 public interface GitProfileAnalyticsService {
 
-    UserAnalytics getGitProfileAnalytics(String gitLogin);
+    UserAnalytics getGitProfileAnalytics(String username);
 }

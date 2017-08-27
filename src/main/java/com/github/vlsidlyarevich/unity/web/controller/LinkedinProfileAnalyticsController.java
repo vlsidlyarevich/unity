@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-import com.github.vlsidlyarevich.unity.git.service.GitProfileAnalyticsService;
+import com.github.vlsidlyarevich.unity.linkedin.service.LinkedInAnalyticsService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping(path = "/api/v1/git/profile", produces = MediaType.APPLICATION_JSON_VALUE)
-public class GitProfileAnalyticsController {
+@RequestMapping(path = "/api/v1/linkedin/profile", produces = MediaType.APPLICATION_JSON_VALUE)
+public class LinkedinProfileAnalyticsController {
 
-    private final GitProfileAnalyticsService service;
+    private final LinkedInAnalyticsService service;
 
-    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
-    public ResponseEntity getGitData(@PathVariable final String username) {
-        return ResponseEntity.ok(service.getGitProfileAnalytics(username));
+    @RequestMapping(value = "/{userUrl}", method = RequestMethod.GET)
+    public ResponseEntity getLinkedInDataByUserUrl(@PathVariable final String userUrl) {
+        return ResponseEntity.ok(service.getLinkedInProfileAnalytics(userUrl));
     }
 }

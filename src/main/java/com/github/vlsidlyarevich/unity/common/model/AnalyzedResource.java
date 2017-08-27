@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum AnalyzedResource {
     GITHUB("github"),
-    FACEBOOK("facebook"),
+    LINKEDIN("linkedin"),
     TWITTER("twitter"),
     UNKNOWN("unknown");
 

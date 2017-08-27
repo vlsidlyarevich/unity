@@ -15,16 +15,16 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class DefaultGitAnalyzeReportService implements GitAnalyzeService {
+public class DefaultGitAnalyzeService implements GitAnalyzeService {
 
-    private final GitProfileDataService gitProfileDataService;
+    private final GitProfileDataService profileDataService;
 
     @Override
     public Optional<AnalysisReport> analyze(final String gitLogin) {
         final LocalDateTime startDate = LocalDateTime.now();
 
         final Optional<GitProfileData> gitProfileData
-                = gitProfileDataService.getGitProfileData(gitLogin);
+                = profileDataService.getGitProfileData(gitLogin);
 
         final LocalDateTime endDate = LocalDateTime.now();
         Optional<AnalysisReport> report = Optional.empty();
