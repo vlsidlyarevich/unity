@@ -20,6 +20,7 @@
         <project-lib.version>0.0.1-SNAPSHOT</project-lib.version>
         <commons-collections4.version>4.1</commons-collections4.version>
         <lombok.version>1.16.18</lombok.version>
+        <dozer.version>5.5.1</dozer.version>
         <commons-lang3.version>3.6</commons-lang3.version>
         <guava.version>22.0</guava.version>
         <jjwt.version>0.7.0</jjwt.version>
@@ -181,6 +182,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+            <version>${dozer.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
