@@ -1,9 +1,11 @@
 package com.github.vlsidlyarevich.unity.git.populator;
 
+import com.github.vlsidlyarevich.unity.git.model.GitRepoOwnerData;
 import com.github.vlsidlyarevich.unity.git.model.GitRepository;
 import com.github.vlsidlyarevich.unity.git.model.GitRepositoryData;
 import com.github.vlsidlyarevich.unity.git.service.GitRepositoryLanguageService;
 import lombok.AllArgsConstructor;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,9 +15,8 @@ import java.util.HashMap;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultGitRepositoryPopulator implements GitRepositoryPopulator {
 
+    private final DozerBeanMapper mapper;
     private final GitRepositoryLanguageService gitRepositoryLanguageService;
-
-    private final GitRepoOwnerPopulator gitRepoOwnerPopulator;
 
     public GitRepositoryData populate(final GitRepository gitRepository) {
         GitRepositoryData result = new GitRepositoryData();
@@ -24,7 +25,7 @@ public class DefaultGitRepositoryPopulator implements GitRepositoryPopulator {
         result.setName(gitRepository.getName());
         result.setFullName(gitRepository.getFullName());
 
-        result.setOwner(gitRepoOwnerPopulator.populate(gitRepository.getOwner()));
+        result.setOwner(mapper.map(gitRepository.getOwner(), GitRepoOwnerData.class));
 
         result.setIsPrivate(gitRepository.getIsPrivate());
         result.setHtmlUrl(gitRepository.getHtmlUrl());

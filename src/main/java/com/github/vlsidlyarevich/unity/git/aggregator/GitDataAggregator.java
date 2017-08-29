@@ -59,7 +59,7 @@ public class GitDataAggregator {
     private List<GitRepositoryData> getRepositoryData(final List<GitRepository> gitRepositories) {
         return gitRepositories
                 .stream()
-                .map(gitRepositoryPopulator::populate)
+                .map(gitRepository -> mapper.map(gitRepository, GitRepositoryData.class))
                 .collect(Collectors.toList());
     }
 
