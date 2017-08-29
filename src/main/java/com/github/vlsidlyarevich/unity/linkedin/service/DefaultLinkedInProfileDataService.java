@@ -1,8 +1,8 @@
 package com.github.vlsidlyarevich.unity.linkedin.service;
 
 import com.github.vlsidlyarevich.unity.linkedin.model.LinkedInProfileData;
-import com.github.vlsidlyarevich.unity.linkedin.populator.LinkedInProfilePopulator;
 import lombok.AllArgsConstructor;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.linkedin.api.LinkedIn;
 import org.springframework.social.linkedin.api.LinkedInProfileFull;
@@ -14,10 +14,8 @@ import java.util.Optional;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultLinkedInProfileDataService implements LinkedInProfileDataService {
 
-    //FIXME get from social connections (if user has connected linkedin profile, take it from there)
+    private final DozerBeanMapper mapper;
     private final LinkedIn linkedIn;
-
-    private LinkedInProfilePopulator profilePopulator;
 
     @Override
     public Optional<LinkedInProfileData> getLinkedInProfileData(final String userUrl) {
@@ -26,7 +24,7 @@ public class DefaultLinkedInProfileDataService implements LinkedInProfileDataSer
                     final LinkedInProfileFull fullProfile
                             = linkedIn.profileOperations().getProfileFullByPublicUrl(userUrl);
 
-                    return Optional.of(profilePopulator.populate(fullProfile));
+                    return Optional.of(mapper.map(fullProfile, LinkedInProfileData.class));
                 }).orElseThrow(() -> new IllegalArgumentException("LinkedIn public user url should not be empty"));
     }
 }

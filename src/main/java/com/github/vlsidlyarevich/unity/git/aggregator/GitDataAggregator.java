@@ -4,12 +4,12 @@ import com.github.vlsidlyarevich.unity.git.model.GitProfile;
 import com.github.vlsidlyarevich.unity.git.model.GitProfileData;
 import com.github.vlsidlyarevich.unity.git.model.GitRepository;
 import com.github.vlsidlyarevich.unity.git.model.GitRepositoryData;
-import com.github.vlsidlyarevich.unity.git.populator.GitProfilePopulator;
 import com.github.vlsidlyarevich.unity.git.populator.GitRepositoryPopulator;
 import com.github.vlsidlyarevich.unity.git.service.GitDataTotalCalculator;
 import com.github.vlsidlyarevich.unity.git.service.GitProfileService;
 import com.github.vlsidlyarevich.unity.git.service.GitRepositoryService;
 import lombok.AllArgsConstructor;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,16 +21,11 @@ import java.util.stream.Collectors;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class GitDataAggregator {
 
-    private final GitProfilePopulator gitProfilePopulator;
-
+    private final DozerBeanMapper mapper;
     private final GitRepositoryPopulator gitRepositoryPopulator;
-
     private final GitProfileService gitProfileService;
-
     private final GitRepositoryService gitRepositoryService;
-
     private final GitDataTotalCalculator gitRepositoryLanguagesTotalCalculator;
-
     private final GitDataTotalCalculator gitRepositoryTopicsTotalCalculator;
 
     public Optional<GitProfileData> getGitProfileData(final String gitLogin) {
@@ -40,7 +35,7 @@ public class GitDataAggregator {
 
     private Optional<GitProfileData> aggregateData(final GitProfile gitProfile) {
         final Optional<GitProfileData> result
-                = Optional.of(gitProfilePopulator.populate(gitProfile));
+                = Optional.of(mapper.map(gitProfile, GitProfileData.class));
 
         result.ifPresent(gitProfileData -> {
             appendGitRepos(gitProfileData);

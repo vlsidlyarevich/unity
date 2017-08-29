@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.web.controller.api;
+package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.domain.repository.UserRepository;
