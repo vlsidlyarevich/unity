@@ -4,7 +4,6 @@ import com.github.vlsidlyarevich.unity.git.model.GitProfile;
 import com.github.vlsidlyarevich.unity.git.model.GitProfileData;
 import com.github.vlsidlyarevich.unity.git.model.GitRepository;
 import com.github.vlsidlyarevich.unity.git.model.GitRepositoryData;
-import com.github.vlsidlyarevich.unity.git.populator.GitRepositoryPopulator;
 import com.github.vlsidlyarevich.unity.git.service.GitDataTotalCalculator;
 import com.github.vlsidlyarevich.unity.git.service.GitProfileService;
 import com.github.vlsidlyarevich.unity.git.service.GitRepositoryService;
@@ -22,7 +21,6 @@ import java.util.stream.Collectors;
 public class GitDataAggregator {
 
     private final DozerBeanMapper mapper;
-    private final GitRepositoryPopulator gitRepositoryPopulator;
     private final GitProfileService gitProfileService;
     private final GitRepositoryService gitRepositoryService;
     private final GitDataTotalCalculator gitRepositoryLanguagesTotalCalculator;

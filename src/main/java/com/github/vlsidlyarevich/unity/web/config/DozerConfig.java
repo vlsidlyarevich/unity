@@ -21,6 +21,7 @@ import java.util.Map;
 public class DozerConfig {
 
     private static final String PACKAGE_TO_SCAN = "com.github.vlsidlyarevich.unity.mapping";
+
     private final List<CustomConverter> customConverters;
 
     @Bean
