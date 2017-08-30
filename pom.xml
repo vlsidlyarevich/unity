@@ -22,19 +22,19 @@
         <lombok.version>1.16.18</lombok.version>
         <dozer.version>5.5.1</dozer.version>
         <commons-lang3.version>3.6</commons-lang3.version>
-        <guava.version>22.0</guava.version>
+        <guava.version>23.0</guava.version>
         <jjwt.version>0.7.0</jjwt.version>
         <jackson.version>2.9.0</jackson.version>
         <swagger.version>2.7.0</swagger.version>
         <spring-social-google.version>1.0.0.RELEASE</spring-social-google.version>
 
-        <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
         <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <frontend-maven-plugin.version>1.3</frontend-maven-plugin.version>
         <maven-pmd-plugin.version>3.8</maven-pmd-plugin.version>
         <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
-        <findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
+        <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

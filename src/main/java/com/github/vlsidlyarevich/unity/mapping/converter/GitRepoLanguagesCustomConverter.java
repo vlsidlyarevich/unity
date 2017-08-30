@@ -15,7 +15,8 @@ public class GitRepoLanguagesCustomConverter implements CustomConverter {
     private final GitRepositoryLanguageService gitRepositoryLanguageService;
 
     @Override
-    public Object convert(Object languagesMap, Object languagesUrl, Class<?> aClass, Class<?> aClass1) {
+    public Object convert(final Object languagesMap, final Object languagesUrl,
+                          final Class<?> aClass, final Class<?> aClass1) {
         return gitRepositoryLanguageService
                 .getGitRepoLanguages((String) languagesUrl)
                 .orElse(new HashMap<>());
