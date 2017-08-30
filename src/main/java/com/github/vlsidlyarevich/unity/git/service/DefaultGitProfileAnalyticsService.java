@@ -19,9 +19,7 @@ import java.util.Optional;
 public class DefaultGitProfileAnalyticsService implements GitProfileAnalyticsService {
 
     private final GitAnalyzeService gitAnalyzeService;
-
     private final UserAnalyticsService userAnalyticsService;
-
     private final AuthenticationFacade authenticationFacade;
 
     @Override

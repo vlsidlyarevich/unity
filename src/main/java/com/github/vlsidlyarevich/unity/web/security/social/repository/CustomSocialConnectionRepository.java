@@ -28,7 +28,6 @@ public class CustomSocialConnectionRepository implements ConnectionRepository {
     private final String userId;
 
     private final SocialUserConnectionRepository socialUserConnectionRepository;
-
     private final ConnectionFactoryLocator connectionFactoryLocator;
 
     @Override

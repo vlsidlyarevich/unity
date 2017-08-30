@@ -23,7 +23,6 @@ import java.util.Optional;
 public class DefaultSocialUserService implements SocialUserService {
 
     private final UsersConnectionRepository usersConnectionRepository;
-
     private final UserRepository userRepository;
 
     @Override

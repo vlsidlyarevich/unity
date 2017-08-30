@@ -19,9 +19,7 @@ import java.util.Optional;
 public class DefaultLinkedInAnalyticsService implements LinkedInAnalyticsService {
 
     private final UserAnalyticsService userAnalyticsService;
-
     private final AuthenticationFacade authenticationFacade;
-
     private final LinkedInAnalyzeService linkedInAnalyzeService;
 
     @Override

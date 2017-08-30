@@ -17,7 +17,6 @@ import java.util.Optional;
 public class DefaultUserSocialService implements UserSocialService {
 
     private final UserSocialRepository repository;
-
     private final UserAssistant userHelper;
 
     @Override

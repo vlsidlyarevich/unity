@@ -17,7 +17,6 @@ public class DefaultSocialSignupService implements SocialSignupService {
     private static final String SOCIAL_REGISTER_URL = "/#/social-register/";
 
     private final SocialUserService socialUserService;
-
     private final ProviderSignInUtils providerSignInUtils;
 
     @Override

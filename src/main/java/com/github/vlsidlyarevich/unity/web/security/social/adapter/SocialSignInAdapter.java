@@ -22,7 +22,6 @@ public class SocialSignInAdapter implements SignInAdapter {
     private static final Integer COOKIE_MAX_AGE = 10;
 
     private final UserDetailsService userDetailsService;
-
     private final TokenService tokenService;
 
     @Override

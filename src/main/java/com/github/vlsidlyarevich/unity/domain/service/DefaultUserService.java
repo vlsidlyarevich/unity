@@ -18,11 +18,8 @@ import java.util.Optional;
 public class DefaultUserService implements UserService {
 
     private final UserRepository repository;
-
     private final UserSocialService userSocialService;
-
     private final UserAnalyticsService userAnalyticsService;
-
     private final UserAssistant userHelper;
 
     @Override

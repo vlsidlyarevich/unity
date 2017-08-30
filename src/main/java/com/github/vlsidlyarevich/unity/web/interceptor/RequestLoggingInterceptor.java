@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 public class RequestLoggingInterceptor extends HandlerInterceptorAdapter {
 
     private final AuthenticationFacade authenticationFacade;
-
     private final HttpRequestAuditor audit;
 
     @Override

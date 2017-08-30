@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 public class CustomSocialUsersConnectionRepository implements UsersConnectionRepository {
 
     private SocialUserConnectionRepository socialUserConnectionRepository;
-
     private ConnectionFactoryLocator connectionFactoryLocator;
 
     @Override
