@@ -2,6 +2,7 @@ package com.github.vlsidlyarevich.unity.mapping;
 
 import com.github.vlsidlyarevich.unity.git.model.GitRepository;
 import com.github.vlsidlyarevich.unity.git.model.GitRepositoryData;
+import com.github.vlsidlyarevich.unity.mapping.converter.GitRepoLanguagesCustomConverter;
 import org.dozer.loader.api.BeanMappingBuilder;
 import org.dozer.loader.api.FieldsMappingOptions;
 
@@ -13,6 +14,6 @@ public class Git2GitData extends BeanMappingBuilder {
     protected void configure() {
         mapping(GitRepository.class, GitRepositoryData.class, oneWay())
                 .fields("languagesUrl", "languages", FieldsMappingOptions
-                        .customConverterId("gitRepoLanguagesCustomConverter"));
+                        .customConverterId(GitRepoLanguagesCustomConverter.class.getSimpleName()));
     }
 }
