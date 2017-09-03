@@ -1,6 +1,7 @@
 package com.github.vlsidlyarevich.unity;
 
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
+import com.github.vlsidlyarevich.unity.domain.model.SocialUserConnection;
 import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.domain.model.UserAnalytics;
 import com.github.vlsidlyarevich.unity.domain.model.UserSocial;
@@ -64,5 +65,13 @@ public final class TestUtils {
                 TestRandomUtils.getRandomString(8),
                 TestRandomUtils.getRandomString(8),
                 TestRandomUtils.getRandomString(8));
+    }
+
+    public static SocialUserConnection createSocialConnection() {
+        return SocialUserConnection.builder()
+                .userId(TestRandomUtils.getRandomString(8))
+                .providerUserId(TestRandomUtils.getRandomString(8))
+                .providerId(TestRandomUtils.getRandomString(8))
+                .build();
     }
 }
