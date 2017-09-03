@@ -2,23 +2,26 @@
 [![Build Status](https://travis-ci.org/vlsidlyarevich/unity.svg?branch=master)](https://travis-ci.org/vlsidlyarevich/unity)
 [![Dependency Status](https://www.versioneye.com/user/projects/58028731a23d5200345545db/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58028731a23d5200345545db)
 [![Coverage Status](https://coveralls.io/repos/github/vlsidlyarevich/unity/badge.svg?branch=master)](https://coveralls.io/github/vlsidlyarevich/unity?branch=master)
-### Angular 2 and Java 8 based Human resourse analysing tool
+### Angular 4 and Java based Human resourse analysing tool
 
-Also have a look at [Assistant programmer](https://github.com/Karina-Denisevich/Assistant-Programmer) for more Git-based workflow and [woodstock](https://github.com/solairerove/woodstock) lms.
 ---
 ##### Features:
 * Git data analysis
+* LinkedIn profiles analysis
+* Twitter profile analysis
 * Analysing results caching
 * Json Web Token based Security
+* Social Registration and login (Twitter, Facebook)
 
 ---
 ##### Technologies:
-* [Project Lombok](https://projectlombok.org/)
-* [Angular 2](https://angular.io/)
 * [Spring Boot](http://projects.spring.io/spring-boot/)
-* [Angular-cli](https://cli.angular.io/)
+* [Project Lombok](https://projectlombok.org/)
 * [MongoDB](https://www.mongodb.com/)
 * [Docker](https://www.docker.com/)
+* [Angular 4](https://angular.io/)
+* [Angular-cli](https://cli.angular.io/)
+* [Bootstrap 4](https://v4-alpha.getbootstrap.com/)
 
 ---
 [Takari maven wrapper](https://github.com/takari/maven-wrapper) is used.
@@ -32,7 +35,7 @@ Type following commands in additional/docker/mongo folder.
 * `docker build -t mongo .`
 * `docker run -p 27017:27017 --name mongodb -d mongo`
 
- 
+
 ### Running the backend
 * `mvn clean install`
 * `java -jar target/*.jar`
