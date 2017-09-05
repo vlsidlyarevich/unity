@@ -15,27 +15,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/api/v1/user/{userId}/analytics", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserAnalyticsController {
 
-    private final UserAnalyticsService service;
+    private final UserAnalyticsService analyticsService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getAnalyticsByUserId(@PathVariable final String userId) {
-        return ResponseEntity.ok(service.findByUserId(userId));
+        return ResponseEntity.ok(analyticsService.findByUserId(userId));
     }
 
     @RequestMapping(value = "/{reportId}", method = RequestMethod.GET)
     public ResponseEntity getAnalyticsReportById(@PathVariable final String userId,
                                                  @PathVariable final String reportId) {
-        return ResponseEntity.ok(service.findReportById(userId, reportId));
+        return ResponseEntity.ok(analyticsService.findReportById(userId, reportId));
     }
 
     @RequestMapping(value = "/{reportId}", method = RequestMethod.DELETE)
     public ResponseEntity deleteAnalyticsReportById(@PathVariable final String userId,
                                                     @PathVariable final String reportId) {
-        return ResponseEntity.ok(service.deleteReport(userId, reportId));
+        return ResponseEntity.ok(analyticsService.deleteReport(userId, reportId));
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.DELETE)
     public ResponseEntity deleteAllAnalyticsReports(@PathVariable final String userId) {
-        return ResponseEntity.ok(service.deleteAllReports(userId));
+        return ResponseEntity.ok(analyticsService.deleteAllReports(userId));
     }
 }

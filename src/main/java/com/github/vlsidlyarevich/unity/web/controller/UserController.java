@@ -30,7 +30,7 @@ public class UserController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity getUserById(@PathVariable final String id) {
-        return new ResponseEntity<>(service.find(id), HttpStatus.OK);
+        return ResponseEntity.ok(service.find(id));
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -42,12 +42,11 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity updateUserById(@PathVariable final String id,
                                          @Valid @RequestBody final UserDTO dto) {
-        return new ResponseEntity<>(service
-                .update(id, User.fromDTO(dto)), HttpStatus.OK);
+        return ResponseEntity.ok(service.update(id, User.fromDTO(dto)));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteUserById(@PathVariable final String id) {
-        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
+        return ResponseEntity.ok(service.delete(id));
     }
 }

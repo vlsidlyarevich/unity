@@ -30,11 +30,10 @@ git:
   accessToken: ${GIT_ACCESS_TOKEN}
 
 twitter:
-  oauth:
-    consumerKey: ${TWITTER_CONSUMER_KEY}
-    consumerSecret: ${TWITTER_CONSUMER_SECRET}
-    accessToken: ${TWITTER_ACCESS_TOKEN}
-    accessTokenSecret: ${TWITTER_ACCESS_TOKEN_SECRET}
+  consumerKey: ${TWITTER_CONSUMER_KEY}
+  consumerSecret: ${TWITTER_CONSUMER_SECRET}
+  accessToken: ${TWITTER_ACCESS_TOKEN}
+  accessTokenSecret: ${TWITTER_ACCESS_TOKEN_SECRET}
 
 security:
   token:

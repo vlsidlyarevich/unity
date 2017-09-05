@@ -33,6 +33,6 @@ public class ImageController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteImage(@PathVariable final String id) {
-        return new ResponseEntity<>(storageService.delete(id), HttpStatus.OK);
+        return ResponseEntity.ok(storageService.delete(id));
     }
 }

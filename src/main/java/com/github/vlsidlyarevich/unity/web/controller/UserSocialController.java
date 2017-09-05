@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/api/v1/user/{id}/social", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserSocialController {
 
-    private final UserSocialService service;
+    private final UserSocialService socialService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getUserSocialData(@PathVariable final String id) {
-        final UserSocial userSocial = service.findByUserId(id);
+        final UserSocial userSocial = socialService.findByUserId(id);
 
         return ResponseEntity.ok(UserSocialDTO.fromDomain(userSocial));
     }
@@ -31,12 +31,12 @@ public class UserSocialController {
     public ResponseEntity updateUserSocialData(@PathVariable final String id,
                                                @RequestBody final UserSocialDTO dto) {
         return ResponseEntity.ok(UserSocialDTO
-                .fromDomain(service.update(id, UserSocial.fromDTO(dto))));
+                .fromDomain(socialService.update(id, UserSocial.fromDTO(dto))));
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
     public ResponseEntity deleteUserSocialDataByUserId(@PathVariable final String id) {
-        return ResponseEntity.ok(service.deleteByUserId(id));
+        return ResponseEntity.ok(socialService.deleteByUserId(id));
     }
 }
 

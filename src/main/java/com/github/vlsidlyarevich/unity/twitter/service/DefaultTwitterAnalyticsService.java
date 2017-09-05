@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.linkedin.service;
+package com.github.vlsidlyarevich.unity.twitter.service;
 
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.domain.exception.ResourceNotFoundException;
@@ -16,19 +16,19 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class DefaultLinkedInAnalyticsService implements LinkedInAnalyticsService {
+public class DefaultTwitterAnalyticsService implements TwitterAnalyticsService {
 
     private final UserAnalyticsService userAnalyticsService;
     private final AuthenticationFacade authenticationFacade;
-    private final LinkedInAnalyzeService linkedInAnalyzeService;
+    private final TwitterAnalyzeService twitterAnalyzeService;
 
     @Override
-    public UserAnalytics getLinkedInProfileAnalytics(final String userUrl) {
-        final Optional<AnalysisReport> report = linkedInAnalyzeService.analyze(userUrl);
+    public UserAnalytics getTwitterProfileAnalytics(final String username) {
+        final Optional<AnalysisReport> report = twitterAnalyzeService.analyze(username);
 
         return report.map(this::createAndSaveUserAnalytics)
                 .orElseThrow(() -> new ResourceNotFoundException(String
-                        .format("LinkedIn profile with url:%s not found", userUrl)));
+                        .format("Twitter profile with username:%s not found", username)));
     }
 
     //FIXME duplicated in DefaultGitProfileAnalyticsService

@@ -26,12 +26,9 @@ public class DefaultGitProfileAnalyticsService implements GitProfileAnalyticsSer
     public UserAnalytics getGitProfileAnalytics(final String username) {
         final Optional<AnalysisReport> report = gitAnalyzeService.analyze(username);
 
-        if (report.isPresent()) {
-            return createAndSaveUserAnalytics(report.get());
-        } else {
-            throw new ResourceNotFoundException(String
-                    .format("Git profile data with login:%s not found", username));
-        }
+        return report.map(this::createAndSaveUserAnalytics)
+                .orElseThrow(() -> new ResourceNotFoundException(String
+                        .format("Git profile data with login:%s not found", username)));
     }
 
     private UserAnalytics createAndSaveUserAnalytics(final AnalysisReport report) {

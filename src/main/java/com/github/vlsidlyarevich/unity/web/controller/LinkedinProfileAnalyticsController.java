@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/api/v1/linkedin/profile", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LinkedinProfileAnalyticsController {
 
-    private final LinkedInAnalyticsService service;
+    private final LinkedInAnalyticsService analyticsService;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity getLinkedInDataByUserUrl(@RequestBody final LinkedInAnalyzeProfileRequest request) {
-        return ResponseEntity.ok(service.getLinkedInProfileAnalytics(request.getPublicUserUrl()));
+        return ResponseEntity.ok(analyticsService.getLinkedInProfileAnalytics(request.getPublicUserUrl()));
     }
 }

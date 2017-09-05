@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-import com.github.vlsidlyarevich.unity.git.service.GitProfileAnalyticsService;
+import com.github.vlsidlyarevich.unity.twitter.service.TwitterAnalyticsService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping(path = "/api/v1/git/profile", produces = MediaType.APPLICATION_JSON_VALUE)
-public class GitProfileAnalyticsController {
+@RequestMapping(path = "/api/v1/twitter/profile", produces = MediaType.APPLICATION_JSON_VALUE)
+public class TwitterProfileAnalyticsController {
 
-    private final GitProfileAnalyticsService profileAnalyticsService;
+    private final TwitterAnalyticsService analyticsService;
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
-    public ResponseEntity getGitData(@PathVariable final String username) {
-        return ResponseEntity.ok(profileAnalyticsService.getGitProfileAnalytics(username));
+    public ResponseEntity getUserById(@PathVariable final String username) {
+        return ResponseEntity.ok(analyticsService.getTwitterProfileAnalytics(username));
     }
 }
