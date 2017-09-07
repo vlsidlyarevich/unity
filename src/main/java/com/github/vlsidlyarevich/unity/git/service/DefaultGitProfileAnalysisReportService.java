@@ -16,14 +16,14 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class DefaultGitProfileAnalyticsService implements GitProfileAnalyticsService {
+public class DefaultGitProfileAnalysisReportService implements GitProfileAnalysisReportService {
 
     private final GitAnalyzeService gitAnalyzeService;
     private final UserAnalyticsService userAnalyticsService;
     private final AuthenticationFacade authenticationFacade;
 
     @Override
-    public UserAnalytics getGitProfileAnalytics(final String username) {
+    public AnalysisReport getGitProfileAnalysisReport(final String username) {
         final Optional<AnalysisReport> report = gitAnalyzeService.analyze(username);
 
         return report.map(this::createAndSaveUserAnalytics)
@@ -31,7 +31,7 @@ public class DefaultGitProfileAnalyticsService implements GitProfileAnalyticsSer
                         .format("Git profile data with login:%s not found", username)));
     }
 
-    private UserAnalytics createAndSaveUserAnalytics(final AnalysisReport report) {
+    private AnalysisReport createAndSaveUserAnalytics(final AnalysisReport report) {
         final List<AnalysisReport> reports = new ArrayList<>();
         reports.add(report);
 
@@ -41,6 +41,6 @@ public class DefaultGitProfileAnalyticsService implements GitProfileAnalyticsSer
         final UserAnalytics userAnalytics = new UserAnalytics(userId, reports);
         userAnalyticsService.add(userAnalytics);
 
-        return userAnalytics;
+        return report;
     }
 }

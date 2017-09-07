@@ -5,25 +5,28 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class TwitterProfileData extends TwitterResult {
+public class TwitterSubscriptionData extends TwitterResult {
 
-    private static final long serialVersionUID = 3189181698730273714L;
-
-    private long id;
+    private static final long serialVersionUID = -1073551767038352922L;
+    private String id;
     private String name;
     private String email;
     private String screenName;
     private String location;
     private String description;
-    private String profileImageURL;
     private String url;
     private int followersCount;
+    private boolean showAllInlineMedia;
+    private int friendsCount;
     private Date createdAt;
     private String lang;
-    private boolean isVerified;
-    private List<TwitterSubscriptionData> subscriptions;
+    private boolean verified;
+    private String profileImageURL;
+    private String miniProfileImageURL;
+    private String originalProfileImageURL;
 }
+
+

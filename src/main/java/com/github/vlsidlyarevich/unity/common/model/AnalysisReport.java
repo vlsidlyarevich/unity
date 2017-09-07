@@ -33,6 +33,8 @@ public class AnalysisReport implements Serializable {
             this.resource = AnalyzedResource.GITHUB;
         } else if (analyzedResource instanceof LinkedInResult) {
             this.resource = AnalyzedResource.LINKEDIN;
+        } else if (analyzedResource instanceof TwitterResult) {
+            this.resource = AnalyzedResource.TWITTER;
         } else {
             this.resource = AnalyzedResource.UNKNOWN;
         }

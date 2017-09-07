@@ -29,10 +29,10 @@ public class DefaultUserAnalyticsService implements UserAnalyticsService {
                             .findByUserId(userAnalytics.getUserId()));
 
                     savedAnalytics.ifPresent(savedAnalyt ->
-                            userAnalytics.getReports().addAll(savedAnalyt.getReports())
+                            savedAnalyt.getReports().addAll(userAnalytics.getReports())
                     );
 
-                    return repository.save(analytics);
+                    return repository.save(savedAnalytics.orElse(userAnalytics));
                 }).orElseThrow(()
                         -> new IllegalArgumentException("User analytics should not be empty"));
     }

@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-import com.github.vlsidlyarevich.unity.git.service.GitProfileAnalyticsService;
+import com.github.vlsidlyarevich.unity.git.service.GitProfileAnalysisReportService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/api/v1/git/profile", produces = MediaType.APPLICATION_JSON_VALUE)
 public class GitProfileAnalyticsController {
 
-    private final GitProfileAnalyticsService profileAnalyticsService;
+    private final GitProfileAnalysisReportService profileAnalyticsService;
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
     public ResponseEntity getGitData(@PathVariable final String username) {
-        return ResponseEntity.ok(profileAnalyticsService.getGitProfileAnalytics(username));
+        return ResponseEntity.ok(profileAnalyticsService.getGitProfileAnalysisReport(username));
     }
 }

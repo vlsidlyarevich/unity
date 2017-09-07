@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.twitter.service;
+package com.github.vlsidlyarevich.unity.linkedin.service;
 
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.domain.exception.ResourceNotFoundException;
@@ -16,23 +16,23 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class DefaultTwitterAnalyticsService implements TwitterAnalyticsService {
+public class DefaultLinkedInAnalysisReportService implements LinkedInAnalysisReportService {
 
     private final UserAnalyticsService userAnalyticsService;
     private final AuthenticationFacade authenticationFacade;
-    private final TwitterAnalyzeService twitterAnalyzeService;
+    private final LinkedInAnalyzeService linkedInAnalyzeService;
 
     @Override
-    public UserAnalytics getTwitterProfileAnalytics(final String username) {
-        final Optional<AnalysisReport> report = twitterAnalyzeService.analyze(username);
+    public AnalysisReport getLinkedInProfileAnalysisReport(final String userUrl) {
+        final Optional<AnalysisReport> report = linkedInAnalyzeService.analyze(userUrl);
 
         return report.map(this::createAndSaveUserAnalytics)
                 .orElseThrow(() -> new ResourceNotFoundException(String
-                        .format("Twitter profile with username:%s not found", username)));
+                        .format("LinkedIn profile with url:%s not found", userUrl)));
     }
 
     //FIXME duplicated in DefaultGitProfileAnalyticsService
-    private UserAnalytics createAndSaveUserAnalytics(final AnalysisReport report) {
+    private AnalysisReport createAndSaveUserAnalytics(final AnalysisReport report) {
         final List<AnalysisReport> reports = new ArrayList<>();
         reports.add(report);
 
@@ -42,6 +42,6 @@ public class DefaultTwitterAnalyticsService implements TwitterAnalyticsService {
         final UserAnalytics userAnalytics = new UserAnalytics(userId, reports);
         userAnalyticsService.add(userAnalytics);
 
-        return userAnalytics;
+        return report;
     }
 }

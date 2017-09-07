@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-import com.github.vlsidlyarevich.unity.linkedin.service.LinkedInAnalyticsService;
+import com.github.vlsidlyarevich.unity.linkedin.service.LinkedInAnalysisReportService;
 import com.github.vlsidlyarevich.unity.web.dto.LinkedInAnalyzeProfileRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/api/v1/linkedin/profile", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LinkedinProfileAnalyticsController {
 
-    private final LinkedInAnalyticsService analyticsService;
+    private final LinkedInAnalysisReportService analyticsService;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity getLinkedInDataByUserUrl(@RequestBody final LinkedInAnalyzeProfileRequest request) {
-        return ResponseEntity.ok(analyticsService.getLinkedInProfileAnalytics(request.getPublicUserUrl()));
+        return ResponseEntity.ok(analyticsService.getLinkedInProfileAnalysisReport(request.getPublicUserUrl()));
     }
 }

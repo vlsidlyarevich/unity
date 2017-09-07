@@ -54,14 +54,10 @@ public class GitProfileAnalyticsControllerIT extends AbstractControllerIT {
                 .header(SecurityConstants.AUTH_HEADER_NAME, token))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", notNullValue()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.userId", is(user.getId())))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.createdAt", notNullValue()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.updatedAt", notNullValue()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.reports[0].result", notNullValue()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.reports[0].id", notNullValue()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.reports[0].resource", is(AnalyzedResource.GITHUB.toString())))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.reports[0].analyzedAt", notNullValue()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.reports[0].analysisTime", notNullValue()));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.analyzedAt", notNullValue()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.analysisTime", notNullValue()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.resource", is(AnalyzedResource.GITHUB.toString())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.result", notNullValue()));
     }
 
     @Test
