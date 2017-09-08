@@ -27,7 +27,7 @@ public class DefaultTwitterProfileDataService implements TwitterProfileDataServi
     private final Twitter twitter;
 
     @Override
-    public Optional<TwitterProfileData> getTwitterProfileData(final String username) {
+    public Optional<TwitterProfileData> getData(final String username) {
         return Optional.ofNullable(username)
                 .map(usrname -> {
                     final TwitterProfileData profileData = getTwitterUser(username);

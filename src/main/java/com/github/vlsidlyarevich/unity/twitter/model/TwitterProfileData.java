@@ -20,7 +20,7 @@ public class TwitterProfileData extends TwitterResult {
     private String location;
     private String description;
     private String profileImageURL;
-    private String url;
+    private String URL;
     private int followersCount;
     private Date createdAt;
     private String lang;

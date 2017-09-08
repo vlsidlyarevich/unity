@@ -1,10 +1,8 @@
 package com.github.vlsidlyarevich.unity.twitter.service;
 
-import com.github.vlsidlyarevich.unity.twitter.model.TwitterProfileData;
+import com.github.vlsidlyarevich.unity.common.model.TwitterResult;
+import com.github.vlsidlyarevich.unity.common.service.DataService;
 
-import java.util.Optional;
+public interface TwitterProfileDataService extends DataService<TwitterResult> {
 
-public interface TwitterProfileDataService {
-
-    Optional<TwitterProfileData> getTwitterProfileData(String username);
 }
