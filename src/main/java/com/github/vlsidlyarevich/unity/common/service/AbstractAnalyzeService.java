@@ -3,8 +3,6 @@ package com.github.vlsidlyarevich.unity.common.service;
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.common.model.AnalysisResult;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -13,8 +11,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Optional;
 
-@Service
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor
 public abstract class AbstractAnalyzeService<T extends DataService<D>, D extends AnalysisResult> {
 
     private final T service;

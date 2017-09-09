@@ -7,15 +7,12 @@ import com.github.vlsidlyarevich.unity.domain.model.UserAnalytics;
 import com.github.vlsidlyarevich.unity.domain.service.UserAnalyticsService;
 import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor
 public abstract class AbstractAnalysisReportService<T extends AnalyzeService> {
 
     private final UserAnalyticsService userAnalyticsService;
