@@ -15,7 +15,7 @@ public class DefaultGitProfileDataService implements GitProfileDataService {
     private final GitDataAggregator gitDataAggregator;
 
     @Override
-    public Optional<GitProfileData> getGitProfileData(final String gitLogin) {
+    public Optional<GitProfileData> getData(final String gitLogin) {
         return Optional.ofNullable(gitLogin)
                 .map(login -> gitDataAggregator.getGitProfileData(gitLogin))
                 .orElseThrow(() -> new IllegalArgumentException("Git login should not be empty"));

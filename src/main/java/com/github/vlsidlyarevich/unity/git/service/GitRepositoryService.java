@@ -5,7 +5,7 @@ import com.github.vlsidlyarevich.unity.git.model.GitRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface GitRepositoryService extends GitService {
+public interface GitRepositoryService {
 
     Optional<List<GitRepository>> getGitRepositories(String gitProfile);
 

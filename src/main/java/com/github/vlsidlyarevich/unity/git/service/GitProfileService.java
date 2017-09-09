@@ -4,7 +4,7 @@ import com.github.vlsidlyarevich.unity.git.model.GitProfile;
 
 import java.util.Optional;
 
-public interface GitProfileService extends GitService {
+public interface GitProfileService {
 
     Optional<GitProfile> getGitProfile(String gitProfile);
 }

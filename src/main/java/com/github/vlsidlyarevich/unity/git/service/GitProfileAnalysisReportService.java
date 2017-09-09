@@ -4,5 +4,5 @@ import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 
 public interface GitProfileAnalysisReportService {
 
-    AnalysisReport getGitProfileAnalysisReport(String username);
+    AnalysisReport getAnalysisReport(String username);
 }

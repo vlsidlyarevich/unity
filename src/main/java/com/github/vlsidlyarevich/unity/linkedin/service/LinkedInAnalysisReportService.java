@@ -4,5 +4,5 @@ import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 
 public interface LinkedInAnalysisReportService {
 
-    AnalysisReport getLinkedInProfileAnalysisReport(String userUrl);
+    AnalysisReport getAnalysisReport(String userUrl);
 }

@@ -17,7 +17,8 @@ public class TwitterSubscriptionData extends TwitterResult {
     private String screenName;
     private String location;
     private String description;
-    private String URL;
+    //FIXME
+    private String url;
     private int followersCount;
     private boolean showAllInlineMedia;
     private int friendsCount;

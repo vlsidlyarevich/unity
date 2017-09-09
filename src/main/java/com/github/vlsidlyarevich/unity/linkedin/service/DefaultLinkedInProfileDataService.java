@@ -18,7 +18,7 @@ public class DefaultLinkedInProfileDataService implements LinkedInProfileDataSer
     private final LinkedIn linkedIn;
 
     @Override
-    public Optional<LinkedInProfileData> getLinkedInProfileData(final String userUrl) {
+    public Optional<LinkedInProfileData> getData(final String userUrl) {
         return Optional.ofNullable(userUrl)
                 .map(login -> {
                     final LinkedInProfileFull fullProfile

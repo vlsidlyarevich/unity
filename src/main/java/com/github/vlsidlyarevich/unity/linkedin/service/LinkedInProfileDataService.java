@@ -1,10 +1,8 @@
 package com.github.vlsidlyarevich.unity.linkedin.service;
 
-import com.github.vlsidlyarevich.unity.linkedin.model.LinkedInProfileData;
+import com.github.vlsidlyarevich.unity.common.model.LinkedInResult;
+import com.github.vlsidlyarevich.unity.common.service.DataService;
 
-import java.util.Optional;
+public interface LinkedInProfileDataService extends DataService<LinkedInResult> {
 
-public interface LinkedInProfileDataService {
-
-    Optional<LinkedInProfileData> getLinkedInProfileData(String userUrl);
 }

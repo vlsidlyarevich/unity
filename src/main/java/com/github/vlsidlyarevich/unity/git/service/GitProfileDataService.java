@@ -1,11 +1,8 @@
 package com.github.vlsidlyarevich.unity.git.service;
 
+import com.github.vlsidlyarevich.unity.common.model.GitResult;
+import com.github.vlsidlyarevich.unity.common.service.DataService;
 
-import com.github.vlsidlyarevich.unity.git.model.GitProfileData;
+public interface GitProfileDataService extends DataService<GitResult> {
 
-import java.util.Optional;
-
-public interface GitProfileDataService extends GitService {
-
-    Optional<GitProfileData> getGitProfileData(String gitLogin);
 }
