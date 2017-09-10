@@ -7,7 +7,7 @@ server:
   port: 8080
 
 storage:
-  path: temp/test-files
+  path: data/test-images
 
 security:
   token:

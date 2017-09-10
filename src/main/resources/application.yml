@@ -23,7 +23,7 @@ spring:
 #  file: temp/logs/unity-log.log
 
 storage: 
-  path: temp/files
+  path: data/images
 
 git: 
   apiUrl: https://api.github.com

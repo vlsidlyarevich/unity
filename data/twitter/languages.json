@@ -1,0 +1,127 @@
+{
+  "Aspect languages": {
+    "description": "",
+    "list": [
+      "AspectJ",
+      "AspectLua",
+      "CaesarJ",
+      "Compose*",
+      "ObjectTeams"
+    ]
+  },
+  "Structured languages": {
+    "description": "",
+    "list": [
+      "Basic",
+      "Cg",
+      "JOVIAL",
+      "Pascal",
+      "PL/M",
+      "QBASIC",
+      "REXX",
+      "sh",
+      "Focal",
+      "Fortran"
+    ]
+  },
+  "Procedural languages": {
+    "description": "",
+    "list": [
+      "GNU bc",
+      "Euphoria",
+      "Limbo",
+      "Lua",
+      "Maple",
+      "MATLAB",
+      "Occam",
+      "PureBasic",
+      "Scilab",
+      "B",
+      "Pascal",
+      "C",
+      "Golang"
+    ]
+  },
+  "Logic languages": {
+    "description": "",
+    "list": [
+      "Mercury",
+      "Prolog"
+    ]
+  },
+  "Object-oriented languages": {
+    "description": "",
+    "list": [
+      "Action Script",
+      "C++/CLI",
+      "C++",
+      "ColdFusion",
+      "D",
+      "Delphi",
+      "Dylan",
+      "Eiffel",
+      "Game Maker Language (GML)",
+      "Groovy",
+      "haXe",
+      "Io",
+      "Java",
+      "JavaScript",
+      "MC#",
+      "Object Pascal",
+      "Objective-C",
+      "Perl",
+      "PHP",
+      "Pike",
+      "Python",
+      "Ruby",
+      "Self",
+      "Simula",
+      "Smalltalk",
+      "Swift",
+      "Vala",
+      "Visual Basic",
+      "Visual DataFlex",
+      "Zonnon",
+      "Ada",
+      "Component Pascal"
+    ]
+  },
+  "Functional languages": {
+    "description": "",
+    "list": [
+      "Cat",
+      "Clean",
+      "Dylan",
+      "Erlang",
+      "F#",
+      "Gentee",
+      "Haskell",
+      "Hope",
+      "J",
+      "Mathematica",
+      "OCaml",
+      "Scheme",
+      "APL",
+      "Lisp",
+      "Logo",
+      "Refal"
+    ]
+  },
+  "Multiparadigm languages": {
+    "description": "",
+    "list": [
+      "C#",
+      "Curry",
+      "Delphi",
+      "Erlang",
+      "Mathematica",
+      "Mozart",
+      "Nemerle",
+      "Python",
+      "Scala",
+      "Zonnon",
+      "Component Pascal",
+      "Swift"
+    ]
+  }
+}
