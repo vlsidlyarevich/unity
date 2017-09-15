@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class LoggerBasedAuditor implements Auditor {
+public class LoggerBasedAuditor implements Auditing {
 
     @Override
     public void logController(final String username, final String method,
