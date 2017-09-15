@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.exception.handler;
 
-import com.github.vlsidlyarevich.unity.web.dto.ExceptionDTO;
+import com.github.vlsidlyarevich.unity.web.dto.exception.ExceptionResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class AbstractExceptionHandler {
                                                   final HttpServletRequest req) {
         log.warn("Processing abstract exception:" + exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
+        return new ResponseEntity<>(new ExceptionResponse(exception.getLocalizedMessage()),
                 HttpStatus.BAD_REQUEST);
     }
 }

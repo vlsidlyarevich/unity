@@ -6,7 +6,7 @@ import com.github.vlsidlyarevich.unity.domain.exception.ResourceNotFoundExceptio
 import com.github.vlsidlyarevich.unity.domain.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.domain.exception.UsernameExistsException;
 import com.github.vlsidlyarevich.unity.i18n.MessageResolver;
-import com.github.vlsidlyarevich.unity.web.dto.ExceptionDTO;
+import com.github.vlsidlyarevich.unity.web.dto.exception.ExceptionResponse;
 import com.mongodb.MongoException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,7 @@ public class PersistanceExceptionHandler {
             final HttpServletRequest req) {
         log.warn("Processing resource not found exception:" + exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
+        return new ResponseEntity<>(new ExceptionResponse(exception.getLocalizedMessage()),
                 HttpStatus.NOT_FOUND);
     }
 
@@ -41,7 +41,7 @@ public class PersistanceExceptionHandler {
             final HttpServletRequest req) {
         log.warn("Processing file system storage exception:" + exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionDTO(messageResolver.getMessage(exception.getKey(),
+        return new ResponseEntity<>(new ExceptionResponse(messageResolver.getMessage(exception.getKey(),
                 exception.getArgs())), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -51,7 +51,7 @@ public class PersistanceExceptionHandler {
             final HttpServletRequest req) {
         log.warn("Processing file system file not found exception:" + exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionDTO(messageResolver.getMessage(exception.getKey(),
+        return new ResponseEntity<>(new ExceptionResponse(messageResolver.getMessage(exception.getKey(),
                 exception.getArgs())), HttpStatus.NOT_FOUND);
     }
 
@@ -60,7 +60,7 @@ public class PersistanceExceptionHandler {
                                                       final HttpServletRequest req) {
         log.warn("Processing user not found exception:" + exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
+        return new ResponseEntity<>(new ExceptionResponse(exception.getLocalizedMessage()),
                 HttpStatus.NOT_FOUND);
     }
 
@@ -69,7 +69,7 @@ public class PersistanceExceptionHandler {
                                                         final HttpServletRequest req) {
         log.warn("Processing user with such username exists exception:" + exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
+        return new ResponseEntity<>(new ExceptionResponse(exception.getLocalizedMessage()),
                 HttpStatus.BAD_REQUEST);
     }
 
@@ -78,7 +78,7 @@ public class PersistanceExceptionHandler {
                                                final HttpServletRequest req) {
         log.warn("Processing mongo exception:" + exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionDTO(exception.getLocalizedMessage()),
+        return new ResponseEntity<>(new ExceptionResponse(exception.getLocalizedMessage()),
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

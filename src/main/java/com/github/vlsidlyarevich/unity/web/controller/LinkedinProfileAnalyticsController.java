@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.linkedin.service.LinkedInAnalysisReportService;
-import com.github.vlsidlyarevich.unity.web.dto.LinkedInAnalyzeProfileRequest;
+import com.github.vlsidlyarevich.unity.web.dto.linkedin.LinkedInAnalyzeProfileRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

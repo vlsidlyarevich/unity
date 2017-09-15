@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.web.dto;
+package com.github.vlsidlyarevich.unity.web.dto.linkedin;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

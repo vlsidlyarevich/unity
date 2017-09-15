@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.domain.model;
 
-import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
+import com.github.vlsidlyarevich.unity.web.dto.user.UserRequest;
 import com.github.vlsidlyarevich.unity.web.security.model.Authority;
 import com.github.vlsidlyarevich.unity.web.security.social.model.SocialProvider;
 import lombok.AllArgsConstructor;
@@ -38,7 +38,7 @@ public class User extends DbModel implements UserDetails {
 
     }
 
-    public static User fromDTO(final UserDTO dto) {
+    public static User fromDTO(final UserRequest dto) {
         List<Authority> authorities = new ArrayList<>();
         authorities.add(Authority.ROLE_USER);
 

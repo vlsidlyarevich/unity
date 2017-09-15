@@ -1,7 +1,7 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
-import com.github.vlsidlyarevich.unity.web.dto.JwtAuthenticationRequest;
-import com.github.vlsidlyarevich.unity.web.dto.JwtAuthenticationResponse;
+import com.github.vlsidlyarevich.unity.web.dto.jwt.JwtAuthenticationRequest;
+import com.github.vlsidlyarevich.unity.web.dto.jwt.JwtAuthenticationResponse;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

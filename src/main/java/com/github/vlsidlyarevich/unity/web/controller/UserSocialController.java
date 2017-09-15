@@ -2,7 +2,7 @@ package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.domain.model.UserSocial;
 import com.github.vlsidlyarevich.unity.domain.service.UserSocialService;
-import com.github.vlsidlyarevich.unity.web.dto.UserSocialDTO;
+import com.github.vlsidlyarevich.unity.web.dto.user.UserSocialRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -24,13 +24,13 @@ public class UserSocialController {
     public ResponseEntity getUserSocialData(@PathVariable final String id) {
         final UserSocial userSocial = socialService.findByUserId(id);
 
-        return ResponseEntity.ok(UserSocialDTO.fromDomain(userSocial));
+        return ResponseEntity.ok(UserSocialRequest.fromDomain(userSocial));
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity updateUserSocialData(@PathVariable final String id,
-                                               @RequestBody final UserSocialDTO dto) {
-        return ResponseEntity.ok(UserSocialDTO
+                                               @RequestBody final UserSocialRequest dto) {
+        return ResponseEntity.ok(UserSocialRequest
                 .fromDomain(socialService.update(id, UserSocial.fromDTO(dto))));
     }
 

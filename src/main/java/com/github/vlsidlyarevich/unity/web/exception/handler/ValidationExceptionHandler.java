@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.exception.handler;
 
-import com.github.vlsidlyarevich.unity.web.dto.ExceptionDTO;
+import com.github.vlsidlyarevich.unity.web.dto.exception.ExceptionResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
@@ -26,6 +26,6 @@ public class ValidationExceptionHandler {
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.joining("\n"));
 
-        return new ResponseEntity<>(new ExceptionDTO(message), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ExceptionResponse(message), HttpStatus.BAD_REQUEST);
     }
 }
