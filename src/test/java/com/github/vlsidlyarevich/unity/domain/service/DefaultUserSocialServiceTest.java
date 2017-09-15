@@ -2,7 +2,7 @@ package com.github.vlsidlyarevich.unity.domain.service;
 
 import com.github.vlsidlyarevich.unity.domain.model.UserSocial;
 import com.github.vlsidlyarevich.unity.domain.exception.ResourceNotFoundException;
-import com.github.vlsidlyarevich.unity.domain.assistant.UserAssistant;
+import com.github.vlsidlyarevich.unity.domain.assistant.DefaultUserAssistant;
 import com.github.vlsidlyarevich.unity.domain.repository.UserSocialRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,11 +33,11 @@ public class DefaultUserSocialServiceTest {
     private UserSocialRepository userSocialRepository;
 
     @Mock
-    private UserAssistant userHelper;
+    private DefaultUserAssistant userAssistant;
 
     @Before
     public void setUp() {
-        userSocialService = new DefaultUserSocialService(userSocialRepository, userHelper);
+        userSocialService = new DefaultUserSocialService(userSocialRepository, userAssistant);
     }
 
     @Test

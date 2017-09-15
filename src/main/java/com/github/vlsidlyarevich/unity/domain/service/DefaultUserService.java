@@ -1,9 +1,9 @@
 package com.github.vlsidlyarevich.unity.domain.service;
 
-import com.github.vlsidlyarevich.unity.domain.model.User;
+import com.github.vlsidlyarevich.unity.domain.assistant.UserAssistant;
 import com.github.vlsidlyarevich.unity.domain.exception.ResourceNotFoundException;
 import com.github.vlsidlyarevich.unity.domain.exception.UserNotFoundException;
-import com.github.vlsidlyarevich.unity.domain.assistant.UserAssistant;
+import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.domain.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
