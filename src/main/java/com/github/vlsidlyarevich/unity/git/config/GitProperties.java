@@ -9,4 +9,5 @@ public class GitProperties {
 
     private String apiUrl;
     private String accessToken;
+    private String mediaHeader;
 }
