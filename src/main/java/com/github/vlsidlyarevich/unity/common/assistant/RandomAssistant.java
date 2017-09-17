@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public final class RandomAssistant {
 
-    private final Integer RANDOM_STRING_LENGTH = 6;
+    private static final Integer RANDOM_STRING_LENGTH = 6;
 
     public String randomAlphaNumeric() {
         return RandomStringUtils.randomAlphanumeric(RANDOM_STRING_LENGTH);
