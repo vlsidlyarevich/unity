@@ -1,9 +1,9 @@
 package com.github.vlsidlyarevich.unity.domain.service;
 
 import com.github.vlsidlyarevich.unity.common.assistant.RandomAssistant;
-import com.github.vlsidlyarevich.unity.web.security.model.Authority;
 import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.domain.repository.UserRepository;
+import com.github.vlsidlyarevich.unity.web.security.model.Authority;
 import com.github.vlsidlyarevich.unity.web.security.social.model.SocialProvider;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,7 @@ import java.util.Optional;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultSocialUserService implements SocialUserService {
 
+    private final RandomAssistant randomAssistant;
     private final UsersConnectionRepository usersConnectionRepository;
     private final UserRepository userRepository;
 
@@ -69,7 +70,7 @@ public class DefaultSocialUserService implements SocialUserService {
 
                     final User newUser = User.builder()
                             .username(usrname)
-                            .password(RandomAssistant.randomAlphaNumeric())
+                            .password(randomAssistant.randomAlphaNumeric())
                             .authorities(authorities)
                             .socialSignInProvider(SocialProvider.valueOf(providerId.toUpperCase()))
                             .accountNonExpired(true)

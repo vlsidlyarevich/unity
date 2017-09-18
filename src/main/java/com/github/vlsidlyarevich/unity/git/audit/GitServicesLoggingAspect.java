@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.git.audit;
 
-import com.github.vlsidlyarevich.unity.common.audit.Auditor;
+import com.github.vlsidlyarevich.unity.common.audit.Auditing;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -16,11 +16,11 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class GitServicesLoggingAspect {
 
-    private final Auditor auditor;
+    private final Auditing auditing;
 
     @Before("com.github.vlsidlyarevich.unity.git.audit.pointcut.GitLoggingPointcut.service()")
     public void logService(final JoinPoint joinPoint) {
-        auditor.logService(joinPoint.getTarget().toString(),
+        auditing.logService(joinPoint.getTarget().toString(),
                 joinPoint.getSignature().getName(),
                 joinPoint.getArgs());
     }
@@ -28,6 +28,6 @@ public class GitServicesLoggingAspect {
     @AfterThrowing(pointcut = "com.github.vlsidlyarevich.unity.git.audit"
             + ".pointcut.GitLoggingPointcut.service()", throwing = "exception")
     public void logException(final JoinPoint joinPoint, final Throwable exception) {
-        auditor.logException(joinPoint.getTarget().toString(), exception);
+        auditing.logException(joinPoint.getTarget().toString(), exception);
     }
 }

@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.common.audit;
 
-public interface Auditor {
+public interface Auditing {
 
     void logController(String username, String method, String path);
 

@@ -1,6 +1,6 @@
 package com.github.vlsidlyarevich.unity.web.audit;
 
-import com.github.vlsidlyarevich.unity.common.audit.Auditor;
+import com.github.vlsidlyarevich.unity.common.audit.Auditing;
 import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class HttpRequestAuditor implements RequestAuditor {
 
-    private final Auditor auditor;
+    private final Auditing auditing;
 
     @Override
     public void logRequest(final Authentication authentication,
@@ -35,7 +35,7 @@ public class HttpRequestAuditor implements RequestAuditor {
         try {
             final Method requestedMethod = ((HandlerMethod) handler).getMethod();
 
-            auditor.logController("Unauthorized", requestedMethod.getName(),
+            auditing.logController("Unauthorized", requestedMethod.getName(),
                     request.getRequestURI());
         } catch (ClassCastException ignored) {
 
@@ -47,7 +47,7 @@ public class HttpRequestAuditor implements RequestAuditor {
         final Method requestedMethod = ((HandlerMethod) handler).getMethod();
         final User user = (User) authentication.getDetails();
 
-        auditor.logController(user.getUsername(), requestedMethod.getName(),
+        auditing.logController(user.getUsername(), requestedMethod.getName(),
                 request.getRequestURI());
     }
 }

@@ -1,12 +1,13 @@
 package com.github.vlsidlyarevich.unity.domain.model;
 
-import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
+import com.github.vlsidlyarevich.unity.web.dto.user.UserRequest;
 import com.github.vlsidlyarevich.unity.web.security.model.Authority;
 import com.github.vlsidlyarevich.unity.web.security.social.model.SocialProvider;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +18,7 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Document(collection = "users")
 public class User extends DbModel implements UserDetails {
@@ -34,11 +36,7 @@ public class User extends DbModel implements UserDetails {
     private boolean credentialsNonExpired;
     private boolean isEnabled;
 
-    public User() {
-
-    }
-
-    public static User fromDTO(final UserDTO dto) {
+    public static User fromDTO(final UserRequest dto) {
         List<Authority> authorities = new ArrayList<>();
         authorities.add(Authority.ROLE_USER);
 

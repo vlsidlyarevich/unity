@@ -2,8 +2,8 @@ package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.domain.repository.UserRepository;
-import com.github.vlsidlyarevich.unity.web.dto.JwtAuthenticationRequest;
-import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
+import com.github.vlsidlyarevich.unity.web.dto.jwt.JwtAuthenticationRequest;
+import com.github.vlsidlyarevich.unity.web.dto.user.UserRequest;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +36,7 @@ public class SignupControllerIT extends AbstractControllerIT {
 
     @Test
     public void signup_BadRequest_IfEmptyUsername() throws Exception {
-        UserDTO dto = new UserDTO("", "password");
+        UserRequest dto = new UserRequest("", "password");
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/signup")
                 .accept(contentType)
@@ -47,7 +47,7 @@ public class SignupControllerIT extends AbstractControllerIT {
 
     @Test
     public void signup_BadRequest_IfEmptyPassword() throws Exception {
-        UserDTO dto = new UserDTO("username", "");
+        UserRequest dto = new UserRequest("username", "");
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/signup")
                 .accept(contentType)
@@ -58,7 +58,7 @@ public class SignupControllerIT extends AbstractControllerIT {
 
     @Test
     public void signup_BadRequest_IfWeakPassword() throws Exception {
-        UserDTO dto = new UserDTO("username", "password");
+        UserRequest dto = new UserRequest("username", "password");
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/signup")
                 .accept(contentType)

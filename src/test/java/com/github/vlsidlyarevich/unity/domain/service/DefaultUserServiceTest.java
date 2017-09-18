@@ -3,7 +3,7 @@ package com.github.vlsidlyarevich.unity.domain.service;
 import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.domain.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.domain.exception.UsernameExistsException;
-import com.github.vlsidlyarevich.unity.domain.assistant.UserAssistant;
+import com.github.vlsidlyarevich.unity.domain.assistant.DefaultUserAssistant;
 import com.github.vlsidlyarevich.unity.domain.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,7 +40,7 @@ public class DefaultUserServiceTest {
 
     @Before
     public void setUp() {
-        this.userService = new DefaultUserService(userRepository, userSocialService, userAnalyticsService, new UserAssistant(userRepository));
+        this.userService = new DefaultUserService(userRepository, userSocialService, userAnalyticsService, new DefaultUserAssistant(userRepository));
     }
 
     @Test

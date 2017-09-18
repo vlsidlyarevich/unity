@@ -2,7 +2,7 @@ package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.domain.service.UserService;
-import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
+import com.github.vlsidlyarevich.unity.web.dto.user.UserRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,7 +22,7 @@ public class SignUpController {
     private final UserService service;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity signUp(@Valid @RequestBody final UserDTO dto) {
+    public ResponseEntity signUp(@Valid @RequestBody final UserRequest dto) {
         return ResponseEntity.ok(service.create(User.fromDTO(dto)));
     }
 }

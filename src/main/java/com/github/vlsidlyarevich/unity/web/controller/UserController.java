@@ -2,7 +2,7 @@ package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.domain.service.UserService;
-import com.github.vlsidlyarevich.unity.web.dto.UserDTO;
+import com.github.vlsidlyarevich.unity.web.dto.user.UserRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,14 +34,14 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity addUser(@Valid @RequestBody final UserDTO dto) {
+    public ResponseEntity addUser(@Valid @RequestBody final UserRequest dto) {
         return new ResponseEntity<>(service
                 .create(User.fromDTO(dto)), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity updateUserById(@PathVariable final String id,
-                                         @Valid @RequestBody final UserDTO dto) {
+                                         @Valid @RequestBody final UserRequest dto) {
         return ResponseEntity.ok(service.update(id, User.fromDTO(dto)));
     }
 

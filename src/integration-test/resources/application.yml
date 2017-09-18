@@ -2,6 +2,16 @@ spring:
   data:
     mongodb:
       uri: @mongodb.uri@
+  social:
+    twitter:
+      app-id: lwiBGQ7pkItjZkfeYWONOEmZy
+      app-secret: Hsph271KohkmOPLm30cbPakdPfjrweQF9Udw0WP7d6nR1zXjIE
+    facebook:
+      app-id: 110570572950923
+      app-secret: 493a29907f64c3b9dba5abdc71adac41
+    linkedin:
+      app-id: 7866fl49abcya5
+      app-secret: fFEq66FckiZtJYT5
 
 server:
   port: 8080

@@ -2,7 +2,7 @@ package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.domain.service.UserService;
-import com.github.vlsidlyarevich.unity.web.dto.JwtAuthenticationRequest;
+import com.github.vlsidlyarevich.unity.web.dto.jwt.JwtAuthenticationRequest;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
 import org.junit.Before;
 import org.junit.Test;

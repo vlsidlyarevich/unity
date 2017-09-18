@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.web.dto;
+package com.github.vlsidlyarevich.unity.web.dto.user;
 
 import com.github.vlsidlyarevich.unity.web.pattern.ValidationPatterns;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public final class UserDTO implements Serializable {
+public final class UserRequest implements Serializable {
     private static final long serialVersionUID = -7579103181077856718L;
 
     @NotEmpty(message = "Username should not be empty")

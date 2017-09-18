@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.unity.web.dto;
+package com.github.vlsidlyarevich.unity.web.dto.user;
 
 import com.github.vlsidlyarevich.unity.domain.model.UserSocial;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,8 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public final class UserSocialDTO implements Serializable {
+public final class UserSocialRequest implements Serializable {
+
     private static final long serialVersionUID = -8632737767330638824L;
 
     private String id;
@@ -25,8 +26,8 @@ public final class UserSocialDTO implements Serializable {
     private Date createdAt;
     private Date updatedAt;
 
-    public static UserSocialDTO fromDomain(final UserSocial model) {
-        UserSocialDTO dto = new UserSocialDTO();
+    public static UserSocialRequest fromDomain(final UserSocial model) {
+        UserSocialRequest dto = new UserSocialRequest();
         dto.setId(model.getId());
         dto.setUserId(model.getUserId());
         dto.setFirstName(model.getFirstName() != null ? model.getFirstName() : "");

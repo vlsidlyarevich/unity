@@ -5,7 +5,7 @@ import com.github.vlsidlyarevich.unity.domain.model.UserSocial;
 import com.github.vlsidlyarevich.unity.domain.repository.UserRepository;
 import com.github.vlsidlyarevich.unity.domain.repository.UserSocialRepository;
 import com.github.vlsidlyarevich.unity.domain.service.UserService;
-import com.github.vlsidlyarevich.unity.web.dto.UserSocialDTO;
+import com.github.vlsidlyarevich.unity.web.dto.user.UserSocialRequest;
 import com.github.vlsidlyarevich.unity.web.exception.handler.PersistanceExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
@@ -93,7 +93,7 @@ public class UserSocialControllerIT extends AbstractControllerIT {
 
     @Test
     public void updateUserSocialData_Success_IfUserPresentAndValidDTO() throws Exception {
-        UserSocialDTO dto = UserSocialDTO.fromDomain(userSocial);
+        UserSocialRequest dto = UserSocialRequest.fromDomain(userSocial);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT, "/api/v1/user/" + user.getId() + "/social")
                 .accept(contentType)
@@ -105,7 +105,7 @@ public class UserSocialControllerIT extends AbstractControllerIT {
 
     @Test
     public void updateUserSocialData_Unauthorized_IfUserNotPresentAndValidDTO() throws Exception {
-        UserSocialDTO dto = UserSocialDTO.fromDomain(userSocial);
+        UserSocialRequest dto = UserSocialRequest.fromDomain(userSocial);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT, "/api/v1/user/id0/social")
                 .accept(contentType)
@@ -119,7 +119,7 @@ public class UserSocialControllerIT extends AbstractControllerIT {
     public void deleteUserSocialDataByUserId_Success() throws Exception {
         userSocialRepository.save(userSocial);
 
-        UserSocialDTO dto = UserSocialDTO.fromDomain(userSocial);
+        UserSocialRequest dto = UserSocialRequest.fromDomain(userSocial);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/v1/user/" + user.getId() + "/social")
                 .accept(contentType)

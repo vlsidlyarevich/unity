@@ -1,7 +1,6 @@
 package com.github.vlsidlyarevich.unity.git.factory;
 
 import com.github.vlsidlyarevich.unity.git.config.GitProperties;
-import com.github.vlsidlyarevich.unity.git.constant.Github;
 import com.github.vlsidlyarevich.unity.web.interceptor.HeaderRequestInterceptor;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -20,7 +19,6 @@ import java.util.List;
 public class ConfigurableRestTemplateFactory implements RestTemplateFactory {
 
     private Configuration configuration;
-
     private final GitProperties gitProperties;
 
     @Autowired
@@ -43,7 +41,7 @@ public class ConfigurableRestTemplateFactory implements RestTemplateFactory {
     private List<ClientHttpRequestInterceptor> getInterceptors() {
         List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
         interceptors.add(new HeaderRequestInterceptor("Accept",
-                Github.MEDIA_HEADER));
+                gitProperties.getMediaHeader()));
         interceptors.add(new HeaderRequestInterceptor("Authorization",
                 String.format("token %s", gitProperties.getAccessToken())));
         return interceptors;

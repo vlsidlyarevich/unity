@@ -12,3 +12,4 @@ security:
 git:
   apiUrl: https://api.github.com
   accessToken: ${GIT_ACCESS_TOKEN}
+  mediaHeader: application/vnd.github.mercy-preview+json
