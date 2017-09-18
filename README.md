@@ -40,7 +40,7 @@ Type following commands in additional/docker/mongo folder.
 * `mvn clean install`
 * `java -jar target/*.jar`
 
-### Running the client
+### Running the client (Not available for now)
 * `cd unity-client`
 * `npm i`
 * `ng serve`
