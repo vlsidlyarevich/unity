@@ -12,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public final class UserSocialRequest implements Serializable {
+
     private static final long serialVersionUID = -8632737767330638824L;
 
     private String id;
