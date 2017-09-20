@@ -2,68 +2,27 @@
   "Aspect languages": {
     "description": "",
     "list": [
-      "AspectJ",
-      "AspectLua",
-      "CaesarJ",
-      "Compose*",
-      "ObjectTeams"
-    ]
-  },
-  "Structured languages": {
-    "description": "",
-    "list": [
-      "Basic",
-      "Cg",
-      "JOVIAL",
-      "Pascal",
-      "PL/M",
-      "QBASIC",
-      "REXX",
-      "sh",
-      "Focal",
-      "Fortran"
+      "AspectJ", +
+      "ObjectTeams" +
     ]
   },
   "Procedural languages": {
     "description": "",
     "list": [
-      "GNU bc",
-      "Euphoria",
-      "Limbo",
-      "Lua",
-      "Maple",
-      "MATLAB",
-      "Occam",
-      "PureBasic",
-      "Scilab",
-      "B",
-      "Pascal",
-      "C",
-      "Golang"
-    ]
-  },
-  "Logic languages": {
-    "description": "",
-    "list": [
-      "Mercury",
-      "Prolog"
+      "MATLAB", +
+      "Scilab", +
+      "C", +
+      "Golang" +
     ]
   },
   "Object-oriented languages": {
     "description": "",
     "list": [
-      "Action Script",
-      "C++/CLI",
-      "C++",
-      "ColdFusion",
-      "D",
-      "Delphi",
-      "Dylan",
-      "Eiffel",
-      "Game Maker Language (GML)",
-      "Groovy",
-      "haXe",
-      "Io",
+      "Action Script", +
+      "C++", +
+      "ColdFusion", +
+      "Delphi", +
+      "Groovy", +
       "Java",
       "JavaScript",
       "MC#",
@@ -77,22 +36,14 @@
       "Self",
       "Simula",
       "Smalltalk",
-      "Swift",
       "Vala",
-      "Visual Basic",
-      "Visual DataFlex",
-      "Zonnon",
-      "Ada",
-      "Component Pascal"
+      "Ada"
     ]
   },
   "Functional languages": {
     "description": "",
     "list": [
-      "Cat",
       "Clean",
-      "Dylan",
-      "Erlang",
       "F#",
       "Gentee",
       "Haskell",
@@ -111,13 +62,9 @@
     "description": "",
     "list": [
       "C#",
-      "Curry",
-      "Delphi",
       "Erlang",
-      "Mathematica",
       "Mozart",
       "Nemerle",
-      "Python",
       "Scala",
       "Zonnon",
       "Component Pascal",

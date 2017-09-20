@@ -83,7 +83,7 @@
     "name": "Golang Weekly",
     "url": "https://twitter.com/golangweekly",
     "tags": [
-      "",
+      "Golang",
       ""
     ]
   },
@@ -91,7 +91,7 @@
     "name": "Golang Go",
     "url": "https://twitter.com/GolangGo",
     "tags": [
-      "",
+      "Golang",
       ""
     ]
   },
@@ -99,7 +99,7 @@
     "name": "Go",
     "url": "https://twitter.com/golang",
     "tags": [
-      "",
+      "Golang",
       ""
     ]
   },
@@ -107,7 +107,7 @@
     "name": "Go News",
     "url": "https://twitter.com/golang_news",
     "tags": [
-      "",
+      "Golang",
       ""
     ]
   },
@@ -115,7 +115,7 @@
     "name": "Gopher Academy",
     "url": "https://twitter.com/GopherAcademy",
     "tags": [
-      "",
+      "Golang",
       ""
     ]
   },
@@ -123,7 +123,7 @@
     "name": "GopherCon",
     "url": "https://twitter.com/GopherCon",
     "tags": [
-      "",
+      "Golang",
       ""
     ]
   },
@@ -131,7 +131,7 @@
     "name": "Golang News",
     "url": "https://twitter.com/golangnews",
     "tags": [
-      "",
+      "Golang",
       ""
     ]
   },
@@ -139,7 +139,7 @@
     "name": "golangprojects",
     "url": "https://twitter.com/golangprojects",
     "tags": [
-      "",
+      "Golang",
       ""
     ]
   },
@@ -147,7 +147,7 @@
     "name": "We Love Golang",
     "url": "https://twitter.com/welovegolang",
     "tags": [
-      "",
+      "Golang",
       ""
     ]
   },
@@ -155,13 +155,874 @@
     "name": "Boston Golang",
     "url": "https://twitter.com/BostonGolang",
     "tags": [
-      "",
+      "Golang",
       ""
     ]
   },
   {
     "name": "Golang Paris",
     "url": "https://twitter.com/GolangParis",
+    "tags": [
+      "Golang",
+      ""
+    ]
+  },
+  {
+    "name": "Golang Phoenix",
+    "url": "https://twitter.com/golangPhoenix",
+    "tags": [
+      "Golang",
+      ""
+    ]
+  },
+  {
+    "name": "Golang News & Libs",
+    "url": "https://twitter.com/golangch",
+    "tags": [
+      "Golang",
+      ""
+    ]
+  },
+  {
+    "name": "golangfr",
+    "url": "https://twitter.com/golang_fr",
+    "tags": [
+      "Golang",
+      ""
+    ]
+  },
+  {
+    "name": "Golang I/O",
+    "url": "https://twitter.com/golangio",
+    "tags": [
+      "Golang",
+      ""
+    ]
+  },
+  {
+    "name": "Go In 5 Minutes",
+    "url": "https://twitter.com/goin5minutes",
+    "tags": [
+      "Golang",
+      ""
+    ]
+  },
+  {
+    "name": "Gopher Book",
+    "url": "https://twitter.com/gopherbook",
+    "tags": [
+      "Golang",
+      ""
+    ]
+  },
+  {
+    "name": "GoLab",
+    "url": "https://twitter.com/golab_conf",
+    "tags": [
+      "Golang",
+      ""
+    ]
+  },
+  {
+    "name": "Programming with Go",
+    "url": "https://twitter.com/programminggo",
+    "tags": [
+      "Golang",
+      ""
+    ]
+  },
+  {
+    "name": "ActionScript.org",
+    "url": "https://twitter.com/actionscriptorg",
+    "tags": [
+      "Action Script",
+      ""
+    ]
+  },
+  {
+    "name": "NextGen ActionScript",
+    "url": "https://twitter.com/NextGenAS",
+    "tags": [
+      "Action Script",
+      ""
+    ]
+  },
+  {
+    "name": "cc",
+    "url": "https://twitter.com/longlene",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "C++ Programming",
+    "url": "https://twitter.com/CProgramming1",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "C++ and Beyond",
+    "url": "https://twitter.com/cppandbeyond",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "C++ projects",
+    "url": "https://twitter.com/cpp_projects",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "C++",
+    "url": "https://twitter.com/c_plus_plus",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "Standard C++",
+    "url": "https://twitter.com/isocpp",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "CPPNow",
+    "url": "https://twitter.com/cppnow",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "CppCon",
+    "url": "https://twitter.com/CppCon",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "CppCast",
+    "url": "https://twitter.com/cppcast",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "CppRocks.com",
+    "url": "https://twitter.com/cpp_rocks",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "Visual C++",
+    "url": "https://twitter.com/visualc",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "Meeting C++",
+    "url": "https://twitter.com/meetingcpp",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "C++ StackOverflow",
+    "url": "https://twitter.com/CppStack",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "C++ Highlights",
+    "url": "https://twitter.com/cpphl",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "usingstdcpp",
+    "url": "https://twitter.com/usingstdcpp",
+    "tags": [
+      "C++",
+      ""
+    ]
+  },
+  {
+    "name": "Adobe ColdFusion",
+    "url": "https://twitter.com/coldfusion",
+    "tags": [
+      "ColdFusion",
+      ""
+    ]
+  },
+  {
+    "name": "ColdFusion Times",
+    "url": "https://twitter.com/ColdfusionTimes",
+    "tags": [
+      "ColdFusion",
+      ""
+    ]
+  },
+  {
+    "name": "Delphi Insider",
+    "url": "https://twitter.com/DelphiInsider",
+    "tags": [
+      "Delphi",
+      ""
+    ]
+  },
+  {
+    "name": "Delphi Tweet Day",
+    "url": "https://twitter.com/delphitweetday",
+    "tags": [
+      "Delphi",
+      ""
+    ]
+  },
+  {
+    "name": "delphifeeds",
+    "url": "https://twitter.com/delphifeeds",
+    "tags": [
+      "Delphi",
+      ""
+    ]
+  },
+  {
+    "name": "Delphi Zone",
+    "url": "https://twitter.com/delphizone",
+    "tags": [
+      "Delphi",
+      ""
+    ]
+  },
+  {
+    "name": "Groovy Podcast",
+    "url": "https://twitter.com/groovypodcast",
+    "tags": [
+      "Groovy",
+      ""
+    ]
+  },
+  {
+    "name": "GradleVerified account",
+    "url": "https://twitter.com/gradle",
+    "tags": [
+      "Groovy",
+      "Web Development",
+      "Programming tools",
+      "Programming",
+      "DEVOPS",
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "Grails Framework",
+    "url": "https://twitter.com/grailsframework",
+    "tags": [
+      "Groovy",
+      ""
+    ]
+  },
+  {
+    "name": "Groovy Language",
+    "url": "https://twitter.com/groovylang",
+    "tags": [
+      "Groovy",
+      ""
+    ]
+  },
+  {
+    "name": "Spring Framework",
+    "url": "https://twitter.com/springframework",
+    "tags": [
+      "Java",
+      "Groovy",
+      "Web Development",
+      "Programming tools",
+      "Cloud",
+      "Microservices",
+      "Api development",
+      "Architecturing",
+      "Design patterns",
+      "Databases"
+    ]
+  },
+  {
+    "name": "SpringCentralVerified account",
+    "url": "https://twitter.com/springcentral",
+    "tags": [
+      "Java",
+      "Groovy",
+      "Web Development",
+      "Programming tools",
+      "Cloud",
+      "Microservices",
+      "Api development",
+      "Architecturing",
+      "Design patterns",
+      "Databases"
+    ]
+  },
+  {
+    "name": "ApacheGroovy",
+    "url": "https://twitter.com/ApacheGroovy",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
     "tags": [
       "",
       ""
