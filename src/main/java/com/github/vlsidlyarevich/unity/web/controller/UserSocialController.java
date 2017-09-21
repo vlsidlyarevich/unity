@@ -7,10 +7,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,21 +22,21 @@ public class UserSocialController {
 
     private final UserSocialService socialService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public ResponseEntity getUserSocialData(@PathVariable final String id) {
         final UserSocial userSocial = socialService.findByUserId(id);
 
         return ResponseEntity.ok(UserSocialRequest.fromDomain(userSocial));
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @PutMapping
     public ResponseEntity updateUserSocialData(@PathVariable final String id,
                                                @RequestBody final UserSocialRequest dto) {
         return ResponseEntity.ok(UserSocialRequest
                 .fromDomain(socialService.update(id, UserSocial.fromDTO(dto))));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     public ResponseEntity deleteUserSocialDataByUserId(@PathVariable final String id) {
         return ResponseEntity.ok(socialService.deleteByUserId(id));
     }

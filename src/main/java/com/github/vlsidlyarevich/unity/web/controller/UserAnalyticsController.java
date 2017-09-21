@@ -5,9 +5,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,24 +18,24 @@ public class UserAnalyticsController {
 
     private final UserAnalyticsService analyticsService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public ResponseEntity getAnalyticsByUserId(@PathVariable final String userId) {
         return ResponseEntity.ok(analyticsService.findByUserId(userId));
     }
 
-    @RequestMapping(value = "/{reportId}", method = RequestMethod.GET)
+    @GetMapping(value = "/{reportId}")
     public ResponseEntity getAnalyticsReportById(@PathVariable final String userId,
                                                  @PathVariable final String reportId) {
         return ResponseEntity.ok(analyticsService.findReportById(userId, reportId));
     }
 
-    @RequestMapping(value = "/{reportId}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{reportId}")
     public ResponseEntity deleteAnalyticsReportById(@PathVariable final String userId,
                                                     @PathVariable final String reportId) {
         return ResponseEntity.ok(analyticsService.deleteReport(userId, reportId));
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/all")
     public ResponseEntity deleteAllAnalyticsReports(@PathVariable final String userId) {
         return ResponseEntity.ok(analyticsService.deleteAllReports(userId));
     }
