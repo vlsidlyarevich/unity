@@ -924,7 +924,7 @@
     "name": "JavaScript Daily",
     "url": "https://twitter.com/JavaScriptDaily",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -932,7 +932,7 @@
     "name": "JS Foundation",
     "url": "https://twitter.com/the_jsf",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -940,7 +940,7 @@
     "name": "ReactJS News",
     "url": "https://twitter.com/ReactJSNews",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -948,7 +948,7 @@
     "name": "React",
     "url": "https://twitter.com/reactjs",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -956,7 +956,7 @@
     "name": "npmbot",
     "url": "https://twitter.com/npmjs",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -964,7 +964,7 @@
     "name": "Bower",
     "url": "https://twitter.com/bower",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -972,7 +972,7 @@
     "name": "JavaScriptKicks",
     "url": "https://twitter.com/JavaScriptKicks",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -980,7 +980,7 @@
     "name": "Frontend Daily",
     "url": "https://twitter.com/FrontendDaily",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -988,7 +988,7 @@
     "name": "ionic",
     "url": "https://twitter.com/Ionicframework",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -996,7 +996,7 @@
     "name": "JSConf",
     "url": "https://twitter.com/jsconf",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -1004,7 +1004,7 @@
     "name": "JavaScript Next",
     "url": "https://twitter.com/javascript_next",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -1012,7 +1012,7 @@
     "name": "Javascript flux",
     "url": "https://twitter.com/JavascriptBot_",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -1020,7 +1020,7 @@
     "name": "JavaScript Planet",
     "url": "https://twitter.com/javascriptX",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -1028,7 +1028,7 @@
     "name": "JavaScript FAN",
     "url": "https://twitter.com/javascript_fan",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -1036,93 +1036,97 @@
     "name": "Javascript Digest",
     "url": "https://twitter.com/javascriptd",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
   {
     "name": "",
-    "url": "",
+    "url": "https://twitter.com/JSStack",
+    "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
+    "name": "Web Code Geeks",
+    "url": "https://twitter.com/webcodegeeks",
+    "tags": [
+      "Java",
+      "JavaScript",
+      "Ruby",
+      "Scala",
+      "PHP",
+      "Python"
+    ]
+  },
+  {
+    "name": "Node.js",
+    "url": "https://twitter.com/nodejs",
     "tags": [
       "",
       ""
     ]
   },
   {
-    "name": "",
-    "url": "",
+    "name": "Node.js FAN",
+    "url": "https://twitter.com/NodeFan",
     "tags": [
       "",
       ""
     ]
   },
   {
-    "name": "",
-    "url": "",
+    "name": "AngularJS FAN",
+    "url": "https://twitter.com/AngularJSFan",
     "tags": [
       "",
       ""
     ]
   },
   {
-    "name": "",
-    "url": "",
+    "name": "Angular 2 Book",
+    "url": "https://twitter.com/angular2book",
     "tags": [
       "",
       ""
     ]
   },
   {
-    "name": "",
-    "url": "",
+    "name": "Node Summit",
+    "url": "https://twitter.com/NodeSummit",
     "tags": [
       "",
       ""
     ]
   },
   {
-    "name": "",
-    "url": "",
+    "name": "nodejs-news",
+    "url": "https://twitter.com/NewsNodejs",
     "tags": [
       "",
       ""
     ]
   },
   {
-    "name": "",
-    "url": "",
+    "name": "AngularJS News",
+    "url": "https://twitter.com/AngularJS_News",
     "tags": [
       "",
       ""
     ]
   },
   {
-    "name": "",
-    "url": "",
+    "name": "Node.js Security",
+    "url": "https://twitter.com/nodesecurity",
     "tags": [
       "",
       ""
     ]
   },
   {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
+    "name": "NodeJS Community",
+    "url": "https://twitter.com/NodeJsCommunity",
     "tags": [
       "",
       ""
