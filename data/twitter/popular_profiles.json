@@ -1064,7 +1064,7 @@
     "name": "Node.js",
     "url": "https://twitter.com/nodejs",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -1072,7 +1072,7 @@
     "name": "Node.js FAN",
     "url": "https://twitter.com/NodeFan",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -1080,7 +1080,7 @@
     "name": "AngularJS FAN",
     "url": "https://twitter.com/AngularJSFan",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -1088,7 +1088,7 @@
     "name": "Angular 2 Book",
     "url": "https://twitter.com/angular2book",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -1096,7 +1096,7 @@
     "name": "Node Summit",
     "url": "https://twitter.com/NodeSummit",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -1104,7 +1104,7 @@
     "name": "nodejs-news",
     "url": "https://twitter.com/NewsNodejs",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -1112,7 +1112,7 @@
     "name": "AngularJS News",
     "url": "https://twitter.com/AngularJS_News",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -1120,7 +1120,7 @@
     "name": "Node.js Security",
     "url": "https://twitter.com/nodesecurity",
     "tags": [
-      "",
+      "JavaScript",
       ""
     ]
   },
@@ -1128,13 +1128,397 @@
     "name": "NodeJS Community",
     "url": "https://twitter.com/NodeJsCommunity",
     "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
+    "name": "Babel",
+    "url": "https://twitter.com/babeljs",
+    "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
+    "name": "TypeScript",
+    "url": "https://twitter.com/typescriptlang",
+    "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
+    "name": "Flow",
+    "url": "https://twitter.com/flowtype",
+    "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
+    "name": "Yarn",
+    "url": "https://twitter.com/yarnpkg",
+    "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
+    "name": "Vue.js",
+    "url": "https://twitter.com/vuejs",
+    "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
+    "name": "You Don't Know JS",
+    "url": "https://twitter.com/YDKJS",
+    "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
+    "name": "Grunt",
+    "url": "https://twitter.com/gruntjs",
+    "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
+    "name": "gulp",
+    "url": "https://twitter.com/gulpjs",
+    "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
+    "name": "Objective-C SO",
+    "url": "https://twitter.com/ObjectiveCStack",
+    "tags": [
+      "Objective-C",
+      ""
+    ]
+  },
+  {
+    "name": "Objective-C & Swift",
+    "url": "https://twitter.com/objectivec",
+    "tags": [
+      "Objective-C",
+      "Swift",
+      ""
+    ]
+  },
+  {
+    "name": "objc.io",
+    "url": "https://twitter.com/objcio/following",
+    "tags": [
+      "Objective-C",
+      ""
+    ]
+  },
+  {
+    "name": "iOS-Blog",
+    "url": "https://twitter.com/iOS_blog",
+    "tags": [
+      "Objective-C",
+      "Swift",
+      ""
+    ]
+  },
+  {
+    "name": "Objective-C OSS",
+    "url": "https://twitter.com/oss_objc",
+    "tags": [
+      "Objective-C",
+      "Swift",
+      ""
+    ]
+  },
+  {
+    "name": "iOS Dev Feed",
+    "url": "https://twitter.com/iOSDevFeed",
+    "tags": [
+      "Objective-C",
+      "Swift",
+      ""
+    ]
+  },
+  {
+    "name": "The Perl Foundation",
+    "url": "https://twitter.com/perlfoundation",
+    "tags": [
+      "Perl",
+      ""
+    ]
+  },
+  {
+    "name": "Perl Weekly",
+    "url": "https://twitter.com/PerlWeekly",
+    "tags": [
+      "Perl",
+      ""
+    ]
+  },
+  {
+    "name": "https://twitter.com/PerlTricks",
+    "url": "https://twitter.com/PerlTricks",
+    "tags": [
+      "Perl",
+      ""
+    ]
+  },
+  {
+    "name": "PhpStorm",
+    "url": "https://twitter.com/phpstorm",
+    "tags": [
+      "PHP",
+      "JavaScript",
+      "Databases",
+      "UI/UX design",
+      "Programming tools"
+    ]
+  },
+  {
+    "name": "Laravel",
+    "url": "https://twitter.com/laravelphp",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "php.net",
+    "url": "https://twitter.com/php_net",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "PHP Community",
+    "url": "https://twitter.com/phpc",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "PHP Classes scripts",
+    "url": "https://twitter.com/phpclasses",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "Planet PHP",
+    "url": "https://twitter.com/planetphp",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "phpdeveloper",
+    "url": "https://twitter.com/phpdeveloper",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "Web & PHP",
+    "url": "https://twitter.com/webandphp",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "PHP Magazin",
+    "url": "https://twitter.com/phpmagazin",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "php[architect]",
+    "url": "https://twitter.com/phparch",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "SitePoint PHP",
+    "url": "https://twitter.com/SitePointPHP",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "php.net",
+    "url": "https://twitter.com/official_php",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "WordPress",
+    "url": "https://twitter.com/WordPress",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "WordPress Beginner",
+    "url": "https://twitter.com/wpbeginner",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "CakePHP",
+    "url": "https://twitter.com/cakephp",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "PHP Projects",
+    "url": "https://twitter.com/php_projects",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "The PHP League",
+    "url": "https://twitter.com/thephpleague",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "PHP-FIG",
+    "url": "https://twitter.com/phpfig",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "Daily PHP Function",
+    "url": "https://twitter.com/DailyPHP",
+    "tags": [
+      "PHP",
+      ""
+    ]
+  },
+  {
+    "name": "Python Software",
+    "url": "https://twitter.com/ThePSF",
+    "tags": [
       "",
       ""
     ]
   },
   {
-    "name": "",
-    "url": "",
+    "name": "Django",
+    "url": "https://twitter.com/djangoproject",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "PyCon",
+    "url": "https://twitter.com/pycon",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "Pycoders Weekly",
+    "url": "https://twitter.com/pycoders",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "Scientific Python",
+    "url": "https://twitter.com/SciPyTip",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "Get Python",
+    "url": "https://twitter.com/getpy",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "Python Hub",
+    "url": "https://twitter.com/PythonHub",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "Project Jupyter",
+    "url": "https://twitter.com/ProjectJupyter",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "JetBrains PyCharm",
+    "url": "https://twitter.com/pycharm",
+    "tags": [
+      "PHP",
+      "Databases",
+      "Programming tools"
+    ]
+  },
+  {
+    "name": "Python StackOverflow",
+    "url": "https://twitter.com/PythonStack",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "import python ",
+    "url": "https://twitter.com/importpython",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "PythonAnywhere",
+    "url": "https://twitter.com/pythonanywhere",
     "tags": [
       "",
       ""

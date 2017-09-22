@@ -24,11 +24,10 @@
       "Delphi", +
       "Groovy", +
       "Java", +
-      "JavaScript",
-      "Objective-C",
-      "Perl",
-      "PHP",
-      "Pike",
+      "JavaScript", +
+      "Objective-C", +
+      "Perl", +
+      "PHP", +
       "Python",
       "Ruby",
       "Self",
