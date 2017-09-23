@@ -28,31 +28,16 @@
       "Objective-C", +
       "Perl", +
       "PHP", +
-      "Python",
-      "Ruby",
-      "Self",
-      "Simula",
-      "Smalltalk",
-      "Vala",
-      "Ada"
+      "Python", +
+      "Ruby" +
     ]
   },
   "Functional languages": {
     "description": "",
     "list": [
-      "Clean",
-      "F#",
-      "Gentee",
-      "Haskell",
-      "Hope",
-      "J",
-      "Mathematica",
-      "OCaml",
-      "Scheme",
-      "APL",
-      "Lisp",
-      "Logo",
-      "Refal"
+      "F#", +
+      "Haskell", +
+      "OCaml", +
     ]
   },
   "Multiparadigm languages": {

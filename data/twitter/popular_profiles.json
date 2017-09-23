@@ -1117,6 +1117,38 @@
     ]
   },
   {
+    "name": "ng-newsletter",
+    "url": "https://twitter.com/ngnewsletter",
+    "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
+    "name": "Angular Tutorial",
+    "url": "https://twitter.com/AngularTutorial",
+    "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
+    "name": "Angular",
+    "url": "https://twitter.com/angular",
+    "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
+    "name": "ESLint",
+    "url": "https://twitter.com/geteslint",
+    "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
     "name": "Node.js Security",
     "url": "https://twitter.com/nodesecurity",
     "tags": [
@@ -1167,6 +1199,14 @@
   {
     "name": "Vue.js",
     "url": "https://twitter.com/vuejs",
+    "tags": [
+      "JavaScript",
+      ""
+    ]
+  },
+  {
+    "name": "EmberJS",
+    "url": "https://twitter.com/emberjs",
     "tags": [
       "JavaScript",
       ""
@@ -1431,7 +1471,7 @@
     "name": "Python Software",
     "url": "https://twitter.com/ThePSF",
     "tags": [
-      "",
+      "Python",
       ""
     ]
   },
@@ -1439,7 +1479,7 @@
     "name": "Django",
     "url": "https://twitter.com/djangoproject",
     "tags": [
-      "",
+      "Python",
       ""
     ]
   },
@@ -1447,7 +1487,7 @@
     "name": "PyCon",
     "url": "https://twitter.com/pycon",
     "tags": [
-      "",
+      "Python",
       ""
     ]
   },
@@ -1455,7 +1495,7 @@
     "name": "Pycoders Weekly",
     "url": "https://twitter.com/pycoders",
     "tags": [
-      "",
+      "Python",
       ""
     ]
   },
@@ -1463,7 +1503,7 @@
     "name": "Scientific Python",
     "url": "https://twitter.com/SciPyTip",
     "tags": [
-      "",
+      "Python",
       ""
     ]
   },
@@ -1471,7 +1511,7 @@
     "name": "Get Python",
     "url": "https://twitter.com/getpy",
     "tags": [
-      "",
+      "Python",
       ""
     ]
   },
@@ -1479,7 +1519,7 @@
     "name": "Python Hub",
     "url": "https://twitter.com/PythonHub",
     "tags": [
-      "",
+      "Python",
       ""
     ]
   },
@@ -1487,7 +1527,7 @@
     "name": "Project Jupyter",
     "url": "https://twitter.com/ProjectJupyter",
     "tags": [
-      "",
+      "Python",
       ""
     ]
   },
@@ -1504,7 +1544,7 @@
     "name": "Python StackOverflow",
     "url": "https://twitter.com/PythonStack",
     "tags": [
-      "",
+      "Python",
       ""
     ]
   },
@@ -1512,13 +1552,470 @@
     "name": "import python ",
     "url": "https://twitter.com/importpython",
     "tags": [
-      "",
+      "Python",
       ""
     ]
   },
   {
     "name": "PythonAnywhere",
     "url": "https://twitter.com/pythonanywhere",
+    "tags": [
+      "Python",
+      ""
+    ]
+  },
+  {
+    "name": "Ruby StackOverflow",
+    "url": "https://twitter.com/RubyStack_",
+    "tags": [
+      "Ruby",
+      ""
+    ]
+  },
+  {
+    "name": "JetBrains RubyMine",
+    "url": "https://twitter.com/rubymine",
+    "tags": [
+      "Ruby",
+      "Databases",
+      "Programming tools"
+    ]
+  },
+  {
+    "name": "RubyKaigi",
+    "url": "https://twitter.com/rubykaigi",
+    "tags": [
+      "Ruby",
+      ""
+    ]
+  },
+  {
+    "name": "Ruby Together",
+    "url": "https://twitter.com/rubytogether",
+    "tags": [
+      "Ruby",
+      ""
+    ]
+  },
+  {
+    "name": "Engine Yard",
+    "url": "https://twitter.com/engineyard",
+    "tags": [
+      "Ruby",
+      ""
+    ]
+  },
+  {
+    "name": "Ruby Rogues",
+    "url": "https://twitter.com/rubyrogues",
+    "tags": [
+      "Ruby",
+      ""
+    ]
+  },
+  {
+    "name": "Ruby News",
+    "url": "https://twitter.com/ruby_news",
+    "tags": [
+      "Ruby",
+      ""
+    ]
+  },
+  {
+    "name": "RubyFlow",
+    "url": "https://twitter.com/rubyflow",
+    "tags": [
+      "Ruby",
+      ""
+    ]
+  },
+  {
+    "name": "Ruby Inside",
+    "url": "https://twitter.com/RubyInside",
+    "tags": [
+      "Ruby",
+      ""
+    ]
+  },
+  {
+    "name": "Rails Tutorial",
+    "url": "https://twitter.com/railstutorial",
+    "tags": [
+      "Ruby",
+      ""
+    ]
+  },
+  {
+    "name": "Ruby on Rails",
+    "url": "https://twitter.com/rails",
+    "tags": [
+      "Ruby",
+      ""
+    ]
+  },
+  {
+    "name": "JRuby Dev Team",
+    "url": "https://twitter.com/jruby",
+    "tags": [
+      "Ruby",
+      ""
+    ]
+  },
+  {
+    "name": "rubyconf",
+    "url": "https://twitter.com/rubyconf",
+    "tags": [
+      "Ruby",
+      ""
+    ]
+  },
+  {
+    "name": "RailsConf",
+    "url": "https://twitter.com/railsconf",
+    "tags": [
+      "Ruby",
+      ""
+    ]
+  },
+  {
+    "name": "Visual F# Team",
+    "url": "https://twitter.com/VisualFSharp",
+    "tags": [
+      "F#",
+      ""
+    ]
+  },
+  {
+    "name": "fsharp.org",
+    "url": "https://twitter.com/fsharporg",
+    "tags": [
+      "F#",
+      ""
+    ]
+  },
+  {
+    "name": "Community for F#",
+    "url": "https://twitter.com/c4fsharp",
+    "tags": [
+      "F#",
+      ""
+    ]
+  },
+  {
+    "name": "Visual F# PowerTools",
+    "url": "https://twitter.com/FSPowerTools",
+    "tags": [
+      "F#",
+      ""
+    ]
+  },
+  {
+    "name": "Haskell",
+    "url": "https://twitter.com/HaskellOrg",
+    "tags": [
+      "Haskell",
+      ""
+    ]
+  },
+  {
+    "name": "Haskell Book",
+    "url": "https://twitter.com/haskellbook",
+    "tags": [
+      "Haskell",
+      ""
+    ]
+  },
+  {
+    "name": "1HaskellADay",
+    "url": "https://twitter.com/1HaskellADay",
+    "tags": [
+      "Haskell",
+      ""
+    ]
+  },
+  {
+    "name": "Evil Haskell Tips",
+    "url": "https://twitter.com/EvilHaskellTips",
+    "tags": [
+      "Haskell",
+      ""
+    ]
+  },
+  {
+    "name": "Haskell Weekly",
+    "url": "https://twitter.com/haskellweekly",
+    "tags": [
+      "Haskell",
+      ""
+    ]
+  },
+  {
+    "name": "Haskell for Mac",
+    "url": "https://twitter.com/HaskellForMac",
+    "tags": [
+      "Haskell",
+      ""
+    ]
+  },
+  {
+    "name": "OCaml",
+    "url": "https://twitter.com/OCamlLang",
+    "tags": [
+      "OCaml",
+      ""
+    ]
+  },
+  {
+    "name": "OCaml MOOC",
+    "url": "https://twitter.com/ocamlmooc",
+    "tags": [
+      "OCaml",
+      ""
+    ]
+  },
+  {
+    "name": "Real World OCaml",
+    "url": "https://twitter.com/RealWorldOCaml",
+    "tags": [
+      "OCaml",
+      ""
+    ]
+  },
+  {
+    "name": "C# Corner",
+    "url": "https://twitter.com/CsharpCorner",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "Visual Studio",
+    "url": "https://twitter.com/VisualStudio",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "Microsoft Developer",
+    "url": "https://twitter.com/msdev",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "Visual Studio Code",
+    "url": "https://twitter.com/code",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "The ASP.NET Team",
+    "url": "https://twitter.com/aspnet",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": ".NET Team",
+    "url": "https://twitter.com/dotnet",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "Microsoft Azure",
+    "url": "https://twitter.com/Azure",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": ".NET Foundation",
+    "url": "https://twitter.com/dotnetfdn",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "Xamarin",
+    "url": "https://twitter.com/xamarinhq",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "VS Subscriptions",
+    "url": "https://twitter.com/VSSubscriptions",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "Microsoft Cloud",
+    "url": "https://twitter.com/MSCloud",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "C# StackOverflow",
+    "url": "https://twitter.com/CSharpStack",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "MS Virtual Academy",
+    "url": "https://twitter.com/MSVirtAcademy",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "JetBrains Rider",
+    "url": "https://twitter.com/JetBrainsRider",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "JetBrains ReSharper",
+    "url": "https://twitter.com/resharper",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "",
+    "url": "",
     "tags": [
       "",
       ""
