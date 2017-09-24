@@ -1785,7 +1785,7 @@
     "name": "C# Corner",
     "url": "https://twitter.com/CsharpCorner",
     "tags": [
-      "",
+      "C#",
       ""
     ]
   },
@@ -1793,7 +1793,7 @@
     "name": "Visual Studio",
     "url": "https://twitter.com/VisualStudio",
     "tags": [
-      "",
+      "C#",
       ""
     ]
   },
@@ -1801,7 +1801,7 @@
     "name": "Microsoft Developer",
     "url": "https://twitter.com/msdev",
     "tags": [
-      "",
+      "C#",
       ""
     ]
   },
@@ -1809,7 +1809,7 @@
     "name": "Visual Studio Code",
     "url": "https://twitter.com/code",
     "tags": [
-      "",
+      "C#",
       ""
     ]
   },
@@ -1817,7 +1817,7 @@
     "name": "The ASP.NET Team",
     "url": "https://twitter.com/aspnet",
     "tags": [
-      "",
+      "C#",
       ""
     ]
   },
@@ -1825,7 +1825,7 @@
     "name": ".NET Team",
     "url": "https://twitter.com/dotnet",
     "tags": [
-      "",
+      "C#",
       ""
     ]
   },
@@ -1833,7 +1833,7 @@
     "name": "Microsoft Azure",
     "url": "https://twitter.com/Azure",
     "tags": [
-      "",
+      "C#",
       ""
     ]
   },
@@ -1841,7 +1841,7 @@
     "name": ".NET Foundation",
     "url": "https://twitter.com/dotnetfdn",
     "tags": [
-      "",
+      "C#",
       ""
     ]
   },
@@ -1849,7 +1849,7 @@
     "name": "Xamarin",
     "url": "https://twitter.com/xamarinhq",
     "tags": [
-      "",
+      "C#",
       ""
     ]
   },
@@ -1857,7 +1857,7 @@
     "name": "VS Subscriptions",
     "url": "https://twitter.com/VSSubscriptions",
     "tags": [
-      "",
+      "C#",
       ""
     ]
   },
@@ -1865,7 +1865,7 @@
     "name": "Microsoft Cloud",
     "url": "https://twitter.com/MSCloud",
     "tags": [
-      "",
+      "C#",
       ""
     ]
   },
@@ -1873,7 +1873,7 @@
     "name": "C# StackOverflow",
     "url": "https://twitter.com/CSharpStack",
     "tags": [
-      "",
+      "C#",
       ""
     ]
   },
@@ -1881,7 +1881,7 @@
     "name": "MS Virtual Academy",
     "url": "https://twitter.com/MSVirtAcademy",
     "tags": [
-      "",
+      "C#",
       ""
     ]
   },
@@ -1889,7 +1889,7 @@
     "name": "JetBrains Rider",
     "url": "https://twitter.com/JetBrainsRider",
     "tags": [
-      "",
+      "C#",
       ""
     ]
   },
@@ -1897,207 +1897,200 @@
     "name": "JetBrains ReSharper",
     "url": "https://twitter.com/resharper",
     "tags": [
-      "",
+      "C#",
+      ""
+    ]
+  },
+  {
+    "name": "Erlang Factory",
+    "url": "https://twitter.com/erlangfactory",
+    "tags": [
+      "Erlang",
+      ""
+    ]
+  },
+  {
+    "name": "Erlang Central",
+    "url": "https://twitter.com/ErlangCentral",
+    "tags": [
+      "Erlang",
+      ""
+    ]
+  },
+  {
+    "name": "Erlang Solutions",
+    "url": "https://twitter.com/ErlangSolutions",
+    "tags": [
+      "Erlang",
+      ""
+    ]
+  },
+  {
+    "name": "Scala",
+    "url": "https://twitter.com/scala_lang",
+    "tags": [
+      "Scala",
+      ""
+    ]
+  },
+  {
+    "name": "Akka Team",
+    "url": "https://twitter.com/akkateam",
+    "tags": [
+      "Scala",
+      "Java",
+      ""
+    ]
+  },
+  {
+    "name": "Scala IDE",
+    "url": "https://twitter.com/ScalaIDE",
+    "tags": [
+      "Scala",
+      ""
+    ]
+  },
+  {
+    "name": "Scala Days",
+    "url": "https://twitter.com/scaladays",
+    "tags": [
+      "Scala",
+      ""
+    ]
+  },
+  {
+    "name": "Scala Times",
+    "url": "https://twitter.com/ScalaTimes",
+    "tags": [
+      "Scala",
+      ""
+    ]
+  },
+  {
+    "name": "typelevel.scala",
+    "url": "https://twitter.com/typelevel",
+    "tags": [
+      "Scala",
+      ""
+    ]
+  },
+  {
+    "name": "NE Scala Symposium",
+    "url": "https://twitter.com/nescalas",
+    "tags": [
+      "Scala",
+      ""
+    ]
+  },
+  {
+    "name": "Swift iOS Dev Tips",
+    "url": "https://twitter.com/SwiftiOSDevTips",
+    "tags": [
+      "Swift",
+      ""
+    ]
+  },
+  {
+    "name": "Swift StackOverflow",
+    "url": "https://twitter.com/SwiftStack_",
+    "tags": [
+      "Swift",
+      ""
+    ]
+  },
+  {
+    "name": "Functional Swift",
+    "url": "https://twitter.com/FunctionalSwift",
+    "tags": [
+      "Swift",
+      ""
+    ]
+  },
+  {
+    "name": "NSScreencast",
+    "url": "https://twitter.com/NSScreencast",
+    "tags": [
+      "Swift",
+      ""
+    ]
+  },
+  {
+    "name": "Swift Trends",
+    "url": "https://twitter.com/swiftgit",
+    "tags": [
+      "Swift",
+      ""
+    ]
+  },
+  {
+    "name": "iOS Dev Weekly",
+    "url": "https://twitter.com/iOSDevWeekly",
+    "tags": [
+      "Swift",
+      ""
+    ]
+  },
+  {
+    "name": "I ❤ Swift",
+    "url": "https://twitter.com/IHeartSwiftLang",
+    "tags": [
+      "Swift",
+      ""
+    ]
+  },
+  {
+    "name": "Swift Summit",
+    "url": "https://twitter.com/SwiftSummit",
+    "tags": [
+      "Swift",
+      ""
+    ]
+  },
+  {
+    "name": "Swift London",
+    "url": "https://twitter.com/SwiftLDN",
+    "tags": [
+      "Swift",
       ""
     ]
   },
   {
     "name": "",
-    "url": "",
+    "url": "https://twitter.com/SwiftLang",
     "tags": [
-      "",
+      "Swift",
       ""
     ]
   },
   {
-    "name": "",
-    "url": "",
+    "name": "Swift Weekly Brief",
+    "url": "https://twitter.com/swiftlybrief",
     "tags": [
-      "",
+      "Swift",
       ""
     ]
   },
   {
-    "name": "",
-    "url": "",
+    "name": "Swift Studies",
+    "url": "https://twitter.com/Swift_Studies",
     "tags": [
-      "",
+      "Swift",
       ""
     ]
   },
   {
-    "name": "",
-    "url": "",
+    "name": "Swift",
+    "url": "https://twitter.com/SwiftDevs",
     "tags": [
-      "",
+      "Swift",
       ""
     ]
   },
   {
-    "name": "",
-    "url": "",
+    "name": "Coding in Swift",
+    "url": "https://twitter.com/codinginswift",
     "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  {
-    "name": "",
-    "url": "",
-    "tags": [
-      "",
+      "Swift",
       ""
     ]
   }

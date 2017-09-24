@@ -43,14 +43,10 @@
   "Multiparadigm languages": {
     "description": "",
     "list": [
-      "C#",
-      "Erlang",
-      "Mozart",
-      "Nemerle",
-      "Scala",
-      "Zonnon",
-      "Component Pascal",
-      "Swift"
+      "C#", +
+      "Erlang", +
+      "Scala", +
+      "Swift" +
     ]
   }
 }
