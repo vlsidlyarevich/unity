@@ -11,13 +11,13 @@ import java.util.Date;
 public class TwitterSubscriptionData extends TwitterResult {
 
     private static final long serialVersionUID = -1073551767038352922L;
+
     private String id;
     private String name;
     private String email;
     private String screenName;
     private String location;
     private String description;
-    //FIXME
     private String url;
     private int followersCount;
     private boolean showAllInlineMedia;

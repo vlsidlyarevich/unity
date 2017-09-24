@@ -59,12 +59,14 @@ public final class TestUtils {
     }
 
     public static UserSocial createUserSocial() {
-        return new UserSocial(TestRandomUtils.getRandomString(8),
-                TestRandomUtils.getRandomString(8),
-                TestRandomUtils.getRandomString(8),
-                TestRandomUtils.getRandomString(8),
-                TestRandomUtils.getRandomString(8),
-                TestRandomUtils.getRandomString(8));
+        return UserSocial.builder()
+                .firstName(TestRandomUtils.getRandomString(8))
+                .lastName(TestRandomUtils.getRandomString(8))
+                .email(TestRandomUtils.getRandomString(8))
+                .skype(TestRandomUtils.getRandomString(8))
+                .additional(TestRandomUtils.getRandomString(8))
+                .image(TestRandomUtils.getRandomString(8))
+                .build();
     }
 
     public static SocialUserConnection createSocialConnection() {
