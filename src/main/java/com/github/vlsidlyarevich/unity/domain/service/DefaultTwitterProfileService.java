@@ -27,6 +27,11 @@ public class DefaultTwitterProfileService implements TwitterProfileService {
     }
 
     @Override
+    public TwitterProfile findByUrl(final String url) {
+        return repository.findByUrl(url);
+    }
+
+    @Override
     public List<TwitterProfile> findAll() {
         return repository.findAll();
     }

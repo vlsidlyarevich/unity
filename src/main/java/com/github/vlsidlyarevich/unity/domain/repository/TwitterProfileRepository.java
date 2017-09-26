@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TwitterProfileRepository extends MongoRepository<TwitterProfile, String> {
 
+    TwitterProfile findByUrl(String url);
 }

@@ -12,9 +12,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8080/api/auth",
+					"name": "Get JWT token",
 					"request": {
-						"url": "http://localhost:8080/api/auth",
+						"url": "http://localhost:8080/api/v1/auth",
 						"method": "POST",
 						"header": [
 							{
@@ -38,10 +38,10 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8080/api/signup copy",
+					"name": "Get git profile data by username",
 					"request": {
-						"url": "http://localhost:8080/api/signup",
-						"method": "POST",
+						"url": "http://localhost:8080/api/v1/git/profile/username",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -64,9 +64,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8080/api/signup",
+					"name": "Register",
 					"request": {
-						"url": "http://localhost:8080/api/signup",
+						"url": "http://localhost:8080/api/v1/signup",
 						"method": "POST",
 						"header": [
 							{
@@ -90,9 +90,59 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8080/api/users/ copy",
+					"name": "Delete all user analytics by user id",
 					"request": {
-						"url": "http://localhost:8080/api/users/",
+						"url": "http://localhost:8080/api/v1/user/id/analytics/all",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"vlad\",\n\"password\": \"44354343Aa$\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete report in user analytics by user id and report id",
+					"request": {
+						"url": "http://localhost:8080/api/v1/user/user id/analytics/report id",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"vlad\",\n\"password\": \"44354343Aa$\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get user analytics report by user id and report id",
+					"request": {
+						"url": "http://localhost:8080/api/v1/user/user id/analytics/report id",
 						"method": "GET",
 						"header": [
 							{
@@ -115,59 +165,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/users/ copy copy",
+					"name": "Get all user analytics by user id",
 					"request": {
-						"url": "http://localhost:8080/api/users/",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\"username\": \"vlad\",\n\"password\": \"44354343Aa$\"\n}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:8080/api/users/ copy copy",
-					"request": {
-						"url": "http://localhost:8080/api/users/",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoidXNlciIsInRva2VuX2V4cGlyYXRpb25fZGF0ZSI6MTQ5MTg1NzAzNTM1NSwidXNlcklEIjoiNThlYmU3NjMzODVhOWYxMWFmZWVmYjlhIiwidXNlcm5hbWUiOiJjYXQiLCJ0b2tlbl9jcmVhdGVfZGF0ZSI6eyJ5ZWFyIjoyMDE3LCJtb250aFZhbHVlIjo0LCJkYXlPZlllYXIiOjEwMCwiZGF5T2ZXZWVrIjoiTU9OREFZIiwibW9udGgiOiJBUFJJTCIsImRheU9mTW9udGgiOjEwLCJob3VyIjoyMywibWludXRlIjoxMywic2Vjb25kIjo1NSwibmFubyI6MzU0MDAwMDAwLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fX0.dEXF2r3STufQCUPsI9LCI0Bc5EL0QEwnWi8BgcQAr69PNjPaYCExGRoGMqmeSW7G0o-m3h2YbaRADkFzh67JKw",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\"username\": \"vlad\",\n\"password\": \"44354343Aa$\"\n}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:8080/api/users/ copy copy",
-					"request": {
-						"url": "http://localhost:8080/api/users/",
+						"url": "http://localhost:8080/api/v1/user/id/analytics",
 						"method": "GET",
 						"header": [
 							{
@@ -196,9 +196,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8080/api/user",
+					"name": "Get current user",
 					"request": {
-						"url": "http://localhost:8080/api/user",
+						"url": "http://localhost:8080/api/v1/user",
 						"method": "GET",
 						"header": [
 							{
@@ -227,9 +227,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8080/api/user/id/social",
+					"name": "Get user social data by user id",
 					"request": {
-						"url": "http://localhost:8080/api/user/59213c384c772f35c7aa9470/social",
+						"url": "http://localhost:8080/api/v1/user/id/social",
 						"method": "GET",
 						"header": [
 							{
@@ -252,9 +252,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/user/id/social",
+					"name": "Update user social data by user id",
 					"request": {
-						"url": "http://localhost:8080/api/user/59213c384c772f35c7aa9470/social",
+						"url": "http://localhost:8080/api/v1/user/id/social",
 						"method": "POST",
 						"header": [
 							{
@@ -277,9 +277,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/user/id/social",
+					"name": "Delete user social data by user id",
 					"request": {
-						"url": "http://localhost:8080/api/user/59213c384c772f35c7aa9470/social",
+						"url": "http://localhost:8080/api/v1/user/id/social",
 						"method": "DELETE",
 						"header": [
 							{
@@ -308,9 +308,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8080/api/users/",
+					"name": "Get all users",
 					"request": {
-						"url": "http://localhost:8080/api/users/",
+						"url": "http://localhost:8080/api/v1/users",
 						"method": "GET",
 						"header": [
 							{
@@ -333,9 +333,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/users/ copy copy copy",
+					"name": "Get user by id",
 					"request": {
-						"url": "http://localhost:8080/api/users/id",
+						"url": "http://localhost:8080/api/v1/users/id",
 						"method": "GET",
 						"header": [
 							{
@@ -358,9 +358,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/users/ copy copy copy",
+					"name": "Save user",
 					"request": {
-						"url": "http://localhost:8080/api/users/",
+						"url": "http://localhost:8080/api/v1/users",
 						"method": "POST",
 						"header": [
 							{
@@ -383,9 +383,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/users/ copy copy copy",
+					"name": "Update user by id",
 					"request": {
-						"url": "http://localhost:8080/api/users/id",
+						"url": "http://localhost:8080/api/v1/users/id",
 						"method": "PUT",
 						"header": [
 							{
@@ -408,9 +408,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/users/ copy copy copy copy",
+					"name": "Delete user by id",
 					"request": {
-						"url": "http://localhost:8080/api/users/id",
+						"url": "http://localhost:8080/api/v1/users/id",
 						"method": "DELETE",
 						"header": [
 							{
@@ -429,6 +429,58 @@
 							"raw": ""
 						},
 						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "linkedin profile api",
+			"description": "",
+			"item": [
+				{
+					"name": "Get linkedin profile by username",
+					"request": {
+						"url": "http://localhost:8080/api/v1/linkedin/profile/username",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"cat\",\n\"password\": \"12345Aa$\"\n}"
+						},
+						"description": "Signup"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "twitter profile api",
+			"description": "",
+			"item": [
+				{
+					"name": "Get twitter profile data by username",
+					"request": {
+						"url": "http://localhost:8080/api/v1/twitter/profile/username",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"cat\",\n\"password\": \"12345Aa$\"\n}"
+						},
+						"description": "Signup"
 					},
 					"response": []
 				}

@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -26,4 +27,6 @@ public class TwitterProfileData extends TwitterResult {
     private String lang;
     private boolean isVerified;
     private List<TwitterSubscriptionData> subscriptions;
+    private Map<String, Integer> tagsTotal;
+    private List<TwitterPopularProfile> popularProfilesSubscribed;
 }
