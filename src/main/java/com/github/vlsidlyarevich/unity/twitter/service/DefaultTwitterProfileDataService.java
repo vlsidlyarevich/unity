@@ -69,10 +69,8 @@ public class DefaultTwitterProfileDataService implements TwitterProfileDataServi
         }
     }
 
-    private List<TwitterPopularProfile> getPopularProfiles(
-            final List<TwitterSubscriptionData> subscriptions) {
-        final List<TwitterPopularProfile> popularProfiles =
-                new ArrayList<>();
+    private List<TwitterPopularProfile> getPopularProfiles(final List<TwitterSubscriptionData> subscriptions) {
+        final List<TwitterPopularProfile> popularProfiles = new ArrayList<>();
 
         subscriptions.forEach(subscription ->
                 Optional.ofNullable(twitterProfileService.findByUrl(subscription.getUrl()))
