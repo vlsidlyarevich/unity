@@ -26,7 +26,6 @@ public class TwitterProfileData extends TwitterResult {
     private Date createdAt;
     private String lang;
     private boolean isVerified;
-    private List<TwitterSubscriptionData> subscriptions;
     private Map<String, Integer> tagsTotal;
     private List<TwitterPopularProfile> popularProfilesSubscribed;
 }

@@ -42,8 +42,6 @@ public class DefaultTwitterProfileDataService implements TwitterProfileDataServi
                                     .map(subscr -> mapper.map(subscr, TwitterSubscriptionData.class))
                                     .collect(Collectors.toList());
 
-                    profileData.setSubscriptions(subscriptions);
-
                     profileData.setPopularProfilesSubscribed(getPopularProfiles(subscriptions));
 
                     profileData.setTagsTotal(tagsCalculator.calculateTotal(profileData.getPopularProfilesSubscribed()));
