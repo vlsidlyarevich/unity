@@ -24,8 +24,8 @@ public class DefaultUserAnalyticsService implements UserAnalyticsService {
         return Optional.ofNullable(userAnalytics)
                 .map(analytics -> {
 
-                    final Optional<UserAnalytics> savedAnalytics
-                            = Optional.ofNullable(repository
+                    final Optional<UserAnalytics> savedAnalytics = Optional
+                            .ofNullable(repository
                             .findByUserId(userAnalytics.getUserId()));
 
                     savedAnalytics.ifPresent(savedAnalyt ->

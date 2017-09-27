@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TwitterProfileService {
 
-    TwitterProfile findByUrl(String url);
+    TwitterProfile findByScreenName(String screenName);
 
     List<TwitterProfile> findAll();
 }
