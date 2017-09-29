@@ -2,9 +2,11 @@ package com.github.vlsidlyarevich.unity;
 
 import com.github.vlsidlyarevich.unity.common.model.AnalysisReport;
 import com.github.vlsidlyarevich.unity.domain.model.SocialUserConnection;
+import com.github.vlsidlyarevich.unity.domain.model.TwitterProfile;
 import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.domain.model.UserAnalytics;
 import com.github.vlsidlyarevich.unity.domain.model.UserSocial;
+import com.github.vlsidlyarevich.unity.twitter.model.TwitterPopularProfile;
 import com.github.vlsidlyarevich.unity.web.security.model.Authority;
 
 import java.util.ArrayList;
@@ -75,5 +77,24 @@ public final class TestUtils {
                 .providerUserId(TestRandomUtils.getRandomString(8))
                 .providerId(TestRandomUtils.getRandomString(8))
                 .build();
+    }
+
+    public static TwitterPopularProfile createPopularProfile() {
+        return TwitterPopularProfile.builder()
+                .name(TestRandomUtils.getRandomString(8))
+                .url(TestRandomUtils.getRandomString(8))
+                .tags(new ArrayList<String>() {{
+                    add(TestRandomUtils.getRandomString(8));
+                }})
+                .build();
+    }
+
+    public static TwitterProfile createTwitterProfile(final TwitterPopularProfile popularProfile) {
+        TwitterProfile twitterProfile = new TwitterProfile();
+        twitterProfile.setName(popularProfile.getName());
+        twitterProfile.setTags(popularProfile.getTags());
+        twitterProfile.setUrl(popularProfile.getUrl());
+
+        return twitterProfile;
     }
 }

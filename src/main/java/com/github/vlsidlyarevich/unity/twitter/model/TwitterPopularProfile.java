@@ -1,12 +1,14 @@
 package com.github.vlsidlyarevich.unity.twitter.model;
 
 import com.github.vlsidlyarevich.unity.common.model.TwitterResult;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
 @Data
+@Builder
 @EqualsAndHashCode(callSuper = false)
 public class TwitterPopularProfile extends TwitterResult {
 
