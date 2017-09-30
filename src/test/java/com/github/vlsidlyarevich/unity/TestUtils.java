@@ -89,6 +89,17 @@ public final class TestUtils {
                 .build();
     }
 
+    public static TwitterProfile createTwitterProfile() {
+        TwitterProfile twitterProfile = new TwitterProfile();
+        twitterProfile.setName(TestRandomUtils.getRandomString(8));
+        twitterProfile.setTags(new ArrayList<String>() {{
+            add(TestRandomUtils.getRandomString(8));
+        }});
+        twitterProfile.setUrl(TestRandomUtils.getRandomString(8));
+
+        return twitterProfile;
+    }
+
     public static TwitterProfile createTwitterProfile(final TwitterPopularProfile popularProfile) {
         TwitterProfile twitterProfile = new TwitterProfile();
         twitterProfile.setName(popularProfile.getName());

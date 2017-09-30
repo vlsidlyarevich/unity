@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @ControllerAdvice
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class PersistanceExceptionHandler {
+public class PersistenceExceptionHandler {
 
     private final MessageResolver messageResolver;
 

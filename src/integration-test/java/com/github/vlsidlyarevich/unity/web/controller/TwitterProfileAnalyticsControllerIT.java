@@ -5,6 +5,7 @@ import com.github.vlsidlyarevich.unity.common.model.AnalyzedResource;
 import com.github.vlsidlyarevich.unity.domain.service.UserService;
 import com.github.vlsidlyarevich.unity.web.exception.handler.PersistenceExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
+import com.github.vlsidlyarevich.unity.web.exception.handler.TwitterExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import org.junit.Before;
@@ -24,9 +25,9 @@ import static org.hamcrest.Matchers.notNullValue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class, SecurityExceptionHandler.class,
-        PersistenceExceptionHandler.class})
+        PersistenceExceptionHandler.class, TwitterExceptionHandler.class})
 @WebAppConfiguration
-public class GitProfileAnalyticsControllerIT extends AbstractControllerIT {
+public class TwitterProfileAnalyticsControllerIT extends AbstractControllerIT {
 
     @Autowired
     private WebApplicationContext context;
@@ -47,8 +48,8 @@ public class GitProfileAnalyticsControllerIT extends AbstractControllerIT {
     }
 
     @Test
-    public void getGitData_Success_IfLoginPresent() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/git/profile/vlsidlyarevich")
+    public void getTwitterProfile_Success_IfLoginPresent() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/twitter/profile/vlsidlyarevich")
                 .accept(contentType)
                 .contentType(contentType)
                 .header(SecurityConstants.AUTH_HEADER_NAME, token))
@@ -56,13 +57,13 @@ public class GitProfileAnalyticsControllerIT extends AbstractControllerIT {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", notNullValue()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.analyzedAt", notNullValue()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.analysisTime", notNullValue()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.resource", is(AnalyzedResource.GITHUB.toString())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.resource", is(AnalyzedResource.TWITTER.toString())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.result", notNullValue()));
     }
 
     @Test
-    public void getGitData_NotFound_IfLoginNotPresent() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/git/profile/nosuchloginexists")
+    public void getTwitterProfile_NotFound_IfLoginNotPresent() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/twitter/profile/nosuchloginexists")
                 .accept(contentType)
                 .contentType(contentType)
                 .header(SecurityConstants.AUTH_HEADER_NAME, token))

@@ -16,7 +16,7 @@ import java.util.Map;
 public class TwitterProfileDataTagsCalculator implements TwitterProfileDataCalculator {
 
     @Override
-    public Map<String, Integer> calculateTotal(Collection<? extends TwitterResult> popularProfiles) {
+    public Map<String, Integer> calculateTotal(final Collection<? extends TwitterResult> popularProfiles) {
         final Map<String, Integer> tagsTotal = new HashMap<>();
 
         final List<TwitterPopularProfile> twitterPopularProfiles

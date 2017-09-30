@@ -18,7 +18,7 @@ public class GitProfileAnalyticsController {
     private final GitProfileAnalysisReportService profileAnalyticsService;
 
     @GetMapping(value = "/{username}")
-    public ResponseEntity getGitData(@PathVariable final String username) {
+    public ResponseEntity getGitProfile(@PathVariable final String username) {
         return ResponseEntity.ok(profileAnalyticsService.getAnalysisReport(username));
     }
 }

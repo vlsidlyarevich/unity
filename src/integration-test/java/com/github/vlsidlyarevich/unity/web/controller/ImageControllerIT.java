@@ -3,7 +3,7 @@ package com.github.vlsidlyarevich.unity.web.controller;
 import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.domain.service.StorageService;
 import com.github.vlsidlyarevich.unity.domain.service.UserService;
-import com.github.vlsidlyarevich.unity.web.exception.handler.PersistanceExceptionHandler;
+import com.github.vlsidlyarevich.unity.web.exception.handler.PersistenceExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import org.junit.After;
@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {Application.class, PersistanceExceptionHandler.class})
+@SpringBootTest(classes = {Application.class, PersistenceExceptionHandler.class})
 @WebAppConfiguration
 public class ImageControllerIT extends AbstractControllerIT {
 

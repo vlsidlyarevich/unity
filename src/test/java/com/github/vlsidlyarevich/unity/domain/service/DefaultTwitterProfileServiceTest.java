@@ -5,6 +5,7 @@ import com.github.vlsidlyarevich.unity.domain.repository.TwitterProfileRepositor
 import com.github.vlsidlyarevich.unity.twitter.model.TwitterPopularProfile;
 import com.github.vlsidlyarevich.unity.twitter.service.TwitterPopularProfileService;
 import org.dozer.Mapper;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 
 import static com.github.vlsidlyarevich.unity.TestUtils.createPopularProfile;
 import static com.github.vlsidlyarevich.unity.TestUtils.createTwitterProfile;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
@@ -55,21 +58,44 @@ public class DefaultTwitterProfileServiceTest {
 
     @Test
     public void findByScreenName_Success_IfPresent() {
-        return repository.findByUrlEndingWith(screenName);
+        String screenName = "name";
+        TwitterProfile twitterProfile = createTwitterProfile();
+
+        doReturn(twitterProfile).when(repository).findByUrlEndingWith(screenName);
+
+        assertThat(profileService.findByScreenName(screenName), is(twitterProfile));
+
+        verify(repository).findByUrlEndingWith(screenName);
     }
 
     @Test
     public void findByScreenName_Null_IfNotPresent() {
-        return repository.findByUrlEndingWith(screenName);
+        String screenName = "name";
+
+        Assert.assertNull(profileService.findByScreenName(screenName));
+
+        verify(repository).findByUrlEndingWith(screenName);
     }
 
     @Test
     public void findAll_Success_IfPresent() {
-        return repository.findAll();
+        TwitterProfile twitterProfile = createTwitterProfile();
+
+        doReturn(new ArrayList<TwitterProfile>() {{
+            add(twitterProfile);
+        }}).when(repository).findAll();
+
+        assertThat(profileService.findAll(), containsInAnyOrder(twitterProfile));
+
+        verify(repository).findAll();
     }
 
     @Test
     public void findAll_EmptyCollection_IfNotPresent() {
-        return repository.findAll();
+        doReturn(new ArrayList<TwitterProfile>()).when(repository).findAll();
+
+        assertThat(profileService.findAll(), emptyCollectionOf(TwitterProfile.class));
+
+        verify(repository).findAll();
     }
 }

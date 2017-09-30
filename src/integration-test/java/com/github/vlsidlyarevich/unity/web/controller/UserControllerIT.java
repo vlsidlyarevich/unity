@@ -5,7 +5,7 @@ import com.github.vlsidlyarevich.unity.web.security.model.Authority;
 import com.github.vlsidlyarevich.unity.domain.repository.UserRepository;
 import com.github.vlsidlyarevich.unity.domain.service.UserService;
 import com.github.vlsidlyarevich.unity.web.dto.user.UserRequest;
-import com.github.vlsidlyarevich.unity.web.exception.handler.PersistanceExceptionHandler;
+import com.github.vlsidlyarevich.unity.web.exception.handler.PersistenceExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 import static org.hamcrest.Matchers.is;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {Application.class, PersistanceExceptionHandler.class,
+@SpringBootTest(classes = {Application.class, PersistenceExceptionHandler.class,
         SecurityExceptionHandler.class})
 @WebAppConfiguration
 public class UserControllerIT extends AbstractControllerIT {

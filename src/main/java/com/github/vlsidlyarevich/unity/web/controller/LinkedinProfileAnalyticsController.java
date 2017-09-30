@@ -19,7 +19,7 @@ public class LinkedinProfileAnalyticsController {
     private final LinkedInAnalysisReportService analyticsService;
 
     @PostMapping
-    public ResponseEntity getLinkedInDataByUserUrl(@RequestBody final LinkedInAnalyzeProfileRequest request) {
+    public ResponseEntity getLinkedInProfile(@RequestBody final LinkedInAnalyzeProfileRequest request) {
         return ResponseEntity.ok(analyticsService.getAnalysisReport(request.getPublicUserUrl()));
     }
 }

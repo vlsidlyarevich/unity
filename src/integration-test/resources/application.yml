@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   data:
     mongodb:
@@ -12,9 +15,6 @@ spring:
     linkedin:
       app-id: 7866fl49abcya5
       app-secret: fFEq66FckiZtJYT5
-
-server:
-  port: 8080
 
 storage:
   path: data/test-images
