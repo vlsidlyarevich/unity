@@ -23,7 +23,7 @@ spring:
 #  file: temp/logs/unity-log.log
 
 storage: 
-  path: data/images
+  path: server/data/images
 
 git: 
   apiUrl: https://api.github.com
@@ -37,7 +37,7 @@ twitter:
   accessTokenSecret: ${TWITTER_ACCESS_TOKEN_SECRET}
   files:
     popularProfiles:
-      path: data/twitter
+      path: server/data/twitter
       name: popular_profiles.json
 
 security:
