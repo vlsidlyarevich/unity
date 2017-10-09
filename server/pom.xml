@@ -389,7 +389,7 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${maven-checkstyle-plugin.version}</version>
                 <configuration>
-                    <configLocation>${basedir}/build-tools/quality/checkstyle/checkstyle.xml</configLocation>
+                    <configLocation>build-tools/quality/checkstyle/checkstyle.xml</configLocation>
                     <suppressionsLocation>${basedir}/build-tools/quality/checkstyle/checkstyle-suppress.xml
                     </suppressionsLocation>
                 </configuration>
