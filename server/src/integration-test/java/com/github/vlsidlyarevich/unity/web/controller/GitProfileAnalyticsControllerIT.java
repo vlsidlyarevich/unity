@@ -5,12 +5,12 @@ import com.github.vlsidlyarevich.unity.common.model.AnalyzedResource;
 import com.github.vlsidlyarevich.unity.domain.service.UserService;
 import com.github.vlsidlyarevich.unity.web.exception.handler.PersistenceExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
-import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -37,6 +37,9 @@ public class GitProfileAnalyticsControllerIT extends AbstractControllerIT {
     @Autowired
     private TokenService tokenService;
 
+    @Value("security.token.header.name")
+    private String authHeaderName;
+
     @Before
     public void setUp() {
         prepareTestContextWithAdmin(context);
@@ -51,7 +54,7 @@ public class GitProfileAnalyticsControllerIT extends AbstractControllerIT {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/git/profile/vlsidlyarevich")
                 .accept(contentType)
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", notNullValue()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.analyzedAt", notNullValue()))
@@ -65,7 +68,7 @@ public class GitProfileAnalyticsControllerIT extends AbstractControllerIT {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/git/profile/nosuchloginexists")
                 .accept(contentType)
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 }

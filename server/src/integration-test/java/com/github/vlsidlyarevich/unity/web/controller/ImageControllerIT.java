@@ -4,13 +4,13 @@ import com.github.vlsidlyarevich.unity.Application;
 import com.github.vlsidlyarevich.unity.domain.service.StorageService;
 import com.github.vlsidlyarevich.unity.domain.service.UserService;
 import com.github.vlsidlyarevich.unity.web.exception.handler.PersistenceExceptionHandler;
-import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -38,6 +38,9 @@ public class ImageControllerIT extends AbstractControllerIT {
     @Autowired
     private TokenService tokenService;
 
+    @Value("security.token.header.name")
+    private String authHeaderName;
+
     @Before
     public void setupMvc() throws Exception {
         storageService.deleteAll();
@@ -57,7 +60,7 @@ public class ImageControllerIT extends AbstractControllerIT {
 
         mvc.perform(MockMvcRequestBuilders.fileUpload("/api/v1/image")
                 .file(image)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token)
+                .header(authHeaderName, token)
                 .contentType(MediaType.MULTIPART_FORM_DATA))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
     }
@@ -66,7 +69,7 @@ public class ImageControllerIT extends AbstractControllerIT {
     public void getImageById_NotFound_IfNotPresent() throws Exception {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/image/" + "someId")
                 .accept(MediaType.APPLICATION_JSON)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token)
+                .header(authHeaderName, token)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
@@ -78,7 +81,7 @@ public class ImageControllerIT extends AbstractControllerIT {
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/image/" + imageId)
                 .accept(MediaType.APPLICATION_JSON)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token)
+                .header(authHeaderName, token)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().bytes(image.getBytes()));
@@ -91,7 +94,7 @@ public class ImageControllerIT extends AbstractControllerIT {
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/v1/image/" + imageId)
                 .accept(MediaType.APPLICATION_JSON)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token)
+                .header(authHeaderName, token)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }

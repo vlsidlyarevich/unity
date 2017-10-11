@@ -7,12 +7,12 @@ import com.github.vlsidlyarevich.unity.domain.service.UserAnalyticsService;
 import com.github.vlsidlyarevich.unity.domain.service.UserService;
 import com.github.vlsidlyarevich.unity.web.exception.handler.PersistenceExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
-import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -47,6 +47,9 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
     @Autowired
     private UserAnalyticsService analyticsService;
 
+    @Value("security.token.header.name")
+    private String authHeaderName;
+    
     @Before
     public void setUp() {
         prepareTestContextWithAdmin(context);
@@ -66,7 +69,7 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/" + user.getId() + "/analytics")
                 .accept(contentType)
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(analytics.getId())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.userId", is(analytics.getUserId())))
@@ -84,7 +87,7 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/id0/analytics")
                 .accept(contentType)
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
@@ -94,7 +97,7 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
                 + "/analytics/" + analytics.getReports().get(0).getId())
                 .accept(contentType)
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(analytics.getReports().get(0).getId())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.analysisTime", is(analytics.getReports().get(0).getAnalysisTime().intValue())))
@@ -108,7 +111,7 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/" + user.getId() + "/analytics/id0")
                 .accept(contentType)
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
@@ -117,7 +120,7 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/id0/analytics/id0")
                 .accept(contentType)
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
@@ -126,7 +129,7 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/v1/user/" + user.getId() + "/analytics/" + analytics.getId())
                 .accept(contentType)
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
@@ -135,7 +138,7 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/v1/user/id0/analytics/id0")
                 .accept(contentType)
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
@@ -144,7 +147,7 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/v1/user/" + user.getId() + "/analytics/all")
                 .accept(contentType)
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
@@ -153,7 +156,7 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.DELETE, "/api/v1/user/id0/analytics/all")
                 .accept(contentType)
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 }

@@ -2,7 +2,6 @@ package com.github.vlsidlyarevich.unity.web.security.service;
 
 import com.github.vlsidlyarevich.unity.domain.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.domain.model.User;
-import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
 import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -31,11 +30,14 @@ public class JsonWebTokenAuthenticationService implements TokenAuthenticationSer
     @Value("security.token.secret.key")
     private String secretKey;
 
+    @Value("security.token.header.name")
+    private String authHeaderName;
+
     private final UserDetailsService userDetailsService;
 
     @Override
     public Authentication authenticate(final HttpServletRequest request) {
-        final String token = request.getHeader(SecurityConstants.AUTH_HEADER_NAME);
+        final String token = request.getHeader(authHeaderName);
         final Optional<Jws<Claims>> tokenData = parseToken(token);
 
         if (tokenData.isPresent()) {
