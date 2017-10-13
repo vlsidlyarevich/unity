@@ -4,7 +4,6 @@ import com.github.vlsidlyarevich.unity.common.audit.Auditing;
 import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.web.security.model.UserAuthentication;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
