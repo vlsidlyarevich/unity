@@ -11,7 +11,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Slf4j
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RequestLoggingInterceptor extends HandlerInterceptorAdapter {

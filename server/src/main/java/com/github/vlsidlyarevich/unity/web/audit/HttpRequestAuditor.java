@@ -13,7 +13,6 @@ import org.springframework.web.method.HandlerMethod;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 
-@Slf4j
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class HttpRequestAuditor implements RequestAuditor {
