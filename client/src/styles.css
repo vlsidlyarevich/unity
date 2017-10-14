@@ -1,3 +1,15 @@
+html, body {
+  height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
 .left_col {
   background: #2A3F54;
 }
@@ -400,6 +412,10 @@ body .container.body .right_col {
 .container {
   width: 100%;
   padding: 0
+}
+
+.full-width {
+  width: 100%;
 }
 
 .navbar-nav > li > a, .navbar-brand, .navbar-nav > li > a {
