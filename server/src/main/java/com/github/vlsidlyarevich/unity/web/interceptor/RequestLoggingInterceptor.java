@@ -3,7 +3,6 @@ package com.github.vlsidlyarevich.unity.web.interceptor;
 import com.github.vlsidlyarevich.unity.web.audit.HttpRequestAuditor;
 import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -11,7 +10,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Slf4j
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RequestLoggingInterceptor extends HandlerInterceptorAdapter {

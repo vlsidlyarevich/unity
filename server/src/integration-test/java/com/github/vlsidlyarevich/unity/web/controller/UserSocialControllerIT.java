@@ -8,12 +8,12 @@ import com.github.vlsidlyarevich.unity.domain.service.UserService;
 import com.github.vlsidlyarevich.unity.web.dto.user.UserSocialRequest;
 import com.github.vlsidlyarevich.unity.web.exception.handler.PersistenceExceptionHandler;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
-import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -48,6 +48,9 @@ public class UserSocialControllerIT extends AbstractControllerIT {
     @Autowired
     private TokenService tokenService;
 
+    @Value("security.token.header.name")
+    private String authHeaderName;
+
     @Before
     public void setUp() {
         prepareTestContextWithUser(context);
@@ -69,7 +72,7 @@ public class UserSocialControllerIT extends AbstractControllerIT {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/" + user.getId() + "/social")
                 .accept(contentType)
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(userSocial.getId())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.email", is(userSocial.getEmail())))
@@ -87,7 +90,7 @@ public class UserSocialControllerIT extends AbstractControllerIT {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/" + user.getId() + "/social")
                 .accept(contentType)
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
@@ -99,7 +102,7 @@ public class UserSocialControllerIT extends AbstractControllerIT {
                 .accept(contentType)
                 .content(objectMapper.writeValueAsString(dto))
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
@@ -111,7 +114,7 @@ public class UserSocialControllerIT extends AbstractControllerIT {
                 .accept(contentType)
                 .content(objectMapper.writeValueAsString(dto))
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
@@ -125,7 +128,7 @@ public class UserSocialControllerIT extends AbstractControllerIT {
                 .accept(contentType)
                 .content(objectMapper.writeValueAsString(dto))
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string(is(user.getId())));
     }
