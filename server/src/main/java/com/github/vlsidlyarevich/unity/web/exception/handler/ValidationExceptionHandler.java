@@ -20,7 +20,8 @@ public class ValidationExceptionHandler {
     public ResponseEntity handleMethodArgumentNotValidException(
             final MethodArgumentNotValidException exception,
             final HttpServletRequest req) {
-        log.warn("Processing method argument not valid exception: " + exception.getMessage());
+        log.warn("Processing method argument not valid exception: {}", exception.getMessage());
+
         final String message = exception.getBindingResult().getFieldErrors()
                 .stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)

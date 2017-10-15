@@ -23,6 +23,6 @@ public class SignUpController {
 
     @PostMapping
     public ResponseEntity signUp(@Valid @RequestBody final UserRequest dto) {
-        return ResponseEntity.ok(service.create(User.fromDTO(dto)));
+        return ResponseEntity.ok().body(service.create(User.fromDTO(dto)));
     }
 }

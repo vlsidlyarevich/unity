@@ -27,6 +27,6 @@ public class AuthenticationController {
 
         final JwtAuthenticationResponse response = new JwtAuthenticationResponse(token);
 
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok().body(response);
     }
 }

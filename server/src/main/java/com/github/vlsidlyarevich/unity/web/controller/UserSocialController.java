@@ -26,19 +26,19 @@ public class UserSocialController {
     public ResponseEntity getUserSocialData(@PathVariable final String id) {
         final UserSocial userSocial = socialService.findByUserId(id);
 
-        return ResponseEntity.ok(UserSocialRequest.fromDomain(userSocial));
+        return ResponseEntity.ok().body(UserSocialRequest.fromDomain(userSocial));
     }
 
     @PutMapping
     public ResponseEntity updateUserSocialData(@PathVariable final String id,
                                                @RequestBody final UserSocialRequest dto) {
-        return ResponseEntity.ok(UserSocialRequest
+        return ResponseEntity.ok().body(UserSocialRequest
                 .fromDomain(socialService.update(id, UserSocial.fromDTO(dto))));
     }
 
     @DeleteMapping
     public ResponseEntity deleteUserSocialDataByUserId(@PathVariable final String id) {
-        return ResponseEntity.ok(socialService.deleteByUserId(id));
+        return ResponseEntity.ok().body(socialService.deleteByUserId(id));
     }
 }
 

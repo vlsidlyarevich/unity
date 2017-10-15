@@ -19,6 +19,6 @@ public class TwitterProfileAnalyticsController {
 
     @GetMapping(value = "/{username}")
     public ResponseEntity getTwitterProfile(@PathVariable final String username) {
-        return ResponseEntity.ok(analyticsService.getAnalysisReport(username));
+        return ResponseEntity.ok().body(analyticsService.getAnalysisReport(username));
     }
 }

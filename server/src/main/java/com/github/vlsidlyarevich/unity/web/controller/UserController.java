@@ -44,11 +44,11 @@ public class UserController {
     @PutMapping(value = "/{id}")
     public ResponseEntity updateUserById(@PathVariable final String id,
                                          @Valid @RequestBody final UserRequest dto) {
-        return ResponseEntity.ok(service.update(id, User.fromDTO(dto)));
+        return ResponseEntity.ok().body(service.update(id, User.fromDTO(dto)));
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity deleteUserById(@PathVariable final String id) {
-        return ResponseEntity.ok(service.delete(id));
+        return ResponseEntity.ok().body(service.delete(id));
     }
 }

@@ -25,7 +25,7 @@ public class ImageController {
     @GetMapping(value = "/{id}")
     public ResponseEntity getImage(@PathVariable final String id) {
         Resource resource = storageService.loadAsResource(id);
-        return ResponseEntity.ok(resource);
+        return ResponseEntity.ok().body(resource);
     }
 
     @PostMapping
@@ -35,6 +35,6 @@ public class ImageController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity deleteImage(@PathVariable final String id) {
-        return ResponseEntity.ok(storageService.delete(id));
+        return ResponseEntity.ok().body(storageService.delete(id));
     }
 }

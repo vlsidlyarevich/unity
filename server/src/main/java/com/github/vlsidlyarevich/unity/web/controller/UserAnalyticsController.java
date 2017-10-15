@@ -20,23 +20,23 @@ public class UserAnalyticsController {
 
     @GetMapping
     public ResponseEntity getAnalyticsByUserId(@PathVariable final String userId) {
-        return ResponseEntity.ok(analyticsService.findByUserId(userId));
+        return ResponseEntity.ok().body(analyticsService.findByUserId(userId));
     }
 
     @GetMapping(value = "/{reportId}")
     public ResponseEntity getAnalyticsReportById(@PathVariable final String userId,
                                                  @PathVariable final String reportId) {
-        return ResponseEntity.ok(analyticsService.findReportById(userId, reportId));
+        return ResponseEntity.ok().body(analyticsService.findReportById(userId, reportId));
     }
 
     @DeleteMapping(value = "/{reportId}")
     public ResponseEntity deleteAnalyticsReportById(@PathVariable final String userId,
                                                     @PathVariable final String reportId) {
-        return ResponseEntity.ok(analyticsService.deleteReport(userId, reportId));
+        return ResponseEntity.ok().body(analyticsService.deleteReport(userId, reportId));
     }
 
     @DeleteMapping(value = "/all")
     public ResponseEntity deleteAllAnalyticsReports(@PathVariable final String userId) {
-        return ResponseEntity.ok(analyticsService.deleteAllReports(userId));
+        return ResponseEntity.ok().body(analyticsService.deleteAllReports(userId));
     }
 }

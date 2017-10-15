@@ -21,7 +21,7 @@ public class TwitterExceptionHandler {
     public ResponseEntity handleTwitterServiceException(
             final TwitterServiceException exception,
             final HttpServletRequest req) {
-        log.warn("Processing twitter service exception:" + exception.getException().getMessage());
+        log.warn("Processing twitter service exception: {}", exception.getException().getMessage());
 
         return new ResponseEntity<>(new ExceptionResponse(exception.getLocalizedMessage()),
                 HttpStatus.NOT_FOUND);

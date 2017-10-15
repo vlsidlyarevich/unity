@@ -21,6 +21,6 @@ public class CurrentUserController {
     public ResponseEntity getCurrentUser() {
         final User currentUser = (User) authenticationFacade.getAuthentication().getDetails();
 
-        return ResponseEntity.ok(currentUser);
+        return ResponseEntity.ok().body(currentUser);
     }
 }
