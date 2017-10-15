@@ -1,0 +1,62 @@
+.nav-sm .main_container .top_nav {
+  display: block;
+  margin-left: 70px;
+  z-index: 2;
+}
+
+.top_nav .nav > li > a:focus, .top_nav .nav > li > a:hover, .top_nav .nav .open > a, .top_nav .nav .open > a:focus, .top_nav .nav .open > a:hover {
+  background: #D9DEE4;
+}
+
+.top_nav .navbar-right {
+  margin: 0;
+  width: 70%;
+  float: right;
+}
+
+.top_nav .navbar-right li {
+  display: inline-block;
+  float: right;
+  position: static;
+}
+
+.top_nav .dropdown-menu li {
+  width: 100%;
+}
+
+.top_nav .dropdown-menu li a {
+  width: 100%;
+  padding: 12px 20px;
+}
+
+.top_nav li a i {
+  font-size: 15px
+}
+
+@media (min-width: 480px) {
+  .top_nav .navbar-right li {
+    position: relative;
+  }
+}
+
+@media (max-width: 991px) {
+  .nav-md .container.body .right_col, .nav-md .container.body .top_nav {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.nav_menu {
+  float: left;
+  background: #EDEDED;
+  border-bottom: 1px solid #D9DEE4;
+  margin-bottom: 10px;
+  width: 100%;
+  position: relative;
+}
+
+@media (min-width: 480px) {
+  .nav_menu {
+    position: static;
+  }
+}

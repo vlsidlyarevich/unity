@@ -61,11 +61,7 @@ html, body {
   border-radius: 50%;
 }
 
-.nav-sm .main_container .top_nav {
-  display: block;
-  margin-left: 70px;
-  z-index: 2;
-}
+
 
 .nav-sm .nav.side-menu li a {
   text-align: center !important;
@@ -223,21 +219,6 @@ html, body {
 
 .nav-sm li li span.fa {
   display: inline-block;
-}
-
-.nav_menu {
-  float: left;
-  background: #EDEDED;
-  border-bottom: 1px solid #D9DEE4;
-  margin-bottom: 10px;
-  width: 100%;
-  position: relative;
-}
-
-@media (min-width: 480px) {
-  .nav_menu {
-    position: static;
-  }
 }
 
 .nav-md .container.body .col-md-3.left_col {
@@ -864,35 +845,6 @@ a:hover, a:focus {
 .bs-docs-sidebar .nav > li > a {
   display: block;
   padding: 4px 6px;
-}
-
-footer {
-  background: #fff;
-  padding: 15px 20px;
-  display: block;
-}
-
-.nav-sm footer {
-  margin-left: 70px;
-}
-
-.footer_fixed footer {
-  position: fixed;
-  left: 0px;
-  bottom: 0px;
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .footer_fixed footer {
-    margin-left: 0;
-  }
-}
-
-@media (min-width: 768px) {
-  .footer_fixed .nav-sm footer {
-    margin-left: 0;
-  }
 }
 
 .tile-stats.sparkline {
@@ -1838,12 +1790,6 @@ span.right {
   overflow: hidden;
   white-space: nowrap;
   position: relative;
-}
-
-@media (min-width: 992px) {
-  footer {
-    margin-left: 230px;
-  }
 }
 
 @media (min-width: 992px) {
