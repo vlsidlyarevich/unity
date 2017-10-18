@@ -31,8 +31,8 @@ public class PersistenceExceptionHandler {
             final HttpServletRequest req) {
         log.warn("Processing resource not found exception: {}", exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionResponse(exception.getLocalizedMessage()),
-                HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ExceptionResponse(exception.getLocalizedMessage()));
     }
 
     @ExceptionHandler(FileSystemStorageException.class)
@@ -41,8 +41,8 @@ public class PersistenceExceptionHandler {
             final HttpServletRequest req) {
         log.warn("Processing file system storage exception: {}", exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionResponse(messageResolver.getMessage(exception.getKey(),
-                exception.getArgs())), HttpStatus.INTERNAL_SERVER_ERROR);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ExceptionResponse(messageResolver.getMessage(exception.getKey(), exception.getArgs())));
     }
 
     @ExceptionHandler(FileSystemFileNotFoundException.class)
@@ -51,8 +51,8 @@ public class PersistenceExceptionHandler {
             final HttpServletRequest req) {
         log.warn("Processing file system file not found exception: {}", exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionResponse(messageResolver.getMessage(exception.getKey(),
-                exception.getArgs())), HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ExceptionResponse(messageResolver.getMessage(exception.getKey(), exception.getArgs())));
     }
 
     @ExceptionHandler(UserNotFoundException.class)
@@ -60,8 +60,8 @@ public class PersistenceExceptionHandler {
                                                       final HttpServletRequest req) {
         log.warn("Processing user not found exception: {}", exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionResponse(exception.getLocalizedMessage()),
-                HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ExceptionResponse(exception.getLocalizedMessage()));
     }
 
     @ExceptionHandler(UsernameExistsException.class)
@@ -69,8 +69,8 @@ public class PersistenceExceptionHandler {
                                                         final HttpServletRequest req) {
         log.warn("Processing user with such username exists exception: {}", exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionResponse(exception.getLocalizedMessage()),
-                HttpStatus.BAD_REQUEST);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ExceptionResponse(exception.getLocalizedMessage()));
     }
 
     @ExceptionHandler(MongoException.class)
@@ -78,7 +78,7 @@ public class PersistenceExceptionHandler {
                                                final HttpServletRequest req) {
         log.warn("Processing mongo exception:{}", exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionResponse(exception.getLocalizedMessage()),
-                HttpStatus.INTERNAL_SERVER_ERROR);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ExceptionResponse(exception.getLocalizedMessage()));
     }
 }

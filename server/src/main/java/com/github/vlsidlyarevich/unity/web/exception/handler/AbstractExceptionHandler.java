@@ -18,7 +18,7 @@ public class AbstractExceptionHandler {
                                                   final HttpServletRequest req) {
         log.warn("Processing abstract exception: {}", exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionResponse(exception.getLocalizedMessage()),
-                HttpStatus.BAD_REQUEST);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ExceptionResponse(exception.getLocalizedMessage()));
     }
 }

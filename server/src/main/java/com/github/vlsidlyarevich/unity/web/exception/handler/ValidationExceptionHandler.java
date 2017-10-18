@@ -27,6 +27,6 @@ public class ValidationExceptionHandler {
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.joining("\n"));
 
-        return new ResponseEntity<>(new ExceptionResponse(message), HttpStatus.BAD_REQUEST);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ExceptionResponse(message));
     }
 }

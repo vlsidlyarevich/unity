@@ -20,8 +20,8 @@ public class SecurityExceptionHandler {
                                                         final HttpServletRequest req) {
         log.warn("Processing bad credentials exception: {}", exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionResponse(exception.getLocalizedMessage()),
-                HttpStatus.UNAUTHORIZED);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(new ExceptionResponse(exception.getLocalizedMessage()));
     }
 
     @ExceptionHandler(AccessDeniedException.class)
@@ -29,7 +29,7 @@ public class SecurityExceptionHandler {
                                                       final HttpServletRequest req) {
         log.warn("Processing access denied exception: {}", exception.getMessage());
 
-        return new ResponseEntity<>(new ExceptionResponse(exception.getLocalizedMessage()),
-                HttpStatus.UNAUTHORIZED);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(new ExceptionResponse(exception.getLocalizedMessage()));
     }
 }

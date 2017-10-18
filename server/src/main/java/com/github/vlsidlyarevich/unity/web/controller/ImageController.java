@@ -30,7 +30,7 @@ public class ImageController {
 
     @PostMapping
     public ResponseEntity uploadImage(@RequestParam("file") final MultipartFile file) {
-        return new ResponseEntity<>(storageService.store(file), HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(storageService.store(file));
     }
 
     @DeleteMapping(value = "/{id}")

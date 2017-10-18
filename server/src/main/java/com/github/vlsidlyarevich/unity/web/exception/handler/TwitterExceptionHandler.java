@@ -23,7 +23,6 @@ public class TwitterExceptionHandler {
             final HttpServletRequest req) {
         log.warn("Processing twitter service exception: {}", exception.getException().getMessage());
 
-        return new ResponseEntity<>(new ExceptionResponse(exception.getLocalizedMessage()),
-                HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionResponse(exception.getLocalizedMessage()));
     }
 }
