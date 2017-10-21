@@ -8,6 +8,8 @@ security:
   token:
     secret:
       key: Asjfwol2asf123142Ags1k23hnSA36as6f4qQ324FEsvb
+    header:
+      name: x-auth-token
 
 git:
   apiUrl: https://api.github.com

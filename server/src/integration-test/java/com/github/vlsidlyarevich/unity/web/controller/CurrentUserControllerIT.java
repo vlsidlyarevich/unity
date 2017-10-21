@@ -1,15 +1,15 @@
 package com.github.vlsidlyarevich.unity.web.controller;
 
 import com.github.vlsidlyarevich.unity.Application;
-import com.github.vlsidlyarevich.unity.web.security.model.Authority;
 import com.github.vlsidlyarevich.unity.domain.service.UserService;
 import com.github.vlsidlyarevich.unity.web.exception.handler.SecurityExceptionHandler;
-import com.github.vlsidlyarevich.unity.web.security.constant.SecurityConstants;
+import com.github.vlsidlyarevich.unity.web.security.model.Authority;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -20,8 +20,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.stream.Collectors;
 
-import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
-import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 
 @RunWith(SpringRunner.class)
@@ -37,6 +35,9 @@ public class CurrentUserControllerIT extends AbstractControllerIT {
 
     @Autowired
     private TokenService tokenService;
+
+    @Value("security.token.header.name")
+    private String authHeaderName;
 
     @Before
     public void setUp() {
@@ -58,7 +59,7 @@ public class CurrentUserControllerIT extends AbstractControllerIT {
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/v1/user/me")
                 .accept(contentType)
                 .contentType(contentType)
-                .header(SecurityConstants.AUTH_HEADER_NAME, token))
+                .header(authHeaderName, token))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(user.getId())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.username", is(user.getUsername())))
