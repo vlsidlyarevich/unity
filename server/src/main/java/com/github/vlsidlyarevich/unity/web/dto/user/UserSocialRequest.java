@@ -19,6 +19,9 @@ public final class UserSocialRequest implements Serializable {
     private String userId;
     private String firstName;
     private String lastName;
+    private String linkedIn;
+    private String twitter;
+    private String facebook;
     private String email;
     private String skype;
     private String additional;
@@ -32,6 +35,9 @@ public final class UserSocialRequest implements Serializable {
         dto.setUserId(model.getUserId());
         dto.setFirstName(model.getFirstName() != null ? model.getFirstName() : "");
         dto.setLastName(model.getLastName() != null ? model.getLastName() : "");
+        dto.setLinkedIn(model.getLinkedIn() != null ? model.getLinkedIn() : "");
+        dto.setTwitter(model.getTwitter() != null ? model.getTwitter() : "");
+        dto.setFacebook(model.getFacebook() != null ? model.getFacebook() : "");
         dto.setEmail(model.getEmail() != null ? model.getEmail() : "");
         dto.setSkype(model.getSkype() != null ? model.getSkype() : "");
         dto.setAdditional(model.getAdditional() != null ? model.getAdditional() : "");

@@ -22,6 +22,9 @@ public class UserSocial extends DbModel implements Serializable {
     private String userId;
     private String firstName;
     private String lastName;
+    private String linkedIn;
+    private String twitter;
+    private String facebook;
     private String email;
     private String skype;
     private String additional;
