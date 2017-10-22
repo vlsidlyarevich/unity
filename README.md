@@ -37,11 +37,12 @@ Type following commands in additional/docker/mongo folder.
 
 
 ### Running the backend
+* cd server
 * `mvn clean install`
 * `java -jar target/*.jar`
 
 ### Running the client (Not available for now)
-* `cd unity-client`
+* `cd client`
 * `npm i`
 * `ng serve`
 
