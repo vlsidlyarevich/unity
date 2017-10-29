@@ -10,6 +10,7 @@ import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { LoginPageComponent } from "./pages/login-page/login-page.component";
 import { routing } from "./app.routing";
+import { LoginFormComponent } from './components/login/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { routing } from "./app.routing";
     NotFoundPageComponent,
     AccessDeniedPageComponent,
     InternalServerErrorPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
