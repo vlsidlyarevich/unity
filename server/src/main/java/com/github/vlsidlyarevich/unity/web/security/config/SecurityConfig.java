@@ -31,10 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/api/v1/auth").permitAll()
-                .antMatchers("/api/v1/signup").permitAll()
+                .antMatchers("/api/v1/authenticate").permitAll()
                 .antMatchers("/swagger-ui.html").permitAll()
                 .antMatchers("/login**", "/signin/**",
-                        "/signup/**", "/connect/**", "/social/signup").permitAll()
+                        "/authenticate/**", "/connect/**", "/social/authenticate").permitAll()
                 .antMatchers("/webjars/springfox-swagger-ui/**").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/v2/api-docs").permitAll()
@@ -62,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         final ProviderSignInController providerSignInController = new ProviderSignInController(
                 connectionFactoryLocator, usersConnectionRepository, signInAdapter);
 
-        providerSignInController.setSignUpUrl("/social/signup");
+        providerSignInController.setSignUpUrl("/social/authenticate");
 
         return providerSignInController;
     }

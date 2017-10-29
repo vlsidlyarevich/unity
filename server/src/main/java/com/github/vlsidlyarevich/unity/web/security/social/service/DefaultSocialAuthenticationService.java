@@ -12,21 +12,20 @@ import org.springframework.web.servlet.view.RedirectView;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class DefaultSocialSignupService implements SocialSignupService {
+public class DefaultSocialAuthenticationService implements SocialAuthenticationService {
 
-    private static final String SOCIAL_REGISTER_URL = "/#/social-register/";
+    private static final String REDIRECT_URL = "/";
 
     private final SocialUserService socialUserService;
     private final ProviderSignInUtils providerSignInUtils;
 
     @Override
-    public RedirectView signup(final WebRequest request) {
+    public RedirectView authenticate(final WebRequest request) {
         final Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
 
         socialUserService.create(connection);
 
-        return new RedirectView(URIBuilder.fromUri(String
-                .format("%s%s", SOCIAL_REGISTER_URL, connection.getKey().getProviderId()))
+        return new RedirectView(URIBuilder.fromUri(REDIRECT_URL)
                 .queryParam("success", "true")
                 .build().toString(), true);
     }

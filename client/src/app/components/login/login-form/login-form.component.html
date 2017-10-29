@@ -1,31 +1,48 @@
 <div class="animate form login_form">
   <section class="login_content">
-    <form>
+    <form novalidate [formGroup]="credentials" (ngSubmit)="login()">
       <h1>Login Form</h1>
       <div>
-        <input type="text" class="form-control" placeholder="Username" required=""/>
+        <input type="text" class="form-control" formControlName="username" placeholder="Username"/>
+        <div
+          *ngIf="credentials.get('username').invalid && (credentials.get('username').dirty || credentials.get('username').touched)"
+          class="alert alert-danger">
+
+          <div *ngIf="credentials.get('username').hasError('required')">
+            Username is required.
+          </div>
+        </div>
       </div>
       <div>
-        <input type="password" class="form-control" placeholder="Password" required=""/>
-      </div>
-      <div>
-        <a class="btn btn-default submit" href="index.html">Log in</a>
-        <a class="reset_pass" href="#">Lost your password?</a>
-      </div>
+        <input type="password" class="form-control" formControlName="password" placeholder="Password"/>
+        <div
+          *ngIf="credentials.get('password').invalid && (credentials.get('password').dirty || credentials.get('password').touched)"
+          class="alert alert-danger">
 
-      <div class="clearfix"></div>
-
-      <div class="separator">
-        <p class="change_link">New to site?
-          <a href="#signup" class="to_register"> Create Account </a>
-        </p>
+          <div *ngIf="credentials.get('password').hasError('required')">
+            Password is required.
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-default submit" type="submit" [disabled]="credentials.invalid || loading">Log in
+          </button>
+          <a class="reset_pass" href="#">Lost your password?</a>
+        </div>
 
         <div class="clearfix"></div>
-        <br/>
 
-        <div>
-          <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-          <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+        <div class="separator">
+          <p class="change_link">New to site?
+            <a href="#signup" class="to_register"> Create Account </a>
+          </p>
+
+          <div class="clearfix"></div>
+          <br/>
+
+          <div>
+            <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+          </div>
         </div>
       </div>
     </form>

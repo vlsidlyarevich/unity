@@ -9,8 +9,11 @@ import { InternalServerErrorPageComponent } from "./pages/internal-server-error-
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { LoginPageComponent } from "./pages/login-page/login-page.component";
-import { routing } from "./app.routing";
+import { Routing } from "./app.routing";
 import { LoginFormComponent } from './components/login/login-form/login-form.component';
+import { HttpClientModule } from "@angular/common/http";
+import { AuthenticationService } from "./services/authentication.service";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -28,9 +31,12 @@ import { LoginFormComponent } from './components/login/login-form/login-form.com
   ],
   imports: [
     BrowserModule,
-    routing
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    Routing
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

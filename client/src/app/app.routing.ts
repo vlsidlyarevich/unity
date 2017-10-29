@@ -11,4 +11,4 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: '/404' }
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
+export const Routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
