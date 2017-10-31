@@ -28,5 +28,16 @@ export class LoginFormComponent implements OnInit {
 
   login() {
     this.loading = true;
+    this.authenticationService.login(this.credentials.value.username, this.credentials.value.password)
+      .subscribe(result => {
+          if (result === true) {
+            this.router.navigate(['/404']);
+          } else {
+            this.loading = false;
+          }
+        },
+        error => {
+          this.loading = false;
+        });
   }
 }

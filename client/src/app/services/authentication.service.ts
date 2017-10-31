@@ -1,6 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import "rxjs/add/operator/map";
+import { RequestOptions, Headers } from "@angular/http";
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class AuthenticationService {
@@ -18,10 +21,13 @@ export class AuthenticationService {
     }
   }
 
-  login(username: string, password: string) {
+  login(username: string, password: string): Observable<boolean> {
+    const body = JSON.stringify({ username: username, password: password });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
     return this.http
-      .post<JwtResponse>(this.api + 'auth', JSON.stringify({ username: username, password: password }))
-      .subscribe(data => {
+      .post<JwtResponse>(this.api + 'auth', body, { headers: headers })
+      .map(data => {
         if (data && data.token) {
           localStorage.setItem('currentUser', JSON.stringify(data.token));
           return true;
