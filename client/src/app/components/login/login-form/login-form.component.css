@@ -224,3 +224,35 @@
 header {
   width: 100%;
 }
+
+@media (min-width: 768px) {
+  .omb_row-sm-offset-3 div:first-child[class*="col-"] {
+  }
+}
+
+.login_content .omb_authTitle {
+  text-align: center;
+  line-height: 300%;
+}
+
+.login_content .omb_socialButtons a {
+  color: white;
+/ / In yourUse @body-bg opacity: 0.9;
+}
+
+.login_content .omb_socialButtons a:hover {
+  color: white;
+  opacity: 1;
+}
+
+.login_content .omb_socialButtons .omb_btn-facebook {
+  background: #3b5998;
+}
+
+.login_content .omb_socialButtons .omb_btn-twitter {
+  background: #00aced;
+}
+
+.login_content .omb_socialButtons .omb_btn-google {
+  background: #c32f10;
+}
