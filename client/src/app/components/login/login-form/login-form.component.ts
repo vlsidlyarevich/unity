@@ -40,4 +40,21 @@ export class LoginFormComponent implements OnInit {
           this.loading = false;
         });
   }
+
+  linkedinLogin() {
+    alert("linkedin")
+  }
+
+  twitterLogin() {
+    this.authenticationService.twitterLogin()
+      .subscribe(result => {
+
+        },
+        error => {
+        });
+  }
+
+  facebookLogin() {
+    alert("facebook")
+  }
 }

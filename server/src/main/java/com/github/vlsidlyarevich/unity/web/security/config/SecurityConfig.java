@@ -4,6 +4,7 @@ import com.github.vlsidlyarevich.unity.web.security.filter.AuthenticationTokenFi
 import com.github.vlsidlyarevich.unity.web.security.service.TokenAuthenticationService;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import com.github.vlsidlyarevich.unity.web.security.social.adapter.SocialSignInAdapter;
+import com.google.common.collect.ImmutableList;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,11 +20,20 @@ import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInController;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.connect.web.SignInAdapter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @EnableWebSecurity
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private static final String[] CORS_ALLOWED_METHODS = {"POST", "GET", "PUT", "OPTIONS", "DELETE", "PATCH"};
+    private static final String[] CORS_ALLOW_HEADERS = {"x-auth-token", "content-type", "x-requested-with", "accept",
+            "origin", "access-control-request-method", "access-control-request-headers", "Authorization", "Cache-Control"};
 
     private final TokenAuthenticationService tokenAuthenticationService;
 
@@ -45,6 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .cors()
                 .and()
                 .csrf().disable();
     }
@@ -71,5 +83,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public ProviderSignInUtils getProviderSignInUtils(final ConnectionFactoryLocator connectionFactoryLocator,
                                                       final UsersConnectionRepository usersConnectionRepository) {
         return new ProviderSignInUtils(connectionFactoryLocator, usersConnectionRepository);
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        final CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(ImmutableList.of("*"));
+        configuration.setAllowedMethods(Arrays.asList(CORS_ALLOWED_METHODS));
+        configuration.setAllowCredentials(true);
+        configuration.setAllowedHeaders(Arrays.asList(CORS_ALLOW_HEADERS));
+
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }
