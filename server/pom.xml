@@ -23,7 +23,7 @@
         <lombok.version>1.16.18</lombok.version>
         <dozer.version>5.5.1</dozer.version>
         <commons-lang3.version>3.6</commons-lang3.version>
-        <guava.version>23.1-jre</guava.version>
+        <guava.version>23.2-jre</guava.version>
         <jjwt.version>0.7.0</jjwt.version>
         <jackson.version>2.9.1</jackson.version>
         <swagger.version>2.7.0</swagger.version>
