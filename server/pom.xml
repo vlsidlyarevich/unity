@@ -270,6 +270,10 @@
                 </configuration>
             </plugin>
 
+            <!--Maven resources plugin-->
+
+
+
             <!--Compiler plugin-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

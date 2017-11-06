@@ -11,7 +11,7 @@ public class CorsConfig extends WebMvcConfigurerAdapter {
     private static final long CORS_MAX_AGE = 3600;
 
     @Override
-    public void addCorsMappings(CorsRegistry registry) {
+    public void addCorsMappings(final CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedMethods(CORS_ALLOWED_METHODS)
                 .maxAge(CORS_MAX_AGE);

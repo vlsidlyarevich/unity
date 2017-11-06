@@ -33,7 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] CORS_ALLOWED_METHODS = {"POST", "GET", "PUT", "OPTIONS", "DELETE", "PATCH"};
     private static final String[] CORS_ALLOW_HEADERS = {"x-auth-token", "content-type", "x-requested-with", "accept",
-            "origin", "access-control-request-method", "access-control-request-headers", "Authorization", "Cache-Control"};
+            "origin", "access-control-request-method", "access-control-request-headers",
+            "Authorization", "Cache-Control"};
 
     private final TokenAuthenticationService tokenAuthenticationService;
 
@@ -90,7 +91,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         final CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(ImmutableList.of("*"));
         configuration.setAllowedMethods(Arrays.asList(CORS_ALLOWED_METHODS));
-        configuration.setAllowCredentials(true);
+        configuration.setAllowCredentials(false);
         configuration.setAllowedHeaders(Arrays.asList(CORS_ALLOW_HEADERS));
 
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
