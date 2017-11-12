@@ -1,28 +1,37 @@
 <div class="animate form login_form">
   <section class="login_content container">
-    <form novalidate [formGroup]="credentials" (ngSubmit)="login()">
-      <h1>Login Form</h1>
-      <div class="row omb_row-sm-offset-3 omb_socialButtons">
-        <div class="col-xs-4 col-sm-4">
-          <a (click)="facebookLogin()" class="btn btn-lg btn-block omb_btn-facebook">
+    <h1>Login Form</h1>
+    <div class="row omb_row-sm-offset-3 omb_socialButtons">
+      <div class="col-xs-4 col-sm-4">
+        <form action="http://localhost:8080/signin/facebook" method="post">
+          <a href="javascript:" onclick="parentNode.submit();" class=" btn btn-lg btn-block omb_btn-facebook">
             <i class="fa fa-facebook visible-xs"></i>
             <span class="hidden-xs">Facebook</span>
           </a>
-        </div>
-        <div class="col-xs-4 col-sm-4">
-          <a (click)="twitterLogin()" class="btn btn-lg btn-block omb_btn-twitter">
+          <input type="hidden" name="scope" value="public_profile"/>
+        </form>
+      </div>
+      <div class="col-xs-4 col-sm-4">
+        <form action="http://localhost:8080/signin/twitter" method="post">
+          <a href="javascript:" onclick="parentNode.submit();" class="btn btn-lg btn-block omb_btn-twitter">
             <i class="fa fa-twitter visible-xs"></i>
             <span class="hidden-xs">Twitter</span>
           </a>
-        </div>
-        <div class="col-xs-4 col-sm-4">
-          <a (click)="linkedinLogin()" class="btn btn-lg btn-block omb_btn-linkedin">
-            <i class="fa fa-linkedin visible-xs"></i>
+          <input type="hidden" name="scope" value="public_profile"/>
+        </form>
+      </div>
+      <div class="col-xs-4 col-sm-4">
+        <form action="http://localhost:8080/signin/linkedin" method="post">
+          <a href="javascript:" onclick="parentNode.submit();" class="btn btn-lg btn-block omb_btn-linkedin">
+            <i class="fa fa-twitter visible-xs"></i>
             <span class="hidden-xs">Linkedin</span>
           </a>
-        </div>
+          <input type="hidden" name="scope" value="r_basicprofile,r_emailaddress"/>
+        </form>
       </div>
-      <h1>or</h1>
+    </div>
+    <h1>or</h1>
+    <form novalidate [formGroup]="credentials" (ngSubmit)="login()">
       <div>
         <input type="text" class="form-control" formControlName="username" placeholder="Username"/>
         <div

@@ -9,7 +9,7 @@ import { post } from "selenium-webdriver/http";
 @Injectable()
 export class AuthenticationService {
 
-  private server = 'http://localhost:8080';
+  private server = 'http://localhost:8080/';
   private api = 'http://localhost:8080/api/v1/';
 
   constructor(private http: HttpClient, private router: Router) {
@@ -45,7 +45,7 @@ export class AuthenticationService {
     const body = JSON.stringify({ scope: 'public_profile' });
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    return this.http.post(this.server + '/signin/twitter', body, { headers: headers })
+    return this.http.post(this.server + 'signin/twitter', body, { headers: headers })
       .map(data => {
         alert(data);
       }, error => {
