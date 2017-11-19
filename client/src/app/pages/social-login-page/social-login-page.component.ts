@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from "../../services/authentication.service";
 import { Router } from "@angular/router";
-import { CookieService } from 'ngx-cookie';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-social-login-page',
@@ -19,7 +19,7 @@ export class SocialLoginPageComponent implements OnInit {
     const token = this.cookieService.get('social-authentication');
     if (token.length) {
       this.authenticationService.loginWithToken(token, false).then(() => {
-        this.cookieService.remove('social-authentication');
+        this.cookieService.delete('social-authentication');
         this.router.navigate(['']);
       }, () => {
         this.router.navigate(['login'], { queryParams: { 'socialLoginSuccess': 'false' } });

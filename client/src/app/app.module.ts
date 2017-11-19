@@ -16,7 +16,7 @@ import { AuthenticationService } from "./services/authentication.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SocialLoginPageComponent } from './pages/social-login-page/social-login-page.component';
 import { Ng2Webstorage } from "ng2-webstorage";
-import { CookieModule } from 'ngx-cookie';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -39,10 +39,10 @@ import { CookieModule } from 'ngx-cookie';
     ReactiveFormsModule,
     HttpClientModule,
     Routing,
-    Ng2Webstorage,
-    CookieModule.forRoot()
+    Ng2Webstorage
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService,
+    CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
