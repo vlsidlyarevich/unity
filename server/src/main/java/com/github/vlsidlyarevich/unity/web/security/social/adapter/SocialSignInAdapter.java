@@ -17,7 +17,9 @@ import javax.servlet.http.Cookie;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SocialSignInAdapter implements SignInAdapter {
 
-    private static final String SOCIAL_AUTH_URL = "/#/social-auth";
+    private static final String SOCIAL_AUTH_URL = "/social-auth";
+
+    //FIXME to properties
     private static final String SOCIAL_AUTHENTICATION_COOKIE_NAME = "social-authentication";
     private static final Integer COOKIE_MAX_AGE = 10;
 

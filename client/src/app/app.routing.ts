@@ -3,10 +3,12 @@ import { ModuleWithProviders } from '@angular/core';
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { LoginPageComponent } from "./pages/login-page/login-page.component";
 import { NotFoundPageComponent } from "./pages/not-found-page/not-found-page.component";
+import { SocialLoginPageComponent } from "./pages/social-login-page/social-login-page.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: LoginPageComponent },
+  { path: 'social-auth', component: SocialLoginPageComponent },
   { path: '404', component: NotFoundPageComponent },
   { path: '**', redirectTo: '/404' }
 ];

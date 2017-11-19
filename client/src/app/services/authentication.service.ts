@@ -2,28 +2,29 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import "rxjs/add/operator/map";
-import { RequestOptions, Headers } from "@angular/http";
 import { Observable } from "rxjs/Observable";
-import { post } from "selenium-webdriver/http";
+import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
 
 @Injectable()
 export class AuthenticationService {
 
-  private server = 'http://localhost:8080/';
   private api = 'http://localhost:8080/api/v1/';
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private $localStorage: LocalStorageService,
+              private $sessionStorage: SessionStorageService,
+              private http: HttpClient,
+              private router: Router) {
   }
 
   isLoggedIn(): boolean {
     try {
-      return !!localStorage.currentUser;
+      return this.$localStorage.retrieve('authenticationToken') || this.$sessionStorage.retrieve('authenticationToken');
     } catch (Error) {
       alert(Error.message);
     }
   }
 
-  login(username: string, password: string): Observable<boolean> {
+  login(username: string, password: string, rememberMe: boolean): Observable<boolean> {
     const body = JSON.stringify({ username: username, password: password });
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
@@ -31,7 +32,7 @@ export class AuthenticationService {
       .post<JwtResponse>(this.api + 'auth', body, { headers: headers })
       .map(data => {
         if (data && data.token) {
-          localStorage.setItem('currentUser', JSON.stringify(data.token));
+          this.storeAuthenticationToken(JSON.stringify(data.token), rememberMe);
           return true;
         } else {
           return false;
@@ -41,19 +42,28 @@ export class AuthenticationService {
       });
   }
 
-  twitterLogin() {
-    const body = JSON.stringify({ scope: 'public_profile' });
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    return this.http.post(this.server + 'signin/twitter', body, { headers: headers })
-      .map(data => {
-        alert(data);
-      }, error => {
-        console.log(error);
-      });
+  loginWithToken(jwt, rememberMe) {
+    if (jwt) {
+      this.storeAuthenticationToken(jwt, rememberMe);
+      return Promise.resolve(jwt);
+    } else {
+      return Promise.reject('auth-jwt-service Promise reject'); // Put appropriate error message here
+    }
   }
 
-  logout(): void {
-    localStorage.removeItem('currentUser');
+  storeAuthenticationToken(jwt, rememberMe) {
+    if (rememberMe) {
+      this.$localStorage.store('authenticationToken', jwt);
+    } else {
+      this.$sessionStorage.store('authenticationToken', jwt);
+    }
+  }
+
+  logout(): Observable<any> {
+    return new Observable((observer) => {
+      this.$localStorage.clear('authenticationToken');
+      this.$sessionStorage.clear('authenticationToken');
+      observer.complete();
+    });
   }
 }

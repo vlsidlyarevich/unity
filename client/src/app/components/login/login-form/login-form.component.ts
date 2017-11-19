@@ -22,13 +22,14 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {
     this.credentials = new FormGroup({
       username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      password: new FormControl('', Validators.required),
+      rememberMe: new FormControl(false)
     });
   }
 
   login() {
     this.loading = true;
-    this.authenticationService.login(this.credentials.value.username, this.credentials.value.password)
+    this.authenticationService.login(this.credentials.value.username, this.credentials.value.password, this.credentials.value.rememberMe)
       .subscribe(result => {
           if (result === true) {
             this.router.navigate(['/404']);
@@ -39,22 +40,5 @@ export class LoginFormComponent implements OnInit {
         error => {
           this.loading = false;
         });
-  }
-
-  linkedinLogin() {
-    alert("linkedin")
-  }
-
-  twitterLogin() {
-    this.authenticationService.twitterLogin()
-      .subscribe(result => {
-
-        },
-        error => {
-        });
-  }
-
-  facebookLogin() {
-    alert("facebook")
   }
 }

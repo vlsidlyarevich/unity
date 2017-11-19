@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableList;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -36,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "origin", "access-control-request-method", "access-control-request-headers",
             "Authorization", "Cache-Control"};
 
+    private final Environment environment;
     private final TokenAuthenticationService tokenAuthenticationService;
 
     @Override
@@ -49,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/webjars/springfox-swagger-ui/**").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/v2/api-docs").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .addFilterBefore(
                         new AuthenticationTokenFilter(tokenAuthenticationService),
@@ -76,6 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 connectionFactoryLocator, usersConnectionRepository, signInAdapter);
 
         providerSignInController.setSignUpUrl("/social/authenticate");
+        providerSignInController.setApplicationUrl(environment.getProperty("spring.application.url"));
 
         return providerSignInController;
     }

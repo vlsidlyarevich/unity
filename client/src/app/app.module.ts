@@ -14,6 +14,9 @@ import { LoginFormComponent } from './components/login/login-form/login-form.com
 import { HttpClientModule } from "@angular/common/http";
 import { AuthenticationService } from "./services/authentication.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { SocialLoginPageComponent } from './pages/social-login-page/social-login-page.component';
+import { Ng2Webstorage } from "ng2-webstorage";
+import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
   declarations: [
@@ -27,14 +30,17 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     AccessDeniedPageComponent,
     InternalServerErrorPageComponent,
     HomePageComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    SocialLoginPageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    Routing
+    Routing,
+    Ng2Webstorage,
+    CookieModule.forRoot()
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

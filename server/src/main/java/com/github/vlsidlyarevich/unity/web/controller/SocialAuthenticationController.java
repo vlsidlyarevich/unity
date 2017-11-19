@@ -16,7 +16,7 @@ public class SocialAuthenticationController {
 
     private final SocialAuthenticationService signupService;
 
-    @GetMapping("/signup")
+    @GetMapping("/authenticate")
     public RedirectView authenticate(final WebRequest webRequest) {
         return signupService.authenticate(webRequest);
     }
