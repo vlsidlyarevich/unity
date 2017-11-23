@@ -32,18 +32,24 @@ public class DefaultSocialAuthenticationService implements SocialAuthenticationS
 
     @Override
     public RedirectView authenticate(final WebRequest request) {
-        final Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
+        try {
+            final Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
 
-        final User user = socialUserService.create(connection);
+            final User user = socialUserService.create(connection);
 
-        final String jwt = tokenService.getToken(user.getUsername(), user.getPassword());
+            final String jwt = tokenService.getToken(user.getUsername(), user.getPassword());
 
-        final ServletWebRequest servletWebRequest = (ServletWebRequest) request;
+            final ServletWebRequest servletWebRequest = (ServletWebRequest) request;
 
-        servletWebRequest.getResponse().addCookie(getSocialAuthenticationCookie(jwt));
+            servletWebRequest.getResponse().addCookie(getSocialAuthenticationCookie(jwt));
 
-        return new RedirectView(URIBuilder.fromUri(REDIRECT_URL)
-                .build().toString(), true);
+            return new RedirectView(URIBuilder.fromUri(REDIRECT_URL)
+                    .build().toString(), true);
+        } catch (Exception e) {
+            return new RedirectView(URIBuilder.fromUri(REDIRECT_URL)
+                    .queryParam("success", "false")
+                    .build().toString(), true);
+        }
     }
 
     private Cookie getSocialAuthenticationCookie(final String token) {

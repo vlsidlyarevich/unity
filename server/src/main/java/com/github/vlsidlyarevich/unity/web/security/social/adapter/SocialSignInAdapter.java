@@ -17,10 +17,12 @@ import javax.servlet.http.Cookie;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SocialSignInAdapter implements SignInAdapter {
 
+    //FIXME to properties
     private static final String SOCIAL_AUTH_URL = "/social-auth";
 
     //FIXME to properties
     private static final String SOCIAL_AUTHENTICATION_COOKIE_NAME = "social-authentication";
+    //FIXME to properties
     private static final Integer COOKIE_MAX_AGE = 10;
 
     private final UserDetailsService userDetailsService;

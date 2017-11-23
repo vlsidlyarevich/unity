@@ -47,7 +47,7 @@ export class AuthenticationService {
       this.storeAuthenticationToken(jwt, rememberMe);
       return Promise.resolve(jwt);
     } else {
-      return Promise.reject('auth-jwt-service Promise reject'); // Put appropriate error message here
+      return Promise.reject('Login error');
     }
   }
 

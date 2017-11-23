@@ -62,7 +62,7 @@ public class DefaultSocialUserService implements SocialUserService {
                     } else {
                         throw new SocialLoginException(String
                                 .format("Social login through:%s not enabled for user:%s", provider.toString(),
-                                        user.getUsername()));
+                                        username));
                     }
                 }).orElseThrow(() -> new IllegalArgumentException("Username cannot be null"));
     }
