@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SocialLoginPageComponent } from './pages/social-login-page/social-login-page.component';
 import { Ng2Webstorage } from "ng2-webstorage";
 import { CookieService } from 'ngx-cookie-service';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CookieService } from 'ngx-cookie-service';
     InternalServerErrorPageComponent,
     HomePageComponent,
     LoginFormComponent,
-    SocialLoginPageComponent
+    SocialLoginPageComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,
