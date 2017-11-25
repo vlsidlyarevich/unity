@@ -47,3 +47,8 @@ security:
       key: Asjfwol2asf123142Ags1k23hnSA36as6f4qQ324FEsvb
     header:
       name: x-auth-token
+  social:
+    auth-cookie:
+      name: social-authentication
+      max-age: 10
+    auth-url: /social-auth

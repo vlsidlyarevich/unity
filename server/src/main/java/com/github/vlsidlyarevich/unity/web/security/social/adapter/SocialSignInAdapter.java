@@ -3,6 +3,7 @@ package com.github.vlsidlyarevich.unity.web.security.social.adapter;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.social.connect.Connection;
@@ -17,13 +18,12 @@ import javax.servlet.http.Cookie;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SocialSignInAdapter implements SignInAdapter {
 
-    //FIXME to properties
-    private static final String SOCIAL_AUTH_URL = "/social-auth";
-
-    //FIXME to properties
-    private static final String SOCIAL_AUTHENTICATION_COOKIE_NAME = "social-authentication";
-    //FIXME to properties
-    private static final Integer COOKIE_MAX_AGE = 10;
+    @Value("security.social.auth-url")
+    private String socialAuthUrl;
+    @Value("security.social.auth-cookie.name")
+    private String socialAuthenticationCookieName;
+    @Value("security.social.auth-cookie.max-age")
+    private Integer cookieMaxAge;
 
     private final UserDetailsService userDetailsService;
     private final TokenService tokenService;
@@ -38,14 +38,14 @@ public class SocialSignInAdapter implements SignInAdapter {
 
         servletWebRequest.getResponse().addCookie(getSocialAuthenticationCookie(jwt));
 
-        return SOCIAL_AUTH_URL;
+        return socialAuthUrl;
     }
 
     private Cookie getSocialAuthenticationCookie(final String token) {
-        final Cookie socialAuthCookie = new Cookie(SOCIAL_AUTHENTICATION_COOKIE_NAME, token);
+        final Cookie socialAuthCookie = new Cookie(socialAuthenticationCookieName, token);
 
         socialAuthCookie.setPath("/");
-        socialAuthCookie.setMaxAge(COOKIE_MAX_AGE);
+        socialAuthCookie.setMaxAge(cookieMaxAge);
 
         return socialAuthCookie;
     }

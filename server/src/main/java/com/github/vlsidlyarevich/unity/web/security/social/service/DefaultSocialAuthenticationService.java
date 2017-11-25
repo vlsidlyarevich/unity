@@ -2,10 +2,10 @@ package com.github.vlsidlyarevich.unity.web.security.social.service;
 
 import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.domain.service.SocialUserService;
-import com.github.vlsidlyarevich.unity.web.security.facade.AuthenticationFacade;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.support.URIBuilder;
@@ -20,11 +20,12 @@ import javax.servlet.http.Cookie;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultSocialAuthenticationService implements SocialAuthenticationService {
 
-    private static final String REDIRECT_URL = "/social-auth";
-
-    //FIXME to properties
-    private static final String SOCIAL_AUTHENTICATION_COOKIE_NAME = "social-authentication";
-    private static final Integer COOKIE_MAX_AGE = 10;
+    @Value("security.social.auth-url")
+    private String redirectUrl;
+    @Value("security.social.auth-cookie.name")
+    private String socialAuthenticationCookieName;
+    @Value("security.social.auth-cookie.max-age")
+    private Integer cookieMaxAge;
 
     private final SocialUserService socialUserService;
     private final ProviderSignInUtils providerSignInUtils;
@@ -43,20 +44,20 @@ public class DefaultSocialAuthenticationService implements SocialAuthenticationS
 
             servletWebRequest.getResponse().addCookie(getSocialAuthenticationCookie(jwt));
 
-            return new RedirectView(URIBuilder.fromUri(REDIRECT_URL)
+            return new RedirectView(URIBuilder.fromUri(redirectUrl)
                     .build().toString(), true);
         } catch (Exception e) {
-            return new RedirectView(URIBuilder.fromUri(REDIRECT_URL)
+            return new RedirectView(URIBuilder.fromUri(redirectUrl)
                     .queryParam("success", "false")
                     .build().toString(), true);
         }
     }
 
     private Cookie getSocialAuthenticationCookie(final String token) {
-        final Cookie socialAuthCookie = new Cookie(SOCIAL_AUTHENTICATION_COOKIE_NAME, token);
+        final Cookie socialAuthCookie = new Cookie(socialAuthenticationCookieName, token);
 
         socialAuthCookie.setPath("/");
-        socialAuthCookie.setMaxAge(COOKIE_MAX_AGE);
+        socialAuthCookie.setMaxAge(cookieMaxAge);
 
         return socialAuthCookie;
     }
