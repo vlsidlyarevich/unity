@@ -18,6 +18,7 @@ import { SocialLoginPageComponent } from './pages/social-login-page/social-login
 import { Ng2Webstorage } from "ng2-webstorage";
 import { CookieService } from 'ngx-cookie-service';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
     HomePageComponent,
     LoginFormComponent,
     SocialLoginPageComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
