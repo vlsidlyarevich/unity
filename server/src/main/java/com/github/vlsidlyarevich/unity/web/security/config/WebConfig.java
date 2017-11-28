@@ -23,7 +23,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         Integer cachePeriod = resourceProperties.getCachePeriod();
 
         final String[] staticLocations = resourceProperties.getStaticLocations();
@@ -55,10 +55,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 .resourceChain(true)
                 .addResolver(new PathResourceResolver() {
                     @Override
-                    protected Resource getResource(String resourcePath,
-                                                   Resource location) throws IOException {
-                        return location.exists() && location.isReadable() ? location
-                                : null;
+                    protected Resource getResource(final String resourcePath,
+                                                   final Resource location) throws IOException {
+                        return location.exists() && location.isReadable() ? location : null;
                     }
                 });
     }
