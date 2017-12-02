@@ -1,28 +1,38 @@
 package com.github.vlsidlyarevich.unity.db.model;
 
 import lombok.Data;
-import lombok.ToString;
+
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
 
 
 @Data
-public class WorkerProfile extends Worker {
+@Entity
+public class WorkerProfile extends BaseEntity {
 
+    @Embedded
+    private Name name;
+    @Column
+    private Integer age;
+    @Column
+    private Gender gender;
+    @Column
+    private String birthday;
+    @Column
+    private String email;
+    @Column
+    private String phone;
+    @Column(name = "speciality")
+    private Speciality speciality;
+    @Column
     private String imageId;
+    @Column
     private String description;
+    @Column(name = "skype", nullable = false)
     private String skype;
+    @Column(name = "github_url")
     private String githubUrl;
+    @Column(name = "linkedin_url")
     private String linkedInUrl;
-
-    public WorkerProfile() {
-    }
-
-    public WorkerProfile(String firstName, String lastName, String imageId, String description, String skype,
-                         String githubUrl, String linkedInUrl) {
-        super(firstName, lastName);
-        this.imageId = imageId;
-        this.description = description;
-        this.skype = skype;
-        this.githubUrl = githubUrl;
-        this.linkedInUrl = linkedInUrl;
-    }
 }

@@ -72,7 +72,7 @@ public class WorkersProfileControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name.lastName", is(savedWorker.getName().getLastName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.age", is(savedWorker.getAge())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.skype", is(savedWorker.getSkype())))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.gender", is(savedWorker.getGender().toString())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.gender", is(savedWorker.getGender().name())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.phone", is(savedWorker.getPhone())));
     }
 
@@ -96,7 +96,7 @@ public class WorkersProfileControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name.lastName", is(savedWorker.getName().getLastName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.age", is(savedWorker.getAge())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.skype", is(savedWorker.getSkype())))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.gender", is(savedWorker.getGender().toString())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.gender", is(savedWorker.getGender().name())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.phone", is(savedWorker.getPhone())));
     }
 
@@ -115,7 +115,7 @@ public class WorkersProfileControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].name.lastName", is(savedWorker.getName().getLastName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].age", is(savedWorker.getAge())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].skype", is(savedWorker.getSkype())))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].gender", is(savedWorker.getGender().toString())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].gender", is(savedWorker.getGender().name())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].phone", is(savedWorker.getPhone())));
     }
 

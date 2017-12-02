@@ -33,21 +33,16 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public Candidate create(String vacancyId, Candidate candidate) {
-        candidate.setCreatedAt(String.valueOf(LocalDateTime.now()));
-
         Vacancy vacancy = vacancyRepository.findById(vacancyId);
-        repository.save(candidate);
-        vacancy.getCandidates().add(candidate);
-        vacancyRepository.save(vacancy);
+        candidate.setVacancy(vacancy);
 
-        return candidate;
+        return repository.save(candidate);
     }
 
     @Override
     public Candidate find(String vacancyId, String candidateId) {
         try {
-            return vacancyRepository.findById(vacancyId).getCandidates().stream()
-                    .filter(s -> Objects.equals(s.getId(), candidateId)).findFirst().get();
+            return repository.findByVacancyAndId(vacancyRepository.findById(vacancyId), candidateId);
         } catch (NoSuchElementException e) {
             log.warn("Candidate not found with vacancy id: " + vacancyId + "\nAnd candidate id: " + candidateId);
 //            throw new ServiceException(e.getMessage(), e.getCause(), this.getClass().getName());
@@ -73,24 +68,14 @@ public class CandidateServiceImpl implements CandidateService {
             }
 
             candidate.setId(this.find(vacancyId, candidateId).getId());
-            candidate.setUpdatedAt(String.valueOf(LocalDateTime.now()));
             this.delete(vacancyId, candidateId);
 
             Vacancy vacancy = vacancyRepository.findById(vacancyId);
-            vacancy.getCandidates().add(candidate);
-            repository.save(candidate);
-            vacancyRepository.save(vacancy);
+            candidate.setVacancy(vacancy);
 
-            return candidate;
+            return repository.save(candidate);
         } else {
-            candidate.setCreatedAt(String.valueOf(LocalDateTime.now()));
-
-            repository.save(candidate);
-            Vacancy vacancy = vacancyRepository.findById(vacancyId);
-            vacancy.getCandidates().add(candidate);
-            vacancyRepository.save(vacancy);
-
-            return candidate;
+            return this.create(vacancyId, candidate);
         }
     }
 
@@ -105,16 +90,12 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public String delete(String vacancyId, String candidateId) {
+        deleteImage(vacancyId, candidateId);
         Vacancy vacancy = vacancyRepository.findById(vacancyId);
-        for (Candidate candidate : vacancy.getCandidates()) {
-            if (candidate.getId().equals(candidateId)) {
-                deleteImage(vacancyId, candidate.getId());
-                vacancy.getCandidates().remove(candidate);
-                repository.delete(candidate.getId());
-                break;
-            }
-        }
+
+        vacancy.getCandidates().remove(repository.findOne(candidateId));
         vacancyRepository.save(vacancy);
+
         return candidateId;
     }
 
@@ -141,15 +122,19 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public Integer deleteAll(String vacancyId) {
-        Integer deleteCounter;
+        final Integer[] deleteCounter = new Integer[1];
         try {
             Vacancy vacancy = vacancyRepository.findById(vacancyId);
-            deleteCounter = Math.toIntExact(vacancy.getCandidates().size());
-            vacancy.getCandidates().clear();
+            deleteCounter[0] = Math.toIntExact(vacancy.getCandidates().size());
+            vacancy.getCandidates().forEach(candidate -> {
+                deleteCounter[0]++;
+                delete(vacancyId, candidate.getId());
+            });
+            vacancyRepository.save(vacancy);
         } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e.getCause(), this.getClass().getName());
         }
 
-        return deleteCounter;
+        return deleteCounter[0];
     }
 }

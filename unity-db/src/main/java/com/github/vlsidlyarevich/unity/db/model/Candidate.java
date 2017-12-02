@@ -1,38 +1,45 @@
 package com.github.vlsidlyarevich.unity.db.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-@Data
-public class Candidate extends Person {
 
+@Getter
+@Setter
+@Entity
+public class Candidate extends BaseEntity {
+
+    @Embedded
+    private Name name;
+    @Column
+    private Integer age;
+    @Column
+    private Gender gender;
+    @Column
+    private String birthday;
+    @Column(name = "hr_skype")
     private String hrSkype;
+    @Column(name = "skype")
     private String skype;
+    @Column(name = "github_url")
     private String githubUrl;
+    @Column(name = "linkedin_url")
     private String linkedInUrl;
+    @Column(name = "image_id")
     private String imageId;
 
-    public Candidate() {
-
-    }
-
-    public Candidate(Name name) {
-        super(name);
-    }
-
-    public Candidate(String firstName, String lastName) {
-        super(new Name(firstName, lastName));
-    }
-
-    public Candidate(Name name, Integer age, Gender gender, String birthday, String hrSkype,
-                     String skype, String githubUrl, String linkedInUrl, String imageId) {
-        super(name, age, gender, birthday);
-        this.hrSkype = hrSkype;
-        this.skype = skype;
-        this.githubUrl = githubUrl;
-        this.linkedInUrl = linkedInUrl;
-        this.imageId = imageId;
-    }
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "vacancy_id")
+    private Vacancy vacancy;
 }
 

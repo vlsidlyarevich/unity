@@ -3,7 +3,6 @@ package com.github.vlsidlyarevich.unity.db.repository;
 import com.github.vlsidlyarevich.unity.db.TestUtils;
 import com.github.vlsidlyarevich.unity.db.model.Name;
 import com.github.vlsidlyarevich.unity.db.model.Speciality;
-import com.github.vlsidlyarevich.unity.db.model.Worker;
 import com.github.vlsidlyarevich.unity.db.model.WorkerProfile;
 import org.junit.After;
 import org.junit.Assert;
@@ -61,7 +60,7 @@ public class WorkerProfileRepositoryTest {
 
         workerProfileRepository.save(saved);
 
-        Assert.assertEquals(new ArrayList<Worker>() {{
+        Assert.assertEquals(new ArrayList<WorkerProfile>() {{
             add(saved);
         }}, workerProfileRepository.findAllByAge(19));
     }
@@ -69,13 +68,13 @@ public class WorkerProfileRepositoryTest {
     @Test
     public void findAllBySpecialityTest() throws Exception {
         WorkerProfile saved = TestUtils.generateWorkerProfile();
-        saved.setSpeciality("SOFTWARE_ENGINEER");
+        saved.setSpeciality(Speciality.SOFTWARE_ENGINEER);
 
-        ArrayList<Worker> workers = new ArrayList<>();
+        ArrayList<WorkerProfile> workers = new ArrayList<>();
         workers.add(saved);
         workerProfileRepository.save(saved);
 
-        Assert.assertEquals(new ArrayList<Worker>() {{
+        Assert.assertEquals(new ArrayList<WorkerProfile>() {{
             add(saved);
         }}, workerProfileRepository.findAllBySpeciality(Speciality.SOFTWARE_ENGINEER));
     }

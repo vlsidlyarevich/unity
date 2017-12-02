@@ -55,10 +55,10 @@ public class WorkerProfileSearchServiceImplTest {
         WorkerProfile workerProfile = TestUtils.generateWorkerProfile();
         workerProfileService.create(workerProfile);
 
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("skype", workerProfile.getSkype());
-        map.put("gender", workerProfile.getGender().name());
-        map.put("speciality", workerProfile.getSpeciality().name());
+        map.put("gender", workerProfile.getGender());
+        map.put("speciality", workerProfile.getSpeciality());
 
         List workerProfiles = workerProfileSearchService.find(map);
         Assert.assertEquals(workerProfile, workerProfiles.get(0));

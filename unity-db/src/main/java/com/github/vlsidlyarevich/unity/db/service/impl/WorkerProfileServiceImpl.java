@@ -26,8 +26,6 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
 
     @Override
     public WorkerProfile create(WorkerProfile workerProfile) {
-        workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
-
         repository.save(workerProfile);
         return workerProfile;
     }
@@ -62,11 +60,6 @@ public class WorkerProfileServiceImpl implements WorkerProfileService {
             if (!Objects.equals(saved.getImageId(), workerProfile.getImageId())) {
                 storageService.delete(saved.getImageId());
             }
-
-            workerProfile.setCreatedAt(saved.getCreatedAt());
-            workerProfile.setUpdatedAt(String.valueOf(LocalDateTime.now()));
-        } else {
-            workerProfile.setCreatedAt(String.valueOf(LocalDateTime.now()));
         }
         repository.save(workerProfile);
         return workerProfile;

@@ -21,7 +21,6 @@ public class VacancyServiceImpl implements VacancyService {
 
     @Override
     public Vacancy create(Vacancy vacancy) {
-        vacancy.setCreatedAt(String.valueOf(LocalDateTime.now()));
         repository.save(vacancy);
 
         return vacancy;
@@ -55,10 +54,6 @@ public class VacancyServiceImpl implements VacancyService {
 
         if (saved != null) {
             vacancy.setCandidates(saved.getCandidates());
-            vacancy.setCreatedAt(saved.getCreatedAt());
-            vacancy.setUpdatedAt(String.valueOf(LocalDateTime.now()));
-        } else {
-            vacancy.setCreatedAt(String.valueOf(LocalDateTime.now()));
         }
         repository.save(vacancy);
         return vacancy;

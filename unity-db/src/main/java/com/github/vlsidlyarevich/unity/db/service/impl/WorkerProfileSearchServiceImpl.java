@@ -1,11 +1,10 @@
 package com.github.vlsidlyarevich.unity.db.service.impl;
 
 import com.github.vlsidlyarevich.unity.db.model.WorkerProfile;
+import com.github.vlsidlyarevich.unity.db.repository.WorkerProfileRepository;
+import com.github.vlsidlyarevich.unity.db.repository.specification.builder.WorkerProfileSpecificationBuilder;
 import com.github.vlsidlyarevich.unity.db.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,40 +15,40 @@ import java.util.Map;
 public class WorkerProfileSearchServiceImpl implements SearchService<WorkerProfile> {
 
     @Autowired
-    private MongoOperations mongoOperations;
+    private WorkerProfileRepository repository;
 
     @Override
     public List<WorkerProfile> find(Map<String, String> filters) {
-        Query query = new Query();
+        WorkerProfileSpecificationBuilder builder = new WorkerProfileSpecificationBuilder();
 
         for (Map.Entry<String, String> filter : filters.entrySet()) {
             switch (filter.getKey()) {
                 case "firstname": {
-                    query.addCriteria(Criteria.where("name.firstName").is(filter.getValue()));
+                    builder.with("firstName", ":name", filter.getValue());
                     break;
                 }
                 case "secondname": {
-                    query.addCriteria(Criteria.where("name.lastName").is(filter.getValue()));
+                    builder.with("lastName", ":name", filter.getValue());
                     break;
                 }
                 case "age": {
-                    query.addCriteria(Criteria.where("age").is(Integer.valueOf(filter.getValue())));
+                    builder.with("age", ":", filter.getValue());
                     break;
                 }
                 case "gender": {
-                    query.addCriteria(Criteria.where("gender").is(filter.getValue()));
+                    builder.with("gender", ":", filter.getValue());
                     break;
                 }
                 case "speciality": {
-                    query.addCriteria(Criteria.where("speciality").is(filter.getValue()));
+                    builder.with("speciality", ":", filter.getValue());
                     break;
                 }
                 case "skype": {
-                    query.addCriteria(Criteria.where("skype").is(filter.getValue()));
+                    builder.with("skype", ":", filter.getValue());
                     break;
                 }
             }
         }
-        return mongoOperations.find(query, WorkerProfile.class);
+        return repository.findAll(builder.build());
     }
 }

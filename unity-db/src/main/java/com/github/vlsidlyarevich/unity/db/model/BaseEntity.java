@@ -1,21 +1,39 @@
 package com.github.vlsidlyarevich.unity.db.model;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import java.io.Serializable;
+import java.util.Date;
 
 
 @Data
-@Document
-public class BaseEntity implements Serializable {
+@MappedSuperclass
+public abstract class BaseEntity implements Serializable {
 
     @Id
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @Column(name = "id", updatable = false, nullable = false)
     private String id;
-    private String createdAt;
-    private String updatedAt;
+    @Column(name = "created_at")
+    private Date createdAt;
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
-    public BaseEntity() {
+    @PrePersist
+    protected void onCreate() {
+        createdAt = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Date();
     }
 }

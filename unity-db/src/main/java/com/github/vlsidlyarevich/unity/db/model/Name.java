@@ -1,14 +1,19 @@
 package com.github.vlsidlyarevich.unity.db.model;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 
 @Data
-public class Name {
+@Embeddable
+public class Name implements Serializable {
 
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
 
     public Name() {
