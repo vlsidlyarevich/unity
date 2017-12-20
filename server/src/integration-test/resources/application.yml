@@ -17,7 +17,7 @@ spring:
       app-secret: fFEq66FckiZtJYT5
 
 storage:
-  path: ./data/test-images
+  path: data/test-images
 
 security:
   token:
@@ -42,5 +42,5 @@ twitter:
   accessTokenSecret: ${TWITTER_ACCESS_TOKEN_SECRET}
   files:
     popularProfiles:
-      path: ./data/twitter
+      path: data/twitter
       name: popular_profiles.json

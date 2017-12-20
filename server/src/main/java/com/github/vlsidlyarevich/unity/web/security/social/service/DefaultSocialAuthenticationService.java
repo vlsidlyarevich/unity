@@ -3,7 +3,7 @@ package com.github.vlsidlyarevich.unity.web.security.social.service;
 import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.domain.service.SocialUserService;
 import com.github.vlsidlyarevich.unity.web.security.service.TokenService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.social.connect.Connection;
@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.Cookie;
 
 @Service
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultSocialAuthenticationService implements SocialAuthenticationService {
 
     @Value("security.social.auth-url")
@@ -25,7 +25,7 @@ public class DefaultSocialAuthenticationService implements SocialAuthenticationS
     @Value("security.social.auth-cookie.name")
     private String socialAuthenticationCookieName;
     @Value("security.social.auth-cookie.max-age")
-    private Integer cookieMaxAge;
+    private String cookieMaxAge;
 
     private final SocialUserService socialUserService;
     private final ProviderSignInUtils providerSignInUtils;
@@ -57,7 +57,7 @@ public class DefaultSocialAuthenticationService implements SocialAuthenticationS
         final Cookie socialAuthCookie = new Cookie(socialAuthenticationCookieName, token);
 
         socialAuthCookie.setPath("/");
-        socialAuthCookie.setMaxAge(cookieMaxAge);
+        socialAuthCookie.setMaxAge(Integer.parseInt(cookieMaxAge));
 
         return socialAuthCookie;
     }

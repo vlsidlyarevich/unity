@@ -38,7 +38,7 @@ twitter:
   accessTokenSecret: ${TWITTER_ACCESS_TOKEN_SECRET}
   files:
     popularProfiles:
-      path: ./data/twitter
+      path: data/twitter
       name: popular_profiles.json
 
 security:

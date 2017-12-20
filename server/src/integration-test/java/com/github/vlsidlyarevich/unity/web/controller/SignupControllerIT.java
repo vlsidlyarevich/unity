@@ -38,7 +38,7 @@ public class SignupControllerIT extends AbstractControllerIT {
     public void signup_BadRequest_IfEmptyUsername() throws Exception {
         UserRequest dto = new UserRequest("", "password");
 
-        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/authenticate")
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/signup")
                 .accept(contentType)
                 .content(objectMapper.writeValueAsString(dto))
                 .contentType(contentType))
@@ -49,7 +49,7 @@ public class SignupControllerIT extends AbstractControllerIT {
     public void signup_BadRequest_IfEmptyPassword() throws Exception {
         UserRequest dto = new UserRequest("username", "");
 
-        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/authenticate")
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/signup")
                 .accept(contentType)
                 .content(objectMapper.writeValueAsString(dto))
                 .contentType(contentType))
@@ -60,7 +60,7 @@ public class SignupControllerIT extends AbstractControllerIT {
     public void signup_BadRequest_IfWeakPassword() throws Exception {
         UserRequest dto = new UserRequest("username", "password");
 
-        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/authenticate")
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/signup")
                 .accept(contentType)
                 .content(objectMapper.writeValueAsString(dto))
                 .contentType(contentType))
@@ -71,7 +71,7 @@ public class SignupControllerIT extends AbstractControllerIT {
     public void authenticate_Success_IfCorrectUsernameAndPassword() throws Exception {
         JwtAuthenticationRequest request = new JwtAuthenticationRequest("username", "pasS$123");
 
-        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/authenticate")
+        mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/signup")
                 .accept(contentType)
                 .content(objectMapper.writeValueAsString(request))
                 .contentType(contentType))

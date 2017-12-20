@@ -41,7 +41,10 @@ Type following commands in additional/docker/mongo folder.
 * `mvn clean install`
 * `java -jar target/*.jar`
 
-### Running the client (Not available for now)
+**Important!** If you want to run backend from Idea, you should choose working directory in run configuration as ./server folder.
+
+
+### Running the client
 * `cd client`
 * `npm i`
 * `ng serve`

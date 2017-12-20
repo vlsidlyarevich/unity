@@ -23,7 +23,7 @@ public class SocialSignInAdapter implements SignInAdapter {
     @Value("security.social.auth-cookie.name")
     private String socialAuthenticationCookieName;
     @Value("security.social.auth-cookie.max-age")
-    private Integer cookieMaxAge;
+    private String cookieMaxAge;
 
     private final UserDetailsService userDetailsService;
     private final TokenService tokenService;
@@ -45,7 +45,7 @@ public class SocialSignInAdapter implements SignInAdapter {
         final Cookie socialAuthCookie = new Cookie(socialAuthenticationCookieName, token);
 
         socialAuthCookie.setPath("/");
-        socialAuthCookie.setMaxAge(cookieMaxAge);
+        socialAuthCookie.setMaxAge(Integer.parseInt(cookieMaxAge));
 
         return socialAuthCookie;
     }
