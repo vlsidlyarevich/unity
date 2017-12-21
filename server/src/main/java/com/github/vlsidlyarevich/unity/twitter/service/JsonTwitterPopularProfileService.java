@@ -6,11 +6,13 @@ import com.github.vlsidlyarevich.unity.twitter.config.TwitterProperties;
 import com.github.vlsidlyarevich.unity.twitter.model.TwitterPopularProfile;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StreamUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
@@ -37,8 +39,21 @@ public class JsonTwitterPopularProfileService implements TwitterPopularProfileSe
     }
 
     private List<TwitterPopularProfile> readFile(final String fileName, final String filePath) throws IOException {
-        final byte[] jsonContent = Files.readAllBytes(Paths.get(filePath, fileName));
+        final ClassPathResource jsonFileClasspathResource
+                = new ClassPathResource(Paths.get(filePath, fileName).toString());
+
+        final byte[] jsonContent = getJsonContentOfResource(jsonFileClasspathResource);
 
         return Arrays.asList(objectMapper.readValue(jsonContent, TwitterPopularProfile[].class));
+    }
+
+    private byte[] getJsonContentOfResource(final ClassPathResource resource) {
+        try (InputStream inputStream = resource.getInputStream()) {
+            return StreamUtils.copyToByteArray(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
