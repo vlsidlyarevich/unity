@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: "sortByProperty"
+  name: 'sortByProperty'
 })
 export class ArraySortByPropertyPipe implements PipeTransform {
   transform(items: Array<any>, property: string): Array<string> {

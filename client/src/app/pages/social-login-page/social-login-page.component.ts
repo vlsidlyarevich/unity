@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from "../../services/authentication.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { AuthenticationService } from '../../services/authentication.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -15,7 +15,7 @@ export class SocialLoginPageComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService,
               private cookieService: CookieService,
               private router: Router,
-              private route: ActivatedRoute,) {
+              private route: ActivatedRoute, ) {
   }
 
   ngOnInit() {

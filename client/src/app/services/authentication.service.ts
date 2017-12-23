@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import "rxjs/add/operator/map";
-import { Observable } from "rxjs/Observable";
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
 
 @Injectable()

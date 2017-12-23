@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from "../../../services/authentication.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { AuthenticationService } from '../../../services/authentication.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'login-form',
+  selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
