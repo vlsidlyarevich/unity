@@ -4,11 +4,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
+import { api } from '../app.constants';
 
 @Injectable()
 export class AuthenticationService {
-
-  private api = 'http://localhost:8080/api/v1/';
 
   constructor(private $localStorage: LocalStorageService,
               private $sessionStorage: SessionStorageService,
@@ -29,7 +28,7 @@ export class AuthenticationService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return this.http
-      .post<JwtResponse>(this.api + 'auth', body, { headers: headers })
+      .post<JwtResponse>(api.auth, body, { headers: headers })
       .map(data => {
         if (data && data.token) {
           this.storeAuthenticationToken(JSON.stringify(data.token), rememberMe);

@@ -19,6 +19,7 @@ import { Ng2Webstorage } from 'ng2-webstorage';
 import { CookieService } from 'ngx-cookie-service';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileService } from './services/profile.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     Ng2Webstorage
   ],
   providers: [AuthenticationService,
-    CookieService],
+    CookieService,
+    ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
