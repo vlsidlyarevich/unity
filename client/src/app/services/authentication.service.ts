@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
@@ -13,6 +13,14 @@ export class AuthenticationService {
               private $sessionStorage: SessionStorageService,
               private http: HttpClient,
               private router: Router) {
+  }
+
+  createAuthOptions() {
+    const currentToken = JSON.parse(this.$localStorage.retrieve('authenticationToken'));
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    const params = new HttpParams();
+    return ({ headers: headers, params: params });
   }
 
   isLoggedIn(): boolean {
