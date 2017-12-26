@@ -43,7 +43,7 @@ public class UserControllerIT extends AbstractControllerIT {
     @Autowired
     private TokenService tokenService;
 
-    @Value("security.token.header.name")
+    @Value("${security.token.header.name}")
     private String authHeaderName;
 
     @Before

@@ -37,12 +37,12 @@ export class ProfileComponent implements OnInit {
   private initializeUserForm() {
     this.userDataForm = this.formBuilder.group({
       id: [this.user.id],
-      username: [this.user.username, Validators.required, Validators.minLength(4)],
+      username: [this.user.username, [Validators.required, Validators.minLength(4)]],
       oldPassword: [this.user.password],
-      newPassword: ['', Validators.required,
-        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$')],
-      confirm_password: ['', Validators.required,
-        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$')],
+      newPassword: ['', [Validators.required,
+        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$')]],
+      confirm_password: ['', [Validators.required,
+        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$')]],
 
       authorities: [this.user.authorities],
       accountNonExpired: [this.user.accountNonExpired],
@@ -60,7 +60,7 @@ export class ProfileComponent implements OnInit {
 
   private initializeUserSocialForm() {
     this.userSocialDataForm = this.formBuilder.group({
-      email: [this.userSocial.email, Validators.required, Validators.email],
+      email: [this.userSocial.email, [Validators.required, Validators.email]],
       firstName: [this.userSocial.firstName],
       lastName: [this.userSocial.lastName],
       facebook: [this.userSocial.facebook],

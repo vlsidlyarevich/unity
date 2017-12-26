@@ -33,7 +33,7 @@ export class LoginFormComponent implements OnInit {
     this.authenticationService.login(this.credentials.value.username, this.credentials.value.password, this.credentials.value.rememberMe)
       .subscribe(result => {
           if (result === true) {
-            this.router.navigate(['/404']);
+            this.router.navigate(['/']);
           } else {
             this.loading = false;
           }

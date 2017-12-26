@@ -18,11 +18,11 @@ import javax.servlet.http.Cookie;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SocialSignInAdapter implements SignInAdapter {
 
-    @Value("security.social.auth-url")
+    @Value("${security.social.auth-url}")
     private String socialAuthUrl;
-    @Value("security.social.auth-cookie.name")
+    @Value("${security.social.auth-cookie.name}")
     private String socialAuthenticationCookieName;
-    @Value("security.social.auth-cookie.max-age")
+    @Value("${security.social.auth-cookie.max-age}")
     private String cookieMaxAge;
 
     private final UserDetailsService userDetailsService;

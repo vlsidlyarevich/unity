@@ -7,6 +7,7 @@ import { User } from '../models/user.model';
 import { LocalStorageService } from 'ng2-webstorage';
 import { api } from '../app.constants';
 import { Observable } from 'rxjs/Observable';
+import { UserSocial } from "../models/user-social.model";
 
 @Injectable()
 export class ProfileService {
@@ -40,7 +41,7 @@ export class ProfileService {
 
   getUserSocialInfo() {
     try {
-      return this.$localStorage.retrieve('userSocial');
+      return this.$localStorage.retrieve('userSocial') || new UserSocial();
     } catch (Error) {
       alert(Error.message);
     }

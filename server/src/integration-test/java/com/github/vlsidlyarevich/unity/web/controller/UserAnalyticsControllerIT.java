@@ -47,7 +47,7 @@ public class UserAnalyticsControllerIT extends AbstractControllerIT {
     @Autowired
     private UserAnalyticsService analyticsService;
 
-    @Value("security.token.header.name")
+    @Value("${security.token.header.name}")
     private String authHeaderName;
     
     @Before

@@ -27,10 +27,10 @@ import java.util.Optional;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class JsonWebTokenAuthenticationService implements TokenAuthenticationService {
 
-    @Value("security.token.secret.key")
+    @Value("${security.token.secret.key}")
     private String secretKey;
 
-    @Value("security.token.header.name")
+    @Value("${security.token.header.name}")
     private String authHeaderName;
 
     private final UserDetailsService userDetailsService;
