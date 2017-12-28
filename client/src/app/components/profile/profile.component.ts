@@ -26,32 +26,24 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.user = this.profileService.getUserInfo();
     this.userSocial = this.profileService.getUserSocialInfo();
-    this.initalizeForms();
+    this.initializeForms();
   }
 
-  private initalizeForms() {
+  private initializeForms() {
     this.initializeUserForm();
     this.initializeUserSocialForm();
+  }
+
+  public updateUserData() {
+
   }
 
   private initializeUserForm() {
     this.userDataForm = this.formBuilder.group({
       id: [this.user.id],
       username: [this.user.username, [Validators.required, Validators.minLength(4)]],
-      oldPassword: [this.user.password],
-      newPassword: ['', [Validators.required,
+      password: [this.user.password, [Validators.required,
         Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$')]],
-      confirm_password: ['', [Validators.required,
-        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$')]],
-
-      authorities: [this.user.authorities],
-      accountNonExpired: [this.user.accountNonExpired],
-      accountNonLocked: [this.user.accountNonLocked],
-      isEnabled: [this.user.isEnabled],
-      credentialsNonExpired: [this.user.credentialsNonExpired],
-      createdAt: [this.user.createdAt],
-      updatedAt: [this.user.updatedAt],
-
       facebookLoginEnabled: [this.user.facebookLoginEnabled],
       linkedInLoginEnabled: [this.user.linkedInLoginEnabled],
       twitterLoginEnabled: [this.user.twitterLoginEnabled],
@@ -72,5 +64,18 @@ export class ProfileComponent implements OnInit {
       createdAt: [this.userSocial.createdAt],
       updatedAt: [this.userSocial.updatedAt],
     });
+  }
+
+  public showPassword(input: any): any {
+    input.type = input.type === 'password' ? 'text' : 'password';
+  }
+
+  public getUserAuthority(authorities: string[]): string {
+    let result = 'User';
+    if (authorities && authorities.find(authority => (authority === `ROLE_ADMIN`))) {
+      result = 'Administrator';
+    }
+
+    return result;
   }
 }

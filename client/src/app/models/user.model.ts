@@ -12,7 +12,7 @@ export class User {
   accountNonExpired: boolean;
   accountNonLocked: boolean;
   credentialsNonExpired: boolean;
-  isEnabled: boolean;
+  enabled: boolean;
   createdAt: string;
   updatedAt: string;
 }

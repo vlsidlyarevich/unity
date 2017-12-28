@@ -30,16 +30,18 @@
                      title="Change the avatar">
               </div>
             </div>
-            <h3>Samuel Doe</h3>
+            <h3>{{userSocial.firstName || 'Unknown'}} {{userSocial.lastName || 'Unknown'}}</h3>
             <ul class="list-unstyled user_data">
-              <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
+              <li><i class="fa fa-map-marker user-profile-icon"></i> {{userSocial.additional || 'No information
+                available'}}
               </li>
               <li>
-                <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
+                <i class="fa fa-briefcase user-profile-icon"></i> {{userSocial.skype || 'No information available'}}
               </li>
               <li class="m-top-xs">
                 <i class="fa fa-external-link user-profile-icon"></i>
-                <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
+                <a href="http://www.kimlabs.com/profile/" target="_blank">{{userSocial.email || 'No information
+                  available'}}</a>
               </li>
             </ul>
             <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
@@ -48,34 +50,101 @@
 
           <div class="col-md-9 col-sm-9 col-xs-12">
             <div class="x_title">
-              <h2>Account information<small>Information about account status and credentials.</small></h2>
+              <h2>Account information
+                <small>Information about account status and credentials.</small>
+              </h2>
               <div class="clearfix"></div>
             </div>
-            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+            <form id="account-info-form" (ngSubmit)="updateUserData()" [formGroup]="userDataForm" novalidate
+                  class="form-horizontal form-label-left">
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Username<span
+                  class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" formControlName="username" class="form-control col-md-7 col-xs-12">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Password<span
+                  class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <div class="input-group">
+                    <input type="password" #password formControlName="password" class="form-control">
+                    <span class="input-group-addon">
+                    <input type="checkbox" aria-label="Checkbox for following text input"
+                           (click)="showPassword(password)">
+                  </span>
+                  </div>
+                </div>
+              </div>
+
+
+              //TODO
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Authorities</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <span type="text" class="form-control col-md-7 col-xs-12">
+                    {{getUserAuthority(user?.authorities)}}
+                  </span>
+                </div>
+              </div>
+
+              //TODO зелёным цветом выделить тру или фалсе
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Account non locked</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <span type="text" class="form-control col-md-7 col-xs-12">
+                    {{user?.accountNonLocked}}
+                  </span>
+                </div>
+              </div>
+
+              //TODO зелёным цветом выделить тру или фалсе
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Enabled</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <span type="text" class="form-control col-md-7 col-xs-12">
+                    {{user?.enabled}}
+                  </span>
+                </div>
+              </div>
 
               <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span
-                  class="required">*</span>
-                </label>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Created at</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                  <span type="text" class="form-control col-md-7 col-xs-12">
+                    {{user?.createdAt |  date:"MM/dd/yyyy 'at' h:mma"}}
+                  </span>
                 </div>
               </div>
+
               <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span
-                  class="required">*</span>
-                </label>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Updated at</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="last-name" name="last-name" required="required"
-                         class="form-control col-md-7 col-xs-12">
+                  <span type="text" class="form-control col-md-7 col-xs-12">
+                    {{user?.updatedAt |  date:"MM/dd/yyyy 'at' h:mma"}}
+                  </span>
                 </div>
               </div>
+
               <div class="form-group">
-                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name / Initial</label>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Social Login</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                  <p style="padding: 5px;">
+                    <input type="checkbox" formControlName="facebookLoginEnabled" value="true" class="flat"/> Facebook
+                    <br/>
+                    <input type="checkbox" formControlName="linkedInLoginEnabled" value="true" class="flat"/> LinkedIn
+                    <br/>
+                    <input type="checkbox" formControlName="twitterLoginEnabled" value="true" class="flat"/> Twitter
+                    <br/>
+                  <p>
                 </div>
               </div>
+
+
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -128,7 +197,9 @@
 
 
             <div class="x_title">
-              <h2>Additional information<small>Social information.</small></h2>
+              <h2>Additional information
+                <small>Social information.</small>
+              </h2>
               <div class="clearfix"></div>
             </div>
             <form id="demo-form3" data-parsley-validate class="form-horizontal form-label-left">
