@@ -32,16 +32,18 @@
             </div>
             <h3>{{userSocial.firstName || 'Unknown'}} {{userSocial.lastName || 'Unknown'}}</h3>
             <ul class="list-unstyled user_data">
-              <li><i class="fa fa-map-marker user-profile-icon"></i> {{userSocial.additional || 'No information
-                available'}}
+              <li><i class="fa fa-map-marker user-profile-icon"></i>
+                {{userSocial.additional || 'No information available'}}
               </li>
               <li>
-                <i class="fa fa-briefcase user-profile-icon"></i> {{userSocial.skype || 'No information available'}}
+                <i class="fa fa-briefcase user-profile-icon"></i>
+                {{userSocial.skype || 'No information available'}}
               </li>
               <li class="m-top-xs">
                 <i class="fa fa-external-link user-profile-icon"></i>
-                <a href="http://www.kimlabs.com/profile/" target="_blank">{{userSocial.email || 'No information
-                  available'}}</a>
+                <a href="http://www.kimlabs.com/profile/" target="_blank">
+                  {{userSocial.email || 'No information available'}}
+                </a>
               </li>
             </ul>
             <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
@@ -81,8 +83,6 @@
                 </div>
               </div>
 
-
-              //TODO
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Authorities</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -92,7 +92,6 @@
                 </div>
               </div>
 
-              //TODO зелёным цветом выделить тру или фалсе
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Account non locked</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -102,7 +101,6 @@
                 </div>
               </div>
 
-              //TODO зелёным цветом выделить тру или фалсе
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Enabled</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -132,69 +130,35 @@
 
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Social Login</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <p style="padding: 5px;">
-                    <input type="checkbox" formControlName="facebookLoginEnabled" value="true" class="flat"/> Facebook
-                    <br/>
-                    <input type="checkbox" formControlName="linkedInLoginEnabled" value="true" class="flat"/> LinkedIn
-                    <br/>
-                    <input type="checkbox" formControlName="twitterLoginEnabled" value="true" class="flat"/> Twitter
-                    <br/>
-                  <p>
-                </div>
-              </div>
-
-
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <div id="gender" class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-default" data-toggle-class="btn-primary"
-                           data-toggle-passive-class="btn-default">
-                      <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                  <div class="">
+                    <label>
+                      <input type="checkbox" formControlName="facebookLoginEnabled" value="true" class="js-switch"/>
+                      Facebook
                     </label>
-                    <label class="btn btn-primary" data-toggle-class="btn-primary"
-                           data-toggle-passive-class="btn-default">
-                      <input type="radio" name="gender" value="female"> Female
+                    <br/>
+                    <label>
+                      <input type="checkbox" formControlName="linkedInLoginEnabled" value="true" class="js-switch"/>
+                      LinkedIn
+                    </label>
+                    <br/>
+                    <label>
+                      <input type="checkbox" formControlName="twitterLoginEnabled" value="true" class="js-switch"/>
+                      Twitter
+                      <br/>
                     </label>
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required"
-                         type="text">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Hobies</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <p style="padding: 5px;">
-                    <input type="checkbox" name="hobbies[]" id="hobby1" value="ski" data-parsley-mincheck="2" required
-                           class="flat"/> Skiing
-                    <br/>
-                    <input type="checkbox" name="hobbies[]" id="hobby2" value="run" class="flat"/> Running
-                    <br/>
-                    <input type="checkbox" name="hobbies[]" id="hobby3" value="eat" class="flat"/> Eating
-                    <br/>
-                    <input type="checkbox" name="hobbies[]" id="hobby4" value="sleep" class="flat"/> Sleeping
-                    <br/>
-                  <p>
-                </div>
-              </div>
+
               <div class="ln_solid"></div>
               <div class="form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                  <button class="btn btn-primary" type="button">Cancel</button>
-                  <button class="btn btn-primary" type="reset">Reset</button>
+                  <button (click)="resetUserForm()" class="btn btn-danger">Reset</button>
                   <button type="submit" class="btn btn-success">Submit</button>
                 </div>
               </div>
-
             </form>
-
 
             <div class="x_title">
               <h2>Additional information
@@ -265,11 +229,11 @@
                   <p>
                 </div>
               </div>
+
               <div class="ln_solid"></div>
               <div class="form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                  <button class="btn btn-primary" type="button">Cancel</button>
-                  <button class="btn btn-primary" type="reset">Reset</button>
+                  <button (click)="resetUserSocialForm()" class="btn btn-danger">Reset</button>
                   <button type="submit" class="btn btn-success">Submit</button>
                 </div>
               </div>

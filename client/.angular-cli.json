@@ -21,12 +21,14 @@
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/font-awesome/css/font-awesome.min.css",
+        "./assets/css/switchery/switchery.min.css",
         "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/jquery-ui-dist/jquery-ui.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "./assets/js/switchery/switchery.min.js",
         "./assets/js/smartresize.js",
         "./assets/js/custom.js"
       ],

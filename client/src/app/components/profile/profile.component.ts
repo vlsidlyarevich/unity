@@ -78,4 +78,12 @@ export class ProfileComponent implements OnInit {
 
     return result;
   }
+
+  public resetUserForm() {
+    this.initializeUserForm();
+  }
+
+  public resetUserSocialForm() {
+    this.initializeUserSocialForm();
+  }
 }
