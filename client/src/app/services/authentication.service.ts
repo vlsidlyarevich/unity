@@ -83,7 +83,7 @@ export class AuthenticationService {
 
   private storeCurrentUserSocial() {
     const options = this.createAuthOptions();
-    const url = api.userSocial.replace('${id}', this.$localStorage.retrieve('user').id);
+    const url = api.userSocial.replace('${userId}', this.$localStorage.retrieve('user').id);
 
     this.http
       .get<UserSocial>(url, options)
