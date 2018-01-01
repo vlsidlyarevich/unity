@@ -55,6 +55,7 @@ public class DefaultUserSocialService implements UserSocialService {
         return Optional.ofNullable(userSocial)
                 .map(usrSocial -> {
                     usrSocial.setUserId(id);
+                    usrSocial.setCreatedAt(userSocial.getCreatedAt());
                     return repository.save(usrSocial);
                 }).orElseThrow(()
                         -> new IllegalArgumentException("User social data must not be empty"));
