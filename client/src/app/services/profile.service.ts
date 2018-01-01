@@ -7,7 +7,7 @@ import { User } from '../models/user.model';
 import { LocalStorageService } from 'ng2-webstorage';
 import { api } from '../app.constants';
 import { Observable } from 'rxjs/Observable';
-import { UserSocial } from "../models/user-social.model";
+import { UserSocial } from '../models/user-social.model';
 
 @Injectable()
 export class ProfileService {
@@ -41,10 +41,67 @@ export class ProfileService {
 
   getUserSocialInfo() {
     try {
-      return this.$localStorage.retrieve('userSocial') || new UserSocial();
+      return this.$localStorage.retrieve('userSocial');
     } catch (Error) {
       alert(Error.message);
     }
+  }
+
+  updateUserInfo(user: User) {
+    const options = this.authService.createAuthOptions();
+    const id = this.getUserInfo().id;
+
+    this.http
+      .put<User>(api.user + '/' + id, user, options)
+      .map((response) => {
+          this.$localStorage.store('user', response);
+          return true;
+        },
+        err => {
+          this.handleError(err);
+        });
+  }
+
+  updateUserSocialInfo(userSocial: UserSocial) {
+    const options = this.authService.createAuthOptions();
+    const url = api.userSocial.replace('${userId}', this.getUserInfo().id);
+
+    return this.http
+      .put<UserSocial>(url, userSocial, options)
+      .map((response) => {
+          this.$localStorage.store('userSocial', response);
+          return true;
+        },
+        err => {
+          this.handleError(err);
+        });
+  }
+
+  updateUserInfoById(user: User, id: string) {
+    const options = this.authService.createAuthOptions();
+
+    return this.http
+      .post<User>(api.user + '/' + id, user, options)
+      .map((response) => {
+          return response;
+        },
+        err => {
+          this.handleError(err);
+        });
+  }
+
+  updateUserSocialInfoById(userSocial: UserSocial, id: string, userId: string) {
+    const options = this.authService.createAuthOptions();
+    const url = api.userSocial.replace('${userId}', userId);
+
+    return this.http
+      .post<UserSocial>(url + '/' + id, userSocial, options)
+      .map((response) => {
+          return response;
+        },
+        err => {
+          this.handleError(err);
+        });
   }
 
   private handleError(err: HttpErrorResponse) {

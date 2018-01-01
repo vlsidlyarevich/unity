@@ -26,7 +26,9 @@
             <div class="profile_img">
               <div id="crop-avatar">
                 <!-- Current avatar -->
-                <img class="img-responsive avatar-view" src="images/picture.jpg" alt="Avatar"
+                <img class="img-responsive avatar-view"
+                     [src]="userSocial?.image || 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'"
+                     alt="Avatar"
                      title="Change the avatar">
               </div>
             </div>
@@ -46,8 +48,6 @@
                 </a>
               </li>
             </ul>
-            <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
-            <br/>
           </div>
 
           <div class="col-md-9 col-sm-9 col-xs-12">
@@ -86,7 +86,7 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Authorities</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <span type="text" class="form-control col-md-7 col-xs-12">
+                  <span type="text" class="form-control col-md-7 col-xs-12" readonly="readonly">
                     {{getUserAuthority(user?.authorities)}}
                   </span>
                 </div>
@@ -95,7 +95,7 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Account non locked</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <span type="text" class="form-control col-md-7 col-xs-12">
+                  <span type="text" class="form-control col-md-7 col-xs-12" readonly="readonly">
                     {{user?.accountNonLocked}}
                   </span>
                 </div>
@@ -104,7 +104,7 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Enabled</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <span type="text" class="form-control col-md-7 col-xs-12">
+                  <span type="text" class="form-control col-md-7 col-xs-12" readonly="readonly">
                     {{user?.enabled}}
                   </span>
                 </div>
@@ -113,7 +113,7 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Created at</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <span type="text" class="form-control col-md-7 col-xs-12">
+                  <span type="text" class="form-control col-md-7 col-xs-12" readonly="readonly">
                     {{user?.createdAt |  date:"MM/dd/yyyy 'at' h:mma"}}
                   </span>
                 </div>
@@ -122,7 +122,7 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Updated at</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <span type="text" class="form-control col-md-7 col-xs-12">
+                  <span type="text" class="form-control col-md-7 col-xs-12" readonly="readonly">
                     {{user?.updatedAt |  date:"MM/dd/yyyy 'at' h:mma"}}
                   </span>
                 </div>
@@ -166,69 +166,91 @@
               </h2>
               <div class="clearfix"></div>
             </div>
-            <form id="demo-form3" data-parsley-validate class="form-horizontal form-label-left">
+            <form id="account-social-info-form" (ngSubmit)="updateUserSocialData()" [formGroup]="userSocialDataForm"
+                  novalidate class="form-horizontal form-label-left">
+
               <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span
-                  class="required">*</span>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Email
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                  <input type="text" formControlName="email" class="form-control col-md-7 col-xs-12">
                 </div>
               </div>
+
               <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span
-                  class="required">*</span>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">First name
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="last-name" name="last-name" required="required"
-                         class="form-control col-md-7 col-xs-12">
+                  <input type="text" formControlName="firstName" class="form-control col-md-7 col-xs-12">
                 </div>
               </div>
+
               <div class="form-group">
-                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name / Initial</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <div id="gender" class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-default" data-toggle-class="btn-primary"
-                           data-toggle-passive-class="btn-default">
-                      <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
-                    </label>
-                    <label class="btn btn-primary" data-toggle-class="btn-primary"
-                           data-toggle-passive-class="btn-default">
-                      <input type="radio" name="gender" value="female"> Female
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Last name
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required"
-                         type="text">
+                  <input type="text" formControlName="lastName" class="form-control col-md-7 col-xs-12">
                 </div>
               </div>
+
               <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Hobies</label>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Skype
+                </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <p style="padding: 5px;">
-                    <input type="checkbox" name="hobbies[]" id="hobby1" value="ski" data-parsley-mincheck="2" required
-                           class="flat"/> Skiing
-                    <br/>
-                    <input type="checkbox" name="hobbies[]" id="hobby2" value="run" class="flat"/> Running
-                    <br/>
-                    <input type="checkbox" name="hobbies[]" id="hobby3" value="eat" class="flat"/> Eating
-                    <br/>
-                    <input type="checkbox" name="hobbies[]" id="hobby4" value="sleep" class="flat"/> Sleeping
-                    <br/>
-                  <p>
+                  <input type="text" formControlName="skype" class="form-control col-md-7 col-xs-12">
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Facebook
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" formControlName="facebook" class="form-control col-md-7 col-xs-12">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">LinkedIn
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" formControlName="linkedIn" class="form-control col-md-7 col-xs-12">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Twitter
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" formControlName="twitter" class="form-control col-md-7 col-xs-12">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Created at</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <span type="text" class="form-control col-md-7 col-xs-12" readonly="readonly">
+                    {{userSocial?.createdAt |  date:"MM/dd/yyyy 'at' h:mma"}}
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Updated at</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <span type="text" class="form-control col-md-7 col-xs-12" readonly="readonly">
+                    {{userSocial?.updatedAt |  date:"MM/dd/yyyy 'at' h:mma"}}
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Additional
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <textarea formControlName="additional" class="form-control col-md-7 col-xs-12"></textarea>
+                </div>
+              </div>
+
 
               <div class="ln_solid"></div>
               <div class="form-group">

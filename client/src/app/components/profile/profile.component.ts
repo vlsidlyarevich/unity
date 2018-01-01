@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.profileService.getUserInfo();
-    this.userSocial = this.profileService.getUserSocialInfo();
+    this.userSocial = this.profileService.getUserSocialInfo() || new UserSocial();
     this.initializeForms();
   }
 
@@ -35,7 +35,42 @@ export class ProfileComponent implements OnInit {
   }
 
   public updateUserData() {
+    const user = new User();
+    this.profileService.updateUserInfo(user);
+    this.user = this.profileService.getUserInfo();
+    this.initializeUserForm();
+  }
 
+  public updateUserSocialData() {
+    const userSocial: UserSocial = {
+      id: this.userSocialDataForm.value.id,
+      userId: this.user.id,
+      firstName: this.userSocialDataForm.value.firstName,
+      lastName: this.userSocialDataForm.value.lastName,
+      linkedIn: this.userSocialDataForm.value.linkedIn,
+      twitter: this.userSocialDataForm.value.twitter,
+      facebook: this.userSocialDataForm.value.facebook,
+      email: this.userSocialDataForm.value.email,
+      skype: this.userSocialDataForm.value.skype,
+      additional: this.userSocialDataForm.value.additional,
+      createdAt: this.userSocialDataForm.value.createdAt,
+      updatedAt: this.userSocialDataForm.value.updatedAt,
+      image: '',
+    };
+
+    this.profileService.updateUserSocialInfo(userSocial)
+      .subscribe(
+        result => {
+          if (result === true) {
+            this.userSocial = this.profileService.getUserSocialInfo() || new UserSocial();
+            this.initializeUserSocialForm();
+          } else {
+            //??
+          }
+        },
+        error => {
+          //??
+        });
   }
 
   private initializeUserForm() {
