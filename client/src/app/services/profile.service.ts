@@ -51,10 +51,10 @@ export class ProfileService {
     const options = this.authService.createAuthOptions();
     const id = this.getUserInfo().id;
 
-    this.http
+    return this.http
       .put<User>(api.user + '/' + id, user, options)
       .map((response) => {
-          this.$localStorage.store('user', response);
+          this.authService.logout();
           return true;
         },
         err => {

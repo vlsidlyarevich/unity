@@ -20,6 +20,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileService } from './services/profile.service';
+import { ImageUploadModule } from 'angular2-image-upload';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ProfileService } from './services/profile.service';
     ReactiveFormsModule,
     HttpClientModule,
     Routing,
-    Ng2Webstorage
+    Ng2Webstorage,
+    ImageUploadModule.forRoot()
   ],
   providers: [AuthenticationService,
     CookieService,

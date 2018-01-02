@@ -3,7 +3,7 @@ import { User } from '../../models/user.model';
 import { UserSocial } from '../../models/user-social.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfileService } from '../../services/profile.service';
-import { AuthenticationService } from '../../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -13,13 +13,14 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class ProfileComponent implements OnInit {
 
   private userSocial: UserSocial;
+  private image: any;
   private user: User;
   private formBuilder: FormBuilder;
   private userDataForm: FormGroup;
   private userSocialDataForm: FormGroup;
 
   constructor(private profileService: ProfileService,
-              private authenticationService: AuthenticationService) {
+              private router: Router) {
     this.formBuilder = new FormBuilder();
   }
 
@@ -35,10 +36,34 @@ export class ProfileComponent implements OnInit {
   }
 
   public updateUserData() {
-    const user = new User();
-    this.profileService.updateUserInfo(user);
-    this.user = this.profileService.getUserInfo();
-    this.initializeUserForm();
+    const user: User = {
+      id: this.userDataForm.value.id,
+      authorities: this.userDataForm.value.authorities,
+      username: this.userDataForm.value.username,
+      password: this.userDataForm.value.password,
+      linkedInLoginEnabled: this.userDataForm.value.linkedInLoginEnabled,
+      twitterLoginEnabled: this.userDataForm.value.twitterLoginEnabled,
+      facebookLoginEnabled: this.userDataForm.value.facebookLoginEnabled,
+      accountNonExpired: this.userDataForm.value.accountNonExpired,
+      accountNonLocked: this.userDataForm.value.accountNonLocked,
+      credentialsNonExpired: this.userDataForm.value.credentialsNonExpired,
+      enabled: this.userDataForm.value.enabled,
+      createdAt: this.userDataForm.value.createdAt,
+      updatedAt: this.userDataForm.value.updatedAt,
+    };
+
+    this.profileService.updateUserInfo(user)
+      .subscribe(
+        result => {
+          if (result === true) {
+            this.router.navigate(['/login']);
+          } else {
+            //??
+          }
+        },
+        error => {
+          //??
+        });
   }
 
   public updateUserSocialData() {
@@ -55,7 +80,7 @@ export class ProfileComponent implements OnInit {
       additional: this.userSocialDataForm.value.additional,
       createdAt: this.userSocialDataForm.value.createdAt,
       updatedAt: this.userSocialDataForm.value.updatedAt,
-      image: '',
+      image: this.image || '',
     };
 
     this.profileService.updateUserSocialInfo(userSocial)

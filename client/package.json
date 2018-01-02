@@ -30,6 +30,7 @@
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
     "ng2-webstorage": "1.8.0",
+    "angular2-image-upload" : "1.0.0-rc.0",
     "ngx-cookie-service": "1.0.9",
     "bootstrap": "^3.3.7",
     "bootstrap-loader": "^2.2.0",
