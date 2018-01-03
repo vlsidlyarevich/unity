@@ -21,6 +21,8 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileService } from './services/profile.service';
 import { ImageUploadModule } from 'angular2-image-upload';
+import { NotificationService } from './services/notification.service';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { ImageUploadModule } from 'angular2-image-upload';
     LoginFormComponent,
     SocialLoginPageComponent,
     ProfilePageComponent,
-    ProfileComponent
+    ProfileComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import { ImageUploadModule } from 'angular2-image-upload';
   ],
   providers: [AuthenticationService,
     CookieService,
-    ProfileService],
+    ProfileService,
+    NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

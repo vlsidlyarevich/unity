@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../../services/authentication.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-login-form',
@@ -11,12 +12,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginFormComponent implements OnInit {
 
+  private redirectUrl = '/';
   private credentials: FormGroup;
   private formBuilder: FormBuilder;
   private loading = false;
 
   constructor(private authenticationService: AuthenticationService,
-              private route: ActivatedRoute,
+              private notificationService: NotificationService,
               private router: Router) {
     this.formBuilder = new FormBuilder();
   }
@@ -31,19 +33,21 @@ export class LoginFormComponent implements OnInit {
 
   login() {
     this.loading = true;
-    this.authenticationService.login(this.credentials.value.username, this.credentials.value.password, this.credentials.value.rememberMe)
+    this.authenticationService.login(this.credentials.value.username,
+      this.credentials.value.password,
+      this.credentials.value.rememberMe)
       .subscribe(result => {
         if (this.authenticationService.isLoggedIn()) {
-          this.router.navigate(['/']);
+          this.router.navigate([this.redirectUrl]);
         } else {
           this.loading = false;
-          alert('Can\'t log in');
+          this.notificationService.error('Can\'t log in');
         }
       }, (error: HttpErrorResponse) => {
         if (error.error instanceof Error) {
           console.log('Client-side error occured.');
         } else {
-          alert(error.error.message);
+          this.notificationService.error(error.error.message);
         }
         this.loading = false;
       });
