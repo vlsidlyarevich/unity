@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 import { UserSocial } from '../../models/user-social.model';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ProfileService } from '../../services/profile.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +21,7 @@ export class ProfileComponent implements OnInit {
   private userSocialDataForm: FormGroup;
 
   constructor(private profileService: ProfileService,
+              private notificationService: NotificationService,
               private router: Router) {
     this.formBuilder = new FormBuilder();
   }
@@ -57,6 +59,7 @@ export class ProfileComponent implements OnInit {
         result => {
           if (result === true) {
             this.router.navigate(['/login']);
+            this.notificationService.success('User information successfully updated');
           } else {
             //??
           }
@@ -89,6 +92,7 @@ export class ProfileComponent implements OnInit {
           if (result === true) {
             this.userSocial = this.profileService.getUserSocialInfo() || new UserSocial();
             this.initializeUserSocialForm();
+            this.notificationService.success('User social information successfully updated');
           } else {
             //??
           }
@@ -112,7 +116,7 @@ export class ProfileComponent implements OnInit {
 
   private initializeUserSocialForm() {
     this.userSocialDataForm = this.formBuilder.group({
-      email: [this.userSocial.email, [Validators.required, Validators.email]],
+      email: [this.userSocial.email, [this.emailOrEmpty]],
       firstName: [this.userSocial.firstName],
       lastName: [this.userSocial.lastName],
       facebook: [this.userSocial.facebook],
@@ -145,5 +149,9 @@ export class ProfileComponent implements OnInit {
 
   public resetUserSocialForm() {
     this.initializeUserSocialForm();
+  }
+
+  emailOrEmpty(control: AbstractControl): ValidationErrors | null {
+    return control.value === '' ? null : Validators.email(control);
   }
 }
