@@ -38,24 +38,23 @@ export class AuthenticationService {
     }
   }
 
-  login(username: string, password: string, rememberMe: boolean): Observable<boolean> {
+  login(username: string, password: string, rememberMe: boolean) {
     const body = JSON.stringify({ username: username, password: password });
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return this.http
-      .post<JwtResponse>(api.auth, body, { headers: headers })
-      .map(data => {
-        if (data && data.token) {
-          this.storeAuthenticationToken(JSON.stringify(data.token), rememberMe);
-          this.storeCurrentUser();
-          this.storeCurrentUserSocial();
-
-          return true;
-        } else {
-          return false;
+      .post<JwtResponse>(api.auth, body, { headers: headers, observe: 'response' })
+      .map((data) => {
+        if (data && data.body.token) {
+          try {
+            this.storeAuthenticationToken(JSON.stringify(data.body.token), rememberMe);
+            this.storeCurrentUser();
+            this.storeCurrentUserSocial();
+            return data;
+          } catch (error) {
+            console.log(error);
+          }
         }
-      }, error => {
-        console.log(error);
       });
   }
 

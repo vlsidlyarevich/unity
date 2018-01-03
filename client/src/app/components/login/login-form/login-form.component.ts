@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-form',
@@ -32,14 +33,19 @@ export class LoginFormComponent implements OnInit {
     this.loading = true;
     this.authenticationService.login(this.credentials.value.username, this.credentials.value.password, this.credentials.value.rememberMe)
       .subscribe(result => {
-          if (result === true) {
-            this.router.navigate(['/']);
-          } else {
-            this.loading = false;
-          }
-        },
-        error => {
+        if (this.authenticationService.isLoggedIn()) {
+          this.router.navigate(['/']);
+        } else {
           this.loading = false;
-        });
+          alert('Can\'t log in');
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.error instanceof Error) {
+          console.log('Client-side error occured.');
+        } else {
+          alert(error.error.message);
+        }
+        this.loading = false;
+      });
   }
 }
