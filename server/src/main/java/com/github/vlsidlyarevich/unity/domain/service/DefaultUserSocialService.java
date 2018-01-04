@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -54,8 +55,13 @@ public class DefaultUserSocialService implements UserSocialService {
 
         return Optional.ofNullable(userSocial)
                 .map(usrSocial -> {
+                    final Optional<UserSocial> saved = Optional.ofNullable(repository.findByUserId(id));
+                    saved.ifPresent(savedUserSocial -> {
+                        usrSocial.setId(savedUserSocial.getId());
+                        usrSocial.setCreatedAt(savedUserSocial.getCreatedAt());
+                    });
+
                     usrSocial.setUserId(id);
-                    usrSocial.setCreatedAt(userSocial.getCreatedAt());
                     return repository.save(usrSocial);
                 }).orElseThrow(()
                         -> new IllegalArgumentException("User social data must not be empty"));
