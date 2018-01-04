@@ -1,0 +1,3 @@
+interface LoaderState {
+  visible: boolean;
+}

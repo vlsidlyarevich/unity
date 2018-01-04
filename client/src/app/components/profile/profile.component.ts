@@ -5,6 +5,8 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators }
 import { ProfileService } from '../../services/profile.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
+import { LoaderService } from "../../services/loader.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: 'app-profile',
@@ -22,6 +24,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private profileService: ProfileService,
               private notificationService: NotificationService,
+              private loaderService: LoaderService,
               private router: Router) {
     this.formBuilder = new FormBuilder();
   }
@@ -38,6 +41,8 @@ export class ProfileComponent implements OnInit {
   }
 
   public updateUserData() {
+    this.loaderService.show();
+
     const user: User = {
       id: this.userDataForm.value.id,
       authorities: this.userDataForm.value.authorities,
@@ -58,18 +63,26 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         result => {
           if (result === true) {
+            this.loaderService.hide();
             this.router.navigate(['/login']);
             this.notificationService.success('User information successfully updated');
           } else {
-            //??
+            this.loaderService.hide();
+            this.notificationService.error('User information was not updated')
           }
-        },
-        error => {
-          //??
+        }, (error: HttpErrorResponse) => {
+          if (error.error instanceof Error) {
+            console.log('Client-side error occured.');
+          } else {
+            this.notificationService.error(error.error.message);
+          }
+          this.loaderService.hide();
         });
   }
 
   public updateUserSocialData() {
+    this.loaderService.show();
+
     const userSocial: UserSocial = {
       id: this.userSocialDataForm.value.id,
       userId: this.user.id,
@@ -91,14 +104,20 @@ export class ProfileComponent implements OnInit {
         result => {
           if (result === true) {
             this.userSocial = this.profileService.getUserSocialInfo() || new UserSocial();
+            this.loaderService.hide();
             this.initializeUserSocialForm();
             this.notificationService.success('User social information successfully updated');
           } else {
-            //??
+            this.loaderService.hide();
+            this.notificationService.error('User social information was not updated');
           }
-        },
-        error => {
-          //??
+        }, (error: HttpErrorResponse) => {
+          if (error.error instanceof Error) {
+            console.log('Client-side error occured.');
+          } else {
+            this.notificationService.error(error.error.message);
+          }
+          this.loaderService.hide();
         });
   }
 

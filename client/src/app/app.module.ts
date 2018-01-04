@@ -23,6 +23,8 @@ import { ProfileService } from './services/profile.service';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { NotificationService } from './services/notification.service';
 import { NotificationComponent } from './components/notification/notification.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { LoaderService } from './services/loader.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { NotificationComponent } from './components/notification/notification.co
     SocialLoginPageComponent,
     ProfilePageComponent,
     ProfileComponent,
-    NotificationComponent
+    NotificationComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { NotificationComponent } from './components/notification/notification.co
   providers: [AuthenticationService,
     CookieService,
     ProfileService,
-    NotificationService],
+    NotificationService,
+    LoaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

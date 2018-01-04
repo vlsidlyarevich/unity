@@ -1,0 +1,27 @@
+.loader-container {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  .loader-box {
+    margin: auto;
+    width: 140px;
+    height: 70px;
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 40px;
+      height: 40px;
+    }
+    div {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: #929292;
+      text-align: center;
+    }
+  }
+}

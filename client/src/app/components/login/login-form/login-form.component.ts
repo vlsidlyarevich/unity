@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NotificationService } from '../../../services/notification.service';
+import { LoaderService } from "../../../services/loader.service";
 
 @Component({
   selector: 'app-login-form',
@@ -15,10 +16,10 @@ export class LoginFormComponent implements OnInit {
   private redirectUrl = '/';
   private credentials: FormGroup;
   private formBuilder: FormBuilder;
-  private loading = false;
 
   constructor(private authenticationService: AuthenticationService,
               private notificationService: NotificationService,
+              private loaderService: LoaderService,
               private router: Router) {
     this.formBuilder = new FormBuilder();
   }
@@ -32,15 +33,16 @@ export class LoginFormComponent implements OnInit {
   }
 
   login() {
-    this.loading = true;
+    this.loaderService.show();
     this.authenticationService.login(this.credentials.value.username,
       this.credentials.value.password,
       this.credentials.value.rememberMe)
       .subscribe(result => {
         if (this.authenticationService.isLoggedIn()) {
+          this.loaderService.hide();
           this.router.navigate([this.redirectUrl]);
         } else {
-          this.loading = false;
+          this.loaderService.hide();
           this.notificationService.error('Can\'t log in');
         }
       }, (error: HttpErrorResponse) => {
@@ -49,7 +51,7 @@ export class LoginFormComponent implements OnInit {
         } else {
           this.notificationService.error(error.error.message);
         }
-        this.loading = false;
+        this.loaderService.hide();
       });
   }
 }
