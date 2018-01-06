@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from '../../../services/profile.service';
+import { UserSocial } from '../../../models/user-social.model';
 
 @Component({
   selector: 'app-topnav-bar',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopnavbarComponent implements OnInit {
 
-  constructor() { }
+  private userSocial: UserSocial;
 
-  ngOnInit() {
+  constructor(private profileService: ProfileService) {
   }
 
+  ngOnInit() {
+    this.userSocial = this.profileService.getUserSocialInfo();
+  }
 }
