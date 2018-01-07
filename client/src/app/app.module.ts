@@ -25,6 +25,7 @@ import { NotificationService } from './services/notification.service';
 import { NotificationComponent } from './components/notification/notification.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoaderService } from './services/loader.service';
+import { PipeModule } from './pipes/pipe-module/pipe.module';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { LoaderService } from './services/loader.service';
     LoadingComponent
   ],
   imports: [
+    PipeModule.forRoot(),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
