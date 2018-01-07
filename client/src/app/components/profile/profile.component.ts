@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
 import { LoaderService } from "../../services/loader.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import { UploadMetadata } from "angular2-image-upload";
+import { AuthenticationService } from "../../services/authentication.service";
+import { api } from "../../app.constants";
 
 @Component({
   selector: 'app-profile',
@@ -22,7 +25,11 @@ export class ProfileComponent implements OnInit {
   private userDataForm: FormGroup;
   private userSocialDataForm: FormGroup;
 
+  private authHeaders: { [name: string]: any };
+  private apiUrl: string;
+
   constructor(private profileService: ProfileService,
+              private authenticationService: AuthenticationService,
               private notificationService: NotificationService,
               private loaderService: LoaderService,
               private router: Router) {
@@ -33,6 +40,10 @@ export class ProfileComponent implements OnInit {
     this.user = this.profileService.getUserInfo();
     this.userSocial = this.profileService.getUserSocialInfo() || new UserSocial();
     this.initializeForms();
+    this.authHeaders = {
+      'x-auth-token': this.authenticationService.createAuthOptions().headers.get('x-auth-token')
+    };
+    this.apiUrl = api.image;
   }
 
   private initializeForms() {
@@ -149,6 +160,14 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  public getUserImageUrl(): string {
+    if (this.image) {
+      return api.image + '/' + this.image;
+    } else {
+      return null;
+    }
+  }
+
   public showPassword(input: any): any {
     input.type = input.type === 'password' ? 'text' : 'password';
   }
@@ -172,5 +191,25 @@ export class ProfileComponent implements OnInit {
 
   emailOrEmpty(control: AbstractControl): ValidationErrors | null {
     return control.value === '' ? null : Validators.email(control);
+  }
+
+
+  //TODO separate to component
+  beforeUpload(uploadedMetadata: UploadMetadata) {
+
+    return uploadedMetadata;
+  }
+
+  onRemoved(event) {
+    console.log(event);
+  }
+
+  onUploadFinished(event) {
+    this.image = event.serverResponse._body;
+    console.log(event);
+  }
+
+  onUploadStateChanged(event) {
+    console.log(event);
   }
 }

@@ -1,0 +1,18 @@
+/deep/ .image-upload {
+  border-color: #73879C;
+  border-radius: 5px;
+  margin: 5px;
+  width: 300px;
+}
+
+/deep/ .image-upload .img-ul-button {
+  color: #fff !important;
+  background: #26B99A !important;
+  border: 1px solid #169F85 !important;
+}
+
+/deep/ .image-upload .img-ul-clear {
+  color: #fff !important;
+  background-color: #c9302c !important;
+  border-color: #ac2925 !important;
+}

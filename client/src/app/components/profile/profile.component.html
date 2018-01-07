@@ -26,11 +26,24 @@
             <div class="profile_img">
               <div id="crop-avatar">
                 <!-- Current avatar -->
-                FIXME
                 <img class="img-responsive avatar-view"
-                     [src]="userSocial?.image || 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'"
+                     [src]="(getUserImageUrl() | image | async) || 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'"
                      alt="Avatar"
                      title="Change the avatar">
+
+                <image-upload [url]="apiUrl"
+                              partName="file"
+                              buttonCaption="SELECT IMAGE"
+                              dropBoxMessage="DROP IMAGE"
+                              [extensions]="['jpg','png']"
+                              [preview]="false"
+                              [headers]="authHeaders"
+                              [beforeUpload]="beforeUpload"
+                              (removed)="onRemoved($event)"
+                              (uploadFinished)="onUploadFinished($event)"
+                              (uploadStateChanged)="onUploadStateChanged($event)"
+                              clearButtonCaption="CLEAR IMAGE"
+                              class="image-upload"></image-upload>
               </div>
             </div>
             <h3>{{userSocial.firstName || 'Unknown'}} {{userSocial.lastName || 'Unknown'}}</h3>
