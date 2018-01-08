@@ -15,7 +15,8 @@
     "dev-local": "ng serve -o --env=dev-local",
     "prod": "npm run clean && ng build --env=prod",
     "start": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build",
+    "dev-build": "ng build --env=dev-local",
+    "prod-build": "ng build --env=dev-local",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

@@ -287,12 +287,12 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>npm run build</id>
+                        <id>npm run dev build</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>run build</arguments>
+                            <arguments>run dev-build</arguments>
                         </configuration>
                     </execution>
                 </executions>
