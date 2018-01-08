@@ -4,9 +4,9 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
-import { api } from '../app.constants';
 import { User } from '../models/user.model';
 import { UserSocial } from '../models/user-social.model';
+import {config} from "../config/config";
 
 @Injectable()
 export class AuthenticationService {
@@ -43,7 +43,7 @@ export class AuthenticationService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return this.http
-      .post<JwtResponse>(api.auth, body, { headers: headers, observe: 'response' })
+      .post<JwtResponse>(config.authApi, body, { headers: headers, observe: 'response' })
       .map((data) => {
         if (data && data.body.token) {
           try {
@@ -71,7 +71,7 @@ export class AuthenticationService {
     const options = this.createAuthOptions();
 
     this.http
-      .get<User>(api.user + '/me', options)
+      .get<User>(config.userApi + '/me', options)
       .subscribe((response) => {
           this.$localStorage.store('user', response);
         },
@@ -82,7 +82,7 @@ export class AuthenticationService {
 
   private storeCurrentUserSocial() {
     const options = this.createAuthOptions();
-    const url = api.userSocial.replace('${userId}', this.$localStorage.retrieve('user').id);
+    const url = config.userSocialApi.replace('${userId}', this.$localStorage.retrieve('user').id);
 
     this.http
       .get<UserSocial>(url, options)

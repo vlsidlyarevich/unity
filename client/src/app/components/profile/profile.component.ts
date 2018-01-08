@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/user.model';
-import { UserSocial } from '../../models/user-social.model';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { ProfileService } from '../../services/profile.service';
-import { Router } from '@angular/router';
-import { NotificationService } from '../../services/notification.service';
-import { LoaderService } from "../../services/loader.service";
-import { HttpErrorResponse } from "@angular/common/http";
-import { UploadMetadata } from "angular2-image-upload";
-import { AuthenticationService } from "../../services/authentication.service";
-import { api } from "../../app.constants";
+import {Component, OnInit} from '@angular/core';
+import {User} from '../../models/user.model';
+import {UserSocial} from '../../models/user-social.model';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {ProfileService} from '../../services/profile.service';
+import {Router} from '@angular/router';
+import {NotificationService} from '../../services/notification.service';
+import {LoaderService} from "../../services/loader.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {UploadMetadata} from "angular2-image-upload";
+import {AuthenticationService} from "../../services/authentication.service";
+import {config} from "../../config/config";
 
 @Component({
   selector: 'app-profile',
@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
     this.authHeaders = {
       'x-auth-token': this.authenticationService.createAuthOptions().headers.get('x-auth-token')
     };
-    this.apiUrl = api.image;
+    this.apiUrl = config.imageApi;
   }
 
   private initializeForms() {
@@ -162,7 +162,7 @@ export class ProfileComponent implements OnInit {
 
   public getUserImageUrl(): string {
     if (this.image) {
-      return api.image + '/' + this.image;
+      return config.imageApi + '/' + this.image;
     } else {
       return null;
     }

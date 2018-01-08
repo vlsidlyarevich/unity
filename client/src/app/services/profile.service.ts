@@ -5,9 +5,9 @@ import 'rxjs/add/operator/map';
 import { AuthenticationService } from './authentication.service';
 import { User } from '../models/user.model';
 import { LocalStorageService } from 'ng2-webstorage';
-import { api } from '../app.constants';
 import { Observable } from 'rxjs/Observable';
 import { UserSocial } from '../models/user-social.model';
+import {config} from "../config/config";
 
 @Injectable()
 export class ProfileService {
@@ -22,7 +22,7 @@ export class ProfileService {
     const options = this.authService.createAuthOptions();
 
     return this.http
-      .get<User>(api.user + '/' + id, options)
+      .get<User>(config.userApi + '/' + id, options)
       .subscribe((response) => {
           return response;
         },
@@ -52,7 +52,7 @@ export class ProfileService {
     const id = this.getUserInfo().id;
 
     return this.http
-      .put<User>(api.user + '/' + id, user, options)
+      .put<User>(config.userApi + '/' + id, user, options)
       .map((response) => {
           this.authService.logout();
           return true;
@@ -64,7 +64,7 @@ export class ProfileService {
 
   updateUserSocialInfo(userSocial: UserSocial) {
     const options = this.authService.createAuthOptions();
-    const url = api.userSocial.replace('${userId}', this.getUserInfo().id);
+    const url = config.userSocialApi.replace('${userId}', this.getUserInfo().id);
 
     return this.http
       .put<UserSocial>(url, userSocial, options)
@@ -81,7 +81,7 @@ export class ProfileService {
     const options = this.authService.createAuthOptions();
 
     return this.http
-      .post<User>(api.user + '/' + id, user, options)
+      .post<User>(config.userApi + '/' + id, user, options)
       .map((response) => {
           return response;
         },
@@ -92,7 +92,7 @@ export class ProfileService {
 
   updateUserSocialInfoById(userSocial: UserSocial, id: string, userId: string) {
     const options = this.authService.createAuthOptions();
-    const url = api.userSocial.replace('${userId}', userId);
+    const url = config.userSocialApi.replace('${userId}', userId);
 
     return this.http
       .post<UserSocial>(url + '/' + id, userSocial, options)
