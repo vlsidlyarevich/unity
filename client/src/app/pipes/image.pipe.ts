@@ -1,8 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Pipe({ name: 'image' })
@@ -21,9 +20,13 @@ export class ImagePipe implements PipeTransform {
       const headers = new HttpHeaders(headerParams);
       const params = new HttpParams();
       const options = ({ headers: headers, params: params, responseType: 'Blob' as 'json' });
+      const reader = new FileReader();
 
       return this.http.get(url, options)
-        .map((blob: Blob) => URL.createObjectURL(blob));
+        .subscribe((blob: Blob) => {
+          reader.readAsDataURL(blob);
+          return reader.result;
+        });
     }
   }
 }

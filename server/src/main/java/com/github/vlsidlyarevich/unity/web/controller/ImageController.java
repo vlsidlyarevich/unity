@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,8 @@ public class ImageController {
 
     private final StorageService storageService;
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}",
+            produces = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity getImage(@PathVariable final String id) {
         Resource resource = storageService.loadAsResource(id);
         return ResponseEntity.ok().body(resource);

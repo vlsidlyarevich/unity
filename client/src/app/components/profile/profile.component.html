@@ -26,10 +26,19 @@
             <div class="profile_img">
               <div id="crop-avatar">
                 <!-- Current avatar -->
-                <img class="img-responsive avatar-view"
-                     [src]="(getUserImageUrl() | image | async) || 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'"
-                     alt="Avatar"
-                     title="Change the avatar">
+                <!--<img class="img-responsive avatar-view"-->
+                     <!--[hidden]="input.files.length"-->
+                     <!--[src]="'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'"-->
+                     <!--alt="Avatar"-->
+                     <!--title="Change the avatar">-->
+
+                <img [src]="imageToShow"
+                     alt="Place image title"
+                     *ngIf="!isImageLoading && imageToShow; else noImageFound">
+                <ng-template #noImageFound>
+                  <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="Fallbackimage">
+                </ng-template>
+
 
                 <image-upload [url]="apiUrl"
                               partName="file"
@@ -43,7 +52,8 @@
                               (uploadFinished)="onUploadFinished($event)"
                               (uploadStateChanged)="onUploadStateChanged($event)"
                               clearButtonCaption="CLEAR IMAGE"
-                              class="image-upload"></image-upload>
+                              class="image-upload"
+                              #imageUpload></image-upload>
               </div>
             </div>
             <h3>{{userSocial.firstName || 'Unknown'}} {{userSocial.lastName || 'Unknown'}}</h3>
@@ -307,7 +317,7 @@
               <div class="form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                   <button (click)="resetUserSocialForm()" class="btn btn-danger">Reset</button>
-                  <button [disabled]="userSocialDataForm.invalid || userSocialDataForm.pristine"
+                  <button [disabled]="(userSocialDataForm.invalid || userSocialDataForm.pristine) || image"
                           type="submit" class="btn btn-success">Submit
                   </button>
                 </div>
