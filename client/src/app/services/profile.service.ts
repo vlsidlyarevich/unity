@@ -7,7 +7,7 @@ import { User } from '../models/user.model';
 import { LocalStorageService } from 'ng2-webstorage';
 import { Observable } from 'rxjs/Observable';
 import { UserSocial } from '../models/user-social.model';
-import {config} from "../config/config";
+import { config } from "../config/config";
 
 @Injectable()
 export class ProfileService {
@@ -65,6 +65,23 @@ export class ProfileService {
   updateUserSocialInfo(userSocial: UserSocial) {
     const options = this.authService.createAuthOptions();
     const url = config.userSocialApi.replace('${userId}', this.getUserInfo().id);
+
+    return this.http
+      .put<UserSocial>(url, userSocial, options)
+      .map((response) => {
+          this.$localStorage.store('userSocial', response);
+          return true;
+        },
+        err => {
+          this.handleError(err);
+        });
+  }
+
+  updateUserImage(imageId: string) {
+    const options = this.authService.createAuthOptions();
+    const url = config.userSocialApi.replace('${userId}', this.getUserInfo().id);
+    const userSocial = this.getUserSocialInfo();
+    userSocial.image = imageId;
 
     return this.http
       .put<UserSocial>(url, userSocial, options)

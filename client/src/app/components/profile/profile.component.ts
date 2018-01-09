@@ -1,15 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from '../../models/user.model';
-import {UserSocial} from '../../models/user-social.model';
-import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
-import {ProfileService} from '../../services/profile.service';
-import {Router} from '@angular/router';
-import {NotificationService} from '../../services/notification.service';
-import {LoaderService} from "../../services/loader.service";
-import {HttpErrorResponse} from "@angular/common/http";
-import {UploadMetadata} from "angular2-image-upload";
-import {AuthenticationService} from "../../services/authentication.service";
-import {config} from "../../config/config";
+import { Component, OnInit } from '@angular/core';
+import { User } from '../../models/user.model';
+import { UserSocial } from '../../models/user-social.model';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { ProfileService } from '../../services/profile.service';
+import { Router } from '@angular/router';
+import { NotificationService } from '../../services/notification.service';
+import { LoaderService } from "../../services/loader.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { UploadMetadata } from "angular2-image-upload";
+import { AuthenticationService } from "../../services/authentication.service";
+import { config } from "../../config/config";
+import { ImageService } from "../../services/image.service";
 
 @Component({
   selector: 'app-profile',
@@ -30,6 +31,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private profileService: ProfileService,
               private authenticationService: AuthenticationService,
+              private imageService: ImageService,
               private notificationService: NotificationService,
               private loaderService: LoaderService,
               private router: Router) {
@@ -206,10 +208,40 @@ export class ProfileComponent implements OnInit {
 
   onUploadFinished(event) {
     this.image = event.serverResponse._body;
-    console.log(event);
+    this.getImageFromService();
+    this.notificationService.success('Submit user social form to update image');
   }
 
   onUploadStateChanged(event) {
     console.log(event);
+  }
+
+  private imageToShow: any;
+  private isImageLoading = true;
+
+
+
+  getImageFromService() {
+    this.isImageLoading = true;
+    this.imageService.getImage(this.getUserImageUrl()).subscribe(data => {
+      this.createImageFromBlob(data);
+      this.isImageLoading = false;
+    }, error => {
+      this.isImageLoading = false;
+      console.log(error);
+    });
+  }
+
+
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.imageToShow = reader.result;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
   }
 }

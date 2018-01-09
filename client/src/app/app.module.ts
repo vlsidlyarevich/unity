@@ -26,6 +26,7 @@ import { NotificationComponent } from './components/notification/notification.co
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoaderService } from './services/loader.service';
 import { PipeModule } from './pipes/pipe-module/pipe.module';
+import { ImageService } from "./services/image.service";
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { PipeModule } from './pipes/pipe-module/pipe.module';
   providers: [AuthenticationService,
     CookieService,
     ProfileService,
+    ImageService,
     NotificationService,
     LoaderService],
   bootstrap: [AppComponent]
