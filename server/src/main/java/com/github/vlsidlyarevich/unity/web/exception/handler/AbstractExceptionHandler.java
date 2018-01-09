@@ -2,7 +2,6 @@ package com.github.vlsidlyarevich.unity.web.exception.handler;
 
 import com.github.vlsidlyarevich.unity.web.dto.exception.ExceptionResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
