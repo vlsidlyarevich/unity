@@ -24,8 +24,15 @@ export class ImagePipe implements PipeTransform {
 
       return this.http.get(url, options)
         .subscribe((blob: Blob) => {
+          let result = '';
+
+          reader.addEventListener("load", () => {
+            result = reader.result;
+          }, false);
+
           reader.readAsDataURL(blob);
-          return reader.result;
+
+          return result;
         });
     }
   }

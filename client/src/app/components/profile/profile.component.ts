@@ -20,7 +20,9 @@ import { ImageService } from "../../services/image.service";
 export class ProfileComponent implements OnInit {
 
   private userSocial: UserSocial;
-  private image: any;
+  private imageToShow: any;
+  private isImageLoading = true;
+  private imageId: any;
   private user: User;
   private formBuilder: FormBuilder;
   private userDataForm: FormGroup;
@@ -109,7 +111,7 @@ export class ProfileComponent implements OnInit {
       additional: this.userSocialDataForm.value.additional,
       createdAt: this.userSocialDataForm.value.createdAt,
       updatedAt: this.userSocialDataForm.value.updatedAt,
-      image: this.image || '',
+      image: this.imageId || '',
     };
 
     this.profileService.updateUserSocialInfo(userSocial)
@@ -163,8 +165,8 @@ export class ProfileComponent implements OnInit {
   }
 
   public getUserImageUrl(): string {
-    if (this.image) {
-      return config.imageApi + '/' + this.image;
+    if (this.imageId) {
+      return config.imageApi + '/' + this.imageId;
     } else {
       return null;
     }
@@ -207,7 +209,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onUploadFinished(event) {
-    this.image = event.serverResponse._body;
+    this.imageId = event.serverResponse._body;
     this.getImageFromService();
     this.notificationService.success('Submit user social form to update image');
   }
@@ -216,32 +218,15 @@ export class ProfileComponent implements OnInit {
     console.log(event);
   }
 
-  private imageToShow: any;
-  private isImageLoading = true;
-
-
-
   getImageFromService() {
     this.isImageLoading = true;
-    this.imageService.getImage(this.getUserImageUrl()).subscribe(data => {
-      this.createImageFromBlob(data);
-      this.isImageLoading = false;
-    }, error => {
-      this.isImageLoading = false;
-      console.log(error);
-    });
-  }
-
-
-
-  createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener("load", () => {
-      this.imageToShow = reader.result;
-    }, false);
-
-    if (image) {
-      reader.readAsDataURL(image);
-    }
+    this.imageService.getImage(this.getUserImageUrl())
+      .subscribe(data => {
+        this.imageToShow = data;
+        this.isImageLoading = false;
+      }, error => {
+        this.isImageLoading = false;
+        console.log(error);
+      });
   }
 }
