@@ -26,7 +26,8 @@ import { NotificationComponent } from './components/notification/notification.co
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoaderService } from './services/loader.service';
 import { PipeModule } from './pipes/pipe-module/pipe.module';
-import { ImageService } from "./services/image.service";
+import { ImageService } from './services/image.service';
+import { Dispatcher } from './services/dispatcher.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ImageService } from "./services/image.service";
     ProfileService,
     ImageService,
     NotificationService,
-    LoaderService],
+    LoaderService,
+    Dispatcher],
   bootstrap: [AppComponent]
 })
 export class AppModule {

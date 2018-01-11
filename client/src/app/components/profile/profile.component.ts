@@ -11,6 +11,7 @@ import { UploadMetadata } from "angular2-image-upload";
 import { AuthenticationService } from "../../services/authentication.service";
 import { config } from "../../config/config";
 import { ImageService } from "../../services/image.service";
+import { Dispatcher } from "../../services/dispatcher.service";
 
 @Component({
   selector: 'app-profile',
@@ -34,6 +35,7 @@ export class ProfileComponent implements OnInit {
   constructor(private profileService: ProfileService,
               private authenticationService: AuthenticationService,
               private imageService: ImageService,
+              private dispatcher: Dispatcher,
               private notificationService: NotificationService,
               private loaderService: LoaderService,
               private router: Router) {
@@ -198,24 +200,20 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  //TODO separate to component
-  beforeUpload(uploadedMetadata: UploadMetadata) {
-
-    return uploadedMetadata;
-  }
-
   onRemoved(event) {
-    console.log(event);
+    this.imageService.deleteImage(this.imageId)
+      .subscribe(response => {
+        this.imageId = null;
+        this.dispatcher.updateUserImage(null);
+        this.notificationService.success('User image is reseted');
+      });
   }
 
   onUploadFinished(event) {
     this.imageId = event.serverResponse._body;
+    this.dispatcher.updateUserImage(event.serverResponse._body);
     this.getImageFromService();
     this.notificationService.success('Submit user social form to update image');
-  }
-
-  onUploadStateChanged(event) {
-    console.log(event);
   }
 
   getImageFromService() {
