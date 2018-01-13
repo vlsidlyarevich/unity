@@ -11,8 +11,8 @@
         <li class="">
           <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             <img [src]="userSocial?.image || 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'" alt="">
-            {{userSocial.firstName}}
-            {{userSocial.lastName}}
+            {{userSocial?.firstName || 'Undefined'}}
+            {{userSocial?.lastName || 'Undefined'}}
             <span class=" fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">

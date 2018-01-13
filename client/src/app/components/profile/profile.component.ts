@@ -2,16 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 import { UserSocial } from '../../models/user-social.model';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { ProfileService } from '../../services/profile.service';
-import { Router } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
 import { LoaderService } from "../../services/loader.service";
-import { HttpErrorResponse } from "@angular/common/http";
-import { UploadMetadata } from "angular2-image-upload";
 import { AuthenticationService } from "../../services/authentication.service";
 import { config } from "../../config/config";
 import { ImageService } from "../../services/image.service";
-import { Dispatcher } from "../../services/dispatcher.service";
+import { ProfileStoreService } from "../../services/store/profile-store.service";
 
 @Component({
   selector: 'app-profile',
@@ -20,41 +16,46 @@ import { Dispatcher } from "../../services/dispatcher.service";
 })
 export class ProfileComponent implements OnInit {
 
-  private userSocial: UserSocial;
-  private imageToShow: any;
+  public userSocial: UserSocial;
+  public imageToShow: any;
+  public user: User;
+  public userSocialDataForm: FormGroup;
+  public userDataForm: FormGroup;
   private isImageLoading = true;
   private imageId: any;
-  private user: User;
   private formBuilder: FormBuilder;
-  private userDataForm: FormGroup;
-  private userSocialDataForm: FormGroup;
 
   private authHeaders: { [name: string]: any };
   private apiUrl: string;
 
-  constructor(private profileService: ProfileService,
+  constructor(private profileStoreService: ProfileStoreService,
               private authenticationService: AuthenticationService,
               private imageService: ImageService,
-              private dispatcher: Dispatcher,
               private notificationService: NotificationService,
-              private loaderService: LoaderService,
-              private router: Router) {
+              private loaderService: LoaderService) {
     this.formBuilder = new FormBuilder();
-  }
 
-  ngOnInit() {
-    this.user = this.profileService.getUserInfo();
-    this.userSocial = this.profileService.getUserSocialInfo() || new UserSocial();
-    this.initializeForms();
+    this.profileStoreService.getUser().subscribe((user: User) => {
+      this.user = user;
+      this.initializeUserForm();
+    });
+
+    this.profileStoreService.getUserSocial().subscribe((userSocial: UserSocial) => {
+      this.userSocial = userSocial;
+      this.imageId = this.userSocial.image;
+      this.getImageFromService();
+      this.initializeUserSocialForm();
+    });
+
     this.authHeaders = {
       'x-auth-token': this.authenticationService.createAuthOptions().headers.get('x-auth-token')
     };
+
     this.apiUrl = config.imageApi;
   }
 
-  private initializeForms() {
-    this.initializeUserForm();
-    this.initializeUserSocialForm();
+  ngOnInit() {
+
   }
 
   public updateUserData() {
@@ -76,25 +77,7 @@ export class ProfileComponent implements OnInit {
       updatedAt: this.userDataForm.value.updatedAt,
     };
 
-    this.profileService.updateUserInfo(user)
-      .subscribe(
-        result => {
-          if (result === true) {
-            this.loaderService.hide();
-            this.router.navigate(['/login']);
-            this.notificationService.success('User information successfully updated');
-          } else {
-            this.loaderService.hide();
-            this.notificationService.error('User information was not updated')
-          }
-        }, (error: HttpErrorResponse) => {
-          if (error.error instanceof Error) {
-            console.log('Client-side error occured.');
-          } else {
-            this.notificationService.error(error.error.message);
-          }
-          this.loaderService.hide();
-        });
+    this.profileStoreService.updateUser(user);
   }
 
   public updateUserSocialData() {
@@ -116,26 +99,7 @@ export class ProfileComponent implements OnInit {
       image: this.imageId || '',
     };
 
-    this.profileService.updateUserSocialInfo(userSocial)
-      .subscribe(
-        result => {
-          if (result === true) {
-            this.userSocial = this.profileService.getUserSocialInfo() || new UserSocial();
-            this.loaderService.hide();
-            this.initializeUserSocialForm();
-            this.notificationService.success('User social information successfully updated');
-          } else {
-            this.loaderService.hide();
-            this.notificationService.error('User social information was not updated');
-          }
-        }, (error: HttpErrorResponse) => {
-          if (error.error instanceof Error) {
-            console.log('Client-side error occured.');
-          } else {
-            this.notificationService.error(error.error.message);
-          }
-          this.loaderService.hide();
-        });
+    this.profileStoreService.updateUserSocial(userSocial);
   }
 
   private initializeUserForm() {
@@ -199,32 +163,31 @@ export class ProfileComponent implements OnInit {
     return control.value === '' ? null : Validators.email(control);
   }
 
-
   onRemoved(event) {
     this.imageService.deleteImage(this.imageId)
       .subscribe(response => {
         this.imageId = null;
-        this.dispatcher.updateUserImage(null);
         this.notificationService.success('User image is reseted');
       });
   }
 
   onUploadFinished(event) {
     this.imageId = event.serverResponse._body;
-    this.dispatcher.updateUserImage(event.serverResponse._body);
     this.getImageFromService();
     this.notificationService.success('Submit user social form to update image');
   }
 
   getImageFromService() {
-    this.isImageLoading = true;
-    this.imageService.getImage(this.getUserImageUrl())
-      .subscribe(data => {
-        this.imageToShow = data;
-        this.isImageLoading = false;
-      }, error => {
-        this.isImageLoading = false;
-        console.log(error);
-      });
+    if (this.imageId) {
+      this.isImageLoading = true;
+      this.imageService.getImage(this.getUserImageUrl())
+        .subscribe(data => {
+          this.imageToShow = data;
+          this.isImageLoading = false;
+        }, error => {
+          this.isImageLoading = false;
+          console.log(error);
+        });
+    }
   }
 }

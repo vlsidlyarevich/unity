@@ -27,7 +27,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { LoaderService } from './services/loader.service';
 import { PipeModule } from './pipes/pipe-module/pipe.module';
 import { ImageService } from './services/image.service';
-import { Dispatcher } from './services/dispatcher.service';
+import { ProfileStoreService } from './services/store/profile-store.service';
 
 @NgModule({
   declarations: [
@@ -60,11 +60,11 @@ import { Dispatcher } from './services/dispatcher.service';
   ],
   providers: [AuthenticationService,
     CookieService,
+    ProfileStoreService,
     ProfileService,
     ImageService,
     NotificationService,
-    LoaderService,
-    Dispatcher],
+    LoaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

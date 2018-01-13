@@ -8,7 +8,6 @@ import { LocalStorageService } from 'ng2-webstorage';
 import { Observable } from 'rxjs/Observable';
 import { UserSocial } from '../models/user-social.model';
 import { config } from '../config/config';
-import { Dispatcher } from './dispatcher.service';
 
 @Injectable()
 export class ProfileService {
@@ -16,7 +15,6 @@ export class ProfileService {
   constructor(private authService: AuthenticationService,
               private http: HttpClient,
               private $localStorage: LocalStorageService,
-              private dispatcher: Dispatcher,
               private router: Router) {
   }
 
@@ -72,7 +70,6 @@ export class ProfileService {
       .put<UserSocial>(url, userSocial, options)
       .map((response) => {
           this.$localStorage.store('userSocial', response);
-          this.dispatcher.updateUserSocial(this.getUserSocialInfo() || new UserSocial());
           return true;
         },
         err => {

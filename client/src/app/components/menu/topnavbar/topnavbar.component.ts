@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../../services/profile.service';
 import { UserSocial } from '../../../models/user-social.model';
 import { ImageService } from '../../../services/image.service';
-import { Dispatcher } from '../../../services/dispatcher.service';
 import { config } from '../../../config/config';
+import { ProfileStoreService } from '../../../services/store/profile-store.service';
 
 @Component({
   selector: 'app-topnav-bar',
@@ -18,19 +18,16 @@ export class TopnavbarComponent implements OnInit {
   private userSocial: UserSocial;
 
   constructor(private profileService: ProfileService,
-              private imageService: ImageService) {
-    Dispatcher.getInstance().userImage.subscribe((userImage: string) => {
-      this.imageId = userImage;
-      this.getImageFromService();
-    });
-
-    Dispatcher.getInstance().userSocial.subscribe((userSocial: any) => {
-      this.userSocial = userSocial;
-    });
+              private imageService: ImageService,
+              private profileStoreService: ProfileStoreService) {
   }
 
   ngOnInit() {
-
+    this.profileStoreService.getUserSocial().subscribe((userSocial: any) => {
+      this.userSocial = userSocial;
+      this.imageId = userSocial.image;
+      this.getImageFromService();
+    });
   }
 
   public getUserImageUrl(): string {
@@ -42,14 +39,16 @@ export class TopnavbarComponent implements OnInit {
   }
 
   getImageFromService() {
-    this.isImageLoading = true;
-    this.imageService.getImage(this.getUserImageUrl())
-      .subscribe(data => {
-        this.imageToShow = data;
-        this.isImageLoading = false;
-      }, error => {
-        this.isImageLoading = false;
-        console.log(error);
-      });
+    if (this.userSocial.image) {
+      this.isImageLoading = true;
+      this.imageService.getImage(this.getUserImageUrl())
+        .subscribe(data => {
+          this.imageToShow = data;
+          this.isImageLoading = false;
+        }, error => {
+          this.isImageLoading = false;
+          console.log(error);
+        });
+    }
   }
 }

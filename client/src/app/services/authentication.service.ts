@@ -6,15 +6,13 @@ import { Observable } from 'rxjs/Observable';
 import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
 import { User } from '../models/user.model';
 import { UserSocial } from '../models/user-social.model';
-import { config } from "../config/config";
-import { Dispatcher } from "./dispatcher.service";
+import { config } from '../config/config';
 
 @Injectable()
 export class AuthenticationService {
 
   constructor(private $localStorage: LocalStorageService,
               private $sessionStorage: SessionStorageService,
-              private dispatcher: Dispatcher,
               private http: HttpClient,
               private router: Router) {
   }
@@ -90,10 +88,6 @@ export class AuthenticationService {
       .get<UserSocial>(url, options)
       .subscribe((response) => {
           this.$localStorage.store('userSocial', response);
-          this.dispatcher.updateUserSocial(response);
-        },
-        err => {
-          this.handleError(err);
         });
   }
 

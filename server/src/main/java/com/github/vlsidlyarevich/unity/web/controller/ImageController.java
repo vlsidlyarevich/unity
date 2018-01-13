@@ -23,8 +23,7 @@ public class ImageController {
 
     private final StorageService storageService;
 
-    @GetMapping(value = "/{id}",
-            produces = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @GetMapping(value = "/{id}")
     public ResponseEntity getImage(@PathVariable final String id) {
         Resource resource = storageService.loadAsResource(id);
         return ResponseEntity.ok().body(resource);
