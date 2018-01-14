@@ -25,8 +25,8 @@ export class ProfileComponent implements OnInit {
   private imageId: any;
   private formBuilder: FormBuilder;
 
-  private authHeaders: { [name: string]: any };
-  private apiUrl: string;
+  public authHeaders: { [name: string]: any };
+  public apiUrl: string;
 
   constructor(private profileStoreService: ProfileStoreService,
               private authenticationService: AuthenticationService,
@@ -159,7 +159,7 @@ export class ProfileComponent implements OnInit {
     this.initializeUserSocialForm();
   }
 
-  emailOrEmpty(control: AbstractControl): ValidationErrors | null {
+  public emailOrEmpty(control: AbstractControl): ValidationErrors | null {
     return control.value === '' ? null : Validators.email(control);
   }
 

@@ -47,10 +47,8 @@
                               [extensions]="['jpg','png']"
                               [preview]="false"
                               [headers]="authHeaders"
-                              [beforeUpload]="beforeUpload"
                               (removed)="onRemoved($event)"
                               (uploadFinished)="onUploadFinished($event)"
-                              (uploadStateChanged)="onUploadStateChanged($event)"
                               clearButtonCaption="CLEAR IMAGE"
                               class="image-upload"
                               #imageUpload></image-upload>
@@ -205,7 +203,7 @@
               <div class="ln_solid"></div>
               <div class="form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                  <button (click)="resetUserForm()" class="btn btn-danger">Reset</button>
+                  <button type="button" (click)="resetUserForm()" class="btn btn-danger">Reset</button>
                   <button [disabled]="userDataForm.invalid || !userDataForm.dirty"
                           type="submit" class="btn btn-success">Submit
                   </button>
@@ -316,12 +314,15 @@
               <div class="ln_solid"></div>
               <div class="form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                  <button (click)="resetUserSocialForm()" class="btn btn-danger">Reset</button>
+                  <button type="button" (click)="resetUserSocialForm()" class="btn btn-danger">Reset</button>
                   <button [disabled]="userSocialDataForm.invalid || userSocialDataForm.pristine"
                           type="submit" class="btn btn-success">Submit
                   </button>
                 </div>
               </div>
+              dirty:{{userSocialDataForm.dirty}}
+              pristine:{{userSocialDataForm.pristine}}
+              touched:{{userSocialDataForm.touched}}
             </form>
           </div>
         </div>
