@@ -47,6 +47,7 @@ public class FileSystemStorageService implements StorageService {
     @Override
     public String store(final MultipartFile file) {
         final String id = UUID.randomUUID().toString();
+        final Path filePath = storeLocation.resolve(id);
 
         try {
             if (file.isEmpty()) {
@@ -55,9 +56,9 @@ public class FileSystemStorageService implements StorageService {
                         new Object[]{file.getOriginalFilename()});
             }
 
-            Files.copy(file.getInputStream(), storeLocation.resolve(id));
-
+            Files.copy(file.getInputStream(), filePath);
         } catch (IOException e) {
+            this.delete(id);
             throw new FileSystemStorageException(e.getMessage(), e.getCause(),
                     "storage.filesystem.file.storeFail",
                     new Object[]{file.getOriginalFilename()});
