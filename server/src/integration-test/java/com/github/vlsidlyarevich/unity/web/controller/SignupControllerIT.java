@@ -36,7 +36,7 @@ public class SignupControllerIT extends AbstractControllerIT {
 
     @Test
     public void signup_BadRequest_IfEmptyUsername() throws Exception {
-        UserRequest dto = new UserRequest("", "password");
+        UserRequest dto = new UserRequest("", "password", false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/signup")
                 .accept(contentType)
@@ -47,7 +47,7 @@ public class SignupControllerIT extends AbstractControllerIT {
 
     @Test
     public void signup_BadRequest_IfEmptyPassword() throws Exception {
-        UserRequest dto = new UserRequest("username", "");
+        UserRequest dto = new UserRequest("username", "", false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/signup")
                 .accept(contentType)
@@ -58,7 +58,7 @@ public class SignupControllerIT extends AbstractControllerIT {
 
     @Test
     public void signup_BadRequest_IfWeakPassword() throws Exception {
-        UserRequest dto = new UserRequest("username", "password");
+        UserRequest dto = new UserRequest("username", "password", false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/signup")
                 .accept(contentType)

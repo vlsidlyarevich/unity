@@ -9,6 +9,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
+
+//TODO think about it
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,4 +25,8 @@ public final class UserRequest implements Serializable {
             message = "User password should be at least 4 symbols, 1 upper, "
                     + "1 lower case letter and 1 special")
     private String password;
+
+    private boolean linkedInLoginEnabled;
+    private boolean twitterLoginEnabled;
+    private boolean facebookLoginEnabled;
 }

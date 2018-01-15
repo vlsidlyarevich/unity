@@ -103,7 +103,7 @@ public class UserControllerIT extends AbstractControllerIT {
 
     @Test
     public void addUser_Сreated_IfValidDTO() throws Exception {
-        UserRequest dto = new UserRequest("user", "passS$123");
+        UserRequest dto = new UserRequest("user", "passS$123", false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/user")
                 .accept(contentType)
@@ -115,7 +115,7 @@ public class UserControllerIT extends AbstractControllerIT {
 
     @Test
     public void addUser_BadRequest_IfEmptyUsername() throws Exception {
-        UserRequest dto = new UserRequest("", "passS$123");
+        UserRequest dto = new UserRequest("", "passS$123", false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/user")
                 .accept(contentType)
@@ -127,7 +127,7 @@ public class UserControllerIT extends AbstractControllerIT {
 
     @Test
     public void addUser_BadRequest_IfEmptyPassword() throws Exception {
-        UserRequest dto = new UserRequest("user", "");
+        UserRequest dto = new UserRequest("user", "", false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/user")
                 .accept(contentType)
@@ -139,7 +139,7 @@ public class UserControllerIT extends AbstractControllerIT {
 
     @Test
     public void addUser_BadRequest_IfWeakPassword() throws Exception {
-        UserRequest dto = new UserRequest("user", "pass");
+        UserRequest dto = new UserRequest("user", "pass", false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/user")
                 .accept(contentType)
@@ -151,7 +151,7 @@ public class UserControllerIT extends AbstractControllerIT {
 
     @Test
     public void addUser_BadRequest_IfUsernameExists() throws Exception {
-        UserRequest dto = new UserRequest(user.getUsername(), "passS$123");
+        UserRequest dto = new UserRequest(user.getUsername(), "passS$123", false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/user")
                 .accept(contentType)
@@ -163,7 +163,7 @@ public class UserControllerIT extends AbstractControllerIT {
 
     @Test
     public void updateUserById_Success_IfValidDTO() throws Exception {
-        UserRequest dto = new UserRequest("user", "passS$123");
+        UserRequest dto = new UserRequest("user", "passS$123", false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT, "/api/v1/user/" + user.getId())
                 .accept(contentType)
@@ -175,7 +175,7 @@ public class UserControllerIT extends AbstractControllerIT {
 
     @Test
     public void updateUserById_BadRequest_IfEmptyUsername() throws Exception {
-        UserRequest dto = new UserRequest("", "passS$123");
+        UserRequest dto = new UserRequest("", "passS$123", false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT, "/api/v1/user/" + user.getId())
                 .accept(contentType)
@@ -187,7 +187,7 @@ public class UserControllerIT extends AbstractControllerIT {
 
     @Test
     public void updateUserById_BadRequest_IfEmptyPassword() throws Exception {
-        UserRequest dto = new UserRequest("", "");
+        UserRequest dto = new UserRequest("", "", false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT, "/api/v1/user/" + user.getId())
                 .accept(contentType)
@@ -199,7 +199,7 @@ public class UserControllerIT extends AbstractControllerIT {
 
     @Test
     public void updateUserById_BadRequest_IfWeakPassword() throws Exception {
-        UserRequest dto = new UserRequest("user", "pass");
+        UserRequest dto = new UserRequest("user", "pass", false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT, "/api/v1/user/" + user.getId())
                 .accept(contentType)
