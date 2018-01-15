@@ -19,10 +19,8 @@ export class ProfileService {
   }
 
   getUserInfoById(id: string) {
-    const options = this.authService.createAuthOptions();
-
     return this.http
-      .get<User>(config.userApi + '/' + id, options)
+      .get<User>(config.userApi + '/' + id)
       .subscribe((response) => {
           return response;
         },
@@ -48,11 +46,10 @@ export class ProfileService {
   }
 
   updateUserInfo(user: User) {
-    const options = this.authService.createAuthOptions();
     const id = this.getUserInfo().id;
 
     return this.http
-      .put<User>(config.userApi + '/' + id, user, options)
+      .put<User>(config.userApi + '/' + id, user)
       .map((response) => {
           this.authService.logout();
           return true;
@@ -63,11 +60,10 @@ export class ProfileService {
   }
 
   updateUserSocialInfo(userSocial: UserSocial) {
-    const options = this.authService.createAuthOptions();
     const url = config.userSocialApi.replace('${userId}', this.getUserInfo().id);
 
     return this.http
-      .put<UserSocial>(url, userSocial, options)
+      .put<UserSocial>(url, userSocial)
       .map((response) => {
           this.$localStorage.store('userSocial', response);
           return true;
@@ -78,10 +74,8 @@ export class ProfileService {
   }
 
   updateUserInfoById(user: User, id: string) {
-    const options = this.authService.createAuthOptions();
-
     return this.http
-      .post<User>(config.userApi + '/' + id, user, options)
+      .post<User>(config.userApi + '/' + id, user)
       .map((response) => {
           return response;
         },
@@ -91,11 +85,10 @@ export class ProfileService {
   }
 
   updateUserSocialInfoById(userSocial: UserSocial, id: string, userId: string) {
-    const options = this.authService.createAuthOptions();
     const url = config.userSocialApi.replace('${userId}', userId);
 
     return this.http
-      .post<UserSocial>(url + '/' + id, userSocial, options)
+      .post<UserSocial>(url + '/' + id, userSocial)
       .map((response) => {
           return response;
         },

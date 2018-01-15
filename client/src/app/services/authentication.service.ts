@@ -1,38 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
 import { User } from '../models/user.model';
 import { UserSocial } from '../models/user-social.model';
 import { config } from '../config/config';
+import { TokenService } from "./token.service";
 
 @Injectable()
 export class AuthenticationService {
 
   constructor(private $localStorage: LocalStorageService,
               private $sessionStorage: SessionStorageService,
-              private http: HttpClient,
-              private router: Router) {
-  }
-
-  createAuthOptions() {
-    const currentToken = JSON.parse(this.$localStorage.retrieve('authenticationToken'));
-
-    //Angular 4 bug  https://github.com/angular/angular/issues/19044
-    const headerParams = {
-      'Content-Type': 'application/json',
-      'x-auth-token': currentToken
-    };
-    const headers = new HttpHeaders(headerParams);
-    const params = new HttpParams();
-    return ({ headers: headers, params: params });
+              private tokenService: TokenService,
+              private http: HttpClient) {
   }
 
   isLoggedIn(): boolean {
     try {
-      return this.$localStorage.retrieve('authenticationToken') || this.$sessionStorage.retrieve('authenticationToken');
+      return this.tokenService.containsToken();
     } catch (Error) {
       alert(Error.message);
     }
@@ -47,7 +34,7 @@ export class AuthenticationService {
       .map((data) => {
         if (data && data.body.token) {
           try {
-            this.storeAuthenticationToken(JSON.stringify(data.body.token), rememberMe);
+            this.tokenService.storeAuthenticationToken(JSON.stringify(data.body.token), rememberMe);
             this.storeCurrentUser();
             this.storeCurrentUserSocial();
             return data;
@@ -58,9 +45,9 @@ export class AuthenticationService {
       });
   }
 
-  loginWithToken(jwt, rememberMe) {
+  loginWithToken(jwt, rememberMe): Promise<any> {
     if (jwt) {
-      this.storeAuthenticationToken(jwt, rememberMe);
+      this.tokenService.storeAuthenticationToken(jwt, rememberMe);
       return Promise.resolve(jwt);
     } else {
       return Promise.reject('Login error');
@@ -68,10 +55,8 @@ export class AuthenticationService {
   }
 
   private storeCurrentUser() {
-    const options = this.createAuthOptions();
-
     this.http
-      .get<User>(config.userApi + '/me', options)
+      .get<User>(config.userApi + '/me')
       .subscribe((response) => {
           this.$localStorage.store('user', response);
         },
@@ -81,28 +66,18 @@ export class AuthenticationService {
   }
 
   private storeCurrentUserSocial() {
-    const options = this.createAuthOptions();
     const url = config.userSocialApi.replace('${userId}', this.$localStorage.retrieve('user').id);
 
     this.http
-      .get<UserSocial>(url, options)
+      .get<UserSocial>(url)
       .subscribe((response) => {
-          this.$localStorage.store('userSocial', response);
-        });
-  }
-
-  storeAuthenticationToken(jwt, rememberMe) {
-    if (rememberMe) {
-      this.$sessionStorage.store('authenticationToken', jwt);
-    } else {
-      this.$localStorage.store('authenticationToken', jwt);
-    }
+        this.$localStorage.store('userSocial', response);
+      });
   }
 
   logout(): Observable<any> {
     return new Observable((observer) => {
-      this.$localStorage.clear('authenticationToken');
-      this.$sessionStorage.clear('authenticationToken');
+      this.tokenService.clearAuthenticationToken();
       observer.complete();
     });
   }

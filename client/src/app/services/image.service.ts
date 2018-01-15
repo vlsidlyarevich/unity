@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AuthenticationService } from './authentication.service';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { config } from '../config/config';
@@ -7,8 +6,7 @@ import { config } from '../config/config';
 @Injectable()
 export class ImageService {
 
-  constructor(private authService: AuthenticationService,
-              private http: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
   getImage(imageUrl: string): Observable<any> {
@@ -28,10 +26,8 @@ export class ImageService {
   }
 
   deleteImage(imageId: string): Observable<boolean> {
-    const options = this.authService.createAuthOptions();
-
     return this.http
-      .delete(config.imageApi + '/' + imageId, options)
+      .delete(config.imageApi + '/' + imageId)
       .map((response) => {
           return true;
         },
@@ -42,8 +38,7 @@ export class ImageService {
 
   private getImageFromServer(imageUrl: string): Observable<any> {
     const headerParams = {
-      'Content-Type': 'application/json',
-      'x-auth-token': this.authService.createAuthOptions().headers.get('x-auth-token')
+      'Content-Type': 'application/json'
     };
     const headers = new HttpHeaders(headerParams);
     const params = new HttpParams();

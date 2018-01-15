@@ -11,7 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { Routing } from './app.routing';
 import { LoginFormComponent } from './components/login/login-form/login-form.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SocialLoginPageComponent } from './pages/social-login-page/social-login-page.component';
@@ -28,6 +28,8 @@ import { LoaderService } from './services/loader.service';
 import { PipeModule } from './pipes/pipe-module/pipe.module';
 import { ImageService } from './services/image.service';
 import { ProfileStoreService } from './services/store/profile-store.service';
+import { AuthenticationTokenInterceptor } from './interceptors/authentication-token.interceptor';
+import { TokenService } from "./services/token.service";
 
 @NgModule({
   declarations: [
@@ -59,6 +61,12 @@ import { ProfileStoreService } from './services/store/profile-store.service';
     ImageUploadModule.forRoot()
   ],
   providers: [AuthenticationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationTokenInterceptor,
+      multi: true
+    },
+    TokenService,
     CookieService,
     ProfileStoreService,
     ProfileService,

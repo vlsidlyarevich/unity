@@ -7,15 +7,13 @@ import { AuthenticationService } from '../services/authentication.service';
 @Pipe({ name: 'image' })
 export class ImagePipe implements PipeTransform {
 
-  constructor(private http: HttpClient,
-              private authenticationService: AuthenticationService) {
+  constructor(private http: HttpClient) {
   }
 
   transform(url: string) {
     if (url) {
       const headerParams = {
         'Content-Type': 'application/json',
-        'x-auth-token': this.authenticationService.createAuthOptions().headers.get('x-auth-token')
       };
       const headers = new HttpHeaders(headerParams);
       const params = new HttpParams();

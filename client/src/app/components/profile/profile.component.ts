@@ -8,6 +8,7 @@ import { AuthenticationService } from "../../services/authentication.service";
 import { config } from "../../config/config";
 import { ImageService } from "../../services/image.service";
 import { ProfileStoreService } from "../../services/store/profile-store.service";
+import { TokenService } from "../../services/token.service";
 
 @Component({
   selector: 'app-profile',
@@ -30,6 +31,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private profileStoreService: ProfileStoreService,
               private authenticationService: AuthenticationService,
+              private tokenService: TokenService,
               private imageService: ImageService,
               private notificationService: NotificationService,
               private loaderService: LoaderService) {
@@ -48,7 +50,7 @@ export class ProfileComponent implements OnInit {
     });
 
     this.authHeaders = {
-      'x-auth-token': this.authenticationService.createAuthOptions().headers.get('x-auth-token')
+      'x-auth-token': this.tokenService.getAuthToken()
     };
 
     this.apiUrl = config.imageApi;
