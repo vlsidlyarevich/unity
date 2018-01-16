@@ -4,6 +4,11 @@
        id="notification">
     <a (click)="close()" class="close">×</a> {{message.text}}
   </div>
+  <div *ngIf="message && message.type === 'warning'" class="warning alert-warning alert-dismissable fade in"
+       [ngClass]="{ 'alert': message}"
+       id="notification">
+    <a (click)="close()" class="close">×</a> {{message.text}}
+  </div>
   <div *ngIf="message && message.type === 'error'" class="warning alert-danger alert-dismissable fade in"
        [ngClass]="{ 'alert': message }"
        id="notification">

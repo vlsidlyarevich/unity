@@ -169,6 +169,7 @@ export class ProfileComponent implements OnInit {
     this.imageService.deleteImage(this.imageId)
       .subscribe(response => {
         this.imageId = null;
+        this.imageToShow = null;
         this.notificationService.success('User image is reseted');
       });
   }
@@ -176,7 +177,7 @@ export class ProfileComponent implements OnInit {
   onUploadFinished(event) {
     this.imageId = event.serverResponse._body;
     this.getImageFromService();
-    this.notificationService.success('Submit user social form to update image');
+    this.notificationService.warning('Submit user social form to update image');
   }
 
   getImageFromService() {

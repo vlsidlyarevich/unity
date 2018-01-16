@@ -13,6 +13,10 @@ export class NotificationService {
     this.subject.next({ type: 'success', text: message });
   }
 
+  warning(message: string) {
+    this.subject.next({ type: 'warning', text: message });
+  }
+
   error(message: string) {
     this.subject.next({ type: 'error', text: message });
   }
