@@ -77,4 +77,36 @@ export class ProfileStoreService {
           this.loaderService.hide();
         });
   }
+
+  updateUserImage(imageId: string) {
+    const userSocial = this.profileService.getUserSocialInfo() || new UserSocial();
+    userSocial.image = imageId;
+
+    this.profileService.updateUserSocialInfo(userSocial)
+      .subscribe(
+        result => {
+          if (result === true) {
+            this.loaderService.hide();
+            this.userSocial.next(this.profileService.getUserS{
+        headers: new HttpHeaders().set('Content-Type', 'application/json'),
+        responseType: 'text'
+     }ocialInfo() || new UserSocial());
+            if(imageId){
+              this.notificationService.success('User image is updated');
+            } else {
+              this.notificationService.warning('User image is deleted');
+            }
+          } else {
+            this.loaderService.hide();
+            this.notificationService.error('User image was not updated');
+          }
+        }, (error: HttpErrorResponse) => {
+          if (error.error instanceof Error) {
+            console.log('Client-side error occured.');
+          } else {
+            this.notificationService.error(error.error.message);
+          }
+          this.loaderService.hide();
+        });
+  }
 }

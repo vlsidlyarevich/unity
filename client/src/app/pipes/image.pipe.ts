@@ -2,7 +2,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { AuthenticationService } from '../services/authentication.service';
 
 @Pipe({ name: 'image' })
 export class ImagePipe implements PipeTransform {

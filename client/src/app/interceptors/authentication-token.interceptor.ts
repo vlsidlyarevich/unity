@@ -10,12 +10,12 @@ export class AuthenticationTokenInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     request = request.clone({
       setHeaders: {
         'x-auth-token': `${JSON.parse(this.$localStorage.retrieve('authenticationToken'))}`
       }
     });
+
     return next.handle(request);
   }
 }

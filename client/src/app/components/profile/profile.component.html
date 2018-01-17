@@ -32,6 +32,7 @@
                 <!--alt="Avatar"-->
                 <!--title="Change the avatar">-->
 
+                //FIXME fix image size
                 <img [src]="imageToShow | safeUrl"
                      alt="Place image title"
                      *ngIf="!isImageLoading && imageToShow; else noImageFound">
@@ -320,9 +321,6 @@
                   </button>
                 </div>
               </div>
-              dirty:{{userSocialDataForm.dirty}}
-              pristine:{{userSocialDataForm.pristine}}
-              touched:{{userSocialDataForm.touched}}
             </form>
           </div>
         </div>

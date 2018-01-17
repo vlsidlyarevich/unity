@@ -168,16 +168,14 @@ export class ProfileComponent implements OnInit {
   onRemoved(event) {
     this.imageService.deleteImage(this.imageId)
       .subscribe(response => {
-        this.imageId = null;
-        this.imageToShow = null;
-        this.notificationService.success('User image is reseted');
+        this.profileStoreService.updateUserImage(null);
       });
   }
 
   onUploadFinished(event) {
     this.imageId = event.serverResponse._body;
     this.getImageFromService();
-    this.notificationService.warning('Submit user social form to update image');
+    this.profileStoreService.updateUserImage(this.imageId);
   }
 
   getImageFromService() {
@@ -189,7 +187,7 @@ export class ProfileComponent implements OnInit {
           this.isImageLoading = false;
         }, error => {
           this.isImageLoading = false;
-          console.log(error);
+          this.notificationService.error(error);
         });
     }
   }

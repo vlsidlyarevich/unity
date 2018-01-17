@@ -27,7 +27,10 @@ export class ImageService {
 
   deleteImage(imageId: string): Observable<boolean> {
     return this.http
-      .delete(config.imageApi + '/' + imageId)
+      .delete(config.imageApi + '/' + imageId, {
+        headers: new HttpHeaders().set('Content-Type', 'application/json'),
+        responseType: 'text'
+      })
       .map((response) => {
           return true;
         },
