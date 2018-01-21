@@ -30,6 +30,7 @@ import { ImageService } from './services/image.service';
 import { ProfileStoreService } from './services/store/profile-store.service';
 import { AuthenticationTokenInterceptor } from './interceptors/authentication-token.interceptor';
 import { TokenService } from "./services/token.service";
+import { UsersPageComponent } from './pages/users-page/users-page.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { TokenService } from "./services/token.service";
     ProfilePageComponent,
     ProfileComponent,
     NotificationComponent,
-    LoadingComponent
+    LoadingComponent,
+    UsersPageComponent
   ],
   imports: [
     PipeModule.forRoot(),

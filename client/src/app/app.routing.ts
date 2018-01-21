@@ -5,11 +5,13 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { SocialLoginPageComponent } from './pages/social-login-page/social-login-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { UsersPageComponent } from "./pages/users-page/users-page.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'profile', component: ProfilePageComponent },
+  { path: 'users', component: UsersPageComponent },
   { path: 'social-auth', component: SocialLoginPageComponent },
   { path: '404', component: NotFoundPageComponent },
   { path: '**', redirectTo: '/404' }
