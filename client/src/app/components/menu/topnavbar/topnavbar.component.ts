@@ -12,10 +12,10 @@ import { ProfileStoreService } from '../../../services/store/profile-store.servi
 })
 export class TopnavbarComponent implements OnInit {
 
+  public imageToShow: any;
+  public userSocial: UserSocial;
   private imageId;
-  private imageToShow: any;
   private isImageLoading = true;
-  private userSocial: UserSocial;
 
   constructor(private profileService: ProfileService,
               private imageService: ImageService,
