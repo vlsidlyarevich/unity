@@ -10,7 +10,12 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="">
           <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <img [src]="userSocial?.image || 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'" alt="">
+            <img [src]="imageToShow | safeUrl"
+                 alt="Place image title"
+                 *ngIf="!isImageLoading && imageToShow; else noImageFound">
+            <ng-template #noImageFound>
+              <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="Fallbackimage">
+            </ng-template>
             {{userSocial?.firstName || 'Undefined'}}
             {{userSocial?.lastName || 'Undefined'}}
             <span class=" fa fa-angle-down"></span>

@@ -189,6 +189,8 @@ export class ProfileComponent implements OnInit {
           this.isImageLoading = false;
           this.notificationService.error(error);
         });
+    } else {
+      this.imageToShow = null;
     }
   }
 }

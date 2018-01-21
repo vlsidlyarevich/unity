@@ -87,10 +87,7 @@ export class ProfileStoreService {
         result => {
           if (result === true) {
             this.loaderService.hide();
-            this.userSocial.next(this.profileService.getUserS{
-        headers: new HttpHeaders().set('Content-Type', 'application/json'),
-        responseType: 'text'
-     }ocialInfo() || new UserSocial());
+            this.userSocial.next(this.profileService.getUserSocialInfo() || new UserSocial());
             if(imageId){
               this.notificationService.success('User image is updated');
             } else {
