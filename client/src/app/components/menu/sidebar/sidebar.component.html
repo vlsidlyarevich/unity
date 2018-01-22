@@ -13,7 +13,8 @@
              class="img-circle profile_img"
              *ngIf="!isImageLoading && imageToShow; else noImageFound">
         <ng-template #noImageFound>
-          <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="Fallbackimage">
+          <img class="img-circle profile_img" src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
+               alt="Fallbackimage">
         </ng-template>
       </div>
       <div class="profile_info">
