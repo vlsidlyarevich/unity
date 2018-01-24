@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { AuthenticationService } from './authentication.service';
@@ -14,19 +13,7 @@ export class ProfileService {
 
   constructor(private authService: AuthenticationService,
               private http: HttpClient,
-              private $localStorage: LocalStorageService,
-              private router: Router) {
-  }
-
-  getUserInfoById(id: string) {
-    return this.http
-      .get<User>(config.userApi + '/' + id)
-      .subscribe((response) => {
-          return response;
-        },
-        err => {
-          this.handleError(err);
-        });
+              private $localStorage: LocalStorageService) {
   }
 
   getUserInfo() {
@@ -67,30 +54,6 @@ export class ProfileService {
       .map((response) => {
           this.$localStorage.store('userSocial', response);
           return true;
-        },
-        err => {
-          this.handleError(err);
-        });
-  }
-
-  updateUserInfoById(user: User, id: string) {
-    return this.http
-      .post<User>(config.userApi + '/' + id, user)
-      .map((response) => {
-          return response;
-        },
-        err => {
-          this.handleError(err);
-        });
-  }
-
-  updateUserSocialInfoById(userSocial: UserSocial, id: string, userId: string) {
-    const url = config.userSocialApi.replace('${userId}', userId);
-
-    return this.http
-      .post<UserSocial>(url + '/' + id, userSocial)
-      .map((response) => {
-          return response;
         },
         err => {
           this.handleError(err);

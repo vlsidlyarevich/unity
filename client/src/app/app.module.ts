@@ -32,6 +32,7 @@ import { AuthenticationTokenInterceptor } from './interceptors/authentication-to
 import { TokenService } from "./services/token.service";
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { UsersComponent } from './components/admin/users/users.component';
+import { UserService } from "./services/user.service";
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { UsersComponent } from './components/admin/users/users.component';
     CookieService,
     ProfileStoreService,
     ProfileService,
+    UserService,
     ImageService,
     NotificationService,
     LoaderService],
