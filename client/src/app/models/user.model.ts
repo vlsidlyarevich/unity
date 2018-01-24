@@ -1,9 +1,11 @@
+import { Role } from "./role.model";
+
 export class User {
   constructor() {
   }
 
   id: string;
-  authorities: Array<string>;
+  authorities: Array<Role>;
   username: string;
   password: string;
   linkedInLoginEnabled: boolean;
