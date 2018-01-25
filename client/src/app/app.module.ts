@@ -33,6 +33,7 @@ import { TokenService } from "./services/token.service";
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { UsersComponent } from './components/admin/users/users.component';
 import { UserService } from "./services/user.service";
+import { NgxPaginationModule } from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { UserService } from "./services/user.service";
     HttpClientModule,
     Routing,
     Ng2Webstorage,
-    ImageUploadModule.forRoot()
+    ImageUploadModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [AuthenticationService,
     {

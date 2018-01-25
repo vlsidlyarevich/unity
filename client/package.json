@@ -35,6 +35,7 @@
     "ng2-webstorage": "1.8.0",
     "angular2-image-upload": "1.0.0-rc.0",
     "ngx-cookie-service": "1.0.9",
+    "ngx-pagination": "3.0.3",
     "bootstrap": "^3.3.7",
     "bootstrap-loader": "^2.2.0",
     "bootstrap-progressbar": "^0.9.0",

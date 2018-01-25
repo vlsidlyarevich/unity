@@ -4,6 +4,7 @@ import { UserService } from "../../../services/user.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { NotificationService } from "../../../services/notification.service";
 import { LoaderService } from "../../../services/loader.service";
+import { Role } from "../../../models/role.model";
 
 @Component({
   selector: 'app-users',
@@ -12,7 +13,7 @@ import { LoaderService } from "../../../services/loader.service";
 })
 export class UsersComponent {
 
-  private users: User[];
+  public users: User[];
 
   constructor(private userService: UserService,
               private notificationService: NotificationService,
