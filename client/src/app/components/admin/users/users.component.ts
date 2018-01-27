@@ -15,6 +15,12 @@ export class UsersComponent {
 
   public users: User[];
 
+  public username: string;
+  public role: Role;
+  public enabled: boolean;
+  public sortKey: string = 'username';
+  public reverse: boolean = false;
+
   constructor(private userService: UserService,
               private notificationService: NotificationService,
               private loaderService: LoaderService) {
@@ -22,6 +28,9 @@ export class UsersComponent {
     this.userService.getAllUsers().subscribe(
       response => {
         this.users = response;
+        this.users.forEach(user => {
+          user.authorities.sort();
+        });
         this.loaderService.hide();
       }, (error: HttpErrorResponse) => {
         if (error.error instanceof Error) {
@@ -33,4 +42,8 @@ export class UsersComponent {
       });
   }
 
+  public sort(sortKey) {
+    this.sortKey = sortKey;
+    this.reverse = !this.reverse;
+  }
 }

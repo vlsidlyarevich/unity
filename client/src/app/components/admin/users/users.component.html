@@ -11,21 +11,58 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_content">
-          <!-- start project list -->
+
+          <!--<div class="form-group">-->
+          <!--<div class="col-md-3 col-sm-3">-->
+          <!--<input type="text" class="form-control" placeholder="Username" [(ngModel)]="username">-->
+          <!--</div>-->
+
+          <!--Choose Role:-->
+          <!--<div class="col-md-3 col-sm-3">-->
+          <!--<select class="form-control" [(ngModel)]="role">-->
+          <!--&lt;!&ndash;<option>Choose Role</option>&ndash;&gt;-->
+          <!--<option value="ROLE_ADMIN">Admin</option>-->
+          <!--<option value="ROLE_USER">User</option>-->
+          <!--</select>-->
+          <!--</div>-->
+
+          <!--Status:-->
+          <!--<div class="col-md-3 col-sm-3">-->
+          <!--<select class="form-control" [(ngModel)]="enabled">-->
+          <!--&lt;!&ndash;<option>Status</option>&ndash;&gt;-->
+          <!--<option value="true">Enabled</option>-->
+          <!--<option value="false">Disabled</option>-->
+          <!--</select>-->
+          <!--</div>-->
+          <!--</div>-->
+
+          <br/>
+          <br/>
           <table class="table table-striped projects">
             <thead>
             <tr>
               <th style="width: 1%">#</th>
-              <th style="width: 20%">Id</th>
-              <th>Username</th>
-              <th>Roles</th>
-              <th>Status</th>
+              <th style="width: 20%" (click)="sort('updated_at')">
+                Id<span class="glyphicon sort-icon" *ngIf="sortKey =='updated_at'"
+                        [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th (click)="sort('username')">Username
+                <span class="glyphicon sort-icon" *ngIf="sortKey =='username'"
+                      [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th (click)="sort('authorities')">Roles
+                <span class="glyphicon sort-icon" *ngIf="sortKey =='authorities'"
+                      [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+              <th (click)="sort('enabled')">Status
+                <span class="glyphicon sort-icon" *ngIf="sortKey =='enabled'"
+                      [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
               <th style="width: 20%">#Edit</th>
             </tr>
             </thead>
             <tbody>
 
-            <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+            <tr
+              *ngFor="let user of users | orderBy: sortKey : reverse | paginate: { itemsPerPage: 10, currentPage: p };">
               <td>#</td>
               <td>
                 <a>{{user.id}}</a>

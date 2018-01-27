@@ -34,6 +34,8 @@ import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { UsersComponent } from './components/admin/users/users.component';
 import { UserService } from "./services/user.service";
 import { NgxPaginationModule } from "ngx-pagination";
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import { NgxPaginationModule } from "ngx-pagination";
     Routing,
     Ng2Webstorage,
     ImageUploadModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
+    OrderModule
   ],
   providers: [AuthenticationService,
     {
