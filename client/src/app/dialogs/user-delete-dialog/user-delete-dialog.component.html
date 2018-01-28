@@ -1,0 +1,29 @@
+<div [@dialog] *ngIf="visible" class="modal-dialog modal-lg dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+      </button>
+      <h4 class="modal-title" id="myModalLabel">Are you sure to delete user?</h4>
+    </div>
+    <div class="modal-body">
+      <h4>User to delete info:</h4>
+      <p>Id: {{user.id}}</p>
+      <p>Username: {{user.username}}</p>
+      <p>Authority:
+        <button *ngIf="user.authorities.indexOf('ROLE_ADMIN') > -1" class="btn btn-round btn-sm btn-info"
+                style="cursor:default;">ADMIN
+        </button>
+        <button *ngIf="user.authorities.indexOf('ROLE_ADMIN') === -1" class="btn btn-round btn-sm btn-success"
+                style="cursor:default;">USER
+        </button>
+      </p>
+      <p>Created at: {{user.createdAt | date:"MM/dd/yyyy 'at' h:mma"}}</p>
+      <p>Updated at: {{user.updatedAt | date:"MM/dd/yyyy 'at' h:mma"}}</p>
+    </div>
+    <div class="modal-footer">
+      <a class="btn btn-primary btn-danger" (click)="delete()">Delete</a>
+      <a class="btn btn-default" (click)="close()" data-dismiss="modal">Close</a>
+    </div>
+  </div>
+</div>
+<div *ngIf="visible" class="overlay" (click)="close()"></div>

@@ -65,6 +65,17 @@ export class UserService {
         });
   }
 
+  deleteUserInfoById(id: string) {
+    return this.http
+      .delete(config.userApi + '/' + id)
+      .map((response) => {
+          return response;
+        },
+        err => {
+          this.handleError(err);
+        });
+  }
+
   private handleError(err: HttpErrorResponse) {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console

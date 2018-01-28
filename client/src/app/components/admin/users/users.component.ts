@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { User } from "../../../models/user.model";
 import { UserService } from "../../../services/user.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { NotificationService } from "../../../services/notification.service";
 import { LoaderService } from "../../../services/loader.service";
-import { Role } from "../../../models/role.model";
 
 @Component({
   selector: 'app-users',
@@ -15,9 +14,11 @@ export class UsersComponent {
 
   public users: User[];
 
-  public username: string;
-  public role: Role;
-  public enabled: boolean;
+  @Output() openDialog = new EventEmitter<boolean>();
+  @Output() closeDialog = new EventEmitter<boolean>();
+  public showDialog: boolean = false;
+  public userToDelete: User;
+
   public sortKey: string = 'username';
   public reverse: boolean = false;
 
@@ -45,5 +46,15 @@ export class UsersComponent {
   public sort(sortKey) {
     this.sortKey = sortKey;
     this.reverse = !this.reverse;
+  }
+
+  public showUserDeleteDialog(user: User) {
+    this.userToDelete = user;
+    this.showDialog = true;
+    this.openDialog.emit();
+  }
+
+  public deleteUser(event) {
+
   }
 }

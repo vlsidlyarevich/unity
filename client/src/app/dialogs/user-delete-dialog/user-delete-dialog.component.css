@@ -1,0 +1,35 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 1000;
+}
+
+.dialog {
+  z-index: 1001;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 25%;
+  margin-right: auto;
+  margin-left: auto;
+  min-height: 200px;
+  width: fit-content;
+  background-color: #fff;
+  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
+}
+
+#scroll::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+  background: #dddddd;
+}
+
+#scroll::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #ff5063;
+}
