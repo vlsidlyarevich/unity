@@ -25,6 +25,10 @@ export class UsersComponent {
   constructor(private userService: UserService,
               private notificationService: NotificationService,
               private loaderService: LoaderService) {
+    this.initUsers();
+  }
+
+  private initUsers() {
     this.loaderService.show();
     this.userService.getAllUsers().subscribe(
       response => {
@@ -55,6 +59,18 @@ export class UsersComponent {
   }
 
   public deleteUser(event) {
-
+    this.userService.deleteUserInfoById(this.userToDelete.id).subscribe(
+      response => {
+        if (response) {
+          this.notificationService.success('User ' + response + ' is successfully deleted')
+          this.initUsers();
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.error instanceof Error) {
+          console.log('Client-side error occured.');
+        } else {
+          this.notificationService.error(error.error.message);
+        }
+      });
   }
 }

@@ -67,7 +67,7 @@ export class UserService {
 
   deleteUserInfoById(id: string) {
     return this.http
-      .delete(config.userApi + '/' + id)
+      .delete(config.userApi + '/' + id, { responseType: 'text' })
       .map((response) => {
           return response;
         },

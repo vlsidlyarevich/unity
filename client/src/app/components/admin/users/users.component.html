@@ -56,14 +56,14 @@
               <th (click)="sort('enabled')">Status
                 <span class="glyphicon sort-icon" *ngIf="sortKey =='enabled'"
                       [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-              <th style="width: 20%">#Edit</th>
+              <th style="width: 20%">Edit</th>
             </tr>
             </thead>
             <tbody>
 
             <tr
-              *ngFor="let user of users | orderBy: sortKey : reverse | paginate: { itemsPerPage: 10, currentPage: p };">
-              <td>#</td>
+              *ngFor="let user of users | orderBy: sortKey : reverse | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+              <td>{{i+1}}</td>
               <td>
                 <a>{{user.id}}</a>
                 <br/>

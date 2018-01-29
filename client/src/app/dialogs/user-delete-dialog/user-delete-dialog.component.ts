@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from "../../models/user.model";
 import { animate, style, transition, trigger } from "@angular/animations";
-import { UserService } from "../../services/user.service";
 
 @Component({
   selector: 'app-user-delete-dialog',
@@ -25,7 +24,7 @@ export class UserDeleteDialogComponent implements OnInit {
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() deleteEvent: EventEmitter<any> = new EventEmitter<boolean>();
 
-  constructor(private userService: UserService) {
+  constructor() {
   }
 
   ngOnInit() {
@@ -37,6 +36,7 @@ export class UserDeleteDialogComponent implements OnInit {
   }
 
   public delete() {
-    this.userService
+    this.deleteEvent.emit(true);
+    this.visible = false;
   }
 }
