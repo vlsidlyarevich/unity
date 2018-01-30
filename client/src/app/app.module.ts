@@ -38,6 +38,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { OrderModule } from 'ngx-order-pipe';
 import { UserDeleteDialogComponent } from './dialogs/user-delete-dialog/user-delete-dialog.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { UserShowDialogComponent } from "./dialogs/user-show-dialog/user-show-dialog.component";
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     LoadingComponent,
     UsersPageComponent,
     UsersComponent,
-    UserDeleteDialogComponent
+    UserDeleteDialogComponent,
+    UserShowDialogComponent
   ],
   imports: [
     PipeModule.forRoot(),

@@ -32,7 +32,7 @@ export class UserService {
 
   getUserSocialInfoById(id: string) {
     return this.http
-      .get<User>(config.userApi + '/' + id)
+      .get<UserSocial>(config.userApi + '/' + id)
       .map((response) => {
           return response;
         },

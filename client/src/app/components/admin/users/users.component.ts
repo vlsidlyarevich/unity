@@ -14,10 +14,13 @@ export class UsersComponent {
 
   public users: User[];
 
-  @Output() openDialog = new EventEmitter<boolean>();
-  @Output() closeDialog = new EventEmitter<boolean>();
-  public showDialog: boolean = false;
+  @Output() openDeleteDialog = new EventEmitter<boolean>();
+  @Output() closeDeleteDialog = new EventEmitter<boolean>();
+
+  public showDeleteDialog: boolean = false;
+  public showInfoDialog: boolean = false;
   public userToDelete: User;
+  public userToShow: User;
 
   public sortKey: string = 'username';
   public reverse: boolean = false;
@@ -52,17 +55,22 @@ export class UsersComponent {
     this.reverse = !this.reverse;
   }
 
+  public showUserInfoDialog(user: User) {
+    this.userToShow = user;
+    this.showInfoDialog = true;
+  }
+
   public showUserDeleteDialog(user: User) {
     this.userToDelete = user;
-    this.showDialog = true;
-    this.openDialog.emit();
+    this.showDeleteDialog = true;
+    this.openDeleteDialog.emit();
   }
 
   public deleteUser(event) {
     this.userService.deleteUserInfoById(this.userToDelete.id).subscribe(
       response => {
         if (response) {
-          this.notificationService.success('User ' + response + ' is successfully deleted')
+          this.notificationService.success('User ' + response + ' is successfully deleted');
           this.initUsers();
         }
       }, (error: HttpErrorResponse) => {
