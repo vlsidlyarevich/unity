@@ -39,6 +39,8 @@ import { OrderModule } from 'ngx-order-pipe';
 import { UserDeleteDialogComponent } from './dialogs/user-delete-dialog/user-delete-dialog.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { UserShowDialogComponent } from "./dialogs/user-show-dialog/user-show-dialog.component";
+import { UserEditPageComponent } from './pages/user-edit-page/user-edit-page.component';
+import { UserEditComponent } from './components/admin/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { UserShowDialogComponent } from "./dialogs/user-show-dialog/user-show-di
     UsersPageComponent,
     UsersComponent,
     UserDeleteDialogComponent,
-    UserShowDialogComponent
+    UserShowDialogComponent,
+    UserEditPageComponent,
+    UserEditComponent
   ],
   imports: [
     PipeModule.forRoot(),
