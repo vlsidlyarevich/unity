@@ -11,31 +11,6 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_content">
-
-          <!--<div class="form-group">-->
-          <!--<div class="col-md-3 col-sm-3">-->
-          <!--<input type="text" class="form-control" placeholder="Username" [(ngModel)]="username">-->
-          <!--</div>-->
-
-          <!--Choose Role:-->
-          <!--<div class="col-md-3 col-sm-3">-->
-          <!--<select class="form-control" [(ngModel)]="role">-->
-          <!--&lt;!&ndash;<option>Choose Role</option>&ndash;&gt;-->
-          <!--<option value="ROLE_ADMIN">Admin</option>-->
-          <!--<option value="ROLE_USER">User</option>-->
-          <!--</select>-->
-          <!--</div>-->
-
-          <!--Status:-->
-          <!--<div class="col-md-3 col-sm-3">-->
-          <!--<select class="form-control" [(ngModel)]="enabled">-->
-          <!--&lt;!&ndash;<option>Status</option>&ndash;&gt;-->
-          <!--<option value="true">Enabled</option>-->
-          <!--<option value="false">Disabled</option>-->
-          <!--</select>-->
-          <!--</div>-->
-          <!--</div>-->
-
           <br/>
           <br/>
           <table class="table table-striped projects">
@@ -88,7 +63,8 @@
               <td>
                 <a (click)="showUserInfoDialog(user)" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>
                   View</a>
-                <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                <a [routerLink]="['/users', user.id]" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>
+                  Edit </a>
                 <a (click)="showUserDeleteDialog(user)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
                   Delete </a>
               </td>
