@@ -41,6 +41,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { UserShowDialogComponent } from "./dialogs/user-show-dialog/user-show-dialog.component";
 import { UserEditPageComponent } from './pages/user-edit-page/user-edit-page.component';
 import { UserEditComponent } from './components/admin/user-edit/user-edit.component';
+import { UserAddPageComponent } from './pages/user-add-page/user-add-page.component';
+import { UserAddComponent } from "./components/admin/user-add/user-add.component";
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import { UserEditComponent } from './components/admin/user-edit/user-edit.compon
     UserDeleteDialogComponent,
     UserShowDialogComponent,
     UserEditPageComponent,
-    UserEditComponent
+    UserEditComponent,
+    UserAddComponent,
+    UserAddPageComponent
   ],
   imports: [
     PipeModule.forRoot(),
