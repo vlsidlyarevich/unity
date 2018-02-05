@@ -54,7 +54,10 @@ export class UserEditComponent implements OnInit {
       updatedAt: this.userDataForm.value.updatedAt,
     };
 
-    this.userService.updateUserInfoById(user, this.id);
+    this.userService.updateUserInfoById(user, this.id)
+      .subscribe(response => {
+        this.notificationService.success("User information updated")
+      });
     this.loaderService.hide();
   }
 

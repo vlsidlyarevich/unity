@@ -11,6 +11,14 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
+  saveUser(user: User) {
+    return this.http
+      .post<User>(config.userApi, user)
+      .map((response) => {
+        return response;
+      });
+  }
+
   getAllUsers() {
     return this.http
       .get<User[]>(config.userApi)

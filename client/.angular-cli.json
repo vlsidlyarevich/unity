@@ -21,6 +21,7 @@
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/font-awesome/css/font-awesome.min.css",
+        "../node_modules/icheck/skins/flat/_all.css",
         "./assets/css/switchery/switchery.min.css",
         "styles.css"
       ],
@@ -28,6 +29,7 @@
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/jquery-ui-dist/jquery-ui.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "../node_modules/icheck/icheck.min.js",
         "./assets/js/switchery/switchery.min.js",
         "./assets/js/smartresize.js",
         "./assets/js/custom.js"

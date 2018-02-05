@@ -1,3 +1,129 @@
-<p>
-  user-add works!
-</p>
+<div class="">
+  <div class="page-title">
+    <div class="title_left">
+      <a [routerLink]="['/users']" class="btn btn-info btn-xs"><i class="fa fa-arrow-left"></i>
+        Back to users list </a>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_content">
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <div class="x_title">
+              <h2>Create new user
+              </h2>
+              <div class="clearfix"></div>
+            </div>
+
+            <form id="account-info-form" (ngSubmit)="updateUserData()" [formGroup]="userDataForm" novalidate
+                  class="form-horizontal form-label-left">
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Username<span
+                  class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" formControlName="username" class="form-control input-group col-md-7 col-xs-12">
+
+                  <div
+                    *ngIf="userDataForm.get('username').hasError('required') && userDataForm.get('username').touched">
+                    <div class="alert alert-danger alert-dismissable">
+                      Username is required
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="userDataForm.get('username').hasError('minlength') && userDataForm.get('username').touched">
+                    <div class="alert alert-danger alert-dismissable">
+                      Minimum of 4 characters
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Password<span
+                  class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <div class="input-group">
+                    <input type="password" #password formControlName="password" class="form-control">
+                    <span class="input-group-addon">
+                    <input type="checkbox" aria-label="Checkbox for following text input"
+                           (click)="showPassword(password)">
+                  </span>
+                  </div>
+
+                  <div
+                    *ngIf="userDataForm.get('password').hasError('required') && userDataForm.get('password').touched">
+                    <div class="alert alert-danger alert-dismissable">
+                      Password is required
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="userDataForm.get('password').hasError('pattern') && userDataForm.get('password').touched">
+                    <div class="alert alert-danger alert-dismissable">
+                      Password should be length of at least 5 and contain at least 1 digit,
+                      1 uppercase letter and 1 special symbol
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Authorities</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  User: <input type="radio" class="flat" id="authorityUser" name="authorities"
+                               value="ROLE_USER" formControlName="authorities"/>
+                  Administrator: <input type="radio" class="flat" id="authorityAdmin" name="authorities"
+                                        value="ROLE_ADMIN" formControlName="authorities"/>
+
+                  <div
+                    *ngIf="userDataForm.get('authorities').hasError('required') && userDataForm.get('authorities').touched">
+                    <div class="alert alert-danger alert-dismissable">
+                      User role is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Social Login</label>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                  <div class="">
+                    <label>
+                      <input type="checkbox" value="true" formControlName="facebookLoginEnabled" class="js-switch"/>
+                      Facebook
+                    </label>
+                    <br/>
+                    <label>
+                      <input type="checkbox" value="true" formControlName="linkedInLoginEnabled" class="js-switch"/>
+                      LinkedIn
+                    </label>
+                    <br/>
+                    <label>
+                      <input type="checkbox" value="true" formControlName="twitterLoginEnabled" class="js-switch"/>
+                      Twitter
+                      <br/>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ln_solid"></div>
+              <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                  <button type="button" (click)="resetUserForm()" class="btn btn-danger">Reset</button>
+                  <button [disabled]="userDataForm.invalid || !userDataForm.dirty"
+                          type="submit" class="btn btn-success">Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
