@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoaderService } from "../../../services/loader.service";
 import { User } from "../../../models/user.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "../../../services/user.service";
 import { NotificationService } from "../../../services/notification.service";
 
@@ -18,6 +18,7 @@ export class UserAddComponent implements OnInit {
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
+              private router: Router,
               private notificationService: NotificationService,
               private loaderService: LoaderService) {
     this.formBuilder = new FormBuilder();
@@ -28,7 +29,7 @@ export class UserAddComponent implements OnInit {
 
   }
 
-  public updateUserData() {
+  public saveUserData() {
     this.loaderService.show();
 
     const user: User = {
@@ -50,6 +51,7 @@ export class UserAddComponent implements OnInit {
     this.userService.saveUser(user)
       .subscribe(user => {
         this.notificationService.success("New user:" + user.id + " created")
+        this.router.navigate(['/users']);
       });
     this.loaderService.hide();
   }
