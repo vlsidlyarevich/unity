@@ -34,7 +34,7 @@ export class UserAddComponent implements OnInit {
 
     const user: User = {
       id: "",
-      authorities: this.userDataForm.value.authorities,
+      authorities: [this.userDataForm.value.authorities],
       username: this.userDataForm.value.username,
       password: this.userDataForm.value.password,
       linkedInLoginEnabled: this.userDataForm.value.linkedInLoginEnabled,
@@ -50,7 +50,7 @@ export class UserAddComponent implements OnInit {
 
     this.userService.saveUser(user)
       .subscribe(user => {
-        this.notificationService.success("New user:" + user.id + " created")
+        this.notificationService.success("New user:" + user.id + " created");
         this.router.navigate(['/users']);
       });
     this.loaderService.hide();

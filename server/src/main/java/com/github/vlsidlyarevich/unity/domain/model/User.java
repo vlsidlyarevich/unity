@@ -41,6 +41,10 @@ public class User extends DbModel implements UserDetails {
         List<Authority> authorities = new ArrayList<>();
         authorities.add(Authority.ROLE_USER);
 
+        if (dto.getAuthorities() != null && dto.getAuthorities().isEmpty()) {
+            authorities = dto.getAuthorities();
+        }
+
         return User.builder()
                 .authorities(authorities)
                 .username(dto.getUsername())

@@ -24,11 +24,3 @@ public class DatabaseUserDetailsService implements UserDetailsService {
                                 .format("User with username:%s not found", username)));
     }
 }
-
-//    User user = new User();
-//    user.setPassword("44354343Sid@");
-//        user.setUsername("vlad");
-//        user.setAuthorities(new ArrayList(){{add(Authority.ROLE_ADMIN);}});
-//
-//
-//        userService.create(user);

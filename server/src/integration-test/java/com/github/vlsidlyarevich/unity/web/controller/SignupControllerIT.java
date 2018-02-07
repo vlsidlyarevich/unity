@@ -17,6 +17,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.ArrayList;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class, SecurityExceptionHandler.class})
 @WebAppConfiguration
@@ -36,7 +38,7 @@ public class SignupControllerIT extends AbstractControllerIT {
 
     @Test
     public void signup_BadRequest_IfEmptyUsername() throws Exception {
-        UserRequest dto = new UserRequest("", "password", false, false, false);
+        UserRequest dto = new UserRequest("", "password", new ArrayList<>(), false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/signup")
                 .accept(contentType)
@@ -47,7 +49,7 @@ public class SignupControllerIT extends AbstractControllerIT {
 
     @Test
     public void signup_BadRequest_IfEmptyPassword() throws Exception {
-        UserRequest dto = new UserRequest("username", "", false, false, false);
+        UserRequest dto = new UserRequest("username", "", new ArrayList<>(), false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/signup")
                 .accept(contentType)
@@ -58,7 +60,7 @@ public class SignupControllerIT extends AbstractControllerIT {
 
     @Test
     public void signup_BadRequest_IfWeakPassword() throws Exception {
-        UserRequest dto = new UserRequest("username", "password", false, false, false);
+        UserRequest dto = new UserRequest("username", "password", new ArrayList<>(), false, false, false);
 
         mvc.perform(MockMvcRequestBuilders.request(HttpMethod.POST, "/api/v1/signup")
                 .accept(contentType)
