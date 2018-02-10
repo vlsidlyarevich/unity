@@ -43,6 +43,8 @@ import { UserEditPageComponent } from './pages/user-edit-page/user-edit-page.com
 import { UserEditComponent } from './components/admin/user-edit/user-edit.component';
 import { UserAddPageComponent } from './pages/user-add-page/user-add-page.component';
 import { UserAddComponent } from "./components/admin/user-add/user-add.component";
+import { AnalyticsResultsPageComponent } from './pages/analytics-results-page/analytics-results-page.component';
+import { AnalyticsReportsComponent } from './components/analytics/analytics-reports/analytics-reports.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { UserAddComponent } from "./components/admin/user-add/user-add.component
     UserEditPageComponent,
     UserEditComponent,
     UserAddComponent,
-    UserAddPageComponent
+    UserAddPageComponent,
+    AnalyticsResultsPageComponent,
+    AnalyticsReportsComponent
   ],
   imports: [
     PipeModule.forRoot(),
