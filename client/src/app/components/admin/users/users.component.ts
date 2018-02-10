@@ -4,6 +4,7 @@ import { UserService } from "../../../services/user.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { NotificationService } from "../../../services/notification.service";
 import { LoaderService } from "../../../services/loader.service";
+import { ProfileService } from "../../../services/profile.service";
 
 @Component({
   selector: 'app-users',
@@ -26,6 +27,7 @@ export class UsersComponent {
   public reverse: boolean = false;
 
   constructor(private userService: UserService,
+              private profileService: ProfileService,
               private notificationService: NotificationService,
               private loaderService: LoaderService) {
     this.initUsers();
@@ -35,7 +37,7 @@ export class UsersComponent {
     this.loaderService.show();
     this.userService.getAllUsers().subscribe(
       response => {
-        this.users = response;
+        this.users = response.filter(user => user.id !== this.profileService.getUserInfo().id);
         this.users.forEach(user => {
           user.authorities.sort();
         });
