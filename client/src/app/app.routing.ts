@@ -9,6 +9,7 @@ import { UsersPageComponent } from "./pages/users-page/users-page.component";
 import { UserEditPageComponent } from "./pages/user-edit-page/user-edit-page.component";
 import { UserAddPageComponent } from "./pages/user-add-page/user-add-page.component";
 import { AnalyticsResultsPageComponent } from "./pages/analytics-results-page/analytics-results-page.component";
+import { AnalyticsPageComponent } from "./pages/analytics-page/analytics-page.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
@@ -17,7 +18,8 @@ const appRoutes: Routes = [
   { path: 'users', component: UsersPageComponent },
   { path: 'users/new', component: UserAddPageComponent },
   { path: 'users/:id', component: UserEditPageComponent },
-  { path: 'analyses', component: AnalyticsResultsPageComponent },
+  { path: 'analytics', component: AnalyticsResultsPageComponent },
+  { path: 'analytics/new', component: AnalyticsPageComponent },
   { path: 'social-auth', component: SocialLoginPageComponent },
   { path: '404', component: NotFoundPageComponent },
   { path: '**', redirectTo: '/404' }

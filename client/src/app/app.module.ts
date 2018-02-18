@@ -45,6 +45,9 @@ import { UserAddPageComponent } from './pages/user-add-page/user-add-page.compon
 import { UserAddComponent } from "./components/admin/user-add/user-add.component";
 import { AnalyticsResultsPageComponent } from './pages/analytics-results-page/analytics-results-page.component';
 import { AnalyticsReportsComponent } from './components/analytics/analytics-reports/analytics-reports.component';
+import { AnalyticsPageComponent } from './pages/analytics-page/analytics-page.component';
+import { AnalyticsNewComponent } from './components/analytics/analytics-new/analytics-new.component';
+import { AnalyticsReportsService } from "./services/analytics-reports.service";
 
 @NgModule({
   declarations: [
@@ -73,7 +76,9 @@ import { AnalyticsReportsComponent } from './components/analytics/analytics-repo
     UserAddComponent,
     UserAddPageComponent,
     AnalyticsResultsPageComponent,
-    AnalyticsReportsComponent
+    AnalyticsReportsComponent,
+    AnalyticsPageComponent,
+    AnalyticsNewComponent
   ],
   imports: [
     PipeModule.forRoot(),
@@ -101,6 +106,7 @@ import { AnalyticsReportsComponent } from './components/analytics/analytics-repo
     ProfileService,
     UserService,
     ImageService,
+    AnalyticsReportsService,
     NotificationService,
     LoaderService],
   bootstrap: [AppComponent]
