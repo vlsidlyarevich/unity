@@ -6,6 +6,6 @@ export const config = {
   authApi: environment.authApi,
   userApi: 'http://localhost:8080/api/v1/user',
   userSocialApi: 'http://localhost:8080/api/v1/user/${userId}/social',
-  analyticsApi: '/api/v1/user/{userId}/analytics',
+  analyticsApi: 'http://localhost:8080/api/v1/user/${userId}/analytics',
   imageApi: 'http://localhost:8080/api/v1/image'
 };

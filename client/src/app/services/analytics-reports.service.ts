@@ -4,16 +4,20 @@ import { config } from "../config/config";
 import { Observable } from "rxjs/Observable";
 import { Analytics } from "../models/analytics.model";
 import { AnalysisReport } from "../models/analysis-report.model";
+import { ProfileService } from "./profile.service";
 
 @Injectable()
 export class AnalyticsReportsService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private profileService: ProfileService) {
   }
 
   getAnalytics() {
+    const url = config.analyticsApi.replace('${userId}', this.profileService.getUserInfo().id);
+
     return this.http
-      .get<Analytics>(config.analyticsApi)
+      .get<Analytics>(url)
       .map((response) => {
         return response;
       });
