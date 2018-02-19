@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public class GitRepositoryData extends GitResult {
 
     private static final long serialVersionUID = -7789119471820389522L;

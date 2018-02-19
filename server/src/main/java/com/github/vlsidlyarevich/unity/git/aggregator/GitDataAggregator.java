@@ -12,6 +12,7 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -55,10 +56,12 @@ public class GitDataAggregator {
     }
 
     private List<GitRepositoryData> getRepositoryData(final List<GitRepository> gitRepositories) {
-        return gitRepositories
-                .stream()
-                .map(gitRepository -> mapper.map(gitRepository, GitRepositoryData.class))
-                .collect(Collectors.toList());
+        List<GitRepositoryData> list = new ArrayList<>();
+        for (GitRepository gitRepository : gitRepositories) {
+            GitRepositoryData map = mapper.map(gitRepository, GitRepositoryData.class);
+            list.add(map);
+        }
+        return list;
     }
 
     private void appendLanguagesTotal(final GitProfileData gitProfileData) {
