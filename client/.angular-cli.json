@@ -32,6 +32,9 @@
         "../node_modules/icheck/icheck.min.js",
         "./assets/js/switchery/switchery.min.js",
         "./assets/js/smartresize.js",
+        "./assets/js/shCore.js",
+        "./assets/js/fastclick.js",
+        "./assets/js/jquery-knob/jquery.knob.min.js",
         "./assets/js/custom.js"
       ],
       "environmentSource": "environments/environment.ts",

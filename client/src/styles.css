@@ -4534,4 +4534,19 @@ ul.verticle_bars li {
   border: 1px solid #e5e5e5;
 }
 
+.nav-sm .main_container .top_nav {
+  display: block;
+  margin-left: 70px;
+  z-index: 2;
+}
+
+.nav-sm .container.body .right_col {
+  padding: 10px 20px;
+  margin-left: 70px;
+  z-index: 2;
+}
+.nav-sm footer {
+  margin-left: 70px !important;
+}
+
 /** /Dropzone.js **/

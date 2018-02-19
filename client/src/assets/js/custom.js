@@ -4,33 +4,17 @@
  * and open the template in the editor.
  */
 
-var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
-  $BODY = $('body'),
-  $MENU_TOGGLE = $('#menu_toggle'),
-  $SIDEBAR_MENU = $('#sidebar-menu'),
-  $SIDEBAR_FOOTER = $('.sidebar-footer'),
-  $LEFT_COL = $('.left_col'),
-  $RIGHT_COL = $('.right_col'),
-  $NAV_MENU = $('.nav_menu'),
-  $FOOTER = $('footer');
-
 // Sidebar
 $(document).ready(function () {
-  // TODO: This is some kind of easy fix, maybe we can improve this
-  var setContentHeight = function () {
-    // reset height
-    $RIGHT_COL.css('min-height', $(window).height());
-
-    var bodyHeight = $BODY.outerHeight(),
-      footerHeight = $BODY.hasClass('footer_fixed') ? -10 : $FOOTER.height(),
-      leftColHeight = $LEFT_COL.eq(1).height() + $SIDEBAR_FOOTER.height(),
-      contentHeight = bodyHeight < leftColHeight ? leftColHeight : bodyHeight;
-
-    // normalize content
-    contentHeight -= $NAV_MENU.height() + footerHeight;
-
-    $RIGHT_COL.css('min-height', contentHeight);
-  };
+  var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
+    $BODY = $('body'),
+    $MENU_TOGGLE = $('#menu_toggle'),
+    $SIDEBAR_MENU = $('#sidebar-menu'),
+    $SIDEBAR_FOOTER = $('.sidebar-footer'),
+    $LEFT_COL = $('.left_col'),
+    $RIGHT_COL = $('.right_col'),
+    $NAV_MENU = $('.nav_menu'),
+    $FOOTER = $('footer');
 
   $SIDEBAR_MENU.find('a').on('click', function (ev) {
     var $li = $(this).parent();
@@ -54,6 +38,22 @@ $(document).ready(function () {
       });
     }
   });
+
+  // TODO: This is some kind of easy fix, maybe we can improve this
+  var setContentHeight = function () {
+    // reset height
+    $RIGHT_COL.css('min-height', $(window).height());
+
+    var bodyHeight = $BODY.outerHeight(),
+      footerHeight = $BODY.hasClass('footer_fixed') ? -10 : $FOOTER.height(),
+      leftColHeight = $LEFT_COL.eq(1).height() + $SIDEBAR_FOOTER.height(),
+      contentHeight = bodyHeight < leftColHeight ? leftColHeight : bodyHeight;
+
+    // normalize content
+    contentHeight -= $NAV_MENU.height() + footerHeight;
+
+    $RIGHT_COL.css('min-height', contentHeight);
+  };
 
   // toggle small or large menu
   $MENU_TOGGLE.on('click', function () {
@@ -98,11 +98,8 @@ $(document).ready(function () {
       mouseWheel: { preventDefault: true }
     });
   }
-});
-// /Sidebar
 
-// Panel toolbox
-$(document).ready(function () {
+  // Panel toolbox
   $('.collapse-link').on('click', function () {
     var $BOX_PANEL = $(this).closest('.x_panel'),
       $ICON = $(this).find('i'),
@@ -126,27 +123,18 @@ $(document).ready(function () {
 
     $BOX_PANEL.remove();
   });
-});
-// /Panel toolbox
 
-// Tooltip
-$(document).ready(function () {
+  // Tooltip
   $('[data-toggle="tooltip"]').tooltip({
     container: 'body'
   });
-});
-// /Tooltip
 
-// Progressbar
-$(document).ready(function () {
+  // Progressbar
   if ($(".progress .progress-bar")[0]) {
     $('.progress .progress-bar').progressbar();
   }
-});
-// /Progressbar
 
-// Switchery
-$(document).ready(function () {
+  // Switchery
   if ($(".js-switch")[0]) {
     var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
     elems.forEach(function (html) {
@@ -155,11 +143,8 @@ $(document).ready(function () {
       });
     });
   }
-});
-// /Switchery
 
-// iCheck
-$(document).ready(function () {
+  // iCheck
   if ($("input.flat")[0]) {
     $(document).ready(function () {
       $('input.flat').iCheck({
@@ -168,8 +153,19 @@ $(document).ready(function () {
       });
     });
   }
+
+  // Accordion
+  $(".expand").on("click", function () {
+    $(this).next().slideToggle(200);
+    $expand = $(this).find(">:first-child");
+
+    if ($expand.text() == "+") {
+      $expand.text("-");
+    } else {
+      $expand.text("+");
+    }
+  });
 });
-// /iCheck
 
 // Table
 $('table input').on('ifChecked', function () {
@@ -223,20 +219,6 @@ function countChecked() {
     $('.bulk-actions').hide();
   }
 }
-
-// Accordion
-$(document).ready(function () {
-  $(".expand").on("click", function () {
-    $(this).next().slideToggle(200);
-    $expand = $(this).find(">:first-child");
-
-    if ($expand.text() == "+") {
-      $expand.text("-");
-    } else {
-      $expand.text("+");
-    }
-  });
-});
 
 // NProgress
 if (typeof NProgress != 'undefined') {
