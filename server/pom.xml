@@ -65,13 +65,6 @@
                 <skip.integration.tests>false</skip.integration.tests>
                 <skip.unit.tests>false</skip.unit.tests>
             </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-devtools</artifactId>
-                    <optional>true</optional>
-                </dependency>
-            </dependencies>
         </profile>
 
         <profile>
@@ -85,13 +78,6 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-devtools</artifactId>
-                    <optional>true</optional>
-                </dependency>
-            </dependencies>
         </profile>
 
         <profile>
@@ -401,7 +387,9 @@
                     </includes>
                     <jdkVersion>1.8</jdkVersion>
                     <processTypes>
-                        <web>java $JAVA_OPTS -Dspring.profiles.active="heroku" -Dserver.port=$PORT -jar ${full-artifact-name}</web>
+                        <web>java $JAVA_OPTS -Dspring.profiles.active="heroku" -Dserver.port=$PORT -jar
+                            ${full-artifact-name}
+                        </web>
                     </processTypes>
                 </configuration>
             </plugin>
