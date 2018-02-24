@@ -34,8 +34,7 @@
         "./assets/js/smartresize.js",
         "./assets/js/shCore.js",
         "./assets/js/fastclick.js",
-        "./assets/js/jquery-knob/jquery.knob.min.js",
-        "./assets/js/custom.js"
+        "./assets/js/jquery-knob/jquery.knob.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
