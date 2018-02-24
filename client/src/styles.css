@@ -61,8 +61,6 @@ html, body {
   border-radius: 50%;
 }
 
-
-
 .nav-sm .nav.side-menu li a {
   text-align: center !important;
   font-weight: 400;
@@ -3572,7 +3570,6 @@ ul.project_files li a i {
   font-size: 17px;
   padding: 3px;
   background: rgba(0, 0, 0, 0.35);
-  margin: 43px 0 0 0;
 }
 
 .mask.no-caption .tools {
@@ -4545,6 +4542,7 @@ ul.verticle_bars li {
   margin-left: 70px;
   z-index: 2;
 }
+
 .nav-sm footer {
   margin-left: 70px !important;
 }

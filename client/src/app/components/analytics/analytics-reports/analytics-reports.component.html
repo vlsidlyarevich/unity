@@ -5,7 +5,7 @@
     </div>
     <div class="form-group pull-right top_search">
       <div class="input-group">
-        <a [routerLink]="['/analytics/new']" class="btn btn-success">New analysis</a>
+        <a (click)="showNewAnalysisModal()" class="btn btn-success">New analysis</a>
       </div>
     </div>
   </div>
@@ -31,18 +31,39 @@
                       <div class="col-md-55">
                         <div class="thumbnail">
                           <div class="image view view-first">
-                            <img style="width: 100%; display: block;" src="images/media.jpg" alt="image"/>
+                            <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.GITHUB]">
+                              <img style="width: 100%; display: block;" [src]="report.result.avatarUrl" alt="image"/>
+                            </div>
+                            <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.TWITTER]">
+                              <img style="width: 100%; display: block;" [src]="report.result.avatarUrl" alt="image"/>
+                            </div>
+                            <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.LINKEDIN]">
+                              <img style="width: 100%; display: block;" [src]="report.result.avatarUrl" alt="image"/>
+                            </div>
+
                             <div class="mask">
-                              <p>Your Text</p>
+                              <p>Analyzed at: {{report.analyzedAt | date:"MM/dd/yyyy 'at' h:mma"}}
+                                <br/>
+                                Analysis time: {{report.analysisTime}} sec.</p>
                               <div class="tools tools-bottom">
-                                <a href="#"><i class="fa fa-link"></i></a>
-                                <a href="#"><i class="fa fa-pencil"></i></a>
-                                <a href="#"><i class="fa fa-times"></i></a>
+                                <a [routerLink]="['/analytics', report.id]"><i class="fa fa-bar-chart"></i></a>
+                                <a (click)="showDeleteReportDialog(report.id)" href="javascript:void(0)">
+                                  <i class="fa fa-times"></i>
+                                </a>
                               </div>
                             </div>
                           </div>
+                          //FIXME add info about analyzed resource
                           <div class="caption">
-                            <p>Snow and Ice Incoming for the South</p>
+                            <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.GITHUB]">
+                              <p>{{report.result.name}}</p>
+                            </div>
+                            <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.TWITTER]">
+                              <p>Snow and Ice Incoming for the South</p>
+                            </div>
+                            <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.LINKEDIN]">
+                              <p>Snow and Ice Incoming for the South</p>
+                            </div>
                           </div>
                         </div>
                       </div>
