@@ -1,0 +1,27 @@
+<div [@dialog] *ngIf="visible" class="modal-dialog modal-lg dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" (click)="close()">×</span>
+      </button>
+      <h4 class="modal-title" id="myModalLabel">Are you sure to delete analysis report?</h4>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.GITHUB]">
+        <h4>Analyzed login: {{report.result.login}}</h4>
+        <p>Analyzed source: {{report.resource}}</p>
+        <p>Analyzed person name: {{report.result.name}}</p>
+      </div>
+      <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.TWITTER]">
+        <p>Snow and Ice Incoming for the South</p>
+      </div>
+      <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.LINKEDIN]">
+        <p>Snow and Ice Incoming for the South</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a class="btn btn-primary btn-danger" (click)="delete()">Delete</a>
+      <a class="btn btn-default" (click)="close()" data-dismiss="modal">Close</a>
+    </div>
+  </div>
+</div>
+<div *ngIf="visible" class="overlay" (click)="close()"></div>

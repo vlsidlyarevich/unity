@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { User } from "../../../models/user.model";
 import { UserService } from "../../../services/user.service";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -11,7 +11,7 @@ import { ProfileService } from "../../../services/profile.service";
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
 
   public users: User[];
 
@@ -30,6 +30,9 @@ export class UsersComponent {
               private profileService: ProfileService,
               private notificationService: NotificationService,
               private loaderService: LoaderService) {
+  }
+
+  ngOnInit(): void {
     this.initUsers();
   }
 

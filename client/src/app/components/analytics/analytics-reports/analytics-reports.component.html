@@ -47,7 +47,7 @@
                                 Analysis time: {{report.analysisTime}} sec.</p>
                               <div class="tools tools-bottom">
                                 <a [routerLink]="['/analytics', report.id]"><i class="fa fa-bar-chart"></i></a>
-                                <a (click)="showDeleteReportDialog(report.id)" href="javascript:void(0)">
+                                <a (click)="showDeleteReportDialog(report)" href="javascript:void(0)">
                                   <i class="fa fa-times"></i>
                                 </a>
                               </div>
@@ -83,3 +83,5 @@
     </div>
   </div>
 </div>
+<app-report-delete-dialog [report]="reportToDelete" [(visible)]="showDeleteDialog"
+                          (deleteEvent)="deleteReport($event)"></app-report-delete-dialog>

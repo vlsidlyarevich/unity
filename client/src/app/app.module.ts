@@ -48,6 +48,7 @@ import { AnalyticsReportsComponent } from './components/analytics/analytics-repo
 import { AnalyticsPageComponent } from './pages/analytics-page/analytics-page.component';
 import { AnalyticsNewComponent } from './components/analytics/analytics-new/analytics-new.component';
 import { AnalyticsReportsService } from "./services/analytics-reports.service";
+import { ReportDeleteDialogComponent } from './dialogs/report-delete-dialog/report-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { AnalyticsReportsService } from "./services/analytics-reports.service";
     AnalyticsResultsPageComponent,
     AnalyticsReportsComponent,
     AnalyticsPageComponent,
-    AnalyticsNewComponent
+    AnalyticsNewComponent,
+    ReportDeleteDialogComponent
   ],
   imports: [
     PipeModule.forRoot(),

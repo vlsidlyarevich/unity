@@ -24,8 +24,23 @@ export class AnalyticsReportsService {
   }
 
   getAnalyticsReportById(id: string) {
+    const url = config.analyticsApi.replace('${userId}', this.profileService.getUserInfo().id);
+
     return this.http
-      .get<AnalysisReport>(config.analyticsApi + '/' + id)
+      .get<AnalysisReport>(url + '/' + id)
+      .map((response) => {
+          return response;
+        },
+        err => {
+          this.handleError(err);
+        });
+  }
+
+  deleteAnalyticsReport(id: string) {
+    const url = config.analyticsApi.replace('${userId}', this.profileService.getUserInfo().id);
+
+    return this.http
+      .delete(url + '/' + id, { responseType: 'text' })
       .map((response) => {
           return response;
         },
