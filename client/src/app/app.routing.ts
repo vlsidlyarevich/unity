@@ -9,7 +9,9 @@ import { UsersPageComponent } from "./pages/users-page/users-page.component";
 import { UserEditPageComponent } from "./pages/user-edit-page/user-edit-page.component";
 import { UserAddPageComponent } from "./pages/user-add-page/user-add-page.component";
 import { AnalyticsResultsPageComponent } from "./pages/analytics-results-page/analytics-results-page.component";
-import { AnalyticsPageComponent } from "./pages/analytics-page/analytics-page.component";
+import { AnalyticsNewGithubPageComponent } from "./pages/analytics-new-github-page/analytics-new-github-page.component";
+import { AnalyticsNewLinkedinPageComponent } from "./pages/analytics-new-linkedin-page/analytics-new-linkedin-page.component";
+import { AnalyticsNewTwitterPageComponent } from "./pages/analytics-new-twitter-page/analytics-new-twitter-page.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
@@ -19,7 +21,9 @@ const appRoutes: Routes = [
   { path: 'users/new', component: UserAddPageComponent },
   { path: 'users/:id', component: UserEditPageComponent },
   { path: 'analytics', component: AnalyticsResultsPageComponent },
-  { path: 'analytics/new', component: AnalyticsPageComponent },
+  { path: 'analytics/new/github', component: AnalyticsNewGithubPageComponent },
+  { path: 'analytics/new/twitter', component: AnalyticsNewTwitterPageComponent },
+  { path: 'analytics/new/linkedin', component: AnalyticsNewLinkedinPageComponent },
   { path: 'social-auth', component: SocialLoginPageComponent },
   { path: '404', component: NotFoundPageComponent },
   { path: '**', redirectTo: '/404' }

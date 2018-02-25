@@ -45,11 +45,15 @@ import { UserAddPageComponent } from './pages/user-add-page/user-add-page.compon
 import { UserAddComponent } from "./components/admin/user-add/user-add.component";
 import { AnalyticsResultsPageComponent } from './pages/analytics-results-page/analytics-results-page.component';
 import { AnalyticsReportsComponent } from './components/analytics/analytics-reports/analytics-reports.component';
-import { AnalyticsPageComponent } from './pages/analytics-page/analytics-page.component';
-import { AnalyticsNewComponent } from './components/analytics/analytics-new/analytics-new.component';
 import { AnalyticsReportsService } from "./services/analytics-reports.service";
 import { ReportDeleteDialogComponent } from './dialogs/report-delete-dialog/report-delete-dialog.component';
-import { AnalysisNewModalComponent } from './modals/analysis-new-modal/analysis-new-modal.component';
+import { AnalyticsNewModalComponent } from './modals/analysis-new-modal/analytics-new-modal.component';
+import { AnalyticsNewLinkedinPageComponent } from './pages/analytics-new-linkedin-page/analytics-new-linkedin-page.component';
+import { AnalyticsNewTwitterPageComponent } from './pages/analytics-new-twitter-page/analytics-new-twitter-page.component';
+import { AnalyticsNewGithubPageComponent } from './pages/analytics-new-github-page/analytics-new-github-page.component';
+import { AnalyticsNewGithubComponent } from './components/analytics/analytics-new-github/analytics-new-github.component';
+import { AnalyticsNewLinkedinComponent } from './components/analytics/analytics-new-linkedin/analytics-new-linkedin.component';
+import { AnalyticsNewTwitterComponent } from './components/analytics/analytics-new-twitter/analytics-new-twitter.component';
 
 @NgModule({
   declarations: [
@@ -79,10 +83,14 @@ import { AnalysisNewModalComponent } from './modals/analysis-new-modal/analysis-
     UserAddPageComponent,
     AnalyticsResultsPageComponent,
     AnalyticsReportsComponent,
-    AnalyticsPageComponent,
-    AnalyticsNewComponent,
     ReportDeleteDialogComponent,
-    AnalysisNewModalComponent
+    AnalyticsNewModalComponent,
+    AnalyticsNewLinkedinPageComponent,
+    AnalyticsNewTwitterPageComponent,
+    AnalyticsNewGithubPageComponent,
+    AnalyticsNewGithubComponent,
+    AnalyticsNewLinkedinComponent,
+    AnalyticsNewTwitterComponent
   ],
   imports: [
     PipeModule.forRoot(),

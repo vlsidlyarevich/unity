@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnalyticsNewComponent } from './analytics-new.component';
+import { AnalyticsNewGithubComponent } from './analytics-new-github.component';
 
-describe('AnalyticsNewComponent', () => {
-  let component: AnalyticsNewComponent;
-  let fixture: ComponentFixture<AnalyticsNewComponent>;
+describe('AnalyticsNewGithubComponent', () => {
+  let component: AnalyticsNewGithubComponent;
+  let fixture: ComponentFixture<AnalyticsNewGithubComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnalyticsNewComponent ]
+      declarations: [ AnalyticsNewGithubComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AnalyticsNewComponent);
+    fixture = TestBed.createComponent(AnalyticsNewGithubComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
