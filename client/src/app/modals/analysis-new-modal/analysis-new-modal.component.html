@@ -1,0 +1,34 @@
+<div [@dialog] *ngIf="visible" class="modal-dialog modal-lg dialog">
+  <div class="">
+    <div class="source responsive">
+      <div class="source__github content">
+        <div class="source__image card-front">
+          <img src="assets/img/GitHub-logo.png" alt="" title=""/>
+          <div class="source__description card-back">Vlad Vlad Vlad Vlad Vlad</div>
+        </div>
+        <div class="source__link">
+          <a href="/link">GO</a>
+        </div>
+      </div>
+      <div class="source__twitter content">
+        <div class="source__image card-front">
+          <img src="assets/img/Logo-linkedin.png" alt="" title=""/>
+          <div class="source__description card-back">Vlad Vlad Vlad Vlad Vlad</div>
+        </div>
+        <div class="source__link">
+          <a href="/link">GO</a>
+        </div>
+      </div>
+      <div class="source__linkedin content">
+        <div class="source__image card-front">
+          <img src="assets/img/Twitter-Logo.png" alt="" title=""/>
+          <div class="source__description card-back">Vlad Vlad Vlad Vlad Vlad</div>
+        </div>
+        <div class="source__link">
+          <a href="/link">GO</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="visible" class="overlay" (click)="close()"></div>

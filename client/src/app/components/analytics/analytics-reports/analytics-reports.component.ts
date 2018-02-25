@@ -13,11 +13,11 @@ import { HttpErrorResponse } from "@angular/common/http";
   styleUrls: ['./analytics-reports.component.css']
 })
 export class AnalyticsReportsComponent implements OnInit {
-
   @Output() openDeleteDialog = new EventEmitter<boolean>();
   @Output() closeDeleteDialog = new EventEmitter<boolean>();
 
   public showDeleteDialog: boolean = false;
+  public showModal: boolean = false;
 
   AnalyzedResource: typeof AnalyzedResource = AnalyzedResource;
   public analytics: Analytics;
@@ -38,24 +38,26 @@ export class AnalyticsReportsComponent implements OnInit {
     });
   }
 
-  showNewAnalysisModal() {
-    //TODO
+  showNewAnalysisModal(): void {
+    this.showModal = true;
   }
 
-  showDeleteReportDialog(report: AnalysisReport) {
+  showDeleteReportDialog(report: AnalysisReport): void {
     this.reportToDelete = report;
     this.showDeleteDialog = true;
-    this.openDeleteDialog.emit();
   }
 
   deleteReport(event) {
+    this.loaderService.show();
     this.analyticsReportsService.deleteAnalyticsReport(this.reportToDelete.id).subscribe(
       response => {
         if (response) {
+          this.loaderService.hide();
           this.notificationService.success('Report ' + response + ' is successfully deleted');
           this.init();
         }
       }, (error: HttpErrorResponse) => {
+        this.loaderService.hide();
         if (error.error instanceof Error) {
           console.log('Client-side error occured.');
         } else {
