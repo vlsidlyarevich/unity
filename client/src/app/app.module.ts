@@ -54,6 +54,9 @@ import { AnalyticsNewGithubPageComponent } from './pages/analytics-new-github-pa
 import { AnalyticsNewGithubComponent } from './components/analytics/analytics-new-github/analytics-new-github.component';
 import { AnalyticsNewLinkedinComponent } from './components/analytics/analytics-new-linkedin/analytics-new-linkedin.component';
 import { AnalyticsNewTwitterComponent } from './components/analytics/analytics-new-twitter/analytics-new-twitter.component';
+import { GitAnalyticsService } from "./services/git-analytics.service";
+import { TwitterAnalysisService } from "./services/twitter-analytics.service";
+import { LinkedinAnalysisService } from "./services/linkedin-analytics.service";
 
 @NgModule({
   declarations: [
@@ -119,6 +122,9 @@ import { AnalyticsNewTwitterComponent } from './components/analytics/analytics-n
     UserService,
     ImageService,
     AnalyticsReportsService,
+    GitAnalyticsService,
+    TwitterAnalysisService,
+    LinkedinAnalysisService,
     NotificationService,
     LoaderService],
   bootstrap: [AppComponent]

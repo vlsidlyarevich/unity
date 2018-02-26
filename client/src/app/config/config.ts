@@ -1,4 +1,4 @@
-import {environment} from "../../environments/environment.dev-local";
+import { environment } from "../../environments/environment.dev-local";
 
 export const config = {
   domain: environment.domain,
@@ -7,5 +7,6 @@ export const config = {
   userApi: 'http://localhost:8080/api/v1/user',
   userSocialApi: 'http://localhost:8080/api/v1/user/${userId}/social',
   analyticsApi: 'http://localhost:8080/api/v1/user/${userId}/analytics',
-  imageApi: 'http://localhost:8080/api/v1/image'
+  imageApi: 'http://localhost:8080/api/v1/image',
+  gitAnalysisApi: 'http://localhost:8080/api/v1/git/profile'
 };
