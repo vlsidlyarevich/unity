@@ -57,6 +57,7 @@ import { AnalyticsNewTwitterComponent } from './components/analytics/analytics-n
 import { GitAnalyticsService } from "./services/git-analytics.service";
 import { TwitterAnalysisService } from "./services/twitter-analytics.service";
 import { LinkedinAnalysisService } from "./services/linkedin-analytics.service";
+import { AnalyticsReportComponent } from './components/analytics/analytics-report/analytics-report.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { LinkedinAnalysisService } from "./services/linkedin-analytics.service";
     AnalyticsNewGithubPageComponent,
     AnalyticsNewGithubComponent,
     AnalyticsNewLinkedinComponent,
-    AnalyticsNewTwitterComponent
+    AnalyticsNewTwitterComponent,
+    AnalyticsReportComponent
   ],
   imports: [
     PipeModule.forRoot(),
