@@ -28,7 +28,7 @@ export class AnalyticsNewGithubComponent implements OnInit {
     this.gitAnalysisService.analyze(this.login)
       .subscribe((report: AnalysisReport) => {
         this.loaderService.hide();
-        this.notificationsService.success('Analyzed with ' + report.analysisTime + ' seconds.')
+        this.notificationsService.success('Analyzed with ' + report.analysisTime + ' seconds.');
         this.router.navigate(['analytics'], report.id);
       }, error => {
         this.loaderService.hide();
