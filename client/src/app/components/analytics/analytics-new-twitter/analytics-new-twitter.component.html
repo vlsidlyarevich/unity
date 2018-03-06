@@ -1,10 +1,10 @@
 <div class="container-fluid bg-faded" style="height: 100%">
   <div class="jumbotron">
-    <img class="img-responsive" style="height: 20%"
+    <img class="img-responsive" style="height: 20%; max-width: 80%"
          src="assets/img/twitter-transparent.png">
     <h1>Twitter Analysis tool</h1>
-    <p class="lead">Analyze person's github profile and you will know about his favourite
-      languages and technologies he prefers.</p>
+    <p class="lead">Analyze person's twitter profile and you will know what he prefers to read. Maybe he reads a lot of
+      IT-related profiles?</p>
     <div class="input-group col-sm-4 offset-sm-4">
       <input type="text" class="form-control" placeholder="Analyze for..." [(ngModel)]="login">
       <span class="input-group-btn">
@@ -19,20 +19,14 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-4">
-      <h2>Repositories Overview</h2>
-      <p>Overview user repositories, look for most popular, most starred or most huge repositories. There is also a
-        possibility to navigate to repo's Github page. </p>
+    <div class="col-lg-6">
+      <h2>Subscriptions overview</h2>
+      <p>Overview candidate subscriptions to popular IT-related resources. </p>
     </div>
-    <div class="col-lg-4">
-      <h2>Technologies usage</h2>
-      <p>Explore technologies and languages that user use. Have a look at their percentage diagrams, to understand
-        user's experience in different fields. Also look at technologies usage over time. </p>
-    </div>
-    <div class="col-lg-4">
-      <h2>Commits and collaborations</h2>
-      <p>Browse user's activity at Github, his commits and collaborations. Maybe he is working on Well-known
-        open source projects? Or maybe he has his own? </p>
+    <div class="col-lg-6">
+      <h2>Interests analysis</h2>
+      <p>Explore technologies and languages that candidate is interested in. Explore graphics and charts to understand what
+        are the fields which person wants to learn mostly </p>
     </div>
   </div>
 </div>

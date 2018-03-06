@@ -12,7 +12,7 @@ import { AnalyticsResultsPageComponent } from "./pages/analytics-results-page/an
 import { AnalyticsNewGithubPageComponent } from "./pages/analytics-new-github-page/analytics-new-github-page.component";
 import { AnalyticsNewLinkedinPageComponent } from "./pages/analytics-new-linkedin-page/analytics-new-linkedin-page.component";
 import { AnalyticsNewTwitterPageComponent } from "./pages/analytics-new-twitter-page/analytics-new-twitter-page.component";
-import { AnalyticsReportComponent } from "./components/analytics/analytics-report/analytics-report.component";
+import { AnalyticsReportPageComponent } from "./pages/analytics-report-page/analytics-report-page.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
@@ -22,7 +22,7 @@ const appRoutes: Routes = [
   { path: 'users/new', component: UserAddPageComponent },
   { path: 'users/:id', component: UserEditPageComponent },
   { path: 'analytics', component: AnalyticsResultsPageComponent },
-  { path: 'analytics/{id}', component: AnalyticsReportComponent },
+  { path: 'analytics/{id}', component: AnalyticsReportPageComponent },
   { path: 'analytics/new/github', component: AnalyticsNewGithubPageComponent },
   { path: 'analytics/new/twitter', component: AnalyticsNewTwitterPageComponent },
   { path: 'analytics/new/linkedin', component: AnalyticsNewLinkedinPageComponent },

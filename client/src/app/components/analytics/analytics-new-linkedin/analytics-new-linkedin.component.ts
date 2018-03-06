@@ -3,7 +3,6 @@ import { LoaderService } from "../../../services/loader.service";
 import { AnalysisReport } from "../../../models/analysis-report.model";
 import { Router } from "@angular/router";
 import { NotificationService } from "../../../services/notification.service";
-import { GitAnalyticsService } from "../../../services/git-analytics.service";
 import { LinkedinAnalysisService } from "../../../services/linkedin-analytics.service";
 
 @Component({
