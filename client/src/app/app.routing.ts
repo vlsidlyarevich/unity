@@ -22,7 +22,7 @@ const appRoutes: Routes = [
   { path: 'users/new', component: UserAddPageComponent },
   { path: 'users/:id', component: UserEditPageComponent },
   { path: 'analytics', component: AnalyticsResultsPageComponent },
-  { path: 'analytics/{id}', component: AnalyticsReportPageComponent },
+  { path: 'analytics/report/:id', component: AnalyticsReportPageComponent },
   { path: 'analytics/new/github', component: AnalyticsNewGithubPageComponent },
   { path: 'analytics/new/twitter', component: AnalyticsNewTwitterPageComponent },
   { path: 'analytics/new/linkedin', component: AnalyticsNewLinkedinPageComponent },

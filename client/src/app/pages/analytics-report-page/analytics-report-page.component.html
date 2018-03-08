@@ -1,1 +1,14 @@
-
+<app-topnav-bar></app-topnav-bar>
+<app-side-bar></app-side-bar>
+<div class="right_col" role="main">
+  <div *ngIf="report?.resource === AnalyzedResource[AnalyzedResource.GITHUB]">
+    <app-analytics-report-github></app-analytics-report-github>
+  </div>
+  <div *ngIf="report?.resource === AnalyzedResource[AnalyzedResource.TWITTER]">
+    <app-analytics-report-twitter></app-analytics-report-twitter>
+  </div>
+  <div *ngIf="report?.resource === AnalyzedResource[AnalyzedResource.LINKEDIN]">
+    <app-analytics-report-linkedin></app-analytics-report-linkedin>
+  </div>
+</div>
+<app-footer></app-footer>

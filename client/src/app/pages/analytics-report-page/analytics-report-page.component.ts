@@ -4,6 +4,7 @@ import { AnalyticsReportsService } from "../../services/analytics-reports.servic
 import { ActivatedRoute, Router } from "@angular/router";
 import { LoaderService } from "../../services/loader.service";
 import { NotificationService } from "../../services/notification.service";
+import { AnalyzedResource } from "../../models/analyzed-resource.model";
 
 @Component({
   selector: 'app-analytics-report-page',
@@ -12,7 +13,9 @@ import { NotificationService } from "../../services/notification.service";
 })
 export class AnalyticsReportPageComponent implements OnInit {
 
-  private report: AnalysisReport;
+  AnalyzedResource: typeof AnalyzedResource = AnalyzedResource;
+
+  public report: AnalysisReport;
 
   constructor(private analyticsReportsService: AnalyticsReportsService,
               private route: ActivatedRoute,

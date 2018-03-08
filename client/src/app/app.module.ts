@@ -57,7 +57,6 @@ import { AnalyticsNewTwitterComponent } from './components/analytics/analytics-n
 import { GitAnalyticsService } from "./services/git-analytics.service";
 import { TwitterAnalysisService } from "./services/twitter-analytics.service";
 import { LinkedinAnalysisService } from "./services/linkedin-analytics.service";
-import { AnalyticsReportComponent } from './components/analytics/analytics-report/analytics-report.component';
 import { AnalyticsReportGithubComponent } from './components/analytics/analytics-report-github/analytics-report-github.component';
 import { AnalyticsReportLinkedinComponent } from './components/analytics/analytics-report-linkedin/analytics-report-linkedin.component';
 import { AnalyticsReportTwitterComponent } from './components/analytics/analytics-report-twitter/analytics-report-twitter.component';
@@ -99,7 +98,6 @@ import { AnalyticsReportPageComponent } from './pages/analytics-report-page/anal
     AnalyticsNewGithubComponent,
     AnalyticsNewLinkedinComponent,
     AnalyticsNewTwitterComponent,
-    AnalyticsReportComponent,
     AnalyticsReportGithubComponent,
     AnalyticsReportLinkedinComponent,
     AnalyticsReportTwitterComponent,
