@@ -27,7 +27,9 @@
   <tr
     *ngFor="let repository of repositories | orderBy: sortKey : reverse | paginate: { itemsPerPage: 12, currentPage: p };">
     <th scope="row">{{repository.stargazersCount}}</th>
-    <td><a class="nav-link" href="{{repository.htmlUrl}}">{{repository.name}}</a></td>
+    <td><a class="nav-link" href="{{repository.htmlUrl}}">{{repository.name}}
+      <span *ngIf="repository.isFork" class="glyphicon fa fa-2x fa-code-fork"></span>
+    </a></td>
     <td>{{repository.description}}</td>
     <td>{{repository.size}}</td>
     <td>{{repository.watchersCount}}</td>
