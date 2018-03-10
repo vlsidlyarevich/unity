@@ -64,6 +64,7 @@ import { AnalyticsReportPageComponent } from './pages/analytics-report-page/anal
 import { GithubRepositoriesComponent } from "./components/analytics/analytics-report-github/components/github-repositories/github-repositories.component";
 import { GithubProfileComponent } from './components/analytics/analytics-report-github/components/github-profile/github-profile.component';
 import { ProgressbarModule } from 'ngx-bootstrap';
+import { GithubTechnologiesComponent } from './components/analytics/analytics-report-github/components/github-technologies/github-technologies.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import { ProgressbarModule } from 'ngx-bootstrap';
     AnalyticsReportTwitterComponent,
     AnalyticsReportPageComponent,
     GithubRepositoriesComponent,
-    GithubProfileComponent
+    GithubProfileComponent,
+    GithubTechnologiesComponent
   ],
   imports: [
     PipeModule.forRoot(),
