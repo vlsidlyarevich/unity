@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { AuthenticationService } from './authentication.service';
 import { User } from '../models/user.model';
-import { LocalStorageService } from 'ng2-webstorage';
+import { LocalStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs/Observable';
 import { UserSocial } from '../models/user-social.model';
 import { config } from '../config/config';

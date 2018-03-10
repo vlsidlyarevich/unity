@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
-import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
+import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { User } from '../models/user.model';
 import { UserSocial } from '../models/user-social.model';
 import { config } from '../config/config';

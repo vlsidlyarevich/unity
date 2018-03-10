@@ -29,7 +29,7 @@ export class AnalyticsNewLinkedinComponent implements OnInit {
       .subscribe((report: AnalysisReport) => {
         this.loaderService.hide();
         this.notificationsService.success('Analyzed with ' + report.analysisTime + ' seconds.');
-        this.router.navigate(['analytics'], report.id);
+        this.router.navigate(['analytics/report', report.id]);
       }, error => {
         this.loaderService.hide();
         this.notificationsService.error(error.error.message);

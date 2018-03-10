@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
+import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 
 @Injectable()
 export class TokenService {

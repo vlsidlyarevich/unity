@@ -15,7 +15,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SocialLoginPageComponent } from './pages/social-login-page/social-login-page.component';
-import { Ng2Webstorage } from 'ng2-webstorage';
+import { Ng2Webstorage } from 'ngx-webstorage';
 import { CookieService } from 'ngx-cookie-service';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
