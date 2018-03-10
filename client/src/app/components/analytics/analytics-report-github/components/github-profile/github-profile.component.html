@@ -45,6 +45,41 @@
               </div>
             </ul>
           </div>
+
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="tile-stats">
+                <div class="icon"><i class="fa fa-users"></i>
+                </div>
+                <div class="count">{{analysisResult.followers}}</div>
+
+                <h3>Followers</h3>
+                <p>Number of followers.</p>
+              </div>
+            </div>
+
+            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="tile-stats">
+                <div class="icon"><i class="fa fa-eye"></i>
+                </div>
+                <div class="count">{{analysisResult.following}}</div>
+
+                <h3>Following</h3>
+                <p>Number of followings.</p>
+              </div>
+            </div>
+
+            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="tile-stats">
+                <div class="icon"><i class="fa fa-calendar-o"></i>
+                </div>
+                <div class="count">{{analysisResult.createdAt | date:'dd/MM/yyyy'}}</div>
+
+                <h3>Creation date</h3>
+                <p>Profile creation date.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
