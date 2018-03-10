@@ -1,3 +1,48 @@
-<p>
-  analytics-report-github works!
-</p>
+<div class="">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Github profile information</h3>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_content">
+          <div class="" role="tabpanel" data-example-id="togglable-tabs">
+            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#profile_tab" id="profile-tab" role="tab"
+                                                        data-toggle="tab"
+                                                        aria-expanded="true">Profile</a>
+              </li>
+              <li role="presentation" class=""><a href="#repos_tab" role="tab" id="repositories-tab"
+                                                  data-toggle="tab"
+                                                  aria-expanded="false">Repositories</a>
+              </li>
+              <li role="presentation" class=""><a href="#tech_tab" role="tab" id="tech-tab" data-toggle="tab"
+                                                  aria-expanded="false">Languages & Technologies</a>
+              </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div role="tabpanel" class="tab-pane fade active in" id="profile_tab" aria-labelledby="profile-tab">
+                <app-github-profile [analysisResult]="report.result"></app-github-profile>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="repos_tab" aria-labelledby="repositories-tab">
+                <app-github-repositories [repositories]="report.result.repos"></app-github-repositories>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="tech_tab" aria-labelledby="tech-tab">
+                <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
+                  Exercitation
+                  +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
+                  craft beer twee. Qui photo
+                  booth letterpress, commodo enim craft beer mlkshk </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

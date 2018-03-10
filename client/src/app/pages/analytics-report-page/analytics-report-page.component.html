@@ -2,13 +2,13 @@
 <app-side-bar></app-side-bar>
 <div class="right_col" role="main">
   <div *ngIf="report?.resource === AnalyzedResource[AnalyzedResource.GITHUB]">
-    <app-analytics-report-github></app-analytics-report-github>
+    <app-analytics-report-github [report]="report"></app-analytics-report-github>
   </div>
   <div *ngIf="report?.resource === AnalyzedResource[AnalyzedResource.TWITTER]">
-    <app-analytics-report-twitter></app-analytics-report-twitter>
+    <app-analytics-report-twitter [report]="report"></app-analytics-report-twitter>
   </div>
   <div *ngIf="report?.resource === AnalyzedResource[AnalyzedResource.LINKEDIN]">
-    <app-analytics-report-linkedin></app-analytics-report-linkedin>
+    <app-analytics-report-linkedin [report]="report"></app-analytics-report-linkedin>
   </div>
 </div>
 <app-footer></app-footer>

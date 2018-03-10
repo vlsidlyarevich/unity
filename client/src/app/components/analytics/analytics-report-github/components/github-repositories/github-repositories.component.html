@@ -1,0 +1,40 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th style="width: 10%" (click)="sort('stargazersCount')">
+      Stars<span class="glyphicon sort-icon" *ngIf="sortKey =='stargazersCount'"
+                 [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+    </th>
+    <th style="width: 20%" (click)="sort('name')">Repository name
+      <span class="glyphicon sort-icon" *ngIf="sortKey =='name'"
+            [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+    </th>
+    <th style="width: 40%">Description</th>
+    <th style="width: 10%" (click)="sort('size')">Size
+      <span class="glyphicon sort-icon" *ngIf="sortKey =='size'"
+            [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+    <th style="width: 10%" (click)="sort('watchersCount')">Watchers
+      <span class="glyphicon sort-icon" *ngIf="sortKey =='watchersCount'"
+            [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+    </th>
+    <th style="width: 10%" (click)="sort('createdAt')">Creation date
+      <span class="glyphicon sort-icon" *ngIf="sortKey =='createdAt'"
+            [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr
+    *ngFor="let repository of repositories | orderBy: sortKey : reverse | paginate: { itemsPerPage: 12, currentPage: p };">
+    <th scope="row">{{repository.stargazersCount}}</th>
+    <td><a class="nav-link" href="{{repository.htmlUrl}}">{{repository.name}}</a></td>
+    <td>{{repository.description}}</td>
+    <td>{{repository.size}}</td>
+    <td>{{repository.watchersCount}}</td>
+    <td>{{repository.createdAt | date:'dd/MM/yyyy'}}</td>
+  </tr>
+  </tbody>
+</table>
+<div class="text-center">
+  <pagination-controls class="repos-pagination" (pageChange)="p = $event"></pagination-controls>
+</div>

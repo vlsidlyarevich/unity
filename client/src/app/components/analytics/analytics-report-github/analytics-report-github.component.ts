@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AnalysisReport } from "../../../models/analysis-report.model";
 
 @Component({
   selector: 'app-analytics-report-github',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnalyticsReportGithubComponent implements OnInit {
 
-  constructor() { }
+  @Input('report') report: AnalysisReport;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

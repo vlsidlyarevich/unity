@@ -42,6 +42,7 @@
     "bootstrap-loader": "^2.2.0",
     "bootstrap-progressbar": "^0.9.0",
     "bootstrap-sass": "^3.3.7",
+    "ngx-bootstrap": "^2.0.2",
     "font-awesome": "^4.7.0",
     "ie-shim": "^0.1.0",
     "jquery": "^3.2.1",

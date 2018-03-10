@@ -61,6 +61,9 @@ import { AnalyticsReportGithubComponent } from './components/analytics/analytics
 import { AnalyticsReportLinkedinComponent } from './components/analytics/analytics-report-linkedin/analytics-report-linkedin.component';
 import { AnalyticsReportTwitterComponent } from './components/analytics/analytics-report-twitter/analytics-report-twitter.component';
 import { AnalyticsReportPageComponent } from './pages/analytics-report-page/analytics-report-page.component';
+import { GithubRepositoriesComponent } from "./components/analytics/analytics-report-github/components/github-repositories/github-repositories.component";
+import { GithubProfileComponent } from './components/analytics/analytics-report-github/components/github-profile/github-profile.component';
+import { ProgressbarModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -101,10 +104,13 @@ import { AnalyticsReportPageComponent } from './pages/analytics-report-page/anal
     AnalyticsReportGithubComponent,
     AnalyticsReportLinkedinComponent,
     AnalyticsReportTwitterComponent,
-    AnalyticsReportPageComponent
+    AnalyticsReportPageComponent,
+    GithubRepositoriesComponent,
+    GithubProfileComponent
   ],
   imports: [
     PipeModule.forRoot(),
+    ProgressbarModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,

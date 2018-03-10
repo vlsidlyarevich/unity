@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AnalysisReport } from "../../../models/analysis-report.model";
 
 @Component({
   selector: 'app-analytics-report-twitter',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./analytics-report-twitter.component.css']
 })
 export class AnalyticsReportTwitterComponent implements OnInit {
+
+  @Input('report') report: AnalysisReport;
 
   constructor() { }
 

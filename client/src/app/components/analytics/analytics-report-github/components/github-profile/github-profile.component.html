@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_content">
+        <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+          <div class="profile_img">
+            <div id="crop-avatar">
+              <!-- Current avatar -->
+              <img class="img-responsive avatar-view" [src]="analysisResult.avatarUrl" alt="Avatar"
+                   title="Change the avatar">
+            </div>
+          </div>
+          <h3>{{analysisResult.name}}</h3>
+
+          <ul class="list-unstyled user_data">
+            <li><i class="fa fa-user user-profile-icon"></i> {{analysisResult.login}}
+            </li>
+
+            <li>
+              <i class="fa fa-briefcase user-profile-icon"></i> {{analysisResult.bio}}
+            </li>
+
+            <li class="m-top-xs">
+              <i class="fa fa-external-link user-profile-icon"></i>
+              <a [href]="analysisResult.htmlUrl" target="_blank">{{analysisResult.htmlUrl}}</a>
+            </li>
+          </ul>
+
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <!-- start skills -->
+            <h4>Top Skills</h4>
+            <ul class="list-unstyled user_data">
+              <div *ngFor="let skill of topSkills">
+                <li>
+                  <p>{{skill[0]}}</p>
+                  <div class="progress progress_sm">
+                    <progressbar [value]="skill[1]" [max]="skillsTotal"></progressbar>
+                  </div>
+                  <!--<div class="progress progress_sm">-->
+                  <!--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>-->
+                  <!--</div>-->
+                </li>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
