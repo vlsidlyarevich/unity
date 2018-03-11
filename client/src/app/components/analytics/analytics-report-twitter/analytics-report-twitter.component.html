@@ -1,3 +1,44 @@
-<p>
-  analytics-report-twitter works!
-</p>
+<div class="">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Twitter profile information</h3>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_content">
+          <div class="" role="tabpanel" data-example-id="togglable-tabs">
+            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#profile_tab" id="profile-tab" role="tab"
+                                                        data-toggle="tab"
+                                                        aria-expanded="true">Profile</a>
+              </li>
+              <li role="presentation" class=""><a href="#repos_tab" role="tab" id="subscriptions-tab"
+                                                  data-toggle="tab"
+                                                  aria-expanded="false">Subscriptions</a>
+              </li>
+              <li role="presentation" class=""><a href="#tech_tab" role="tab" id="tech-tab" data-toggle="tab"
+                                                  aria-expanded="false">Languages & Technologies</a>
+              </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div role="tabpanel" class="tab-pane fade active in" id="profile_tab" aria-labelledby="profile-tab">
+                <app-twitter-profile [analysisResult]="report.result"></app-twitter-profile>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="repos_tab" aria-labelledby="subscriptions-tab">
+                <app-twitter-subscriptions [subscriptions]="report.result.popularProfilesSubscribed"></app-twitter-subscriptions>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="tech_tab" aria-labelledby="tech-tab">
+                <app-twitter-technologies [analysisResult]="report.result"></app-twitter-technologies>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

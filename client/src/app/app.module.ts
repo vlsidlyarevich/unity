@@ -67,6 +67,9 @@ import { ProgressbarModule } from 'ngx-bootstrap';
 import { GithubTechnologiesComponent } from './components/analytics/analytics-report-github/components/github-technologies/github-technologies.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { GithubForkedTechnologiesComponent } from './components/analytics/analytics-report-github/components/github-forked-technologies/github-forked-technologies.component';
+import { TwitterProfileComponent } from './components/analytics/analytics-report-twitter/components/twitter-profile/twitter-profile.component';
+import { TwitterSubscriptionsComponent } from './components/analytics/analytics-report-twitter/components/twitter-subscriptions/twitter-subscriptions.component';
+import { TwitterTechnologiesComponent } from './components/analytics/analytics-report-twitter/components/twitter-technologies/twitter-technologies.component';
 
 
 @NgModule({
@@ -112,7 +115,10 @@ import { GithubForkedTechnologiesComponent } from './components/analytics/analyt
     GithubRepositoriesComponent,
     GithubProfileComponent,
     GithubTechnologiesComponent,
-    GithubForkedTechnologiesComponent
+    GithubForkedTechnologiesComponent,
+    TwitterProfileComponent,
+    TwitterSubscriptionsComponent,
+    TwitterTechnologiesComponent
   ],
   imports: [
     PipeModule.forRoot(),
