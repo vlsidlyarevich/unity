@@ -6,6 +6,7 @@ import com.github.vlsidlyarevich.unity.twitter.model.TwitterPopularProfile;
 import com.github.vlsidlyarevich.unity.twitter.model.TwitterProfileData;
 import com.github.vlsidlyarevich.unity.twitter.model.TwitterSubscriptionData;
 import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.ArrayUtils;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ import java.util.stream.Stream;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultTwitterProfileDataService implements TwitterProfileDataService {
 
+    private static final int IDS_SUB_ARRAY_START_INDEX = 0;
+    private static final int IDS_SUB_ARRAY_END_INDEX_ARGUMENT = 100;
     private static final Long CURSOR = -1L;
 
     private final Mapper mapper;
@@ -61,10 +64,29 @@ public class DefaultTwitterProfileDataService implements TwitterProfileDataServi
     private Stream<User> subscriptions(final String username) {
         try {
             final IDs subscriptionsIDs = twitter.getFriendsIDs(username, CURSOR);
-            return twitter.lookupUsers(subscriptionsIDs.getIDs()).stream();
+            return lookupUsers(subscriptionsIDs.getIDs()).stream();
         } catch (final TwitterException e) {
             throw new TwitterServiceException(e);
         }
+    }
+
+    private List<User> lookupUsers(final long[] ids) throws TwitterException {
+        boolean lookup = true;
+        int position = IDS_SUB_ARRAY_START_INDEX;
+
+        final List<User> result = new ArrayList<>();
+        while (lookup) {
+            long[] idsPack = ArrayUtils.subarray(ids, position, position + IDS_SUB_ARRAY_END_INDEX_ARGUMENT);
+
+            if (idsPack.length == 0) {
+                lookup = false;
+            } else {
+                result.addAll(twitter.lookupUsers(idsPack));
+                position += IDS_SUB_ARRAY_END_INDEX_ARGUMENT;
+            }
+        }
+
+        return result;
     }
 
     private List<TwitterPopularProfile> getPopularProfiles(final List<TwitterSubscriptionData> subscriptions) {

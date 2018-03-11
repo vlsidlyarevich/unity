@@ -17,6 +17,7 @@ public class Twitter2TwitterData extends BeanMappingBuilder {
                 .fields("url", "url", FieldsMappingOptions.customConverter(TwitterUserUrlCustomConverter.class));
 
         mapping(User.class, TwitterProfileData.class, oneWay())
-                .fields("url", "url", FieldsMappingOptions.customConverter(TwitterUserUrlCustomConverter.class));
+                .fields("url", "url", FieldsMappingOptions.customConverter(TwitterUserUrlCustomConverter.class))
+                .fields("originalProfileImageURL", "profileImageURL", FieldsMappingOptions.oneWay());
     }
 }

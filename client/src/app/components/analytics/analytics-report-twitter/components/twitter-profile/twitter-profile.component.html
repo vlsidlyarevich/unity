@@ -1,3 +1,87 @@
-<p>
-  twitter-profile works!
-</p>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_content">
+        <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+          <div class="profile_img">
+            <div id="crop-avatar">
+              <!-- Current avatar -->
+              <img class="img-responsive avatar-view" [src]="analysisResult.profileImageURL" alt="Avatar"
+                   title="Change the avatar">
+            </div>
+          </div>
+          <h3>{{analysisResult.name}}</h3>
+
+          <ul class="list-unstyled user_data">
+            <li><i class="fa fa-envelope"></i> {{analysisResult.email}}
+            </li>
+
+            <li>
+              <i class="fa fa-briefcase user-profile-icon"></i> {{analysisResult.description}}
+            </li>
+
+            <li class="m-top-xs">
+              <i class="fa fa-external-link user-profile-icon"></i>
+              <a [href]="analysisResult.url" target="_blank">{{analysisResult.url}}</a>
+            </li>
+          </ul>
+
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <!-- start skills -->
+            <h4>Top Interests</h4>
+            <ul class="list-unstyled user_data">
+              <div *ngFor="let interest of topInterests">
+                <li>
+                  <p>{{interest[0]}}</p>
+                  <div class="progress progress_sm">
+                    <progressbar [value]="interest[1]" [max]="interestsTotal"></progressbar>
+                  </div>
+                  <!--<div class="progress progress_sm">-->
+                  <!--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>-->
+                  <!--</div>-->
+                </li>
+              </div>
+            </ul>
+          </div>
+
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="tile-stats">
+                <div class="icon"><i class="fa fa-users"></i>
+                </div>
+                <div class="count">{{analysisResult.followersCount}}</div>
+
+                <h3>Followers</h3>
+                <p>Number of followers.</p>
+              </div>
+            </div>
+
+            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="tile-stats">
+                <div class="icon"><i class="fa fa-eye"></i>
+                </div>
+                <div class="count">{{analysisResult.popularProfilesSubscribed.length}}</div>
+
+                <h3>Following</h3>
+                <p>Number of it-related followings.</p>
+              </div>
+            </div>
+
+            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="tile-stats">
+                <div class="icon"><i class="fa fa-calendar-o"></i>
+                </div>
+                <div class="count">{{analysisResult.createdAt | date:'dd/MM/yyyy'}}</div>
+
+                <h3>Creation date</h3>
+                <p>Profile creation date.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
