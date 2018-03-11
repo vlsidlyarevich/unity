@@ -65,6 +65,8 @@ import { GithubRepositoriesComponent } from "./components/analytics/analytics-re
 import { GithubProfileComponent } from './components/analytics/analytics-report-github/components/github-profile/github-profile.component';
 import { ProgressbarModule } from 'ngx-bootstrap';
 import { GithubTechnologiesComponent } from './components/analytics/analytics-report-github/components/github-technologies/github-technologies.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 
 @NgModule({
   declarations: [
@@ -115,6 +117,7 @@ import { GithubTechnologiesComponent } from './components/analytics/analytics-re
     ProgressbarModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
+    NgxChartsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
