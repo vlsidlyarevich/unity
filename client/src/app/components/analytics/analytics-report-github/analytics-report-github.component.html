@@ -24,6 +24,9 @@
               <li role="presentation" class=""><a href="#tech_tab" role="tab" id="tech-tab" data-toggle="tab"
                                                   aria-expanded="false">Languages & Technologies</a>
               </li>
+              <li role="presentation" class=""><a href="#fork_tech_tab" role="tab" id="fork-tech-tab" data-toggle="tab"
+                                                  aria-expanded="false">Forked Languages & Technologies</a>
+              </li>
             </ul>
             <div id="myTabContent" class="tab-content">
               <div role="tabpanel" class="tab-pane fade active in" id="profile_tab" aria-labelledby="profile-tab">
@@ -34,6 +37,9 @@
               </div>
               <div role="tabpanel" class="tab-pane fade" id="tech_tab" aria-labelledby="tech-tab">
                 <app-github-technologies [analysisResult]="report.result"></app-github-technologies>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="fork_tech_tab" aria-labelledby="fork-tech-tab">
+                <app-github-forked-technologies [analysisResult]="report.result"></app-github-forked-technologies>
               </div>
             </div>
           </div>

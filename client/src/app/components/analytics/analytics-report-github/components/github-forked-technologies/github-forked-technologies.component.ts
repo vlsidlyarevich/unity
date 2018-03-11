@@ -2,17 +2,17 @@ import { Component, Input, OnInit } from '@angular/core';
 import { GithubAnalysisResult } from "../../../../../models/github-analysis-result.model";
 
 @Component({
-  selector: 'app-github-technologies',
-  templateUrl: './github-technologies.component.html',
-  styleUrls: ['./github-technologies.component.css']
+  selector: 'app-github-forked-technologies',
+  templateUrl: './github-forked-technologies.component.html',
+  styleUrls: ['./github-forked-technologies.component.css']
 })
-export class GithubTechnologiesComponent implements OnInit {
+export class GithubForkedTechnologiesComponent implements OnInit {
 
   @Input('analysisResult') analysisResult: GithubAnalysisResult;
 
   public topicsTotalView: any[] = [1000];
   public topicsTotalScheme: string = 'forest';
-  public topicsTotalLabel: string = 'Topics total';
+  public topicsTotalLabel: string = 'Forked topics total';
 
   public languagesTotalView: any[] = [1000];
   public languagesTotalScheme: string = 'forest';
@@ -26,15 +26,15 @@ export class GithubTechnologiesComponent implements OnInit {
   }
 
   ngOnInit() {
-    Object.keys(this.analysisResult.topicsTotal)
+    Object.keys(this.analysisResult.forksTopicsTotal)
       .forEach(key => this.topicsTotal
-        .push({ "name": key, "value": this.analysisResult.topicsTotal[key] }));
+        .push({ "name": key, "value": this.analysisResult.forksTopicsTotal[key] }));
 
-    this.topicsTotal.sort((a, b) => b.value - a.value)
+    this.topicsTotal.sort((a, b) => b.value - a.value);
 
-    Object.keys(this.analysisResult.languagesTotal)
+    Object.keys(this.analysisResult.forksLanguagesTotal)
       .forEach(key => this.languagesTotal
-        .push({ "name": key, "value": this.analysisResult.languagesTotal[key] }));
+        .push({ "name": key, "value": this.analysisResult.forksLanguagesTotal[key] }));
 
     this.languagesTotal.sort((a, b) => b.value - a.value)
   }

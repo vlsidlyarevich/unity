@@ -66,6 +66,7 @@ import { GithubProfileComponent } from './components/analytics/analytics-report-
 import { ProgressbarModule } from 'ngx-bootstrap';
 import { GithubTechnologiesComponent } from './components/analytics/analytics-report-github/components/github-technologies/github-technologies.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { GithubForkedTechnologiesComponent } from './components/analytics/analytics-report-github/components/github-forked-technologies/github-forked-technologies.component';
 
 
 @NgModule({
@@ -110,7 +111,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     AnalyticsReportPageComponent,
     GithubRepositoriesComponent,
     GithubProfileComponent,
-    GithubTechnologiesComponent
+    GithubTechnologiesComponent,
+    GithubForkedTechnologiesComponent
   ],
   imports: [
     PipeModule.forRoot(),
