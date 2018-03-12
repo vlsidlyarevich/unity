@@ -1,3 +1,38 @@
-<p>
-  twitter-technologies works!
-</p>
+<div class="x_panel">
+  <div class="x_content">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Interests overview
+            <small>Information about user interests.</small>
+          </h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <ngx-charts-advanced-pie-chart
+            [view]="tagsTotalView"
+            [scheme]="tagsTotalScheme"
+            [results]="tagsTotal"
+            [label]="tagsTotalLabel">
+          </ngx-charts-advanced-pie-chart>
+        </div>
+      </div>
+
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Interests overview
+            <small>Another view of user interests.</small>
+          </h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <ngx-charts-pie-grid
+            [view]="tagsTotalView"
+            [scheme]="tagsTotalScheme"
+            [results]="tagsTotal">
+          </ngx-charts-pie-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

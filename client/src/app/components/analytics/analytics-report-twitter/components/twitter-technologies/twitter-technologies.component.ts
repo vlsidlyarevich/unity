@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GithubAnalysisResult } from "../../../../../models/github-analysis-result.model";
+import { TwitterAnalysisResult } from "../../../../../models/twitter-analysis-result.model";
 
 @Component({
   selector: 'app-twitter-technologies',
@@ -8,12 +8,23 @@ import { GithubAnalysisResult } from "../../../../../models/github-analysis-resu
 })
 export class TwitterTechnologiesComponent implements OnInit {
 
-  @Input('analysisResult') analysisResult: GithubAnalysisResult;
+  @Input('analysisResult') analysisResult: TwitterAnalysisResult;
+
+  public tagsTotalView: any[] = [1000];
+  public tagsTotalScheme: string = 'forest';
+  public tagsTotalLabel: string = 'Interests total';
+
+  public tagsTotal: any[];
 
   constructor() {
+    this.tagsTotal = [];
   }
 
   ngOnInit() {
-  }
+    Object.keys(this.analysisResult.tagsTotal)
+      .forEach(key => this.tagsTotal
+        .push({ "name": key, "value": this.analysisResult.tagsTotal[key] }));
 
+    this.tagsTotal.sort((a, b) => b.value - a.value);
+  }
 }
