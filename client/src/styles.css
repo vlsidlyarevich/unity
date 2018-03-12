@@ -4547,4 +4547,8 @@ ul.verticle_bars li {
   margin-left: 70px !important;
 }
 
+.cursor-pointed {
+  cursor: pointer;
+}
+
 /** /Dropzone.js **/

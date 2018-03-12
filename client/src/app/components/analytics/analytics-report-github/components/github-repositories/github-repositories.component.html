@@ -5,19 +5,19 @@
       Stars<span class="glyphicon sort-icon" *ngIf="sortKey =='stargazersCount'"
                  [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
     </th>
-    <th style="width: 20%" (click)="sort('name')">Repository name
+    <th style="width: 20%" (click)="sort('name')" class="cursor-pointed">Repository name
       <span class="glyphicon sort-icon" *ngIf="sortKey =='name'"
             [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
     </th>
     <th style="width: 40%">Description</th>
-    <th style="width: 10%" (click)="sort('size')">Size
+    <th style="width: 10%" (click)="sort('size')" class="cursor-pointed">Size
       <span class="glyphicon sort-icon" *ngIf="sortKey =='size'"
             [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-    <th style="width: 10%" (click)="sort('watchersCount')">Watchers
+    <th style="width: 10%" (click)="sort('watchersCount')" class="cursor-pointed">Watchers
       <span class="glyphicon sort-icon" *ngIf="sortKey =='watchersCount'"
             [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
     </th>
-    <th style="width: 10%" (click)="sort('createdAt')">Creation date
+    <th style="width: 10%" (click)="sort('createdAt')" class="cursor-pointed">Creation date
       <span class="glyphicon sort-icon" *ngIf="sortKey =='createdAt'"
             [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
     </th>

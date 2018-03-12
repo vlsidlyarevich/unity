@@ -1,3 +1,30 @@
-<p>
-  twitter-subscriptions works!
-</p>
+<table class="table">
+  <thead>
+  <tr>
+    <th style="width: 1%">#</th>
+    <th style="width: 20%" class="cursor-pointed" (click)="sort('name')">Name
+      <span class="glyphicon sort-icon" *ngIf="sortKey =='name'"
+            [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+    </th>
+    <th style="width: 80%" class="cursor-pointed" (click)="sort('tags')">Tags
+      <span class="glyphicon sort-icon" *ngIf="sortKey =='tags'"
+            [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr
+    *ngFor="let subscription of subscriptions | orderBy: sortKey : reverse | paginate: { itemsPerPage: 12, currentPage: p }; let i = index">
+    <td>{{i+1}}</td>
+    <td>
+      <a class="nav-link" href="{{subscription.url}}">{{subscription.name}}</a>
+    </td>
+    <td>
+      <button class="btn btn-round btn-sm btn-success" *ngFor="let tag of subscription.tags">{{tag}}</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="text-center">
+  <pagination-controls class="repos-pagination" (pageChange)="p = $event"></pagination-controls>
+</div>
