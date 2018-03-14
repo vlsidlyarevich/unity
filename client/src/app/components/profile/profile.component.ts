@@ -163,7 +163,8 @@ export class ProfileComponent implements OnInit {
   }
 
   public emailOrEmpty(control: AbstractControl): ValidationErrors | null {
-    return control.value === '' ? null : Validators.email(control);
+    console.log(control.value);
+    return (control.value === '' || control.value == null) ? null : Validators.email(control);
   }
 
   onRemoved(event) {
