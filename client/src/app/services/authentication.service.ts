@@ -47,7 +47,9 @@ export class AuthenticationService {
 
   loginWithToken(jwt, rememberMe): Promise<any> {
     if (jwt) {
-      this.tokenService.storeAuthenticationToken(jwt, rememberMe);
+      this.tokenService.storeAuthenticationToken(JSON.stringify(jwt), rememberMe);
+      this.storeCurrentUser();
+      this.storeCurrentUserSocial();
       return Promise.resolve(jwt);
     } else {
       return Promise.reject('Login error');
@@ -59,6 +61,7 @@ export class AuthenticationService {
       .get<User>(config.userApi + '/me')
       .subscribe((response) => {
           this.$localStorage.store('user', response);
+          return response;
         },
         err => {
           this.handleError(err);

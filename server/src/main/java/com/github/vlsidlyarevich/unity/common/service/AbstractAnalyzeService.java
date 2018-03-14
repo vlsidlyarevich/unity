@@ -19,8 +19,7 @@ public abstract class AbstractAnalyzeService<T extends DataService<D>, D extends
     public Optional<AnalysisReport> analyze(final String username) {
         final LocalDateTime startDate = LocalDateTime.now();
 
-        final Optional<? extends D> data
-                = service.getData(username);
+        final Optional<? extends D> data = service.getData(username);
 
         final LocalDateTime endDate = LocalDateTime.now();
         Optional<AnalysisReport> report = Optional.empty();

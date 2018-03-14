@@ -11,9 +11,9 @@ export class LinkedinAnalysisService {
 
   }
 
-  analyze(login: string) {
+  analyze(userUrl: string) {
     return this.http
-      .get<AnalysisReport>(config.linkedInAnalysisApi + '/' + login)
+      .post<AnalysisReport>(config.linkedInAnalysisApi, { "publicUserUrl": userUrl })
       .map((response) => {
           return response;
         },

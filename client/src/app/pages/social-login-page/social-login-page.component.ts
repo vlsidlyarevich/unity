@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { NotificationService } from "../../services/notification.service";
 
 @Component({
   selector: 'app-social-login-page',
@@ -13,9 +14,10 @@ export class SocialLoginPageComponent implements OnInit {
   error: boolean;
 
   constructor(private authenticationService: AuthenticationService,
+              private notificationService: NotificationService,
               private cookieService: CookieService,
               private router: Router,
-              private route: ActivatedRoute, ) {
+              private route: ActivatedRoute,) {
   }
 
   ngOnInit() {
@@ -23,18 +25,18 @@ export class SocialLoginPageComponent implements OnInit {
       this.success = queryParams['success'];
     });
 
-    console.log(this.success);
-
     const token = this.cookieService.get('social-authentication');
     if (token.length && this.success) {
       this.authenticationService.loginWithToken(token, false).then(() => {
         this.cookieService.delete('social-authentication');
         this.router.navigate(['']);
       }, () => {
-        this.router.navigate(['login'], { queryParams: { 'socialLoginSuccess': 'false' } });
+        this.notificationService.error('Social authentication is failed');
+        this.router.navigate(['login']);
       });
     } else {
-      this.router.navigate(['login'], { queryParams: { 'socialLoginSuccess': 'false' } });
+      this.notificationService.error('Social authentication is failed');
+      this.router.navigate(['login']);
     }
   }
 }

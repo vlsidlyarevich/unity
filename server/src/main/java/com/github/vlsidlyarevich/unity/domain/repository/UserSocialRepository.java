@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserSocialRepository extends MongoRepository<UserSocial, String> {
 
+    UserSocial findByEmail(String email);
+
     UserSocial findByUserId(String userId);
 
     void deleteByUserId(String userId);

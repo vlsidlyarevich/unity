@@ -45,6 +45,7 @@ public class DefaultSocialAuthenticationService implements SocialAuthenticationS
             servletWebRequest.getResponse().addCookie(getSocialAuthenticationCookie(jwt));
 
             return new RedirectView(URIBuilder.fromUri(redirectUrl)
+                    .queryParam("success", "true")
                     .build().toString(), true);
         } catch (Exception e) {
             return new RedirectView(URIBuilder.fromUri(redirectUrl)

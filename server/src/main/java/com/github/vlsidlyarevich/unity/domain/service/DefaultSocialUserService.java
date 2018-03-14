@@ -1,7 +1,10 @@
 package com.github.vlsidlyarevich.unity.domain.service;
 
+import com.github.vlsidlyarevich.unity.domain.exception.UserNotFoundException;
 import com.github.vlsidlyarevich.unity.domain.model.User;
+import com.github.vlsidlyarevich.unity.domain.model.UserSocial;
 import com.github.vlsidlyarevich.unity.domain.repository.UserRepository;
+import com.github.vlsidlyarevich.unity.domain.repository.UserSocialRepository;
 import com.github.vlsidlyarevich.unity.web.security.social.exception.SocialLoginException;
 import com.github.vlsidlyarevich.unity.web.security.social.model.SocialProvider;
 import lombok.AllArgsConstructor;
@@ -21,6 +24,7 @@ public class DefaultSocialUserService implements SocialUserService {
 
     private final UsersConnectionRepository usersConnectionRepository;
     private final UserRepository userRepository;
+    private final UserSocialRepository userSocialRepository;
 
     @Override
     public User create(final Connection<?> connection) {
@@ -49,12 +53,23 @@ public class DefaultSocialUserService implements SocialUserService {
     }
 
     private User getUser(final UserProfile userProfile, final String providerId) {
-        final String username = Optional.ofNullable(userProfile.getUsername())
-                .orElse(userProfile.getEmail());
+        final String username = Optional.ofNullable(userProfile.getEmail())
+                .orElse(userProfile.getUsername());
 
         return Optional.ofNullable(username)
                 .map(usrname -> {
-                    final User user = userRepository.findByUsername(usrname);
+                    User user;
+                    final UserSocial userSocial = userSocialRepository.findByEmail(username);
+                    if (userSocial != null) {
+                        user = userRepository.findOne(userSocial.getUserId());
+                    } else {
+                        user = userRepository.findByUsername(usrname);
+                    }
+
+                    if (user == null) {
+                        throw new UserNotFoundException();
+                    }
+
                     final SocialProvider provider = SocialProvider.valueOf(providerId.toUpperCase());
 
                     if (Objects.nonNull(user) && socialLoginEnabledForUser(user, provider)) {

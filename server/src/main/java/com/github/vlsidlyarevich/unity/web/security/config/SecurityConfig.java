@@ -45,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/api/v1/auth").permitAll()
                 .antMatchers("/api/v1/signup").permitAll()
+                .antMatchers("/api/v1/**").authenticated()
                 .antMatchers("/swagger-ui.html").permitAll()
                 .antMatchers("/login**", "/signin/**",
                         "/authenticate/**", "/connect/**", "/social/authenticate").permitAll()
@@ -64,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.woff",
                         "/**/*.woff2").permitAll()
                 .antMatchers("/v2/api-docs").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .addFilterBefore(
                         new AuthenticationTokenFilter(tokenAuthenticationService),

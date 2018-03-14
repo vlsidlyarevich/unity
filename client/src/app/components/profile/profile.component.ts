@@ -116,6 +116,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  //FIXME
   private initializeUserSocialForm() {
     this.userSocialDataForm = this.formBuilder.group({
       email: [this.userSocial.email, [this.emailOrEmpty]],
