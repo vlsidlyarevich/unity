@@ -38,7 +38,7 @@ public class SocialSignInAdapter implements SignInAdapter {
 
         servletWebRequest.getResponse().addCookie(getSocialAuthenticationCookie(jwt));
 
-        return socialAuthUrl + "?success=true";
+        return socialAuthUrl + "?success=true" + "&provider=" + connection.getKey().getProviderId();
     }
 
     private Cookie getSocialAuthenticationCookie(final String token) {

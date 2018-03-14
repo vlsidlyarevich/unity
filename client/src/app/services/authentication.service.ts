@@ -45,11 +45,12 @@ export class AuthenticationService {
       });
   }
 
-  loginWithToken(jwt, rememberMe): Promise<any> {
+  socialLoginWithToken(jwt, provider, rememberMe): Promise<any> {
     if (jwt) {
       this.tokenService.storeAuthenticationToken(JSON.stringify(jwt), rememberMe);
       this.storeCurrentUser();
       this.storeCurrentUserSocial();
+      this.$localStorage.store('provider', provider);
       return Promise.resolve(jwt);
     } else {
       return Promise.reject('Login error');

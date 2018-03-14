@@ -46,6 +46,7 @@ public class DefaultSocialAuthenticationService implements SocialAuthenticationS
 
             return new RedirectView(URIBuilder.fromUri(redirectUrl)
                     .queryParam("success", "true")
+                    .queryParam("provider", connection.getKey().getProviderId())
                     .build().toString(), true);
         } catch (Exception e) {
             return new RedirectView(URIBuilder.fromUri(redirectUrl)

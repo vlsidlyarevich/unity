@@ -11,6 +11,7 @@ import { NotificationService } from "../../services/notification.service";
 })
 export class SocialLoginPageComponent implements OnInit {
   success: boolean;
+  provider: string;
   error: boolean;
 
   constructor(private authenticationService: AuthenticationService,
@@ -23,11 +24,12 @@ export class SocialLoginPageComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe((queryParams) => {
       this.success = queryParams['success'];
+      this.provider = queryParams['provider'];
     });
 
     const token = this.cookieService.get('social-authentication');
     if (token.length && this.success) {
-      this.authenticationService.loginWithToken(token, false).then(() => {
+      this.authenticationService.socialLoginWithToken(token, this.provider, false).then(() => {
         this.cookieService.delete('social-authentication');
         this.router.navigate(['']);
       }, () => {
