@@ -25,7 +25,7 @@ const appRoutes: Routes = [
   { path: 'analytics/report/:id', component: AnalyticsReportPageComponent },
   { path: 'analytics/new/github', component: AnalyticsNewGithubPageComponent },
   { path: 'analytics/new/twitter', component: AnalyticsNewTwitterPageComponent },
-  { path: 'analytics/new/linkedin', component: AnalyticsNewLinkedinPageComponent },
+  // { path: 'analytics/new/linkedin', component: AnalyticsNewLinkedinPageComponent },
   { path: 'social-auth', component: SocialLoginPageComponent },
   { path: '404', component: NotFoundPageComponent },
   { path: '**', redirectTo: '/404' }

@@ -1,56 +1,28 @@
-<div class="animate form login_form">
-  <section class="login_content container">
-    <h1>Login Form</h1>
-    <div class="row omb_row-sm-offset-3 omb_socialButtons">
-      <div class="col-xs-4 col-sm-4">
-        <form action="http://localhost:8080/signin/facebook" method="post">
-          <a href="javascript:" onclick="parentNode.submit();" class=" btn btn-lg btn-block omb_btn-facebook">
-            <i class="fa fa-facebook visible-xs"></i>
-            <span class="hidden-xs">Facebook</span>
-          </a>
-          <input type="hidden" name="scope" value="public_profile"/>
-        </form>
-      </div>
-      <div class="col-xs-4 col-sm-4">
-        <form action="http://localhost:8080/signin/twitter" method="post">
-          <a href="javascript:" onclick="parentNode.submit();" class="btn btn-lg btn-block omb_btn-twitter">
-            <i class="fa fa-twitter visible-xs"></i>
-            <span class="hidden-xs">Twitter</span>
-          </a>
-          <input type="hidden" name="scope" value="public_profile"/>
-        </form>
-      </div>
-      <div class="col-xs-4 col-sm-4">
-        <form action="http://localhost:8080/signin/linkedin" method="post">
-          <a href="javascript:" onclick="parentNode.submit();" class="btn btn-lg btn-block omb_btn-linkedin">
-            <i class="fa fa-twitter visible-xs"></i>
-            <span class="hidden-xs">Linkedin</span>
-          </a>
-          <input type="hidden" name="scope" value="r_basicprofile,r_emailaddress"/>
-        </form>
-      </div>
-    </div>
-    <h1>or</h1>
-    <form novalidate [formGroup]="credentials" (ngSubmit)="login()">
-      <div>
-        <input type="text" class="form-control" formControlName="username" placeholder="Username"/>
-        <div
-          *ngIf="credentials.get('username').invalid && (credentials.get('username').dirty || credentials.get('username').touched)"
-          class="alert alert-danger">
+<div class="login_wrapper">
+  <div class="animate form login_form">
+    <section class="login_content">
+      <form novalidate [formGroup]="credentials" (ngSubmit)="login()">
+        <h1>Login Form</h1>
+        <div>
+          <input type="text" class="form-control" formControlName="username" placeholder="Username"/>
+          <div
+            *ngIf="credentials.get('username').invalid && (credentials.get('username').dirty || credentials.get('username').touched)"
+            class="alert alert-danger">
 
-          <div *ngIf="credentials.get('username').hasError('required')">
-            Username is required.
+            <div *ngIf="credentials.get('username').hasError('required')">
+              Username is required.
+            </div>
           </div>
         </div>
-      </div>
-      <div>
-        <input type="password" class="form-control" formControlName="password" placeholder="Password"/>
-        <div
-          *ngIf="credentials.get('password').invalid && (credentials.get('password').dirty || credentials.get('password').touched)"
-          class="alert alert-danger">
+        <div>
+          <input type="password" class="form-control" formControlName="password" placeholder="Password"/>
+          <div
+            *ngIf="credentials.get('password').invalid && (credentials.get('password').dirty || credentials.get('password').touched)"
+            class="alert alert-danger">
 
-          <div *ngIf="credentials.get('password').hasError('required')">
-            Password is required.
+            <div *ngIf="credentials.get('password').hasError('required')">
+              Password is required.
+            </div>
           </div>
         </div>
         <div>
@@ -74,7 +46,7 @@
             <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
           </div>
         </div>
-      </div>
-    </form>
-  </section>
+      </form>
+    </section>
+  </div>
 </div>
