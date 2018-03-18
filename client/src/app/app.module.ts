@@ -70,6 +70,8 @@ import { GithubForkedTechnologiesComponent } from './components/analytics/analyt
 import { TwitterProfileComponent } from './components/analytics/analytics-report-twitter/components/twitter-profile/twitter-profile.component';
 import { TwitterSubscriptionsComponent } from './components/analytics/analytics-report-twitter/components/twitter-subscriptions/twitter-subscriptions.component';
 import { TwitterTechnologiesComponent } from './components/analytics/analytics-report-twitter/components/twitter-technologies/twitter-technologies.component';
+import { AuthGuard } from "./guards/auth.guard";
+import { AuthAdminGuard } from "./guards/auth.admin.guard";
 
 
 @NgModule({
@@ -153,7 +155,10 @@ import { TwitterTechnologiesComponent } from './components/analytics/analytics-r
     TwitterAnalysisService,
     LinkedinAnalysisService,
     NotificationService,
-    LoaderService],
+    LoaderService,
+    AuthGuard,
+    AuthAdminGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

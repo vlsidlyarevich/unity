@@ -7,7 +7,6 @@ import com.github.vlsidlyarevich.unity.domain.model.User;
 import com.github.vlsidlyarevich.unity.domain.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,13 +46,11 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<User> findAll() {
         return repository.findAll();
     }
 
     @Override
-    @PreAuthorize("@securityContextCurrentUserService.canAccessUserOrAdmin(#id)")
     public User update(final String id, final User user) {
         return Optional.ofNullable(user)
                 .map(usr -> {
@@ -63,7 +60,6 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    @PreAuthorize("@securityContextCurrentUserService.canAccessUserOrAdmin(#id)")
     public String delete(final String id) {
         repository.delete(id);
 

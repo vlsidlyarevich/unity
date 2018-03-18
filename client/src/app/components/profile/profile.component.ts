@@ -9,6 +9,7 @@ import { config } from "../../config/config";
 import { ImageService } from "../../services/image.service";
 import { ProfileStoreService } from "../../services/store/profile-store.service";
 import { TokenService } from "../../services/token.service";
+import { Role } from "../../models/role.model";
 
 @Component({
   selector: 'app-profile',
@@ -147,7 +148,7 @@ export class ProfileComponent implements OnInit {
 
   public getUserAuthority(authorities: string[]): string {
     let result = 'User';
-    if (authorities && authorities.find(authority => (authority === `ROLE_ADMIN`))) {
+    if (authorities && authorities.find(authority => (authority == Role.ROLE_ADMIN))) {
       result = 'Administrator';
     }
 

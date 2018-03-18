@@ -4,6 +4,10 @@ import { UserSocial } from '../../../models/user-social.model';
 import { ImageService } from '../../../services/image.service';
 import { config } from '../../../config/config';
 import { ProfileStoreService } from '../../../services/store/profile-store.service';
+import { AuthenticationService } from "../../../services/authentication.service";
+import { LoaderService } from "../../../services/loader.service";
+import { NotificationService } from "../../../services/notification.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-topnav-bar',
@@ -18,6 +22,10 @@ export class TopnavbarComponent implements OnInit {
   private isImageLoading = true;
 
   constructor(private profileService: ProfileService,
+              private authenticationService: AuthenticationService,
+              private loaderService: LoaderService,
+              private notificationService: NotificationService,
+              private router: Router,
               private imageService: ImageService,
               private profileStoreService: ProfileStoreService) {
   }
@@ -38,7 +46,15 @@ export class TopnavbarComponent implements OnInit {
     }
   }
 
-  getImageFromService() {
+  public logOut(): void {
+    this.loaderService.show();
+    this.authenticationService.logout();
+    this.router.navigate(['login']);
+    this.notificationService.success('Successfully logged out');
+    this.loaderService.hide();
+  }
+
+  private getImageFromService() {
     if (this.userSocial.image) {
       this.isImageLoading = true;
       this.imageService.getImage(this.getUserImageUrl())

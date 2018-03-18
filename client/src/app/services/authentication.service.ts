@@ -82,6 +82,8 @@ export class AuthenticationService {
   logout(): Observable<any> {
     return new Observable((observer) => {
       this.tokenService.clearAuthenticationToken();
+      this.$localStorage.clear('user');
+      this.$localStorage.clear('userSocial');
       observer.complete();
     });
   }
