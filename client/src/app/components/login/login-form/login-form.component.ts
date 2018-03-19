@@ -40,7 +40,9 @@ export class LoginFormComponent implements OnInit {
       .subscribe(result => {
         if (this.authenticationService.isLoggedIn()) {
           this.loaderService.hide();
-          this.router.navigate([this.redirectUrl]);
+          if (result) {
+            this.router.navigate([this.redirectUrl]);
+          }
         } else {
           this.loaderService.hide();
           this.notificationService.error('Can\'t log in');

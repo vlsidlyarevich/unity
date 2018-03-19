@@ -7,6 +7,7 @@ import { User } from '../models/user.model';
 import { UserSocial } from '../models/user-social.model';
 import { config } from '../config/config';
 import { TokenService } from "./token.service";
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AuthenticationService {
@@ -33,23 +34,23 @@ export class AuthenticationService {
       .post<JwtResponse>(config.authApi, body, { headers: headers, observe: 'response' })
       .map((data) => {
         if (data && data.body.token) {
-          try {
-            this.tokenService.storeAuthenticationToken(JSON.stringify(data.body.token), rememberMe);
-            this.storeCurrentUser();
-            this.storeCurrentUserSocial();
-            return data;
-          } catch (error) {
-            console.log(error);
-          }
+          this.tokenService.storeAuthenticationToken(JSON.stringify(data.body.token), rememberMe);
+          return data.body.token;
         }
+      }).mergeMap((token) => {
+        return this.storeCurrentUser();
+      }).mergeMap((user: User) => {
+        return this.storeCurrentUserSocial(user);
       });
   }
 
   socialLoginWithToken(jwt, provider, rememberMe): Promise<any> {
     if (jwt) {
       this.tokenService.storeAuthenticationToken(JSON.stringify(jwt), rememberMe);
-      this.storeCurrentUser();
-      this.storeCurrentUserSocial();
+      this.storeCurrentUser()
+        .subscribe((response: User) => {
+          this.storeCurrentUserSocial(response);
+        });
       this.$localStorage.store('provider', provider);
       return Promise.resolve(jwt);
     } else {
@@ -57,10 +58,10 @@ export class AuthenticationService {
     }
   }
 
-  private storeCurrentUser() {
-    this.http
+  private storeCurrentUser(): Observable<User> {
+    return this.http
       .get<User>(config.userApi + '/me')
-      .subscribe((response) => {
+      .map((response) => {
           this.$localStorage.store('user', response);
           return response;
         },
@@ -69,13 +70,19 @@ export class AuthenticationService {
         });
   }
 
-  private storeCurrentUserSocial() {
-    const url = config.userSocialApi.replace('${userId}', this.$localStorage.retrieve('user').id);
+  private storeCurrentUserSocial(user: User): Observable<boolean | {}> {
+    const url = config.userSocialApi.replace('${userId}', user.id);
 
-    this.http
+    return this.http
       .get<UserSocial>(url)
-      .subscribe((response) => {
+      .map((response) => {
         this.$localStorage.store('userSocial', response);
+        return true;
+      }).catch((error: HttpErrorResponse) => {
+        return new Observable((observer) => {
+          observer.next(true);
+          observer.complete();
+        });
       });
   }
 
