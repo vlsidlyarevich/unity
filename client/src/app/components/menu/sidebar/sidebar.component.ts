@@ -4,6 +4,7 @@ import { ProfileService } from "../../../services/profile.service";
 import { ProfileStoreService } from "../../../services/store/profile-store.service";
 import { config } from "../../../config/config";
 import { ImageService } from "../../../services/image.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-side-bar',
@@ -22,6 +23,7 @@ export class SidebarComponent implements OnInit {
 
   constructor(private profileService: ProfileService,
               private renderer: Renderer2,
+              private router: Router,
               private imageService: ImageService,
               private profileStoreService: ProfileStoreService) {
   }
@@ -56,17 +58,15 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  activate(event: Event) {
-    //получили айдишник кликнутого элемента меню
-    const elementId: string = (event.target as Element).id;
-    //получили этот элемент меню
-    const element = this.menu.nativeElement.getElementById(elementId);
-    //развернули подменю если оно есть
-    const ul = element.querySelector("ul");
-    this.renderer.addClass(ul, "visible-menu");
-    //сделали активным этот элемент меню
-    this.renderer.addClass(element, "active");
-
-    //свернули другие меню, сделали неактивными
+  public currentRouteClass(routeGroup: string): string {
+    if (routeGroup === 'admin') {
+      if (this.router.url === '/users' || this.router.url === '/users/new') {
+        return 'visible-menu';
+      }
+    } else if (routeGroup === 'analytics') {
+      if (this.router.url === '/analytics/new/github' || this.router.url === '/analytics/new/twitter') {
+        return 'visible-menu';
+      }
+    } else return '';
   }
 }

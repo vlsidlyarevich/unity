@@ -31,9 +31,9 @@
       <div class="menu_section">
         <h3>General</h3>
         <ul class="nav side-menu" #menu>
-          <li routerLinkActive="active" id="analytics">
+          <li routerLinkActive="active" id="analytics" [routerLinkActiveOptions]="{exact:true}">
             <a id="homeli" [routerLink]="['/analytics']">
-              <i class="fa fa-home"></i> Reports <span id="homechevron" class="fa fa-chevron-down"></span>
+              <i class="fa fa-home"></i> Reports
             </a>
           </li>
 
@@ -41,25 +41,25 @@
             <a id="formsli"><i class="fa fa-edit"></i>
               New Analysis <span id="formschevron" class="fa fa-chevron-down"></span>
             </a>
-            <ul class="nav child_menu">
-              <li><a [routerLink]="['/analytics/new/github']" routerLinkActive="current-page">Github</a></li>
-              <li><a [routerLink]="['/analytics/new/linkedin']" routerLinkActive="current-page">LinkedIn</a></li>
-              <li><a [routerLink]="['/analytics/new/twitter']" routerLinkActive="current-page">Twitter</a></li>
+            <ul class="nav child_menu" [ngClass]="currentRouteClass('analytics')">
+              <li routerLinkActive="current-page"><a [routerLink]="['/analytics/new/github']">Github</a></li>
+              <li routerLinkActive="current-page"><a [routerLink]="['/analytics/new/twitter']">Twitter</a></li>
             </ul>
           </li>
           <li routerLinkActive="active" (click)="activate($event)" id="admin">
             <a><i class="fa fa-desktop"></i> Admin
               <span class="fa fa-chevron-down"></span>
             </a>
-            <ul class="nav child_menu" routerLinkActive="visible-menu">
-              <li routerLinkActive="current-page"><a [routerLink]="['/users']">Users</a></li>
-              <li routerLinkActive="current-page"><a [routerLink]="['/users/new']">New user</a></li>
+            <ul class="nav child_menu" [ngClass]="currentRouteClass('admin')">
+              <li routerLinkActive="current-page" [routerLinkActiveOptions]="{exact:true}">
+                <a [routerLink]="['/users']">Users</a>
+              </li>
+              <li routerLinkActive="current-page" [routerLinkActiveOptions]="{exact:true}">
+                <a [routerLink]="['/users/new']">New user</a></li>
             </ul>
           </li>
           <li routerLinkActive="active" id="profile">
-            <a id="tablesli" [routerLink]="['/profile']"><i class="fa fa-table"></i> My profile
-              <span id="tableschevron" class="fa fa-chevron-down"></span>
-            </a>
+            <a id="tablesli" [routerLink]="['/profile']"><i class="fa fa-table"></i> My profile</a>
           </li>
           <li routerLinkActive="active" id="logout">
             <a id="layoutsli" [routerLink]="['/logout']"><i class="fa fa-clone"></i>Log out
