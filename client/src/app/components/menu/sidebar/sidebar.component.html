@@ -37,20 +37,28 @@
             </a>
           </li>
 
-          <li routerLinkActive="active" id="newAnalysis" (click)="activate()">
+          <li [ngClass]="analyticsRouteGroupExpanded ? 'active' : ''" (click)="toggleAnalyticsMenu()">
             <a id="formsli"><i class="fa fa-edit"></i>
               New Analysis <span id="formschevron" class="fa fa-chevron-down"></span>
             </a>
-            <ul class="nav child_menu" [ngClass]="currentRouteClass('analytics')">
-              <li routerLinkActive="current-page"><a [routerLink]="['/analytics/new/github']">Github</a></li>
-              <li routerLinkActive="current-page"><a [routerLink]="['/analytics/new/twitter']">Twitter</a></li>
+            <ul class="nav child_menu" [@slideInOut]="analyticsRouteGroupExpanded ? 'in' : 'out'"
+                [ngClass]="analyticsRouteGroupExpanded ? 'visible-menu' : ''">
+              <li routerLinkActive="current-page" [routerLinkActiveOptions]="{exact:true}">
+                <a [routerLink]="['/analytics/new/github']">Github</a>
+              </li>
+              <li routerLinkActive="current-page" [routerLinkActiveOptions]="{exact:true}">
+                <a [routerLink]="['/analytics/new/twitter']">Twitter</a>
+              </li>
             </ul>
           </li>
-          <li routerLinkActive="active" (click)="activate($event)" id="admin">
+
+          <li *ngIf="isAdmin()" [ngClass]="adminRouteGroupExpanded ? 'active' : ''" (click)="toggleAdminMenu()"
+              id="admin">
             <a><i class="fa fa-desktop"></i> Admin
               <span class="fa fa-chevron-down"></span>
             </a>
-            <ul class="nav child_menu" [ngClass]="currentRouteClass('admin')">
+            <ul class="nav child_menu" [@slideInOut]="adminRouteGroupExpanded ? 'in' : 'out'"
+                [ngClass]="adminRouteGroupExpanded ? 'visible-menu' : ''">
               <li routerLinkActive="current-page" [routerLinkActiveOptions]="{exact:true}">
                 <a [routerLink]="['/users']">Users</a>
               </li>
@@ -58,12 +66,12 @@
                 <a [routerLink]="['/users/new']">New user</a></li>
             </ul>
           </li>
+
           <li routerLinkActive="active" id="profile">
             <a id="tablesli" [routerLink]="['/profile']"><i class="fa fa-table"></i> My profile</a>
           </li>
           <li routerLinkActive="active" id="logout">
-            <a id="layoutsli" [routerLink]="['/logout']"><i class="fa fa-clone"></i>Log out
-              <span id="layoutschevron" class="fa fa-chevron-down"></span></a>
+            <a id="layoutsli" [routerLink]="['/logout']"><i class="fa fa-clone"></i>Log out</a>
           </li>
         </ul>
       </div>
