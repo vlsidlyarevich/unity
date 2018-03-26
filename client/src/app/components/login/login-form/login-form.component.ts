@@ -14,7 +14,7 @@ import { LoaderService } from "../../../services/loader.service";
 export class LoginFormComponent implements OnInit {
 
   private redirectUrl = '/';
-  private credentials: FormGroup;
+  public credentials: FormGroup;
   private formBuilder: FormBuilder;
 
   constructor(private authenticationService: AuthenticationService,
