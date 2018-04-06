@@ -1,6 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
-import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
@@ -15,7 +14,7 @@ import { AuthGuard } from "./guards/auth.guard";
 import { AuthAdminGuard } from "./guards/auth.admin.guard";
 
 const appRoutes: Routes = [
-  { path: '', component: HomePageComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'analytics', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent },
   { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard] },
   { path: 'users', component: UsersPageComponent, canActivate: [AuthAdminGuard] },
@@ -28,7 +27,7 @@ const appRoutes: Routes = [
   // { path: 'analytics/new/linkedin', component: AnalyticsNewLinkedinPageComponent },
   // { path: 'social-auth', component: SocialLoginPageComponent },
   { path: '404', component: NotFoundPageComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: '/404' }
+  { path: '**', redirectTo: '404' }
 ];
 
 export const Routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

@@ -35,7 +35,8 @@
                               <img style="width: 100%; display: block;" [src]="report.result.avatarUrl" alt="image"/>
                             </div>
                             <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.TWITTER]">
-                              <img style="width: 100%; display: block;" [src]="report.result.profileImageURL" alt="image"/>
+                              <img style="width: 100%; display: block;" [src]="report.result.profileImageURL"
+                                   alt="image"/>
                             </div>
                             <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.LINKEDIN]">
                               <img style="width: 100%; display: block;" [src]="report.result.avatarUrl" alt="image"/>
@@ -56,10 +57,10 @@
                           //FIXME add info about analyzed resource
                           <div class="caption">
                             <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.GITHUB]">
-                              <p>{{report.result.name}}</p>
+                              <p>{{report.result.name || report.result.login}}</p>
                             </div>
                             <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.TWITTER]">
-                              <p>Snow and Ice Incoming for the South</p>
+                              <p>{{report.result.name || report.result.email || report.result.id}}</p>
                             </div>
                             <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.LINKEDIN]">
                               <p>Snow and Ice Incoming for the South</p>
