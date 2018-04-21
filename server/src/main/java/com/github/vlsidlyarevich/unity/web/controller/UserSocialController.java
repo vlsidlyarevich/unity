@@ -32,8 +32,8 @@ public class UserSocialController {
     @PutMapping
     public ResponseEntity updateUserSocialData(@PathVariable final String id,
                                                @RequestBody final UserSocialRequest dto) {
-        return ResponseEntity.ok().body(UserSocialRequest
-                .fromDomain(socialService.update(id, UserSocial.fromDTO(dto))));
+        final UserSocial updated = socialService.update(id, UserSocial.fromDTO(dto));
+        return ResponseEntity.ok().body(UserSocialRequest.fromDomain(updated));
     }
 
     @DeleteMapping

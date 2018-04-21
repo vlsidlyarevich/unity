@@ -8,6 +8,8 @@ import { Router } from "@angular/router";
 import { animate, group, state, style, transition, trigger } from "@angular/animations";
 import { AuthenticationService } from "../../../services/authentication.service";
 import { Role } from "../../../models/role.model";
+import { NotificationService } from "../../../services/notification.service";
+import { LoaderService } from "../../../services/loader.service";
 
 @Component({
   selector: 'app-side-bar',
@@ -64,7 +66,9 @@ export class SidebarComponent implements OnInit {
               private renderer: Renderer2,
               private router: Router,
               private imageService: ImageService,
-              private profileStoreService: ProfileStoreService) {
+              private profileStoreService: ProfileStoreService,
+              private loaderService: LoaderService,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit() {
@@ -124,5 +128,13 @@ export class SidebarComponent implements OnInit {
     } else if (this.router.url === '/analytics/new/github' || this.router.url === '/analytics/new/twitter') {
       this.analyticsRouteGroupExpanded = true;
     }
+  }
+
+  public logOut(): void {
+    this.loaderService.show();
+    this.authenticationService.logout();
+    this.router.navigate(['login']);
+    this.notificationService.success('Successfully logged out');
+    this.loaderService.hide();
   }
 }

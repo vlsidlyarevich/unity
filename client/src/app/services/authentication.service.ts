@@ -86,15 +86,11 @@ export class AuthenticationService {
       });
   }
 
-  logout(): Observable<any> {
-    return new Observable((observer) => {
-      this.tokenService.clearAuthenticationToken();
-      this.$localStorage.clear('user');
-      this.$localStorage.clear('userSocial');
-      observer.complete();
-    });
+  logout() {
+    this.tokenService.clearAuthenticationToken();
+    this.$localStorage.clear('user');
+    this.$localStorage.clear('userSocial');
   }
-
 
   private handleError(err: HttpErrorResponse) {
     // in a real world app, we may send the server to some remote logging infrastructure

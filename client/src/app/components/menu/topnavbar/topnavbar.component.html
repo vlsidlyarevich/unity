@@ -16,13 +16,13 @@
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">
             <li>
-              <a href="/profile">Profile</a>
+              <a [routerLink]="['/profile']">Profile</a>
             </li>
             <li>
-              <a href="/settings">Settings</a>
+              <a [routerLink]="['/settings']">Settings</a>
             </li>
             <li>
-              <a href="/help">Help</a>
+              <a [routerLink]="['/help']">Help</a>
             </li>
             <li>
               <a (click)="logOut()">
