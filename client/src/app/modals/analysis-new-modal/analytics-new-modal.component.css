@@ -45,7 +45,7 @@
 }
 
 .source > div {
-  flex-basis: 32%;
+  flex-basis: 50%;
   margin: 0;
   padding: 0;
   display: flex;
