@@ -28,42 +28,59 @@
                   <div class="row">
                     <div
                       *ngFor="let report of analytics?.reports | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
-                      <div class="col-md-55">
-                        <div class="thumbnail">
-                          <div class="image view view-first">
-                            <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.GITHUB]">
-                              <img style="width: 100%; display: block;" [src]="report.result.avatarUrl" alt="image"/>
-                            </div>
-                            <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.TWITTER]">
-                              <img style="width: 100%; display: block;" [src]="report.result.profileImageURL"
-                                   alt="image"/>
-                            </div>
-                            <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.LINKEDIN]">
-                              <img style="width: 100%; display: block;" [src]="report.result.avatarUrl" alt="image"/>
-                            </div>
 
-                            <div class="mask">
-                              <p>Analyzed at: {{report.analyzedAt | date:"MM/dd/yyyy 'at' h:mma"}}
-                                <br/>
-                                Analysis time: {{report.analysisTime}} sec.</p>
-                              <div class="tools tools-bottom">
-                                <a [routerLink]="['/analytics/report', report.id]"><i class="fa fa-bar-chart"></i></a>
-                                <a (click)="showDeleteReportDialog(report)" href="javascript:void(0)">
-                                  <i class="fa fa-times"></i>
-                                </a>
+
+                      <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                        <div class="well profile_view">
+                          <div class="col-sm-12">
+                            <h4 class="brief"><i></i></h4>
+                            <div class="left col-xs-7">
+                              <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.GITHUB]">
+                                <h2>{{report.result.name || report.result.login}}</h2>
+                              </div>
+                              <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.TWITTER]">
+                                <h2>{{report.result.name || report.result.email || report.result.id}}</h2>
+                              </div>
+                              <ul class="list-unstyled">
+                                <li><strong>Analyzed at:</strong> {{report.analyzedAt | date:"MM/dd/yyyy 'at' h:mma"}}
+                                </li>
+                                <li><strong>Analysis time:</strong> {{report.analysisTime}} sec.</li>
+                              </ul>
+                            </div>
+                            <div class="right col-xs-5 text-center">
+                              <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.GITHUB]">
+                                <img class="img-circle img-responsive" [src]="report.result.avatarUrl" alt="image"/>
+                              </div>
+                              <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.TWITTER]">
+                                <img class="img-circle img-responsive" [src]="report.result.profileImageURL"
+                                     alt="image"/>
+                              </div>
+                              <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.LINKEDIN]">
+                                <img class="img-circle img-responsive" [src]="report.result.avatarUrl" alt="image"/>
                               </div>
                             </div>
                           </div>
-                          //FIXME add info about analyzed resource
-                          <div class="caption">
-                            <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.GITHUB]">
-                              <p>{{report.result.name || report.result.login}}</p>
+
+                          <div class="col-xs-12 bottom text-center">
+                            <div class="col-xs-12 col-sm-6 emphasis source_logo">
+                              <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.GITHUB]">
+                                <img class="img-responsive" src="assets/img/github-logo.png" alt="image"/>
+                              </div>
+                              <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.TWITTER]">
+                                <img class="img-responsive" src="assets/img/twitter-logo.png" alt="image"/>
+                              </div>
+                              <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.LINKEDIN]">
+                                <img class="img-responsive" src="" alt="image"/>
+                              </div>
                             </div>
-                            <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.TWITTER]">
-                              <p>{{report.result.name || report.result.email || report.result.id}}</p>
-                            </div>
-                            <div *ngIf="report.resource === AnalyzedResource[AnalyzedResource.LINKEDIN]">
-                              <p>Snow and Ice Incoming for the South</p>
+                            <div class="col-xs-12 col-sm-6 emphasis">
+                              <a [routerLink]="['/analytics/report', report.id]" class="btn btn-success btn-xs">
+                                <i class="fa fa-user"> </i> View Profile
+                              </a>
+                              <a (click)="showDeleteReportDialog(report)" href="javascript:void(0)"
+                                 class="btn btn-danger btn-xs">
+                                <i class="fa fa-times"></i>
+                              </a>
                             </div>
                           </div>
                         </div>

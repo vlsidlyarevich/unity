@@ -3410,8 +3410,12 @@ ul.project_files li a i {
   background: #1ABB9C;
   height: 110px;
   color: #fff;
-  padding: 15px 0 0;
+  padding: 10px;
   text-align: center;
+}
+
+.pricing .title img {
+  width: 90%;
 }
 
 .pricing .title h2 {
