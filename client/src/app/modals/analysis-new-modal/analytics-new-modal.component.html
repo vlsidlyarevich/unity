@@ -1,51 +1,54 @@
 <div [@dialog] *ngIf="visible" class="modal-dialog modal-lg dialog">
-  <div class="">
-    <div class="source responsive">
-      <div class="source__github content">
-        <div class="source__image card-front">
-          <img src="assets/img/GitHub-logo.png" alt="" title=""/>
-          <div class="source__description card-back">
-            <ul>
-              <li> Languages overview</li>
-              <li> Technologies overview</li>
-              <li> Repositories and stars</li>
-              <li> Contributions</li>
+  <div class="x_title">
+    <h2>Select analyzed source</h2>
+    <div class="clearfix"></div>
+  </div>
+
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="pricing">
+      <div class="title">
+        <img src="assets/img/github-logo.png" alt="" title=""/>
+      </div>
+      <div class="x_content">
+        <div class="">
+          <div class="pricing_features">
+            <ul class="list-unstyled text-left">
+              <li><i class="fa fa-check text-success"></i> Languages overview</li>
+              <li><i class="fa fa-check text-success"></i> Technologies overview</li>
+              <li><i class="fa fa-check text-success"></i> Repositories and stars</li>
+              <li><i class="fa fa-check text-success"></i> Contributions</li>
             </ul>
           </div>
         </div>
-        <div class="source__link">
-          <a (click)="selectGithub()">GO</a>
+        <div class="pricing_footer">
+          <a href="javascript:void(0);" (click)="selectGithub()" class="btn btn-success btn-block" role="button">
+            Select
+          </a>
         </div>
       </div>
-      <div class="source__twitter content">
-        <div class="source__image card-front">
-          <img src="assets/img/Twitter-Logo.png" alt="" title=""/>
-          <div class="source__description card-back">
-            <ul>
-              <li> Subscriptions</li>
-              <li> Fields of interest</li>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="pricing">
+      <div class="title">
+        <img src="assets/img/twitter-transparent.png" alt="" title=""/>
+      </div>
+      <div class="x_content">
+        <div class="">
+          <div class="pricing_features">
+            <ul class="list-unstyled text-left">
+              <li><i class="fa fa-check text-success"></i> Subscriptions</li>
+              <li><i class="fa fa-check text-success"></i> Fields of interest</li>
             </ul>
           </div>
         </div>
-        <div class="source__link">
-          <a (click)="selectTwitter()">GO</a>
+        <div class="pricing_footer">
+          <a href="javascript:void(0);" (click)="selectTwitter()" class="btn btn-success btn-block" role="button">
+            Select
+          </a>
         </div>
       </div>
-      <!--<div class="source__linkedin content">-->
-      <!--<div class="source__image card-front">-->
-      <!--<img src="assets/img/Logo-linkedin.png" alt="" title=""/>-->
-      <!--<div class="source__description card-back">-->
-      <!--<ul>-->
-      <!--<li> Positions overview</li>-->
-      <!--<li> Recomendations overview</li>-->
-      <!--<li> Skills overview</li>-->
-      <!--</ul>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--<div class="source__link">-->
-      <!--<a (click)="selectLinkedIn()">GO</a>-->
-      <!--</div>-->
-      <!--</div>-->
     </div>
   </div>
 </div>
