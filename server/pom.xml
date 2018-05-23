@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Unity</name>
-    <description>Angular 2 and java REST based Human Resourse Analysing tool</description>
+    <description>Angular 5 and java REST based Human Resourse Analysing tool</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -4,9 +4,9 @@
   "author": "Vladislav Sidlyarevich <vlsidlyarevich@gmail.com>",
   "license": "Apache License 2.0",
   "homepage": "https://github.com/vlsidlyarevich/unity",
-  "description": "An Angular 4 based client of Human resourse analysing tool",
+  "description": "An Angular 5 based client of Human resourse analysing tool",
   "keywords": [
-    "angular4",
+    "angular5",
     "webpack",
     "typescript"
   ],
