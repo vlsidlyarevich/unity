@@ -54,6 +54,7 @@ export class AnalyticsReportsComponent implements OnInit {
         if (response) {
           this.loaderService.hide();
           this.notificationService.success('Report ' + response + ' is successfully deleted');
+          this.showDeleteDialog = false;
           this.init();
         }
       }, (error: HttpErrorResponse) => {

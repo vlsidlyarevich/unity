@@ -3412,6 +3412,9 @@ ul.project_files li a i {
   color: #fff;
   padding: 10px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pricing .title img {
