@@ -46,8 +46,7 @@ Type following commands in additional/docker/mongo folder.
 
 ### Running the client
 * `cd client`
-* `npm i`
-* `ng serve`
+* `npm run dev-local`
 
 ### Debugging the application
 * `mvn clean install`
