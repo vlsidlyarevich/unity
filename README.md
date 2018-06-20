@@ -19,9 +19,9 @@
 * [Project Lombok](https://projectlombok.org/)
 * [MongoDB](https://www.mongodb.com/)
 * [Docker](https://www.docker.com/)
-* [Angular 4](https://angular.io/)
+* [Angular 5](https://angular.io/)
 * [Angular-cli](https://cli.angular.io/)
-* [Bootstrap 4](https://v4-alpha.getbootstrap.com/)
+* [Bootstrap 3](https://v4-alpha.getbootstrap.com/)
 
 ---
 [Takari maven wrapper](https://github.com/takari/maven-wrapper) is used.
