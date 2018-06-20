@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/vlsidlyarevich/unity.svg?branch=master)](https://travis-ci.org/vlsidlyarevich/unity)
 [![Dependency Status](https://www.versioneye.com/user/projects/5a1dc7680fb24f62baaa2d8c/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5a1dc7680fb24f62baaa2d8c)
 [![Coverage Status](https://coveralls.io/repos/github/vlsidlyarevich/unity/badge.svg?branch=master)](https://coveralls.io/github/vlsidlyarevich/unity?branch=master)
-### Angular 4 and Java based Human resourse analysing tool
+### Angular 5 and Java based Human resourse analysing tool
 
 ---
 ##### Features:
